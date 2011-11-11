@@ -16,8 +16,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
+
+#by Alexey Eromenko: This class is responsible for open/save of Cisco Router Startup config.
 
 import os, base64
 import GNS3.Dynagen.dynamips_lib as lib

@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
 
 import os, re
@@ -92,7 +92,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
 #                if wic_name:
 #                    self.widget_wics[wic_number].addItem(wic_name)
 #                else:
-                available_wics = ['WIC-1T', 'WIC-2T']
+                available_wics = ['', 'WIC-1T', 'WIC-2T']
                 if platform == 'c1700':
                     # Ethernet WIC only available on platform c1700
                     available_wics.append('WIC-1ENET')

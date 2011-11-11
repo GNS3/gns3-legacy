@@ -1,6 +1,62 @@
 CHANGELOG
 
-GNS3 0.7.3
+GNS3 0.8.0 VirtualBox Edition
+
+  Major Improvements:
+
+ * VirtualBox support (v4.1 required)
+ * Wireshark Live Traffic Capture
+ * Basic IPv6 enablement
+ * Basic Netbook enablement
+ * Architecture: On Windows, GNS3 now runs from source code
+ * Architecture: PEMU is now moved from GNS3 core to a separate component. (PEMU will be part of Windows "All-in-One" installer)
+ * Architecture: Resolved conflict with Debian's built-in GNS3 package. On Linux, setup is no longer needed.
+ * Dynagen Console got a massive rewrite / cleanup
+ * Russian translation got a major update
+
+  Other Changes and Fixes:
+
+ * Windows Setup was rewritten from scratch
+ * Changed Default Qemu Ethernet Controller from "e1000" to "Realtek 8139" for Windows XP compatibility.
+ * GUI: Swapped AUX & Console icons - more convenient to have "console" button near "start" button. 
+ * Disallowed to hot-add new links to running Qemu.
+ * Fixed VM states coherency between Dynagen's Console and GNS3.
+ * Several fixes for using GNS3 with external qemu/vboxwrappers (multi-host distributed topologies)
+ * GUI: Disabled Linux features on Windows hosts. (KVM, NIO_VDE, NIO_UNIX and NIO Linux Ethernet)
+ * GUI: Disallowed connecting devices with incorrect link types, such as Frame-Relay switches with Ethernet cable.
+ * Fixed the problem of filled WIC slots in Routers (0.7.4 Regression; UldisD's case)
+ * Fixed SecureCRT (SARS' case, minor bug; Windows hosts only)
+ * Terminal Emulator Settings: sorted & hide non-platform-related options
+ * Fixed AUX port error messages
+ * Fixed translation file generator
+ * Dynagen Console: 'hypervisors', 'ver' and 'versions' commands are now merged into just 'ver'.
+ * Dynagen Console: 'exit' and 'disconnect' commands are now merged into 'clear topology'.
+ * Dynagen Console: Removed non-working commands: 'shell', 'cpuinfo', 'py', 'conf', 'confreg', 'hypervisor', 'end', 'send'
+ * For full list of changes, see "modified.txt"
+
+  VirtualBox / vboxwrapper backend features:
+
+ * FlexiNetwork: Link hot-add/hot-remove
+ * Traffic Capture
+ * Suspend/Resume VMs
+ * Instant reboot
+ * "automatic" NIC type (just mirrors existing NIC type)
+ * Network statistics (Bytes Transmitted / Bytes Received)
+ * View of Guest OS IP addresses, by retrieving data from Virtual machine (if GuestAdditions installed)
+ * GuestControl execution; send commands from Dynagen console
+ * Double-click on VBOX VM brings it's display window to front.
+ * Modular design
+
+GNS3 0.7.4 - 11.04.2011.
+
+ * AUX ports integrated in the GUI
+ * Greek translation
+ * Hypervisor allocation per IOS type
+ * Improvements on Ethernet Switch (dynamic remapping of VLAN or type)
+ * Adaptations to support Dynamips 0.2.8 RC3 community
+ * Integration of a loopback manager for Windows
+
+GNS3 0.7.3 - 12.12.2010.
 
  * Easily change the symbol of one or several nodes (Select a node, then right click -> Change symbol).
  * A docked window to see on what device interface captures are running (View -> Docks -> Captures). You can stop capturing or start Wireshark using this view.
@@ -31,7 +87,7 @@ GNS3 0.7.3
  * Reload all devices option.
  * French and Italian translation updates.
 
-GNS3 0.7.2
+GNS3 0.7.2 - 16.06.2010
 
  * Lot of small fixes (relative paths, link removal, .net loading, Ethernet switch connection to a Cloud etc.)
  * Qemuwrapper: random MAC address for devices
@@ -50,14 +106,14 @@ GNS3 0.7.2
  * QinQ support for simulated Ethernet switches.
  * Interfaces statistics (Packets in, Packets out, Bytes in, Bytes out). Displayed in node tooltips.
 
-GNS3 0.7.1
+GNS3 0.7.1 - 29.04.2010
 
  * Qemuwrapper (option to listen on a IP/host and port).
  * Basic support for external hypervisors.
  * Some improvement for projects under GNS3 (still work to do).
  * Many small bugs fixes (graphical, cloud connection etc.)
 
-GNS3 0.7
+GNS3 0.7 - 27.02.2010
 
  * Support & debugging on Windows 7.
  * Qemuwrapper improvements & Windows compatibility.
@@ -81,7 +137,7 @@ GNS3 0.7
  * New translation in Czech (thanks to Ondrej Filip).
  * Lot of various small bug fixes and improvements.
 
-GNS3 0.7RC1
+GNS3 0.7RC1 - 23.12.2009
 
  * Qemu integration.
  * JunOS & ASA integration using Qemu.
@@ -89,7 +145,7 @@ GNS3 0.7RC1
  * Translations in Italian and Farsi.
  * Various bugs fixes and improvements.
 
-GNS3 0.6.1
+GNS3 0.6.1 - 13.05.2009
 
 Improvements:
 
@@ -113,7 +169,7 @@ Fixes:
  * AttributeError: value of `chassis' must be of type string.
  * Merge correct config paths when loading a .net create on a different platform.
 
-GNS3 0.6
+GNS3 0.6 - 15.12.2008
 
  * Users can change the workspace size.
  * Possibility to draw rectangles and ellipses.
@@ -126,7 +182,7 @@ GNS3 0.6
  * Annotations, rectangles and ellipses can be rotated.
  * On Windows, users can load an alternative gns3.ini by setting a path on command line, example: gns3.exe --configdir <path_to_dir_containing_gns3.ini>
 
-GNS3 0.5:
+GNS3 0.5: - 29.04.2008
 
  * Possibility to load .net files of other users (provided that there is a registered IOS image with the same model as the one used in the NET file).
  * New detailed tooltips for nodes. 
@@ -139,7 +195,7 @@ GNS3 0.5:
  * Automatic load-balancing on external hypervisors (choose multiple external hypervisors when recording an IOS image).
  * New option to bind the hypervisor manager with an address/name other than 'localhost': useful for labs which use local and remote hypervisors.
 
-GNS3 0.4:
+GNS3 0.4: - 21.03.2008
 
  * Dynamic mode (no design/emulation modes).
  * New .net import/export.

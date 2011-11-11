@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_IOSRouterPage.ui'
 #
-# Created: Mon Apr 11 15:55:32 2011
-#      by: PyQt4 UI code generator 4.8.1
+# Created: Thu Oct 27 22:25:40 2011
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -366,14 +366,14 @@ class Ui_IOSRouterPage(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.General), QtGui.QApplication.translate("IOSRouterPage", "General", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("IOSRouterPage", "Memories", None, QtGui.QApplication.UnicodeUTF8))
         self.label_7.setText(QtGui.QApplication.translate("IOSRouterPage", "RAM size:", None, QtGui.QApplication.UnicodeUTF8))
-        self.spinBoxRamSize.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxRamSize.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MiB", None, QtGui.QApplication.UnicodeUTF8))
         self.label_9.setText(QtGui.QApplication.translate("IOSRouterPage", "NVRAM size:", None, QtGui.QApplication.UnicodeUTF8))
-        self.spinBoxNvramSize.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " KB", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxNvramSize.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " KiB", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_6.setTitle(QtGui.QApplication.translate("IOSRouterPage", "Disks", None, QtGui.QApplication.UnicodeUTF8))
         self.label_10.setText(QtGui.QApplication.translate("IOSRouterPage", "PCMCIA disk0 size:", None, QtGui.QApplication.UnicodeUTF8))
-        self.spinBoxPcmciaDisk0Size.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxPcmciaDisk0Size.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MiB", None, QtGui.QApplication.UnicodeUTF8))
         self.label_11.setText(QtGui.QApplication.translate("IOSRouterPage", "PCMCIA disk1 size:", None, QtGui.QApplication.UnicodeUTF8))
-        self.spinBoxPcmciaDisk1Size.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxPcmciaDisk1Size.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MiB", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.MemoriesDisks), QtGui.QApplication.translate("IOSRouterPage", "Memories and disks", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_3.setTitle(QtGui.QApplication.translate("IOSRouterPage", "Adapters", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setText(QtGui.QApplication.translate("IOSRouterPage", "slot 0:", None, QtGui.QApplication.UnicodeUTF8))
@@ -393,7 +393,7 @@ class Ui_IOSRouterPage(object):
         self.lineEditConfreg.setText(QtGui.QApplication.translate("IOSRouterPage", "0x2102", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("IOSRouterPage", "Base MAC :", None, QtGui.QApplication.UnicodeUTF8))
         self.label_31.setText(QtGui.QApplication.translate("IOSRouterPage", "exec area:", None, QtGui.QApplication.UnicodeUTF8))
-        self.spinBoxExecArea.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxExecArea.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " MiB", None, QtGui.QApplication.UnicodeUTF8))
         self.label_22.setText(QtGui.QApplication.translate("IOSRouterPage", "iomem :", None, QtGui.QApplication.UnicodeUTF8))
         self.spinBoxIomem.setSuffix(QtGui.QApplication.translate("IOSRouterPage", " %", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.Advanced), QtGui.QApplication.translate("IOSRouterPage", "Advanced", None, QtGui.QApplication.UnicodeUTF8))

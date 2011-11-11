@@ -1,11 +1,17 @@
 INSTALLATION
 
-* GNS3 dependencies:
+* GNS3 VirtualBox Edition dependencies:
 
 - Qt 4.5.1 (or higher)
 - Python 2.6 (or higher)
 - Sip 4.5 (or higher)
 - PyQt 4.5 (or higher)
+- Dynamips 0.2.8+
+- VirtualBox 4.1.x
+- QEMU (with UDP patch)
+- PEMU
+- xdotool (on X11 UNIX-like platforms)
+- Wireshark
 
 * WINDOWS users:
 

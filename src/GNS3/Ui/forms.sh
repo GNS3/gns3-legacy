@@ -21,21 +21,23 @@ FILES=" Form_MainWindow
         ./ConfigurationPages/Form_FRSWPage
         ./ConfigurationPages/Form_ATMSWPage
         ./ConfigurationPages/Form_ATMBRPage
-        ./ConfigurationPages/Form_FWPage
+        ./ConfigurationPages/Form_PIXPage
         ./ConfigurationPages/Form_ASAPage
         ./ConfigurationPages/Form_JunOSPage
         ./ConfigurationPages/Form_IDSPage
         ./ConfigurationPages/Form_QemuPage
+        ./ConfigurationPages/Form_VirtualBoxPage
         ./ConfigurationPages/Form_DecorativeNodePage
         ./ConfigurationPages/Form_PreferencesGeneral
         ./ConfigurationPages/Form_PreferencesDynamips
         ./ConfigurationPages/Form_PreferencesCapture
         ./ConfigurationPages/Form_PreferencesQemu
+        ./ConfigurationPages/Form_PreferencesVirtualBox
 "
 
 # Update files...
 for file in $FILES;
 do
     echo "Generating $file"
-    /Library/Frameworks/Python.framework/Versions/2.7/bin/pyuic4 "$file.ui" > "$file.py"
+    /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin/pyuic4 "$file.ui" > "$file.py"
 done

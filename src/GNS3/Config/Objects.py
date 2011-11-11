@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
 
 from GNS3.Config import Defaults
@@ -31,6 +31,8 @@ class ConfigObject(object):
 
 
     def __getattr__(self, name):
+        #if constants.debuglevel > 1:
+        #    print "ADEBUG: Objects.py: ConfigObject::__getattr__(%s)" % str(name)
         if self.__dict__['conf'].has_key(name):
             # Call the getter function, if there is one, else
             # return the value directly from the `conf' dictionnary.
@@ -44,7 +46,10 @@ class ConfigObject(object):
         else:
             # In case the attribute is not part of the conf,
             # behave like the normal __getattr__
+            #try:
             super(ConfigObject, self).__getattr__(name)
+            #except:
+	    #    print "WARNING: object" + str(name) + "doesn't have __getattr__ attribute"
 
     def __setattr__(self, name, value):
         # We must bypass `conf' and `types' attributes, because we use
@@ -104,7 +109,13 @@ class qemuImageConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_qemuImage_defaults.copy()
         self.types = Defaults.conf_qemuImage_types
-        
+
+class vboxImageConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_vboxImage_defaults.copy()
+        self.types = Defaults.conf_vboxImage_types
+
 class pixImageConf(ConfigObject):
     def __init__(self):
         ConfigObject.__init__(self)
@@ -152,3 +163,9 @@ class systemQemuConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_systemQemu_defaults.copy()
         self.types = Defaults.conf_systemQemu_types
+
+class systemVBoxConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_systemVBox_defaults.copy()
+        self.types = Defaults.conf_systemVBox_types

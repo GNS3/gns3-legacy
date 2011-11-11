@@ -103,8 +103,8 @@
     <addaction name="action_SuspendAll"/>
     <addaction name="action_StopAll"/>
     <addaction name="action_ReloadAll"/>
-    <addaction name="action_TelnetAll"/>
     <addaction name="action_ConsoleAuxAll"/>
+    <addaction name="action_TelnetAll"/>
    </widget>
    <widget class="QMenu" name="menuAnnotate">
     <property name="title">
@@ -213,8 +213,8 @@
    </attribute>
    <addaction name="action_Snapshot"/>
    <addaction name="action_config"/>
-   <addaction name="action_TelnetAll"/>
    <addaction name="action_ConsoleAuxAll"/>
+   <addaction name="action_TelnetAll"/>
    <addaction name="separator"/>
    <addaction name="action_StartAll"/>
    <addaction name="action_SuspendAll"/>

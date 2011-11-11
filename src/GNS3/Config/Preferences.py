@@ -16,8 +16,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
+
+#print "WELCOME to Preferences.py"
 
 from PyQt4 import QtGui, QtCore
 from GNS3.Ui.Form_PreferencesDialog import Ui_PreferencesDialog
@@ -37,6 +39,7 @@ class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
                         'Dynamips',
                         'Capture',
                         'Qemu',
+                        'VirtualBox',
                         ]
 
         QtGui.QDialog.__init__(self)

@@ -16,8 +16,9 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
+
 
 from GNS3.Node.IOSRouter1700 import IOSRouter1700
 from GNS3.Node.IOSRouter2600 import IOSRouter2600
@@ -31,7 +32,8 @@ from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
-from GNS3.Node.AnyEmuDevice import FW, ASA, JunOS, IDS, QemuDevice
+from GNS3.Node.AnyEmuDevice import PIX, ASA, JunOS, IDS, QemuDevice
+from GNS3.Node.AnyVBoxEmuDevice import VBoxDevice
 
 SYMBOL_TYPES = {
                 IOSRouter1700: 'Router c1700', 
@@ -40,7 +42,7 @@ SYMBOL_TYPES = {
                 IOSRouter3600: 'Router c3600',
                 IOSRouter3700: 'Router c3700',
                 IOSRouter7200: 'Router c7200',
-                FW: 'PIX firewall', 
+                PIX: 'PIX firewall', 
                 ASA: 'ASA firewall',
                 JunOS: 'Juniper router',
                 IDS: 'IDS',
@@ -48,7 +50,8 @@ SYMBOL_TYPES = {
                 ATMBR: 'ATM bridge',
                 ATMSW: 'ATM switch', 
                 FRSW: 'Frame Relay switch',
-                QemuDevice: 'Qemu host',
+                QemuDevice: 'Qemu guest',
+                VBoxDevice: 'VirtualBox guest',
                 Cloud: 'Cloud', 
                 DecorativeNode: 'Decorative node', 
                 }
@@ -91,7 +94,7 @@ SYMBOLS = [
     'translated': True,
     },
 
-    {'name': "PIX firewall", 'object': FW,
+    {'name': "PIX firewall", 'object': PIX,
     'normal_svg_file': ":/symbols/PIX_firewall.normal.svg",
     'select_svg_file': ":/symbols/PIX_firewall.selected.svg", 
     'translated': True,
@@ -145,7 +148,13 @@ SYMBOLS = [
     'translated': True,
     },
     
-    {'name': "Qemu host", 'object': QemuDevice,
+    {'name': "Qemu guest", 'object': QemuDevice,
+    'normal_svg_file': ":/symbols/computer.normal.svg",
+    'select_svg_file': ":/symbols/computer.selected.svg", 
+    'translated': True,
+    },
+
+    {'name': "VirtualBox guest", 'object': VBoxDevice,
     'normal_svg_file': ":/symbols/computer.normal.svg",
     'select_svg_file': ":/symbols/computer.selected.svg", 
     'translated': True,

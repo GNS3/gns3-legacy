@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDynamips.ui'
 #
-# Created: Mon Apr 11 15:55:34 2011
-#      by: PyQt4 UI code generator 4.8.1
+# Created: Thu Oct 27 22:25:42 2011
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -77,21 +77,25 @@ class Ui_PreferencesDynamips(object):
         self.label_9.setObjectName(_fromUtf8("label_9"))
         self.gridLayout.addWidget(self.label_9, 5, 3, 1, 1)
         self.dynamips_port = QtGui.QSpinBox(self.groupBox)
+        self.dynamips_port.setSuffix(_fromUtf8(" TCP"))
         self.dynamips_port.setMaximum(65535)
         self.dynamips_port.setProperty(_fromUtf8("value"), 7200)
         self.dynamips_port.setObjectName(_fromUtf8("dynamips_port"))
         self.gridLayout.addWidget(self.dynamips_port, 6, 0, 1, 1)
         self.dynamips_baseUDP = QtGui.QSpinBox(self.groupBox)
+        self.dynamips_baseUDP.setSuffix(_fromUtf8(" UDP"))
         self.dynamips_baseUDP.setMaximum(65535)
         self.dynamips_baseUDP.setProperty(_fromUtf8("value"), 10000)
         self.dynamips_baseUDP.setObjectName(_fromUtf8("dynamips_baseUDP"))
         self.gridLayout.addWidget(self.dynamips_baseUDP, 6, 1, 1, 1)
         self.dynamips_baseConsole = QtGui.QSpinBox(self.groupBox)
+        self.dynamips_baseConsole.setSuffix(_fromUtf8(" TCP"))
         self.dynamips_baseConsole.setMaximum(65535)
         self.dynamips_baseConsole.setProperty(_fromUtf8("value"), 2000)
         self.dynamips_baseConsole.setObjectName(_fromUtf8("dynamips_baseConsole"))
         self.gridLayout.addWidget(self.dynamips_baseConsole, 6, 2, 1, 1)
         self.dynamips_baseAUX = QtGui.QSpinBox(self.groupBox)
+        self.dynamips_baseAUX.setSuffix(_fromUtf8(" TCP"))
         self.dynamips_baseAUX.setMaximum(65535)
         self.dynamips_baseAUX.setProperty(_fromUtf8("value"), 2500)
         self.dynamips_baseAUX.setObjectName(_fromUtf8("dynamips_baseAUX"))
@@ -207,6 +211,7 @@ class Ui_PreferencesDynamips(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), QtGui.QApplication.translate("PreferencesDynamips", "Dynamips", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setTitle(QtGui.QApplication.translate("PreferencesDynamips", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("PreferencesDynamips", "Memory usage limit per hypervisor:", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxMemoryLimit.setSuffix(QtGui.QApplication.translate("PreferencesDynamips", " MiB", None, QtGui.QApplication.UnicodeUTF8))
         self.label_8.setText(QtGui.QApplication.translate("PreferencesDynamips", "UDP incrementation:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("PreferencesDynamips", "IP/host binding:", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxHypervisorManagerImport.setText(QtGui.QApplication.translate("PreferencesDynamips", "Use Hypervisor Manager when importing", None, QtGui.QApplication.UnicodeUTF8))

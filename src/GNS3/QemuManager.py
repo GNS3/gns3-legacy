@@ -16,15 +16,18 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
+
+#This class is used to start "qemuwrapper" automatically on localhost.
+#It is not used, if you start wrapper manually.
 
 import os
 import sys
 import time
 import GNS3.Globals as globals
 import GNS3.Dynagen.qemu_lib as qlib
-from socket import socket, AF_INET, SOCK_STREAM
+from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug, killAll
 
@@ -41,21 +44,28 @@ class QemuManager(object):
     def __del__(self):
         """ Kill Qemu
         """
-
+        #print "Entered QemuManager::__del__()"
         if self.proc:
             self.proc.kill()
 
     def waitQemu(self):
         """ Wait Qemu until it accepts connections
         """
+        #print "Entered QemuManager::waitQemu()"
+        binding = globals.GApp.systconf['qemu'].QemuManager_binding
 
         # give 15 seconds to Qemu to accept connections
         count = 15
         progress = None
         connection_success = False
-        debug("Qemu manager: connect on " + str(self.port))
+        #debug("Qemu manager: connect on " + str(self.port))
+        debug("Qemu manager: connecting to %s on port %s" % (str(globals.GApp.systconf['qemu'].QemuManager_binding), str(self.port)))
         for nb in range(count + 1):
-            s = socket(AF_INET, SOCK_STREAM)
+            if binding.__contains__(':'):
+                # IPv6 address support
+                s = socket(AF_INET6, SOCK_STREAM)
+            else:
+                s = socket(AF_INET, SOCK_STREAM)
             s.setblocking(0)
             s.settimeout(300)
             if nb == 3:
@@ -71,7 +81,7 @@ class QemuManager(object):
                     progress.reset()
                     break
             try:
-                s.connect(('localhost', self.port))
+                s.connect((binding, self.port))
             except:
                 s.close()
                 time.sleep(1)
@@ -96,7 +106,8 @@ class QemuManager(object):
     def startQemu(self, port):
         """ Start Qemu
         """
-
+        #print "Entered QemuManager::startQemu()"
+        binding = globals.GApp.systconf['qemu'].QemuManager_binding
         self.port = port
         if self.proc and self.proc.state():
             debug('QemuManager: Qemu is already started with pid ' + str(self.proc.pid()))
@@ -107,15 +118,20 @@ class QemuManager(object):
             if not os.access(globals.GApp.systconf['qemu'].qemuwrapper_workdir, os.F_OK | os.W_OK):
                 QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Qemu Manager', 
                                           unicode(translate("QemuManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.systconf['qemu'].qemuwrapper_workdir)
-            # set the working directory
-            self.proc.setWorkingDirectory(globals.GApp.systconf['qemu'].qemuwrapper_workdir)
+                
+            # set the working directory to be the same as qemuwrapper, important to use relative paths with qemu and qemu-img
+            self.proc.setWorkingDirectory(os.path.dirname(globals.GApp.systconf['qemu'].qemuwrapper_path))
 
         # test if Qemu is already running on this port
-        s = socket(AF_INET, SOCK_STREAM)
+        if binding.__contains__(':'):
+            # IPv6 address support
+            s = socket(AF_INET6, SOCK_STREAM)
+        else:
+            s = socket(AF_INET, SOCK_STREAM)
         s.setblocking(0)
         s.settimeout(300)
         try:
-            s.connect(('localhost', self.port))
+            s.connect((binding, self.port))
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Qemu Manager',
                                        unicode(translate("QemuManager", "Qemu is already running on port %i, it will not be shutdown after you quit GNS3")) % self.port)
             s.close()
@@ -123,12 +139,13 @@ class QemuManager(object):
         except:
             s.close()
 
-        # start Qemuwrapper, use python on all platform but Windows
+        # start Qemuwrapper, use python on all platform but Windows (in release mode)
         binding = globals.GApp.systconf['qemu'].QemuManager_binding
-        if sys.platform.startswith('win'):
+        #print "ADEBUG: qemuwrapper_path = %s" % str(globals.GApp.systconf['qemu'].qemuwrapper_path)
+        if sys.platform.startswith('win') and (globals.GApp.systconf['qemu'].qemuwrapper_path.split('.')[-1] == 'exe'):
             self.proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"', ['--listen', binding, '--port', str(self.port)])
         else:
-            self.proc.start('python',  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding, '--port', str(self.port)])
+            self.proc.start(sys.executable,  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding, '--port', str(self.port)])
 
         if self.proc.waitForStarted() == False:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Qemu Manager',  unicode(translate("QemuManager", "Can't start Qemu on port %i")) % self.port)
@@ -142,7 +159,7 @@ class QemuManager(object):
     def stopQemu(self):
         """ Stop Qemu
         """
-
+        #print "Entered QemuManager::stopQemu()"
         for hypervisor in globals.GApp.dynagen.dynamips.values():
             if isinstance(hypervisor, qlib.Qemu):
                 try:
@@ -158,23 +175,26 @@ class QemuManager(object):
     def preloadQemuwrapper(self):
         """ Preload Qemuwrapper
         """
-
+        #print "Entered QemuManager::preloadQemuwrapper()"
         proc = QtCore.QProcess(globals.GApp.mainWindow)
+        binding = globals.GApp.systconf['qemu'].QemuManager_binding
 
         if globals.GApp.systconf['qemu'].qemuwrapper_workdir:
             if not os.access(globals.GApp.systconf['qemu'].qemuwrapper_workdir, os.F_OK | os.W_OK):
                 QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Qemu Manager', 
                                           unicode(translate("QemuManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.systconf['qemu'].qemuwrapper_workdir)
                 return False
-            # set the working directory
-            proc.setWorkingDirectory(globals.GApp.systconf['qemu'].qemuwrapper_workdir)
-        
-        
-        # start Qemuwrapper, use python on all platform but Windows
-        if sys.platform.startswith('win'):
-            proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"')
+
+            # set the working directory to be the same as qemuwrapper, important to use relative paths with qemu and qemu-img
+            proc.setWorkingDirectory(os.path.dirname(globals.GApp.systconf['qemu'].qemuwrapper_path))
+
+
+        # start Qemuwrapper, use python on all platform but Windows (in release mode)
+        if sys.platform.startswith('win') and (globals.GApp.systconf['qemu'].qemuwrapper_path.split('.')[-1] == 'exe'):
+            # On Windows hosts, we remove python dependency by pre-compiling Qemuwrapper. (release mode)
+            proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"', ['--listen', binding])
         else:
-            proc.start('python',  [globals.GApp.systconf['qemu'].qemuwrapper_path])
+            proc.start(sys.executable,  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding])
 
         if proc.waitForStarted() == False:
             return False
@@ -183,11 +203,15 @@ class QemuManager(object):
         count = 5
         connection_success = False
         for nb in range(count + 1):
-            s = socket(AF_INET, SOCK_STREAM)
+            if binding.__contains__(':'):
+                # IPv6 address support
+                s = socket(AF_INET6, SOCK_STREAM)
+            else:
+                s = socket(AF_INET, SOCK_STREAM)
             s.setblocking(0)
             s.settimeout(300)
             try:
-                s.connect(('localhost', self.port))
+                s.connect((binding, self.port))
             except:
                 s.close()
                 time.sleep(1)

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_IDSPage.ui'
 #
-# Created: Mon Apr 11 15:55:33 2011
-#      by: PyQt4 UI code generator 4.8.1
+# Created: Thu Oct 27 22:25:41 2011
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -106,16 +106,12 @@ class Ui_IDSPage(object):
         self.lineEditOptions.setEnabled(True)
         self.lineEditOptions.setObjectName(_fromUtf8("lineEditOptions"))
         self.gridLayout.addWidget(self.lineEditOptions, 5, 2, 1, 2)
-        self.checkBoxKqemu = QtGui.QCheckBox(IDSPage)
-        self.checkBoxKqemu.setEnabled(True)
-        self.checkBoxKqemu.setObjectName(_fromUtf8("checkBoxKqemu"))
-        self.gridLayout.addWidget(self.checkBoxKqemu, 6, 0, 1, 1)
         self.checkBoxKVM = QtGui.QCheckBox(IDSPage)
         self.checkBoxKVM.setEnabled(True)
         self.checkBoxKVM.setObjectName(_fromUtf8("checkBoxKVM"))
-        self.gridLayout.addWidget(self.checkBoxKVM, 7, 0, 1, 3)
+        self.gridLayout.addWidget(self.checkBoxKVM, 6, 0, 1, 3)
         spacerItem = QtGui.QSpacerItem(20, 281, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem, 8, 0, 1, 4)
+        self.gridLayout.addItem(spacerItem, 7, 0, 1, 4)
 
         self.retranslateUi(IDSPage)
         self.comboBoxNIC.setCurrentIndex(5)
@@ -128,7 +124,7 @@ class Ui_IDSPage(object):
         self.label_18.setText(QtGui.QApplication.translate("IDSPage", "IDS Image 2 (hdb):", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonImage2Browser.setText(QtGui.QApplication.translate("IDSPage", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_24.setText(QtGui.QApplication.translate("IDSPage", "RAM:", None, QtGui.QApplication.UnicodeUTF8))
-        self.spinBoxRamSize.setSuffix(QtGui.QApplication.translate("IDSPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxRamSize.setSuffix(QtGui.QApplication.translate("IDSPage", " MiB", None, QtGui.QApplication.UnicodeUTF8))
         self.label_37.setText(QtGui.QApplication.translate("IDSPage", "Number of NICs:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_26.setText(QtGui.QApplication.translate("IDSPage", "NIC model:", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxNIC.setItemText(0, QtGui.QApplication.translate("IDSPage", "ne2k_pci", None, QtGui.QApplication.UnicodeUTF8))
@@ -140,6 +136,5 @@ class Ui_IDSPage(object):
         self.comboBoxNIC.setItemText(6, QtGui.QApplication.translate("IDSPage", "pcnet", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxNIC.setItemText(7, QtGui.QApplication.translate("IDSPage", "virtio", None, QtGui.QApplication.UnicodeUTF8))
         self.label_8.setText(QtGui.QApplication.translate("IDSPage", "Qemu Options:", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxKqemu.setText(QtGui.QApplication.translate("IDSPage", "Use KQemu", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxKVM.setText(QtGui.QApplication.translate("IDSPage", "Use KVM (Linux only)", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxKVM.setText(QtGui.QApplication.translate("IDSPage", "Use KVM", None, QtGui.QApplication.UnicodeUTF8))
 

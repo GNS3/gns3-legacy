@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_IDLEPCDialog.ui'
 #
-# Created: Mon Apr 11 15:55:32 2011
-#      by: PyQt4 UI code generator 4.8.1
+# Created: Thu Oct 27 22:25:40 2011
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 

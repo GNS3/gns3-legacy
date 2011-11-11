@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
 
 from GNS3.Defaults.AbstractDefaults import AbstractDefaults
@@ -29,9 +29,8 @@ class AnyEmuDefaults(AbstractDefaults):
         AbstractDefaults.__init__(self)
 
         self.default_image = 'None'
-        self.default_netcard = 'pcnet'
+        self.default_netcard = 'rtl8139'
         self.default_nics = 6
-        self.default_kqemu = False
         self.default_kvm = False
         self.default_options = ''
         self.default_ram = 128
@@ -76,7 +75,7 @@ class AnyEmuDefaults(AbstractDefaults):
 class QemuDefaults(AnyEmuDefaults):
     pass
 
-class FWDefaults(AnyEmuDefaults):
+class PIXDefaults(AnyEmuDefaults):
     def __init__(self):
         AnyEmuDefaults.__init__(self)
         self.default_serial = '0x12345678'

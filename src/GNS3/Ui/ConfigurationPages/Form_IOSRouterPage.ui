@@ -162,7 +162,7 @@
              </sizepolicy>
             </property>
             <property name="suffix">
-             <string> MB</string>
+             <string> MiB</string>
             </property>
             <property name="maximum">
              <number>4096</number>
@@ -191,7 +191,7 @@
              </sizepolicy>
             </property>
             <property name="suffix">
-             <string> KB</string>
+             <string> KiB</string>
             </property>
             <property name="maximum">
              <number>4096</number>
@@ -229,7 +229,7 @@
              </sizepolicy>
             </property>
             <property name="suffix">
-             <string> MB</string>
+             <string> MiB</string>
             </property>
             <property name="maximum">
              <number>99999</number>
@@ -255,7 +255,7 @@
              </sizepolicy>
             </property>
             <property name="suffix">
-             <string> MB</string>
+             <string> MiB</string>
             </property>
             <property name="maximum">
              <number>99999</number>
@@ -558,7 +558,7 @@
           </sizepolicy>
          </property>
          <property name="suffix">
-          <string> MB</string>
+          <string> MiB</string>
          </property>
          <property name="maximum">
           <number>4096</number>

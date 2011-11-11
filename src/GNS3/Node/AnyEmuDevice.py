@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
 
 import os, shutil
@@ -26,7 +26,7 @@ import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Telnet as console
 from PyQt4 import QtGui
 from GNS3.Node.AbstractNode import AbstractNode
-from GNS3.Defaults.AnyEmuDefaults import AnyEmuDefaults, FWDefaults, ASADefaults, JunOSDefaults, QemuDefaults, IDSDefaults
+from GNS3.Defaults.AnyEmuDefaults import AnyEmuDefaults, PIXDefaults, ASADefaults, JunOSDefaults, QemuDefaults, IDSDefaults
 from GNS3.Utils import translate, debug, error
 
 emu_id = 1
@@ -73,7 +73,6 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
             'image',
             'nics',
             'netcard',
-            'kqemu',
             'kvm',
             'options',
             ]
@@ -107,7 +106,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         self.hostname = hostname
         self.f = '%s %s' % (self.basehostname, self.hostname)
         self.updateToolTips()
-        
+
     def changeHostname(self):
         """ Called to change the hostname
         """
@@ -374,15 +373,15 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
 
         AbstractNode.mousePressEvent(self, event)
 
-class FW(AnyEmuDevice, FWDefaults):
+class PIX(AnyEmuDevice, PIXDefaults):
     instance_counter = 0
     model = '525'
-    basehostname = 'FW'
+    basehostname = 'PIX'
     friendly_name = 'Firewall'
     
     def __init__(self, *args, **kwargs):
         AnyEmuDevice.__init__(self, *args, **kwargs)
-        FWDefaults.__init__(self)
+        PIXDefaults.__init__(self)
         self.emudev_options.extend([
             'key',
             'serial',
@@ -390,7 +389,7 @@ class FW(AnyEmuDevice, FWDefaults):
         
     def _make_devinstance(self, qemu_name):
         from GNS3.Dynagen import qemu_lib
-        return qemu_lib.FW(self.dynagen.dynamips[qemu_name], self.hostname)
+        return qemu_lib.PIX(self.dynagen.dynamips[qemu_name], self.hostname)
 
 class ASA(AnyEmuDevice, ASADefaults):
     instance_counter = 0

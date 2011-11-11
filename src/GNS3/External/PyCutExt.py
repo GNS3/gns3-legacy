@@ -456,8 +456,8 @@ class SyntaxColor:
         stripped = word.strip()
         
         if(stripped in self.keywords):
-            return (255, 132,0) # orange
-        
+            return (165, 42, 42) # brown
+
         elif(self.is_python_string(stripped)):
             return (61, 120, 9) # dark green
         

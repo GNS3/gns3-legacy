@@ -14,7 +14,7 @@
    <string>IOS images and hypervisors</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+   <iconset>
     <normaloff>:/images/logo_icon.png</normaloff>:/images/logo_icon.png</iconset>
   </property>
   <layout class="QVBoxLayout">
@@ -147,7 +147,7 @@
           <item row="8" column="1" colspan="2">
            <widget class="QSpinBox" name="spinBoxDefaultRAM">
             <property name="suffix">
-             <string> MB</string>
+             <string> MiB</string>
             </property>
             <property name="minimum">
              <number>0</number>
@@ -366,6 +366,9 @@
           </item>
           <item row="1" column="3" colspan="2">
            <widget class="QSpinBox" name="spinBoxHypervisorPort">
+            <property name="suffix">
+             <string notr="true"> TCP</string>
+            </property>
             <property name="minimum">
              <number>1</number>
             </property>
@@ -402,6 +405,9 @@
           </item>
           <item row="2" column="3" colspan="2">
            <widget class="QSpinBox" name="spinBoxBaseUDP">
+            <property name="suffix">
+             <string notr="true"> UDP</string>
+            </property>
             <property name="minimum">
              <number>1</number>
             </property>
@@ -422,6 +428,9 @@
           </item>
           <item row="3" column="3" colspan="2">
            <widget class="QSpinBox" name="spinBoxBaseConsole">
+            <property name="suffix">
+             <string notr="true"> TCP</string>
+            </property>
             <property name="minimum">
              <number>1</number>
             </property>
@@ -471,6 +480,9 @@
           </item>
           <item row="4" column="3" colspan="2">
            <widget class="QSpinBox" name="spinBoxBaseAUX">
+            <property name="suffix">
+             <string notr="true"> TCP</string>
+            </property>
             <property name="maximum">
              <number>65535</number>
             </property>
@@ -562,9 +574,7 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../../../../gns3-artwork/svg_resources.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>buttonBox</sender>

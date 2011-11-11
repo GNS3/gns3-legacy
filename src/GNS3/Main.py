@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
 
 import sys
@@ -28,7 +28,7 @@ from PyQt4 import QtCore
 from __main__ import VERSION
 
 usage = "usage: %prog [--debug] [--configdir <config_dir>] <net_file>"
-parser = OptionParser(usage, version="%prog " + VERSION)
+parser = OptionParser(usage, version="gns3 " + VERSION)
 parser.add_option("-d", "--debug", action="store_true", help="display debug messages")
 parser.add_option("-c", "--configdir", action="store_true", dest="config_dir", help="directory where gns3.ini is located")
 

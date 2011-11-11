@@ -16,10 +16,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
 
-import re, sys
+import re, sys, platform
 import GNS3.Globals as globals
 from GNS3.Utils import translate, getWindowsInterfaces
 from PyQt4 import QtCore, QtGui, QtNetwork
@@ -34,7 +34,15 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
         self.setObjectName("Cloud")
-        
+
+        if platform.system() == 'Windows':
+            # NIO_UNIX and NIO_VDE can work across several versions of Unix-like systems, but not Windows.
+            self.tabWidget.removeTab(4)
+            self.tabWidget.removeTab(3)
+        if platform.system() != 'Linux':
+            # NIO_ETH_LINUX works only on Linux.
+            self.groupBox_2.setVisible(False)
+            
         # connect slots
         self.connect(self.pushButtonAddGenericEth, QtCore.SIGNAL('clicked()'), self.slotAddGenEth)
         self.connect(self.pushButtonDeleteGenericEth, QtCore.SIGNAL('clicked()'), self.slotDeleteGenEth)

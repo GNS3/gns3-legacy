@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # vim: expandtab ts=4 sw=4 sts=4:
 #
-# Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
+# Copyright (C) 2007-2011 GNS3 Development Team (http://www.gns3.net/team).
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License version 2 as
@@ -16,14 +16,24 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
+
+#debuglevel: 0=disabled, 1=default, 2=debug, 3=deep debug
+debuglevel = 0
+
+def debugmsg(level, message):
+    if debuglevel == 0:
+        return
+    if debuglevel >= level:        
+        print message
 
 import os, re, random, base64, traceback
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.qemu_lib as qlib
+import GNS3.Dynagen.dynagen_vbox_lib as vboxlib
 from GNS3.Globals.Symbols import SYMBOLS
 from GNS3.Utils import translate, debug, error
 from PyQt4 import QtGui, QtCore, QtSvg
@@ -42,6 +52,7 @@ from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.FRSW import init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
 from GNS3.Node.AnyEmuDevice import init_emu_id, AnyEmuDevice
+from GNS3.Node.AnyVBoxEmuDevice import init_vbox_emu_id, AnyVBoxEmuDevice
 
 router_hostname_re = re.compile(r"""^R([0-9]+)""")
 ethsw_hostname_re = re.compile(r"""^SW([0-9]+)""")
@@ -49,7 +60,8 @@ frsw_hostname_re = re.compile(r"""^FR([0-9]+)""")
 atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
 atmbr_hostname_re = re.compile(r"""^BR([0-9]+)""")
 cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
-emu_hostname_re = re.compile(r"""^[FW|JUNOS|ASA|IDS|QEMU]([0-9]+)""")
+emu_hostname_re = re.compile(r"""^[PIX|JUNOS|ASA|IDS|QEMU]([0-9]+)""")
+vbox_emu_hostname_re = re.compile(r"""^[VBOX]([0-9]+)""")
 decorative_hostname_re = re.compile(r"""^N([0-9]+)""")
 
 class NETFile(object):
@@ -57,14 +69,16 @@ class NETFile(object):
     """
 
     def __init__(self):
-
+        debugmsg(2, "NETFile::__init__()")
         self.dynagen = globals.GApp.dynagen
+        
         self.connection2cloud = {}
         self.decorative_node_connections = {}
 
     def add_in_connection_list(self, connection_data, connection_list):
         """ Record the connection in connection_list
         """
+        debugmsg(2, "NETFile::add_in_connection_list()")
 
         (source_device, source_interface, destination_device, destination_interface) = connection_data
         # don't want to record bidirectionnal connections
@@ -77,6 +91,7 @@ class NETFile(object):
     def populate_connection_list_for_router(self, device, connection_list):
         """ Add router connections in connection_list
         """
+        debugmsg(2, "NETFile::populate_connection_list_for_router()")
 
         for adapter in device.slot:
             if adapter:
@@ -105,17 +120,20 @@ class NETFile(object):
                                                                                                                                                                             connection_list)
                                 elif isinstance(remote_device, lib.FRSW) or isinstance(remote_device, lib.ATMSW) or isinstance(remote_device, lib.ETHSW) or isinstance(remote_device, lib.ATMBR):
                                     connection_list.append((device.name, source_interface, remote_device.name, str(remote_port)))
-                                elif isinstance(remote_device, qlib.AnyEmuDevice):
+                                elif isinstance(remote_device, qlib.AnyEmuDevice) or isinstance(remote_device, vboxlib.AnyVBoxEmuDevice):
                                     connection_list.append((device.name, source_interface, remote_device.name, remote_adapter + str(remote_port)))
 
     def populate_connection_list_for_emulated_device(self, device, connection_list):
         """ Add emulated device connections in connection_list
         """
+        debugmsg(2, "NETFile::populate_connection_list_for_emulated_device()")
 
         for port in device.nios:
             if device.nios[port] != None:
                 (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(device.nios[port])
                 if isinstance(remote_device, qlib.AnyEmuDevice):
+                    self.add_in_connection_list((device.name, 'e' + str(port), remote_device.name, remote_adapter + str(remote_port)), connection_list)
+                elif isinstance(remote_device, vboxlib.AnyVBoxEmuDevice):
                     self.add_in_connection_list((device.name, 'e' + str(port), remote_device.name, remote_adapter + str(remote_port)), connection_list)
                 elif isinstance(remote_device, lib.ETHSW):
                     connection_list.append((device.name, 'e' + str(port), remote_device.name, str(remote_port)))
@@ -123,6 +141,7 @@ class NETFile(object):
     def populate_connection_list_for_emulated_switch(self, device, connection_list):
         """ Add emulated switch connections in connection_list
         """
+        debugmsg(2, "NETFile::populate_connection_list_for_emulated_switch()")
 
         if isinstance(device, lib.ETHSW):
             keys = device.mapping.keys()
@@ -165,17 +184,21 @@ class NETFile(object):
     def create_node(self, device, default_symbol_name, running_config_name):
         """ Create a new node
         """
+        debugmsg(2, "****    NETFile::create_node(%s, %s, %s)" % (str(device), str(default_symbol_name), str(running_config_name)))
 
         symbol_name = x = y = z = hx = hy = None
         config = None
-        if isinstance(device, qlib.AnyEmuDevice) and self.dynagen.globalconfig['qemu ' + device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
+        if   isinstance(device, qlib.AnyEmuDevice)        and self.dynagen.globalconfig['qemu ' + device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
             config = self.dynagen.globalconfig['qemu ' + device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
+        elif isinstance(device, vboxlib.AnyVBoxEmuDevice) and self.dynagen.globalconfig['vbox ' + device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
+            config = self.dynagen.globalconfig['vbox ' + device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
         elif self.dynagen.globalconfig.has_key(device.dynamips.host +':' + str(device.dynamips.port)) and \
             self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
             config = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
         elif self.dynagen.globalconfig.has_key(device.dynamips.host) and self.dynagen.globalconfig[device.dynamips.host].has_key(running_config_name):
             config = self.dynagen.globalconfig[device.dynamips.host][running_config_name]
-
+        #print "config = %s" % str(config)
+        
         if config:
             if config.has_key('x'):
                 x = config['x']
@@ -190,6 +213,7 @@ class NETFile(object):
             if config.has_key('symbol'):
                 symbol_name = config['symbol']
 
+        #print "symbol_name = %s" % str(symbol_name)
         node = None
         if symbol_name:
             for item in SYMBOLS:
@@ -205,6 +229,7 @@ class NETFile(object):
                             node.default_symbol = False
                             break
                     break
+        debugmsg(3, "NETFile.py, node = %s" % str(node))
 
         if not node:
             # symbol name not found, use default one
@@ -213,16 +238,16 @@ class NETFile(object):
                 symbol_name = default_symbol_name
                 default_symbol = True
     
-    
+            debugmsg(3, "NETFile.py, symbol_name = %s" % str(symbol_name))
             for item in SYMBOLS:
-                if item['name'] == symbol_name:
+                if item['name'] == symbol_name:		    
                     renders = globals.GApp.scene.renders[symbol_name]
                     node = item['object'](renders['normal'], renders['selected'])
                     node.type = item['name']
                     if not default_symbol:
                         node.default_symbol = False
                     break
-        
+        debugmsg(3, "NETFile.py, node = %s" % str(node))
         if not node:    
             return None
              
@@ -245,6 +270,7 @@ class NETFile(object):
     def record_image(self, device):
         """ Record an image and all its settings in GNS3
         """
+        debugmsg(2, "NETFile::record_image()")
 
         conf_image = iosImageConf()
         conf_image.id = globals.GApp.iosimages_ids
@@ -283,6 +309,7 @@ class NETFile(object):
     def configure_node(self, node, device):
         """ Configure a node
         """
+        debugmsg(2, "NETFile::configure_node()")
 
         if isinstance(device, lib.Router):
             if (device.dynamips.host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or device.dynamips.host == 'localhost') and \
@@ -304,6 +331,7 @@ class NETFile(object):
     def add_connection(self, connection):
         """ Add a connection
         """
+        debugmsg(2, "NETFile::add_connection()")
 
         debug('Add connection ' + str(connection))
         (source_name, source_interface, destination_name, destination_interface) = connection
@@ -320,12 +348,12 @@ class NETFile(object):
 
         globals.GApp.topology.recordLink(srcid, source_interface, dstid, destination_interface, src_node, dst_node)
 
-        if not isinstance(src_node, IOSRouter) and not isinstance(src_node, AnyEmuDevice):
+        if not isinstance(src_node, IOSRouter) and not isinstance(src_node, AnyEmuDevice) and not isinstance(src_node, AnyVBoxEmuDevice):
             if not isinstance(src_node,Cloud) and not src_node.hypervisor:
                 src_node.get_dynagen_device()
             src_node.startupInterfaces()
             src_node.state = 'running'
-        if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, AnyEmuDevice):
+        if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, AnyEmuDevice) and not isinstance(dst_node, AnyVBoxEmuDevice):
             if not isinstance(dst_node,Cloud) and not dst_node.hypervisor:
                 dst_node.get_dynagen_device()
             dst_node.startupInterfaces()
@@ -334,6 +362,7 @@ class NETFile(object):
     def create_cloud(self, nio, source_device, source_interface):
         """ Create a cloud (used for NIO connections)
         """
+        debugmsg(2, "NETFile::create_cloud()")
 
         nio = nio.lower()
         if self.connection2cloud.has_key((source_device, source_interface, nio)):
@@ -352,13 +381,13 @@ class NETFile(object):
         globals.GApp.topology.nodes[cloud.id] = cloud
         if globals.GApp.workspace.flg_showHostname == True:
             cloud.showHostname()
-            
         globals.GApp.topology.addItem(cloud)
         return cloud
 
     def apply_gns3_data(self):
         """ Apply specific GNS3 data
         """
+        debugmsg(2, "NETFile::apply_gns3_data()")
 
         max_cloud_id = -1
         max_decorative_id = -1
@@ -376,7 +405,6 @@ class NETFile(object):
                 except ValueError:
                     continue
                 if devtype.lower() == 'cloud':
-
                     default_symbol = True
                     if gns3data[section].has_key('symbol') and gns3data[section]['symbol']:
                         symbol_name = gns3data[section]['symbol']
@@ -551,7 +579,8 @@ class NETFile(object):
     def apply_decorative_node_connections(self):
         """ Create GUI connections for decorative nodes
         """
-        
+        debugmsg(2, "NETFile::apply_decorative_node_connections()")
+
         for (connection, local_device) in self.decorative_node_connections.iteritems():
             (remote_device, remote_interface, local_interface) = connection
             if isinstance(remote_device, IOSRouter):
@@ -563,6 +592,7 @@ class NETFile(object):
     def import_net_file(self, path):
         """ Import a .net file
         """
+        debugmsg(2, "NETFile::import_net_file(%s)" % str(path))
 
         if globals.GApp.systconf['dynamips'].import_use_HypervisorManager and globals.GApp.systconf['dynamips'].path == '':
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("NETFile", "Save"), translate("NETFile", "Please configure the path to Dynamips"))
@@ -571,18 +601,25 @@ class NETFile(object):
         globals.GApp.workspace.clear()
         dynagen_namespace.CONFIGSPECPATH = []
         dir = os.path.dirname(dynagen_namespace.__file__)
+        debugmsg(3, "NETFile::import_net_file(),    os.path.dirname(dynagen_namespace.__file__) = %s" % str(dir))
         dynagen_namespace.CONFIGSPECPATH.append(dir)
         try:
+            debugmsg(3, "NETFile.py: import_config, try: path = %s" % str(path))
             dynagen_namespace.FILENAME = path
+            debugmsg(3, "NETFile.py: import_config, try: dynagen.import_config")
             self.dynagen.import_config(path)
+            debugmsg(3, "NETFile.py: import_config, try: QtGui.QSplashScreen()")
             splash = QtGui.QSplashScreen(QtGui.QPixmap(":images/logo_gns3_splash.png"))
             splash.show()
             splash.showMessage(translate("NETFile", "Please wait while importing the topology"))
+            debugmsg(3, "NETFile.py: import_config, try: GApp.processEvents")
             globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+            debugmsg(3, "NETFile.py: import_config, dynagen.ghosting()")
             self.dynagen.ghosting()
             if globals.GApp.systconf['dynamips'].jitsharing:
                 self.dynagen.jitsharing()
         except lib.DynamipsError, msg:
+            debugmsg(1, ("ADEBUG: NETFile.py: lib.DynamipsError: ", msg))
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Dynamips error"),  unicode(msg))
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
@@ -595,6 +632,7 @@ class NETFile(object):
             globals.GApp.workspace.clear()
             return
         except Exception, ex:
+            debugmsg(1, ("ADEBUG: NETFile.py: Exception detected: ", ex))
             logfile = open('dynagen_exception.log','a')
             traceback.print_exc(file=logfile)
             logfile.close()
@@ -618,6 +656,7 @@ class NETFile(object):
         max_atmsw_id = -1
         max_atmbr_id = -1
         max_emu_id = -1
+        max_vbox_emu_id = -1
         for (devicename, device) in self.dynagen.devices.iteritems():
 
             if isinstance(device,  lib.Bridge):
@@ -762,7 +801,7 @@ class NETFile(object):
                     if id > max_atmbr_id:
                         max_atmbr_id = id
 
-            elif isinstance(device, qlib.AnyEmuDevice):
+            elif isinstance(device, qlib.AnyEmuDevice) or isinstance(device, vboxlib.AnyVBoxEmuDevice):
 
                 node = self.create_node(device, device._ufd_machine, device.gen_cfg_name())
                 assert(node)
@@ -773,8 +812,10 @@ class NETFile(object):
                 match_obj = emu_hostname_re.match(node.hostname)
                 if match_obj:
                     id = int(match_obj.group(1))
-                    if id > max_emu_id:
+                    if isinstance(device, qlib.AnyEmuDevice) and (id > max_emu_id):
                         max_emu_id = id
+                    if isinstance(device, vboxlib.AnyVBoxEmuDevice) and (id > max_vbox_emu_id):
+                        max_vbox_emu_id = id
 
             globals.GApp.topology.addItem(node)
 
@@ -791,6 +832,8 @@ class NETFile(object):
             init_atmbr_id(max_atmbr_id + 1)
         if max_emu_id != -1:
             init_emu_id(max_emu_id + 1)
+        if max_vbox_emu_id != -1:
+            init_vbox_emu_id(max_vbox_emu_id + 1)
 
         # update current hypervisor base port and base UDP
         base_udp = 0
@@ -858,7 +901,7 @@ class NETFile(object):
             error('Unknown error exporting config for ' + device.name)
             return
         try:
-            f = open(file_path, 'w')
+            f = open(file_path, 'w') #export_router_config
             f.write(config)
             f.close()
             device.cnfg = file_path
@@ -871,7 +914,6 @@ class NETFile(object):
     def export_net_file(self, path, auto=False):
         """ Export a .net file
         """
-
         # remove unused hypervisors
         hypervisors = self.dynagen.dynamips.copy()
         for (name, hypervisor) in hypervisors.iteritems():
@@ -883,11 +925,12 @@ class NETFile(object):
                         break
                 if not has_ethsw:
                     del self.dynagen.dynamips[name]
-
+                    
         for hypervisor in self.dynagen.dynamips.values():
             hypervisor.configchange = True
         self.dynagen.defaults_config_ran = False
         self.dynagen.update_running_config()
+        debugmsg(3, ("NETFile.py: export_net_file() dynagen.running_config = ", self.dynagen.running_config))
         debug("Running config: " + str(self.dynagen.running_config))
 
         for device in self.dynagen.devices.values():
@@ -1025,7 +1068,7 @@ class NETFile(object):
                     # ugly but simple method to force to record hostname x&y positions
                     item.removeHostname()
                     item.showHostname()
-                # record node x & y positions
+                # record node x & y positions                
                 if not item.d:
                     print item.hostname + unicode(' ' + translate("NETFile", "must be connected or have a hypervisor set in order to be registered"))
                     continue
@@ -1042,7 +1085,7 @@ class NETFile(object):
                         self.dynagen.running_config[item.d][item.get_running_config_name()]['hx'] = item.hostname_xpos
                         self.dynagen.running_config[item.d][item.get_running_config_name()]['hy'] = item.hostname_ypos
                 except:
-                    pass
+                    pass                
 
         # record project settings
         if globals.GApp.workspace.projectConfigs or globals.GApp.workspace.projectWorkdir:
@@ -1085,10 +1128,13 @@ class NETFile(object):
             # Change absolute paths to relative paths if same base as the config file
             for hypervisor in self.dynagen.dynamips.values():
                 if isinstance(hypervisor, qlib.Qemu):
-                    h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)          
+                    h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)
+                elif isinstance(hypervisor, vboxlib.VBox):
+                    h = 'vbox ' + hypervisor.host + ":" + str(hypervisor.port)                
                 else:
                     h = hypervisor.host + ":" + str(hypervisor.port)
                 config = self.dynagen.running_config[h]
+                #if config.has_key('workingdir') and not isinstance(hypervisor, vboxlib.VBox): # Dirty hack.
                 if config.has_key('workingdir'):
                     config['workingdir'] = self.convert_to_relpath(config['workingdir'], path)
     
@@ -1112,7 +1158,8 @@ class NETFile(object):
         
         self.dynagen.running_config.filename = path
         try:
-            self.dynagen.running_config.write()  
+            debugmsg(3, ("NETFile.py: writing... dynagen.running_config = ", self.dynagen.running_config))
+            self.dynagen.running_config.write()
         except IOError, e:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 
                                       unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (path, unicode(e)))        
@@ -1121,7 +1168,11 @@ class NETFile(object):
     def convert_to_relpath(self, path, config_path):
         """ Returns a relative path when the config path and another path share a common base directory
         """
-
+        debugmsg(3, "NETFile.py: convert_to_relpath(%s, %s)" % (str(path), str(config_path)))
+        # Workaround, if remote hypervisor doesn't have workdir set:
+        if path == None:
+            return None
+        
         real_image_path = os.path.realpath(path)
         config_dir = os.path.dirname(os.path.realpath(config_path))
         commonprefix = os.path.commonprefix([real_image_path, config_dir])

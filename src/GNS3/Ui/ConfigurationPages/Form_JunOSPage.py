@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_JunOSPage.ui'
 #
-# Created: Mon Apr 11 15:55:33 2011
-#      by: PyQt4 UI code generator 4.8.1
+# Created: Thu Oct 27 22:25:41 2011
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -86,16 +86,12 @@ class Ui_JunOSPage(object):
         self.lineEditOptions.setEnabled(True)
         self.lineEditOptions.setObjectName(_fromUtf8("lineEditOptions"))
         self.gridLayout.addWidget(self.lineEditOptions, 4, 1, 1, 2)
-        self.checkBoxKqemu = QtGui.QCheckBox(JunOSPage)
-        self.checkBoxKqemu.setEnabled(True)
-        self.checkBoxKqemu.setObjectName(_fromUtf8("checkBoxKqemu"))
-        self.gridLayout.addWidget(self.checkBoxKqemu, 5, 0, 1, 1)
         self.checkBoxKVM = QtGui.QCheckBox(JunOSPage)
         self.checkBoxKVM.setEnabled(True)
         self.checkBoxKVM.setObjectName(_fromUtf8("checkBoxKVM"))
-        self.gridLayout.addWidget(self.checkBoxKVM, 6, 0, 1, 2)
+        self.gridLayout.addWidget(self.checkBoxKVM, 5, 0, 1, 2)
         spacerItem = QtGui.QSpacerItem(20, 281, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem, 7, 1, 1, 1)
+        self.gridLayout.addItem(spacerItem, 6, 1, 1, 1)
 
         self.retranslateUi(JunOSPage)
         self.comboBoxNIC.setCurrentIndex(5)
@@ -106,7 +102,7 @@ class Ui_JunOSPage(object):
         self.label_17.setText(QtGui.QApplication.translate("JunOSPage", "JunOS Image:", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonImageBrowser.setText(QtGui.QApplication.translate("JunOSPage", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.label_24.setText(QtGui.QApplication.translate("JunOSPage", "RAM:", None, QtGui.QApplication.UnicodeUTF8))
-        self.spinBoxRamSize.setSuffix(QtGui.QApplication.translate("JunOSPage", " MB", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxRamSize.setSuffix(QtGui.QApplication.translate("JunOSPage", " MiB", None, QtGui.QApplication.UnicodeUTF8))
         self.label_37.setText(QtGui.QApplication.translate("JunOSPage", "Number of NICs:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_26.setText(QtGui.QApplication.translate("JunOSPage", "NIC model:", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxNIC.setItemText(0, QtGui.QApplication.translate("JunOSPage", "ne2k_pci", None, QtGui.QApplication.UnicodeUTF8))
@@ -118,6 +114,5 @@ class Ui_JunOSPage(object):
         self.comboBoxNIC.setItemText(6, QtGui.QApplication.translate("JunOSPage", "pcnet", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxNIC.setItemText(7, QtGui.QApplication.translate("JunOSPage", "virtio", None, QtGui.QApplication.UnicodeUTF8))
         self.label_8.setText(QtGui.QApplication.translate("JunOSPage", "Qemu Options:", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxKqemu.setText(QtGui.QApplication.translate("JunOSPage", "Use KQemu", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxKVM.setText(QtGui.QApplication.translate("JunOSPage", "Use KVM (Linux only)", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxKVM.setText(QtGui.QApplication.translate("JunOSPage", "Use KVM", None, QtGui.QApplication.UnicodeUTF8))
 

@@ -1,12 +1,13 @@
 #!/bin/sh
 
-# Set file names in gns3.pro
+# Please run Languages_UpdtProjFiles.sh before if you've added .py/.ui files or if you want to
+# add a new language
 
-# create .ts files (for Qt Linguist)
-/Library/Frameworks/Python.framework/Versions/2.7/bin/pylupdate4 -noobsolete -verbose Languages.pro
+# internal
+PATH=$PATH":/Library/Frameworks/Python.framework/Versions/2.7/bin/:/usr/local/Trolltech/Qt-4.7.1/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/local/bin/"
+
+# create/update .ts files (for Qt Linguist)
+pylupdate4 -noobsolete -verbose Languages.pro
 
 # create .qm files from .ts files
-/usr/local/Trolltech/Qt-4.7.1/bin/lrelease Languages.pro || lrelease Languages.pro
-
-# create ressource file (don't forget to add the .qm file to translations.qrc)
-#pyrcc4 -compress 9 Languages.qrc -o ../Translations.py
+lrelease -verbose Languages.pro

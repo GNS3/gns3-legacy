@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="ja_JP">
+<!DOCTYPE TS><TS version="2.0" language="ja_JP" sourcelanguage="">
 <context>
     <name>ASA initrd</name>
     <message>
-        <location filename="../DynagenSub.py" line="160"/>
+        <location filename="../DynagenSub.py" line="189"/>
         <source>ASA initrd %s cannot be found and cannot find an alternative initrd</source>
         <translation>ASA initrd %s が見つからず、代わりとなる initrd も見つかりませんでした</translation>
     </message>
@@ -11,7 +11,7 @@
 <context>
     <name>ASA kernel</name>
     <message>
-        <location filename="../DynagenSub.py" line="171"/>
+        <location filename="../DynagenSub.py" line="200"/>
         <source>ASA kernel %s cannot be found and cannot find an alternative kernel</source>
         <translation>ASAのカーネル %s が見つからず、代替となるカーネルも見つかりませんでした</translation>
     </message>
@@ -22,11 +22,6 @@
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="14"/>
         <source>Firewall configuration</source>
         <translation>ファイアウォールの設定</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="33"/>
-        <source> MB</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="86"/>
@@ -74,32 +69,22 @@
         <translation>Qemu オプション:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="146"/>
-        <source>Use KQemu</source>
-        <translation>KQemu を使う</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="156"/>
-        <source>UseKVM (Linux only)</source>
-        <translation>KVM を使う (Linux のみ)</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="163"/>
+        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="143"/>
         <source>Initrd:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="211"/>
+        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="191"/>
         <source>...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="218"/>
+        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="198"/>
         <source>Kernel:</source>
         <translation>カーネル:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="235"/>
+        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="215"/>
         <source>Kernel cmd line:</source>
         <translation>カーネル コマンドライン:</translation>
     </message>
@@ -117,6 +102,16 @@
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="72"/>
         <source>NIC model:</source>
         <translation>NICの型番:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="33"/>
+        <source> MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="241"/>
+        <source>Use KVM</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -238,36 +233,59 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../Ui/Form_About.py" line="79"/>
+        <location filename="../Ui/Form_About.py" line="361"/>
         <source>About</source>
         <translation>GNS3 について</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="99"/>
+        <location filename="../Ui/Form_About.py" line="383"/>
         <source>&amp;About</source>
         <translation>GNS3 について(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="117"/>
+        <location filename="../Ui/Form_About.py" line="401"/>
         <source>&amp;Thanks to</source>
         <translation>謝辞(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="405"/>
+        <location filename="../Ui/Form_About.py" line="402"/>
         <source>&amp;License Agreement</source>
         <translation>ライセンス契約(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="80"/>
+        <location filename="../Ui/Form_About.py" line="384"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;GNS3 0.7.4&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg from Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;a name=&quot;:vm&quot;&gt;&lt;/a&gt;Leonard Bernstein from USA&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Erik Wenzel: German translation (code: de)&lt;br /&gt;&lt;br /&gt;Jose Sen: Spanish translation (code: es)&lt;br /&gt;&lt;br /&gt;Mark Soe Min: Japanese translation (code: jp)&lt;br /&gt;&lt;br /&gt;Dmitriy Ivakin and Alexey Eromenko &quot;Technologov&quot;: Russian translation (code: ru)&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa: Slovak translation (code: sk)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lyubomir Tsekov: Bulgarian translation (code: bg)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela &amp;amp; Vincenzo Reale: Italian translation (code: it)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Original five GNS3 developers: French Translation (code: fr)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tranzitwww: Romanian translation (code: ro)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Dionissys Anyfantis: Greek translation (code: gr)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_About.ui" line="70"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;GNS3 0.8.1&lt;/span&gt;&lt;/p&gt;*
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;VirtualBox Edition&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Under GPL v2 license&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Developer:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Developers:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Alexey Eromenko &quot;Technologov&quot;&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Former developers:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Xavier Alt&lt;/span&gt;&lt;/p&gt;
@@ -280,400 +298,118 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="../Ui/Form_About.py" line="100"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg from Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;a name=&quot;:vm&quot;&gt;&lt;/a&gt;Leonard Bernstein from USA&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Erik Wenzel: German translation (code: de)&lt;br /&gt;&lt;br /&gt;Huan Ji from Wuhan: Chinese translation (code: cn)&lt;br /&gt;&lt;br /&gt;Jose Sen: Spanish translation (code: es)&lt;br /&gt;&lt;br /&gt;Mark Soe Min: Japanese translation (code: jp)&lt;br /&gt;&lt;br /&gt;Aboulgasem Albusaifi from Tarabulus: Arabic translation (code: ar)&lt;br /&gt;&lt;br /&gt;Marcio de Freitas Minicz: Brazilian-Portuguese translation (code: pt_br)&lt;br /&gt;&lt;br /&gt;Hasan Agirol Aksoy: Turkish translation (code: tr)&lt;br /&gt;&lt;br /&gt;Ivakin Dmitriy: Russian translation (code: ru)&lt;br /&gt;&lt;br /&gt;Hyeonjin Kim: Korean translation (code: kr)&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa: Slovak translation (code: sk)&lt;br /&gt;&lt;br /&gt;Michał Zieliński: Polish translation (code: pl)&lt;br /&gt;&lt;br /&gt;Veljko Dzodic: Serbian translation (code: sr)&lt;br /&gt;&lt;br /&gt;Abalfazl Meshki: Farsi translation (code: fa)&lt;br /&gt;&lt;br /&gt;Ondřej Filip: Czech translation (code: cz)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lyubomir Tsekov: Bulgarian translation (code: bg)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela &amp;amp; Vincenzo Reale: Italian translation (code: it)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kyryl Tumanov: Ukrainian translation (code: uk)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tranzitwww: Romanian translation (code: ro)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Dionissys Anyfantis: Greek translation (code: gr)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="118"/>
+        <location filename="../Ui/Form_About.py" line="362"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Copyright (c) 2007,2011 GNS3 Team&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&amp;lt;code@gns3.net&amp;gt;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;GNU GENERAL PUBLIC LICENSE&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Version 2, June 1991&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Copyright (C) 1989, 1991 Free Software Foundation, Inc.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;675 Mass Ave, Cambridge, MA 02139, USA&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Everyone is permitted to copy and distribute verbatim copies&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;of this license document, but changing it is not allowed.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Preamble&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;The licenses for most software are designed to take away your&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;freedom to share and change it.  By contrast, the GNU General Public&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;License is intended to guarantee your freedom to share and change free&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;software--to make sure the software is free for all its users.  This&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;General Public License applies to most of the Free Software&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Foundation&apos;s software and to any other program whose authors commit to&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;using it.  (Some other Free Software Foundation software is covered by&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;the GNU Library General Public License instead.)  You can apply it to&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;your programs, too.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;When we speak of free software, we are referring to freedom, not&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;price.  Our General Public Licenses are designed to make sure that you&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;have the freedom to distribute copies of free software (and charge for&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;this service if you wish), that you receive source code or can get it&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;if you want it, that you can change the software or use pieces of it&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;in new free programs; and that you know you can do these things.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;To protect your rights, we need to make restrictions that forbid&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;anyone to deny you these rights or to ask you to surrender the rights.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;These restrictions translate to certain responsibilities for you if you&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;distribute copies of the software, or if you modify it.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;For example, if you distribute copies of such a program, whether&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;gratis or for a fee, you must give the recipients all the rights that&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;you have.  You must make sure that they, too, receive or can get the&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;source code.  And you must show them these terms so they know their&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;rights.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;We protect your rights with two steps: (1) copyright the software, and&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;(2) offer you this license which gives you legal permission to copy,&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;distribute and/or modify the software.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Also, for each author&apos;s protection and ours, we want to make certain&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;that everyone understands that there is no warranty for this free&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;software.  If the software is modified by someone else and passed on, we&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;want its recipients to know that what they have is not the original, so&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;that any problems introduced by others will not reflect on the original&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;authors&apos; reputations.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Finally, any free program is threatened constantly by software&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;patents.  We wish to avoid the danger that redistributors of a free&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;program will individually obtain patent licenses, in effect making the&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;program proprietary.  To prevent this, we have made it clear that any&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;patent must be licensed for everyone&apos;s free use or not licensed at all.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;The precise terms and conditions for copying, distribution and&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;modification follow.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;GNU GENERAL PUBLIC LICENSE&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;0. This License applies to any program or other work which contains&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;a notice placed by the copyright holder saying it may be distributed&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;under the terms of this General Public License.  The &amp;quot;Program&amp;quot;, below,&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;refers to any such program or work, and a &amp;quot;work based on the Program&amp;quot;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;means either the Program or any derivative work under copyright law:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;that is to say, a work containing the Program or a portion of it,&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;either verbatim or with modifications and/or translated into another&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;language.  (Hereinafter, translation is included without limitation in&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;the term &amp;quot;modification&amp;quot;.)  Each licensee is addressed as &amp;quot;you&amp;quot;.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Activities other than copying, distribution and modification are not&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;covered by this License; they are outside its scope.  The act of&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;running the Program is not restricted, and the output from the Program&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;is covered only if its contents constitute a work based on the&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Program (independent of having been made by running the Program).&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Whether that is true depends on what the Program does.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;1. You may copy and distribute verbatim copies of the Program&apos;s&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;source code as you receive it, in any medium, provided that you&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;conspicuously and appropriately publish on each copy an appropriate&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;copyright notice and disclaimer of warranty; keep intact all the&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;notices that refer to this License and to the absence of any warranty;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;and give any other recipients of the Program a copy of this License&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;along with the Program.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;You may charge a fee for the physical act of transferring a copy, and&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;you may at your option offer warranty protection in exchange for a fee.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;2. You may modify your copy or copies of the Program or any portion&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;of it, thus forming a work based on the Program, and copy and&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;distribute such modifications or work under the terms of Section 1&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;above, provided that you also meet all of these conditions:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;a) You must cause the modified files to carry prominent notices&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;stating that you changed the files and the date of any change.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;b) You must cause any work that you distribute or publish, that in&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;whole or in part contains or is derived from the Program or any&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;part thereof, to be licensed as a whole at no charge to all third&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;parties under the terms of this License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;c) If the modified program normally reads commands interactively&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;when run, you must cause it, when started running for such&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;interactive use in the most ordinary way, to print or display an&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;announcement including an appropriate copyright notice and a&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;notice that there is no warranty (or else, saying that you provide&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;a warranty) and that users may redistribute the program under&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;these conditions, and telling the user how to view a copy of this&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;License.  (Exception: if the Program itself is interactive but&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;does not normally print such an announcement, your work based on&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;the Program is not required to print an announcement.)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;These requirements apply to the modified work as a whole.  If&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;identifiable sections of that work are not derived from the Program,&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;and can be reasonably considered independent and separate works in&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;themselves, then this License, and its terms, do not apply to those&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;sections when you distribute them as separate works.  But when you&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;distribute the same sections as part of a whole which is a work based&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;on the Program, the distribution of the whole must be on the terms of&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;this License, whose permissions for other licensees extend to the&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;entire whole, and thus to each and every part regardless of who wrote it.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Thus, it is not the intent of this section to claim rights or contest&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;your rights to work written entirely by you; rather, the intent is to&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;exercise the right to control the distribution of derivative or&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;collective works based on the Program.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;In addition, mere aggregation of another work not based on the Program&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;with the Program (or with a work based on the Program) on a volume of&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;a storage or distribution medium does not bring the other work under&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;the scope of this License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;3. You may copy and distribute the Program (or a work based on it,&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;under Section 2) in object code or executable form under the terms of&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Sections 1 and 2 above provided that you also do one of the following:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;a) Accompany it with the complete corresponding machine-readable&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;source code, which must be distributed under the terms of Sections&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;1 and 2 above on a medium customarily used for software interchange; or,&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;b) Accompany it with a written offer, valid for at least three&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;years, to give any third party, for a charge no more than your&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;cost of physically performing source distribution, a complete&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;machine-readable copy of the corresponding source code, to be&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;distributed under the terms of Sections 1 and 2 above on a medium&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;customarily used for software interchange; or,&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;c) Accompany it with the information you received as to the offer&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;to distribute corresponding source code.  (This alternative is&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;allowed only for noncommercial distribution and only if you&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;received the program in object code or executable form with such&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;an offer, in accord with Subsection b above.)&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;The source code for a work means the preferred form of the work for&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;making modifications to it.  For an executable work, complete source&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;code means all the source code for all modules it contains, plus any&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;associated interface definition files, plus the scripts used to&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;control compilation and installation of the executable.  However, as a&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;special exception, the source code distributed need not include&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;anything that is normally distributed (in either source or binary&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;form) with the major components (compiler, kernel, and so on) of the&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;operating system on which the executable runs, unless that component&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;itself accompanies the executable.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;If distribution of executable or object code is made by offering&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;access to copy from a designated place, then offering equivalent&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;access to copy the source code from the same place counts as&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;distribution of the source code, even though third parties are not&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;compelled to copy the source along with the object code.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;4. You may not copy, modify, sublicense, or distribute the Program&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;except as expressly provided under this License.  Any attempt&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;otherwise to copy, modify, sublicense or distribute the Program is&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;void, and will automatically terminate your rights under this License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;However, parties who have received copies, or rights, from you under&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;this License will not have their licenses terminated so long as such&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;parties remain in full compliance.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;5. You are not required to accept this License, since you have not&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;signed it.  However, nothing else grants you permission to modify or&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;distribute the Program or its derivative works.  These actions are&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;prohibited by law if you do not accept this License.  Therefore, by&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;modifying or distributing the Program (or any work based on the&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Program), you indicate your acceptance of this License to do so, and&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;all its terms and conditions for copying, distributing or modifying&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;the Program or works based on it.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;6. Each time you redistribute the Program (or any work based on the&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Program), the recipient automatically receives a license from the&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;original licensor to copy, distribute or modify the Program subject to&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;these terms and conditions.  You may not impose any further&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;restrictions on the recipients&apos; exercise of the rights granted herein.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;You are not responsible for enforcing compliance by third parties to&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;this License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;7. If, as a consequence of a court judgment or allegation of patent&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;infringement or for any other reason (not limited to patent issues),&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;conditions are imposed on you (whether by court order, agreement or&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;otherwise) that contradict the conditions of this License, they do not&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;excuse you from the conditions of this License.  If you cannot&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;distribute so as to satisfy simultaneously your obligations under this&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;License and any other pertinent obligations, then as a consequence you&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;may not distribute the Program at all.  For example, if a patent&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;license would not permit royalty-free redistribution of the Program by&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;all those who receive copies directly or indirectly through you, then&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;the only way you could satisfy both it and this License would be to&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;refrain entirely from distribution of the Program.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;If any portion of this section is held invalid or unenforceable under&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;any particular circumstance, the balance of the section is intended to&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;apply and the section as a whole is intended to apply in other&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;circumstances.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;It is not the purpose of this section to induce you to infringe any&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;patents or other property right claims or to contest validity of any&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;such claims; this section has the sole purpose of protecting the&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;integrity of the free software distribution system, which is&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;implemented by public license practices.  Many people have made&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;generous contributions to the wide range of software distributed&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;through that system in reliance on consistent application of that&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;system; it is up to the author/donor to decide if he or she is willing&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;to distribute software through any other system and a licensee cannot&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;impose that choice.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;This section is intended to make thoroughly clear what is believed to&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;be a consequence of the rest of this License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;8. If the distribution and/or use of the Program is restricted in&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;certain countries either by patents or by copyrighted interfaces, the&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;original copyright holder who places the Program under this License&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;may add an explicit geographical distribution limitation excluding&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;those countries, so that distribution is permitted only in or among&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;countries not thus excluded.  In such case, this License incorporates&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;the limitation as if written in the body of this License.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;9. The Free Software Foundation may publish revised and/or new versions&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;of the General Public License from time to time.  Such new versions will&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;be similar in spirit to the present version, but may differ in detail to&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;address new problems or concerns.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Each version is given a distinguishing version number.  If the Program&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;specifies a version number of this License which applies to it and &amp;quot;any&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;later version&amp;quot;, you have the option of following the terms and conditions&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;either of that version or of any later version published by the Free&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Software Foundation.  If the Program does not specify a version number of&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;this License, you may choose any version ever published by the Free Software&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Foundation.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;10. If you wish to incorporate parts of the Program into other free&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;programs whose distribution conditions are different, write to the author&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;to ask for permission.  For software which is copyrighted by the Free&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;Software Foundation, write to the Free Software Foundation; we sometimes&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;make exceptions for this.  Our decision will be guided by the two goals&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;of preserving the free status of all derivatives of our free software and&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;of promoting the sharing and reuse of software generally.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;NO WARRANTY&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;11. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;PROVIDE THE PROGRAM &amp;quot;AS IS&amp;quot; WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;REPAIR OR CORRECTION.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;12. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;POSSIBILITY OF SUCH DAMAGES.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;END OF TERMS AND CONDITIONS&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;GNS3 0.8.1&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;VirtualBox Edition&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Under GPL v2 license&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Developers:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Alexey Eromenko &quot;Technologov&quot;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Former developers:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Xavier Alt&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Romain Lamaison&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Aurelien Levesque&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;David Ruiz&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="192"/>
+        <location filename="../Link/AbstractEdge.py" line="194"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="198"/>
+        <location filename="../Link/AbstractEdge.py" line="200"/>
         <source>Start Wireshark</source>
         <translation>Wiresharkを起動</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="394"/>
+        <location filename="../Link/AbstractEdge.py" line="455"/>
         <source>Capture</source>
         <translation>キャプチャする</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="213"/>
+        <location filename="../Link/AbstractEdge.py" line="215"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>このリンクでのキャプチャはサポートされていません</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="237"/>
+        <location filename="../Link/AbstractEdge.py" line="239"/>
         <source>Please choose a source</source>
         <translation>送信元を選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="240"/>
+        <location filename="../Link/AbstractEdge.py" line="242"/>
         <source>No device available for traffic capture</source>
         <translation>キャプチャできるデバイスはありません</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="358"/>
+        <location filename="../Link/AbstractEdge.py" line="414"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="373"/>
+        <location filename="../Link/AbstractEdge.py" line="429"/>
         <source>Please configure capture options</source>
         <translation>キャプチャオプションを設定してください</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="153"/>
+        <location filename="../Link/AbstractEdge.py" line="155"/>
         <source>Link: %s (%s) -&gt; %s (%s)</source>
         <translation>リンク: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="252"/>
+        <location filename="../Link/AbstractEdge.py" line="258"/>
         <source>Device %s is not running</source>
         <translation>デバイス %s は起動していません</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="394"/>
+        <location filename="../Link/AbstractEdge.py" line="455"/>
         <source>Cannot start %s : %s</source>
         <translation>スタートできません %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="379"/>
+        <location filename="../Link/AbstractEdge.py" line="435"/>
         <source>%s is empty, no traffic captured on the link. Try again later</source>
         <translation>%s にトラフィックは流れていません。もう一度試してください</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="383"/>
+        <location filename="../Link/AbstractEdge.py" line="439"/>
         <source>Cannot find %s : %s</source>
         <translation>見つかりません %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="196"/>
+        <location filename="../Link/AbstractEdge.py" line="198"/>
         <source>Stop capturing</source>
         <translation>キャプチャを停止しています</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="248"/>
+        <location filename="../Link/AbstractEdge.py" line="254"/>
         <source>Device %s must be restarted to start capturing traffic</source>
         <translation>デバイス %s はトラフィックキャプチャを再開しなければなりません</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="344"/>
+        <location filename="../Link/AbstractEdge.py" line="400"/>
         <source>Device %s must be stopped to stop capturing traffic</source>
         <translation>デバイス %s はトラフィックキャプチャを停止しなければなりません</translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="439"/>
+        <source>NOTE: This feature is only available for local hypervisors.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -684,12 +420,12 @@ p, li { white-space: pre-wrap; }
         <translation>ホスト名:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="371"/>
+        <location filename="../Node/AbstractNode.py" line="372"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="337"/>
+        <location filename="../Node/AbstractNode.py" line="338"/>
         <source>Already connected interface</source>
         <translation>接続済みインターフェイス</translation>
     </message>
@@ -704,12 +440,12 @@ p, li { white-space: pre-wrap; }
         <translation>このホスト名は既に使用されています</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="308"/>
+        <location filename="../Node/AbstractNode.py" line="309"/>
         <source>Hostname: %s</source>
         <translation>ホスト名: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="371"/>
+        <location filename="../Node/AbstractNode.py" line="372"/>
         <source>No interface available, please configure this device</source>
         <translation>有効なインタフェースがありません。このデバイスを設定してください</translation>
     </message>
@@ -774,17 +510,17 @@ p, li { white-space: pre-wrap; }
         <translation>コンソールポートを変更</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="211"/>
+        <location filename="../Node/AbstractNode.py" line="212"/>
         <source>Change the aux port</source>
         <translation>AUX ポートを変更</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="211"/>
+        <location filename="../Node/AbstractNode.py" line="212"/>
         <source>AUX port for %s:</source>
         <translation>AUX ポート %s:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="218"/>
+        <location filename="../Node/IOSRouter.py" line="671"/>
         <source>AUX port</source>
         <translation>AUX ポート</translation>
     </message>
@@ -799,7 +535,7 @@ p, li { white-space: pre-wrap; }
         <translation>スナップショット名:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="208"/>
+        <location filename="../Node/IOSRouter.py" line="671"/>
         <source>AUX port not available for this router model or base AUX port is set to 0 in preferences</source>
         <translation type="unfinished"></translation>
     </message>
@@ -807,24 +543,47 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AnyEmuDevice</name>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="239"/>
+        <location filename="../Node/AnyEmuDevice.py" line="238"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="223"/>
+        <location filename="../Node/AnyEmuDevice.py" line="222"/>
         <source>New hostname</source>
         <translation>新規のホスト名</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="223"/>
+        <location filename="../Node/AnyEmuDevice.py" line="222"/>
         <source>Cannot rename a connected emulated device</source>
         <translation>接続されているエミュレートデバイスの名前を変更できません</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="116"/>
+        <location filename="../Node/AnyEmuDevice.py" line="115"/>
         <source>Cannot change the hostname of a running device</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AnyVBoxEmuDevice</name>
+    <message>
+        <location filename="../Node/AnyVBoxEmuDevice.py" line="228"/>
+        <source>New hostname</source>
+        <translation type="unfinished">新規のホスト名</translation>
+    </message>
+    <message>
+        <location filename="../Node/AnyVBoxEmuDevice.py" line="118"/>
+        <source>Cannot change the hostname of a running device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Node/AnyVBoxEmuDevice.py" line="228"/>
+        <source>Cannot rename a connected emulated device</source>
+        <translation type="unfinished">接続されているエミュレートデバイスの名前を変更できません</translation>
+    </message>
+    <message>
+        <location filename="../Node/AnyVBoxEmuDevice.py" line="244"/>
+        <source>Dynamips error</source>
+        <translation type="unfinished">Dynamips エラー</translation>
     </message>
 </context>
 <context>
@@ -943,7 +702,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Config</name>
     <message>
-        <location filename="../Config/Config.py" line="406"/>
+        <location filename="../Config/Config.py" line="429"/>
         <source>Can&apos;t open library: %s</source>
         <translation>ライブラリを開くことができません: %s</translation>
     </message>
@@ -951,62 +710,62 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Console</name>
     <message>
-        <location filename="../Console.py" line="217"/>
+        <location filename="../Console.py" line="264"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="215"/>
+        <location filename="../Console.py" line="262"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="217"/>
+        <location filename="../Console.py" line="264"/>
         <source>Connection lost</source>
         <translation>接続に失敗しました</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="281"/>
+        <location filename="../Console.py" line="341"/>
         <source>Sorry, not implemented in GNS3</source>
         <translation>この機能は GNS3 で対応していません</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="292"/>
+        <location filename="../Console.py" line="352"/>
         <source>Please wait while gathering statistics...</source>
         <translation>統計情報を収集中...</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="317"/>
+        <location filename="../Console.py" line="377"/>
         <source>No idlepc values found</source>
         <translation>idlepc 値が見つかりませんでした</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="329"/>
+        <location filename="../Console.py" line="389"/>
         <source>No changes made</source>
         <translation>変更されていませんでした</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="342"/>
+        <location filename="../Console.py" line="402"/>
         <source>Can&apos;t apply idlepc value</source>
         <translation>この idlepc 値は適用できません</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="347"/>
+        <location filename="../Console.py" line="407"/>
         <source>Incorrect number of paramaters or invalid parameters</source>
         <translation>パラメータの数が間違っているか、またはパラメータが不正です</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="360"/>
+        <location filename="../Console.py" line="420"/>
         <source>You have to save your topology before using save</source>
         <translation>保存ボタンを使う前にトポロジーを保存してください</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="368"/>
+        <location filename="../Console.py" line="428"/>
         <source>You have to save your topology before using push</source>
         <translation>プッシュボタンを使う前にトポロジーを保存してください</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="319"/>
+        <location filename="../Console.py" line="379"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;
 Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 </source>
@@ -1015,35 +774,40 @@ idlepc 値の前にある番号を入力してください [1-%i]　または EN
 </translation>
     </message>
     <message>
-        <location filename="../Console.py" line="334"/>
+        <location filename="../Console.py" line="394"/>
         <source>Applied idlepc value %s to %s
 </source>
         <translation>idlepc 値 %s を %s に設定しました</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="350"/>
+        <location filename="../Console.py" line="410"/>
         <source>Unknown device: %s</source>
         <translation>不明なデバイス: %s</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="416"/>
+        <location filename="../Console.py" line="476"/>
         <source>Cannot create %s: %s</source>
         <translation>作成できません %s : %s</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="289"/>
+        <location filename="../Console.py" line="349"/>
         <source>%s already has an idlepc value applied (%s).</source>
         <translation>%s に idlepc 値が既に指定されています (%s).</translation>
     </message>
     <message>
-        <location filename="../Telnet.py" line="48"/>
+        <location filename="../Telnet.py" line="57"/>
         <source>Console</source>
         <translation>コンソール</translation>
     </message>
     <message>
-        <location filename="../Telnet.py" line="48"/>
+        <location filename="../Telnet.py" line="57"/>
         <source>Cannot start %s: %s</source>
         <translation>開始できません %s : %s</translation>
+    </message>
+    <message>
+        <location filename="../Console.py" line="294"/>
+        <source>Unknown device</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1095,97 +859,97 @@ idlepc 値の前にある番号を入力してください [1-%i]　または EN
 <context>
     <name>DynagenSub</name>
     <message>
-        <location filename="../DynagenSub.py" line="119"/>
+        <location filename="../DynagenSub.py" line="141"/>
         <source>Starting hypervisors ...</source>
         <translation>ハイパーバイザを起動中 ...</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="119"/>
+        <location filename="../DynagenSub.py" line="141"/>
         <source>Abort</source>
         <translation>中止</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="247"/>
+        <location filename="../DynagenSub.py" line="280"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
         <translation>ローカル PIX イメージ %s が見つかりませんでした、イメージ %s を使用してください</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="339"/>
+        <location filename="../DynagenSub.py" line="413"/>
         <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
         <translation>ローカル IOS イメージ %s が見つかりませんでした。ハイパーバイザ %s, イメージ %s を使用してください</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="369"/>
+        <location filename="../DynagenSub.py" line="444"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>ローカルコンフィグ %s が見つかりませんでした (ルータ %s)。イメージ %s を使用してください</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="292"/>
+        <location filename="../DynagenSub.py" line="365"/>
         <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
         <translation>ハイパーバイザ %s のローカルの作業ディレクトリ %s が見つかりませんでした。作業ディレクトリ %s を使用してください</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="163"/>
+        <location filename="../DynagenSub.py" line="192"/>
         <source>Local ASA initrd %s cannot be found, use initrd %s instead</source>
         <translation>ローカル ASA initrd %s が見つかりませんでした。initrd %s を使用してください</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="174"/>
+        <location filename="../DynagenSub.py" line="203"/>
         <source>Local ASA kernel %s cannot be found, use kernel %s instead</source>
         <translation>ローカル ASA カーネル %s が見つかりませんでした。カーネル %s を使用してください</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="200"/>
+        <location filename="../DynagenSub.py" line="230"/>
         <source>Local IDS image %s cannot be found, use image %s instead</source>
         <translation>ローカル IDS イメージ %s が見つかりませんでした。イメージ %s を使用してください</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="222"/>
+        <location filename="../DynagenSub.py" line="253"/>
         <source>Local JunOS image %s cannot be found, use image %s instead</source>
         <translation>ローカル JunOS イメージ %s を見つかりませんでした。イメージ %s を使用してください</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="234"/>
-        <source>Local Qemu host image %s cannot be found, use image %s instead</source>
-        <translation>ローカル Qemu ホスト イメージ %s を見つかりませんでした。イメージ %s を使用してください</translation>
-    </message>
-    <message>
-        <location filename="../DynagenSub.py" line="64"/>
+        <location filename="../DynagenSub.py" line="74"/>
         <source>NIO connection</source>
         <translation>NIO 接続</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="64"/>
+        <location filename="../DynagenSub.py" line="74"/>
         <source>%s cannot be found
 Please choose an alternate network interface:</source>
         <translation>%s が見つかりませんでした
 代わりとなるネットワークインターフェイスを選択してください:</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="318"/>
+        <location filename="../DynagenSub.py" line="392"/>
         <source>IOS image</source>
         <translation>IOS イメージ</translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="266"/>
+        <source>Local Qemu guest image %s cannot be found, use image %s instead</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="262"/>
+        <location filename="../Node/ETHSW.py" line="261"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="262"/>
+        <location filename="../Node/ETHSW.py" line="261"/>
         <source>No port available</source>
         <translation>使用できるポートはありません</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="223"/>
+        <location filename="../Node/ETHSW.py" line="222"/>
         <source>Port type</source>
         <translation>ポートタイプ</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="223"/>
+        <location filename="../Node/ETHSW.py" line="222"/>
         <source>QinQ is only supported with Dynamips &gt; 0.2.8 RC2</source>
         <translation>QinQ は Dynamips バージョン 0.2.8 RC2 以上が必要です</translation>
     </message>
@@ -1312,104 +1076,6 @@ Please choose an alternate network interface:</source>
     </message>
 </context>
 <context>
-    <name>FWPage</name>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="14"/>
-        <source>Firewall configuration</source>
-        <translation>ファイアウォールの設定</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="20"/>
-        <source>PIX Image:</source>
-        <translation>PIXイメージ:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="49"/>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="69"/>
-        <source> MB</source>
-        <translation> MB</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="189"/>
-        <source>Key:</source>
-        <translation>キー:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="206"/>
-        <source>Serial:</source>
-        <translation>シリアル番号:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="122"/>
-        <source>ne2k_pci</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="127"/>
-        <source>i82551</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="132"/>
-        <source>i82557b</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="137"/>
-        <source>i82559er</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="142"/>
-        <source>rtl8139</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="147"/>
-        <source>e1000</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="152"/>
-        <source>pcnet</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="157"/>
-        <source>virtio</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="165"/>
-        <source>Qemu Options:</source>
-        <translation>Qemu オプション:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="182"/>
-        <source>Use KQemu</source>
-        <translation>KQemu を使う</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="56"/>
-        <source>RAM:</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="85"/>
-        <source>Number of NICs:</source>
-        <translation>NIC の枚数:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_FWPage.ui" line="108"/>
-        <source>NIC model:</source>
-        <translation>NIC の型番:</translation>
-    </message>
-</context>
-<context>
     <name>HypervisorManager</name>
     <message>
         <location filename="../HypervisorManager.py" line="133"/>
@@ -1488,7 +1154,7 @@ Please choose an alternate network interface:</source>
 <context>
     <name>IDS image (hda)</name>
     <message>
-        <location filename="../DynagenSub.py" line="186"/>
+        <location filename="../DynagenSub.py" line="216"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
         <translation>IDS イメージ %s が見つからず、代わりのイメージも見つかりませんでした</translation>
     </message>
@@ -1496,7 +1162,7 @@ Please choose an alternate network interface:</source>
 <context>
     <name>IDS image (hdb)</name>
     <message>
-        <location filename="../DynagenSub.py" line="197"/>
+        <location filename="../DynagenSub.py" line="227"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
         <translation>IDS イメージ %s が見つからず、代わりのイメージも見つかりませんでした</translation>
     </message>
@@ -1522,11 +1188,6 @@ Please choose an alternate network interface:</source>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="56"/>
         <source>IDS Image 2 (hdb):</source>
         <translation>IDS イメージ 2 (hda):</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="105"/>
-        <source> MB</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="158"/>
@@ -1574,16 +1235,6 @@ Please choose an alternate network interface:</source>
         <translation>Qemu オプション:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="218"/>
-        <source>Use KQemu</source>
-        <translation>KQemu を使う</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="228"/>
-        <source>Use KVM (Linux only)</source>
-        <translation>KVM を使う (Linux のみ)</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="92"/>
         <source>RAM:</source>
         <translation></translation>
@@ -1598,11 +1249,21 @@ Please choose an alternate network interface:</source>
         <source>NIC model:</source>
         <translation>NIC の型番:</translation>
     </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="105"/>
+        <source> MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="218"/>
+        <source>Use KVM</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>IOS image</name>
     <message>
-        <location filename="../DynagenSub.py" line="324"/>
+        <location filename="../DynagenSub.py" line="398"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
         <translation>IOS イメージ %s が見つかりません (ハイパーバイザ %s 用)。%s の他に使用できるイメージも見つかりません</translation>
     </message>
@@ -1625,102 +1286,102 @@ Please choose an alternate network interface:</source>
         <translation>作業ディレクトリを選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="263"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="262"/>
         <source>IOS images and hypervisors</source>
         <translation>IOS イメージとハイパーバイザ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="284"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="283"/>
         <source>IOS Images</source>
         <translation>IOS イメージ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="285"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="284"/>
         <source>Settings</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="292"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="291"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="279"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="278"/>
         <source>Platform:</source>
         <translation>プラットフォーム:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="273"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="272"/>
         <source>IDLE PC:</source>
         <translation>IDLE PC:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="264"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="263"/>
         <source>Images</source>
         <translation>イメージ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="265"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="264"/>
         <source>IOS image</source>
         <translation>IOS イメージ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="294"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="293"/>
         <source>Hypervisors</source>
         <translation>ハイパーバイザ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="281"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="280"/>
         <source>Use the hypervisor manager</source>
         <translation>ハイパーバイザマネージャを使用する</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="297"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="296"/>
         <source>&amp;Save</source>
         <translation>保存(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="298"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="297"/>
         <source>&amp;Delete</source>
         <translation>削除(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="286"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="285"/>
         <source>Host:</source>
         <translation>ホスト:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="288"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="287"/>
         <source>Port:</source>
         <translation>ポート:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="289"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="288"/>
         <source>Base UDP:</source>
         <translation>ベース UDP:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="291"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="290"/>
         <source>Working directory:</source>
         <translation>作業ディレクトリ:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="295"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="294"/>
         <source>Host:Port</source>
         <translation>ホスト:ポート</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="296"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="295"/>
         <source>Base UDP</source>
         <translation>ベース UDP</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="290"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="289"/>
         <source>Base console:</source>
         <translation>ベースコンソール:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="299"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="298"/>
         <source>External hypervisors</source>
         <translation>外部ハイパーバイザ</translation>
     </message>
@@ -1730,17 +1391,17 @@ Please choose an alternate network interface:</source>
         <translation>IOS イメージを選択してください</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="266"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="265"/>
         <source>Model/Chassis</source>
         <translation>モデルとシャーシ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="272"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="271"/>
         <source>Model:</source>
         <translation>モデル:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="277"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="276"/>
         <source>Default image for this platform</source>
         <translation>このプラットフォームのデフォルトイメージ</translation>
     </message>
@@ -1755,17 +1416,12 @@ Please choose an alternate network interface:</source>
         <translation>ファイルを開けませんでした: %s</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="274"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="273"/>
         <source>Default RAM:</source>
         <translation>デフォルト RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="275"/>
-        <source> MB</source>
-        <translation> MB</translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="276"/>
         <source>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Check for minimum RAM requirement&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;必要最低限の RAM を確認&lt;/a&gt;</translation>
     </message>
@@ -1780,22 +1436,22 @@ Please choose an alternate network interface:</source>
         <translation>イメージファイルの指定がありません</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="287"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="286"/>
         <source>127.0.0.1</source>
         <translation>127.0.0.1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="268"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="267"/>
         <source>Image file:</source>
         <translation>イメージファイル:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="270"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="269"/>
         <source>Base config:</source>
         <translation>ベースコンフィグ:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="271"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="270"/>
         <source>baseconfig.txt</source>
         <translation>baseconfig.txt</translation>
     </message>
@@ -1810,8 +1466,13 @@ Please choose an alternate network interface:</source>
         <translation>ベース設定ファイルを選択してください</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="293"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="292"/>
         <source>Base AUX:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_IOSDialog.py" line="274"/>
+        <source> MiB</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1855,11 +1516,6 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Node/IOSRouter.py" line="160"/>
         <source>Cannot change the hostname of a running device</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Node/IOSRouter.py" line="671"/>
-        <source>AUX port not available for this router model or base AUX port is set to 0 in preferences</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1909,11 +1565,6 @@ Please choose an alternate network interface:</source>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="152"/>
         <source>RAM size:</source>
         <translation>RAM サイズ:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="561"/>
-        <source> MB</source>
-        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="181"/>
@@ -1996,11 +1647,6 @@ Please choose an alternate network interface:</source>
         <translation>コンフィグレーションレジスタ:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="194"/>
-        <source> KB</source>
-        <translation> KB</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="306"/>
         <source>slot 0:</source>
         <translation></translation>
@@ -2055,11 +1701,21 @@ Please choose an alternate network interface:</source>
         <source>wic 2:</source>
         <translation></translation>
     </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="561"/>
+        <source> MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="194"/>
+        <source> KiB</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>JunOS image</name>
     <message>
-        <location filename="../DynagenSub.py" line="219"/>
+        <location filename="../DynagenSub.py" line="250"/>
         <source>JunOS image %s cannot be found and cannot find an alternative image</source>
         <translation>JunOS イメージ %s が見つからず、代わりのイメージも見つかりませんでした</translation>
     </message>
@@ -2075,11 +1731,6 @@ Please choose an alternate network interface:</source>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="49"/>
         <source>...</source>
         <translation>...</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="69"/>
-        <source> MB</source>
-        <translation> MB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="122"/>
@@ -2127,16 +1778,6 @@ Please choose an alternate network interface:</source>
         <translation>Qemu オプション:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="182"/>
-        <source>Use KQemu</source>
-        <translation>KQemu を使う</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="192"/>
-        <source>Use KVM (Linux only)</source>
-        <translation>KVM を使う (Linux のみ)</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="14"/>
         <source>JunOS configuration</source>
         <translation>JunOS 設定</translation>
@@ -2155,6 +1796,16 @@ Please choose an alternate network interface:</source>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="108"/>
         <source>NIC model:</source>
         <translation>NIC の型番:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="69"/>
+        <source> MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="182"/>
+        <source>Use KVM</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2221,427 +1872,427 @@ Please choose an alternate network interface:</source>
         <translation>日本語</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="423"/>
+        <location filename="../Ui/Form_MainWindow.py" line="418"/>
         <source>GNS3</source>
         <translation>GNS3</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="424"/>
+        <location filename="../Ui/Form_MainWindow.py" line="419"/>
         <source>&amp;Edit</source>
         <translation>編集(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="425"/>
+        <location filename="../Ui/Form_MainWindow.py" line="420"/>
         <source>&amp;File</source>
         <translation>ファイル(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="426"/>
+        <location filename="../Ui/Form_MainWindow.py" line="421"/>
         <source>&amp;Help</source>
         <translation>ヘルプ(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="427"/>
+        <location filename="../Ui/Form_MainWindow.py" line="422"/>
         <source>&amp;View</source>
         <translation>表示(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="430"/>
+        <location filename="../Ui/Form_MainWindow.py" line="425"/>
         <source>General</source>
         <translation>一般</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="431"/>
+        <location filename="../Ui/Form_MainWindow.py" line="426"/>
         <source>Nodes Types</source>
         <translation>ノード種類</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="435"/>
+        <location filename="../Ui/Form_MainWindow.py" line="430"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="434"/>
+        <location filename="../Ui/Form_MainWindow.py" line="429"/>
         <source>Topology Summary</source>
         <translation>トポロジの概要</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="436"/>
+        <location filename="../Ui/Form_MainWindow.py" line="431"/>
         <source>Console</source>
         <translation>コンソール</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="442"/>
+        <location filename="../Ui/Form_MainWindow.py" line="437"/>
         <source>&amp;About</source>
         <translation>GNS3 について(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="443"/>
+        <location filename="../Ui/Form_MainWindow.py" line="438"/>
         <source>&amp;Quit</source>
         <translation>終了(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="444"/>
+        <location filename="../Ui/Form_MainWindow.py" line="439"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="445"/>
+        <location filename="../Ui/Form_MainWindow.py" line="440"/>
         <source>&amp;Open</source>
         <translation>開く(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="447"/>
+        <location filename="../Ui/Form_MainWindow.py" line="442"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="448"/>
+        <location filename="../Ui/Form_MainWindow.py" line="443"/>
         <source>&amp;Save</source>
         <translation>保存(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="450"/>
+        <location filename="../Ui/Form_MainWindow.py" line="445"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="453"/>
+        <location filename="../Ui/Form_MainWindow.py" line="448"/>
         <source>Add a link</source>
         <translation>リンクを追加</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="455"/>
+        <location filename="../Ui/Form_MainWindow.py" line="450"/>
         <source>Ctrl+Shift+I</source>
         <translation>Ctrl+Shift+I</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="456"/>
+        <location filename="../Ui/Form_MainWindow.py" line="451"/>
         <source>&amp;Online Help</source>
         <translation>オンラインヘルプ(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="464"/>
+        <location filename="../Ui/Form_MainWindow.py" line="459"/>
         <source>Show hostnames</source>
         <translation>ホスト名を表示</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="468"/>
+        <location filename="../Ui/Form_MainWindow.py" line="463"/>
         <source>Save As</source>
         <translation>名前を付けて保存</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="496"/>
+        <location filename="../Ui/Form_MainWindow.py" line="491"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="470"/>
+        <location filename="../Ui/Form_MainWindow.py" line="465"/>
         <source>About &amp;Qt</source>
         <translation>&amp;Qt について</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="471"/>
+        <location filename="../Ui/Form_MainWindow.py" line="466"/>
         <source>Zoom &amp;In</source>
         <translation>拡大 (&amp;I)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="472"/>
+        <location filename="../Ui/Form_MainWindow.py" line="467"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="473"/>
+        <location filename="../Ui/Form_MainWindow.py" line="468"/>
         <source>Zoom &amp;Out</source>
         <translation>縮小(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="474"/>
+        <location filename="../Ui/Form_MainWindow.py" line="469"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="475"/>
+        <location filename="../Ui/Form_MainWindow.py" line="470"/>
         <source>Zoom &amp;1:1</source>
         <translation>実際のサイズ &amp;1:1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="476"/>
+        <location filename="../Ui/Form_MainWindow.py" line="471"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="477"/>
+        <location filename="../Ui/Form_MainWindow.py" line="472"/>
         <source>Select &amp;All</source>
         <translation>全て選択(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="478"/>
+        <location filename="../Ui/Form_MainWindow.py" line="473"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="479"/>
+        <location filename="../Ui/Form_MainWindow.py" line="474"/>
         <source>Select &amp;None</source>
         <translation>選択をクリア(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="480"/>
+        <location filename="../Ui/Form_MainWindow.py" line="475"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="481"/>
+        <location filename="../Ui/Form_MainWindow.py" line="476"/>
         <source>&amp;Preferences...</source>
         <translation>設定(&amp;P)...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="482"/>
+        <location filename="../Ui/Form_MainWindow.py" line="477"/>
         <source>Ctrl+Shift+P</source>
         <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="454"/>
+        <location filename="../Ui/Form_MainWindow.py" line="449"/>
         <source>IOS images and hypervisors</source>
         <translation>IOS イメージとハイパーバイザ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="492"/>
+        <location filename="../Ui/Form_MainWindow.py" line="487"/>
         <source>Add a note</source>
         <translation>メモを追加</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="494"/>
+        <location filename="../Ui/Form_MainWindow.py" line="489"/>
         <source>New Project</source>
         <translation>新規プロジェクト</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="501"/>
+        <location filename="../Ui/Form_MainWindow.py" line="496"/>
         <source>&amp;Symbol Manager</source>
         <translation>シンボルマネージャ(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="502"/>
+        <location filename="../Ui/Form_MainWindow.py" line="497"/>
         <source>Ctrl+Shift+S</source>
         <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="500"/>
+        <location filename="../Ui/Form_MainWindow.py" line="495"/>
         <source>Insert a picture</source>
         <translation>画像を挿入</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="433"/>
+        <location filename="../Ui/Form_MainWindow.py" line="428"/>
         <source>Emulation</source>
         <translation>エミュレーション</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="437"/>
+        <location filename="../Ui/Form_MainWindow.py" line="432"/>
         <source>Drawing</source>
         <translation>図面</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="504"/>
+        <location filename="../Ui/Form_MainWindow.py" line="499"/>
         <source>Draw a rectangle</source>
         <translation>四角形を描く</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="506"/>
+        <location filename="../Ui/Form_MainWindow.py" line="501"/>
         <source>Draw an ellipse</source>
         <translation>円を描く</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="509"/>
+        <location filename="../Ui/Form_MainWindow.py" line="504"/>
         <source>Snapshot</source>
         <translation>スナップショット</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="438"/>
+        <location filename="../Ui/Form_MainWindow.py" line="433"/>
         <source>Undo Stack</source>
         <translation>スタックを元に戻す</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="483"/>
+        <location filename="../Ui/Form_MainWindow.py" line="478"/>
         <source>&amp;Undo</source>
         <translation>元に戻す(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="484"/>
+        <location filename="../Ui/Form_MainWindow.py" line="479"/>
         <source>Ctrl+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="485"/>
+        <location filename="../Ui/Form_MainWindow.py" line="480"/>
         <source>&amp;Redo</source>
         <translation>やり直す(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="486"/>
+        <location filename="../Ui/Form_MainWindow.py" line="481"/>
         <source>Ctrl+Y</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="511"/>
+        <location filename="../Ui/Form_MainWindow.py" line="506"/>
         <source>Show layers</source>
         <translation>レイヤーを表示</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="428"/>
+        <location filename="../Ui/Form_MainWindow.py" line="423"/>
         <source>Control</source>
         <translation>コントロール</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="429"/>
+        <location filename="../Ui/Form_MainWindow.py" line="424"/>
         <source>Annotate</source>
         <translation>注釈</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="439"/>
+        <location filename="../Ui/Form_MainWindow.py" line="434"/>
         <source>Captures</source>
         <translation>キャプチャ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="440"/>
+        <location filename="../Ui/Form_MainWindow.py" line="435"/>
         <source>Hostname</source>
         <translation>ホスト名</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="441"/>
+        <location filename="../Ui/Form_MainWindow.py" line="436"/>
         <source>Interface</source>
         <translation>インターフェイス</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="446"/>
+        <location filename="../Ui/Form_MainWindow.py" line="441"/>
         <source>Open project or topology file</source>
         <translation>プロジェクトやトポロジーを開く</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="449"/>
+        <location filename="../Ui/Form_MainWindow.py" line="444"/>
         <source>Save project or topology file</source>
         <translation>プロジェクトやトポロジーを保存する</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="457"/>
+        <location filename="../Ui/Form_MainWindow.py" line="452"/>
         <source>&amp;Screenshot</source>
         <translation>スクリーンショット(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="458"/>
+        <location filename="../Ui/Form_MainWindow.py" line="453"/>
         <source>Take a screenshot</source>
         <translation>スクリーンショットを取得</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="460"/>
+        <location filename="../Ui/Form_MainWindow.py" line="455"/>
         <source>Start/Resume all devices</source>
         <translation>全てのデバイスを開始/再開</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="462"/>
+        <location filename="../Ui/Form_MainWindow.py" line="457"/>
         <source>Stop all devices</source>
         <translation>全てのデバイスを停止</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="466"/>
+        <location filename="../Ui/Form_MainWindow.py" line="461"/>
         <source>Console to all devices</source>
         <translation>全てのデバイスにコンソール接続</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_MainWindow.py" line="467"/>
+        <location filename="../Ui/Form_MainWindow.py" line="462"/>
         <source>Save topology &amp;as…</source>
         <translation>トポロジーに名前を付けて保存(&amp;A)…</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="469"/>
+        <location filename="../Ui/Form_MainWindow.py" line="464"/>
         <source>Save topology file as...</source>
         <translation>トポロジーファイルに名前を付けて保存...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="488"/>
+        <location filename="../Ui/Form_MainWindow.py" line="483"/>
         <source>Suspend all devices</source>
         <translation>全てのデバイスを一時停止</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="490"/>
+        <location filename="../Ui/Form_MainWindow.py" line="485"/>
         <source>New blank topology</source>
         <translation>新規トポロジー</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="491"/>
+        <location filename="../Ui/Form_MainWindow.py" line="486"/>
         <source>Add Note</source>
         <translation>メモを追加</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="493"/>
+        <location filename="../Ui/Form_MainWindow.py" line="488"/>
         <source>&amp;New blank project</source>
         <translation>新規プロジェクト(&amp;N)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="495"/>
+        <location filename="../Ui/Form_MainWindow.py" line="490"/>
         <source>New blank project</source>
         <translation>新規プロジェクト</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="497"/>
+        <location filename="../Ui/Form_MainWindow.py" line="492"/>
         <source>&amp;Import/Export</source>
         <translation>インポート/エクスポート(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="498"/>
+        <location filename="../Ui/Form_MainWindow.py" line="493"/>
         <source>Import/Export Startup Configs</source>
         <translation>スタートアップコンフィグをインポート/エクスポート</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="499"/>
+        <location filename="../Ui/Form_MainWindow.py" line="494"/>
         <source>Insert Picture</source>
         <translation>図を挿入</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="503"/>
+        <location filename="../Ui/Form_MainWindow.py" line="498"/>
         <source>Draw Rectangle</source>
         <translation>四角形を描く</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="505"/>
+        <location filename="../Ui/Form_MainWindow.py" line="500"/>
         <source>Draw Ellipse</source>
         <translation>円を描く</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="507"/>
+        <location filename="../Ui/Form_MainWindow.py" line="502"/>
         <source>Show Interface Labels</source>
         <translation>インターフェイスラベルを表示</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="508"/>
+        <location filename="../Ui/Form_MainWindow.py" line="503"/>
         <source>Show interface labels</source>
         <translation>インターフェイスラベルを表示</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="510"/>
+        <location filename="../Ui/Form_MainWindow.py" line="505"/>
         <source>Take a snapshot</source>
         <translation>スナップショットを取得</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_MainWindow.py" line="512"/>
+        <location filename="../Ui/Form_MainWindow.py" line="507"/>
         <source>&amp;Save project as…</source>
         <translation>プロジェクトに名前を付けて保存(&amp;S)…</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="513"/>
+        <location filename="../Ui/Form_MainWindow.py" line="508"/>
         <source>Save project as...</source>
         <translation>プロジェクトに名前を付けて保存...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="515"/>
+        <location filename="../Ui/Form_MainWindow.py" line="510"/>
         <source>Reload all devices</source>
         <translation>全てのデバイスを再起動</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="517"/>
+        <location filename="../Ui/Form_MainWindow.py" line="512"/>
         <source>Console AUX to all devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="518"/>
+        <location filename="../Ui/Form_MainWindow.py" line="513"/>
         <source>Reset Interface Labels</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2649,79 +2300,92 @@ Please choose an alternate network interface:</source>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="568"/>
+        <location filename="../NETFile.py" line="598"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="568"/>
+        <location filename="../NETFile.py" line="598"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamips のパスを設定してください</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="851"/>
+        <location filename="../NETFile.py" line="894"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="855"/>
+        <location filename="../NETFile.py" line="898"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="601"/>
+        <location filename="../NETFile.py" line="639"/>
         <source>Exception detected, stopping importation...</source>
         <translation>例外エラーが検出された為、インポートを中止しています...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="848"/>
+        <location filename="../NETFile.py" line="891"/>
         <source>Exporting %s configuration to %s</source>
         <translation>%s のコンフィグを %s にエクスポート中</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1117"/>
+        <location filename="../NETFile.py" line="1164"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO エラー: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="601"/>
+        <location filename="../NETFile.py" line="639"/>
         <source>Importation</source>
         <translation>インポート</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="580"/>
+        <location filename="../NETFile.py" line="614"/>
         <source>Please wait while importing the topology</source>
         <translation>トポロジーのインポートが完了するまでお待ちください</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1117"/>
+        <location filename="../NETFile.py" line="1164"/>
         <source>IOError</source>
         <translation>IO エラー</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="624"/>
+        <location filename="../NETFile.py" line="663"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>警告: GNS3 はまだ LAN 側に対応していない為、無視します</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="500"/>
+        <location filename="../NETFile.py" line="528"/>
         <source>Cannot load image: %s</source>
         <translation>イメージをロードできません: %s </translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="446"/>
+        <location filename="../NETFile.py" line="474"/>
         <source>Cannot load font: %s</source>
         <translation>フォントをロードできません: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="511"/>
+        <location filename="../NETFile.py" line="539"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
         <translation>%s: シンボル %s が見つかりません。シンボルがノードリストにあることを確認し、net ファイルをリロードしてください</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1030"/>
+        <location filename="../NETFile.py" line="1073"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
         <translation>登録する為には予め接続しておくか、もしくはハイパーバイザを設定する必要があります</translation>
+    </message>
+</context>
+<context>
+    <name>New Hypervisor</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="279"/>
+        <source>New Hypervisor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="279"/>
+        <source>WARNING: When doing multi-host setup, never use loopback addresses, such as &apos;localhost&apos; or &apos;127.0.0.1&apos;. Use actual IP addresses instead.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2770,37 +2434,37 @@ Please choose an alternate network interface:</source>
 <context>
     <name>NodeConfigurator</name>
     <message>
-        <location filename="../NodeConfigurator.py" line="140"/>
+        <location filename="../NodeConfigurator.py" line="145"/>
         <source>Frame Relay switches</source>
         <translation>フレームリレースイッチ</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="143"/>
+        <location filename="../NodeConfigurator.py" line="148"/>
         <source>Ethernet switches</source>
         <translation>イーサネットスイッチ</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="146"/>
+        <location filename="../NodeConfigurator.py" line="151"/>
         <source>ATM switches</source>
         <translation>ATM スイッチ</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="152"/>
+        <location filename="../NodeConfigurator.py" line="157"/>
         <source>Clouds</source>
         <translation>クラウド</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="246"/>
+        <location filename="../NodeConfigurator.py" line="252"/>
         <source>%s node</source>
         <translation>%s ノード</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="238"/>
+        <location filename="../NodeConfigurator.py" line="244"/>
         <source>%s group</source>
         <translation>%s グループ</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="243"/>
+        <location filename="../NodeConfigurator.py" line="249"/>
         <source>Group of %d %s</source>
         <translation>グループの %d %s</translation>
     </message>
@@ -2826,110 +2490,574 @@ to display the configuration page.</source>
         <translation>設定ページを表示するにはリストからノードを選択してください。</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="298"/>
+        <location filename="../NodeConfigurator.py" line="304"/>
         <source>Node configuration</source>
         <translation>ノード設定</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="104"/>
+        <location filename="../NodeConfigurator.py" line="106"/>
         <source>Routers c1700</source>
         <translation>ルータ c1700</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="107"/>
+        <location filename="../NodeConfigurator.py" line="109"/>
         <source>Routers c2600</source>
         <translation>ルータ c2600</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="110"/>
+        <location filename="../NodeConfigurator.py" line="112"/>
         <source>Routers c2691</source>
         <translation>ルータ c2691</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="113"/>
+        <location filename="../NodeConfigurator.py" line="115"/>
         <source>Routers c3600</source>
         <translation>ルータ c3600</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="116"/>
+        <location filename="../NodeConfigurator.py" line="118"/>
         <source>Routers c3700</source>
         <translation>ルータ c3700</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="119"/>
+        <location filename="../NodeConfigurator.py" line="121"/>
         <source>Routers c7200</source>
         <translation>ルータ c7200</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="125"/>
+        <location filename="../NodeConfigurator.py" line="127"/>
         <source>PIX firewalls</source>
         <translation>PIX ファイアウォール</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="149"/>
+        <location filename="../NodeConfigurator.py" line="154"/>
         <source>ATM bridges</source>
         <translation>ATM ブリッジ</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="128"/>
+        <location filename="../NodeConfigurator.py" line="130"/>
         <source>ASA firewalls</source>
         <translation>ASA ファイアウォール</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="131"/>
+        <location filename="../NodeConfigurator.py" line="133"/>
         <source>Juniper routers</source>
         <translation>Juniper ルータ</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="137"/>
-        <source>Qemu hosts</source>
-        <translation>Qemu ホスト</translation>
-    </message>
-    <message>
-        <location filename="../NodeConfigurator.py" line="134"/>
+        <location filename="../NodeConfigurator.py" line="136"/>
         <source>Cisco IDS</source>
         <translation>Cisco IDS</translation>
+    </message>
+    <message>
+        <location filename="../NodeConfigurator.py" line="139"/>
+        <source>Qemu guests</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NodeConfigurator.py" line="142"/>
+        <source>VirtualBox guests</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PIX image</name>
     <message>
-        <location filename="../DynagenSub.py" line="244"/>
+        <location filename="../DynagenSub.py" line="277"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
         <translation>PIXイメージ %s が見つからず、代わりとなるイメージも見つかりませんでした</translation>
     </message>
 </context>
 <context>
+    <name>PIXPage</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="14"/>
+        <source>Firewall configuration</source>
+        <translation type="unfinished">ファイアウォールの設定</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="20"/>
+        <source>PIX Image:</source>
+        <translation type="unfinished">PIXイメージ:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="49"/>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="56"/>
+        <source>RAM:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="69"/>
+        <source> MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="85"/>
+        <source>Number of NICs:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="108"/>
+        <source>NIC model:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="122"/>
+        <source>ne2k_pci</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="127"/>
+        <source>i82551</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="132"/>
+        <source>i82557b</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="137"/>
+        <source>i82559er</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="142"/>
+        <source>rtl8139</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="147"/>
+        <source>e1000</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="152"/>
+        <source>pcnet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="157"/>
+        <source>virtio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="165"/>
+        <source>Qemu Options:</source>
+        <translation type="unfinished">Qemu オプション:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="179"/>
+        <source>Key:</source>
+        <translation type="unfinished">キー:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="196"/>
+        <source>Serial:</source>
+        <translation type="unfinished">シリアル番号:</translation>
+    </message>
+</context>
+<context>
+    <name>Page_ASA</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="123"/>
+        <source>ASA firewall</source>
+        <translation type="unfinished">ASA ファイアウォール</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="123"/>
+        <source>You must remove the connected links first in order to reduce the number of interfaces</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_ATMBR</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="93"/>
+        <source>Add mapping</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="86"/>
+        <source>Same source and destination ports</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="93"/>
+        <source>Mapping already defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="114"/>
+        <source>ATM bridge</source>
+        <translation type="unfinished">ATM ブリッジ</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="114"/>
+        <source>A link is connected in port %i</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_ATMSW</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="114"/>
+        <source>Add virtual channel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="114"/>
+        <source>Mapping already defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="139"/>
+        <source>ATM switch</source>
+        <translation type="unfinished">ATM スイッチ</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="139"/>
+        <source>Links connected in port %i and port %i</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_Cloud</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_Cloud.py" line="373"/>
+        <source>A link is connected with NIO %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_ETHSW</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_ETHSW.py" line="120"/>
+        <source>A link is connected in port %i</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_FRSW</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="87"/>
+        <source>Add virtual channel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="80"/>
+        <source>Same source and destination ports</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="87"/>
+        <source>Mapping already defined</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_IDS</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="118"/>
+        <source>IDS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="118"/>
+        <source>You must remove the connected links first in order to reduce the number of interfaces</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_IOSRouter</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="144"/>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="182"/>
+        <source>Invalid MAC address (format required: hh:hh:hh:hh:hh:hh)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="207"/>
+        <source>Using npe-g2: there are potential bugs and your IOS image should be unpacked.
+C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="224"/>
+        <source>You must use &apos;manual mode&apos; to connect a link with a NM-16ESW module</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="251"/>
+        <source>Links are connected in slot %i</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="286"/>
+        <source>C7200-JC-PA can only be used with NPE-G2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_JunOS</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="101"/>
+        <source>JunOS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="101"/>
+        <source>You must remove the connected links first in order to reduce the number of interfaces</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_PIX</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="96"/>
+        <source>Serial</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="96"/>
+        <source>Invalid serial (format required: 0xhhhhhhhh)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="102"/>
+        <source>Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="102"/>
+        <source>Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="111"/>
+        <source>PIX firewall</source>
+        <translation type="unfinished">PIX ファイアウォール</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="111"/>
+        <source>You must remove the connected links first in order to reduce the number of interfaces</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_PreferencesCapture</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="151"/>
+        <source>Capture directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="151"/>
+        <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
+        <translation type="unfinished">パスは ASCII 文字のみを含んでいる必要があります: Windows 上の Dynamips (Cygwin.DLL) はユニコードをサポートしません!</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="46"/>
+        <source>Wireshark Traditional Capture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="47"/>
+        <source>Wireshark Live Traffic Capture</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_PreferencesQemu</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="354"/>
+        <source>Qemu guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="550"/>
+        <source>Identifier and binary image must be set!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="448"/>
+        <source>PIX firewall</source>
+        <translation type="unfinished">PIX ファイアウォール</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="481"/>
+        <source>Serial</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="481"/>
+        <source>Invalid serial (format required: 0xhhhhhhhh)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="488"/>
+        <source>Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="488"/>
+        <source>Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="809"/>
+        <source>Save</source>
+        <translation type="unfinished">保存</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="495"/>
+        <source>PIX settings have been saved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="550"/>
+        <source>JunOS router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="588"/>
+        <source>JunOS settings have been saved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="655"/>
+        <source>ASA firewall</source>
+        <translation type="unfinished">ASA ファイアウォール</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="655"/>
+        <source>Identifier, initrd and kernel must be set!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="698"/>
+        <source>ASA settings have been saved</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="767"/>
+        <source>IDS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="767"/>
+        <source>Identifier, image 1 and image 2 must be set!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="809"/>
+        <source>IDS settings have been saved</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_PreferencesVirtualBox</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="322"/>
+        <source>VirtualBox guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="322"/>
+        <source>Identifier and binary image must be set!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="160"/>
+        <source>WARNING ! GuestControl is insecure. Passwords are both stored and sent in clear-text. Use at your own risk.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_Qemu</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="101"/>
+        <source>Qemu guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="101"/>
+        <source>You must remove the connected links first in order to reduce the number of interfaces</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Page_VirtualBox</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_VirtualBox.py" line="75"/>
+        <source>VirtualBox guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_VirtualBox.py" line="75"/>
+        <source>You must remove the connected links first in order to reduce the number of interfaces</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PreferencesCapture</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="13"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="14"/>
         <source>Form</source>
         <translation>フォーム</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="19"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="20"/>
         <source>Settings</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="28"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="29"/>
         <source>Working directory for capture files:</source>
         <translation>キャプチャファイルの作業ディレクトリ:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="38"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="82"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="51"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="42"/>
         <source>Command to launch Wireshark or a capture file reader:</source>
         <translation>Wireshark やキャプチャファイルリーダーを開くコマンド:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="61"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="55"/>
         <source>Automatically start the command when capturing</source>
         <translation>キャプチャ時、自動的に開始するコマンド</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="68"/>
+        <source>Default Presets:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="75"/>
+        <source>Use</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="95"/>
+        <source>Hint: To actually start capturing traffic, right click on link&apos;s small colored circle.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="102"/>
+        <source>%c = capture file</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2950,7 +3078,7 @@ to display the configuration page.</source>
         <translation>アプリケーション</translation>
     </message>
     <message>
-        <location filename="../Config/Preferences.py" line="33"/>
+        <location filename="../Config/Preferences.py" line="35"/>
         <source>Capture</source>
         <translation>キャプチャ</translation>
     </message>
@@ -2968,7 +3096,7 @@ to display the configuration page.</source>
         <translation>Dynamips</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="258"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="270"/>
         <source>Settings</source>
         <translation>設定</translation>
     </message>
@@ -3003,27 +3131,27 @@ to display the configuration page.</source>
         <translation>ベースコンソールポート:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="210"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="222"/>
         <source>&amp;Test</source>
         <translation>テスト(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="246"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="258"/>
         <source>Hypervisor Manager</source>
         <translation>ハイパーバイザマネージャ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="264"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="276"/>
         <source>Memory usage limit per hypervisor:</source>
         <translation>ハイパーバイザごとのメモリ制限:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="284"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="299"/>
         <source>UDP incrementation:</source>
         <translation>UDP ポートの増加幅:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="318"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="333"/>
         <source>Use Hypervisor Manager when importing</source>
         <translation>インポート時にハイパーバイザマネージャを使用する</translation>
     </message>
@@ -3033,27 +3161,27 @@ to display the configuration page.</source>
         <translation>作業フォルダを自動的にクリアする</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="304"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="319"/>
         <source>IP/host binding:</source>
         <translation>IP/ホストのバインディング:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="165"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="177"/>
         <source>Enable ghost IOS support</source>
         <translation>IOS のゴースト機能を有効にする</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="175"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="187"/>
         <source>Enable mmap support</source>
         <translation>mmap 機能を有効にする</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="195"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="207"/>
         <source>Enable sparse memory support</source>
         <translation>スパースメモリ機能を有効にする</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="185"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="197"/>
         <source>Enable JIT sharing support (Dynamips &gt; 0.2.8 RC2)</source>
         <translation>JIT 共有機能を有効にする (Dynamips 0.2.8 RC2 以上)</translation>
     </message>
@@ -3063,8 +3191,13 @@ to display the configuration page.</source>
         <translation>ベース AUX ポート:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="328"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="343"/>
         <source>Allocate a new hypervisor per IOS image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="283"/>
+        <source> MiB</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3101,7 +3234,7 @@ to display the configuration page.</source>
         <translation>ターミナルコマンド:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="362"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="372"/>
         <source>Always use manual mode when adding links</source>
         <translation>リンクを追加するときは必ず手動モードにする</translation>
     </message>
@@ -3126,22 +3259,22 @@ to display the configuration page.</source>
         <translation>クリア(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="372"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="382"/>
         <source>Show link status points on the workspace</source>
         <translation>リンクの状態をワークスペースに表示する</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="288"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="298"/>
         <source>Workspace width:</source>
         <translation>ワークスペースの幅:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="333"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="343"/>
         <source> px</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="320"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="330"/>
         <source>Workspace height:</source>
         <translation>ワークスペースの高さ:</translation>
     </message>
@@ -3156,12 +3289,12 @@ to display the configuration page.</source>
         <translation>一般設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="282"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="292"/>
         <source>GUI Settings</source>
         <translation>GUI 設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="352"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="362"/>
         <source>Draw a rectangle when an item is selected</source>
         <translation>項目が選択された時に四角形を描画する</translation>
     </message>
@@ -3216,6 +3349,16 @@ to display the configuration page.</source>
         <source>Autosave:</source>
         <translation>自動保存:</translation>
     </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="281"/>
+        <source>&lt;html&gt;This option will attempt to bring existing opened console window to front, instead of opening a new window.&lt;br&gt;If no existing opened console window exists, it will start a new  console window.&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="284"/>
+        <source>Bring console window to front (experimental feature)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreferencesQemu</name>
@@ -3235,7 +3378,7 @@ to display the configuration page.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1510"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1488"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -3245,207 +3388,182 @@ to display the configuration page.</source>
         <translation>作業ディレクトリ:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="187"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="159"/>
         <source>Enable Qemu Manager</source>
         <translation>QEMU マネージャを有効</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="197"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="169"/>
         <source>Use Qemu Manager when importing</source>
         <translation>インポート時に Qemu マネージャを使う</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="147"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="241"/>
         <source>Base UDP port:</source>
         <translation>ベース UDP ポート:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="167"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="136"/>
         <source>Base console port:</source>
         <translation>ベースコンソールポート:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="891"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="885"/>
         <source>Binary image:</source>
         <translation>バイナリイメージ:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1583"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1564"/>
         <source>ne2k_pci</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1588"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1569"/>
         <source>i82551</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1593"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1574"/>
         <source>i82557b</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1598"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1579"/>
         <source>i82559er</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1603"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1584"/>
         <source>rtl8139</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1608"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1589"/>
         <source>e1000</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1613"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1594"/>
         <source>pcnet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1618"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1599"/>
         <source>virtio</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1626"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1607"/>
         <source>Qemu Options:</source>
         <translation>Qemu オプション:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1646"/>
-        <source>Use KQemu</source>
-        <translation>KQemu を使う</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1656"/>
-        <source>Use KVM (Linux Only)</source>
-        <translation>KVM を使う (Linux のみ)</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="546"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="547"/>
         <source>PIX</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="567"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="568"/>
         <source>PIX Settings</source>
         <translation>PIX 設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="746"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="740"/>
         <source>PIX Specific Settings</source>
         <translation>PIX 固有の設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="752"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="746"/>
         <source>Key:</source>
         <translation>キー:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="772"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="766"/>
         <source>Serial:</source>
         <translation>シリアル番号:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="854"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="848"/>
         <source>JunOS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="875"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="869"/>
         <source>JunOS Settings</source>
         <translation>JunOS 設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1122"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1107"/>
         <source>ASA</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1143"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1128"/>
         <source>ASA Settings</source>
         <translation>ASA 設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1302"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1280"/>
         <source>ASA Specific Settings</source>
         <translation>ASA 固有の設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1355"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1333"/>
         <source>Initrd:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1318"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1296"/>
         <source>Kernel:</source>
         <translation>カーネル:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1338"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1316"/>
         <source>Kernel cmd line:</source>
         <translation>カーネル コマンドライン:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="249"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="269"/>
         <source>&amp;Test</source>
         <translation>テスト(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="285"/>
-        <source>Qemu Host</source>
-        <translation>Qemu ホスト</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="306"/>
-        <source>Qemu Host Settings</source>
-        <translation>Qemu ホスト設定</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1456"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1434"/>
         <source>Identifier name:</source>
         <translation>識別子名:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1668"/>
-        <source>Save</source>
-        <translation>保存</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1675"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="203"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1704"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1675"/>
         <source>Name</source>
         <translation>名前</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1104"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1091"/>
         <source>Image path</source>
         <translation>イメージパス</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1429"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1407"/>
         <source>IDS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1450"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1428"/>
         <source>IDS Settings</source>
         <translation>IDS 設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1466"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1444"/>
         <source>Binary image 1 (hda):</source>
         <translation>バイナリイメージ 1 (hda):</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1493"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1471"/>
         <source>Binary image 2 (hdb):</source>
         <translation>バイナリイメージ 2 (hda):</translation>
     </message>
@@ -3465,99 +3583,342 @@ to display the configuration page.</source>
         <translation>qemu-img のパス:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="113"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="227"/>
         <source>IP/host binding:</source>
         <translation>IP/ホストのバインディング:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="127"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="113"/>
         <source>Qemuwrapper port:</source>
         <translation>Qemuwrapper のポート:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="210"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="182"/>
         <source>External Qemuwrapper:</source>
         <translation>外部 Qemuwrapper:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="220"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="196"/>
         <source>Add</source>
         <translation>追加</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="234"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="210"/>
         <source>Registered external Qemuwrappers:</source>
         <translation>登録されている外部 Qemuwrappers:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1520"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1498"/>
         <source>RAM:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1546"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1527"/>
         <source>Number of NICs:</source>
         <translation>NIC の枚数:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1569"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1550"/>
         <source>NIC model:</source>
         <translation>NIC の型番:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="503"/>
-        <source>Qemu Host Images</source>
-        <translation>Qemu ホストイメージ</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="826"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="820"/>
         <source>PIX Images</source>
         <translation>PIX イメージ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1092"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1079"/>
         <source>JunOS Images</source>
         <translation>JunOS イメージ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1345"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1323"/>
         <source>console=ttyS0,9600n8 bigphysarea=16384 auto nousb ide1=noprobe hda=980,16,32</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1396"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1374"/>
         <source>ASA Images</source>
         <translation>ASA イメージ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1408"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1386"/>
         <source>Initrd path</source>
         <translation>Initrd のパス</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1413"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1391"/>
         <source>Kernel path</source>
         <translation>カーネルのパス</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1636"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1617"/>
         <source>-smbios type=1,product=IDS-4215</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1697"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1668"/>
         <source>IDS Images</source>
         <translation>IDS イメージ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1709"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1680"/>
         <source>Image 1 path</source>
         <translation>イメージ 1 のパス</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1714"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1685"/>
         <source>Image 2 path</source>
         <translation>イメージ 2 のパス</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="305"/>
+        <source>Qemu Guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="326"/>
+        <source>Qemu Guest Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1639"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished">保存(&amp;S)</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1646"/>
+        <source>&amp;Delete</source>
+        <translation type="unfinished">削除(&amp;D)</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="519"/>
+        <source>Qemu Guest Images</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="189"/>
+        <source>Add several wrappers, to make your GNS3 distributed across several hosts.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="234"/>
+        <source>Show QemuWrapper Advanced Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1508"/>
+        <source> MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1627"/>
+        <source>Use KVM</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PreferencesVirtualBox</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished">フォーム</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="30"/>
+        <source>General Settings</source>
+        <translation type="unfinished">一般設定</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="39"/>
+        <source>VBoxwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="45"/>
+        <source>Path to VBoxwrapper:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="75"/>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="65"/>
+        <source>Working directory:</source>
+        <translation type="unfinished">作業ディレクトリ:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="82"/>
+        <source>IP/host binding:</source>
+        <translation type="unfinished">IP/ホストのバインディング:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="197"/>
+        <source>VBoxwrapper port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="220"/>
+        <source>Base UDP port:</source>
+        <translation type="unfinished">ベース UDP ポート:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="99"/>
+        <source>Base console port:</source>
+        <translation type="unfinished">ベースコンソールポート:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="122"/>
+        <source>Enable VBox Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="132"/>
+        <source>Use VBox Manager when importing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="145"/>
+        <source>External VBoxwrapper:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="159"/>
+        <source>Add</source>
+        <translation type="unfinished">追加</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="166"/>
+        <source>Delete</source>
+        <translation type="unfinished">削除</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="173"/>
+        <source>Registered external VBoxwrappers:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="248"/>
+        <source>&amp;Test</source>
+        <translation type="unfinished">テスト(&amp;T)</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="284"/>
+        <source>VirtualBox Guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="305"/>
+        <source>VirtualBox Guest Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="311"/>
+        <source>Identifier name:</source>
+        <translation type="unfinished">識別子名:</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="321"/>
+        <source>VM Name / UUID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="328"/>
+        <source>NIC model:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="342"/>
+        <source>automatic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="347"/>
+        <source>e1000</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="352"/>
+        <source>pcnet2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="357"/>
+        <source>pcnet3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="362"/>
+        <source>virtio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="389"/>
+        <source>Number of NICs:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="445"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished">保存(&amp;S)</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="452"/>
+        <source>&amp;Delete</source>
+        <translation type="unfinished">削除(&amp;D)</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="474"/>
+        <source>VirtualBox Virtual Machines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="482"/>
+        <source>GNS3 Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="487"/>
+        <source>Virtual Machine Name or Unique Identifier</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="152"/>
+        <source>Add several wrappers, to make your GNS3 distributed across several hosts.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="405"/>
+        <source>GuestControl User</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="412"/>
+        <source>GuestControl Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="419"/>
+        <source>Enable GuestControl</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="426"/>
+        <source>(experimental feature)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="183"/>
+        <source>Show VBoxWrapper Advanced Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="190"/>
+        <source>Show VirtualBox Advanced Options</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3571,40 +3932,40 @@ to display the configuration page.</source>
 <context>
     <name>Qemu image</name>
     <message>
-        <location filename="../DynagenSub.py" line="231"/>
-        <source>Qemu host image %s cannot be found and cannot find an alternative image</source>
-        <translation>Qemu ホストイメージ %s が見つからず、代わりのイメージも見つかりませんでした</translation>
+        <location filename="../DynagenSub.py" line="263"/>
+        <source>Qemu guest image %s cannot be found and cannot find an alternative image</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>QemuManager</name>
     <message>
-        <location filename="../QemuManager.py" line="62"/>
+        <location filename="../QemuManager.py" line="72"/>
         <source>Connecting to Qemu on port %i ...</source>
         <translation>Qemu ポート %i に接続中...</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="62"/>
+        <location filename="../QemuManager.py" line="72"/>
         <source>Abort</source>
         <translation>中止</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="86"/>
+        <location filename="../QemuManager.py" line="96"/>
         <source>Can&apos;t connect to Qemu on port %i</source>
         <translation>Qemu ポート %i に接続できませんでした</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="166"/>
+        <location filename="../QemuManager.py" line="184"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>作業フォルダ %s が存在しないか、書き込み出来ません。確認してください</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="119"/>
+        <location filename="../QemuManager.py" line="135"/>
         <source>Qemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
         <translation>Qemu は既にポート %i で起動しています。GNS3 を終了するまでシャットダウンされません</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="134"/>
+        <location filename="../QemuManager.py" line="151"/>
         <source>Can&apos;t start Qemu on port %i</source>
         <translation>Qemu をポート %i で起動できませんでした</translation>
     </message>
@@ -3622,32 +3983,27 @@ to display the configuration page.</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="69"/>
-        <source> MB</source>
-        <translation> MB</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="122"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="127"/>
         <source>ne2k_pci</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="127"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="132"/>
         <source>i82551</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="132"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="137"/>
         <source>i82557b</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="137"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="142"/>
         <source>i82559er</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="142"/>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="122"/>
         <source>rtl8139</source>
         <translation></translation>
     </message>
@@ -3672,16 +4028,6 @@ to display the configuration page.</source>
         <translation>Qemu オプション:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="182"/>
-        <source>Use KQemu</source>
-        <translation>KQemu を使う</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="192"/>
-        <source>Use KVM (Linux only)</source>
-        <translation>KVM を使う (Linux のみ)</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="14"/>
         <source>Qemu configuration</source>
         <translation>Qemu 設定</translation>
@@ -3701,187 +4047,242 @@ to display the configuration page.</source>
         <source>NIC model:</source>
         <translation>NIC の型番:</translation>
     </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="69"/>
+        <source> MiB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="182"/>
+        <source>Use KVM</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="246"/>
+        <location filename="../Scene.py" line="285"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="113"/>
+        <location filename="../Scene.py" line="125"/>
         <source>Configure</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="169"/>
+        <location filename="../Scene.py" line="181"/>
         <source>Console</source>
         <translation>コンソール</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="174"/>
+        <location filename="../Scene.py" line="207"/>
         <source>Start</source>
         <translation>スタート</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="179"/>
+        <location filename="../Scene.py" line="227"/>
         <source>Stop</source>
         <translation>ストップ</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="218"/>
+        <location filename="../Scene.py" line="217"/>
         <source>Suspend</source>
         <translation>一時停止</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="208"/>
+        <location filename="../Scene.py" line="253"/>
         <source>Idle PC</source>
         <translation>Idle PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="443"/>
+        <location filename="../Scene.py" line="481"/>
         <source>IDLE PC</source>
         <translation>IDLE PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="399"/>
+        <location filename="../Scene.py" line="438"/>
         <source>Please select only one router</source>
         <translation>ルータを一台だけ選択してください</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="443"/>
+        <location filename="../Scene.py" line="481"/>
         <source>No idlepc values found</source>
         <translation>idlepc 値が見つかりませんでした</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="418"/>
+        <location filename="../Scene.py" line="457"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="406"/>
+        <location filename="../Scene.py" line="445"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%s には idlepc 値が既に指定されています。新しい値を計算しますか?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="118"/>
+        <location filename="../Scene.py" line="130"/>
         <source>Change the hostname</source>
         <translation>ホスト名を変更</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="123"/>
+        <location filename="../Scene.py" line="135"/>
         <source>Show/Hide the hostname</source>
         <translation>ホスト名を表示/非表示する</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="164"/>
+        <location filename="../Scene.py" line="176"/>
         <source>Change console port</source>
         <translation>コンソールポートを変更</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="213"/>
+        <location filename="../Scene.py" line="258"/>
         <source>Startup-config</source>
         <translation>スタートアップコンフィグ</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="252"/>
+        <location filename="../Scene.py" line="291"/>
         <source>Lower one step</source>
         <translation>1 ステップ下げる</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="257"/>
+        <location filename="../Scene.py" line="296"/>
         <source>Raise one step</source>
         <translation>1 ステップ上げる</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="232"/>
+        <location filename="../Scene.py" line="271"/>
         <source>Style</source>
         <translation>スタイル</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="184"/>
+        <location filename="../Scene.py" line="232"/>
         <source>Reload</source>
         <translation>リロード</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="135"/>
+        <location filename="../Scene.py" line="147"/>
         <source>Set an hypervisor</source>
         <translation>ハイパーバイザを設定</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="851"/>
+        <location filename="../Scene.py" line="939"/>
         <source>annotation</source>
         <translation>注釈</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="860"/>
+        <location filename="../Scene.py" line="948"/>
         <source>rectangle</source>
         <translation>四角形</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="868"/>
+        <location filename="../Scene.py" line="956"/>
         <source>ellipse</source>
         <translation>円</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="145"/>
+        <location filename="../Scene.py" line="157"/>
         <source>MAC Address Table</source>
         <translation>MAC アドレステーブル</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="155"/>
+        <location filename="../Scene.py" line="167"/>
         <source>Change Symbol</source>
         <translation>シンボルの変更</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="239"/>
+        <location filename="../Scene.py" line="278"/>
         <source>Duplicate</source>
         <translation>重複</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="268"/>
+        <location filename="../Scene.py" line="307"/>
         <source>Align horizontally</source>
         <translation>水平に並べる</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="274"/>
+        <location filename="../Scene.py" line="313"/>
         <source>Align vertically</source>
         <translation>垂直に並べる</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="641"/>
+        <location filename="../Scene.py" line="695"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="613"/>
+        <location filename="../Scene.py" line="667"/>
         <source>Do you really want to stop these devices?</source>
         <translation>本当にこれらのデバイスを停止しますか?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="641"/>
+        <location filename="../Scene.py" line="695"/>
         <source>Do you really want to reload these devices?</source>
         <translation>本当にこれらのデバイスを再起動しますか?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="297"/>
-        <source>Please wait while calculating IDLE PC values</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Scene.py" line="198"/>
+        <location filename="../Scene.py" line="243"/>
         <source>Change AUX port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="203"/>
+        <location filename="../Scene.py" line="248"/>
         <source>Console to AUX port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="499"/>
+        <location filename="../Scene.py" line="537"/>
         <source>Do you really want to delete these nodes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="336"/>
+        <source>Please wait while calculating an IDLE PC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="775"/>
+        <source>AddLink</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="753"/>
+        <source>Qemu machines support only Ethernet links.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="755"/>
+        <source>VirtualBox machines support only Ethernet links.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="757"/>
+        <source>Ethernet switch supports only Ethernet links.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="763"/>
+        <source>ATM switch supports only ATM links.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="769"/>
+        <source>Frame-Relay switch supports only serial links.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="775"/>
+        <source>ATM bridge supports only ATM and Ethernet links.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="192"/>
+        <source>Bring display to front</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="198"/>
+        <source>Hide display window</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3949,22 +4350,22 @@ to display the configuration page.</source>
         <translation>設定ファイルに変更を保存</translation>
     </message>
     <message>
-        <location filename="../StartupConfigDialog.py" line="122"/>
+        <location filename="../StartupConfigDialog.py" line="124"/>
         <source>IO Error</source>
         <translation>IO エラー</translation>
     </message>
     <message>
-        <location filename="../StartupConfigDialog.py" line="135"/>
+        <location filename="../StartupConfigDialog.py" line="137"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../StartupConfigDialog.py" line="94"/>
+        <location filename="../StartupConfigDialog.py" line="96"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../StartupConfigDialog.py" line="138"/>
+        <location filename="../StartupConfigDialog.py" line="140"/>
         <source>The startup-config has been saved, now you can synchronize it in IOS
 i.e. #copy start run</source>
         <translation>スタートアップコンフィグを保存しました。IOS に同期することができます。
@@ -4177,209 +4578,479 @@ ALT + LEFT or RIGHT</source>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="420"/>
+        <location filename="../Topology.py" line="515"/>
         <source>IOS image</source>
         <translation>IOS イメージ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="362"/>
+        <location filename="../Topology.py" line="457"/>
         <source>Please register at least one IOS image</source>
         <translation>少なくともひとつの IOS イメージを登録して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="412"/>
+        <location filename="../Topology.py" line="507"/>
         <source>Hypervisor</source>
         <translation>ハイパーバイザ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="408"/>
+        <location filename="../Topology.py" line="503"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamips のプログラムパスを設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1025"/>
+        <location filename="../Topology.py" line="1194"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1025"/>
+        <location filename="../Topology.py" line="1194"/>
         <source>Connection lost</source>
         <translation>接続に失敗しました</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="905"/>
+        <location filename="../Topology.py" line="1074"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="211"/>
+        <location filename="../Topology.py" line="217"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>外部ハイパーバイザ %s に接続できませんでした</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="372"/>
+        <location filename="../Topology.py" line="467"/>
         <source>No image for platform %s</source>
         <translation>このプラットフォーム %s に IOS イメージは設定されていません</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="905"/>
+        <location filename="../Topology.py" line="1074"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>スイッチへ少なくとも1つのルータを接続する必要があります</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="656"/>
+        <location filename="../Topology.py" line="820"/>
         <source>PIX image</source>
         <translation>PIX イメージ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="412"/>
+        <location filename="../Topology.py" line="507"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>設定画面で Dynamips のプログラムパスをテストしてください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="336"/>
+        <location filename="../Topology.py" line="361"/>
         <source>Qemuwrapper error</source>
         <translation>Qemuwrapper エラー</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="656"/>
+        <location filename="../Topology.py" line="820"/>
         <source>%s seems to not exist, please check</source>
         <translation>%s が存在しないようです。確認してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="504"/>
+        <location filename="../Topology.py" line="668"/>
         <source>JunOS image</source>
         <translation>JunOS イメージ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="459"/>
+        <location filename="../Topology.py" line="555"/>
         <source>Qemu image</source>
         <translation>Qemu イメージ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="605"/>
+        <location filename="../Topology.py" line="769"/>
         <source>ASA kernel</source>
         <translation>ASA カーネル</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="601"/>
+        <location filename="../Topology.py" line="765"/>
         <source>ASA initrd</source>
         <translation>ASA initrd</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="552"/>
+        <location filename="../Topology.py" line="716"/>
         <source>IDS images</source>
         <translation>IDS イメージ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="293"/>
+        <location filename="../Topology.py" line="316"/>
         <source>External Qemuwrapper</source>
         <translation>外部 Qemuwrapper</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="288"/>
+        <location filename="../Topology.py" line="311"/>
         <source>Please register at least one external Qemuwrapper</source>
         <translation>外部 Qemuwrapper を一つ以上登録して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="293"/>
+        <location filename="../Topology.py" line="316"/>
         <source>Please choose your external Qemuwrapper</source>
         <translation>外部 Qemuwrapper を選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="881"/>
+        <location filename="../Topology.py" line="1050"/>
         <source>Can&apos;t connect these devices</source>
         <translation>このデバイスは接続できませんでした</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="239"/>
+        <location filename="../Topology.py" line="245"/>
         <source>IOS Base config</source>
         <translation>IOS ベース設定</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="239"/>
+        <location filename="../Topology.py" line="245"/>
         <source>%s: %s</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="443"/>
-        <source>Qemu host</source>
-        <translation>Qemu ホスト</translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="443"/>
-        <source>Please choose a Qemu host</source>
-        <translation>Qemu 設定を選択してください</translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="477"/>
+        <location filename="../Topology.py" line="640"/>
         <source>JunOS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="477"/>
+        <location filename="../Topology.py" line="640"/>
         <source>Please configure a JunOS</source>
         <translation>JunOS を設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="489"/>
+        <location filename="../Topology.py" line="653"/>
         <source>Please choose a JunOS</source>
         <translation>JunOS を選択してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="534"/>
+        <location filename="../Topology.py" line="698"/>
         <source>IDS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="522"/>
+        <location filename="../Topology.py" line="685"/>
         <source>Please configure an IDS</source>
         <translation>IDS を設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="534"/>
+        <location filename="../Topology.py" line="698"/>
         <source>Please choose an IDS</source>
         <translation>IDS を選択してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="586"/>
+        <location filename="../Topology.py" line="750"/>
         <source>ASA</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="574"/>
+        <location filename="../Topology.py" line="737"/>
         <source>Please configure an ASA</source>
         <translation>ASA を設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="586"/>
+        <location filename="../Topology.py" line="750"/>
         <source>Please choose an ASA</source>
         <translation>ASA を選択してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="641"/>
+        <location filename="../Topology.py" line="805"/>
         <source>PIX</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="629"/>
+        <location filename="../Topology.py" line="792"/>
         <source>Please configure a PIX</source>
         <translation>PIX を設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="641"/>
+        <location filename="../Topology.py" line="805"/>
         <source>Please choose a PIX</source>
         <translation>PIX を選択してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="387"/>
+        <location filename="../Topology.py" line="482"/>
         <source>Please choose an image:</source>
         <translation>イメージを選択してください:</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="431"/>
-        <source>Please configure a Qemu host:</source>
-        <translation>Qemu ホストを設定してください:</translation>
+        <location filename="../Topology.py" line="388"/>
+        <source>External VBoxwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="383"/>
+        <source>Please register at least one external VBoxwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="388"/>
+        <source>Please choose your external VBoxwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="430"/>
+        <source>VBoxwrapper error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="526"/>
+        <source>Please configure a Qemu guest:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="539"/>
+        <source>Qemu guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="539"/>
+        <source>Please choose a Qemu guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="572"/>
+        <source>VBox image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="572"/>
+        <source>Please configure a VirtualBox guest:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="585"/>
+        <source>VirtualBox guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="585"/>
+        <source>Please choose a VirtualBox guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="617"/>
+        <source>VirtualBox API</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="604"/>
+        <source>ERROR: VirtualBox API module cannot be loaded !</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="624"/>
+        <source>VirtualBox VMname/UUID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="624"/>
+        <source>VirtualBox Machine &apos;%s&apos; seems to not exist, please check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="611"/>
+        <source>ERROR: VirtualBox API module cannot start !</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UiConfig_PreferencesCapture</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="141"/>
+        <source>Local capture working directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UiConfig_PreferencesDynamips</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="174"/>
+        <source>Dynamips binary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="180"/>
+        <source>Can&apos;t open file: %s</source>
+        <translation type="unfinished">ファイルを開けませんでした: %s</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="190"/>
+        <source>Dynamips path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="206"/>
+        <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
+        <translation type="unfinished">パスは ASCII 文字のみを含んでいる必要があります: Windows 上の Dynamips (Cygwin.DLL) はユニコードをサポートしません!</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="196"/>
+        <source>Local hypervisor working directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="206"/>
+        <source>Working directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="211"/>
+        <source>Message</source>
+        <translation type="unfinished">メッセージ</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="211"/>
+        <source>This action is going to delete your current topology, would you like to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="247"/>
+        <source>Failed to start Dynamips</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="233"/>
+        <source>Failed to determine version of Dynamips.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="237"/>
+        <source>Found Dynamips %s, which is not supported. Use 0.2.8+ instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="245"/>
+        <source>Dynamips %s successfully started</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UiConfig_PreferencesGeneral</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="251"/>
+        <source>Project Directory</source>
+        <translation type="unfinished">プロジェクトディレクトリ</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="259"/>
+        <source>IOS Directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="277"/>
+        <source>Configuration file</source>
+        <translation type="unfinished">設定ファイル</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="277"/>
+        <source>Configuration file cleared, default settings will be applied after a restart</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UiConfig_PreferencesQemu</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="315"/>
+        <source>Local Qemu working directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="854"/>
+        <source>Message</source>
+        <translation type="unfinished">メッセージ</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="854"/>
+        <source>This action is going to delete your current topology, would you like to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="863"/>
+        <source>Qemuwrapper path doesn&apos;t exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="869"/>
+        <source>Failed to start Qemuwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="886"/>
+        <source>Failed to start qemu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="909"/>
+        <source>Failed to start qemu-img</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="915"/>
+        <source>Qemuwrapper, qemu and qemu-img have successfully started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="889"/>
+        <source>You&apos;re running unpatched version of qemu, which won&apos;t work</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="913"/>
+        <source>Qemuwrapper, qemu, qemu-img and pemu have successfully started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="915"/>
+        <source> (except pemu)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UiConfig_PreferencesVirtualBox</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="307"/>
+        <source>Local VirtualBox working directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="401"/>
+        <source>Message</source>
+        <translation type="unfinished">メッセージ</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="401"/>
+        <source>This action is going to delete your current topology, would you like to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="413"/>
+        <source>VBoxwrapper path doesn&apos;t exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="419"/>
+        <source>Failed to load vboxapi module; Please check VirtualBox installation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="433"/>
+        <source>Failed to start vboxapi module; Please check VirtualBox installation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="439"/>
+        <source>ERROR: Found VirtualBox v%s. Minimum required is: v%s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="446"/>
+        <source>Failed to start VBoxwrapper</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="449"/>
+        <source>VBoxwrapper and VirtualBox API %s have successfully started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="427"/>
+        <source>Failed to start xdotool</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4471,14 +5142,95 @@ ALT + LEFT or RIGHT</source>
     </message>
 </context>
 <context>
+    <name>VBoxManager</name>
+    <message>
+        <location filename="../VBoxManager.py" line="71"/>
+        <source>Connecting to VBox on port %i ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../VBoxManager.py" line="71"/>
+        <source>Abort</source>
+        <translation type="unfinished">中止</translation>
+    </message>
+    <message>
+        <location filename="../VBoxManager.py" line="95"/>
+        <source>Can&apos;t connect to VBox on port %i</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../VBoxManager.py" line="187"/>
+        <source>Working directory %s seems to not exist or be writable, please check</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../VBoxManager.py" line="136"/>
+        <source>VBox is already running on port %i, it will not be shutdown after you quit GNS3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../VBoxManager.py" line="151"/>
+        <source>Can&apos;t start VBox on port %i</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>VirtualBoxPage</name>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="14"/>
+        <source>VirtualBox configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="20"/>
+        <source>VM Name / UUID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="40"/>
+        <source>Number of NICs:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="69"/>
+        <source>NIC model:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="83"/>
+        <source>automatic</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="88"/>
+        <source>e1000</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="93"/>
+        <source>pcnet2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="98"/>
+        <source>pcnet3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="103"/>
+        <source>virtio</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Widget_capturesDock</name>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="76"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="80"/>
         <source>Stop capturing</source>
         <translation>キャプチャの停止</translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="79"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="83"/>
         <source>Start Wireshark</source>
         <translation>Wireshark を起動</translation>
     </message>
@@ -4532,12 +5284,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="165"/>
+        <location filename="../Workspace.py" line="166"/>
         <source>Docks</source>
         <translation>ドッキング</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1081"/>
+        <location filename="../Workspace.py" line="1106"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
@@ -4582,12 +5334,12 @@ p, li { white-space: pre-wrap; }
         <translation>ホスト名を表示する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1063"/>
+        <location filename="../Workspace.py" line="1088"/>
         <source>Open a file</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1059"/>
+        <location filename="../Workspace.py" line="1084"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Dynamips のプログラムパスを設定しておく必要があります</translation>
     </message>
@@ -4597,7 +5349,7 @@ p, li { white-space: pre-wrap; }
         <translation>新規プロジェクト</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1147"/>
+        <location filename="../Workspace.py" line="1172"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
@@ -4622,7 +5374,7 @@ p, li { white-space: pre-wrap; }
         <translation>ファイル %s に誤りがあります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1138"/>
+        <location filename="../Workspace.py" line="1163"/>
         <source>Would you like to save the current topology?</source>
         <translation>現在のトポロジーを保存しますか?</translation>
     </message>
@@ -4642,7 +5394,7 @@ p, li { white-space: pre-wrap; }
         <translation>インターフェイス名を表示する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="968"/>
+        <location filename="../Workspace.py" line="983"/>
         <source>Snapshot</source>
         <translation>スナップショット</translation>
     </message>
@@ -4652,7 +5404,7 @@ p, li { white-space: pre-wrap; }
         <translation>ディレクトリを作成できません %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="973"/>
+        <location filename="../Workspace.py" line="988"/>
         <source>Please wait while creating a snapshot</source>
         <translation>スナップショットを作成する間、しばらくお待ちください</translation>
     </message>
@@ -4717,22 +5469,22 @@ p, li { white-space: pre-wrap; }
         <translation>Dynamips 警告: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="271"/>
+        <location filename="../Workspace.py" line="272"/>
         <source>I/O Error</source>
         <translation>I/O エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="271"/>
+        <location filename="../Workspace.py" line="272"/>
         <source>I/O Error: %s</source>
         <translation>I/O エラー: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="88"/>
+        <location filename="../Workspace.py" line="89"/>
         <source>Ctrl+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="93"/>
+        <location filename="../Workspace.py" line="94"/>
         <source>Ctrl+Y</source>
         <translation></translation>
     </message>
@@ -4747,16 +5499,9 @@ p, li { white-space: pre-wrap; }
         <translation>画像</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1012"/>
+        <location filename="../Workspace.py" line="1037"/>
         <source>Dynamips error: %s</source>
         <translation>Dynamips エラー: %s</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="203"/>
-        <source>Yes - Take all the workspace
-No - Take only what I see</source>
-        <translation>はい - 全てのワークスペースを取得する
-いいえ - 現在のワークスペースのみ、取得する</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="587"/>
@@ -4769,33 +5514,28 @@ No - Take only what I see</source>
         <translation>現在のトポロジーをクリアしますか?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="968"/>
+        <location filename="../Workspace.py" line="983"/>
         <source>Cannot create directories in %s: %s</source>
         <translation>%s %s にディレクトリを作成できません</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1040"/>
+        <location filename="../Workspace.py" line="1065"/>
         <source>Dynamips error!!: %s</source>
         <translation>Dynamips エラー!! %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1081"/>
+        <location filename="../Workspace.py" line="1106"/>
         <source>Connection lost with Dynamips hypervisor (crashed?)</source>
         <translation>Dynamips ハイパーバイザとの接続に失敗しました (クラッシュ?)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1113"/>
+        <location filename="../Workspace.py" line="1138"/>
         <source>Save As...</source>
         <translation>名前を付けて保存...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="875"/>
         <source>Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="1147"/>
-        <source>You have running nodes and you may loose your configurations inside them, would you like to continue anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4816,6 +5556,11 @@ No - Take only what I see</source>
     <message>
         <location filename="../Workspace.py" line="616"/>
         <source>Interface labels have been reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="1172"/>
+        <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4912,13 +5657,18 @@ No - Take only what I see</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="DynamicStrings.py" line="50"/>
-        <source>Qemu host</source>
-        <translation>Qemu ホスト</translation>
-    </message>
-    <message>
         <location filename="DynamicStrings.py" line="46"/>
         <source>EtherSwitch router</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="50"/>
+        <source>Qemu guest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="DynamicStrings.py" line="51"/>
+        <source>VirtualBox guest</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

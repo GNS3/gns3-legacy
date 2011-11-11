@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
 
 from GNS3.Node.AbstractNode import AbstractNode
@@ -159,10 +159,11 @@ class ETHSW(AbstractNode):
             self.config['ports'][port] = 'access'
             self.config['vlans'][1].append(port)
 
+
     def getInterfaces(self):
         """ Returns all interfaces
         """
-
+        
         self.autoAllocateFreePort()
         ports = map(str, self.config['ports'].keys())
         return (ports)
@@ -205,8 +206,6 @@ class ETHSW(AbstractNode):
 
         self.create_config()
         return True
-
-
 
     def mapping(self):
         """ Configure Ethernet port mapping

@@ -16,10 +16,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
 
-import os
+import os, platform
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_ASAPage import Ui_ASAPage
@@ -35,6 +35,9 @@ class Page_ASA(QtGui.QWidget, Ui_ASAPage):
         self.setupUi(self)
         self.setObjectName("ASA firewall")
         self.currentNodeID = None
+
+        if platform.system() != 'Linux':
+            self.checkBoxKVM.setVisible(False)
 
         # connect slots
         self.connect(self.pushButtonInitrdBrowser, QtCore.SIGNAL('clicked()'), self.slotSelectInitrd)
@@ -86,11 +89,6 @@ class Page_ASA(QtGui.QWidget, Ui_ASAPage):
         if asa_config['options']:
             self.lineEditOptions.setText(asa_config['options'])
             
-        if asa_config['kqemu'] == True:
-            self.checkBoxKqemu.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
-            
         if asa_config['kvm'] == True:
             self.checkBoxKVM.setCheckState(QtCore.Qt.Checked)
         else:
@@ -131,11 +129,6 @@ class Page_ASA(QtGui.QWidget, Ui_ASAPage):
         options = str(self.lineEditOptions.text())
         if options:
             asa_config['options'] = options
-
-        if self.checkBoxKqemu.checkState() == QtCore.Qt.Checked:
-            asa_config['kqemu'] = True
-        else:
-            asa_config['kqemu']  = False
 
         if self.checkBoxKVM.checkState() == QtCore.Qt.Checked:
             asa_config['kvm'] = True

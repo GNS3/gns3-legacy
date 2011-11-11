@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 
 """
 confConsole.py
@@ -27,6 +28,12 @@ from dynamips_lib import DynamipsError, DynamipsWarning, GENERIC_7200_PAS, GENER
 
 # Regex matching slot definitions. Used in pre_cmd() function in confRouterConsole
 SLOT_RE = re.compile('^slot[0-7]', re.IGNORECASE)
+
+# True = Dynagen text-mode, False = GNS3 GUI-mode.
+if __name__ == 'confConsole':
+    PureDynagen = True 
+else:
+    PureDynagen = False
 
 # determine if we are in the debugger
 try:
@@ -119,19 +126,20 @@ class AbstractConsole(cmd.Cmd):
         """Do nothing on empty input line"""
 
         pass
-
-    def do_py(self, line):
-        """py <python statement(s)>
+    
+    if PureDynagen:
+        def do_py(self, line):
+            """py <python statement(s)>
 \tExecute python statements"""
-
-        if line == '?':
-            print self.do_py.__doc__
-            return
-
-        try:
-            exec line in self._locals, self._globals
-        except Exception, e:
-            print e.__class__, ':', e
+    
+            if line == '?':
+                print self.do_py.__doc__
+                return
+    
+            try:
+                exec line in self._locals, self._globals
+            except Exception, e:
+                print e.__class__, ':', e
 
     def default(self, line):
         """Called on an input line when the command prefix is not recognized.
@@ -145,10 +153,11 @@ class AbstractConsole(cmd.Cmd):
 
         print self._hist
 
-    def do_exit(self, args):
-        """Exits from the console"""
-
-        return -1
+    if PureDynagen:
+        def do_exit(self, args):
+            """Exits from the console"""
+    
+            return -1
 
     def do_end(self, args):
         """Exits from the console"""

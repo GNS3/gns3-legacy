@@ -16,10 +16,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
 
-import os
+import os, platform
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from Form_QemuPage import Ui_QemuPage
@@ -35,6 +35,9 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
         self.setupUi(self)
         self.setObjectName("Qemu device")
         self.currentNodeID = None
+
+        if platform.system() != 'Linux':
+            self.checkBoxKVM.setVisible(False)
 
         # connect slot
         self.connect(self.pushButtonImageBrowser, QtCore.SIGNAL('clicked()'), self.slotSelectImage)
@@ -72,11 +75,6 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
         if qemu_config['options']:
             self.lineEditOptions.setText(qemu_config['options'])
             
-        if qemu_config['kqemu'] == True:
-            self.checkBoxKqemu.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
-            
         if qemu_config['kvm'] == True:
             self.checkBoxKVM.setCheckState(QtCore.Qt.Checked)
         else:
@@ -100,7 +98,7 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
         
         nics = self.spinBoxNics.value()
         if nics < qemu_config['nics'] and len(node.getConnectedInterfaceList()):
-            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_Qemu", "Qemu host"), translate("Page_Qemu", "You must remove the connected links first in order to reduce the number of interfaces"))
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_Qemu", "Qemu guest"), translate("Page_Qemu", "You must remove the connected links first in order to reduce the number of interfaces"))
         else:
             qemu_config['nics'] = self.spinBoxNics.value()
 
@@ -109,11 +107,6 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
         options = str(self.lineEditOptions.text())
         if options:
             qemu_config['options'] = options
-
-        if self.checkBoxKqemu.checkState() == QtCore.Qt.Checked:
-            qemu_config['kqemu'] = True
-        else:
-            qemu_config['kqemu']  = False
             
         if self.checkBoxKVM.checkState() == QtCore.Qt.Checked:
             qemu_config['kvm'] = True

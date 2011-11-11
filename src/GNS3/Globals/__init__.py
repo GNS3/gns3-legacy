@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
 
 workaround_ManualLink = False
@@ -29,7 +29,7 @@ preferencesWindow = None
 hypervisor_baseport = 7200
 recordConfiguration = True
 interfaceLabels = {}
-debugLevel = 0
+debugLevel = 1
 
 # A singleton instance of GNS3 Application
 # used for storing / accessing highly used object.

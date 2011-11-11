@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
 
 import re
@@ -205,7 +205,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         device = self.get_dynagen_device()
         if not device.aux:
-            print translate("AbstractNode", "AUX port not available for this router model or base AUX port is set to 0 in preferences")
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "AUX port"), unicode(translate("AbstractNode", "AUX port not available for this router model or base AUX port is set to 0 in preferences")))
+            return False
 
         current_aux = device.aux
         (port, ok) = QtGui.QInputDialog.getInteger(globals.GApp.mainWindow, translate("AbstractNode", "Change the aux port"),

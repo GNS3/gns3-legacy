@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
 
 import os, shutil, glob, sys, base64, time
@@ -151,7 +151,7 @@ class IOSRouter(AbstractNode):
         self.hostname = hostname
         self.r = 'ROUTER ' + self.hostname
         self.updateToolTips()
-        
+
     def changeHostname(self):
         """ Called to change the hostname
         """
@@ -668,8 +668,8 @@ class IOSRouter(AbstractNode):
         """ Start a telnet console and connect it to this router's AUX port
         """
         if not self.router.aux:
-            print translate("IOSRouter", "AUX port not available for this router model or base AUX port is set to 0 in preferences")
-            return
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "AUX port"), unicode(translate("AbstractNode", "AUX port not available for this router model or base AUX port is set to 0 in preferences")))
+            return False
 
         if self.router and self.router.state == 'running':
             console.connect(self.hypervisor.host, self.router.aux, self.hostname)

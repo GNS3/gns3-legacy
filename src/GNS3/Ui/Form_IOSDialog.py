@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Mon Apr 11 15:55:30 2011
-#      by: PyQt4 UI code generator 4.8.1
+# Created: Thu Oct 27 22:25:39 2011
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -179,6 +179,7 @@ class Ui_IOSDialog(object):
         spacerItem2 = QtGui.QSpacerItem(71, 27, QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Minimum)
         self.gridlayout3.addItem(spacerItem2, 1, 1, 1, 2)
         self.spinBoxHypervisorPort = QtGui.QSpinBox(self.groupBox_4)
+        self.spinBoxHypervisorPort.setSuffix(_fromUtf8(" TCP"))
         self.spinBoxHypervisorPort.setMinimum(1)
         self.spinBoxHypervisorPort.setMaximum(65535)
         self.spinBoxHypervisorPort.setProperty(_fromUtf8("value"), 7200)
@@ -190,6 +191,7 @@ class Ui_IOSDialog(object):
         spacerItem3 = QtGui.QSpacerItem(41, 27, QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Minimum)
         self.gridlayout3.addItem(spacerItem3, 2, 2, 1, 1)
         self.spinBoxBaseUDP = QtGui.QSpinBox(self.groupBox_4)
+        self.spinBoxBaseUDP.setSuffix(_fromUtf8(" UDP"))
         self.spinBoxBaseUDP.setMinimum(1)
         self.spinBoxBaseUDP.setMaximum(65535)
         self.spinBoxBaseUDP.setProperty(_fromUtf8("value"), 10000)
@@ -199,6 +201,7 @@ class Ui_IOSDialog(object):
         self.label_8.setObjectName(_fromUtf8("label_8"))
         self.gridlayout3.addWidget(self.label_8, 3, 0, 1, 3)
         self.spinBoxBaseConsole = QtGui.QSpinBox(self.groupBox_4)
+        self.spinBoxBaseConsole.setSuffix(_fromUtf8(" TCP"))
         self.spinBoxBaseConsole.setMinimum(1)
         self.spinBoxBaseConsole.setMaximum(65535)
         self.spinBoxBaseConsole.setProperty(_fromUtf8("value"), 2000)
@@ -217,6 +220,7 @@ class Ui_IOSDialog(object):
         spacerItem4 = QtGui.QSpacerItem(128, 121, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.gridlayout3.addItem(spacerItem4, 6, 3, 1, 1)
         self.spinBoxBaseAUX = QtGui.QSpinBox(self.groupBox_4)
+        self.spinBoxBaseAUX.setSuffix(_fromUtf8(" TCP"))
         self.spinBoxBaseAUX.setMaximum(65535)
         self.spinBoxBaseAUX.setObjectName(_fromUtf8("spinBoxBaseAUX"))
         self.gridlayout3.addWidget(self.spinBoxBaseAUX, 4, 3, 1, 2)
@@ -272,7 +276,7 @@ class Ui_IOSDialog(object):
         self.label_6.setText(QtGui.QApplication.translate("IOSDialog", "Model:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_12.setText(QtGui.QApplication.translate("IOSDialog", "IDLE PC:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_9.setText(QtGui.QApplication.translate("IOSDialog", "Default RAM:", None, QtGui.QApplication.UnicodeUTF8))
-        self.spinBoxDefaultRAM.setSuffix(QtGui.QApplication.translate("IOSDialog", " MB", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxDefaultRAM.setSuffix(QtGui.QApplication.translate("IOSDialog", " MiB", None, QtGui.QApplication.UnicodeUTF8))
         self.labelCheckRAM.setText(QtGui.QApplication.translate("IOSDialog", "<a href=\"http://www.gns3.net/\">Check for minimum RAM requirement</a>", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxDefaultImage.setText(QtGui.QApplication.translate("IOSDialog", "Default image for this platform", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonSelectBaseConfig.setText(QtGui.QApplication.translate("IOSDialog", "...", None, QtGui.QApplication.UnicodeUTF8))
@@ -298,4 +302,3 @@ class Ui_IOSDialog(object):
         self.pushButtonDeleteHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QtGui.QApplication.translate("IOSDialog", "External hypervisors", None, QtGui.QApplication.UnicodeUTF8))
 
-import svg_resources_rc

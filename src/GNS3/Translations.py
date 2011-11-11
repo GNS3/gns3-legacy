@@ -16,7 +16,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
 
 import os, sys
@@ -41,6 +41,7 @@ class Translator(object):
         # Add i18n dirs depending on platform.
         if sys.platform[:3] == "win":
             self.__i18n_dirs = [os.path.dirname(os.path.abspath(GNS3.Langs.__file__))]
+            """
             if os.environ.has_key("APPDATA"):
                 self.__i18n_dirs.append(os.environ["APPDATA"] + "\\gns3\\Langs")
             else:
@@ -55,6 +56,7 @@ class Translator(object):
                 _winreg.CloseKey(key)
             except:
                 pass
+            """
 
         else:
 

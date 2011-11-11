@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PreferencesVirtualBox</class>
+ <widget class="QWidget" name="PreferencesVirtualBox">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>464</width>
+    <height>464</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_17">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="tabShape">
+      <enum>QTabWidget::Rounded</enum>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>General Settings</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QGroupBox" name="P">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="title">
+          <string>VBoxwrapper</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Path to VBoxwrapper:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="5">
+           <widget class="QLineEdit" name="lineEditVBoxwrapperPath"/>
+          </item>
+          <item row="0" column="6">
+           <widget class="QToolButton" name="VBoxwrapperPath_browser">
+            <property name="text">
+             <string>...</string>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextOnly</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Working directory:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="5">
+           <widget class="QLineEdit" name="lineEditVBoxwrapperWorkdir"/>
+          </item>
+          <item row="1" column="6">
+           <widget class="QToolButton" name="VBoxwrapperWorkdir_browser">
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>IP/host binding:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1" colspan="6">
+           <widget class="QComboBox" name="comboBoxBinding">
+            <property name="sizeAdjustPolicy">
+             <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0">
+           <widget class="QLabel" name="label_30">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Base console port:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="1" colspan="6">
+           <widget class="QSpinBox" name="baseConsole">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="suffix">
+             <string notr="true"> TCP</string>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+           </widget>
+          </item>
+          <item row="14" column="0" colspan="3">
+           <widget class="QCheckBox" name="checkBoxEnableVBoxManager">
+            <property name="text">
+             <string>Enable VBox Manager</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="15" column="0" colspan="4">
+           <widget class="QCheckBox" name="checkBoxVBoxManagerImport">
+            <property name="text">
+             <string>Use VBox Manager when importing</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="0" colspan="2">
+           <widget class="QLabel" name="label_5">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>External VBoxwrapper:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="2" colspan="2">
+           <widget class="QLineEdit" name="lineEditHostExternalVBox">
+            <property name="toolTip">
+             <string>Add several wrappers, to make your GNS3 distributed across several hosts.</string>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="4">
+           <widget class="QPushButton" name="pushButtonAddExternalVBoxwrapper">
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item row="16" column="5" colspan="2">
+           <widget class="QPushButton" name="pushButtonDeleteExternalVBoxwrapper">
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+          <item row="17" column="0" colspan="3">
+           <widget class="QLabel" name="label_36">
+            <property name="text">
+             <string>Registered external VBoxwrappers:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="17" column="3" colspan="4">
+           <widget class="QComboBox" name="comboBoxExternalVBoxwrappers"/>
+          </item>
+          <item row="4" column="0" colspan="4">
+           <widget class="QCheckBox" name="checkBoxVBoxWrapperShowAdvancedOptions">
+            <property name="text">
+             <string>Show VBoxWrapper Advanced Options</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="4">
+           <widget class="QCheckBox" name="checkBoxVBoxShowAdvancedOptions">
+            <property name="text">
+             <string>Show VirtualBox Advanced Options</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_35">
+            <property name="text">
+             <string>VBoxwrapper port:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="6">
+           <widget class="QSpinBox" name="port">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="suffix">
+             <string notr="true"> TCP</string>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_31">
+            <property name="text">
+             <string>Base UDP port:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="6">
+           <widget class="QSpinBox" name="baseUDP">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="suffix">
+             <string notr="true"> UDP</string>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item>
+          <widget class="QPushButton" name="pushButtonTestVBox">
+           <property name="text">
+            <string>&amp;Test</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelVBoxStatus">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>24</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_4">
+      <attribute name="title">
+       <string>VirtualBox Guest</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <widget class="QScrollArea" name="scrollArea">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>420</width>
+            <height>400</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QGroupBox" name="groupBox">
+             <property name="title">
+              <string>VirtualBox Guest Settings</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>Identifier name:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="text">
+                 <string>VM Name / UUID:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_10">
+                <property name="text">
+                 <string>NIC model:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QComboBox" name="VBoxNIC">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="currentIndex">
+                 <number>0</number>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>automatic</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>e1000</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>pcnet2</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>pcnet3</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>virtio</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QSpinBox" name="VBoxNICNb">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="minimum">
+                 <number>0</number>
+                </property>
+                <property name="maximum">
+                 <number>7</number>
+                </property>
+                <property name="singleStep">
+                 <number>1</number>
+                </property>
+                <property name="value">
+                 <number>1</number>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_37">
+                <property name="text">
+                 <string>Number of NICs:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLineEdit" name="VBoxImage"/>
+              </item>
+              <item row="5" column="2">
+               <widget class="QLineEdit" name="VBoxGuestControl_User"/>
+              </item>
+              <item row="6" column="2">
+               <widget class="QLineEdit" name="VBoxGuestControl_Password"/>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_4">
+                <property name="text">
+                 <string>GuestControl User</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_7">
+                <property name="text">
+                 <string>GuestControl Password</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="VBoxcheckBoxEnableGuestControl">
+                <property name="text">
+                 <string>Enable GuestControl</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="2">
+               <widget class="QLabel" name="label_8">
+                <property name="text">
+                 <string>(experimental feature)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QComboBox" name="comboBoxNameVBoxImage">
+                <property name="editable">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QPushButton" name="SaveVBoxImage">
+               <property name="text">
+                <string>&amp;Save</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="DeleteVBoxImage">
+               <property name="text">
+                <string>&amp;Delete</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_20">
+             <property name="text">
+              <string>VirtualBox Virtual Machines</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTreeWidget" name="treeWidgetVBoxImages">
+             <column>
+              <property name="text">
+               <string>GNS3 Name</string>
+              </property>
+             </column>
+             <column>
+              <property name="text">
+               <string>Virtual Machine Name or Unique Identifier</string>
+              </property>
+             </column>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

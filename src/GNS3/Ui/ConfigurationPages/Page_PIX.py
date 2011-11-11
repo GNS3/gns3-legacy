@@ -16,16 +16,16 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 #
-# code@gns3.net
+# http://www.gns3.net/contact
 #
 
-import os, re
+import os, re, platform
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
-from Form_FWPage import Ui_FWPage
+from Form_PIXPage import Ui_PIXPage
 from GNS3.Utils import fileBrowser, translate
 
-class Page_FW(QtGui.QWidget, Ui_FWPage):
+class Page_PIX(QtGui.QWidget, Ui_PIXPage):
     """ Class implementing the PIX firewall configuration page.
     """
 
@@ -55,31 +55,26 @@ class Page_FW(QtGui.QWidget, Ui_FWPage):
         node = globals.GApp.topology.getNode(id)
         self.currentNodeID = id
         if config:
-            fw_config = config
+            pix_config = config
         else:
-            fw_config = node.get_config()
+            pix_config = node.get_config()
  
-        if fw_config['image']:
-            self.lineEditImage.setText(fw_config['image'])
-        if fw_config['key']:
-            self.lineEditKey.setText(fw_config['key'])
-        if fw_config['serial']:
-            self.lineEditSerial.setText(fw_config['serial'])
+        if pix_config['image']:
+            self.lineEditImage.setText(pix_config['image'])
+        if pix_config['key']:
+            self.lineEditKey.setText(pix_config['key'])
+        if pix_config['serial']:
+            self.lineEditSerial.setText(pix_config['serial'])
 
-        self.spinBoxRamSize.setValue(fw_config['ram'])
-        self.spinBoxNics.setValue(fw_config['nics'])
+        self.spinBoxRamSize.setValue(pix_config['ram'])
+        self.spinBoxNics.setValue(pix_config['nics'])
       
-        index = self.comboBoxNIC.findText(fw_config['netcard'])
+        index = self.comboBoxNIC.findText(pix_config['netcard'])
         if index != -1:
             self.comboBoxNIC.setCurrentIndex(index)
             
-        if fw_config['options']:
-            self.lineEditOptions.setText(fw_config['options'])
-            
-        if fw_config['kqemu'] == True:
-            self.checkBoxKqemu.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBoxKqemu.setCheckState(QtCore.Qt.Unchecked)
+        if pix_config['options']:
+            self.lineEditOptions.setText(pix_config['options'])
         
         
     def saveConfig(self, id, config = None):
@@ -88,48 +83,43 @@ class Page_FW(QtGui.QWidget, Ui_FWPage):
 
         node = globals.GApp.topology.getNode(id)
         if config:
-            fw_config = config
+            pix_config = config
         else:
-            fw_config = node.duplicate_config()
+            pix_config = node.duplicate_config()
 
         image = unicode(self.lineEditImage.text())
         if image:
-            fw_config['image'] = image
+            pix_config['image'] = image
 
         serial = str(self.lineEditSerial.text())
         if serial and not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):
-            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_FW", "Serial"), translate("Page_FW", "Invalid serial (format required: 0xhhhhhhhh)"))
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_PIX", "Serial"), translate("Page_PIX", "Invalid serial (format required: 0xhhhhhhhh)"))
         elif serial != '':
-            fw_config['serial'] = serial
+            pix_config['serial'] = serial
             
         key = str(self.lineEditKey.text())
         if key and not re.search(r"""^(0x[0-9a-fA-F]{8},){3}0x[0-9a-fA-F]{8}$""", key):
-            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_FW", "Key"),
-                                       translate("Page_FW", "Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)"))
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_PIX", "Key"),
+                                       translate("Page_PIX", "Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)"))
         elif key != '':
-            fw_config['key'] = key
+            pix_config['key'] = key
 
-        fw_config['ram'] = self.spinBoxRamSize.value()
+        pix_config['ram'] = self.spinBoxRamSize.value()
         
         nics = self.spinBoxNics.value()
-        if nics < fw_config['nics'] and len(node.getConnectedInterfaceList()):
-            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_FW", "PIX firewall"), translate("Page_FW", "You must remove the connected links first in order to reduce the number of interfaces"))
+        if nics < pix_config['nics'] and len(node.getConnectedInterfaceList()):
+            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_PIX", "PIX firewall"), translate("Page_PIX", "You must remove the connected links first in order to reduce the number of interfaces"))
         else:
-            fw_config['nics'] = self.spinBoxNics.value()
+            pix_config['nics'] = self.spinBoxNics.value()
         
-        fw_config['netcard'] = str(self.comboBoxNIC.currentText())
+        pix_config['netcard'] = str(self.comboBoxNIC.currentText())
             
         options = str(self.lineEditOptions.text())
         if options:
-            fw_config['options'] = options
+            pix_config['options'] = options
 
-        if self.checkBoxKqemu.checkState() == QtCore.Qt.Checked:
-            fw_config['kqemu'] = True
-        else:
-            fw_config['kqemu']  = False
-
-        return fw_config
+        return pix_config
 
 def create(dlg):
 
-    return  Page_FW()
+    return  Page_PIX()
