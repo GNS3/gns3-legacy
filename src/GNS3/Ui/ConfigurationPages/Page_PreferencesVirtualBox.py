@@ -409,7 +409,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         if globals.GApp.systconf['vbox'].vboxwrapper_path:
             #print "ADEBUG: Entered UiConfig_PreferencesVirtualBox::__testVBox(), if #1"
             if os.path.exists(globals.GApp.systconf['vbox'].vboxwrapper_path) == False:
-	            #print "ADEBUG: Entered UiConfig_PreferencesVirtualBox::__testVBox(), if #2"
+                #print "ADEBUG: Entered UiConfig_PreferencesVirtualBox::__testVBox(), if #2"
                 self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "VBoxwrapper path doesn't exist")  + '</font>')
                 return
 
@@ -427,7 +427,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
                     self.labelVBoxStatus.setText('<font color="brown">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start xdotool")  + '</font>')
                     return
   
-            from __main__ import g_VBoxmgr, VBOXVER_REQUIRED, VBOXVER_FLOAT
+            from __main__ import g_VBoxmgr, VBOXVER_REQUIRED, VBOXVER_FLOAT, VBOXVER_REQUIRED1_MAJOR, VBOXVER_REQUIRED1_MINOR, VBOXVER_MAJOR, VBOXVER_MINOR
 
             if not g_VBoxmgr:
                 self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start vboxapi module; Please check VirtualBox installation.")  + '</font>')
@@ -435,14 +435,14 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
                 
             VBOXVER = str(g_VBoxmgr.vbox.version)
 
-            if VBOXVER_FLOAT < VBOXVER_REQUIRED:              
-                self.labelVBoxStatus.setText('<font color="red">' + unicode(translate("UiConfig_PreferencesVirtualBox", "ERROR: Found VirtualBox v%s. Minimum required is: v%s")) % (VBOXVER, str(VBOXVER_REQUIRED)  + '</font>'))
+            if not (VBOXVER_REQUIRED1_MAJOR == VBOXVER_MAJOR and VBOXVER_REQUIRED1_MINOR == VBOXVER_MINOR):
+                self.labelVBoxStatus.setText('<font color="red">' + unicode(translate("UiConfig_PreferencesVirtualBox", "ERROR: Found VirtualBox v%s. Required: v%s")) % (VBOXVER, str(VBOXVER_REQUIRED)  + '</font>'))
                 return
 
             globals.GApp.workspace.clear()
             globals.GApp.VBoxManager = VBoxManager()
             if globals.GApp.VBoxManager.preloadVBoxwrapper() == False:
-	            #print "ADEBUG: Entered UiConfig_PreferencesVirtualBox::__testVBox(), if #3"
+                #print "ADEBUG: Entered UiConfig_PreferencesVirtualBox::__testVBox(), if #3"
                 self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start VBoxwrapper")  + '</font>')
                 return
 

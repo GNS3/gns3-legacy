@@ -46,17 +46,21 @@ if sys.version_info < (2, 5):
 VBOXVER_REQUIRED = 4.1
 VBOXVER_STR = ""
 VBOXVER_FLOAT = 0.0
+VBOXVER_REQUIRED1_MAJOR = 4
+VBOXVER_REQUIRED1_MINOR = 1
 
 try:
     from vboxapi import VirtualBoxManager
     g_VBoxmgr = VirtualBoxManager(None, None)
-    vboxver_maj = g_VBoxmgr.vbox.version.split('.')[0]
-    vboxver_min = g_VBoxmgr.vbox.version.split('.')[1]
+    VBOXVER_MAJOR = int(g_VBoxmgr.vbox.version.split('.')[0])
+    VBOXVER_MINOR = int(g_VBoxmgr.vbox.version.split('.')[1])
     VBOXVER_STR = g_VBoxmgr.vbox.version
-    VBOXVER_FLOAT = float(str(vboxver_maj)+'.'+str(vboxver_min))    
+    VBOXVER_FLOAT = float(str(VBOXVER_MAJOR)+'.'+str(VBOXVER_MINOR))   
 except:
     print "WARNING: vboxapi module cannot be loaded ! You can proceed, but VirtualBox functionality will not be locally available."
     g_VBoxmgr = 0
+    VBOXVER_MAJOR = 0
+    VBOXVER_MINOR = 0
 
 def exceptionHook(type, value, tb):
 
