@@ -28,7 +28,7 @@ import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Telnet as console
 import GNS3.WindowManipulator as winm
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Defaults.AnyVBoxEmuDefaults import AnyVBoxEmuDefaults, VBoxDefaults
 from GNS3.Utils import translate, debug, error
@@ -197,6 +197,12 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         for i in range(self.emu_vboxdev.nics):
             interfaces.append('e' + str(i))
         return (interfaces)
+    
+    def showMenuInterface(self):
+        """ Call AbstractNode method with unavailable_interfaces argument to allow us to "gray out" interface e0 which is managed by VirtualBox GUI (NAT, Bridge, etc.)
+        """
+
+        AbstractNode.showMenuInterface(self, ['e0'])
 
     def get_dynagen_device(self):
         """ Returns the dynagen device corresponding to this bridge

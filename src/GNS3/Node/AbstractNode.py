@@ -360,9 +360,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             if interface == ifname:
                 return edge.getConnectedNeighbor(self)
 
-    def showMenuInterface(self):
+    def showMenuInterface(self, unavailable_interfaces=[]):
         """ Show a contextual menu to choose an interface on a specific node
-            node: node instance
         """
 
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
@@ -373,7 +372,11 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             return
         connected_list = self.getConnectedInterfaceList()
         for interface in interfaces_list:
-            if interface in connected_list:
+            if interface in unavailable_interfaces:
+                # interface cannot be chosen by user (grayed out)
+                action = menu.addAction(QtGui.QIcon(':/icons/led_green.svg'), interface)
+                action.setDisabled(True)
+            elif interface in connected_list:
                 # already connected interface
                 menu.addAction(QtGui.QIcon(':/icons/led_green.svg'), interface)
             else:

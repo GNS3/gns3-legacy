@@ -182,7 +182,7 @@ class Ui_PreferencesVirtualBox(object):
         self.VBoxNICNb.setMinimum(0)
         self.VBoxNICNb.setMaximum(7)
         self.VBoxNICNb.setSingleStep(1)
-        self.VBoxNICNb.setProperty(_fromUtf8("value"), 1)
+        self.VBoxNICNb.setProperty(_fromUtf8("value"), 2)
         self.VBoxNICNb.setObjectName(_fromUtf8("VBoxNICNb"))
         self.gridLayout.addWidget(self.VBoxNICNb, 2, 2, 1, 1)
         self.label_37 = QtGui.QLabel(self.groupBox)
