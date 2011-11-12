@@ -200,6 +200,16 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         self.comboBoxExternalVBoxwrappers.addItems(self.conf.external_hosts)
         self.external_hosts = self.conf.external_hosts
 
+        if self.conf.enable_VBoxManager:
+            self.checkBoxEnableVBoxManager.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxEnableVBoxManager.setCheckState(QtCore.Qt.Unchecked)
+
+        if self.conf.import_use_VBoxManager:
+            self.checkBoxVBoxManagerImport.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxVBoxManagerImport.setCheckState(QtCore.Qt.Unchecked)
+
         if self.conf.enable_GuestControl:
             self.VBoxcheckBoxEnableGuestControl.setCheckState(QtCore.Qt.Checked)
             self.VBoxGuestControl_User.setEnabled(True)
@@ -208,7 +218,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             self.VBoxcheckBoxEnableGuestControl.setCheckState(QtCore.Qt.Unchecked)
             self.VBoxGuestControl_User.setEnabled(False)
             self.VBoxGuestControl_Password.setEnabled(False)
-            
+
         if self.conf.enable_VBoxAdvOptions:
             self.checkBoxVBoxShowAdvancedOptions.setCheckState(QtCore.Qt.Checked)
         else:
