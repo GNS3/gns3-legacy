@@ -64,13 +64,6 @@ class AnyVBoxEmuDefaults(AbstractDefaults):
                 del self.config['image']
         else:
             self.config['image'] = image
-            
-    def set_nics(self, nb):
-        """ Set the number of NIC for this device
-            nb: int
-        """
-
-        self.default_nics = nb
 
 class VBoxDefaults(AnyVBoxEmuDefaults):
     pass

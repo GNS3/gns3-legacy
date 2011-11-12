@@ -153,7 +153,7 @@ class xVBOXInstance(object):
         # Init win32 com
         if sys.platform == 'win32':
             self.prepareWindowsCOM()
-        
+
     def prepareWindowsCOM(self):
         # Microsoft COM behaves differently than Mozilla XPCOM, and requires special multi-threading code.
         debugmsg(2, "xVBOXInstance::prepareWindowsCOM()")

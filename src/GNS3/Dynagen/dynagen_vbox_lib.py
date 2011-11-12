@@ -575,7 +575,6 @@ class AnyVBoxEmuDevice(object):
         # burned in the EEPROM! Watch for overlap with real NICs;
         # it's unlikely, but possible.
         debugmsg(2, "AnyVBoxEmuDevice::add_interface()")
-        #send(self.p, 'vbox create_nic %s %i 00:aa:00:%s%s:%s%s:0%i' % (self.name, port1, self.first_mac_number, self.second_mac_number, self.third_mac_number, self.fourth_mac_number, port1))
         send(self.p, 'vbox create_nic %s %i' % (self.name, port1))
 
     def __allocate_udp_port(self, remote_hypervisor):
