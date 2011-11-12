@@ -195,16 +195,16 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         assert(self.emu_vboxdev)
         interfaces = []
         #VBox interfaces: start counting from 1 (e1, e2, e3 ...)
-        for i in range(self.emu_vboxdev.nics):
-        #for i in range(1, self.emu_vboxdev.nics + 1):
+        #for i in range(self.emu_vboxdev.nics):
+        for i in range(1, self.emu_vboxdev.nics + 1):
             interfaces.append('e' + str(i))
         return (interfaces)
     
-#    def showMenuInterface(self):
-#        """ Call AbstractNode method with unavailable_interfaces argument to allow us to "gray out" interface e1 which is managed by VirtualBox GUI (NAT, Bridge, etc.)
-#        """
-#
-#        AbstractNode.showMenuInterface(self, ['e1'])
+    def showMenuInterface(self):
+        """ Call AbstractNode method with unavailable_interfaces argument to allow us to "gray out" interface e1 which is managed by VirtualBox GUI (NAT, Bridge, etc.)
+        """
+
+        AbstractNode.showMenuInterface(self, ['e1'])
 
     def get_dynagen_device(self):
         """ Returns the dynagen device corresponding to this bridge

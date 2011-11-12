@@ -175,10 +175,10 @@ class VBoxController_4_1():
             debugmsg(3, "mach2=self.session.machine FAILED ! Skipping shutdown of interfaces...")
             return True
         
-        for vnic in range(self.maxNics-1):
-            debugmsg(3, "Disabling managed netadp %s" % str(vnic+1))
-            if not self._safeDisableNetAdpFromMachine(mach2, vnic+1):
-                debugmsg(3, "Disabling managed netadp %s FAILED, skipped." % str(vnic+1))
+        for vnic in range(1, self.maxNics):
+            debugmsg(3, "Disabling managed netadp %s" % str(vnic))
+            if not self._safeDisableNetAdpFromMachine(mach2, vnic):
+                debugmsg(3, "Disabling managed netadp %s FAILED, skipped." % str(vnic))
                 #Return True anyway, so VM state in GNS3 can become "stopped"
                 return True
         self._safeSaveSettings(mach2)  #Doesn't matter if command returns True or False...
@@ -228,7 +228,7 @@ class VBoxController_4_1():
                 return False
             try:                
                 mach2=self.session.machine
-                netadp = mach2.getNetworkAdapter(int(i_vnic)+1)
+                netadp = mach2.getNetworkAdapter(int(i_vnic))
                 netadp.cableConnected=True
                 netadp.attachmentType=self.constants.NetworkAttachmentType_Null
                 mach2.saveSettings()
@@ -263,7 +263,7 @@ class VBoxController_4_1():
                 return False
             try:                
                 mach2=self.session.machine
-                netadp = mach2.getNetworkAdapter(int(i_vnic)+1)
+                netadp = mach2.getNetworkAdapter(int(i_vnic))
                 netadp.attachmentType=self.constants.NetworkAttachmentType_Null                
                 netadp.cableConnected=False
                 mach2.saveSettings()
@@ -303,23 +303,26 @@ class VBoxController_4_1():
             #Usually due to COM Error: "The object is not ready"
             debugmsg(1, "_net_options() -> getNetworkAdapter() FAILED !")
             return False
+
         
-        for vnic in range(min(int(self.nics), self.maxNics-1)):
-            # By design, we leave vNIC #1 for VirtualBox management purposes
+        for vnic in range(2, int(self.nics) + 1):
+        #for vnic in range(min(int(self.nics), self.maxNics-1)):
+            # By design, we leave vNIC #1 (vnic = 0) for VirtualBox management purposes
             try:
-                netadp = mach2.getNetworkAdapter(vnic+1)
+                # Vbox API starts counting from 0
+                netadp = mach2.getNetworkAdapter(vnic-1)
             except:
                 #Usually due to COM Error on loaded hosts: "The object is not ready"
                 debugmsg(1, "_net_options() -> getNetworkAdapter() FAILED !")
                 return False            
-            
+
             try:
                 adaptertype = netadp.adapterType
             except:
                 #Usually due to COM Error: "The object is not ready"
                 debugmsg(1, "_net_options() -> netadp.adapterType FAILED !")
                 return False
-            debugmsg(3, "Changing netadp %s type to %s" % (str(vnic+1), str(self.netcard)))
+            debugmsg(3, "Changing netadp %s type to %s" % (str(vnic), str(self.netcard)))
             if self.netcard == "pcnet2": # "AMD PCnet-II"
                 adaptertype = 1
             if self.netcard == "pcnet3": # "AMD PCnet-III"
@@ -336,9 +339,9 @@ class VBoxController_4_1():
                 #Usually due to COM Error: "The object is not ready"
                 debugmsg(1, "_net_options() -> netadp.adapterType FAILED !")
                 return False
-                
+
             if vnic in self.udp:
-                debugmsg(3, "Changing netadp %s mode" % str(vnic+1))
+                debugmsg(3, "Changing netadp %s mode" % str(vnic))
                 try:
                     netadp.enabled=True
                     netadp.cableConnected=True
@@ -358,7 +361,7 @@ class VBoxController_4_1():
                     return False
             else:
                 #Shutting down unused interfaces... vNICs <2-N>
-                debugmsg(3, "Detaching managed netadp %s" % str(vnic+1)) #It could be re-attached at run-time.
+                debugmsg(3, "Detaching managed netadp %s" % str(vnic)) #It could be re-attached at run-time.
                 if not self._safeDetachNetAdp(netadp):
                    return False
 
@@ -366,11 +369,9 @@ class VBoxController_4_1():
                 if not self._safeEnableCapture(netadp, self.capture[vnic]):
                     return False
 
-        remainingNics = self.maxNics-1-int(self.nics)
-        debugmsg(3, "remainingNics = %s" % str(remainingNics))
-        for vnic in range(min(remainingNics, self.maxNics-1)):          
-            debugmsg(3, "Disabling remaining netadp %s" % str(vnic+1+int(self.nics)))
-            if not self._safeDisableNetAdpFromMachine(mach2, vnic+1+int(self.nics)):
+        for vnic in range(int(self.nics)+1, self.maxNics):
+            debugmsg(3, "Disabling remaining netadp %s" % str(vnic))
+            if not self._safeDisableNetAdpFromMachine(mach2, vnic-1):
                 return False
         if not self._safeSaveSettings(mach2):
             return False
@@ -395,14 +396,14 @@ class VBoxController_4_1():
             # We skip first vNIC, as this is not managed by GNS3.
             # note: This code won't handle > 10 vNICs.
             # Parsing XML output...
-            self.statBytesReceived = self.console.debugger.getStats("*%s/ReceiveBytes"  % str(int(vnic)+1), False).splitlines()[2].split("=")[1].split('"')[1]
-            self.statBytesSent     = self.console.debugger.getStats("*%s/TransmitBytes" % str(int(vnic)+1), False).splitlines()[2].split("=")[1].split('"')[1]
+            self.statBytesReceived = self.console.debugger.getStats("*%s/ReceiveBytes"  % str(int(vnic)-1), False).splitlines()[2].split("=")[1].split('"')[1]
+            self.statBytesSent     = self.console.debugger.getStats("*%s/TransmitBytes" % str(int(vnic)-1), False).splitlines()[2].split("=")[1].split('"')[1]
             debugmsg(3, "self.statBytesReceived = %s" % str(self.statBytesReceived))
             debugmsg(3, "self.statBytesSent = %s" % str(self.statBytesSent))
         except Exception, e:
             debugmsg(3, e)
             #Can happen due to COM failure, or because machine is not running.
-        if not self.get_nio_guestip(vnic):
+        if not self.get_nio_guestip(vnic-1):
             return False
         self.stats = str(self.statBytesReceived) + " " + str(self.statBytesSent) + " guestip|" + self.guestIP
         debugmsg(3, "self.stats = %s" % str(self.stats))
@@ -420,7 +421,7 @@ class VBoxController_4_1():
             return True
         # note: There is no way to automatically map between multiple IPs and
         # multiple vNICs, so we use MAC addresses for this.
-        if not self._safeGetMACaddr(vnic+1): # We skip first vNIC, as this is not managed by GNS3.
+        if not self._safeGetMACaddr(vnic): # We skip first vNIC, as this is not managed by GNS3.
             return True
         debugmsg(3, "MACAddress = %s" % str(self.MACAddress))
         # Here I need to count all possible logical networks in Guest
