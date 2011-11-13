@@ -79,14 +79,14 @@ def exceptionHook(type, value, tb):
 sys.excepthook=exceptionHook
 
 if __name__ == '__main__':
-    GNS3_RUN_PATH = os.path.dirname(os.path.abspath(__file__))
+    # __file__ is not supported by py2exe and py2app
+    if hasattr(sys, "frozen"):
+        GNS3_RUN_PATH = os.path.dirname(os.path.abspath(sys.executable))
+    else:
+        GNS3_RUN_PATH = os.path.dirname(os.path.abspath(__file__))
     source_path = GNS3_RUN_PATH + os.sep + 'src'
-    print "source_path = ", source_path
     if os.access(source_path, os.F_OK):
-        syspathold = sys.path
-        sys.path = []
         sys.path.append(source_path)
-        sys.path+=syspathold
 
 if len(sys.argv) > 1 and sys.argv[1].startswith("-psn"):
     del sys.argv[1]

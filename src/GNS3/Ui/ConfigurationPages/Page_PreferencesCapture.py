@@ -26,7 +26,6 @@ from GNS3.Ui.ConfigurationPages.Form_PreferencesCapture import Ui_PreferencesCap
 from GNS3.Config.Objects import systemCaptureConf
 from GNS3.Utils import fileBrowser, translate
 from GNS3.Config.Config import ConfDB
-from __main__ import GNS3_RUN_PATH
 
 class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
 
@@ -42,6 +41,7 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
         # http://wiki.wireshark.org/CaptureSetup/Pipes#Named_pipes
         # There are only two ways to do Live Traffic Capture: Named Pipes (FIFOs) or use GNU tail.
         #wintail_path = '"'+GNS3_RUN_PATH+'\\tail\\tail.exe"'
+        #TODO: change to rel path
         wintail_path = 'C:\\tail\\tail.exe'
         Traditional_Capture_String = translate( "Page_PreferencesCapture", 'Wireshark Traditional Capture')
         Live_Traffic_Capture_String = translate("Page_PreferencesCapture", 'Wireshark Live Traffic Capture')
