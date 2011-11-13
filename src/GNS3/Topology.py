@@ -233,6 +233,9 @@ class Topology(QtGui.QGraphicsScene):
         """ Apply IOS base config
         """
 
+        if not os.access(config_path, os.F_OK):
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, unicode(translate("Topology", "IOS Base config")), unicode(translate("Topology", "The base config file (%s) specified for this IOS can not be found. Your router will start with a blank configuration."), errors='replace') % config_path)
+            return
         try:
             f = open(config_path, 'r')
             config = f.read()
