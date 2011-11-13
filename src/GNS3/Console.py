@@ -161,7 +161,10 @@ class Console(PyCutExt, Dynagen_Console):
         """Print hypervisors, dynagen, GNS3, libs versions and credits"""
         pythonver = str(sys.version_info[0])+'.'+str(sys.version_info[1])+'.'+str(sys.version_info[2])
         import sip
-        print 'GNS3 version is ' + VERSION
+        if hasattr(sys, "frozen"):
+            print 'GNS3 version is ' + VERSION + " (compiled)"
+        else:
+            print 'GNS3 version is ' + VERSION
         print 'Qt version is ' + QtCore.QT_VERSION_STR
         print 'PyQt version is ' + QtCore.PYQT_VERSION_STR
         print 'SIP version is ' + sip.SIP_VERSION_STR

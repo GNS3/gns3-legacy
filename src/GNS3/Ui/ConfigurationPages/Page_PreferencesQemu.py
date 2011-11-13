@@ -141,10 +141,18 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         if self.conf.qemuwrapper_path == '':
             if sys.platform.startswith('win'):
                 self.conf.qemuwrapper_path = unicode('.\qemuwrapper\qemuwrapper.exe')
+            elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
+                path = os.getcwd() + os.sep + 'qemuwrapper.py'
+                self.conf.qemuwrapper_path = unicode(path, errors='replace')
             else:
-                path = os.getcwd() + '/qemuwrapper/qemuwrapper.py'
+                path = os.getcwd() + os.sep + 'qemuwrapper/qemuwrapper.py'
                 self.conf.qemuwrapper_path = unicode(path, errors='replace')
         
+        if self.conf.qemu_path == 'qemu' and sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
+            self.conf.qemu_path = os.getcwd() + os.sep + 'qemu'
+        if self.conf.qemu_img_path == 'qemu-img' and sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
+            self.conf.qemu_img_path = os.getcwd() + os.sep + 'qemu-img'
+
         # Default path to working directory
         if self.conf.qemuwrapper_workdir == '':
             if os.environ.has_key("TEMP"):

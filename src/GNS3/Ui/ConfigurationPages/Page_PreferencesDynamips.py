@@ -59,9 +59,12 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.conf = systemDynamipsConf()
 
         # Default path to dynamips executable
-        if self.conf.path == '' and sys.platform.startswith('win'):
-            self.conf.path = unicode('dynamips.exe')
-            
+        if self.conf.path == '':
+            if sys.platform.startswith('win'):
+                self.conf.path = unicode('dynamips.exe')
+            elif sys.platform.startswith('darwin'):
+                self.conf.path = unicode(os.getcwd() + os.sep + "dynamips-0.2.8-RC3-community-OSX.intel64.bin")
+
         # Default path to working directory
         if self.conf.workdir == '':
             if os.environ.has_key("TEMP"):

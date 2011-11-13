@@ -2,13 +2,22 @@
 # -*- coding: utf-8 -*-
 """Setup script for the GNS3 packages."""
 
-import sys, os
+import sys, os, shutil
 sys.path.append('./src')
 from distutils.core import setup, Extension
 from glob import glob
 
 # current version of GNS3
-VERSION = '0.8.2'
+VERSION = "0.8.2-ALPHA"
+
+try:
+    # delete previous build
+    if os.access('./build', os.F_OK):
+        shutil.rmtree('./build')
+    if os.access('./dist', os.F_OK):
+        shutil.rmtree('./dist')
+except:
+    pass
 
 if sys.platform.startswith('win'):
 
@@ -117,7 +126,8 @@ elif sys.platform.startswith('darwin'):
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesVirtualBox'
                             ],
                 
-                'plist'    : {  'CFBundleDisplayName': 'GNS3',
+                'plist'    : {  'CFBundleName': 'GNS3',
+                                'CFBundleDisplayName': 'GNS3',
                                 'CFBundleGetInfoString' : 'GNS3, Graphical Network Simulator',
                                 'CFBundleIdentifier':'net.gns3',
                                 'CFBundleShortVersionString':VERSION,
@@ -128,7 +138,7 @@ elif sys.platform.startswith('darwin'):
                                 'CFBundleDocumentTypes': [{
                                                            'CFBundleTypeExtensions': ['net'],
                                                            'CFBundleTypeName': 'GNS3 Topology',
-                                                           'CFBundleTypeRole': 'Viewer',
+                                                           'CFBundleTypeRole': 'Editor',
                                                            'CFBundleTypeIconFile': 'gns3.icns',
                                                            }]
                             }
@@ -141,38 +151,31 @@ elif sys.platform.startswith('darwin'):
           options={'py2app': OPTIONS},
           setup_requires=['py2app'],
           )
-
+        
     print '*** Removing Qt debug libs ***'
     for root, dirs, files in os.walk('./dist'):
         for file in files:
             if 'debug' in file:
                 print 'Deleting', file
                 os.remove(os.path.join(root,file))
-                
-    os.system("/usr/bin/macdeployqt GNS3.app")
-
-#    print '*** Making DMG ***'
-#    os.chdir('dist')
-#    os.system('cp ../dynamips-0.2.8-RC2-OSX-Leopard.intel.bin ./GNS3.app/Contents/Resources')
-#    os.system(QTDIR + r'/bin/macdeployqt GNS3.app -dmg')
+     
+    os.chdir('dist')
+    print '*** Patching __boot__.py ***'
+    # This adds sys.path = [os.path.join(os.environ['RESOURCEPATH'], 'lib', 'python2.x', 'lib-dynload')] + sys.path
+    # to dist/GNS3.app/Contents/Resources/__boot__.py
+    os.system('cp ../__boot__.py ./GNS3.app/Contents/Resources')
     
-#    setup(
-#            name = 'GNS3',
-#            version = VERSION,
-#            description = 'GNS3 is a graphical network simulator based on Dynamips, an IOS emulator which allows users to run IOS binary images from Cisco Systems and Qemu for emulating PIX & ASA firewalls as well as Juniper routers and Cisco IDS/IPS (binary images are not part of this package).',
-#            author = 'Jeremy Grossmann, David Ruiz, Romain Lamaison, Aurelien Levesque, Xavier Alt and Alexey Eromenko "Technologov"',
-#            author_email = 'http://www.gns3.net/contact',
-#            license = 'GNU General Public License (GPL), see the LICENSE file for detailed info',
-#            app = ['gns3.pyw'],
-#            setup_requires = ['py2app'],
-#            options = dict(py2app=dict(
-#                includes=['sip', 'PyQt4.QtCore', 'PyQt4.QtGui', 'PyQt4.QtNetwork', 'PyQt4.QtSvg', 'PyQt4.QtXml'],
-#                iconfile='gns3.icns',
-#                packages=[],
-#                resources=[],
-#                #excludes=['PyQt4.QtDesigner', 'PyQt4.QtNetwork', 'PyQt4.QtOpenGL', 'PyQt4.QtScript', 'PyQt4.QtSql', 'PyQt4.QtTest', 'PyQt4.QtWebKit', 'PyQt4.QtXml', 'PyQt4.phonon']
-#                ))
-#          )  
+    print '*** Installing qt.conf ***'
+    os.system('cp ../qt.conf ./GNS3.app/Contents/Resources')
+
+    print '*** Installing Dynamips ***'
+    os.system('cp ../dynamips-0.2.8-RC3-community-OSX.intel64.bin ./GNS3.app/Contents/Resources')
+
+#    print '*** Installing Patched Qemu ***'
+#    os.system('cp -R ../qemu-0.15.0/* ./GNS3.app/Contents/Resources/')
+
+    print '*** Making DMG ***'
+    os.system("/usr/bin/macdeployqt GNS3.app -dmg -no-plugins")
 
 else:
 

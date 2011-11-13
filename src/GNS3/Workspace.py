@@ -749,6 +749,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog = QtGui.QDialog()
         ui = Ui_AboutDialog()
         ui.setupUi(dialog)
+        
+        # Dynamically put current version number in About dialog
+        from __main__ import VERSION
+        text = ui.aboutText.text()
+        text.replace("%VERSION%", VERSION)
+        ui.aboutText.setText(text)
+
         dialog.show()
         self.centerDialog(dialog)
         dialog.exec_()

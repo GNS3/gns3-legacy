@@ -810,7 +810,7 @@ class VBoxWrapperServer(DaemonThreadingMixIn, SocketServer.TCPServer):
             # This can happen, if your VBoxPython module is broken, or incorrectly installed
             debugmsg(1, "ERROR: Cannot start vboxapi module !")
             print >> sys.stderr, e
-            exit()
+            sys.exit(1)
 
         VBOXVER = g_vboxManager.vbox.version
         RUNNING_VBOX_STRING = "Running VirtualBox %s r%d" % (VBOXVER, g_vboxManager.vbox.revision)

@@ -13,13 +13,12 @@ GUI
  * Style options for node labels
  * Change the scrolling behavior for the scene
  * Option to draw a line or draw an arrow on the scene
- * Copy feature for Dynagen console
  * Dynamic notes
 
 Dynamips
 
  * NIO Multicast support, is this useful? (supported only in dynamips-community version) 
- * Set system ID.
+ * Set system ID (can be useful for pageant IOS)
  * Automatic console login for IOS (idlepc is not effective until hitting returns in the IOS console)
  * Auto UDP (supported in dynamips-community): to simplify the UDP port mapping stuff and the binding problems that can occur
  	-> The first command to use is: "nio create_udp_auto <nio_name> <local_addr> <local_port_start> <local_port_end>"
@@ -40,10 +39,9 @@ Import/Export
 
 Misc.
 
- * New logo for GNS3
- * Check for new version at startup, ask for download.
+ * New logo for GNS3?
+ * Check for new version at startup and redirect to gns3.net/download
  * DMG installer for Mac OS X (http://chromasoft.blogspot.com/2010/02/building-dmg-installer-for-mac-simple.html)
- * Only one location for VERSION constant (in setup.py)
 
 (by Technologov)
  * Real Cisco icons, including the various cards out there (like Cisco Packet Tracer does)
