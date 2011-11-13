@@ -179,10 +179,10 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             if sys.platform.startswith('win'):
                 self.conf.vboxwrapper_path = unicode('.\qemuwrapper\qemuwrapper.exe')
             elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
-                path = os.getcwd() + os.sep + 'vboxwrapper.py'
+                path = os.getcwdu() + os.sep + 'vboxwrapper.py'
                 self.conf.vboxwrapper_path = unicode(path, errors='replace')
             else:
-                path = os.getcwd() + os.sep + 'vboxwrapper/vboxwrapper.py'
+                path = os.getcwdu() + os.sep + 'vboxwrapper/vboxwrapper.py'
                 self.conf.vboxwrapper_path = unicode(path, errors='replace')
         
         # Default path to working directory

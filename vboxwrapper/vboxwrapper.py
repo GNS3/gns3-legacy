@@ -100,7 +100,7 @@ g_vboxManager=0
 g_result=""
 
 #Working Dir in VirtualBox is mainly needed for "Traffic Captures".
-WORKDIR = os.getcwd()
+WORKDIR = os.getcwdu()
 if os.environ.has_key("TEMP"):
     WORKDIR = unicode(os.environ["TEMP"], errors='replace')
 elif os.environ.has_key("TMP"):
@@ -165,7 +165,7 @@ class xVBOXInstance(object):
 
     def create(self):
         debugmsg(2, "xVBOXInstance::create()")
-        self.workdir = os.path.join(os.getcwd(), self.name)
+        self.workdir = os.path.join(os.getcwdu(), self.name)
         if not os.path.exists(self.workdir):
             os.makedirs(self.workdir)
             
@@ -538,7 +538,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         try:
             os.chdir(working_dir)
             for vbox_name in VBOX_INSTANCES.keys():
-                VBOX_INSTANCES[vbox_name].workdir = os.path.join(os.getcwd(), VBOX_INSTANCES[vbox_name].name)
+                VBOX_INSTANCES[vbox_name].workdir = os.path.join(os.getcwdu(), VBOX_INSTANCES[vbox_name].name)
             self.send_reply(self.HSC_INFO_OK, 1, "OK")
         except OSError, e:
             self.send_reply(self.HSC_ERR_INV_PARAM, 1,

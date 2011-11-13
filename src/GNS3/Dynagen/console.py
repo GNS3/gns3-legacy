@@ -877,9 +877,9 @@ show run <device_name>
 
         # Set the current directory to the one that contains our network file
         try:
-            netdir = os.getcwd()
+            netdir = os.getcwdu()
             subdir = os.path.dirname(self.dynagen.global_filename)
-            self.debug('current dir is -> ' + os.getcwd())
+            self.debug('current dir is -> ' + os.getcwdu())
             if subdir != "":
                 self.debug("changing dir to -> " + subdir)
                 os.chdir(subdir)
@@ -944,9 +944,9 @@ show run <device_name>
 
         # Set the current directory to the one that contains our network file
         try:
-            netdir = os.getcwd()
+            netdir = os.getcwdu()
             subdir = os.path.dirname(self.dynagen.global_filename)
-            self.debug('current dir is -> ' + os.getcwd())
+            self.debug('current dir is -> ' + os.getcwdu())
             if subdir != "":
                 self.debug("changing dir to -> " + subdir)
                 os.chdir(subdir)

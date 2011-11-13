@@ -121,7 +121,7 @@ def unpackASA8(path, output):
     if offset:
         gzip_offset = image_size - int(offset, 16)
         tempdir = tempfile.gettempdir()
-        cwd = os.getcwd()
+        cwd = os.getcwdu()
         gzipfile_path = tempdir + os.sep + os.path.basename(path) + '.gz'
         try:
             gzipfile_fd = open(gzipfile_path, "wb")

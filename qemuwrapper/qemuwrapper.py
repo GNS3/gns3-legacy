@@ -83,7 +83,7 @@ IP = ""
 QEMU_INSTANCES = {}
 FORCE_IPV6 = False
 
-WORKDIR = os.getcwd()
+WORKDIR = os.getcwdu()
 if os.environ.has_key("TEMP"):
     WORKDIR = unicode(os.environ["TEMP"], errors='replace')
 elif os.environ.has_key("TMP"):
@@ -157,7 +157,7 @@ class xEMUInstance(object):
  
     def create(self):
         debugmsg(2, "xEMUInstance::create()")
-        self.workdir = os.path.join(os.getcwd(), self.name)
+        self.workdir = os.path.join(os.getcwdu(), self.name)
         if not os.path.exists(self.workdir):
             os.makedirs(self.workdir)
             
@@ -766,7 +766,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             QEMU_PATH = os.path.abspath(qemu_path)
             print "Qemu path is now %s" % QEMU_PATH
             for qemu_name in QEMU_INSTANCES.keys():
-                QEMU_INSTANCES[qemu_name].bin = os.path.join(os.getcwd(), QEMU_INSTANCES[qemu_name].name)
+                QEMU_INSTANCES[qemu_name].bin = os.path.join(os.getcwdu(), QEMU_INSTANCES[qemu_name].name)
             self.send_reply(self.HSC_INFO_OK, 1, "OK")
         except OSError, e:
             self.send_reply(self.HSC_ERR_INV_PARAM, 1,
@@ -781,7 +781,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             QEMU_IMG_PATH = os.path.abspath(qemu_img_path)
             print "Qemu-img path is now %s" % QEMU_IMG_PATH
             for qemu_name in QEMU_INSTANCES.keys():
-                QEMU_INSTANCES[qemu_name].img_bin = os.path.join(os.getcwd(), QEMU_INSTANCES[qemu_name].name)
+                QEMU_INSTANCES[qemu_name].img_bin = os.path.join(os.getcwdu(), QEMU_INSTANCES[qemu_name].name)
             self.send_reply(self.HSC_INFO_OK, 1, "OK")
         except OSError, e:
             self.send_reply(self.HSC_ERR_INV_PARAM, 1,
@@ -793,7 +793,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         try:
             os.chdir(working_dir)
             for qemu_name in QEMU_INSTANCES.keys():
-                QEMU_INSTANCES[qemu_name].workdir = os.path.join(os.getcwd(), QEMU_INSTANCES[qemu_name].name)
+                QEMU_INSTANCES[qemu_name].workdir = os.path.join(os.getcwdu(), QEMU_INSTANCES[qemu_name].name)
             self.send_reply(self.HSC_INFO_OK, 1, "OK")
         except OSError, e:
             self.send_reply(self.HSC_ERR_INV_PARAM, 1,
