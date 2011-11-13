@@ -386,8 +386,10 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.handle_one_request()
             while not self.close_connection:
                 self.handle_one_request()
-        except socket.error:
-            pass
+        except socket.error, e:
+            print >> sys.stderr, e
+            self.request.close()
+            return
 
     def __get_tokens(self, request):
         debugmsg(3, "VBoxWrapperRequestHandler::__get_tokens(%s)" % str(request))
@@ -790,7 +792,11 @@ class VBoxWrapperServer(DaemonThreadingMixIn, SocketServer.TCPServer):
         if FORCE_IPV6:
             # IPv6 address support
             self.address_family = socket.AF_INET6
-        SocketServer.TCPServer.__init__(self, server_address, RequestHandlerClass)
+        try:
+            SocketServer.TCPServer.__init__(self, server_address, RequestHandlerClass)
+        except socket.error, e:
+            print >> sys.stderr, e
+            sys.exit(1)
         self.stopping = threading.Event()
         self.pause = 0.1
         self.VBoxInit()

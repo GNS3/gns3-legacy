@@ -60,10 +60,10 @@ from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
 from dynamips_lib import NIO_udp, send, dowarning, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW, DynamipsWarning
 import random
 
-#version = "0.11.0.091411"
-(MAJOR, MINOR, SUB, RCVER) = (0, 2, 1, .1)
-INTVER = MAJOR * 10000 + MINOR * 100 + SUB + RCVER
-STRVER = '0.2.2-RC1'
+#version = "0.11.0.111211"
+(MAJOR, MINOR, SUB) = (0, 8, 2)
+INTVER = MAJOR * 10000 + MINOR * 100 + SUB
+STRVER = '0.8.2'
 NOSEND = False  # Disable sending any commands to the back end for debugging
 
 class UDPConnection:
@@ -140,7 +140,7 @@ class VBox(object):
             version = 'N/A'
         try:
             # version formats are a.b.c-RCd
-            (major, minor, sub) = version.split('-')[0].split('.')
+            (major, minor, sub) = version.split(' ')[0].split('.')
             try:
                 release_candidate = version.split('-')[1]
                 if release_candidate[:2] == 'RC':
