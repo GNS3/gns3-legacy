@@ -142,11 +142,9 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             if sys.platform.startswith('win'):
                 self.conf.qemuwrapper_path = unicode('.\qemuwrapper\qemuwrapper.exe')
             elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
-                path = os.getcwdu() + os.sep + 'qemuwrapper.py'
-                self.conf.qemuwrapper_path = unicode(path, errors='replace')
+                self.conf.qemuwrapper_path = os.getcwdu() + os.sep + 'qemuwrapper.py'
             else:
-                path = os.getcwdu() + os.sep + 'qemuwrapper/qemuwrapper.py'
-                self.conf.qemuwrapper_path = unicode(path, errors='replace')
+                self.conf.qemuwrapper_path = os.getcwdu() + os.sep + 'qemuwrapper/qemuwrapper.py'
         
         if self.conf.qemu_path == 'qemu' and sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
             self.conf.qemu_path = os.getcwdu() + os.sep + 'qemu'
