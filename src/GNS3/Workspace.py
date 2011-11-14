@@ -107,6 +107,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         
         # Network Manager (used to check for update)
         self.networkManager = QtNetwork.QNetworkAccessManager(self)
+        
+        # Automatic check for update every 2 weeks (1209600 seconds)
+        currentEpoch = int(time.mktime(time.localtime()))
+        if currentEpoch - globals.GApp.systconf['general'].last_check_for_update > 1209600:
+            # let's check for an update
+            self.__action_CheckForUpdate(silent=True)
+            globals.GApp.systconf['general'].last_check_for_update = currentEpoch
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
@@ -770,12 +777,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         
         QtGui.QMessageBox.aboutQt(self)
         
-    def __action_CheckForUpdate(self):
+    def __action_CheckForUpdate(self, silent=False):
         """ Check if a newer version is available
         """
 
         request = QtNetwork.QNetworkRequest(QtCore.QUrl("http://www.gns3.net/latest_release.txt"))
         request.setRawHeader("User-Agent", "GNS3 Check For Update");
+        request.setAttribute(QtNetwork.QNetworkRequest.User, QtCore.QVariant(silent))
         reply = self.networkManager.get(request)
         reply.finished[()].connect(self.__processCheckForUpdateReply)
 
@@ -786,7 +794,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         from __main__ import VERSION
         
         network_reply = self.sender()
-        if network_reply.error() != QtNetwork.QNetworkReply.NoError:
+        isSilent = network_reply.request().attribute(QtNetwork.QNetworkRequest.User).toBool()
+        if network_reply.error() != QtNetwork.QNetworkReply.NoError and not isSilent:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Check For Update"),translate("Workspace", "Cannot check for update ... Try again later"))
         else:
             latest_release = str(network_reply.readAll()).rstrip()
@@ -798,7 +807,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 if reply == QtGui.QMessageBox.Yes:
                     QtGui.QDesktopServices.openUrl(QtCore.QUrl("http://www.gns3.net/download"))
             
-            else:
+            elif not isSilent:
                 QtGui.QMessageBox.information(self, translate("Workspace", "Check For Update"), translate("AbstractNode", "GNS3 is up-to-date!"))
 
         network_reply.deleteLater()

@@ -264,9 +264,10 @@ conf_systemGeneral_defaults = {
     'project_path': '.',
     'ios_path': '.',
     'status_points': True,
-    'manual_connection': False, 
-    'scene_width': 2000, 
-    'scene_height': 1000, 
+    'manual_connection': False,
+    'scene_width': 2000,
+    'scene_height': 1000,
+    'last_check_for_update': 0,
 }
 
 conf_systemGeneral_types = {
@@ -281,9 +282,10 @@ conf_systemGeneral_types = {
     'project_path': unicode,
     'ios_path': unicode,
     'status_points': bool,
-    'manual_connection': bool, 
-    'scene_width': int, 
-    'scene_height': int, 
+    'manual_connection': bool,
+    'scene_width': int,
+    'scene_height': int,
+    'last_check_for_update': int,
 }
 
 conf_systemCapture_defaults = {
