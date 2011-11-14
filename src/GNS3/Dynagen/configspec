@@ -8,6 +8,7 @@ idlemax = integer(min=1, default=None)
 idlesleep = integer(min=1, default=None)
 oldidle = boolean(default=False)
 debug = integer(min=0, max=9, default=0)
+version = string(default=None)
 
 [__many__]
 port = integer(min=1, max=65535, default=None)

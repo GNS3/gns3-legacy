@@ -1124,6 +1124,10 @@ class NETFile(object):
                 break
         self.dynagen.running_config['autostart'] = autostart
         
+        # add GNS3 version
+        from __main__ import VERSION
+        self.dynagen.running_config['version'] = VERSION
+        
         if globals.GApp.systconf['general'].relative_paths:
             # Change absolute paths to relative paths if same base as the config file
             for hypervisor in self.dynagen.dynamips.values():
