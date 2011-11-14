@@ -81,6 +81,7 @@
     <addaction name="action_OnlineHelp"/>
     <addaction name="action_AboutQt"/>
     <addaction name="action_About"/>
+    <addaction name="action_CheckForUpdate"/>
    </widget>
    <widget class="QMenu" name="menu_View">
     <property name="title">
@@ -858,6 +859,11 @@
   <action name="action_ResetInterfaceLabels">
    <property name="text">
     <string>Reset Interface Labels</string>
+   </property>
+  </action>
+  <action name="action_CheckForUpdate">
+   <property name="text">
+    <string>Check for Update</string>
    </property>
   </action>
  </widget>

@@ -24,7 +24,7 @@ import GNS3.NETFile as netfile
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
 import GNS3.UndoFramework as undo
-from PyQt4 import QtGui, QtCore
+from PyQt4 import QtGui, QtCore, QtNetwork
 from PyQt4.QtGui import QMainWindow, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
 from GNS3.Ui.Form_About import Ui_AboutDialog
@@ -104,6 +104,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         # Auto save timer
         self.timer = QtCore.QTimer()
         QtCore.QObject.connect(self.timer, QtCore.SIGNAL("timeout()"), self.__action_Autosave)
+        
+        # Network Manager (used to check for update)
+        self.networkManager = QtNetwork.QNetworkAccessManager(self)
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
@@ -129,6 +132,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_OnlineHelp,  QtCore.SIGNAL('triggered()'), self.__action_Help)
         self.connect(self.action_About,  QtCore.SIGNAL('triggered()'), self.__action_About)
         self.connect(self.action_AboutQt,  QtCore.SIGNAL('triggered()'), self.__action_AboutQt)
+        self.connect(self.action_CheckForUpdate,  QtCore.SIGNAL('triggered()'), self.__action_CheckForUpdate)
         self.connect(self.action_New,  QtCore.SIGNAL('triggered()'), self.__action_NewProject)
         self.connect(self.action_SaveProjectAs,  QtCore.SIGNAL('triggered()'), self.__action_SaveProjectAs)
         self.connect(self.action_Open,  QtCore.SIGNAL('triggered()'), self.__action_OpenFile)
@@ -765,6 +769,39 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
         
         QtGui.QMessageBox.aboutQt(self)
+        
+    def __action_CheckForUpdate(self):
+        """ Check if a newer version is available
+        """
+
+        request = QtNetwork.QNetworkRequest(QtCore.QUrl("http://www.gns3.net/latest_release.txt"))
+        request.setRawHeader("User-Agent", "GNS3 Check For Update");
+        reply = self.networkManager.get(request)
+        reply.finished[()].connect(self.__processCheckForUpdateReply)
+
+    def __processCheckForUpdateReply(self):
+        """ Process reply for check for update
+        """
+
+        from __main__ import VERSION
+        
+        network_reply = self.sender()
+        if network_reply.error() != QtNetwork.QNetworkReply.NoError:
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Check For Update"),translate("Workspace", "Cannot check for update ... Try again later"))
+        else:
+            latest_release = str(network_reply.readAll()).rstrip()
+            
+            if VERSION < latest_release:
+                reply = QtGui.QMessageBox.question(self, translate("Workspace", "Check For Update"),
+                                               unicode(translate("Workspace", "Newer GNS3 version %s is available, do you want to visit our website to download it?"))  % latest_release, QtGui.QMessageBox.Yes, \
+                                               QtGui.QMessageBox.No)
+                if reply == QtGui.QMessageBox.Yes:
+                    QtGui.QDesktopServices.openUrl(QtCore.QUrl("http://www.gns3.net/download"))
+            
+            else:
+                QtGui.QMessageBox.information(self, translate("Workspace", "Check For Update"), translate("AbstractNode", "GNS3 is up-to-date!"))
+
+        network_reply.deleteLater()
 
     def __action_Preferences(self):
         """ Show the preferences dialog

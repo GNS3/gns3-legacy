@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Nov 12 17:09:53 2011
+# Created: Sun Nov 13 17:27:28 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -442,6 +442,9 @@ class Ui_MainWindow(object):
         self.action_ResetInterfaceLabels = QtGui.QAction(MainWindow)
         self.action_ResetInterfaceLabels.setText(QtGui.QApplication.translate("MainWindow", "Reset Interface Labels", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ResetInterfaceLabels.setObjectName(_fromUtf8("action_ResetInterfaceLabels"))
+        self.action_CheckForUpdate = QtGui.QAction(MainWindow)
+        self.action_CheckForUpdate.setText(QtGui.QApplication.translate("MainWindow", "Check for Update", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_CheckForUpdate.setObjectName(_fromUtf8("action_CheckForUpdate"))
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -463,6 +466,7 @@ class Ui_MainWindow(object):
         self.menu_About.addAction(self.action_OnlineHelp)
         self.menu_About.addAction(self.action_AboutQt)
         self.menu_About.addAction(self.action_About)
+        self.menu_About.addAction(self.action_CheckForUpdate)
         self.menu_View.addAction(self.action_ZoomIn)
         self.menu_View.addAction(self.action_ZoomOut)
         self.menu_View.addAction(self.action_ZoomReset)

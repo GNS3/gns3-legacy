@@ -31,7 +31,6 @@ from GNS3.External.PyCutExt import PyCutExt
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice
 from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
-from __main__ import VERSION
 
 class Console(PyCutExt, Dynagen_Console):
 
@@ -159,8 +158,11 @@ class Console(PyCutExt, Dynagen_Console):
 
     def do_ver(self, args):
         """Print hypervisors, dynagen, GNS3, libs versions and credits"""
-        pythonver = str(sys.version_info[0])+'.'+str(sys.version_info[1])+'.'+str(sys.version_info[2])
+
         import sip
+        from __main__ import VERSION
+
+        pythonver = str(sys.version_info[0])+'.'+str(sys.version_info[1])+'.'+str(sys.version_info[2])
         if hasattr(sys, "frozen"):
             print 'GNS3 version is ' + VERSION + " (compiled)"
         else:
