@@ -460,6 +460,7 @@ class Application(QApplication, Singleton):
         confo.draw_selected_rectangle = ConfDB().value("GNS3/gui_draw_selected_rectangle", QVariant(False)).toBool()
         confo.scene_width = int(ConfDB().get('GNS3/scene_width', 2000))
         confo.scene_height = int(ConfDB().get('GNS3/scene_height', 1000))
+        confo.auto_check_for_update = ConfDB().value("GNS3/auto_check_for_update", QVariant(True)).toBool()
         confo.last_check_for_update = int(ConfDB().get('GNS3/last_check_for_update', 0))
         
         # replace ~user and $HOME by home directory
@@ -568,6 +569,7 @@ class Application(QApplication, Singleton):
         c.set('GNS3/ios_directory', confo.ios_path)
         c.set('GNS3/scene_width', confo.scene_width)
         c.set('GNS3/scene_height', confo.scene_height)
+        c.set('GNS3/auto_check_for_update', confo.auto_check_for_update)
         c.set('GNS3/last_check_for_update', confo.last_check_for_update)
 
         # Dynamips settings

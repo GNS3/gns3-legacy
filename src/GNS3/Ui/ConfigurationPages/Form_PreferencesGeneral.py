@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Sat Nov 12 17:10:02 2011
+# Created: Mon Nov 14 01:55:37 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_PreferencesGeneral(object):
     def setupUi(self, PreferencesGeneral):
         PreferencesGeneral.setObjectName(_fromUtf8("PreferencesGeneral"))
-        PreferencesGeneral.resize(539, 453)
+        PreferencesGeneral.resize(539, 544)
         PreferencesGeneral.setWindowTitle(QtGui.QApplication.translate("PreferencesGeneral", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesGeneral)
         self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))
@@ -54,22 +54,22 @@ class Ui_PreferencesGeneral(object):
         self.label_7 = QtGui.QLabel(self.tab)
         self.label_7.setText(QtGui.QApplication.translate("PreferencesGeneral", "Waiting time between each start when starting every devices:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_7.setObjectName(_fromUtf8("label_7"))
-        self.gridLayout_2.addWidget(self.label_7, 4, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.label_7, 5, 0, 1, 1)
         self.slowStartAll = QtGui.QSpinBox(self.tab)
         self.slowStartAll.setSuffix(QtGui.QApplication.translate("PreferencesGeneral", " seconds", None, QtGui.QApplication.UnicodeUTF8))
         self.slowStartAll.setMaximum(10000)
         self.slowStartAll.setObjectName(_fromUtf8("slowStartAll"))
-        self.gridLayout_2.addWidget(self.slowStartAll, 5, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.slowStartAll, 6, 0, 1, 1)
         self.label_10 = QtGui.QLabel(self.tab)
         self.label_10.setText(QtGui.QApplication.translate("PreferencesGeneral", "Autosave:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_10.setObjectName(_fromUtf8("label_10"))
-        self.gridLayout_2.addWidget(self.label_10, 6, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.label_10, 7, 0, 1, 1)
         self.autoSave = QtGui.QSpinBox(self.tab)
         self.autoSave.setSuffix(QtGui.QApplication.translate("PreferencesGeneral", " seconds", None, QtGui.QApplication.UnicodeUTF8))
         self.autoSave.setMaximum(10000)
         self.autoSave.setProperty("value", 60)
         self.autoSave.setObjectName(_fromUtf8("autoSave"))
-        self.gridLayout_2.addWidget(self.autoSave, 7, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.autoSave, 8, 0, 1, 1)
         self.groupBox_2 = QtGui.QGroupBox(self.tab)
         self.groupBox_2.setTitle(QtGui.QApplication.translate("PreferencesGeneral", "Paths", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
@@ -99,7 +99,7 @@ class Ui_PreferencesGeneral(object):
         self.IOSPath_browser.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
         self.IOSPath_browser.setObjectName(_fromUtf8("IOSPath_browser"))
         self.gridlayout.addWidget(self.IOSPath_browser, 3, 1, 1, 1)
-        self.gridLayout_2.addWidget(self.groupBox_2, 8, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.groupBox_2, 9, 0, 1, 1)
         self.groupBox_3 = QtGui.QGroupBox(self.tab)
         self.groupBox_3.setTitle(QtGui.QApplication.translate("PreferencesGeneral", "Configuration file", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_3.setObjectName(_fromUtf8("groupBox_3"))
@@ -115,9 +115,14 @@ class Ui_PreferencesGeneral(object):
         self.pushButton_ClearConfiguration.setText(QtGui.QApplication.translate("PreferencesGeneral", "&Clear it", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButton_ClearConfiguration.setObjectName(_fromUtf8("pushButton_ClearConfiguration"))
         self.hboxlayout.addWidget(self.pushButton_ClearConfiguration)
-        self.gridLayout_2.addWidget(self.groupBox_3, 9, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.groupBox_3, 10, 0, 1, 1)
         spacerItem1 = QtGui.QSpacerItem(471, 21, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout_2.addItem(spacerItem1, 10, 0, 1, 1)
+        self.gridLayout_2.addItem(spacerItem1, 11, 0, 1, 1)
+        self.checkBoxCheckForUpdate = QtGui.QCheckBox(self.tab)
+        self.checkBoxCheckForUpdate.setText(QtGui.QApplication.translate("PreferencesGeneral", "Automatically check for update", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxCheckForUpdate.setChecked(True)
+        self.checkBoxCheckForUpdate.setObjectName(_fromUtf8("checkBoxCheckForUpdate"))
+        self.gridLayout_2.addWidget(self.checkBoxCheckForUpdate, 4, 0, 1, 1)
         self.tabWidget.addTab(self.tab, _fromUtf8(""))
         self.tab_3 = QtGui.QWidget()
         self.tab_3.setObjectName(_fromUtf8("tab_3"))

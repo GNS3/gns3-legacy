@@ -267,6 +267,7 @@ conf_systemGeneral_defaults = {
     'manual_connection': False,
     'scene_width': 2000,
     'scene_height': 1000,
+    'auto_check_for_update': True,
     'last_check_for_update': 0,
 }
 
@@ -285,6 +286,7 @@ conf_systemGeneral_types = {
     'manual_connection': bool,
     'scene_width': int,
     'scene_height': int,
+    'auto_check_for_update': bool,
     'last_check_for_update': int,
 }
 

@@ -184,6 +184,11 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         else:
             self.checkBoxRelativePaths.setCheckState(QtCore.Qt.Unchecked)
             
+        if self.conf.auto_check_for_update == True:
+            self.checkBoxCheckForUpdate.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxCheckForUpdate.setCheckState(QtCore.Qt.Unchecked)
+            
         self.labelConfigurationPath.setText(os.path.normpath(unicode(ConfDB().fileName())))
 
     def saveConf(self):
@@ -231,6 +236,12 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf.relative_paths = True
         else:
             self.conf.relative_paths = False
+            
+        if self.checkBoxCheckForUpdate.checkState() == QtCore.Qt.Checked:
+            self.conf.auto_check_for_update = True
+        else:
+            self.conf.auto_check_for_update = False
+            self.conf.last_check_for_update = 0
 
         self.conf.project_path = unicode(self.ProjectPath.text())
         self.conf.ios_path = unicode(self.IOSPath.text())

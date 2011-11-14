@@ -109,11 +109,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.networkManager = QtNetwork.QNetworkAccessManager(self)
         
         # Automatic check for update every 2 weeks (1209600 seconds)
-        currentEpoch = int(time.mktime(time.localtime()))
-        if currentEpoch - globals.GApp.systconf['general'].last_check_for_update > 1209600:
-            # let's check for an update
-            self.__action_CheckForUpdate(silent=True)
-            globals.GApp.systconf['general'].last_check_for_update = currentEpoch
+        if globals.GApp.systconf['general'].auto_check_for_update:
+            currentEpoch = int(time.mktime(time.localtime()))
+            if currentEpoch - globals.GApp.systconf['general'].last_check_for_update > 1209600:
+                # let's check for an update
+                self.__action_CheckForUpdate(silent=True)
+                globals.GApp.systconf['general'].last_check_for_update = currentEpoch
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
