@@ -107,7 +107,7 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
             elif platform.system() == 'Windows':
                 self.conf.cap_cmd = unicode(self.presets_cmds[self.Live_Traffic_Capture_String + ' (Windows)'])
             elif platform.system() == 'Linux':
-                self.conf.cap_cmd = unicode(self.presets_cmds[self.Live_Traffic_Capture_String + ' (Windows)'])
+                self.conf.cap_cmd = unicode(self.presets_cmds[self.Live_Traffic_Capture_String + ' (Linux)'])
             elif platform.system() == 'FreeBSD':
                 self.conf.cap_cmd = unicode(self.presets_cmds[self.Live_Traffic_Capture_String + ' (FreeBSD)'])
             else:
