@@ -8,7 +8,7 @@ from distutils.core import setup, Extension
 from glob import glob
 
 # current version of GNS3
-VERSION = "0.8.2-ALPHA"
+VERSION = "0.8.2-BETA"
 
 try:
     # delete previous build
@@ -47,6 +47,7 @@ if sys.platform.startswith('win'):
                                     {
                                      "includes": ["sip"],
                                      "optimize": 1,
+                                     "typelibs": [('{46137EEC-703B-4FE5-AFD4-7C9BBBBA0259}',0,1,3)],
                                      "packages": ["GNS3.Ui.ConfigurationPages.Page_ATMSW",
                                                   "GNS3.Ui.ConfigurationPages.Page_ATMBR",
                                                   "GNS3.Ui.ConfigurationPages.Page_Cloud",
@@ -71,9 +72,9 @@ if sys.platform.startswith('win'):
     )
 
     # Compile qemuwrapper
-    sys.path.append('./qemuwrapper')
     setup(console=["qemuwrapper\qemuwrapper.py"], zipfile=None)
-    sys.path.append('./vboxwrapper')
+
+    # Compile vboxwrapper
     setup(console=["vboxwrapper\vboxwrapper.py"], zipfile=None)
 
 elif sys.platform.startswith('darwin'):
@@ -203,6 +204,7 @@ else:
                 'GNS3.Ui.ConfigurationPages',
                 'GNS3.Langs'],
           package_data = { 'GNS3': ['Langs/*.qm', 'Dynagen/configspec'] },
-          data_files = [ ('/usr/local/libexec/gns3/', ['qemuwrapper/qemuwrapper.py']),
+          data_files = [ ('/usr/local/libexec/gns3/', ['qemuwrapper/qemuwrapper.py', 'vboxwrapper/vboxcontroller_4_1.py', 'vboxwrapper/vboxwrapper.py']),
                         ('/usr/local/share/examples/gns3/', ['baseconfig.txt'])]
     )
+

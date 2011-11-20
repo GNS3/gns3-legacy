@@ -97,7 +97,7 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
             self.conf = globals.GApp.systconf['capture']
         else:
             self.conf = systemCaptureConf()
-            
+
         # Defaults capture terminal command
         if self.conf.cap_cmd == '':
             if platform.system() == 'Darwin':
