@@ -352,12 +352,12 @@ class Application(QApplication, Singleton):
 
         self.systconf['dynamips'] = systemDynamipsConf()
         confo = self.systconf['dynamips']
-        confo.path = ConfDB().get('Dynamips/hypervisor_path', unicode(''))
+        confo.path = ConfDB().get('Dynamips/hypervisor_path', Defaults.DYNAMIPS_DEFAULT_PATH)
         confo.port = int(ConfDB().get('Dynamips/hypervisor_port', 7200))
         confo.baseUDP = int(ConfDB().get('Dynamips/hypervisor_baseUDP', 10000))
         confo.baseConsole = int(ConfDB().get('Dynamips/hypervisor_baseConsole', 2000))
         confo.baseAUX = int(ConfDB().get('Dynamips/hypervisor_baseAUX', 0))
-        confo.workdir = ConfDB().get('Dynamips/hypervisor_working_directory', unicode(''))
+        confo.workdir = ConfDB().get('Dynamips/hypervisor_working_directory', Defaults.DYNAMIPS_DEFAULT_WORKDIR)
         confo.clean_workdir = ConfDB().value("Dynamips/clean_working_directory", QVariant(True)).toBool()
         confo.ghosting = ConfDB().value("Dynamips/dynamips_ghosting", QVariant(True)).toBool()
         confo.mmap = ConfDB().value("Dynamips/dynamips_mmap", QVariant(True)).toBool()
@@ -382,8 +382,8 @@ class Application(QApplication, Singleton):
         # Qemu config
         self.systconf['qemu'] = systemQemuConf()
         confo = self.systconf['qemu']
-        confo.qemuwrapper_path = ConfDB().get('Qemu/qemuwrapper_path', unicode(''))
-        confo.qemuwrapper_workdir = ConfDB().get('Qemu/qemuwrapper_working_directory', unicode(''))
+        confo.qemuwrapper_path = ConfDB().get('Qemu/qemuwrapper_path', Defaults.QEMUWRAPPER_DEFAULT_PATH)
+        confo.qemuwrapper_workdir = ConfDB().get('Qemu/qemuwrapper_working_directory', Defaults.QEMUWRAPPER_DEFAULT_WORKDIR)
         confo.qemu_path = ConfDB().get('Qemu/qemu_path', unicode('qemu'))
         confo.qemu_img_path = ConfDB().get('Qemu/qemu_img_path', unicode('qemu-img'))
         confo.external_hosts = ConfDB().get('Qemu/external_hosts', unicode('localhost:10525')).split(',')
@@ -407,8 +407,8 @@ class Application(QApplication, Singleton):
         
         self.systconf['vbox'] = systemVBoxConf()
         confo = self.systconf['vbox']
-        confo.vboxwrapper_path = ConfDB().get('VBox/vboxwrapper_path', unicode(''))
-        confo.vboxwrapper_workdir = ConfDB().get('VBox/vboxwrapper_working_directory', unicode(''))
+        confo.vboxwrapper_path = ConfDB().get('VBox/vboxwrapper_path', Defaults.VBOXWRAPPER_DEFAULT_PATH)
+        confo.vboxwrapper_workdir = ConfDB().get('VBox/vboxwrapper_working_directory', Defaults.VBOXWRAPPER_DEFAULT_WORKDIR)
         confo.external_hosts = ConfDB().get('VBox/external_hosts', unicode('localhost:11525')).split(',')        
         confo.enable_VBoxWrapperAdvOptions = ConfDB().value("VBox/enable_VBoxWrapperAdvOptions", QVariant(False)).toBool()
         confo.enable_VBoxAdvOptions = ConfDB().value("VBox/enable_VBoxAdvOptions", QVariant(False)).toBool()

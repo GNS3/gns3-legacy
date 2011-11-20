@@ -19,6 +19,56 @@
 # http://www.gns3.net/contact
 #
 
+import os, sys
+
+# Default path to Dynamips executable
+if sys.platform.startswith('win'):
+    DYNAMIPS_DEFAULT_PATH = unicode('dynamips.exe')
+elif sys.platform.startswith('darwin'):
+    DYNAMIPS_DEFAULT_PATH = os.getcwd() + os.sep + 'dynamips-0.2.8-RC3-community-OSX.intel64.bin'
+else:
+    DYNAMIPS_DEFAULT_PATH = unicode('dynamips')
+    
+# Default path to Dynamips working directory
+if os.environ.has_key("TEMP"):
+    DYNAMIPS_DEFAULT_WORKDIR = unicode(os.environ["TEMP"], errors='replace')
+elif os.environ.has_key("TMP"):
+    DYNAMIPS_DEFAULT_WORKDIR = unicode(os.environ["TMP"], errors='replace')
+else:
+    DYNAMIPS_DEFAULT_WORKDIR = unicode('/tmp', errors='replace')
+
+# Default path to qemuwrapper
+if sys.platform.startswith('win'):
+    QEMUWRAPPER_DEFAULT_PATH = unicode('.\qemuwrapper\qemuwrapper.exe')
+elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
+    QEMUWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + 'qemuwrapper.py'
+else:
+    QEMUWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + 'qemuwrapper/qemuwrapper.py'
+
+# Default path to qemuwrapper working directory
+if os.environ.has_key("TEMP"):
+    QEMUWRAPPER_DEFAULT_WORKDIR = unicode(os.environ["TEMP"], errors='replace')
+elif os.environ.has_key("TMP"):
+    QEMUWRAPPER_DEFAULT_WORKDIR = unicode(os.environ["TMP"], errors='replace')
+else:
+    QEMUWRAPPER_DEFAULT_WORKDIR = unicode('/tmp', errors='replace')
+
+# Default path to vboxwrapper
+if sys.platform.startswith('win'):
+    VBOXWRAPPER_DEFAULT_PATH = unicode('.\qemuwrapper\qemuwrapper.exe')
+elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
+    VBOXWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + 'vboxwrapper.py'
+else:
+    VBOXWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + 'vboxwrapper/vboxwrapper.py'
+    
+# Default path to vboxwrapper working directory
+if os.environ.has_key("TEMP"):
+    VBOXWRAPPER_DEFAULT_WORKDIR = unicode(os.environ["TEMP"], errors='replace')
+elif os.environ.has_key("TMP"):
+    VBOXWRAPPER_DEFAULT_WORKDIR = unicode(os.environ["TMP"], errors='replace')
+else:
+    VBOXWRAPPER_DEFAULT_WORKDIR = unicode('/tmp', errors='replace')
+
 SysConfigDir = "/etc/gns3"
 UsrConfigDir = "~/.gns3"
 

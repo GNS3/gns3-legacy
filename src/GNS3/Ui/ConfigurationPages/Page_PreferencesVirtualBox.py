@@ -28,6 +28,7 @@ from GNS3.VBoxManager import VBoxManager
 from GNS3.Ui.ConfigurationPages.Form_PreferencesVirtualBox import Ui_PreferencesVirtualBox
 from GNS3.Config.Objects import systemVBoxConf, vboxImageConf
 from GNS3.Utils import fileBrowser, translate
+from GNS3.Config.Defaults import VBOXWRAPPER_DEFAULT_PATH, VBOXWRAPPER_DEFAULT_WORKDIR
 from GNS3.Config.Config import ConfDB
 
 #print "ADEBUG: Page_PreferencesVirtualBox.py: modules loaded"
@@ -174,23 +175,13 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         else:
             self.conf = systemVBoxConf()
 
-        # Default path to vboxwrapper
+        # Set default path to vboxwrapper
         if self.conf.vboxwrapper_path == '':
-            if sys.platform.startswith('win'):
-                self.conf.vboxwrapper_path = unicode('.\qemuwrapper\qemuwrapper.exe')
-            elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
-                self.conf.vboxwrapper_path = os.getcwdu() + os.sep + 'vboxwrapper.py'
-            else:
-                self.conf.vboxwrapper_path = os.getcwdu() + os.sep + 'vboxwrapper/vboxwrapper.py'
+            self.conf.vboxwrapper_path = VBOXWRAPPER_DEFAULT_PATH
         
-        # Default path to working directory
+        # Set default path to working directory
         if self.conf.vboxwrapper_workdir == '':
-            if os.environ.has_key("TEMP"):
-                self.conf.vboxwrapper_workdir = unicode(os.environ["TEMP"], errors='replace')
-            elif os.environ.has_key("TMP"):
-                self.conf.vboxwrapper_workdir = unicode(os.environ["TMP"], errors='replace')
-            else:
-                self.conf.vboxwrapper_workdir = unicode('/tmp')
+            self.conf.vboxwrapper_workdir = VBOXWRAPPER_DEFAULT_WORKDIR
 
         # Push default values to GUI
         

@@ -27,6 +27,7 @@ from GNS3.QemuManager import QemuManager
 from GNS3.Ui.ConfigurationPages.Form_PreferencesQemu import Ui_PreferencesQemu
 from GNS3.Config.Objects import systemQemuConf, qemuImageConf, pixImageConf, junosImageConf, asaImageConf, idsImageConf
 from GNS3.Utils import fileBrowser, translate
+from GNS3.Config.Defaults import QEMUWRAPPER_DEFAULT_PATH, QEMUWRAPPER_DEFAULT_WORKDIR
 from GNS3.Config.Config import ConfDB
 
 class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
@@ -137,31 +138,21 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         else:
             self.conf = systemQemuConf()
 
-        # Default path to qemuwrapper
+        # Set default path to qemuwrapper
         if self.conf.qemuwrapper_path == '':
-            if sys.platform.startswith('win'):
-                self.conf.qemuwrapper_path = unicode('.\qemuwrapper\qemuwrapper.exe')
-            elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
-                self.conf.qemuwrapper_path = os.getcwdu() + os.sep + 'qemuwrapper.py'
-            else:
-                self.conf.qemuwrapper_path = os.getcwdu() + os.sep + 'qemuwrapper/qemuwrapper.py'
+            self.conf.qemuwrapper_path = QEMUWRAPPER_DEFAULT_PATH
         
         if self.conf.qemu_path == 'qemu' and sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
             self.conf.qemu_path = os.getcwdu() + os.sep + 'qemu'
         if self.conf.qemu_img_path == 'qemu-img' and sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
             self.conf.qemu_img_path = os.getcwdu() + os.sep + 'qemu-img'
 
-        # Default path to working directory
+        # Set default path to working directory
         if self.conf.qemuwrapper_workdir == '':
-            if os.environ.has_key("TEMP"):
-                self.conf.qemuwrapper_workdir = unicode(os.environ["TEMP"], errors='replace')
-            elif os.environ.has_key("TMP"):
-                self.conf.qemuwrapper_workdir = unicode(os.environ["TMP"], errors='replace')
-            else:
-                self.conf.qemuwrapper_workdir = unicode('/tmp')
+            self.conf.qemuwrapper_workdir = QEMUWRAPPER_DEFAULT_WORKDIR
 
         # Push default values to GUI
-        
+
         # Qemuwrapper
         self.lineEditQemuwrapperPath.setText(os.path.normpath(self.conf.qemuwrapper_path))
         self.lineEditQemuwrapperWorkdir.setText(os.path.normpath(self.conf.qemuwrapper_workdir))

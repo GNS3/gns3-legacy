@@ -26,6 +26,7 @@ from GNS3.Config.Objects import systemDynamipsConf
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Config import ConfDB
 from GNS3.Utils import fileBrowser, translate, testOpenFile
+from GNS3.Config.Defaults import DYNAMIPS_DEFAULT_PATH, DYNAMIPS_DEFAULT_WORKDIR
 import GNS3.Globals as globals
 import subprocess as sub
 
@@ -58,21 +59,13 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         else:
             self.conf = systemDynamipsConf()
 
-        # Default path to dynamips executable
+        # Set default path to dynamips executable
         if self.conf.path == '':
-            if sys.platform.startswith('win'):
-                self.conf.path = unicode('dynamips.exe')
-            elif sys.platform.startswith('darwin'):
-                self.conf.path = unicode(os.getcwd() + os.sep + "dynamips-0.2.8-RC3-community-OSX.intel64.bin")
+            self.conf.path = DYNAMIPS_DEFAULT_PATH
 
-        # Default path to working directory
+        # Set default path to working directory
         if self.conf.workdir == '':
-            if os.environ.has_key("TEMP"):
-                self.conf.workdir = unicode(os.environ["TEMP"], errors='replace')
-            elif os.environ.has_key("TMP"):
-                self.conf.workdir = unicode(os.environ["TMP"], errors='replace')
-            else:
-                self.conf.workdir = unicode('/tmp', errors='replace')
+            self.conf.workdir = DYNAMIPS_DEFAULT_WORKDIR
 
         # Push default values to GUI
         self.dynamips_path.setText(os.path.normpath(self.conf.path))
