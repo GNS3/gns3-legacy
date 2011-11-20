@@ -89,7 +89,11 @@ if os.environ.has_key("TEMP"):
 elif os.environ.has_key("TMP"):
     WORKDIR = unicode(os.environ["TMP"], errors='replace')
 
-PEMU_DIR = os.path.dirname(os.path.abspath(__file__))
+# __file__ is not supported by py2exe and py2app
+if hasattr(sys, "frozen"):
+    PEMU_DIR = os.path.dirname(os.path.abspath(sys.executable))
+else:
+    PEMU_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class UDPConnection:
     def __init__(self, sport, daddr, dport):
