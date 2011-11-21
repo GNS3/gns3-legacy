@@ -887,11 +887,14 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                     return
             
             PEMU_BIN = "pemu"
+
             if platform.system() == 'Windows':
-                # expected to be the same as "qemuwrapper_path"
-                PEMU_BIN = os.path.dirname(globals.GApp.systconf['qemu'].qemuwrapper_path)+"\pemu.exe"
-                #print "PEMU_BIN =",PEMU_BIN      
-                
+
+                if hasattr(sys, "frozen"):
+                    PEMU_BIN = os.path.dirname(os.path.abspath(sys.executable)) + os.sep + 'pemu.exe'
+                else:
+                    PEMU_BIN = os.path.dirname(os.path.abspath(__file__)) + os.sep + 'pemu.exe'
+
             bPEMUfound = True
             try:
                 p = subprocess.Popen([PEMU_BIN], cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir)
