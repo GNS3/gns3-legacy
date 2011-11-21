@@ -19,7 +19,8 @@
 # http://www.gns3.net/contact
 #
 
-import os, sys
+import os, sys, platform
+from GNS3.Utils import translate
 
 # Default path to Dynamips executable
 if sys.platform.startswith('win'):
@@ -68,6 +69,71 @@ elif os.environ.has_key("TMP"):
     VBOXWRAPPER_DEFAULT_WORKDIR = unicode(os.environ["TMP"], errors='replace')
 else:
     VBOXWRAPPER_DEFAULT_WORKDIR = unicode('/tmp', errors='replace')
+
+Traditional_Capture_String = translate("Defaults", 'Wireshark Traditional Capture')
+Live_Traffic_Capture_String = translate("Defaults", 'Wireshark Live Traffic Capture')
+
+# Default predefined sets of Wireshark commands on various OSes:
+if platform.system() == 'Linux':
+    CAPTURE_PRESET_CMDS = {
+                           Traditional_Capture_String  + ' (Linux)': "wireshark %c",
+                           Live_Traffic_Capture_String + ' (Linux)': "tail -f -c +0b %c | wireshark -k -i -"
+                           }
+elif platform.system() == 'FreeBSD':
+    CAPTURE_PRESET_CMDS = {
+                           Traditional_Capture_String  + ' (FreeBSD)': "wireshark %c",
+                           Live_Traffic_Capture_String + ' (FreeBSD)': "gtail -f -c +0b %c | wireshark -k -i -"
+                           }
+elif platform.system() == 'Windows' and os.path.exists("C:\Program Files (x86)\Wireshark\wireshark.exe"):
+    CAPTURE_PRESET_CMDS = {
+                           Traditional_Capture_String  + ' (Windows 64 bit)': "C:\Program Files (x86)\Wireshark\wireshark.exe %c",
+                           Traditional_Capture_String  + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe %c",                            
+                           Live_Traffic_Capture_String + ' (Windows 64-bit)': 'tail.exe -f -c +0b %c | "C:\Program Files (x86)\Wireshark\wireshark.exe" -k -i -',
+                           Live_Traffic_Capture_String + ' (Windows)': 'tail.exe -f -c +0b %c | "C:\Program Files\Wireshark\wireshark.exe" -k -i -',
+                           }
+elif platform.system() == 'Windows':
+    CAPTURE_PRESET_CMDS = {
+                           Traditional_Capture_String  + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe %c",
+                           Live_Traffic_Capture_String + ' (Windows)': 'tail.exe -f -c +0b %c | "C:\Program Files\Wireshark\wireshark.exe" -k -i -',
+                           }
+elif platform.system() == 'Darwin':
+    CAPTURE_PRESET_CMDS = {
+                           Traditional_Capture_String  + ' (Mac OS X)': "/usr/bin/open -a /Applications/Wireshark.app %c",
+                           Live_Traffic_Capture_String + ' (Mac OS X)': "tail -f -c +0 %c | /Applications/Wireshark.app/Contents/Resources/bin/wireshark -k -i -",
+                           }
+else: # For unknown platforms, or if detection failed, we list all options.
+    CAPTURE_PRESET_CMDS = {
+                            Traditional_Capture_String  + ' (Linux)': "wireshark %c",
+                            Live_Traffic_Capture_String + ' (Linux)': "tail -f -c +0b %c | wireshark -k -i -",
+                            Traditional_Capture_String  + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe %c",
+                            Traditional_Capture_String  + ' (Windows 64 bit)': "C:\Program Files (x86)\Wireshark\wireshark.exe %c",
+                            Live_Traffic_Capture_String + ' (Windows)': 'tail.exe  -f -c +0b %c | "C:\Program Files\Wireshark\wireshark.exe" -k -i -',
+                            Live_Traffic_Capture_String + ' (Windows 64-bit)': 'tail.exe -f -c +0b %c | "C:\Program Files (x86)\Wireshark\wireshark.exe" -k -i -',
+                            Traditional_Capture_String  + ' (Mac OS X)': "/usr/bin/open -a /Applications/Wireshark.app %c",
+                            Live_Traffic_Capture_String + ' (Mac OS X)': "tail -f -c +0 %c | /Applications/Wireshark.app/Contents/Resources/bin/wireshark -k -i -",
+                           }
+
+# Default capture command
+if platform.system() == 'Darwin':
+    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (Mac OS X)'])
+elif platform.system() == 'Windows' and os.path.exists("C:\Program Files (x86)\Wireshark\wireshark.exe"):
+    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (Windows 64-bit)'])
+elif platform.system() == 'Windows':
+    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (Windows)'])
+elif platform.system() == 'Linux':
+    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (Linux)'])
+elif platform.system() == 'FreeBSD':
+    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (FreeBSD)'])
+else:
+    CAPTURE_DEFAULT_CMD = unicode("/usr/bin/wireshark %c")
+
+# Default path to capture working directory
+if os.environ.has_key("TEMP"):
+    CAPTURE_DEFAULT_WORKDIR = unicode(os.environ["TEMP"], errors='replace')
+elif os.environ.has_key("TMP"):
+    CAPTURE_DEFAULT_WORKDIR = unicode(os.environ["TMP"], errors='replace')
+else:
+    CAPTURE_DEFAULT_WORKDIR = unicode('/tmp', errors='replace')
 
 SysConfigDir = "/etc/gns3"
 UsrConfigDir = "~/.gns3"

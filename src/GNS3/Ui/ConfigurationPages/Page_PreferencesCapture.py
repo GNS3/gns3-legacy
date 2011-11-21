@@ -19,12 +19,13 @@
 # http://www.gns3.net/contact
 #
 
-import sys, os, platform
+import sys, os
 import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
 from GNS3.Ui.ConfigurationPages.Form_PreferencesCapture import Ui_PreferencesCapture
 from GNS3.Config.Objects import systemCaptureConf
 from GNS3.Utils import fileBrowser, translate
+from GNS3.Config.Defaults import CAPTURE_PRESET_CMDS, CAPTURE_DEFAULT_CMD, CAPTURE_DEFAULT_WORKDIR
 from GNS3.Config.Config import ConfDB
 
 class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
@@ -36,51 +37,10 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
         self.connect(self.CaptureWorkingDirectory_Browser, QtCore.SIGNAL('clicked()'), self.__setCaptureWorkdir)
         self.connect(self.pushButtonUsePresets, QtCore.SIGNAL('clicked()'), self.__setPresetsCmd)
         
-        #Technologov: If you want to improve upon my work, read this:
-        # http://wiki.wireshark.org/CaptureSetup/Pipes#Named_pipes
-        # There are only two ways to do Live Traffic Capture: Named Pipes (FIFOs) or use GNU tail.
-        #wintail_path = '"'+GNS3_RUN_PATH+'\\tail\\tail.exe"'
-        #TODO: change to rel path
-        wintail_path = 'C:\\tail\\tail.exe'
-        self.Traditional_Capture_String = translate( "Page_PreferencesCapture", 'Wireshark Traditional Capture')
-        self.Live_Traffic_Capture_String = translate("Page_PreferencesCapture", 'Wireshark Live Traffic Capture')
-        # Pre-defined sets of wireshark commands on various OSes:
-        if platform.system() == 'Linux':
-            self.presets_cmds = {self.Traditional_Capture_String  + ' (Linux)': "wireshark %c",
-                            self.Live_Traffic_Capture_String + ' (Linux)': "tail -f -c +0b %c | wireshark -k -i -"
-                           }
-        elif platform.system() == 'FreeBSD':
-            self.presets_cmds = {self.Traditional_Capture_String  + ' (FreeBSD)': "wireshark %c",
-                            self.Live_Traffic_Capture_String + ' (FreeBSD)': "gtail -f -c +0b %c | wireshark -k -i -"
-                           }
-        elif platform.system() == 'Windows' and os.path.exists("C:\Program Files (x86)\Wireshark\wireshark.exe"):
-            self.presets_cmds = {self.Traditional_Capture_String  + ' (Windows 64 bit)': "C:\Program Files (x86)\Wireshark\wireshark.exe %c",
-                            self.Traditional_Capture_String  + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe %c",                            
-                            self.Live_Traffic_Capture_String + ' (Windows 64-bit)': wintail_path+' -f -c +0b %c | "C:\Program Files (x86)\Wireshark\wireshark.exe" -k -i -',
-                            self.Live_Traffic_Capture_String + ' (Windows)': wintail_path + ' -f -c +0b %c | "C:\Program Files\Wireshark\wireshark.exe" -k -i -',
-                           }
-        elif platform.system() == 'Windows':
-            self.presets_cmds = {self.Traditional_Capture_String  + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe %c",
-                            self.Live_Traffic_Capture_String + ' (Windows)': wintail_path + ' -f -c +0b %c | "C:\Program Files\Wireshark\wireshark.exe" -k -i -',
-                           }
-        elif platform.system() == 'Darwin':
-            self.presets_cmds = {self.Traditional_Capture_String  + ' (Mac OS X)': "/usr/bin/open -a /Applications/Wireshark.app %c",
-                            self.Live_Traffic_Capture_String + ' (Mac OS X)': "tail -f -c +0 %c | /Applications/Wireshark.app/Contents/Resources/bin/wireshark -k -i -",
-                           }
-        else:  # For unknown platforms, or if detection failed, we list all options.
-            self.presets_cmds = {self.Traditional_Capture_String  + ' (Linux)': "wireshark %c",
-                            self.Live_Traffic_Capture_String + ' (Linux)': "tail -f -c +0b %c | wireshark -k -i -",
-                            self.Traditional_Capture_String  + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe %c",
-                            self.Traditional_Capture_String  + ' (Windows 64 bit)': "C:\Program Files (x86)\Wireshark\wireshark.exe %c",
-                            self.Live_Traffic_Capture_String + ' (Windows)': wintail_path + ' -f -c +0b %c | "C:\Program Files\Wireshark\wireshark.exe" -k -i -',
-                            self.Live_Traffic_Capture_String + ' (Windows 64-bit)': wintail_path + ' -f -c +0b %c | "C:\Program Files (x86)\Wireshark\wireshark.exe" -k -i -',
-                            self.Traditional_Capture_String  + ' (Mac OS X)': "/usr/bin/open -a /Applications/Wireshark.app %c",
-                            self.Live_Traffic_Capture_String + ' (Mac OS X)': "tail -f -c +0 %c | /Applications/Wireshark.app/Contents/Resources/bin/wireshark -k -i -",
-                           }
-        
-        for (name, cmd) in sorted(self.presets_cmds.iteritems()):
+        # TODO: implement named pipe method: http://wiki.wireshark.org/CaptureSetup/Pipes#Named_pipes
+        for (name, cmd) in sorted(CAPTURE_PRESET_CMDS.iteritems()):
             self.comboBoxPresets.addItem(name, cmd)
-            
+
         self.loadConf()
 
     def __setPresetsCmd(self):
@@ -98,28 +58,12 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
         else:
             self.conf = systemCaptureConf()
 
-        # Defaults capture terminal command
+        # Set default capture command
         if self.conf.cap_cmd == '':
-            if platform.system() == 'Darwin':
-                self.conf.cap_cmd = unicode(self.presets_cmds[self.Live_Traffic_Capture_String + ' (Mac OS X)'])
-            elif platform.system() == 'Windows' and os.path.exists("C:\Program Files (x86)\Wireshark\wireshark.exe"):
-                self.conf.cap_cmd = unicode(self.presets_cmds[self.Live_Traffic_Capture_String + ' (Windows 64-bit)'])
-            elif platform.system() == 'Windows':
-                self.conf.cap_cmd = unicode(self.presets_cmds[self.Live_Traffic_Capture_String + ' (Windows)'])
-            elif platform.system() == 'Linux':
-                self.conf.cap_cmd = unicode(self.presets_cmds[self.Live_Traffic_Capture_String + ' (Linux)'])
-            elif platform.system() == 'FreeBSD':
-                self.conf.cap_cmd = unicode(self.presets_cmds[self.Live_Traffic_Capture_String + ' (FreeBSD)'])
-            else:
-                self.conf.cap_cmd = unicode("/usr/bin/wireshark %c")
+            self.conf.cap_cmd = CAPTURE_DEFAULT_CMD
 
         if self.conf.workdir == '':
-            if os.environ.has_key("TEMP"):
-                self.conf.workdir = unicode(os.environ["TEMP"], errors='replace')
-            elif os.environ.has_key("TMP"):
-                self.conf.workdir = unicode(os.environ["TMP"], errors='replace')
-            else:
-                self.conf.workdir = unicode('/tmp')
+            self.conf.workdir = CAPTURE_DEFAULT_WORKDIR
 
         # Push default values to GUI
         self.CaptureWorkingDirectory.setText(os.path.normpath(self.conf.workdir))

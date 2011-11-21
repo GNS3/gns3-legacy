@@ -431,8 +431,8 @@ class Application(QApplication, Singleton):
         # Capture config
         self.systconf['capture'] = systemCaptureConf()
         confo = self.systconf['capture']
-        confo.workdir = ConfDB().get('Capture/working_directory', unicode(''))
-        confo.cap_cmd = ConfDB().get('Capture/capture_reader_cmd', unicode(''))
+        confo.workdir = ConfDB().get('Capture/working_directory', Defaults.CAPTURE_DEFAULT_WORKDIR)
+        confo.cap_cmd = ConfDB().get('Capture/capture_reader_cmd', Defaults.CAPTURE_DEFAULT_CMD)
         confo.auto_start = ConfDB().value('Capture/auto_start_cmd', QVariant(False)).toBool()
         
         # replace ~user and $HOME by home directory

@@ -73,9 +73,11 @@ if sys.platform.startswith('win'):
     )
 
     # Compile qemuwrapper
+    sys.path.append('./qemuwrapper')
     setup(console=['qemuwrapper/qemuwrapper.py'], zipfile=None)
 
     # Compile vboxwrapper
+    sys.path.append('./vboxwrapper')
     setup(console=['vboxwrapper/vboxwrapper.py'], options = {"py2exe": {"typelibs": [('{46137EEC-703B-4FE5-AFD4-7C9BBBBA0259}',0,1,3)]}}, zipfile=None)
 
 elif sys.platform.startswith('darwin'):
