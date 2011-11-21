@@ -21,6 +21,7 @@
 
 import os, sys, platform
 from GNS3.Utils import translate
+from __main__ import GNS3_RUN_PATH
 
 # Default path to Dynamips executable
 if sys.platform.startswith('win'):
@@ -40,7 +41,7 @@ else:
 
 # Default path to qemuwrapper
 if sys.platform.startswith('win'):
-    QEMUWRAPPER_DEFAULT_PATH = unicode('.\qemuwrapper\qemuwrapper.exe')
+    QEMUWRAPPER_DEFAULT_PATH = unicode('qemuwrapper.exe')
 elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
     QEMUWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + 'qemuwrapper.py'
 else:
@@ -56,7 +57,7 @@ else:
 
 # Default path to vboxwrapper
 if sys.platform.startswith('win'):
-    VBOXWRAPPER_DEFAULT_PATH = unicode('.\qemuwrapper\qemuwrapper.exe')
+    VBOXWRAPPER_DEFAULT_PATH = unicode('vboxwrapper.exe')
 elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
     VBOXWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + 'vboxwrapper.py'
 else:
@@ -134,6 +135,92 @@ elif os.environ.has_key("TMP"):
     CAPTURE_DEFAULT_WORKDIR = unicode(os.environ["TMP"], errors='replace')
 else:
     CAPTURE_DEFAULT_WORKDIR = unicode('/tmp', errors='replace')
+    
+# Default predefined sets of Terminal commands on various OSes:
+if platform.system() == 'Linux' or platform.system().__contains__("BSD"):
+    TERMINAL_PRESET_CMDS = {
+                            'xterm (Linux/BSD)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
+                            'Putty (Linux/BSD)': 'putty -telnet %h %p',
+                            'Gnome Terminal (Linux/BSD)': 'gnome-terminal -t %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
+                            'KDE Konsole (Linux/BSD)': '/usr/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &'
+                            }
+elif platform.system() == 'Windows'  and os.path.exists("C:\Program Files (x86)\\"):
+    TERMINAL_PRESET_CMDS = {
+                            'Putty (Windows 64 bit)': 'C:\Program Files (x86)\Putty\putty.exe -telnet %h %p',
+                            'Putty (Windows 32 bit)': 'C:\Program Files\Putty\putty.exe -telnet %h %p',
+                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p',
+                            'SecureCRT (Windows 64 bit)': '"C:\Program Files(x86)\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
+                            'SecureCRT (Windows 32 bit)': '"C:\Program Files\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
+                            'TeraTerm (Windows)': 'C:\TTERMPRO\\ttermpro.exe %h:%p',
+                            'Telnet (Windows)': 'start telnet %h %p'
+                            }
+elif platform.system() == 'Windows':
+    TERMINAL_PRESET_CMDS = {
+                            'Putty (Windows)': 'C:\Program Files\Putty\putty.exe -telnet %h %p',
+                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p',
+                            'SecureCRT (Windows)': '"C:\Program Files\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
+                            'TeraTerm (Windows)': 'C:\TTERMPRO\\ttermpro.exe %h:%p',
+                            'Telnet (Windows)': 'start telnet %h %p'
+                            }
+elif platform.system() == 'Darwin':
+    TERMINAL_PRESET_CMDS = {
+                            'Terminal (Mac OS X)': "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",
+                            'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'"
+                            }
+else:  # For unknown platforms, or if detection failed, we list all options.
+    TERMINAL_PRESET_CMDS = {
+                            'Putty (Windows 64 bits)': 'C:\Program Files (x86)\Putty\putty.exe -telnet %h %p',
+                            'Putty (Windows 32 bits)': 'C:\Program Files\Putty\putty.exe -telnet %h %p',
+                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p',
+                            'SecureCRT (Windows 64 bits)': '"C:\Program Files(x86)\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
+                            'SecureCRT (Windows 32 bits)': '"C:\Program Files\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
+                            'TeraTerm (Windows)': 'C:\TTERMPRO\\ttermpro.exe %h:%p',
+                            'Telnet (Windows)': 'start telnet %h %p',
+                            'xterm (Linux/BSD)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
+                            'Putty (Linux/BSD)': 'putty -telnet %h %p',
+                            'Gnome Terminal (Linux/BSD)': 'gnome-terminal -t %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
+                            'KDE Konsole (Linux/BSD)': '/usr/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &',
+                            'Terminal (Mac OS X)': "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",
+                            'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'"
+                            }
+
+
+# Default terminal command
+if platform.system() == 'Darwin':
+    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (Mac OS X)'])
+elif platform.system() == 'Windows' and os.path.exists("C:\Program Files (x86)\Wireshark\wireshark.exe"):
+    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (Windows 64-bit)'])
+elif platform.system() == 'Windows':
+    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (Windows)'])
+elif platform.system() == 'Linux':
+    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (Linux)'])
+elif platform.system() == 'FreeBSD':
+    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (FreeBSD)'])
+else:
+    CAPTURE_DEFAULT_CMD = unicode("/usr/bin/wireshark %c")
+
+if sys.platform.startswith('darwin'):
+    TERMINAL_DEFAULT_CMD = unicode(TERMINAL_PRESET_CMDS['Terminal (Mac OS X)'])
+elif sys.platform.startswith('win'):
+    TERMINAL_DEFAULT_CMD = unicode(TERMINAL_PRESET_CMDS['Putty (Windows, included with GNS3)'])
+else:
+    TERMINAL_DEFAULT_CMD = unicode(TERMINAL_PRESET_CMDS['xterm (Linux/BSD)'])
+
+# Default project directory
+if os.environ.has_key("TEMP"):
+    PROJECT_DEFAULT_DIR = unicode(os.environ["TEMP"], errors='replace')
+elif os.environ.has_key("TMP"):
+    PROJECT_DEFAULT_DIR = unicode(os.environ["TMP"], errors='replace')
+else:
+    PROJECT_DEFAULT_DIR = unicode('/tmp', errors='replace')
+    
+# Default IOS image directory
+if os.environ.has_key("TEMP"):
+    IOS_DEFAULT_DIR = unicode(os.environ["TEMP"], errors='replace')
+elif os.environ.has_key("TMP"):
+    IOS_DEFAULT_DIR = unicode(os.environ["TMP"], errors='replace')
+else:
+    IOS_DEFAULT_DIR = unicode('/tmp', errors='replace')
 
 SysConfigDir = "/etc/gns3"
 UsrConfigDir = "~/.gns3"
