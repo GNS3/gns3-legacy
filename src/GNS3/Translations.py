@@ -28,8 +28,6 @@ import __main__
 
 class Translator(object):
 
-    gns3_regkey = "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\gns3.exe"
-
     def __init__(self):
 
         self.__langs = {}
@@ -39,24 +37,18 @@ class Translator(object):
         self.__lastQtTranslator = None
 
         # Add i18n dirs depending on platform.
-        if sys.platform[:3] == "win":
-            self.__i18n_dirs = [os.path.dirname(os.path.abspath(GNS3.Langs.__file__))]
-            """
+        if sys.platform.startswith('win'):
+
+            # __file__ is not supported by py2exe
+            if hasattr(sys, "frozen"):
+                self.__i18n_dirs = [os.path.dirname(os.path.abspath(sys.executable)) + os.sep + "Langs"]
+            else:
+                self.__i18n_dirs = [os.path.dirname(os.path.abspath(GNS3.Langs.__file__))]
+
             if os.environ.has_key("APPDATA"):
                 self.__i18n_dirs.append(os.environ["APPDATA"] + "\\gns3\\Langs")
             else:
                 debug('Translation: unable to find APPDATA in environ')
-
-            # Get gns3.exe installation path
-            try:
-                import _winreg
-                key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, Translator.gns3_regkey,  _winreg.KEY_READ)
-                (value, typevalue) = _winreg.QueryValueEx(key, '')
-                self.__i18n_dirs.append(os.path.dirname(value) + "\\Langs")
-                _winreg.CloseKey(key)
-            except:
-                pass
-            """
 
         else:
 

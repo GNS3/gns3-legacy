@@ -8,7 +8,7 @@ from distutils.core import setup, Extension
 from glob import glob
 
 # current version of GNS3
-VERSION = "0.8.2-ALPHA"
+VERSION = "0.8.2-ALPHA5"
 
 try:
     # delete previous build
@@ -21,8 +21,20 @@ except:
 
 if sys.platform.startswith('win'):
 
-    # Path to Qt directory (Windows)
-    QTDIR = r'C:\Qt\4.6.2'
+    import struct
+    bitness = struct.calcsize("P") * 8
+
+    # Set the path to Qt plugins directory
+    if bitness == 32:
+        # for 32-bit python
+        QT_PLUGINS_DIR = r'C:\Python26-32bit\Lib\site-packages\PyQt4'
+    elif bitness == 64:
+        # for 64-bit python
+        QT_PLUGINS_DIR = r'C:\Python26-64bit\Lib\site-packages\PyQt4'
+    else:
+        # should seriously not happen ...
+        print "Fatal error: bitness cannot be detected!"
+        sys.exit(1)
 
     try:
         import py2exe
@@ -32,20 +44,19 @@ if sys.platform.startswith('win'):
     data_files = [("Langs", glob(r'src\GNS3\Langs\*.qm')),
                   ('src\GNS3\Dynagen\configspec'),
                   ('LICENSE'),
-                  ("plugins\iconengines", glob(QTDIR + r'\plugins\iconengines\*.dll')),
-                  ("plugins\imageformats", glob(QTDIR + r'\plugins\imageformats\*.dll')),
-                  (QTDIR + r'\bin\QtSvg4.dll'),
-                  (QTDIR + r'\bin\QtXml4.dll'),
+                  ("plugins\iconengines", glob(QT_PLUGINS_DIR + r'\plugins\iconengines\*.dll')),
+                  ("plugins\imageformats", glob(QT_PLUGINS_DIR + r'\plugins\imageformats\*.dll')),
                   ("", glob(r'..\GNS3 Windows Files\*'))]
 
     # Settings for py2exe, packages values are to tell to py2exe about hidden imports
     setup(windows=[{"script":"gns3.pyw",
-                "icon_resources": [(1, "C:\gns3.ico")]}],
+                "icon_resources": [(1, r'..\gns3.ico')]}],
                 zipfile=None,
                 data_files=data_files,
                 options={"py2exe":
                                     {
                                      "includes": ["sip"],
+                                     "dll_excludes": ["MSVCP90.dll", "POWRPROF.dll", "MSWSOCK.dll", "LIBEAY32.dll", "SSLEAY32.dll"],
                                      "optimize": 1,
                                      # CLSID for VirtualBox COM (http://www.py2exe.org/index.cgi/IncludingTypelibs)
                                      "typelibs": [('{46137EEC-703B-4FE5-AFD4-7C9BBBBA0259}',0,1,3)],
