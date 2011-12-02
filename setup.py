@@ -27,10 +27,10 @@ if sys.platform.startswith('win'):
     # Set the path to Qt plugins directory
     if bitness == 32:
         # for 32-bit python
-        QT_PLUGINS_DIR = r'C:\Python26-32bit\Lib\site-packages\PyQt4'
+        PYQT4_DIR = r'C:\Python26-32bit\Lib\site-packages\PyQt4'
     elif bitness == 64:
         # for 64-bit python
-        QT_PLUGINS_DIR = r'C:\Python26-64bit\Lib\site-packages\PyQt4'
+        PYQT4_DIR = r'C:\Python26-64bit\Lib\site-packages\PyQt4'
     else:
         # should seriously not happen ...
         print "Fatal error: bitness cannot be detected!"
@@ -44,9 +44,10 @@ if sys.platform.startswith('win'):
     data_files = [("Langs", glob(r'src\GNS3\Langs\*.qm')),
                   ('src\GNS3\Dynagen\configspec'),
                   ('LICENSE'),
-                  ("plugins\iconengines", glob(QT_PLUGINS_DIR + r'\plugins\iconengines\*.dll')),
-                  ("plugins\imageformats", glob(QT_PLUGINS_DIR + r'\plugins\imageformats\*.dll')),
-                  ("", glob(r'..\GNS3 Windows Files\*'))]
+                  ('baseconfig.txt'),
+                  (PYQT4_DIR + r'\QtXml4.dll'),
+                  ("iconengines", glob(PYQT4_DIR + r'\plugins\iconengines\*.dll')),
+                  ("imageformats", glob(PYQT4_DIR + r'\plugins\imageformats\*.dll'))]
 
     # Settings for py2exe, packages values are to tell to py2exe about hidden imports
     setup(windows=[{"script":"gns3.pyw",
@@ -56,7 +57,7 @@ if sys.platform.startswith('win'):
                 options={"py2exe":
                                     {
                                      "includes": ["sip"],
-                                     "dll_excludes": ["MSVCP90.dll", "POWRPROF.dll", "MSWSOCK.dll", "LIBEAY32.dll", "SSLEAY32.dll"],
+                                     "dll_excludes": ["MSVCP90.dll", "POWRPROF.dll", "MSWSOCK.dll"],
                                      "optimize": 1,
                                      # CLSID for VirtualBox COM (http://www.py2exe.org/index.cgi/IncludingTypelibs)
                                      "typelibs": [('{46137EEC-703B-4FE5-AFD4-7C9BBBBA0259}',0,1,3)],
@@ -85,11 +86,11 @@ if sys.platform.startswith('win'):
 
     # Compile qemuwrapper
     sys.path.append('./qemuwrapper')
-    setup(console=['qemuwrapper/qemuwrapper.py'], zipfile=None)
+    setup(console=['qemuwrapper/qemuwrapper.py'], options = {"py2exe": {"dll_excludes": ["POWRPROF.dll", "MSWSOCK.dll"]}}, zipfile=None)
 
     # Compile vboxwrapper
     sys.path.append('./vboxwrapper')
-    setup(console=['vboxwrapper/vboxwrapper.py'], options = {"py2exe": {"typelibs": [('{46137EEC-703B-4FE5-AFD4-7C9BBBBA0259}',0,1,3)]}}, zipfile=None)
+    setup(console=['vboxwrapper/vboxwrapper.py'], options = {"py2exe": {"dll_excludes": ["POWRPROF.dll", "MSWSOCK.dll"], "typelibs": [('{46137EEC-703B-4FE5-AFD4-7C9BBBBA0259}',0,1,3)]}}, zipfile=None)
 
 elif sys.platform.startswith('darwin'):
 
