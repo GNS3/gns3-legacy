@@ -30,6 +30,7 @@ def debugmsg(level, message):
     if debuglevel >= level:        
         print message
 
+import sys
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.UndoFramework as undo
@@ -194,11 +195,13 @@ class Scene(QtGui.QGraphicsView):
             self.connect(displayWindowFocusAct, QtCore.SIGNAL('triggered()'), self.slotDisplayWindowFocus)
             menu.addAction(displayWindowFocusAct)
 
-            # Action: Hide window
-            displayWindowHideAct = QtGui.QAction(translate('Scene', 'Hide display window'), menu)
-            displayWindowHideAct.setIcon(QtGui.QIcon(':/symbols/computer.normal.svg'))
-            self.connect(displayWindowHideAct, QtCore.SIGNAL('triggered()'), self.slotDisplayWindowHide)
-            menu.addAction(displayWindowHideAct)
+            if not sys.platform.startswith('darwin'):
+                # Only if not OSX
+                # Action: Hide window
+                displayWindowHideAct = QtGui.QAction(translate('Scene', 'Hide display window'), menu)
+                displayWindowHideAct.setIcon(QtGui.QIcon(':/symbols/computer.normal.svg'))
+                self.connect(displayWindowHideAct, QtCore.SIGNAL('triggered()'), self.slotDisplayWindowHide)
+                menu.addAction(displayWindowHideAct)
 
         instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice), items)
         if True in instances:
