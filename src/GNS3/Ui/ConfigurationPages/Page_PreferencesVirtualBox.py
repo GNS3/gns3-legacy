@@ -417,7 +417,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             try:
                 from vboxapi import VirtualBoxManager
             except:
-                self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to load vboxapi module; Please check VirtualBox installation.")  + '</font>')
+                self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to load vboxapi module. Please check VirtualBox installation.")  + '</font>')
                 return
             
             if not (platform.system() == 'Windows' or platform.system() == 'Darwin'):
@@ -431,7 +431,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             from __main__ import g_VBoxmgr, VBOXVER_REQUIRED, VBOXVER_FLOAT, VBOXVER_REQUIRED1_MAJOR, VBOXVER_REQUIRED1_MINOR, VBOXVER_MAJOR, VBOXVER_MINOR
 
             if not g_VBoxmgr:
-                self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start vboxapi module; Please check VirtualBox installation.")  + '</font>')
+                self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start vboxapi module. Please check VirtualBox installation.")  + '</font>')
                 return
                 
             VBOXVER = str(g_VBoxmgr.vbox.version)
@@ -447,4 +447,4 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
                 self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start VBoxwrapper")  + '</font>')
                 return
 
-            self.labelVBoxStatus.setText('<font color="green">' + unicode(translate("UiConfig_PreferencesVirtualBox", "VBoxwrapper and VirtualBox API %s have successfully started")) % VBOXVER  + '</font>')
+            self.labelVBoxStatus.setText('<font color="green">' + unicode(translate("UiConfig_PreferencesVirtualBox", "VBoxwrapper and VirtualBox API %s have successfully started")) % (VBOXVER + '<br>')  + '</font>')

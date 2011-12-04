@@ -101,7 +101,7 @@ class HypervisorManager(object):
                 s.close()
 
         # start dynamips in hypervisor mode (-H)
-        proc.start( self.hypervisor_path ,  ['-H', str(port)])
+        proc.start(self.hypervisor_path,  ['-H', str(port)])
 
         if proc.waitForStarted() == False:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  unicode(translate("HypervisorManager", "Can't start Dynamips on port %i")) % port)

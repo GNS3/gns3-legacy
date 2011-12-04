@@ -460,7 +460,11 @@ class Application(QApplication, Singleton):
         confo.draw_selected_rectangle = ConfDB().value("GNS3/gui_draw_selected_rectangle", QVariant(False)).toBool()
         confo.scene_width = int(ConfDB().get('GNS3/scene_width', 2000))
         confo.scene_height = int(ConfDB().get('GNS3/scene_height', 1000))
-        confo.auto_check_for_update = ConfDB().value("GNS3/auto_check_for_update", QVariant(True)).toBool()
+        if sys.platform.startswith('win') or sys.platform.startswith('darwin'):
+            # by default auto check for update only on Windows or OSX
+            confo.auto_check_for_update = ConfDB().value("GNS3/auto_check_for_update", QVariant(True)).toBool()
+        else:
+            confo.auto_check_for_update = ConfDB().value("GNS3/auto_check_for_update", QVariant(False)).toBool()
         confo.last_check_for_update = int(ConfDB().get('GNS3/last_check_for_update', 0))
         
         # replace ~user and $HOME by home directory

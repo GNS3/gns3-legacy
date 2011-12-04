@@ -209,6 +209,11 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             if reply == QtGui.QMessageBox.No:
                 return
 
+        if globals.GApp.systconf['dynamips'].path:
+            if os.path.exists(globals.GApp.systconf['dynamips'].path) == False:
+                self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Dynamips path doesn't exist")  + '</font>')
+                return
+
         try:
             p = sub.Popen([globals.GApp.systconf['dynamips'].path, '--help'], stdout = sub.PIPE)
             dynamips_stdout = p.communicate()
