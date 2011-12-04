@@ -781,9 +781,13 @@ class AnyVBoxEmuDevice(object):
     def slot_info(self):
         #gather information about interfaces and connections
         #debugmsg(2, "AnyVBoxEmuDevice::slot_info()")
-        from qemu_lib import Qemu, QemuDevice, AnyEmuDevice
-        slot_info = '   Slot 0 hardware is ' + self._netcard + ' with ' + str(self._nics) + ' Ethernet interfaces\n'
+        from qemu_lib import AnyEmuDevice
+        # hide vbox internal interface (self._nics - 1)
+        slot_info = '   Slot 0 hardware is ' + self._netcard + ' with ' + str(self._nics-1) + ' Ethernet interfaces\n'
         for port in self.nios:
+            if port in [0,1]:
+                # port 0 and 1 cannot be used by vbox to connect to other devices
+                continue
             slot_info = slot_info + "      Ethernet" + str(port)
             if self.nios[port] != None:
                 (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self.nios[port])

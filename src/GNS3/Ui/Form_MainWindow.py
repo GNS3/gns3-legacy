@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sun Nov 13 17:27:28 2011
+# Created: Sat Dec  3 19:41:26 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -464,9 +464,9 @@ class Ui_MainWindow(object):
         self.menu_File.addSeparator()
         self.menu_File.addAction(self.action_Quit)
         self.menu_About.addAction(self.action_OnlineHelp)
+        self.menu_About.addAction(self.action_CheckForUpdate)
         self.menu_About.addAction(self.action_AboutQt)
         self.menu_About.addAction(self.action_About)
-        self.menu_About.addAction(self.action_CheckForUpdate)
         self.menu_View.addAction(self.action_ZoomIn)
         self.menu_View.addAction(self.action_ZoomOut)
         self.menu_View.addAction(self.action_ZoomReset)
