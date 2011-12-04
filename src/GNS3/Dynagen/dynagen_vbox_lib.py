@@ -287,7 +287,7 @@ class AnyVBoxEmuDevice(object):
         self._guestcontrol_password = self.defaults['guestcontrol_password']
 
         self.nios = {}
-        for i in range(self._nics):
+        for i in range(self._nics + 1):
             self.nios[i] = None
 
         send(self.p, 'vbox create %s %s' % (self.vbox_dev_type, self.name))
@@ -446,7 +446,7 @@ class AnyVBoxEmuDevice(object):
         send(self.p, 'vbox setattr %s nics %s' % (self.name, str(nics)))
         self._nics = nics
         new_nios = {}
-        for i in range(self._nics):
+        for i in range(self._nics + 1):
             if self.nios.has_key(i):
                 new_nios[i] = self.nios[i]
             else:
@@ -783,10 +783,11 @@ class AnyVBoxEmuDevice(object):
         #debugmsg(2, "AnyVBoxEmuDevice::slot_info()")
         from qemu_lib import AnyEmuDevice
         # hide vbox internal interface (self._nics - 1)
-        slot_info = '   Slot 0 hardware is ' + self._netcard + ' with ' + str(self._nics-1) + ' Ethernet interfaces\n'
+        slot_info = '   Slot 0 hardware is ' + self._netcard + ' with ' + str(self._nics) + ' Ethernet interfaces\n'
+        slot_info = slot_info + "      Ethernet1 is the VirtualBox management interface\n"
         for port in self.nios:
             if port in [0,1]:
-                # port 0 and 1 cannot be used by vbox to connect to other devices
+                # port 0 doesn't exists and port 1 is the VirtualBox management interface
                 continue
             slot_info = slot_info + "      Ethernet" + str(port)
             if self.nios[port] != None:
