@@ -74,7 +74,7 @@ msg = "WELCOME to qemuwrapper.py"
 debugmsg(2, msg)
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.8.0'
+__version__ = '0.8.2'
 
 QEMU_PATH = "qemu"
 QEMU_IMG_PATH = "qemu-img"
@@ -82,6 +82,7 @@ PORT = 10525
 IP = ""
 QEMU_INSTANCES = {}
 FORCE_IPV6 = False
+#QEMU_BASE_MAC = "00:00:ab:cd:%02x:%02d"
 
 WORKDIR = os.getcwdu()
 if os.environ.has_key("TEMP"):
@@ -248,12 +249,15 @@ class xEMUInstance(object):
                 options.append('nic,vlan=%d,macaddr=%s,model=%s' % (vlan, self.nic[vlan], self.netcard))
             else:
                 # add a default NIC for Qemu
-                options.append('nic,vlan=%d,macaddr=00:00:ab:%02x:%02x:%02d,model=%s' % (vlan, random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan, self.netcard))
-            if vlan in self.udp:
-                options.extend(['-net', 'udp,vlan=%s,sport=%s,dport=%s,daddr=%s' %
-                        (vlan, self.udp[vlan].sport,
-                         self.udp[vlan].dport,
-                         self.udp[vlan].daddr)])
+                if vlan in self.udp:
+                    options.append('nic,vlan=%d,macaddr=00:ab:cd:%02x:%02x:%02d,model=%s' % (vlan, hex(self.udp[vlan].sport % 255), hex(self.udp[vlan].dport % 255), vlan, self.netcard))
+                    options.extend(['-net', 'udp,vlan=%s,sport=%s,dport=%s,daddr=%s' %
+                            (vlan, self.udp[vlan].sport,
+                             self.udp[vlan].dport,
+                             self.udp[vlan].daddr)])
+                else:
+                    options.append('nic,vlan=%d,macaddr=00:00:ab:%02x:%02x:%02d,model=%s' % (vlan, random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan, self.netcard))
+
             if vlan in self.capture:
                 options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
 
@@ -600,6 +604,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             'cmd_list' : (1, 1),
             'qemu_path' : (1, 1),
             'qemu_img_path' : (1, 1),
+            #'qemu_base_mac' : (1, 1),
             'working_dir' : (1, 1),
             'reset' : (0, 0),
             'close' : (0, 0),
@@ -790,6 +795,17 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         except OSError, e:
             self.send_reply(self.HSC_ERR_INV_PARAM, 1,
                             "access: %s" % e.strerror)
+
+#    def do_qemuwrapper_qemu_base_mac(self, data):
+#        debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_qemu_base_mac(%s)" % str(data))
+#        qemu_mac, = data
+#        if not qemu_mac or not re.search(r"""^([a-fA-F0-9]{2}[:|\-]?){6}$""", key):
+#            self.send_reply(self.HSC_ERR_INV_PARAM, 1, "invalid format: %s, must be hh:hh:hh:hh:hh:hh" % qemu_mac)
+#            return
+#        global QEMU_BASE_MAC
+#        QEMU_BASE_MAC = qemu_mac
+#        print "Qemu base mac addr is now %s" % QEMU_BASE_MAC
+#        self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_qemuwrapper_working_dir(self, data):
         debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_working_dir(%s)" % str(data))

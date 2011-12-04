@@ -311,7 +311,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def clear(self):
         """ Clear all the workspace
         """
-
+        # First stop all nodes
+        self.__action_StopAll()
+     
         globals.GApp.workspace.setWindowTitle("GNS3")
         projectWorkdir = self.projectWorkdir
         self.timer.stop()
