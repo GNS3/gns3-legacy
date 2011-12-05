@@ -68,7 +68,12 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
         """ Get a path to the Startup-config from the file system
         """
 
-        path = fileBrowser('Startup-config', directory='.', parent=self).getFile()
+        if self.config_path and self.config_path != 'None':
+            directory = os.path.dirname(self.config_path)
+        else:
+            directory = globals.GApp.systconf['general'].project_path
+
+        path = fileBrowser('Startup-config', directory=directory, parent=self).getFile()
         if path != None and path[0] != '':
             self.lineEditStartupConfig.setText(os.path.normpath(path[0]))
             

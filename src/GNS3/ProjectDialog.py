@@ -29,9 +29,9 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
     """ ProjectDialog class
     """
 
-    def __init__(self, projectFile=None, projectWorkdir=None, projectConfigs=None, newProject=False):
+    def __init__(self, parent=None, projectFile=None, projectWorkdir=None, projectConfigs=None, newProject=False):
 
-        QtGui.QDialog.__init__(self)
+        QtGui.QDialog.__init__(self, parent)
         self.setupUi(self)
         self.connect(self.NewProject_browser, QtCore.SIGNAL('clicked()'), self.__setProjectDir)
         self.connect(self.pushButtonOpenProject, QtCore.SIGNAL('clicked()'), self.__openProject)

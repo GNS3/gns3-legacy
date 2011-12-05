@@ -216,9 +216,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
     def slotBaseConfig(self):
         """ Get an base config file from the file system
         """
-        
-        # get the path to the ios image
-        path = fileBrowser(translate("IOSDialog", "Select a Base configuration file"),  directory='.', parent=self).getFile()
+
+        # get the path to the ios configuration
+        path = fileBrowser(translate("IOSDialog", "Select a Base configuration file"),  directory=globals.GApp.systconf['general'].ios_path, parent=self).getFile()
 
         if path != None and path[0] != '':
             path = os.path.normpath(path[0])

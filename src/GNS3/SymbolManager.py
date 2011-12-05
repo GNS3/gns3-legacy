@@ -241,7 +241,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
     def slotCallLibraryBrowser(self):
         """ Call a file system browser to select a library
         """
-        fb = fileBrowser(translate('SymbolManagement', 'Library path'), parent=self)
+        fb = fileBrowser(translate('SymbolManagement', 'Library path'), directory=globals.GApp.systconf['general'].project_path, parent=self)
         (path, selected) = fb.getFile()
 
         if path is not None and path != '':

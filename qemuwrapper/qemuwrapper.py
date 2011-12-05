@@ -250,7 +250,7 @@ class xEMUInstance(object):
             else:
 
                 try:
-                    # compute new MAC address base on VM name + vlan number
+                    # compute new MAC address based on VM name + vlan number
                     hashed_name = hex(hash(self.name) & 0xffffffff) # on 64-bit systems, only take 32-bit from the hash
                     mac = hashed_name[2:] # skip 0x
                     blocks = [mac[x:x+2] for x in xrange(0, len(mac), 2)]

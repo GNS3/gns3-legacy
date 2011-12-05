@@ -258,7 +258,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         filedialog = QtGui.QFileDialog(self)
         selected = QtCore.QString()
         exports = 'PNG File (*.png);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PDF File (*.pdf)'
-        path = QtGui.QFileDialog.getSaveFileName(filedialog, 'Screenshot', '.', exports, selected)
+        
+        if self.projectFile:
+            directory = os.path.dirname(self.projectFile)
+        else:
+            directory = globals.GApp.systconf['general'].project_path
+
+        path = QtGui.QFileDialog.getSaveFileName(filedialog, 'Screenshot', directory, exports, selected)
         if not path:
             return
         path = unicode(path)
@@ -432,9 +438,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Insert an image
         """
 
+        if self.projectFile:
+            directory = os.path.dirname(self.projectFile)
+        else:
+            directory = globals.GApp.systconf['general'].project_path
+
         (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  \
                                         filter = 'PNG File (*.png);;GIF File (*.gif);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PBM File (*.pbm);;PGM File (*.pgm);;PPM File (*.ppm);;All files (*.*)',
-                                        directory='.', parent=self).getFile()
+                                        directory=directory, parent=self).getFile()
         if path != None and path != '':
             pixmap_image = QtGui.QPixmap(path)
             if not pixmap_image.isNull():
@@ -854,7 +865,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 return
 
         self.clear()
-        projectDialog = ProjectDialog(newProject=True)
+        projectDialog = ProjectDialog(parent=self, newProject=True)
         self.projectWorkdir = None
         self.projectConfigs = None
         projectDialog.show()
@@ -876,12 +887,16 @@ class Workspace(QMainWindow, Ui_MainWindow):
             if reply == QtGui.QMessageBox.No:
                 return
 
-        projectDialog = ProjectDialog(self.projectFile, self.projectWorkdir, self.projectConfigs)
+        if not self.projectFile:
+            new_project = True
+        else:
+            new_project = False
+        projectDialog = ProjectDialog(self, self.projectFile, self.projectWorkdir, self.projectConfigs, new_project)
         projectDialog.pushButtonOpenProject.setEnabled(False)
         if self.projectFile:
             projectDialog.setWindowTitle("Save Project As...")
-        self.projectWorkdir = None
-        self.projectConfigs = None
+        #self.projectWorkdir = None
+        #self.projectConfigs = None
         projectDialog.show()
         self.centerDialog(projectDialog)
         projectDialog.exec_()
