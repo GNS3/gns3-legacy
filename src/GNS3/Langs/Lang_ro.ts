@@ -233,94 +233,70 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../Ui/Form_About.py" line="361"/>
+        <location filename="../Ui/Form_About.py" line="21"/>
         <source>About</source>
         <translation>Despre</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="383"/>
+        <location filename="../Ui/Form_About.py" line="406"/>
         <source>&amp;About</source>
         <translation>&amp;Despre</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="401"/>
+        <location filename="../Ui/Form_About.py" line="407"/>
         <source>&amp;Thanks to</source>
         <translation>&amp;Mulțumiri pentru</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="402"/>
+        <location filename="../Ui/Form_About.py" line="408"/>
         <source>&amp;License Agreement</source>
         <translation>&amp;Acordul de licenţă</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="384"/>
+        <location filename="../Ui/Form_About.py" line="43"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;GNS3 %VERSION%&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Under GPL v2 license&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Developers:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Alexey Eromenko &amp;quot;Technologov&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Former developers:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Xavier Alt&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Romain Lamaison&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Aurelien Levesque&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;David Ruiz&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="../Ui/Form_About.py" line="74"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg from Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;a name=&quot;:vm&quot;&gt;&lt;/a&gt;Leonard Bernstein from USA&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Erik Wenzel: German translation (code: de)&lt;br /&gt;&lt;br /&gt;Jose Sen: Spanish translation (code: es)&lt;br /&gt;&lt;br /&gt;Mark Soe Min: Japanese translation (code: jp)&lt;br /&gt;&lt;br /&gt;Dmitriy Ivakin and Alexey Eromenko &quot;Technologov&quot;: Russian translation (code: ru)&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa: Slovak translation (code: sk)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg from Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;a name=&quot;:vm&quot;&gt;&lt;/a&gt;Leonard Bernstein from USA&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Erik Wenzel: German translation (code: de)&lt;br /&gt;&lt;br /&gt;Huan Ji from Wuhan: Chinese translation (code: cn)&lt;br /&gt;&lt;br /&gt;Jose Sen: Spanish translation (code: es)&lt;br /&gt;&lt;br /&gt;Mark Soe Min: Japanese translation (code: jp)&lt;br /&gt;&lt;br /&gt;Aboulgasem Albusaifi from Tarabulus: Arabic translation (code: ar)&lt;br /&gt;&lt;br /&gt;Marcio de Freitas Minicz: Brazilian-Portuguese translation (code: pt_br)&lt;br /&gt;&lt;br /&gt;Hasan Agirol Aksoy: Turkish translation (code: tr)&lt;br /&gt;&lt;br /&gt;Ivakin Dmitriy: Russian translation (code: ru)&lt;br /&gt;&lt;br /&gt;Hyeonjin Kim: Korean translation (code: kr)&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa: Slovak translation (code: sk)&lt;br /&gt;&lt;br /&gt;Michał Zieliński: Polish translation (code: pl)&lt;br /&gt;&lt;br /&gt;Veljko Dzodic: Serbian translation (code: sr)&lt;br /&gt;&lt;br /&gt;Abalfazl Meshki: Farsi translation (code: fa)&lt;br /&gt;&lt;br /&gt;Ondřej Filip: Czech translation (code: cz)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lyubomir Tsekov: Bulgarian translation (code: bg)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela &amp;amp; Vincenzo Reale: Italian translation (code: it)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Original five GNS3 developers: French Translation (code: fr)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kyryl Tumanov: Ukrainian translation (code: uk)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tranzitwww: Romanian translation (code: ro)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Dionissys Anyfantis: Greek translation (code: gr)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_About.ui" line="70"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;GNS3 0.8.1&lt;/span&gt;&lt;/p&gt;*
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;VirtualBox Edition&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Under GPL v2 license&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Developers:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Alexey Eromenko &quot;Technologov&quot;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Former developers:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Xavier Alt&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Romain Lamaison&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Aurelien Levesque&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;David Ruiz&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_About.py" line="362"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;GNS3 0.8.1&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;VirtualBox Edition&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Under GPL v2 license&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Developers:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Alexey Eromenko &quot;Technologov&quot;&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Former developers:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Xavier Alt&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Romain Lamaison&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Aurelien Levesque&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;David Ruiz&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -420,7 +396,7 @@ p, li { white-space: pre-wrap; }
         <translation>Nume de host:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="372"/>
+        <location filename="../Node/AbstractNode.py" line="371"/>
         <source>Connection</source>
         <translation>Conexiune</translation>
     </message>
@@ -445,7 +421,7 @@ p, li { white-space: pre-wrap; }
         <translation>Nume de host: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="372"/>
+        <location filename="../Node/AbstractNode.py" line="371"/>
         <source>No interface available, please configure this device</source>
         <translation>Nu există nici o interfaţă disponibilă, vă rog să configuraţi acest echipament</translation>
     </message>
@@ -539,6 +515,11 @@ p, li { white-space: pre-wrap; }
         <source>AUX port not available for this router model or base AUX port is set to 0 in preferences</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Workspace.py" line="814"/>
+        <source>GNS3 is up-to-date!</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AnyEmuDevice</name>
@@ -566,7 +547,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AnyVBoxEmuDevice</name>
     <message>
-        <location filename="../Node/AnyVBoxEmuDevice.py" line="228"/>
+        <location filename="../Node/AnyVBoxEmuDevice.py" line="236"/>
         <source>New hostname</source>
         <translation type="unfinished">Nume de host nou</translation>
     </message>
@@ -576,12 +557,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/AnyVBoxEmuDevice.py" line="228"/>
+        <location filename="../Node/AnyVBoxEmuDevice.py" line="236"/>
         <source>Cannot rename a connected emulated device</source>
         <translation type="unfinished">Nu se poate redenumi un echipament deja conectat</translation>
     </message>
     <message>
-        <location filename="../Node/AnyVBoxEmuDevice.py" line="244"/>
+        <location filename="../Node/AnyVBoxEmuDevice.py" line="252"/>
         <source>Dynamips error</source>
         <translation type="unfinished">Eroare Dynamips</translation>
     </message>
@@ -710,62 +691,62 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Console</name>
     <message>
-        <location filename="../Console.py" line="264"/>
+        <location filename="../Console.py" line="281"/>
         <source>Dynamips error</source>
         <translation>Eroare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="262"/>
+        <location filename="../Console.py" line="279"/>
         <source>Dynamips warning</source>
         <translation>Avertizare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="264"/>
+        <location filename="../Console.py" line="281"/>
         <source>Connection lost</source>
         <translation>Conexiune pierdută</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="341"/>
+        <location filename="../Console.py" line="386"/>
         <source>Sorry, not implemented in GNS3</source>
         <translation>Ne pare rău, nu este implementat în GNS3</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="352"/>
+        <location filename="../Console.py" line="397"/>
         <source>Please wait while gathering statistics...</source>
         <translation>Vă rugăm să aşteptaţi până ce se colectează statisticile...</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="377"/>
+        <location filename="../Console.py" line="422"/>
         <source>No idlepc values found</source>
         <translation>Nu s-au găsit valori pentru IdlePC</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="389"/>
+        <location filename="../Console.py" line="434"/>
         <source>No changes made</source>
         <translation>Nu s-au făcut modificări</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="402"/>
+        <location filename="../Console.py" line="447"/>
         <source>Can&apos;t apply idlepc value</source>
         <translation>Nu pot aplica valoarea IdlePC</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="407"/>
+        <location filename="../Console.py" line="452"/>
         <source>Incorrect number of paramaters or invalid parameters</source>
         <translation>Incorect număr de parametri sau parametri invalizi</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="420"/>
+        <location filename="../Console.py" line="465"/>
         <source>You have to save your topology before using save</source>
         <translation>Trebuie să salvaţi topologia înainte</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="428"/>
+        <location filename="../Console.py" line="473"/>
         <source>You have to save your topology before using push</source>
         <translation>Trebuie să salvaţi topologia înainte de a folosi împinge (push)</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="379"/>
+        <location filename="../Console.py" line="424"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;
 Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 </source>
@@ -774,24 +755,24 @@ Introduceţi numărul IdlePC care va fi aplicat pe echipalent [1 - %i] sau ENTER
 </translation>
     </message>
     <message>
-        <location filename="../Console.py" line="394"/>
+        <location filename="../Console.py" line="439"/>
         <source>Applied idlepc value %s to %s
 </source>
         <translation>Aplică valoarea IdlePC %s pentru %s
 </translation>
     </message>
     <message>
-        <location filename="../Console.py" line="410"/>
+        <location filename="../Console.py" line="455"/>
         <source>Unknown device: %s</source>
         <translation>Echipament necunoscut %s</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="476"/>
+        <location filename="../Console.py" line="521"/>
         <source>Cannot create %s: %s</source>
         <translation>Nu pot crea %s: %s</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="349"/>
+        <location filename="../Console.py" line="394"/>
         <source>%s already has an idlepc value applied (%s).</source>
         <translation>%s are deja o valoare IdlePC aplicată (%s).</translation>
     </message>
@@ -804,11 +785,6 @@ Introduceţi numărul IdlePC care va fi aplicat pe echipalent [1 - %i] sau ENTER
         <location filename="../Telnet.py" line="57"/>
         <source>Cannot start %s: %s</source>
         <translation>Nu pot porni %s: %s</translation>
-    </message>
-    <message>
-        <location filename="../Console.py" line="294"/>
-        <source>Unknown device</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -855,6 +831,19 @@ Introduceţi numărul IdlePC care va fi aplicat pe echipalent [1 - %i] sau ENTER
         <location filename="../Ui/ConfigurationPages/Form_DecorativeNodePage.ui" line="74"/>
         <source>&amp;Delete</source>
         <translation>Ş&amp;terge</translation>
+    </message>
+</context>
+<context>
+    <name>Defaults</name>
+    <message>
+        <location filename="../Config/Defaults.py" line="74"/>
+        <source>Wireshark Traditional Capture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Config/Defaults.py" line="75"/>
+        <source>Wireshark Live Traffic Capture</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1126,12 +1115,12 @@ Please choose an alternate network interface:</source>
 <context>
     <name>IDLEPCDialog</name>
     <message>
-        <location filename="../Ui/Form_IDLEPCDialog.py" line="45"/>
+        <location filename="../Ui/Form_IDLEPCDialog.py" line="22"/>
         <source>IDLE PC values</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IDLEPCDialog.py" line="46"/>
+        <location filename="../Ui/Form_IDLEPCDialog.py" line="29"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1286,102 +1275,102 @@ Please choose an alternate network interface:</source>
         <translation>Selectează un director de lucru</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="262"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="21"/>
         <source>IOS images and hypervisors</source>
         <translation>Imagini IOS şi hypervisori</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="283"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="302"/>
         <source>IOS Images</source>
         <translation>Imagini IDS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="284"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="186"/>
         <source>Settings</source>
         <translation>Setări</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="291"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="246"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="278"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="130"/>
         <source>Platform:</source>
         <translation>Platformă:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="272"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="89"/>
         <source>IDLE PC:</source>
         <translation>IDLE PC:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="263"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="34"/>
         <source>Images</source>
         <translation>Imagini</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="264"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="42"/>
         <source>IOS image</source>
         <translation>Imagine IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="293"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="262"/>
         <source>Hypervisors</source>
         <translation>Hypervisori</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="280"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="145"/>
         <source>Use the hypervisor manager</source>
         <translation>Foloseşte managerul hypervisor</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="296"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="276"/>
         <source>&amp;Save</source>
         <translation>&amp;Salvează</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="297"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="281"/>
         <source>&amp;Delete</source>
         <translation>Ş&amp;terge</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="285"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="191"/>
         <source>Host:</source>
         <translation>Gazdă:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="287"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="201"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="288"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="214"/>
         <source>Base UDP:</source>
         <translation>Port UDP de bază:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="290"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="238"/>
         <source>Working directory:</source>
         <translation>Directorul de lucru:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="294"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="269"/>
         <source>Host:Port</source>
         <translation>Gazdă:Port</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="295"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="270"/>
         <source>Base UDP</source>
         <translation>Port UDP de bază</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="289"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="227"/>
         <source>Base console:</source>
         <translation>Portul consolă de bază:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="298"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="303"/>
         <source>External hypervisors</source>
         <translation>Hypervisori externi</translation>
     </message>
@@ -1391,17 +1380,17 @@ Please choose an alternate network interface:</source>
         <translation>Selectaţi fişierul IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="265"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="43"/>
         <source>Model/Chassis</source>
         <translation>Model/Şasiu</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="271"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="77"/>
         <source>Model:</source>
         <translation>Model:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="276"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="112"/>
         <source>Default image for this platform</source>
         <translation>Imaginea implicită pentru această platformă</translation>
     </message>
@@ -1416,12 +1405,12 @@ Please choose an alternate network interface:</source>
         <translation>Nu pot deschide fişierul:%s</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="273"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="97"/>
         <source>Default RAM:</source>
         <translation>RAM implicit:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="275"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="108"/>
         <source>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Check for minimum RAM requirement&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Verifică capacitatea minimă de RAM cerută&lt;/a&gt;</translation>
     </message>
@@ -1436,22 +1425,22 @@ Please choose an alternate network interface:</source>
         <translation>Caseta cu fişierul imagine este golală</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="286"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="197"/>
         <source>127.0.0.1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="267"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="57"/>
         <source>Image file:</source>
         <translation>Fişierul imagine:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="269"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="69"/>
         <source>Base config:</source>
         <translation>Configuraţia de bază:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="270"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="73"/>
         <source>baseconfig.txt</source>
         <translation></translation>
     </message>
@@ -1466,12 +1455,12 @@ Please choose an alternate network interface:</source>
         <translation>Selectaţi fişierul cu configuraţia de bază</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="292"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="257"/>
         <source>Base AUX:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="274"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="101"/>
         <source> MiB</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1811,17 +1800,17 @@ Please choose an alternate network interface:</source>
 <context>
     <name>MACTableDialog</name>
     <message>
-        <location filename="../Ui/Form_MACTableDialog.py" line="44"/>
+        <location filename="../Ui/Form_MACTableDialog.py" line="21"/>
         <source>MAC Address Table</source>
         <translation>Tabela cu adrese MAC</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MACTableDialog.py" line="45"/>
+        <location filename="../Ui/Form_MACTableDialog.py" line="31"/>
         <source>Refresh</source>
         <translation>Reîncarcă</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MACTableDialog.py" line="46"/>
+        <location filename="../Ui/Form_MACTableDialog.py" line="35"/>
         <source>Clear table</source>
         <translation>Sterge tabla</translation>
     </message>
@@ -1872,428 +1861,433 @@ Please choose an alternate network interface:</source>
         <translation>Română</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="418"/>
+        <location filename="../Ui/Form_MainWindow.py" line="21"/>
         <source>GNS3</source>
         <translation>GNS3</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="419"/>
+        <location filename="../Ui/Form_MainWindow.py" line="44"/>
         <source>&amp;Edit</source>
         <translation>&amp;Editare</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="420"/>
+        <location filename="../Ui/Form_MainWindow.py" line="47"/>
         <source>&amp;File</source>
         <translation>&amp;Fişier</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="421"/>
+        <location filename="../Ui/Form_MainWindow.py" line="50"/>
         <source>&amp;Help</source>
         <translation>&amp;Ajutor</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="422"/>
+        <location filename="../Ui/Form_MainWindow.py" line="53"/>
         <source>&amp;View</source>
         <translation>&amp;Vizualizare</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="425"/>
+        <location filename="../Ui/Form_MainWindow.py" line="66"/>
         <source>General</source>
         <translation>Global</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="426"/>
+        <location filename="../Ui/Form_MainWindow.py" line="74"/>
         <source>Nodes Types</source>
         <translation>Tipuri de Noduri</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="430"/>
+        <location filename="../Ui/Form_MainWindow.py" line="123"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="429"/>
+        <location filename="../Ui/Form_MainWindow.py" line="108"/>
         <source>Topology Summary</source>
         <translation>Rezumat Topologie</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="431"/>
+        <location filename="../Ui/Form_MainWindow.py" line="130"/>
         <source>Console</source>
         <translation>Consolă</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="437"/>
+        <location filename="../Ui/Form_MainWindow.py" line="190"/>
         <source>&amp;About</source>
         <translation>&amp;Despre</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="438"/>
+        <location filename="../Ui/Form_MainWindow.py" line="197"/>
         <source>&amp;Quit</source>
         <translation>&amp;Ieşire</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="439"/>
+        <location filename="../Ui/Form_MainWindow.py" line="199"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="440"/>
+        <location filename="../Ui/Form_MainWindow.py" line="205"/>
         <source>&amp;Open</source>
         <translation>&amp;Deschide</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="442"/>
+        <location filename="../Ui/Form_MainWindow.py" line="207"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="443"/>
+        <location filename="../Ui/Form_MainWindow.py" line="213"/>
         <source>&amp;Save</source>
         <translation>&amp;Salvează</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="445"/>
+        <location filename="../Ui/Form_MainWindow.py" line="215"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="448"/>
+        <location filename="../Ui/Form_MainWindow.py" line="224"/>
         <source>Add a link</source>
         <translation>Adaugă o legătură</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="450"/>
+        <location filename="../Ui/Form_MainWindow.py" line="231"/>
         <source>Ctrl+Shift+I</source>
         <translation>Ctrl+Shift+I</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="451"/>
+        <location filename="../Ui/Form_MainWindow.py" line="237"/>
         <source>&amp;Online Help</source>
         <translation>Ajutor &amp;Online</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="459"/>
+        <location filename="../Ui/Form_MainWindow.py" line="268"/>
         <source>Show hostnames</source>
         <translation>Afişează numele de hosturi</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="463"/>
+        <location filename="../Ui/Form_MainWindow.py" line="283"/>
         <source>Save As</source>
         <translation>Salvează ca</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="491"/>
+        <location filename="../Ui/Form_MainWindow.py" line="362"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="465"/>
+        <location filename="../Ui/Form_MainWindow.py" line="287"/>
         <source>About &amp;Qt</source>
         <translation>Despre&amp;Qt</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="466"/>
+        <location filename="../Ui/Form_MainWindow.py" line="291"/>
         <source>Zoom &amp;In</source>
         <translation>Mar&amp;ire dimensiune</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="467"/>
+        <location filename="../Ui/Form_MainWindow.py" line="292"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="468"/>
+        <location filename="../Ui/Form_MainWindow.py" line="295"/>
         <source>Zoom &amp;Out</source>
         <translation>Micş&amp;orare dimensiune</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="469"/>
+        <location filename="../Ui/Form_MainWindow.py" line="296"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="470"/>
+        <location filename="../Ui/Form_MainWindow.py" line="299"/>
         <source>Zoom &amp;1:1</source>
         <translation>Dimensiune &amp;1:1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="471"/>
+        <location filename="../Ui/Form_MainWindow.py" line="300"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="472"/>
+        <location filename="../Ui/Form_MainWindow.py" line="303"/>
         <source>Select &amp;All</source>
         <translation>Selectează &amp;tot</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="473"/>
+        <location filename="../Ui/Form_MainWindow.py" line="304"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="474"/>
+        <location filename="../Ui/Form_MainWindow.py" line="307"/>
         <source>Select &amp;None</source>
         <translation>Şterge &amp;selecţia</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="475"/>
+        <location filename="../Ui/Form_MainWindow.py" line="308"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="476"/>
+        <location filename="../Ui/Form_MainWindow.py" line="314"/>
         <source>&amp;Preferences...</source>
         <translation>&amp;Preferinţe...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="477"/>
+        <location filename="../Ui/Form_MainWindow.py" line="315"/>
         <source>Ctrl+Shift+P</source>
         <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="449"/>
+        <location filename="../Ui/Form_MainWindow.py" line="230"/>
         <source>IOS images and hypervisors</source>
         <translation>Imagini IOS si hypervisori</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="487"/>
+        <location filename="../Ui/Form_MainWindow.py" line="353"/>
         <source>Add a note</source>
         <translation>Adăuga un comentariu</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="489"/>
+        <location filename="../Ui/Form_MainWindow.py" line="360"/>
         <source>New Project</source>
         <translation>Proiect nou</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="496"/>
+        <location filename="../Ui/Form_MainWindow.py" line="382"/>
         <source>&amp;Symbol Manager</source>
         <translation>Manager &amp;Simboluri</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="497"/>
+        <location filename="../Ui/Form_MainWindow.py" line="383"/>
         <source>Ctrl+Shift+S</source>
         <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="495"/>
+        <location filename="../Ui/Form_MainWindow.py" line="376"/>
         <source>Insert a picture</source>
         <translation>Adaugă o imagine</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="428"/>
+        <location filename="../Ui/Form_MainWindow.py" line="96"/>
         <source>Emulation</source>
         <translation>Emulaţie</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="432"/>
+        <location filename="../Ui/Form_MainWindow.py" line="149"/>
         <source>Drawing</source>
         <translation>Desen</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="499"/>
+        <location filename="../Ui/Form_MainWindow.py" line="391"/>
         <source>Draw a rectangle</source>
         <translation>Desenează un dreptunghi</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="501"/>
+        <location filename="../Ui/Form_MainWindow.py" line="399"/>
         <source>Draw an ellipse</source>
         <translation>Desenează o elipsă</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="504"/>
+        <location filename="../Ui/Form_MainWindow.py" line="413"/>
         <source>Snapshot</source>
         <translation>Instantaneu</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="433"/>
+        <location filename="../Ui/Form_MainWindow.py" line="154"/>
         <source>Undo Stack</source>
         <translation>Stivă Istoric Evenimente</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="478"/>
+        <location filename="../Ui/Form_MainWindow.py" line="322"/>
         <source>&amp;Undo</source>
         <translation>&amp;Refaceţi</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="479"/>
+        <location filename="../Ui/Form_MainWindow.py" line="323"/>
         <source>Ctrl+Z</source>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="480"/>
+        <location filename="../Ui/Form_MainWindow.py" line="330"/>
         <source>&amp;Redo</source>
         <translation>&amp;Refaceţi</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="481"/>
+        <location filename="../Ui/Form_MainWindow.py" line="331"/>
         <source>Ctrl+Y</source>
         <translation>Ctrl+Y</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="506"/>
+        <location filename="../Ui/Form_MainWindow.py" line="418"/>
         <source>Show layers</source>
         <translation>Arată straturile</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="423"/>
+        <location filename="../Ui/Form_MainWindow.py" line="56"/>
         <source>Control</source>
         <translation>Control</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="424"/>
+        <location filename="../Ui/Form_MainWindow.py" line="59"/>
         <source>Annotate</source>
         <translation>Adnotare</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="434"/>
+        <location filename="../Ui/Form_MainWindow.py" line="168"/>
         <source>Captures</source>
         <translation>Capturi</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="435"/>
+        <location filename="../Ui/Form_MainWindow.py" line="184"/>
         <source>Hostname</source>
         <translation>Nume de host</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="436"/>
+        <location filename="../Ui/Form_MainWindow.py" line="185"/>
         <source>Interface</source>
         <translation>Interfaţă</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="441"/>
+        <location filename="../Ui/Form_MainWindow.py" line="206"/>
         <source>Open project or topology file</source>
         <translation>Deschide un proiect sau a topologie</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="444"/>
+        <location filename="../Ui/Form_MainWindow.py" line="214"/>
         <source>Save project or topology file</source>
         <translation>Salvaţi proiectul sau topologia</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="452"/>
+        <location filename="../Ui/Form_MainWindow.py" line="243"/>
         <source>&amp;Screenshot</source>
         <translation>Captură &amp;ecran</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="453"/>
+        <location filename="../Ui/Form_MainWindow.py" line="244"/>
         <source>Take a screenshot</source>
         <translation>Crează o captură de ecran</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="455"/>
+        <location filename="../Ui/Form_MainWindow.py" line="252"/>
         <source>Start/Resume all devices</source>
         <translation>Start/Reia toate echipamentele</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="457"/>
+        <location filename="../Ui/Form_MainWindow.py" line="260"/>
         <source>Stop all devices</source>
         <translation>Opreşte toate echipamentele</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="461"/>
+        <location filename="../Ui/Form_MainWindow.py" line="276"/>
         <source>Console to all devices</source>
         <translation>Porneşte consola la toate echipamentele</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_MainWindow.py" line="462"/>
+        <location filename="../Ui/Form_MainWindow.py" line="282"/>
         <source>Save topology &amp;as…</source>
         <translation>Salvaţi topologia &amp;ca...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="464"/>
+        <location filename="../Ui/Form_MainWindow.py" line="284"/>
         <source>Save topology file as...</source>
         <translation>Salvaţi fişierul topologie ca...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="483"/>
+        <location filename="../Ui/Form_MainWindow.py" line="338"/>
         <source>Suspend all devices</source>
         <translation>Suspendă toate echipamentele</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="485"/>
+        <location filename="../Ui/Form_MainWindow.py" line="345"/>
         <source>New blank topology</source>
         <translation>Topologie noua</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="486"/>
+        <location filename="../Ui/Form_MainWindow.py" line="352"/>
         <source>Add Note</source>
         <translation>Adăuga comentariu</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="488"/>
+        <location filename="../Ui/Form_MainWindow.py" line="359"/>
         <source>&amp;New blank project</source>
         <translation>Proiect &amp;nou</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="490"/>
+        <location filename="../Ui/Form_MainWindow.py" line="361"/>
         <source>New blank project</source>
         <translation>Proiect nou</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="492"/>
+        <location filename="../Ui/Form_MainWindow.py" line="368"/>
         <source>&amp;Import/Export</source>
         <translation>&amp;Importă/Exportă</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="493"/>
+        <location filename="../Ui/Form_MainWindow.py" line="369"/>
         <source>Import/Export Startup Configs</source>
         <translation>Importă/Exportă Startup Config-urile</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="494"/>
+        <location filename="../Ui/Form_MainWindow.py" line="375"/>
         <source>Insert Picture</source>
         <translation>Adaugă imaginea</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="498"/>
+        <location filename="../Ui/Form_MainWindow.py" line="390"/>
         <source>Draw Rectangle</source>
         <translation>Desenează dreptunghiul</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="500"/>
+        <location filename="../Ui/Form_MainWindow.py" line="398"/>
         <source>Draw Ellipse</source>
         <translation>Desenează elipsa</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="502"/>
+        <location filename="../Ui/Form_MainWindow.py" line="406"/>
         <source>Show Interface Labels</source>
         <translation>Afişează Etichete Interfeţelor</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="503"/>
+        <location filename="../Ui/Form_MainWindow.py" line="407"/>
         <source>Show interface labels</source>
         <translation>Afişează etichete interfeţelor</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="505"/>
+        <location filename="../Ui/Form_MainWindow.py" line="414"/>
         <source>Take a snapshot</source>
         <translation>Crează un instantaneu</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_MainWindow.py" line="507"/>
+        <location filename="../Ui/Form_MainWindow.py" line="424"/>
         <source>&amp;Save project as…</source>
         <translation>&amp;Salvaţi proiectul ca...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="508"/>
+        <location filename="../Ui/Form_MainWindow.py" line="425"/>
         <source>Save project as...</source>
         <translation>Salvaţi proiectul ca...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="510"/>
+        <location filename="../Ui/Form_MainWindow.py" line="432"/>
         <source>Reload all devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="512"/>
+        <location filename="../Ui/Form_MainWindow.py" line="440"/>
         <source>Console AUX to all devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="513"/>
+        <location filename="../Ui/Form_MainWindow.py" line="443"/>
         <source>Reset Interface Labels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="446"/>
+        <source>Check for Update</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2330,7 +2324,7 @@ Please choose an alternate network interface:</source>
         <translation>Export configuraţia %s în %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1164"/>
+        <location filename="../NETFile.py" line="1168"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Eroare IO: %s</translation>
     </message>
@@ -2345,7 +2339,7 @@ Please choose an alternate network interface:</source>
         <translation>Vă rog să aşteptaţi până se încarcă topologia</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1164"/>
+        <location filename="../NETFile.py" line="1168"/>
         <source>IOError</source>
         <translation>Eroare IO</translation>
     </message>
@@ -2378,12 +2372,12 @@ Please choose an alternate network interface:</source>
 <context>
     <name>New Hypervisor</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="279"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="280"/>
         <source>New Hypervisor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="279"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="280"/>
         <source>WARNING: When doing multi-host setup, never use loopback addresses, such as &apos;localhost&apos; or &apos;127.0.0.1&apos;. Use actual IP addresses instead.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2391,42 +2385,42 @@ Please choose an alternate network interface:</source>
 <context>
     <name>NewProject</name>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="76"/>
+        <location filename="../Ui/Form_NewProject.py" line="21"/>
         <source>New Project</source>
         <translation>Proiect Nou</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="80"/>
+        <location filename="../Ui/Form_NewProject.py" line="48"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="83"/>
+        <location filename="../Ui/Form_NewProject.py" line="66"/>
         <source>&amp;Open a project</source>
         <translation>&amp;Deschide un proiect</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="78"/>
+        <location filename="../Ui/Form_NewProject.py" line="33"/>
         <source>Project name:</source>
         <translation>Nume proiect:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="79"/>
+        <location filename="../Ui/Form_NewProject.py" line="41"/>
         <source>Project directory:</source>
         <translation>Directorul pentru proiecte:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="77"/>
+        <location filename="../Ui/Form_NewProject.py" line="28"/>
         <source>Project settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="81"/>
+        <location filename="../Ui/Form_NewProject.py" line="53"/>
         <source>Save nvrams and virtual hard drives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="82"/>
+        <location filename="../Ui/Form_NewProject.py" line="58"/>
         <source>Save IOS startup configurations</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2469,22 +2463,22 @@ Please choose an alternate network interface:</source>
         <translation>Grup de %d %s</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NodeConfigurator.py" line="89"/>
+        <location filename="../Ui/Form_NodeConfigurator.py" line="21"/>
         <source>Node configurator</source>
         <translation>Configurare nod</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NodeConfigurator.py" line="90"/>
+        <location filename="../Ui/Form_NodeConfigurator.py" line="38"/>
         <source>Nodes</source>
         <translation>Noduri</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NodeConfigurator.py" line="91"/>
+        <location filename="../Ui/Form_NodeConfigurator.py" line="51"/>
         <source>Node Configuration</source>
         <translation>Configurare Nod</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NodeConfigurator.py" line="92"/>
+        <location filename="../Ui/Form_NodeConfigurator.py" line="73"/>
         <source>Please select a node in the list 
 to display the configuration page.</source>
         <translation>Vă rog să selectezi un nod din listă
@@ -2856,110 +2850,100 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
 <context>
     <name>Page_PreferencesCapture</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="151"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="102"/>
         <source>Capture directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="151"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="102"/>
         <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
         <translation type="unfinished">Calea pe care aţi selectat-o ar trebui să conţine numai caractere ASCII (fără diacritice) Dynamips (Cygwin.DLL) nu are suport pentru Unicode pe Windows!</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="46"/>
-        <source>Wireshark Traditional Capture</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="47"/>
-        <source>Wireshark Live Traffic Capture</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Page_PreferencesQemu</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="354"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="351"/>
         <source>Qemu guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="550"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="547"/>
         <source>Identifier and binary image must be set!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="448"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="445"/>
         <source>PIX firewall</source>
         <translation type="unfinished">Firewall PIX</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="481"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="478"/>
         <source>Serial</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="481"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="478"/>
         <source>Invalid serial (format required: 0xhhhhhhhh)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="488"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="485"/>
         <source>Key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="488"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="485"/>
         <source>Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="809"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="806"/>
         <source>Save</source>
         <translation type="unfinished">Salvează</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="495"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="492"/>
         <source>PIX settings have been saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="550"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="547"/>
         <source>JunOS router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="588"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="585"/>
         <source>JunOS settings have been saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="655"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="652"/>
         <source>ASA firewall</source>
         <translation type="unfinished">Firewall ASA</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="655"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="652"/>
         <source>Identifier, initrd and kernel must be set!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="698"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="695"/>
         <source>ASA settings have been saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="767"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="764"/>
         <source>IDS</source>
         <translation type="unfinished">IDS/IPS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="767"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="764"/>
         <source>Identifier, image 1 and image 2 must be set!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="809"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="806"/>
         <source>IDS settings have been saved</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2967,17 +2951,17 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
 <context>
     <name>Page_PreferencesVirtualBox</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="322"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="323"/>
         <source>VirtualBox guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="322"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="323"/>
         <source>Identifier and binary image must be set!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="160"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="161"/>
         <source>WARNING ! GuestControl is insecure. Passwords are both stored and sent in clear-text. Use at your own risk.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3051,20 +3035,26 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="95"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="92"/>
         <source>Hint: To actually start capturing traffic, right click on link&apos;s small colored circle.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="102"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="103"/>
         <source>%c = capture file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="95"/>
+        <source>Hint: To actually start capturing traffic, right click on link&apos;s small colored circle
+or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../Ui/Form_PreferencesDialog.py" line="93"/>
+        <location filename="../Ui/Form_PreferencesDialog.py" line="26"/>
         <source>Preferences</source>
         <translation>Preferinţe</translation>
     </message>
@@ -3230,17 +3220,17 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="238"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="248"/>
         <source>Terminal command:</source>
         <translation>Commandă terminal:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="372"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="382"/>
         <source>Always use manual mode when adding links</source>
         <translation>Întotdeauna foloseşte modul manual la adăugarea de noi link-uri</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="248"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="258"/>
         <source>Launch this command using the system default shell</source>
         <translation>Lansează această comandă folosind shell-ul implicit al sistemului de operare</translation>
     </message>
@@ -3260,22 +3250,22 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
         <translation>&amp;Resetează-l la implicit</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="382"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="392"/>
         <source>Show link status points on the workspace</source>
         <translation>Afişează puncte care indică starea legăturii între echipamente pe spaţiul de lucru</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="298"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="308"/>
         <source>Workspace width:</source>
         <translation>Lăţime suprafaţă de lucru:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="343"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="353"/>
         <source> px</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="330"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="340"/>
         <source>Workspace height:</source>
         <translation>Înălţime suprafaţă de lucru:</translation>
     </message>
@@ -3290,12 +3280,12 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
         <translation>Setări Globale</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="292"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="302"/>
         <source>GUI Settings</source>
         <translation>Setări GUI</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="362"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="372"/>
         <source>Draw a rectangle when an item is selected</source>
         <translation>Desenează un chenar atunci când un element este selectat</translation>
     </message>
@@ -3315,22 +3305,22 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
         <translation> secunde</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="209"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="219"/>
         <source>Terminal Settings</source>
         <translation>Setări Terminal</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="215"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="225"/>
         <source>Preconfigurated terminal commands:</source>
         <translation>Preconfigurare comenzi terminal:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="231"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="241"/>
         <source>&amp;Use</source>
         <translation>&amp;Utilizează</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="258"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="268"/>
         <source>Terminal command magic strings:
 %h = device server 
 %p = device port
@@ -3351,13 +3341,18 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
         <translation>Salvează automat:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="281"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="291"/>
         <source>&lt;html&gt;This option will attempt to bring existing opened console window to front, instead of opening a new window.&lt;br&gt;If no existing opened console window exists, it will start a new  console window.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="284"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="294"/>
         <source>Bring console window to front (experimental feature)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="208"/>
+        <source>Automatically check for update</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4062,227 +4057,227 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="285"/>
+        <location filename="../Scene.py" line="288"/>
         <source>Delete</source>
         <translation>Şterge</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="125"/>
+        <location filename="../Scene.py" line="126"/>
         <source>Configure</source>
         <translation>Configurează</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="181"/>
+        <location filename="../Scene.py" line="182"/>
         <source>Console</source>
         <translation>Consolă</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="207"/>
+        <location filename="../Scene.py" line="210"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="227"/>
+        <location filename="../Scene.py" line="230"/>
         <source>Stop</source>
         <translation>Stop</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="217"/>
+        <location filename="../Scene.py" line="220"/>
         <source>Suspend</source>
         <translation>Suspendă</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="253"/>
+        <location filename="../Scene.py" line="256"/>
         <source>Idle PC</source>
         <translation>Calculează Idle PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="481"/>
+        <location filename="../Scene.py" line="484"/>
         <source>IDLE PC</source>
         <translation>IDLE PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="438"/>
+        <location filename="../Scene.py" line="441"/>
         <source>Please select only one router</source>
         <translation>Vă rog să selectaţi doar un singur router</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="481"/>
+        <location filename="../Scene.py" line="484"/>
         <source>No idlepc values found</source>
         <translation>Nu s-au găsit valori pentru IdlePC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="457"/>
+        <location filename="../Scene.py" line="460"/>
         <source>Dynamips error</source>
         <translation>Eroare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="445"/>
+        <location filename="../Scene.py" line="448"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%s are deja o valoare IdlePC aplicată, doreşti să calculezi una nouă?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="130"/>
+        <location filename="../Scene.py" line="131"/>
         <source>Change the hostname</source>
         <translation>Schimbă numele de host</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="135"/>
+        <location filename="../Scene.py" line="136"/>
         <source>Show/Hide the hostname</source>
         <translation>Afişează/Ascunde numele de host</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="176"/>
+        <location filename="../Scene.py" line="177"/>
         <source>Change console port</source>
         <translation>Schimbă portul de consolă</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="258"/>
+        <location filename="../Scene.py" line="261"/>
         <source>Startup-config</source>
         <translation>Startup-config</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="291"/>
+        <location filename="../Scene.py" line="294"/>
         <source>Lower one step</source>
         <translation>Coboară un pas</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="296"/>
+        <location filename="../Scene.py" line="299"/>
         <source>Raise one step</source>
         <translation>Urcă un pas</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="271"/>
+        <location filename="../Scene.py" line="274"/>
         <source>Style</source>
         <translation>Stil</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="232"/>
+        <location filename="../Scene.py" line="235"/>
         <source>Reload</source>
         <translation>Restart</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="147"/>
+        <location filename="../Scene.py" line="148"/>
         <source>Set an hypervisor</source>
         <translation>Setează un hypervisor</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="939"/>
+        <location filename="../Scene.py" line="942"/>
         <source>annotation</source>
         <translation>adnotare</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="948"/>
+        <location filename="../Scene.py" line="951"/>
         <source>rectangle</source>
         <translation>dreptunghi</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="956"/>
+        <location filename="../Scene.py" line="959"/>
         <source>ellipse</source>
         <translation>elipsă</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="157"/>
+        <location filename="../Scene.py" line="158"/>
         <source>MAC Address Table</source>
         <translation>Tabela cu adrese MAC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="167"/>
+        <location filename="../Scene.py" line="168"/>
         <source>Change Symbol</source>
         <translation>Schimbă simbolul</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="278"/>
+        <location filename="../Scene.py" line="281"/>
         <source>Duplicate</source>
         <translation>Dublură</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="307"/>
+        <location filename="../Scene.py" line="310"/>
         <source>Align horizontally</source>
         <translation>Aliniaţi orizontal</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="313"/>
+        <location filename="../Scene.py" line="316"/>
         <source>Align vertically</source>
         <translation>Aliniaţi vertical</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="695"/>
+        <location filename="../Scene.py" line="698"/>
         <source>Message</source>
         <translation type="unfinished">Mesaj</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="667"/>
+        <location filename="../Scene.py" line="670"/>
         <source>Do you really want to stop these devices?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="695"/>
+        <location filename="../Scene.py" line="698"/>
         <source>Do you really want to reload these devices?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="243"/>
+        <location filename="../Scene.py" line="246"/>
         <source>Change AUX port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="248"/>
+        <location filename="../Scene.py" line="251"/>
         <source>Console to AUX port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="537"/>
+        <location filename="../Scene.py" line="540"/>
         <source>Do you really want to delete these nodes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="336"/>
+        <location filename="../Scene.py" line="339"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="775"/>
+        <location filename="../Scene.py" line="778"/>
         <source>AddLink</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="753"/>
+        <location filename="../Scene.py" line="756"/>
         <source>Qemu machines support only Ethernet links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="755"/>
+        <location filename="../Scene.py" line="758"/>
         <source>VirtualBox machines support only Ethernet links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="757"/>
+        <location filename="../Scene.py" line="760"/>
         <source>Ethernet switch supports only Ethernet links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="763"/>
+        <location filename="../Scene.py" line="766"/>
         <source>ATM switch supports only ATM links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="769"/>
+        <location filename="../Scene.py" line="772"/>
         <source>Frame-Relay switch supports only serial links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="775"/>
+        <location filename="../Scene.py" line="778"/>
         <source>ATM bridge supports only ATM and Ethernet links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="192"/>
+        <location filename="../Scene.py" line="193"/>
         <source>Bring display to front</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="198"/>
+        <location filename="../Scene.py" line="201"/>
         <source>Hide display window</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4303,22 +4298,22 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
 <context>
     <name>Snapshots</name>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="50"/>
+        <location filename="../Ui/Form_Snapshots.py" line="21"/>
         <source>Snapshots</source>
         <translation>Instantanee (Snapshots)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="51"/>
+        <location filename="../Ui/Form_Snapshots.py" line="31"/>
         <source>Create</source>
         <translation>Creează</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="52"/>
+        <location filename="../Ui/Form_Snapshots.py" line="35"/>
         <source>Load</source>
         <translation>Incărcă</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="53"/>
+        <location filename="../Ui/Form_Snapshots.py" line="44"/>
         <source>Delete</source>
         <translation>Şterge</translation>
     </message>
@@ -4326,27 +4321,27 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
 <context>
     <name>StartupConfigDialog</name>
     <message>
-        <location filename="../Ui/Form_StartupConfig.py" line="66"/>
+        <location filename="../Ui/Form_StartupConfig.py" line="21"/>
         <source>Startup-config</source>
         <translation>Startup-config-ul</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StartupConfig.py" line="67"/>
+        <location filename="../Ui/Form_StartupConfig.py" line="28"/>
         <source>Config file:</source>
         <translation>Fişier de configurare:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StartupConfig.py" line="68"/>
+        <location filename="../Ui/Form_StartupConfig.py" line="35"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StartupConfig.py" line="69"/>
+        <location filename="../Ui/Form_StartupConfig.py" line="48"/>
         <source>Load config from nvram</source>
         <translation>Încarcă configuraţia din NVRAM</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StartupConfig.py" line="70"/>
+        <location filename="../Ui/Form_StartupConfig.py" line="55"/>
         <source>Save changes into the config file</source>
         <translation>Salvez modificările în fişierul de configurare</translation>
     </message>
@@ -4376,52 +4371,52 @@ ex: #copy start run</translation>
 <context>
     <name>StyleDialog</name>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="78"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="21"/>
         <source>Style</source>
         <translation>Stil</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="79"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="28"/>
         <source>Options</source>
         <translation>Opţiuni</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="80"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="33"/>
         <source>&amp;Select color</source>
         <translation>&amp;Selectaţi culoarea</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="81"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="37"/>
         <source>&amp;Select font</source>
         <translation>&amp;Selectaţi fontul</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="82"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="41"/>
         <source>&amp;Select border color</source>
         <translation>&amp;Selectaţi culoarea conturului</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="83"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="45"/>
         <source>Border width:</source>
         <translation>Lăţimea conturului:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="84"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="55"/>
         <source>Border style:</source>
         <translation>Stilul conturului:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="85"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="62"/>
         <source>Rotation:</source>
         <translation>Rotaţie:</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_StyleDialog.py" line="86"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="66"/>
         <source>°</source>
         <translation>°</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="87"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="72"/>
         <source>Rotation can be ajusted on the scene for a selected item with
 ALT + LEFT or RIGHT</source>
         <translation>Rotaţia poate fi ajustată pe topologie pentru un element selectat cu
@@ -4461,12 +4456,12 @@ ALT + STÂNGA sau DREAPTA</translation>
 <context>
     <name>SymbolDialog</name>
     <message>
-        <location filename="../Ui/Form_SymbolDialog.py" line="43"/>
+        <location filename="../Ui/Form_SymbolDialog.py" line="21"/>
         <source>Change symbol</source>
         <translation>Schimbă simbolul</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolDialog.py" line="44"/>
+        <location filename="../Ui/Form_SymbolDialog.py" line="31"/>
         <source>Symbols</source>
         <translation>Simboluri</translation>
     </message>
@@ -4487,72 +4482,72 @@ ALT + STÂNGA sau DREAPTA</translation>
 <context>
     <name>SymbolManager</name>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="117"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="21"/>
         <source>Symbol Manager</source>
         <translation>Manager Simboluri</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="118"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="28"/>
         <source>Symbol librairies</source>
         <translation>Simbol librării</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="119"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="33"/>
         <source>Library path:</source>
         <translation>Cale librării:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="120"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="40"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="121"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="44"/>
         <source>&amp;Add</source>
         <translation>&amp;Adaugă</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="122"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="48"/>
         <source>&amp;Remove</source>
         <translation>Ş&amp;terge</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="123"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="59"/>
         <source>&gt;</source>
         <translation>&gt;</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="124"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="63"/>
         <source>&lt;</source>
         <translation>&lt;</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="125"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="70"/>
         <source>Customized node settings</source>
         <translation>Setările personalizate pentru nod</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="126"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="75"/>
         <source>Name:</source>
         <translation>Nume:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="127"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="82"/>
         <source>Type:</source>
         <translation>Tip:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="128"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="91"/>
         <source>&amp;Apply</source>
         <translation>&amp;Aplică</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="129"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="99"/>
         <source>Available symbols</source>
         <translation>Simboluri disponibile</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="130"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="106"/>
         <source>Customized nodes</source>
         <translation>Noduri personalizate</translation>
     </message>
@@ -4580,32 +4575,32 @@ ALT + STÂNGA sau DREAPTA</translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="515"/>
+        <location filename="../Topology.py" line="518"/>
         <source>IOS image</source>
         <translation>Imagine IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="507"/>
+        <location filename="../Topology.py" line="510"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="503"/>
+        <location filename="../Topology.py" line="506"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Vă rog să configuraţi calea pentru Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1194"/>
+        <location filename="../Topology.py" line="1197"/>
         <source>Dynamips error</source>
         <translation>Eroare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1194"/>
+        <location filename="../Topology.py" line="1197"/>
         <source>Connection lost</source>
         <translation>Conexiune pierdută</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1074"/>
+        <location filename="../Topology.py" line="1077"/>
         <source>Connection</source>
         <translation>Conexiune</translation>
     </message>
@@ -4615,245 +4610,250 @@ ALT + STÂNGA sau DREAPTA</translation>
         <translation>Nu mă pot conecta la hypervisor-ul extern pe %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="467"/>
+        <location filename="../Topology.py" line="470"/>
         <source>No image for platform %s</source>
         <translation>Nici o imagine pentru platforma %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1074"/>
+        <location filename="../Topology.py" line="1077"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Trebuie să conectaţi cel puţin un Router la Switch</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="820"/>
+        <location filename="../Topology.py" line="823"/>
         <source>PIX image</source>
         <translation>Imagine PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="507"/>
+        <location filename="../Topology.py" line="510"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>Vă rog să testaţi calea spre dynamips din opţiuni</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="457"/>
+        <location filename="../Topology.py" line="460"/>
         <source>Please register at least one IOS image</source>
         <translation>Vă rog să înregistraţi cel puţin o imagine IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="361"/>
+        <location filename="../Topology.py" line="364"/>
         <source>Qemuwrapper error</source>
         <translation>Eroare Qemuwrapper</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="820"/>
+        <location filename="../Topology.py" line="823"/>
         <source>%s seems to not exist, please check</source>
         <translation>%s nu pare să existe, vă rog să verificaţi</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="668"/>
+        <location filename="../Topology.py" line="671"/>
         <source>JunOS image</source>
         <translation>Imagine JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="555"/>
+        <location filename="../Topology.py" line="558"/>
         <source>Qemu image</source>
         <translation>Imagine Qemu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="769"/>
+        <location filename="../Topology.py" line="772"/>
         <source>ASA kernel</source>
         <translation>Fişierul ASA kernel</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="765"/>
+        <location filename="../Topology.py" line="768"/>
         <source>ASA initrd</source>
         <translation>Fişierul ASA initrd</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="716"/>
+        <location filename="../Topology.py" line="719"/>
         <source>IDS images</source>
         <translation>Imagini IDS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="316"/>
+        <location filename="../Topology.py" line="319"/>
         <source>External Qemuwrapper</source>
         <translation>Qemuwrapper extern</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="311"/>
+        <location filename="../Topology.py" line="314"/>
         <source>Please register at least one external Qemuwrapper</source>
         <translation>Vă rog să înregistraţi cel puţin un Qemuwrapper extern</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="316"/>
+        <location filename="../Topology.py" line="319"/>
         <source>Please choose your external Qemuwrapper</source>
         <translation>Vă rog să alegeţi Qemuwrapper-ul extern</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1050"/>
+        <location filename="../Topology.py" line="1053"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Nu pot conecta aceste echipamente</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="245"/>
+        <location filename="../Topology.py" line="248"/>
         <source>IOS Base config</source>
         <translation>bază de configurare tip IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="245"/>
+        <location filename="../Topology.py" line="248"/>
         <source>%s: %s</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="640"/>
+        <location filename="../Topology.py" line="643"/>
         <source>JunOS</source>
         <translation>JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="640"/>
+        <location filename="../Topology.py" line="643"/>
         <source>Please configure a JunOS</source>
         <translation>Vă rog să configuraţi un JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="653"/>
+        <location filename="../Topology.py" line="656"/>
         <source>Please choose a JunOS</source>
         <translation>Vă rog să alegeţi un JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="698"/>
+        <location filename="../Topology.py" line="701"/>
         <source>IDS</source>
         <translation>IDS/IPS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="685"/>
+        <location filename="../Topology.py" line="688"/>
         <source>Please configure an IDS</source>
         <translation>Vă rog să configuraţi un IDS/IPS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="698"/>
+        <location filename="../Topology.py" line="701"/>
         <source>Please choose an IDS</source>
         <translation>Vă rog să alegeţi un IDS/IPS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="750"/>
+        <location filename="../Topology.py" line="753"/>
         <source>ASA</source>
         <translation>ASA</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="737"/>
+        <location filename="../Topology.py" line="740"/>
         <source>Please configure an ASA</source>
         <translation>Vă rog să configuraţi un ASA</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="750"/>
+        <location filename="../Topology.py" line="753"/>
         <source>Please choose an ASA</source>
         <translation>Vă rog să alegeţi un ASA</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="805"/>
+        <location filename="../Topology.py" line="808"/>
         <source>PIX</source>
         <translation>PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="792"/>
+        <location filename="../Topology.py" line="795"/>
         <source>Please configure a PIX</source>
         <translation>Vă rog să configuraţi un PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="805"/>
+        <location filename="../Topology.py" line="808"/>
         <source>Please choose a PIX</source>
         <translation>Vă rog să alegeţi un PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="482"/>
+        <location filename="../Topology.py" line="485"/>
         <source>Please choose an image:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="388"/>
+        <location filename="../Topology.py" line="391"/>
         <source>External VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="383"/>
+        <location filename="../Topology.py" line="386"/>
         <source>Please register at least one external VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="388"/>
+        <location filename="../Topology.py" line="391"/>
         <source>Please choose your external VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="430"/>
+        <location filename="../Topology.py" line="433"/>
         <source>VBoxwrapper error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="526"/>
+        <location filename="../Topology.py" line="529"/>
         <source>Please configure a Qemu guest:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="539"/>
+        <location filename="../Topology.py" line="542"/>
         <source>Qemu guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="539"/>
+        <location filename="../Topology.py" line="542"/>
         <source>Please choose a Qemu guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="572"/>
+        <location filename="../Topology.py" line="575"/>
         <source>VBox image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="572"/>
+        <location filename="../Topology.py" line="575"/>
         <source>Please configure a VirtualBox guest:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="585"/>
+        <location filename="../Topology.py" line="588"/>
         <source>VirtualBox guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="585"/>
+        <location filename="../Topology.py" line="588"/>
         <source>Please choose a VirtualBox guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="617"/>
+        <location filename="../Topology.py" line="620"/>
         <source>VirtualBox API</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="604"/>
+        <location filename="../Topology.py" line="607"/>
         <source>ERROR: VirtualBox API module cannot be loaded !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="624"/>
+        <location filename="../Topology.py" line="627"/>
         <source>VirtualBox VMname/UUID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="624"/>
+        <location filename="../Topology.py" line="627"/>
         <source>VirtualBox Machine &apos;%s&apos; seems to not exist, please check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="611"/>
+        <location filename="../Topology.py" line="614"/>
         <source>ERROR: VirtualBox API module cannot start !</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="237"/>
+        <source>The base config file (%s) specified for this IOS can not be found. Your router will start with a blank configuration.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>UiConfig_PreferencesCapture</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="141"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="92"/>
         <source>Local capture working directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4861,85 +4861,90 @@ ALT + STÂNGA sau DREAPTA</translation>
 <context>
     <name>UiConfig_PreferencesDynamips</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="174"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="170"/>
         <source>Dynamips binary</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="180"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="176"/>
         <source>Can&apos;t open file: %s</source>
         <translation type="unfinished">Nu pot deschide fişierul:%s</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="190"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="186"/>
         <source>Dynamips path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="206"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="202"/>
         <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
         <translation type="unfinished">Calea pe care aţi selectat-o ar trebui să conţine numai caractere ASCII (fără diacritice) Dynamips (Cygwin.DLL) nu are suport pentru Unicode pe Windows!</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="196"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="192"/>
         <source>Local hypervisor working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="206"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="202"/>
         <source>Working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="211"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="207"/>
         <source>Message</source>
         <translation type="unfinished">Mesaj</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="211"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="207"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="247"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="248"/>
         <source>Failed to start Dynamips</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="233"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="234"/>
         <source>Failed to determine version of Dynamips.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="237"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="238"/>
         <source>Found Dynamips %s, which is not supported. Use 0.2.8+ instead.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="245"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="246"/>
         <source>Dynamips %s successfully started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="214"/>
+        <source>Dynamips path doesn&apos;t exist</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>UiConfig_PreferencesGeneral</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="251"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="206"/>
         <source>Project Directory</source>
         <translation type="unfinished">Directorul pentru proiect</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="259"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="214"/>
         <source>IOS Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="277"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="233"/>
         <source>Configuration file</source>
         <translation type="unfinished">Fişierul de configurare</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="277"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="233"/>
         <source>Configuration file cleared, default settings will be applied after a restart</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4947,32 +4952,32 @@ ALT + STÂNGA sau DREAPTA</translation>
 <context>
     <name>UiConfig_PreferencesQemu</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="315"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="312"/>
         <source>Local Qemu working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="854"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="851"/>
         <source>Message</source>
         <translation type="unfinished">Mesaj</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="854"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="851"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="863"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="860"/>
         <source>Qemuwrapper path doesn&apos;t exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="869"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="866"/>
         <source>Failed to start Qemuwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="886"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="883"/>
         <source>Failed to start qemu</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4987,7 +4992,7 @@ ALT + STÂNGA sau DREAPTA</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="889"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="886"/>
         <source>You&apos;re running unpatched version of qemu, which won&apos;t work</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5005,53 +5010,53 @@ ALT + STÂNGA sau DREAPTA</translation>
 <context>
     <name>UiConfig_PreferencesVirtualBox</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="307"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="308"/>
         <source>Local VirtualBox working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="401"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="402"/>
         <source>Message</source>
         <translation type="unfinished">Mesaj</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="401"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="402"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="413"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="414"/>
         <source>VBoxwrapper path doesn&apos;t exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="419"/>
-        <source>Failed to load vboxapi module; Please check VirtualBox installation.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="433"/>
-        <source>Failed to start vboxapi module; Please check VirtualBox installation.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="439"/>
-        <source>ERROR: Found VirtualBox v%s. Minimum required is: v%s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="446"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="447"/>
         <source>Failed to start VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="449"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="450"/>
         <source>VBoxwrapper and VirtualBox API %s have successfully started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="427"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="428"/>
         <source>Failed to start xdotool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="420"/>
+        <source>Failed to load vboxapi module. Please check VirtualBox installation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="434"/>
+        <source>Failed to start vboxapi module. Please check VirtualBox installation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="440"/>
+        <source>ERROR: Found VirtualBox v%s. Required: v%s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5240,17 +5245,17 @@ ALT + STÂNGA sau DREAPTA</translation>
 <context>
     <name>Wizard</name>
     <message>
-        <location filename="../Ui/Form_Wizard.py" line="80"/>
+        <location filename="../Ui/Form_Wizard.py" line="21"/>
         <source>Setup Wizard</source>
         <translation>Expertul de configurare</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Wizard.py" line="81"/>
+        <location filename="../Ui/Form_Wizard.py" line="28"/>
         <source>Step 1</source>
         <translation>Pasul 1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Wizard.py" line="82"/>
+        <location filename="../Ui/Form_Wizard.py" line="44"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -5265,12 +5270,12 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt; font-weight:600;&quot;&gt;directorul de lucru este valid.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Wizard.py" line="88"/>
+        <location filename="../Ui/Form_Wizard.py" line="56"/>
         <source>Step 2</source>
         <translation>Pasul 2</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Wizard.py" line="89"/>
+        <location filename="../Ui/Form_Wizard.py" line="72"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -5286,117 +5291,117 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="166"/>
+        <location filename="../Workspace.py" line="178"/>
         <source>Docks</source>
         <translation>Docuri</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1106"/>
+        <location filename="../Workspace.py" line="1162"/>
         <source>Dynamips error</source>
         <translation>Eroare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="685"/>
+        <location filename="../Workspace.py" line="699"/>
         <source>Connection lost</source>
         <translation>Conexiune pierdută</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="654"/>
+        <location filename="../Workspace.py" line="668"/>
         <source>Abort</source>
         <translation>Întrerupe</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="786"/>
+        <location filename="../Workspace.py" line="842"/>
         <source>Starting nodes ...</source>
         <translation>Pornire noduri ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="703"/>
+        <location filename="../Workspace.py" line="717"/>
         <source>Stopping nodes ...</source>
         <translation>Oprire noduri ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="709"/>
+        <location filename="../Workspace.py" line="723"/>
         <source>Suspending nodes ...</source>
         <translation>Suspendare noduri ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="779"/>
+        <location filename="../Workspace.py" line="835"/>
         <source>Loading</source>
         <translation>Incărcare</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="571"/>
+        <location filename="../Workspace.py" line="585"/>
         <source>Hide hostnames</source>
         <translation>Ascunde numele de host</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="576"/>
+        <location filename="../Workspace.py" line="590"/>
         <source>Show hostnames</source>
         <translation>Afişează numele de host</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1088"/>
+        <location filename="../Workspace.py" line="1144"/>
         <source>Open a file</source>
         <translation>Deschide un fişier</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1084"/>
+        <location filename="../Workspace.py" line="1140"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Calea către Dynamips trebuie să fie configurată</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="842"/>
+        <location filename="../Workspace.py" line="898"/>
         <source>New Project</source>
         <translation>Proiect nou</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1172"/>
+        <location filename="../Workspace.py" line="1228"/>
         <source>Message</source>
         <translation>Mesaj</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="451"/>
+        <location filename="../Workspace.py" line="465"/>
         <source>Add a link</source>
         <translation>Adaugă o legătură</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="466"/>
+        <location filename="../Workspace.py" line="480"/>
         <source>Cancel</source>
         <translation>Anulează</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="842"/>
+        <location filename="../Workspace.py" line="898"/>
         <source>Can&apos;t create a project</source>
         <translation>Nu pot creea un proiect</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="779"/>
+        <location filename="../Workspace.py" line="835"/>
         <source>Invalid file %s</source>
         <translation>Fişier invalid %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1163"/>
+        <location filename="../Workspace.py" line="1219"/>
         <source>Would you like to save the current topology?</source>
         <translation>Doriţi să salvaţi topologia curentă?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="359"/>
+        <location filename="../Workspace.py" line="373"/>
         <source>Directory to write startup-configs</source>
         <translation>Director pentru a scrie fişierele startup-config</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="593"/>
+        <location filename="../Workspace.py" line="607"/>
         <source>Hide interface names</source>
         <translation>Ascunde numele interfeţelor</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="598"/>
+        <location filename="../Workspace.py" line="612"/>
         <source>Show interface names</source>
         <translation>Afişează numele interfeţelor</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="983"/>
+        <location filename="../Workspace.py" line="1039"/>
         <source>Snapshot</source>
         <translation>Instantaneu (Snapshot)</translation>
     </message>
@@ -5406,77 +5411,77 @@ p, li { white-space: pre-wrap; }
         <translation>Nu pot crea directorul %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="988"/>
+        <location filename="../Workspace.py" line="1044"/>
         <source>Please wait while creating a snapshot</source>
         <translation>Vă rog să aşteptaţi până se va crea instantaneul (Snapshot)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="685"/>
+        <location filename="../Workspace.py" line="699"/>
         <source>%s: Dynamips error</source>
         <translation>%s: Eroare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="682"/>
+        <location filename="../Workspace.py" line="696"/>
         <source>%s: Dynamips warning</source>
         <translation>%s: Avertizare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="350"/>
+        <location filename="../Workspace.py" line="364"/>
         <source>Extracting to a directory</source>
         <translation>Extragerea într-un director</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="352"/>
+        <location filename="../Workspace.py" line="366"/>
         <source>Importing from a directory</source>
         <translation>Importul dintr-un director</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="346"/>
+        <location filename="../Workspace.py" line="360"/>
         <source>Configs</source>
         <translation>Configuraţii</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="346"/>
+        <location filename="../Workspace.py" line="360"/>
         <source>Please choose an option</source>
         <translation>Vă rog să alegeţi o opţiune</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="372"/>
+        <location filename="../Workspace.py" line="386"/>
         <source>Directory to read startup-configs</source>
         <translation>Director pentru a citi fişierele startup-config</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="393"/>
+        <location filename="../Workspace.py" line="407"/>
         <source>IO Error</source>
         <translation>Eroare IO</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="383"/>
+        <location filename="../Workspace.py" line="397"/>
         <source>Importing %s from %s</source>
         <translation>Import %s din %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="396"/>
+        <location filename="../Workspace.py" line="410"/>
         <source>Ignoring unknown device %s</source>
         <translation>Ignor echipamentul necunoscut %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="398"/>
+        <location filename="../Workspace.py" line="412"/>
         <source>Dynamips Error: %s</source>
         <translation>Eroare Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="400"/>
+        <location filename="../Workspace.py" line="414"/>
         <source>Dynamips Warning: %s</source>
         <translation>Avertizare Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="272"/>
+        <location filename="../Workspace.py" line="284"/>
         <source>I/O Error</source>
         <translation>Eroare I/O</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="272"/>
+        <location filename="../Workspace.py" line="284"/>
         <source>I/O Error: %s</source>
         <translation>Eroare I/O: %s</translation>
     </message>
@@ -5491,78 +5496,93 @@ p, li { white-space: pre-wrap; }
         <translation>Ctrl+Y</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="715"/>
+        <location filename="../Workspace.py" line="729"/>
         <source>Reloading nodes ...</source>
         <translation>Reîncărcare noduri ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="442"/>
+        <location filename="../Workspace.py" line="456"/>
         <source>picture</source>
         <translation>fotografie</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1037"/>
+        <location filename="../Workspace.py" line="1093"/>
         <source>Dynamips error: %s</source>
         <translation>Eroare Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="587"/>
+        <location filename="../Workspace.py" line="601"/>
         <source>Reset saved interface labels?</source>
         <translation>Resetez etichetele salvate ale interfeţelor?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="794"/>
+        <location filename="../Workspace.py" line="850"/>
         <source>Do you want to clear the current topology?</source>
         <translation>Doriţi să şterg topologia curentă?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="983"/>
+        <location filename="../Workspace.py" line="1039"/>
         <source>Cannot create directories in %s: %s</source>
         <translation>Nu pot crea directoare în %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1065"/>
+        <location filename="../Workspace.py" line="1121"/>
         <source>Dynamips error!!: %s</source>
         <translation>Eroare Dynamips!!: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1106"/>
+        <location filename="../Workspace.py" line="1162"/>
         <source>Connection lost with Dynamips hypervisor (crashed?)</source>
         <translation>Conexiune pierdută cu hypervisor-ul dynamips (prăbuşit?)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1138"/>
+        <location filename="../Workspace.py" line="1194"/>
         <source>Save As...</source>
         <translation>Salvează ca...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="818"/>
+        <location filename="../Workspace.py" line="874"/>
         <source>This action is going to stop all your devices and captures, would you like to continue anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="875"/>
+        <location filename="../Workspace.py" line="931"/>
         <source>Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="616"/>
+        <location filename="../Workspace.py" line="630"/>
         <source>Interface labels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="607"/>
+        <location filename="../Workspace.py" line="621"/>
         <source>Please hide the interface names before using this option</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="616"/>
+        <location filename="../Workspace.py" line="630"/>
         <source>Interface labels have been reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1172"/>
+        <location filename="../Workspace.py" line="1228"/>
         <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="814"/>
+        <source>Check For Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="802"/>
+        <source>Cannot check for update ... Try again later</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="807"/>
+        <source>Newer GNS3 version %s is available, do you want to visit our website to download it?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
