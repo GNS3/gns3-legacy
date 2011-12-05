@@ -68,6 +68,9 @@ class Topology(QtGui.QGraphicsScene):
 
     def mousePressEvent(self, event):
 
+        # Consider the topology has changed
+        self.changed = True
+
         srcnode = globals.GApp.scene.getSourceNode()
         item = self.itemAt(event.scenePos())
         if item and ((isinstance(item, AbstractNode) and \

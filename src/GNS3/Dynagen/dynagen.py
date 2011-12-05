@@ -1932,7 +1932,7 @@ class Dynagen:
                             try:
                                 self._create_jitsharing_group(jitshared_devices)
                             except:
-                                print "Unable to activate JIT sharing group, please consider deactivating JIT sharing"
+                                #print "Unable to activate JIT sharing group, please consider deactivating JIT sharing"
                                 break
 
         except DynamipsError, e:

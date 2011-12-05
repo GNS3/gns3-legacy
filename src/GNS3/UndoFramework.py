@@ -244,11 +244,37 @@ class NewZValue(QtGui.QUndoCommand):
     def redo(self):
 
         self.item.setZValue(self.zval)
+        
+        from GNS3.ShapeItem import AbstractShapeItem
+        from GNS3.Pixmap import Pixmap
+        from GNS3.Annotation import Annotation
+            
+        if isinstance(self.item, AbstractShapeItem) or isinstance(self.item, Annotation) or isinstance(self.item, Pixmap):
+            if self.zval < 0:
+                self.item.setFlag(self.item.ItemIsSelectable, False)
+                self.item.setFlag(self.item.ItemIsMovable, False)
+            else:
+                self.item.setFlag(self.item.ItemIsSelectable, True)
+                self.item.setFlag(self.item.ItemIsMovable, True)
+
         self.item.update()
 
     def undo(self):
 
         self.item.setZValue(self.prevZval)
+        
+        from GNS3.ShapeItem import AbstractShapeItem
+        from GNS3.Pixmap import Pixmap
+        from GNS3.Annotation import Annotation
+            
+        if isinstance(self.item, AbstractShapeItem) or isinstance(self.item, Annotation) or isinstance(self.item, Pixmap):
+            if self.zval < 0:
+                self.item.setFlag(self.item.ItemIsSelectable, False)
+                self.item.setFlag(self.item.ItemIsMovable, False)
+            else:
+                self.item.setFlag(self.item.ItemIsSelectable, True)
+                self.item.setFlag(self.item.ItemIsMovable, True)
+
         self.item.update()
         
 class NewConsolePort(QtGui.QUndoCommand):

@@ -73,6 +73,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         
         # Used by the undo process to prevent to ask again to choose an image
         self.image_reference = None
+        
+        self.setZValue(1)
 
     def setRenderers(self, render_normal, render_select):
         """ renderer_normal: QtSvg.QSvgRenderer

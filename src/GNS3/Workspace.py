@@ -158,7 +158,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_Redo, QtCore.SIGNAL('triggered()'), self.__action_Redo)
         self.connect(self.action_ShowLayers, QtCore.SIGNAL('triggered()'), self.__action_ShowLayers)
         self.connect(self.action_ResetInterfaceLabels, QtCore.SIGNAL('triggered()'), self.__action_ResetInterfaceLabels)
+
+        # Device menu is contextual and is build on-the-fly
+        self.connect(self.menuDevice, QtCore.SIGNAL('aboutToShow()'), self.__action_ShowDeviceMenu)
+          
+    def __action_ShowDeviceMenu(self):
         
+        self.menuDevice.clear()
+        globals.GApp.scene.makeContextualMenu(self.menuDevice)
+            
     def __createMenus(self):
         """ Add own menu actions, and create new sub-menu
         """
@@ -856,10 +864,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Create a new project
         """
 
-
         if len(globals.GApp.dynagen.devices):
             reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"),
-                                               translate("Workspace", "Do you want to clear the current topology?"), QtGui.QMessageBox.Yes, \
+                                               translate("Workspace", "This will clear your current topology. Continue?"), QtGui.QMessageBox.Yes, \
                                                QtGui.QMessageBox.No)
             if reply == QtGui.QMessageBox.No:
                 return

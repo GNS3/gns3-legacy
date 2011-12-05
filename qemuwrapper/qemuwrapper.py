@@ -249,18 +249,13 @@ class xEMUInstance(object):
                 options.append('nic,vlan=%d,macaddr=%s,model=%s' % (vlan, self.nic[vlan], self.netcard))
             else:
 
-                try:
-                    # compute new MAC address based on VM name + vlan number
-                    hashed_name = hex(hash(self.name) & 0xffffffff) # on 64-bit systems, only take 32-bit from the hash
-                    mac = hashed_name[2:] # skip 0x
-                    blocks = [mac[x:x+2] for x in xrange(0, len(mac), 2)]
-                    formatted_mac = ':'.join(blocks)
-                    formatted_mac = "00:%s:%02d" % (formatted_mac, vlan)
-                except:
-                    # something went wrong, use legacy random MAC address
-                    formatted_mac = "00:00:ab:%02x:%02x:%02d" % (random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan)
-                    pass
-    
+                # compute new MAC address based on VM name + vlan number
+                hashed_name = hex(hash(self.name) & 0xffffffff) # on 64-bit systems, only take 32-bit from the hash
+                mac = hashed_name[2:] # skip 0x
+                blocks = [mac[x:x+2] for x in xrange(0, len(mac), 2)]
+                formatted_mac = ':'.join(blocks)
+                formatted_mac = "00:%s:%02d" % (formatted_mac, vlan)
+
                 options.append('nic,vlan=%d,macaddr=%s,model=%s' % (vlan, formatted_mac, self.netcard))
 
                 # add a default NIC for Qemu

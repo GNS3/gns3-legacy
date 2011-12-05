@@ -116,11 +116,17 @@
     <addaction name="action_DrawRectangle"/>
     <addaction name="action_DrawEllipse"/>
    </widget>
+   <widget class="QMenu" name="menuDevice">
+    <property name="title">
+     <string>Device</string>
+    </property>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
    <addaction name="menu_View"/>
    <addaction name="menuControl"/>
    <addaction name="menuAnnotate"/>
+   <addaction name="menuDevice"/>
    <addaction name="menu_About"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -491,7 +497,7 @@
     <string>&amp;Screenshot</string>
    </property>
    <property name="toolTip">
-    <string>Take a screenshot</string>
+    <string>Screenshot</string>
    </property>
   </action>
   <action name="action_StartAll">

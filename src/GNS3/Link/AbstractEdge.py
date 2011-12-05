@@ -58,7 +58,11 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         self.setZValue(-1)
 
         if not self.fake:
-
+            
+            # links must always be below nodes
+            min_zvalue = min([sourceNode.zValue(), destNode.zValue()])
+            self.setZValue(min_zvalue - 1)
+        
             self.source.setCustomToolTip()
             self.dest.setCustomToolTip()
     

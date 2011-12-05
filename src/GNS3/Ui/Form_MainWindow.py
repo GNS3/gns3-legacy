@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Dec  3 19:41:26 2011
+# Created: Sun Dec  4 22:03:58 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -58,6 +58,9 @@ class Ui_MainWindow(object):
         self.menuAnnotate = QtGui.QMenu(self.menubar)
         self.menuAnnotate.setTitle(QtGui.QApplication.translate("MainWindow", "Annotate", None, QtGui.QApplication.UnicodeUTF8))
         self.menuAnnotate.setObjectName(_fromUtf8("menuAnnotate"))
+        self.menuDevice = QtGui.QMenu(self.menubar)
+        self.menuDevice.setTitle(QtGui.QApplication.translate("MainWindow", "Device", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuDevice.setObjectName(_fromUtf8("menuDevice"))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
@@ -241,7 +244,7 @@ class Ui_MainWindow(object):
         icon7.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/export.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_Export.setIcon(icon7)
         self.action_Export.setText(QtGui.QApplication.translate("MainWindow", "&Screenshot", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Export.setToolTip(QtGui.QApplication.translate("MainWindow", "Take a screenshot", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Export.setToolTip(QtGui.QApplication.translate("MainWindow", "Screenshot", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Export.setObjectName(_fromUtf8("action_Export"))
         self.action_StartAll = QtGui.QAction(MainWindow)
         self.action_StartAll.setEnabled(True)
@@ -490,6 +493,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menu_View.menuAction())
         self.menubar.addAction(self.menuControl.menuAction())
         self.menubar.addAction(self.menuAnnotate.menuAction())
+        self.menubar.addAction(self.menuDevice.menuAction())
         self.menubar.addAction(self.menu_About.menuAction())
         self.toolBar_General.addAction(self.action_Clear)
         self.toolBar_General.addAction(self.action_Open)

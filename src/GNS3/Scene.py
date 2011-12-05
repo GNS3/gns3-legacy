@@ -109,15 +109,11 @@ class Scene(QtGui.QGraphicsView):
             self.__topology.removeItem(self.newedge)
             self.newedge = None
 
-    def showContextualMenu(self):
-        """  Create and display a contextual menu when clicking on the view
-        """
+    def makeContextualMenu(self, menu):
 
         items = self.__topology.selectedItems()
         if len(items) == 0:
             return
-
-        menu = QtGui.QMenu()
 
         instances = map(lambda item: not isinstance(item, Annotation) and not isinstance(item, Pixmap) and not isinstance(item, AbstractShapeItem), items)
         if True in instances:
@@ -291,12 +287,12 @@ class Scene(QtGui.QGraphicsView):
         menu.addAction(deleteAct)
         
         # Action: Lower Z value
-        lowerZvalueAct = QtGui.QAction(translate('Scene', 'Lower one step'), menu)
+        lowerZvalueAct = QtGui.QAction(translate('Scene', 'Lower one layer'), menu)
         lowerZvalueAct.setIcon(QtGui.QIcon(':/icons/lower_z_value.svg'))
         self.connect(lowerZvalueAct, QtCore.SIGNAL('triggered()'), self.slotlowerZValue)
             
         # Action: Raise Z value
-        raiseZvalueAct = QtGui.QAction(translate('Scene', 'Raise one step'), menu)
+        raiseZvalueAct = QtGui.QAction(translate('Scene', 'Raise one layer'), menu)
         raiseZvalueAct.setIcon(QtGui.QIcon(':/icons/raise_z_value.svg'))
         self.connect(raiseZvalueAct, QtCore.SIGNAL('triggered()'), self.slotraiseZValue)
         
@@ -318,11 +314,18 @@ class Scene(QtGui.QGraphicsView):
             self.connect(vertAlignAct, QtCore.SIGNAL('triggered()'), self.slotVertAlignment)
             menu.addAction(vertAlignAct)
 
+    def showContextualMenu(self):
+        """  Create and display a contextual menu when clicking on the view
+        """
+
+        menu = QtGui.QMenu()
+        self.makeContextualMenu(menu)
         menu.exec_(QtGui.QCursor.pos())
+        menu.clear()
 
         # force the deletion of the children
-        for child in menu.children():
-            child.deleteLater()
+        # for child in menu.children():
+        #    child.deleteLater()
 
     def addItem(self, node):
         """ Overloaded function that add the node into the topology
@@ -354,7 +357,7 @@ class Scene(QtGui.QGraphicsView):
     def slotHozAlignment(self):
         """ Horizontally align items
         """
-        
+
         hozPos = self.__topology.selectedItems()[0].y()
         for item in self.__topology.selectedItems():
             item.setPos(item.x(), hozPos)
@@ -566,8 +569,8 @@ class Scene(QtGui.QGraphicsView):
             if zvalue > 0:
                 command = undo.NewZValue(item, zvalue - 1)
                 self.__topology.undoStack.push(command)
-            elif isinstance(item, AbstractShapeItem):
-                # shape items can have a z value lower than 0
+            elif isinstance(item, AbstractShapeItem) or isinstance(item, Annotation) or isinstance(item, Pixmap):
+                # shape items, annotations and pictures can have a z value lower than 0
                 command = undo.NewZValue(item, zvalue - 1)
                 self.__topology.undoStack.push(command)
 
@@ -916,8 +919,11 @@ class Scene(QtGui.QGraphicsView):
             self.sceneDragging = True
             globals.GApp.scene.setCursor(QtCore.Qt.ClosedHandCursor)
             return 
-                
+
         if show and event.modifiers() & QtCore.Qt.ShiftModifier and event.button() == QtCore.Qt.LeftButton and item and not globals.addingLinkFlag:
+#            print 'HERE'
+#            if isinstance(item, AbstractShapeItem) or isinstance(item, Annotation) or isinstance(item, Pixmap):
+#                item.setFlag(item.ItemIsSelectable, True)
             item.setSelected(True)
         elif show and event.button() == QtCore.Qt.RightButton and not globals.addingLinkFlag:
             if item:
@@ -926,8 +932,13 @@ class Scene(QtGui.QGraphicsView):
                     if not event.modifiers() & QtCore.Qt.ShiftModifier:
                         for it in self.__topology.items():
                             it.setSelected(False)
+                    if item.zValue() < 0:
+                        item.setFlag(item.ItemIsSelectable, True)
                     item.setSelected(True)
                     self.showContextualMenu()
+                    if item.zValue() < 0:
+                        item.setFlag(item.ItemIsSelectable, False)
+
                 else:
                     self.showContextualMenu()
             # When more than one item is selected display the contextual menu even if mouse is not above an item

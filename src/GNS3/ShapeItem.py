@@ -32,8 +32,8 @@ class AbstractShapeItem(object):
         self.setAcceptsHoverEvents(True)
         self.border = 5
         self.rotation = 0
-        self.setZValue(-2)
-        
+        #self.setZValue(-2)
+
     def keyPressEvent(self, event):
     
         key = event.key()
