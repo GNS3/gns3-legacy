@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDynamips.ui'
 #
-# Created: Sat Nov 12 17:10:02 2011
+# Created: Sun Dec  4 23:23:09 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_PreferencesDynamips(object):
     def setupUi(self, PreferencesDynamips):
         PreferencesDynamips.setObjectName(_fromUtf8("PreferencesDynamips"))
-        PreferencesDynamips.resize(509, 467)
+        PreferencesDynamips.resize(528, 478)
         PreferencesDynamips.setWindowTitle(QtGui.QApplication.translate("PreferencesDynamips", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesDynamips)
         self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))

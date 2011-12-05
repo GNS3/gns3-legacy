@@ -1,123 +1,116 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>NodeConfigurator</class>
- <widget class="QDialog" name="NodeConfigurator" >
-  <property name="geometry" >
+ <widget class="QDialog" name="NodeConfigurator">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>789</width>
-    <height>586</height>
+    <width>689</width>
+    <height>475</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Node configurator</string>
   </property>
-  <property name="windowIcon" >
-   <iconset resource="../../../../gns3-artwork/svg_resources.qrc" >:/images/logo_icon.png</iconset>
+  <property name="windowIcon">
+   <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <normaloff>:/images/logo_icon.png</normaloff>:/images/logo_icon.png</iconset>
   </property>
-  <layout class="QGridLayout" >
-   <item row="0" column="0" >
-    <widget class="QSplitter" name="splitter" >
-     <property name="orientation" >
+  <layout class="QGridLayout">
+   <item row="0" column="0">
+    <widget class="QSplitter" name="splitter">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <widget class="QTreeWidget" name="treeViewNodes" >
-      <property name="sizePolicy" >
-       <sizepolicy vsizetype="Expanding" hsizetype="Preferred" >
+     <widget class="QTreeWidget" name="treeViewNodes">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
-      <property name="selectionMode" >
+      <property name="selectionMode">
        <enum>QAbstractItemView::ExtendedSelection</enum>
       </property>
       <column>
-       <property name="text" >
+       <property name="text">
         <string>Nodes</string>
        </property>
       </column>
      </widget>
-     <widget class="QWidget" name="verticalLayout" >
-      <layout class="QVBoxLayout" >
-       <property name="spacing" >
+     <widget class="QWidget" name="verticalLayout">
+      <layout class="QVBoxLayout">
+       <property name="spacing">
         <number>4</number>
        </property>
-       <property name="leftMargin" >
-        <number>0</number>
-       </property>
-       <property name="topMargin" >
-        <number>0</number>
-       </property>
-       <property name="rightMargin" >
-        <number>0</number>
-       </property>
-       <property name="bottomMargin" >
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
-        <widget class="QLabel" name="titleLabel" >
-         <property name="font" >
+        <widget class="QLabel" name="titleLabel">
+         <property name="font">
           <font>
            <pointsize>16</pointsize>
           </font>
          </property>
-         <property name="frameShape" >
+         <property name="frameShape">
           <enum>QFrame::Box</enum>
          </property>
-         <property name="frameShadow" >
+         <property name="frameShadow">
           <enum>QFrame::Sunken</enum>
          </property>
-         <property name="text" >
+         <property name="text">
           <string>Node Configuration</string>
          </property>
-         <property name="textFormat" >
+         <property name="textFormat">
           <enum>Qt::PlainText</enum>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QStackedWidget" name="configStack" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Expanding" hsizetype="Expanding" >
+        <widget class="QStackedWidget" name="configStack">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
-         <property name="frameShape" >
+         <property name="frameShape">
           <enum>QFrame::Box</enum>
          </property>
-         <property name="frameShadow" >
+         <property name="frameShadow">
           <enum>QFrame::Sunken</enum>
          </property>
-         <property name="currentIndex" >
+         <property name="currentIndex">
           <number>0</number>
          </property>
-         <widget class="QWidget" name="emptyPage" >
-          <layout class="QVBoxLayout" >
-           <property name="spacing" >
+         <widget class="QWidget" name="emptyPage">
+          <layout class="QVBoxLayout">
+           <property name="spacing">
             <number>0</number>
            </property>
-           <property name="leftMargin" >
+           <property name="leftMargin">
             <number>0</number>
            </property>
-           <property name="topMargin" >
+           <property name="topMargin">
             <number>4</number>
            </property>
-           <property name="rightMargin" >
+           <property name="rightMargin">
             <number>0</number>
            </property>
-           <property name="bottomMargin" >
+           <property name="bottomMargin">
             <number>0</number>
            </property>
            <item>
             <spacer>
-             <property name="orientation" >
+             <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
-             <property name="sizeType" >
+             <property name="sizeType">
               <enum>QSizePolicy::Expanding</enum>
              </property>
-             <property name="sizeHint" >
+             <property name="sizeHint" stdset="0">
               <size>
                <width>20</width>
                <height>20</height>
@@ -126,25 +119,25 @@
             </spacer>
            </item>
            <item>
-            <widget class="QLabel" name="textLabel1" >
-             <property name="text" >
+            <widget class="QLabel" name="textLabel1">
+             <property name="text">
               <string>Please select a node in the list 
 to display the configuration page.</string>
              </property>
-             <property name="alignment" >
+             <property name="alignment">
               <set>Qt::AlignCenter</set>
              </property>
             </widget>
            </item>
            <item>
             <spacer>
-             <property name="orientation" >
+             <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
-             <property name="sizeType" >
+             <property name="sizeType">
               <enum>QSizePolicy::Expanding</enum>
              </property>
-             <property name="sizeHint" >
+             <property name="sizeHint" stdset="0">
               <size>
                <width>20</width>
                <height>40</height>
@@ -160,20 +153,20 @@ to display the configuration page.</string>
      </widget>
     </widget>
    </item>
-   <item row="1" column="0" >
-    <widget class="QDialogButtonBox" name="buttonBox" >
-     <property name="orientation" >
+   <item row="1" column="0">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <property name="standardButtons" >
-      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok|QDialogButtonBox::Reset</set>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok|QDialogButtonBox::Reset</set>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
  <resources>
-  <include location="../../../../gns3-artwork/svg_resources.qrc" />
+  <include location="../../../../gns3-artwork/svg_resources.qrc"/>
  </resources>
  <connections/>
 </ui>

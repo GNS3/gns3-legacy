@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Sat Nov 12 17:09:55 2011
+# Created: Sun Dec  4 23:23:06 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_IOSDialog(object):
     def setupUi(self, IOSDialog):
         IOSDialog.setObjectName(_fromUtf8("IOSDialog"))
-        IOSDialog.resize(907, 606)
+        IOSDialog.resize(780, 530)
         IOSDialog.setWindowTitle(QtGui.QApplication.translate("IOSDialog", "IOS images and hypervisors", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)

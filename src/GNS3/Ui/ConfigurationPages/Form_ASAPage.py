@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_ASAPage.ui'
 #
-# Created: Sat Nov 12 17:10:00 2011
+# Created: Sun Dec  4 23:23:08 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_ASAPage(object):
     def setupUi(self, ASAPage):
         ASAPage.setObjectName(_fromUtf8("ASAPage"))
-        ASAPage.resize(419, 453)
+        ASAPage.resize(362, 365)
         ASAPage.setWindowTitle(QtGui.QApplication.translate("ASAPage", "Firewall configuration", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout = QtGui.QGridLayout(ASAPage)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))

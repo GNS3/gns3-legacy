@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesCapture.ui'
 #
-# Created: Sat Nov 12 17:10:02 2011
+# Created: Sun Dec  4 23:23:09 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_PreferencesCapture(object):
     def setupUi(self, PreferencesCapture):
         PreferencesCapture.setObjectName(_fromUtf8("PreferencesCapture"))
-        PreferencesCapture.resize(550, 348)
+        PreferencesCapture.resize(550, 370)
         PreferencesCapture.setWindowTitle(QtGui.QApplication.translate("PreferencesCapture", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesCapture)
         self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))

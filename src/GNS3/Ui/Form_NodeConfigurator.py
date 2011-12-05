@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_NodeConfigurator.ui'
 #
-# Created: Sat Nov 12 17:09:55 2011
+# Created: Sun Dec  4 23:23:06 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,10 +17,10 @@ except AttributeError:
 class Ui_NodeConfigurator(object):
     def setupUi(self, NodeConfigurator):
         NodeConfigurator.setObjectName(_fromUtf8("NodeConfigurator"))
-        NodeConfigurator.resize(789, 586)
+        NodeConfigurator.resize(689, 475)
         NodeConfigurator.setWindowTitle(QtGui.QApplication.translate("NodeConfigurator", "Node configurator", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
-        icon.addFile(_fromUtf8(":/images/logo_icon.png"))
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         NodeConfigurator.setWindowIcon(icon)
         self.gridlayout = QtGui.QGridLayout(NodeConfigurator)
         self.gridlayout.setObjectName(_fromUtf8("gridlayout"))
@@ -40,6 +40,7 @@ class Ui_NodeConfigurator(object):
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.vboxlayout = QtGui.QVBoxLayout(self.verticalLayout)
         self.vboxlayout.setSpacing(4)
+        self.vboxlayout.setMargin(0)
         self.vboxlayout.setMargin(0)
         self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))
         self.titleLabel = QtGui.QLabel(self.verticalLayout)
@@ -82,7 +83,7 @@ class Ui_NodeConfigurator(object):
         self.gridlayout.addWidget(self.splitter, 0, 0, 1, 1)
         self.buttonBox = QtGui.QDialogButtonBox(NodeConfigurator)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Apply|QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.NoButton|QtGui.QDialogButtonBox.Ok|QtGui.QDialogButtonBox.Reset)
+        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Apply|QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok|QtGui.QDialogButtonBox.Reset)
         self.buttonBox.setObjectName(_fromUtf8("buttonBox"))
         self.gridlayout.addWidget(self.buttonBox, 1, 0, 1, 1)
 

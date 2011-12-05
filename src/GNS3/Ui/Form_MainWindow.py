@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sun Dec  4 22:03:58 2011
+# Created: Sun Dec  4 23:23:05 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(1008, 620)
+        MainWindow.resize(944, 599)
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "GNS3", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -38,7 +38,7 @@ class Ui_MainWindow(object):
         self.gridlayout.addWidget(self.graphicsView, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1008, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 944, 22))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menu_Edit = QtGui.QMenu(self.menubar)
         self.menu_Edit.setTitle(QtGui.QApplication.translate("MainWindow", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
