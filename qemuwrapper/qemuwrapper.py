@@ -44,6 +44,7 @@ import SocketServer
 import time
 import random
 import ctypes
+import hashlib
 
 if debuglevel > 0:
     if platform.system() == 'Windows':
@@ -250,13 +251,9 @@ class xEMUInstance(object):
             else:
 
                 # compute new MAC address based on VM name + vlan number
-                hashed_name = hex(hash(self.name) & 0xffffffff) # on 64-bit systems, only take 32-bit from the hash
-                mac = hashed_name[2:] # skip 0x
-                blocks = [mac[x:x+2] for x in xrange(0, len(mac), 2)]
-                formatted_mac = ':'.join(blocks)
-                formatted_mac = "00:%s:%02d" % (formatted_mac, vlan)
-
-                options.append('nic,vlan=%d,macaddr=%s,model=%s' % (vlan, formatted_mac, self.netcard))
+                mac = hashlib.md5(self.name).hexdigest()
+                # add a default NIC for Qemu
+                options.append('nic,vlan=%d,macaddr=00:ab:%s:%s:%s:%02d,model=%s' % (vlan, mac[2:4], mac[4:6], mac[6:8], vlan, self.netcard))
 
                 # add a default NIC for Qemu
                 if vlan in self.udp:

@@ -77,7 +77,7 @@ def killAll(process_name):
     else:
         command = ['killall', '-SIGKILL']
     try:
-        print subprocess.call(command + [process_name])
+        subprocess.call(command + [process_name])
         return True
     except:
         return False
