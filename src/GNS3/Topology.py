@@ -102,12 +102,6 @@ class Topology(QtGui.QGraphicsScene):
         self.dynagen.bridges.clear()
         self.dynagen.autostart.clear()
 
-        for dynamips in globals.GApp.dynagen.dynamips.values():
-            try:
-                dynamips.reset()
-            except:
-                continue
-
         # we don't care if the backends don't receive our commands at this point
         # just we don't want to see messages about crashes
         lib.NOSEND = True
