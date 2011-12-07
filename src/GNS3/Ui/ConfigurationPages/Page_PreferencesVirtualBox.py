@@ -447,4 +447,4 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
                 self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start VBoxwrapper")  + '</font>')
                 return
 
-            self.labelVBoxStatus.setText('<font color="green">' + unicode(translate("UiConfig_PreferencesVirtualBox", "VBoxwrapper and VirtualBox API %s have successfully started")) % (VBOXVER + '<br>')  + '</font>')
+            self.labelVBoxStatus.setText('<font color="green">' + unicode(translate("UiConfig_PreferencesVirtualBox", "VBoxwrapper and VirtualBox API %s have successfully started")) % (VBOXVER)  + '</font>')

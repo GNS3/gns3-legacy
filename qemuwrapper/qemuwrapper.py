@@ -1112,6 +1112,27 @@ if __name__ == '__main__':
     print "Copyright (c) 2007-2011 Thomas Pani & Jeremy Grossmann"
     print
 
+    try:
+        p = subprocess.Popen([QEMU_PATH])
+        p.terminate()
+        print "Qemu path (%s) is valid" % QEMU_PATH
+
+    except OSError, e:
+        print >> sys.stderr, "Unable to start Qemu:", e
+        if not os.path.exists(QEMU_PATH):
+            print >> sys.stderr, "Path to Qemu seems to be invalid, please check. Current path is", QEMU_PATH
+        sys.exit(1)
+
+    try:
+        p = subprocess.Popen([QEMU_IMG_PATH])
+        p.terminate()
+        print "Qemu-img path (%s) is valid" % QEMU_IMG_PATH
+    except OSError, e:
+        print >> sys.stderr, "Unable to start Qemu-img:", e
+        if not os.path.exists(QEMU_IMG_PATH):
+            print >> sys.stderr, "Path to Qemu seems invalid, please check. Current path is", QEMU_IMG_PATH
+        sys.exit(1)
+
     if platform.system() == 'Windows':
         try:
             import pywintypes, win32api, win32con, win32process

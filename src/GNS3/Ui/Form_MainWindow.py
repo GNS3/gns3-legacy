@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sun Dec  4 23:23:05 2011
+# Created: Tue Dec  6 19:22:31 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -414,7 +414,7 @@ class Ui_MainWindow(object):
         icon26.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/snapshot.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_Snapshot.setIcon(icon26)
         self.action_Snapshot.setText(QtGui.QApplication.translate("MainWindow", "Snapshot", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Snapshot.setToolTip(QtGui.QApplication.translate("MainWindow", "Take a snapshot", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Snapshot.setToolTip(QtGui.QApplication.translate("MainWindow", "Snapshot", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Snapshot.setObjectName(_fromUtf8("action_Snapshot"))
         self.action_ShowLayers = QtGui.QAction(MainWindow)
         self.action_ShowLayers.setCheckable(True)
@@ -492,8 +492,8 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menu_Edit.menuAction())
         self.menubar.addAction(self.menu_View.menuAction())
         self.menubar.addAction(self.menuControl.menuAction())
-        self.menubar.addAction(self.menuAnnotate.menuAction())
         self.menubar.addAction(self.menuDevice.menuAction())
+        self.menubar.addAction(self.menuAnnotate.menuAction())
         self.menubar.addAction(self.menu_About.menuAction())
         self.toolBar_General.addAction(self.action_Clear)
         self.toolBar_General.addAction(self.action_Open)

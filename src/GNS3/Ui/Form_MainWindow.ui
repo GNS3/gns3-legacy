@@ -125,8 +125,8 @@
    <addaction name="menu_Edit"/>
    <addaction name="menu_View"/>
    <addaction name="menuControl"/>
-   <addaction name="menuAnnotate"/>
    <addaction name="menuDevice"/>
+   <addaction name="menuAnnotate"/>
    <addaction name="menu_About"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -812,7 +812,7 @@
     <string>Snapshot</string>
    </property>
    <property name="toolTip">
-    <string>Take a snapshot</string>
+    <string>Snapshot</string>
    </property>
   </action>
   <action name="action_ShowLayers">

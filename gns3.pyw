@@ -22,7 +22,7 @@
 import sys, os, traceback
 
 # current version of GNS3
-VERSION = "0.8.2-ALPHA6"
+VERSION = "0.8.2-ALPHA7"
 VERSION_INTEGER = 0x000802
 
 try:
@@ -84,6 +84,9 @@ if __name__ == '__main__':
         GNS3_RUN_PATH = os.path.dirname(os.path.abspath(sys.executable))
     else:
         GNS3_RUN_PATH = os.path.dirname(os.path.abspath(__file__))
+
+    # change current working directory to GNS3_RUN_PATH for relative paths to work correctly
+    os.chdir(GNS3_RUN_PATH)
     source_path = GNS3_RUN_PATH + os.sep + 'src'
     if os.access(source_path, os.F_OK):
         sys.path.append(source_path)
