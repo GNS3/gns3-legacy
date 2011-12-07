@@ -108,12 +108,19 @@ class Topology(QtGui.QGraphicsScene):
             except:
                 continue
 
+        # we don't care if the backends don't receive our commands at this point
+        # just we don't want to see messages about crashes
+        lib.NOSEND = True
+
         if globals.GApp.HypervisorManager:
             globals.GApp.HypervisorManager.stopProcHypervisors()
         if globals.GApp.QemuManager:
             globals.GApp.QemuManager.stopQemu()
         if globals.GApp.VBoxManager:
             globals.GApp.VBoxManager.stopVBox()
+
+        # safe to reactivate know
+        lib.NOSEND = False
 
     def clear(self):
         """ Clear the topology

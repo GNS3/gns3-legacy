@@ -360,10 +360,7 @@ class AnyEmuDevice(object):
         """delete the emulated device instance in Qemu"""
         debugmsg(2, "AnyEmuDevice::delete()")
         
-        try:
-            send(self.p, 'qemu delete %s' % self.name)
-        except:
-            pass
+        send(self.p, 'qemu delete %s' % self.name)
 
     def start(self):
         """starts the emulated device instance in Qemu"""
