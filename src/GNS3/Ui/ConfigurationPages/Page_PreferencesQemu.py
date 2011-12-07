@@ -863,7 +863,10 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             globals.GApp.workspace.clear()
             globals.GApp.QemuManager = QemuManager()
             if globals.GApp.QemuManager.preloadQemuwrapper() == False:
-                self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start Qemuwrapper")  + '</font>')
+                if hasattr(sys, "frozen") and (globals.GApp.systconf['qemu'].qemuwrapper_path.split('.')[-1] == 'py'):
+                    self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start Qemuwrapper (python.exe path must be in your PATH environment variable)")  + '</font>')
+                else:
+                    self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start Qemuwrapper")  + '</font>')
                 return
 
             try:

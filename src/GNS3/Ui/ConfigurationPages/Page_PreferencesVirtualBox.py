@@ -444,7 +444,10 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             globals.GApp.VBoxManager = VBoxManager()
             if globals.GApp.VBoxManager.preloadVBoxwrapper() == False:
                 #print "ADEBUG: Entered UiConfig_PreferencesVirtualBox::__testVBox(), if #3"
-                self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start VBoxwrapper")  + '</font>')
+                if hasattr(sys, "frozen") and (globals.GApp.systconf['vbox'].qemuwrapper_path.split('.')[-1] == 'py'):
+                    self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start VBoxwrapper (python.exe path must be in your PATH environment variable)")  + '</font>')
+                else:
+                    self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start VBoxwrapper")  + '</font>')
                 return
 
             self.labelVBoxStatus.setText('<font color="green">' + unicode(translate("UiConfig_PreferencesVirtualBox", "VBoxwrapper and VirtualBox API %s have successfully started")) % (VBOXVER)  + '</font>')

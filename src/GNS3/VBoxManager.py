@@ -144,6 +144,8 @@ class VBoxManager(object):
         if sys.platform.startswith('win') and (globals.GApp.systconf['vbox'].vboxwrapper_path.split('.')[-1] == 'exe'):
             # On Windows hosts, we remove python dependency by pre-compiling VBoxwrapper. (release mode)
             self.proc.start('"' + globals.GApp.systconf['vbox'].vboxwrapper_path + '"', ['--listen', binding, '--port', str(self.port)])
+        elif hasattr(sys, "frozen"):
+            self.proc.start('python',  [globals.GApp.systconf['vbox'].vboxwrapper_path, '--listen', binding, '--port', str(self.port)])
         else:
             self.proc.start(sys.executable,  [globals.GApp.systconf['vbox'].vboxwrapper_path, '--listen', binding, '--port', str(self.port)])
 
@@ -195,6 +197,8 @@ class VBoxManager(object):
         if sys.platform.startswith('win')  and (globals.GApp.systconf['vbox'].vboxwrapper_path.split('.')[-1] == 'exe'):
             # On Windows hosts, we remove python dependency by pre-compiling VBoxwrapper. (release mode)
             proc.start('"' + globals.GApp.systconf['vbox'].vboxwrapper_path + '"', ['--listen', binding])
+        elif hasattr(sys, "frozen"):
+            proc.start('python',  [globals.GApp.systconf['vbox'].vboxwrapper_path, '--listen', binding])
         else:
             proc.start(sys.executable,  [globals.GApp.systconf['vbox'].vboxwrapper_path, '--listen', binding])
 

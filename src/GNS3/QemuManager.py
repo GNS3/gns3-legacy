@@ -144,6 +144,8 @@ class QemuManager(object):
         #print "ADEBUG: qemuwrapper_path = %s" % str(globals.GApp.systconf['qemu'].qemuwrapper_path)
         if sys.platform.startswith('win') and (globals.GApp.systconf['qemu'].qemuwrapper_path.split('.')[-1] == 'exe'):
             self.proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"', ['--listen', binding, '--port', str(self.port)])
+        elif hasattr(sys, "frozen"):
+            self.proc.start('python',  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding, '--port', str(self.port)])
         else:
             self.proc.start(sys.executable,  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding, '--port', str(self.port)])
 
@@ -193,6 +195,8 @@ class QemuManager(object):
         if sys.platform.startswith('win') and (globals.GApp.systconf['qemu'].qemuwrapper_path.split('.')[-1] == 'exe'):
             # On Windows hosts, we remove python dependency by pre-compiling Qemuwrapper. (release mode)
             proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"', ['--listen', binding])
+        elif hasattr(sys, "frozen"):
+            proc.start('python',  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding])
         else:
             proc.start(sys.executable,  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding])
 
