@@ -102,7 +102,8 @@ class Topology(QtGui.QGraphicsScene):
         self.dynagen.bridges.clear()
         self.dynagen.autostart.clear()
 
-        # we don't want backends to throw exceptions at this point
+        # we don't care if the backends don't receive our commands at this point
+        # just we don't want to see messages about crashes
         lib.NOSEND = True
 
         if globals.GApp.HypervisorManager:
