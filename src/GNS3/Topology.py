@@ -102,15 +102,11 @@ class Topology(QtGui.QGraphicsScene):
         self.dynagen.bridges.clear()
         self.dynagen.autostart.clear()
 
-        for dynamips in globals.GApp.dynagen.dynamips.values():
-            try:
-                dynamips.reset()
-            except:
-                continue
+        # we don't want backends to throw exceptions at this point
+        lib.GRACEFUL_SHUTDOWN = True
 
-        # we don't care if the backends don't receive our commands at this point
-        # just we don't want to see messages about crashes
-        lib.NOSEND = True
+        for dynamips in globals.GApp.dynagen.dynamips.values():
+            dynamips.reset()
 
         if globals.GApp.HypervisorManager:
             globals.GApp.HypervisorManager.stopProcHypervisors()
@@ -120,7 +116,7 @@ class Topology(QtGui.QGraphicsScene):
             globals.GApp.VBoxManager.stopVBox()
 
         # safe to reactivate know
-        lib.NOSEND = False
+        lib.GRACEFUL_SHUTDOWN = False
 
     def clear(self):
         """ Clear the topology

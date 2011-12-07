@@ -35,11 +35,12 @@ import copy
 # hypervisor commands related to slot/port handling, and the pluggable archtecture
 # that changed model specific commands to "vm")
 # Specify an rc version of .999 for released versions.
-(MAJOR, MINOR, SUB, RCVER) = (0, 2, 8, .1)
+(MAJOR, MINOR, SUB, RCVER) = (0, 2, 8, .2)
 INTVER = MAJOR * 10000 + MINOR * 100 + SUB + RCVER
-STRVER = '0.2.8-RC1'
+STRVER = '0.2.8-RC2'
 NOSEND = False  # Disable sending any commands to the back end for debugging
 DEBUG = False
+GRACEFUL_SHUTDOWN = False # Prevent error messages when a clearing a topology
 
 # Constants for use with router.idleprop
 IDLEPROPGET = 0
@@ -4783,10 +4784,12 @@ def send(dynamips, command):
         try:
             dynamips.s.sendall(command.strip().encode('utf-8') + '\n')
         except:
-            print 'Error: lost communication with %s server %s' % (dynamips.type, dynamips.host)
-            print 'It may have crashed. Check the %s server output.' % dynamips.type
-            print 'Exiting...'
-            raise DynamipsErrorHandled
+            if not GRACEFUL_SHUTDOWN:
+                print 'Error: lost communication with %s server %s' % (dynamips.type, dynamips.host)
+                print 'It may have crashed. Check the %s server output.' % dynamips.type
+                print 'Exiting...'
+                raise DynamipsErrorHandled
+            return
         # Now retrieve the result
         data = []
         buf = ''
