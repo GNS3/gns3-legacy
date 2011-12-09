@@ -102,6 +102,11 @@ class Topology(QtGui.QGraphicsScene):
         self.dynagen.bridges.clear()
         self.dynagen.autostart.clear()
 
+        for item in self.items():
+            self.removeItem(item)
+
+        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents)
+
         # we don't care if the backends don't receive our commands at this point
         # just we don't want to see messages about crashes
         lib.NOSEND = True

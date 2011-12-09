@@ -83,7 +83,6 @@ PORT = 10525
 IP = ""
 QEMU_INSTANCES = {}
 FORCE_IPV6 = False
-#QEMU_BASE_MAC = "00:00:ab:cd:%02x:%02d"
 
 WORKDIR = os.getcwdu()
 if os.environ.has_key("TEMP"):
@@ -244,29 +243,29 @@ class xEMUInstance(object):
 
     def _net_options(self):
         options = []
+
+        # compute new MAC address based on VM name + vlan number
+        mac = hashlib.md5(self.name).hexdigest()
+
         for vlan in range(int(self.nics)):
             options.append('-net')
             if vlan in self.nic:
                 options.append('nic,vlan=%d,macaddr=%s,model=%s' % (vlan, self.nic[vlan], self.netcard))
             else:
-
-                # compute new MAC address based on VM name + vlan number
-                mac = hashlib.md5(self.name).hexdigest()
                 # add a default NIC for Qemu
                 options.append('nic,vlan=%d,macaddr=00:ab:%s:%s:%s:%02d,model=%s' % (vlan, mac[2:4], mac[4:6], mac[6:8], vlan, self.netcard))
 
-                # add a default NIC for Qemu
-                if vlan in self.udp:
-                    options.extend(['-net', 'udp,vlan=%s,sport=%s,dport=%s,daddr=%s' %
-                            (vlan, self.udp[vlan].sport,
-                             self.udp[vlan].dport,
-                             self.udp[vlan].daddr)])
+            if vlan in self.udp:
+                options.extend(['-net', 'udp,vlan=%s,sport=%s,dport=%s,daddr=%s' %
+                        (vlan, self.udp[vlan].sport,
+                        self.udp[vlan].dport,
+                        self.udp[vlan].daddr)])
 
             if vlan in self.capture:
                 options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
 
         return options
-        
+
     def _ser_options(self):
         if self.console:
             return ['-serial', 'telnet:' + IP + ':%s,server,nowait' % self.console]
@@ -799,17 +798,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         except OSError, e:
             self.send_reply(self.HSC_ERR_INV_PARAM, 1,
                             "access: %s" % e.strerror)
-
-#    def do_qemuwrapper_qemu_base_mac(self, data):
-#        debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_qemu_base_mac(%s)" % str(data))
-#        qemu_mac, = data
-#        if not qemu_mac or not re.search(r"""^([a-fA-F0-9]{2}[:|\-]?){6}$""", key):
-#            self.send_reply(self.HSC_ERR_INV_PARAM, 1, "invalid format: %s, must be hh:hh:hh:hh:hh:hh" % qemu_mac)
-#            return
-#        global QEMU_BASE_MAC
-#        QEMU_BASE_MAC = qemu_mac
-#        print "Qemu base mac addr is now %s" % QEMU_BASE_MAC
-#        self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_qemuwrapper_working_dir(self, data):
         debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_working_dir(%s)" % str(data))

@@ -336,13 +336,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.projectConfigs = None
         
         globals.GApp.topology.clear()
-        
-        for item in globals.GApp.topology.items():
-            try:
-                globals.GApp.topology.removeItem(item)
-            except:
-                pass
-        
+
         self.clear_workdir(projectWorkdir)
         globals.GApp.mainWindow.capturesDock.refresh()
 
