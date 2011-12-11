@@ -25,7 +25,7 @@ from PyQt4 import QtGui, QtCore
 from GNS3.Ui.Form_PreferencesDialog import Ui_PreferencesDialog
 from GNS3.Utils import translate
 
-class	PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
+class PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
 
     def __init__(self):
         """ Initilize a preferences dialog
