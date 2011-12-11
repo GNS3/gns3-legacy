@@ -186,7 +186,6 @@ else:  # For unknown platforms, or if detection failed, we list all options.
                             'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'"
                             }
 
-
 # Default terminal command
 if platform.system() == 'Darwin':
     CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (Mac OS X)'])
@@ -209,20 +208,28 @@ else:
     TERMINAL_DEFAULT_CMD = unicode(TERMINAL_PRESET_CMDS['xterm (Linux/BSD)'])
 
 # Default project directory
-if os.environ.has_key("TEMP"):
+if sys.platform.startswith('win') and os.environ.has_key("HOMEDRIVE") and os.environ.has_key("HOMEPATH"):
+    PROJECT_DEFAULT_DIR = unicode(os.environ["HOMEDRIVE"] + os.environ["HOMEPATH"] + os.sep + 'GNS3' + os.sep + 'Projects', errors='replace')
+elif os.environ.has_key("HOME"):
+    PROJECT_DEFAULT_DIR = unicode(os.environ["HOME"] + os.sep + 'GNS3' + os.sep + 'Projects', errors='replace')
+elif os.environ.has_key("TEMP"):
     PROJECT_DEFAULT_DIR = unicode(os.environ["TEMP"], errors='replace')
 elif os.environ.has_key("TMP"):
     PROJECT_DEFAULT_DIR = unicode(os.environ["TMP"], errors='replace')
 else:
-    PROJECT_DEFAULT_DIR = unicode('/tmp', errors='replace')
+    PROJECT_DEFAULT_DIR = unicode('/tmp')
     
 # Default IOS image directory
-if os.environ.has_key("TEMP"):
+if sys.platform.startswith('win') and os.environ.has_key("HOMEDRIVE") and os.environ.has_key("HOMEPATH"):
+    IOS_DEFAULT_DIR = unicode(os.environ["HOMEDRIVE"] + os.environ["HOMEPATH"] + os.sep + 'GNS3' + os.sep + 'Images', errors='replace')
+elif os.environ.has_key("HOME"):
+    IOS_DEFAULT_DIR = unicode(os.environ["HOME"] + os.sep + 'GNS3' + os.sep + 'Images', errors='replace')
+elif os.environ.has_key("TEMP"):
     IOS_DEFAULT_DIR = unicode(os.environ["TEMP"], errors='replace')
 elif os.environ.has_key("TMP"):
     IOS_DEFAULT_DIR = unicode(os.environ["TMP"], errors='replace')
 else:
-    IOS_DEFAULT_DIR = unicode('/tmp', errors='replace')
+    IOS_DEFAULT_DIR = unicode('/tmp')
 
 SysConfigDir = "/etc/gns3"
 UsrConfigDir = "~/.gns3"

@@ -21,11 +21,12 @@
 
 import os
 import platform
+import shutil
 import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
 from GNS3.Config.Objects import systemGeneralConf
 from GNS3.Ui.ConfigurationPages.Form_PreferencesGeneral import Ui_PreferencesGeneral
-from GNS3.Utils import translate, fileBrowser
+from GNS3.Utils import translate, fileBrowser, debug
 from GNS3.Config.Defaults import TERMINAL_PRESET_CMDS, TERMINAL_DEFAULT_CMD, PROJECT_DEFAULT_DIR, IOS_DEFAULT_DIR
 from GNS3.Config.Config import ConfDB
 
@@ -194,7 +195,28 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.conf.scene_height = self.workspaceHeight.value()
         self.conf.slow_start = self.slowStartAll.value()
         self.conf.autosave = self.autoSave.value()
-        
+
+        # Create project and image directories if they don't exist
+        if self.conf.project_path and not os.path.exists(self.conf.project_path):
+            try:
+                os.makedirs(self.conf.project_path)
+            except (OSError, IOError), e:
+                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Project directory"),
+                                           unicode(translate("UiConfig_PreferencesGeneral", "Cannot create project directory: %s")) % e.strerror)
+
+        if self.conf.ios_path and not os.path.exists(self.conf.ios_path):
+            try:
+                os.makedirs(self.conf.ios_path)
+            except (OSError, IOError), e:
+                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Image directory"),
+                                           unicode(translate("UiConfig_PreferencesGeneral", "Cannot create image directory: %s")) % e.strerror)
+                
+        if not os.path.exists(self.conf.ios_path + os.sep + 'baseconfig.txt'):
+            try:
+                shutil.copyfile('baseconfig.txt', self.conf.ios_path + os.sep + 'baseconfig.txt')
+            except (OSError, IOError), e:
+                debug("Warning: cannot copy baseconfig.txt to " + self.conf.ios_path + ": " + e.strerror)
+
         # Apply scene size
         globals.GApp.topology.setSceneRect(-(self.conf.scene_width / 2), -(self.conf.scene_height / 2), self.conf.scene_width, self.conf.scene_height)
 
@@ -211,7 +233,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         
     def __setIOSPath(self):
     
-        fb = fileBrowser(translate('UiConfig_PreferencesGeneral', 'IOS Directory'), parent=globals.preferencesWindow)
+        fb = fileBrowser(translate('UiConfig_PreferencesGeneral', 'Image Directory'), parent=globals.preferencesWindow)
         path = fb.getDir()
 
         if path:

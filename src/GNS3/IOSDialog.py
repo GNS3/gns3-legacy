@@ -79,6 +79,10 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         self.treeWidgetHypervisor.sortByColumn(0, QtCore.Qt.AscendingOrder)
         self.treeWidgetHypervisor.setSortingEnabled(True)
 
+        # If IOS path exists, baseconfig.txt should be inside
+        if os.path.exists(globals.GApp.systconf['general'].ios_path + os.sep + 'baseconfig.txt'):
+            self.lineEditBaseConfig.setText(globals.GApp.systconf['general'].ios_path + os.sep + 'baseconfig.txt')
+
         # reload saved infos
         self._reloadInfos()
 
