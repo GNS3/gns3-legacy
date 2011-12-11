@@ -179,7 +179,7 @@
       <bool>true</bool>
      </property>
      <property name="text">
-      <string>Use KVM</string>
+      <string>Use KVM (Linux hosts only)</string>
      </property>
     </widget>
    </item>

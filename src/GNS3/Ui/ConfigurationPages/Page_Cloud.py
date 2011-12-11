@@ -34,14 +34,6 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
         self.setObjectName("Cloud")
-
-        if platform.system() == 'Windows':
-            # NIO_UNIX and NIO_VDE can work across several versions of Unix-like systems, but not Windows.
-            self.tabWidget.removeTab(4)
-            self.tabWidget.removeTab(3)
-        if platform.system() != 'Linux':
-            # NIO_ETH_LINUX works only on Linux.
-            self.groupBox_2.setVisible(False)
             
         # connect slots
         self.connect(self.pushButtonAddGenericEth, QtCore.SIGNAL('clicked()'), self.slotAddGenEth)

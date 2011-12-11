@@ -37,12 +37,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         QtGui.QWidget.__init__(self)
         Ui_PreferencesQemu.setupUi(self, self)
 
-        if platform.system() != 'Linux':
-            self.QemucheckBoxKVM.setVisible(False)
-            self.JunOScheckBoxKVM.setVisible(False)
-            self.ASAcheckBoxKVM.setVisible(False)
-            self.IDScheckBoxKVM.setVisible(False)
-
         # Test button
         self.connect(self.pushButtonTestQemu, QtCore.SIGNAL('clicked()'),self.__testQemu)
         

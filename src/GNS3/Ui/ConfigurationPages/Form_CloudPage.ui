@@ -27,7 +27,7 @@
        <item>
         <widget class="QGroupBox" name="groupBox">
          <property name="title">
-          <string>Generic Ethernet NIO (Administrator access required)</string>
+          <string>Generic Ethernet NIO (Administrator or root access required)</string>
          </property>
          <layout class="QGridLayout">
           <item row="0" column="0" colspan="3">
@@ -75,7 +75,7 @@
           </sizepolicy>
          </property>
          <property name="title">
-          <string>Linux Ethernet NIO (root access required)</string>
+          <string>Linux Ethernet NIO (Linux only, root access required)</string>
          </property>
          <layout class="QGridLayout">
           <item row="0" column="0" colspan="3">
