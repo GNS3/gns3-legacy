@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Sun Dec  4 23:23:06 2011
+# Created: Sat Dec 10 19:13:22 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_IOSDialog(object):
     def setupUi(self, IOSDialog):
         IOSDialog.setObjectName(_fromUtf8("IOSDialog"))
-        IOSDialog.resize(780, 530)
+        IOSDialog.resize(806, 575)
         IOSDialog.setWindowTitle(QtGui.QApplication.translate("IOSDialog", "IOS images and hypervisors", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -168,6 +168,11 @@ class Ui_IOSDialog(object):
         self.pushButtonDeleteIOS.setText(QtGui.QApplication.translate("IOSDialog", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDeleteIOS.setObjectName(_fromUtf8("pushButtonDeleteIOS"))
         self.hboxlayout.addWidget(self.pushButtonDeleteIOS)
+        self.label_IdlePCWarning = QtGui.QLabel(self.tab_1)
+        self.label_IdlePCWarning.setText(_fromUtf8(""))
+        self.label_IdlePCWarning.setOpenExternalLinks(True)
+        self.label_IdlePCWarning.setObjectName(_fromUtf8("label_IdlePCWarning"))
+        self.hboxlayout.addWidget(self.label_IdlePCWarning)
         spacerItem = QtGui.QSpacerItem(251, 32, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem)
         self.buttonBox = QtGui.QDialogButtonBox(self.tab_1)

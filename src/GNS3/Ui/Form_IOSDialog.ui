@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>780</width>
-    <height>530</height>
+    <width>806</width>
+    <height>575</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -267,6 +267,16 @@
            </property>
            <property name="text">
             <string>&amp;Delete</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_IdlePCWarning">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="openExternalLinks">
+            <bool>true</bool>
            </property>
           </widget>
          </item>

@@ -250,6 +250,11 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "IDLE PC not valid (format required: 0xhhhhhhhh)"))
             return
         
+        if not idlepc:
+            self.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Warning: IDLE PC will have to be configured! <a href='http://www.gns3.net/gns3-simplest-topology' >Find out why and how</a>")  + '</font>')
+        else:
+            self.label_IdlePCWarning.setText('')
+        
         hypervisors = []
         if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Unchecked:
             # external hypervisor, don't use the hypervisor manager
