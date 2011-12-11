@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_CloudPage.ui'
 #
-# Created: Sun Dec  4 23:23:07 2011
+# Created: Sun Dec 11 16:58:31 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -28,7 +28,7 @@ class Ui_CloudPage(object):
         self.vboxlayout1 = QtGui.QVBoxLayout(self.tab)
         self.vboxlayout1.setObjectName(_fromUtf8("vboxlayout1"))
         self.groupBox = QtGui.QGroupBox(self.tab)
-        self.groupBox.setTitle(QtGui.QApplication.translate("CloudPage", "Generic Ethernet NIO (Administrator access required)", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox.setTitle(QtGui.QApplication.translate("CloudPage", "Generic Ethernet NIO (Administrator or root access required)", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox.setObjectName(_fromUtf8("groupBox"))
         self.gridlayout = QtGui.QGridLayout(self.groupBox)
         self.gridlayout.setObjectName(_fromUtf8("gridlayout"))
@@ -62,7 +62,7 @@ class Ui_CloudPage(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.groupBox_2.sizePolicy().hasHeightForWidth())
         self.groupBox_2.setSizePolicy(sizePolicy)
-        self.groupBox_2.setTitle(QtGui.QApplication.translate("CloudPage", "Linux Ethernet NIO (root access required)", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox_2.setTitle(QtGui.QApplication.translate("CloudPage", "Linux Ethernet NIO (Linux only, root access required)", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
         self.gridlayout1 = QtGui.QGridLayout(self.groupBox_2)
         self.gridlayout1.setObjectName(_fromUtf8("gridlayout1"))

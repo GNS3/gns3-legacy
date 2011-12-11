@@ -69,22 +69,22 @@
         <translation>Opţiuni Qemu:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="143"/>
+        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="153"/>
         <source>Initrd:</source>
         <translation>Fişierul Initrd:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="191"/>
+        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="218"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="198"/>
+        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="189"/>
         <source>Kernel:</source>
         <translation>Fişierul Kernel:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="215"/>
+        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="225"/>
         <source>Kernel cmd line:</source>
         <translation>Comenzi pentru Kernel:</translation>
     </message>
@@ -109,8 +109,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="241"/>
-        <source>Use KVM</source>
+        <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="146"/>
+        <source>Use KVM (Linux hosts only)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -665,18 +665,18 @@ p, li { white-space: pre-wrap; }
         <translation>Identificator:</translation>
     </message>
     <message>
+        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="185"/>
+        <source>127.0.0.1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="30"/>
-        <source>Generic Ethernet NIO (Administrator access required)</source>
-        <translation>Generic Ethernet NIO (necesită drepturi de Administrator)</translation>
+        <source>Generic Ethernet NIO (Administrator or root access required)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="78"/>
-        <source>Linux Ethernet NIO (root access required)</source>
-        <translation>Linux Ethernet NIO (necesită acces ca root)</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="185"/>
-        <source>127.0.0.1</source>
+        <source>Linux Ethernet NIO (Linux only, root access required)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1245,7 +1245,7 @@ Please choose an alternate network interface:</source>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="218"/>
-        <source>Use KVM</source>
+        <source>Use KVM (Linux hosts only)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1798,7 +1798,7 @@ Please choose an alternate network interface:</source>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="182"/>
-        <source>Use KVM</source>
+        <source>Use KVM (Linux hosts only)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2728,7 +2728,7 @@ pentru a afişa pagina de configurare.</translation>
 <context>
     <name>Page_Cloud</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_Cloud.py" line="373"/>
+        <location filename="../Ui/ConfigurationPages/Page_Cloud.py" line="365"/>
         <source>A link is connected with NIO %s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2868,87 +2868,87 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
 <context>
     <name>Page_PreferencesQemu</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="351"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="345"/>
         <source>Qemu guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="547"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="541"/>
         <source>Identifier and binary image must be set!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="445"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="439"/>
         <source>PIX firewall</source>
         <translation type="unfinished">Firewall PIX</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="478"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="472"/>
         <source>Serial</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="478"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="472"/>
         <source>Invalid serial (format required: 0xhhhhhhhh)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="485"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="479"/>
         <source>Key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="485"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="479"/>
         <source>Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="806"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="800"/>
         <source>Save</source>
         <translation type="unfinished">Salvează</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="492"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="486"/>
         <source>PIX settings have been saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="547"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="541"/>
         <source>JunOS router</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="585"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="579"/>
         <source>JunOS settings have been saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="652"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="646"/>
         <source>ASA firewall</source>
         <translation type="unfinished">Firewall ASA</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="652"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="646"/>
         <source>Identifier, initrd and kernel must be set!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="695"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="689"/>
         <source>ASA settings have been saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="764"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="758"/>
         <source>IDS</source>
         <translation type="unfinished">IDS/IPS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="764"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="758"/>
         <source>Identifier, image 1 and image 2 must be set!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="806"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="800"/>
         <source>IDS settings have been saved</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4055,7 +4055,7 @@ or the link itself.</source>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="182"/>
-        <source>Use KVM</source>
+        <source>Use KVM (Linux hosts only)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4977,62 +4977,62 @@ ALT + STÂNGA sau DREAPTA</translation>
 <context>
     <name>UiConfig_PreferencesQemu</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="312"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="306"/>
         <source>Local Qemu working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="851"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="845"/>
         <source>Message</source>
         <translation type="unfinished">Mesaj</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="851"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="845"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="860"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="854"/>
         <source>Qemuwrapper path doesn&apos;t exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="869"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="863"/>
         <source>Failed to start Qemuwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="886"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="880"/>
         <source>Failed to start qemu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="912"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="906"/>
         <source>Failed to start qemu-img</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="918"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="912"/>
         <source>Qemuwrapper, qemu and qemu-img have successfully started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="889"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="883"/>
         <source>You&apos;re running unpatched version of qemu, which won&apos;t work</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="916"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="910"/>
         <source>Qemuwrapper, qemu, qemu-img and pemu have successfully started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="918"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="912"/>
         <source> (except pemu)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="867"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="861"/>
         <source>Failed to start Qemuwrapper (python.exe path must be in your PATH environment variable)</source>
         <translation type="unfinished"></translation>
     </message>

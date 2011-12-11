@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_IDSPage.ui'
 #
-# Created: Sun Dec  4 23:23:08 2011
+# Created: Sun Dec 11 16:58:32 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -126,7 +126,7 @@ class Ui_IDSPage(object):
         self.gridLayout.addWidget(self.lineEditOptions, 5, 2, 1, 2)
         self.checkBoxKVM = QtGui.QCheckBox(IDSPage)
         self.checkBoxKVM.setEnabled(True)
-        self.checkBoxKVM.setText(QtGui.QApplication.translate("IDSPage", "Use KVM", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxKVM.setText(QtGui.QApplication.translate("IDSPage", "Use KVM (Linux hosts only)", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxKVM.setObjectName(_fromUtf8("checkBoxKVM"))
         self.gridLayout.addWidget(self.checkBoxKVM, 6, 0, 1, 3)
         spacerItem = QtGui.QSpacerItem(20, 281, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)

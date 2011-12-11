@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_JunOSPage.ui'
 #
-# Created: Sun Dec  4 23:23:08 2011
+# Created: Sun Dec 11 16:58:32 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -104,7 +104,7 @@ class Ui_JunOSPage(object):
         self.gridLayout.addWidget(self.lineEditOptions, 4, 1, 1, 2)
         self.checkBoxKVM = QtGui.QCheckBox(JunOSPage)
         self.checkBoxKVM.setEnabled(True)
-        self.checkBoxKVM.setText(QtGui.QApplication.translate("JunOSPage", "Use KVM", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxKVM.setText(QtGui.QApplication.translate("JunOSPage", "Use KVM (Linux hosts only)", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxKVM.setObjectName(_fromUtf8("checkBoxKVM"))
         self.gridLayout.addWidget(self.checkBoxKVM, 5, 0, 1, 2)
         spacerItem = QtGui.QSpacerItem(20, 281, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)

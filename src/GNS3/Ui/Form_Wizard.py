@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_Wizard.ui'
 #
-# Created: Sat Dec 10 18:31:10 2011
+# Created: Sun Dec 11 16:58:31 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_Wizard(object):
     def setupUi(self, Wizard):
         Wizard.setObjectName(_fromUtf8("Wizard"))
-        Wizard.resize(662, 541)
+        Wizard.resize(658, 541)
         Wizard.setWindowTitle(QtGui.QApplication.translate("Wizard", "Setup Wizard", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
