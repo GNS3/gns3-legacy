@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
+# Form implementation generated from reading ui file 'Form_PreferencesGeneral.ui'
 #
-# Created: Sun Dec  4 23:23:09 2011
+# Created: Sat Dec 10 17:47:35 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -88,7 +88,7 @@ class Ui_PreferencesGeneral(object):
         self.ProjectPath_browser.setObjectName(_fromUtf8("ProjectPath_browser"))
         self.gridlayout.addWidget(self.ProjectPath_browser, 1, 1, 1, 1)
         self.label_3 = QtGui.QLabel(self.groupBox_2)
-        self.label_3.setText(QtGui.QApplication.translate("PreferencesGeneral", "Image directory:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("PreferencesGeneral", "OS image (IOS, Qemu, PIX etc.) directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setObjectName(_fromUtf8("label_3"))
         self.gridlayout.addWidget(self.label_3, 2, 0, 1, 1)
         self.IOSPath = QtGui.QLineEdit(self.groupBox_2)

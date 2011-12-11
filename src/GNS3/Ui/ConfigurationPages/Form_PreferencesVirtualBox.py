@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesVirtualBox.ui'
+# Form implementation generated from reading ui file 'Form_PreferencesVirtualBox.ui'
 #
-# Created: Sun Dec  4 23:23:09 2011
+# Created: Sat Dec 10 17:51:32 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -146,7 +146,7 @@ class Ui_PreferencesVirtualBox(object):
         self.hboxlayout = QtGui.QHBoxLayout()
         self.hboxlayout.setObjectName(_fromUtf8("hboxlayout"))
         self.pushButtonTestVBox = QtGui.QPushButton(self.tab)
-        self.pushButtonTestVBox.setText(QtGui.QApplication.translate("PreferencesVirtualBox", "&Test", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonTestVBox.setText(QtGui.QApplication.translate("PreferencesVirtualBox", "&Test Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonTestVBox.setObjectName(_fromUtf8("pushButtonTestVBox"))
         self.hboxlayout.addWidget(self.pushButtonTestVBox)
         self.labelVBoxStatus = QtGui.QLabel(self.tab)
@@ -170,7 +170,7 @@ class Ui_PreferencesVirtualBox(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 432, 441))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 352, 427))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.verticalLayout = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))

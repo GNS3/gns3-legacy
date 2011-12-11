@@ -37,6 +37,7 @@ class Wizard(QtGui.QDialog, Ui_Wizard):
         # connections to slots
         self.connect(self.pushButton_Step1, QtCore.SIGNAL('clicked()'), self.slotStep1)
         self.connect(self.pushButton_Step2, QtCore.SIGNAL('clicked()'), self.slotStep2)
+        self.connect(self.pushButton_Step3, QtCore.SIGNAL('clicked()'), self.slotStep3)
         
     def slotStep1(self):
     
@@ -50,11 +51,17 @@ class Wizard(QtGui.QDialog, Ui_Wizard):
         globals.preferencesWindow.show()
         globals.preferencesWindow.exec_()
         globals.preferencesWindow = None
-        
+
     def slotStep2(self):
+
+        globals.preferencesWindow = PreferencesDialog()
+        globals.preferencesWindow.show()
+        globals.preferencesWindow.exec_()
+        globals.preferencesWindow = None
+
+    def slotStep3(self):
     
         dialog = IOSDialog()
         dialog.setModal(True)
         dialog.show()
         dialog.exec_()
-

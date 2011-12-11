@@ -245,7 +245,7 @@
          <item>
           <widget class="QPushButton" name="pushButtonTestVBox">
            <property name="text">
-            <string>&amp;Test</string>
+            <string>&amp;Test Settings</string>
            </property>
           </widget>
          </item>
@@ -294,8 +294,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>432</width>
-            <height>441</height>
+            <width>352</width>
+            <height>427</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">

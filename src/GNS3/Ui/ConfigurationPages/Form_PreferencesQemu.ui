@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>464</width>
-    <height>491</height>
+    <width>510</width>
+    <height>565</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -266,7 +266,7 @@
          <item>
           <widget class="QPushButton" name="pushButtonTestQemu">
            <property name="text">
-            <string>&amp;Test</string>
+            <string>&amp;Test Settings</string>
            </property>
           </widget>
          </item>
@@ -315,8 +315,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>420</width>
-            <height>427</height>
+            <width>275</width>
+            <height>445</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -557,8 +557,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>205</width>
-            <height>427</height>
+            <width>273</width>
+            <height>525</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -858,8 +858,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>205</width>
-            <height>365</height>
+            <width>273</width>
+            <height>445</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1117,8 +1117,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>200</width>
-            <height>450</height>
+            <width>273</width>
+            <height>549</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -1417,8 +1417,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>228</width>
-            <height>391</height>
+            <width>303</width>
+            <height>478</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">

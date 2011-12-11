@@ -36,10 +36,10 @@
           <string>Settings</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="0">
+          <item row="0" column="0" colspan="2">
            <widget class="QLabel" name="label">
             <property name="text">
-             <string>Executable path:</string>
+             <string>Executable path to Dynamips:</string>
             </property>
            </widget>
           </item>
@@ -63,7 +63,7 @@
           <item row="2" column="0" colspan="2">
            <widget class="QLabel" name="label_2">
             <property name="text">
-             <string>Working directory:</string>
+             <string>Working directory for Dynamips:</string>
             </property>
            </widget>
           </item>
@@ -219,7 +219,7 @@
          <item>
           <widget class="QPushButton" name="pushButtonTestDynamips">
            <property name="text">
-            <string>&amp;Test</string>
+            <string>&amp;Test Settings</string>
            </property>
           </widget>
          </item>

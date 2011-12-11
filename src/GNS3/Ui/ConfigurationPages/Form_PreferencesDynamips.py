@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDynamips.ui'
+# Form implementation generated from reading ui file 'Form_PreferencesDynamips.ui'
 #
-# Created: Sun Dec  4 23:23:09 2011
+# Created: Sat Dec 10 17:48:01 2011
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -38,9 +38,9 @@ class Ui_PreferencesDynamips(object):
         self.gridLayout = QtGui.QGridLayout(self.groupBox)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.label = QtGui.QLabel(self.groupBox)
-        self.label.setText(QtGui.QApplication.translate("PreferencesDynamips", "Executable path:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("PreferencesDynamips", "Executable path to Dynamips:", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setObjectName(_fromUtf8("label"))
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 2)
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
         self.dynamips_path = QtGui.QLineEdit(self.groupBox)
@@ -53,7 +53,7 @@ class Ui_PreferencesDynamips(object):
         self.horizontalLayout_2.addWidget(self.dynamips_path_browser)
         self.gridLayout.addLayout(self.horizontalLayout_2, 1, 0, 1, 4)
         self.label_2 = QtGui.QLabel(self.groupBox)
-        self.label_2.setText(QtGui.QApplication.translate("PreferencesDynamips", "Working directory:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("PreferencesDynamips", "Working directory for Dynamips:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.gridLayout.addWidget(self.label_2, 2, 0, 1, 2)
         self.horizontalLayout = QtGui.QHBoxLayout()
@@ -135,7 +135,7 @@ class Ui_PreferencesDynamips(object):
         self.hboxlayout = QtGui.QHBoxLayout()
         self.hboxlayout.setObjectName(_fromUtf8("hboxlayout"))
         self.pushButtonTestDynamips = QtGui.QPushButton(self.tab_1)
-        self.pushButtonTestDynamips.setText(QtGui.QApplication.translate("PreferencesDynamips", "&Test", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonTestDynamips.setText(QtGui.QApplication.translate("PreferencesDynamips", "&Test Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonTestDynamips.setObjectName(_fromUtf8("pushButtonTestDynamips"))
         self.hboxlayout.addWidget(self.pushButtonTestDynamips)
         self.labelDynamipsStatus = QtGui.QLabel(self.tab_1)
