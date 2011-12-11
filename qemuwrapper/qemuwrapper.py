@@ -775,7 +775,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         try:
             os.access(qemu_path, os.F_OK)
             global QEMU_PATH
-            QEMU_PATH = os.path.abspath(qemu_path)
+            QEMU_PATH = qemu_path
             print "Qemu path is now %s" % QEMU_PATH
             for qemu_name in QEMU_INSTANCES.keys():
                 QEMU_INSTANCES[qemu_name].bin = os.path.join(os.getcwdu(), QEMU_INSTANCES[qemu_name].name)
@@ -790,7 +790,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         try:
             os.access(qemu_img_path, os.F_OK)
             global QEMU_IMG_PATH
-            QEMU_IMG_PATH = os.path.abspath(qemu_img_path)
+            QEMU_IMG_PATH = qemu_img_path
             print "Qemu-img path is now %s" % QEMU_IMG_PATH
             for qemu_name in QEMU_INSTANCES.keys():
                 QEMU_INSTANCES[qemu_name].img_bin = os.path.join(os.getcwdu(), QEMU_INSTANCES[qemu_name].name)
