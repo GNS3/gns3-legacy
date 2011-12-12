@@ -315,8 +315,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>275</width>
-            <height>445</height>
+            <width>438</width>
+            <height>484</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -472,10 +472,10 @@
               <item row="5" column="1" colspan="2">
                <widget class="QLineEdit" name="QemuOptions"/>
               </item>
-              <item row="6" column="0">
+              <item row="6" column="0" colspan="2">
                <widget class="QCheckBox" name="QemucheckBoxKVM">
                 <property name="text">
-                 <string>Use KVM</string>
+                 <string>Use KVM (Linux host only)</string>
                 </property>
                </widget>
               </item>
@@ -557,7 +557,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>273</width>
+            <width>423</width>
             <height>525</height>
            </rect>
           </property>
@@ -858,8 +858,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>273</width>
-            <height>445</height>
+            <width>438</width>
+            <height>484</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1035,7 +1035,7 @@
                  <bool>true</bool>
                 </property>
                 <property name="text">
-                 <string>Use KVM</string>
+                 <string>Use KVM (Linux hosts only)</string>
                 </property>
                </widget>
               </item>
@@ -1117,7 +1117,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>273</width>
+            <width>423</width>
             <height>549</height>
            </rect>
           </property>
@@ -1267,7 +1267,7 @@
                  <bool>true</bool>
                 </property>
                 <property name="text">
-                 <string>Use KVM</string>
+                 <string>Use KVM (Linux hosts only)</string>
                 </property>
                </widget>
               </item>
@@ -1417,8 +1417,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>303</width>
-            <height>478</height>
+            <width>438</width>
+            <height>484</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -1624,7 +1624,7 @@
                  <bool>true</bool>
                 </property>
                 <property name="text">
-                 <string>Use KVM</string>
+                 <string>Use KVM (Linux hosts only)</string>
                 </property>
                </widget>
               </item>

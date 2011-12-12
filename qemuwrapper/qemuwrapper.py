@@ -1043,17 +1043,40 @@ def main():
     global IP
     from optparse import OptionParser
 
-    usage = "usage: %prog [--listen <ip_address>] [--port <port_number>] [--forceipv6 false]"
+    usage = "usage: %prog [--listen <ip_address>] [--port <port_number>] [--forceipv6 false] [--no-path-check]"
     parser = OptionParser(usage, version="%prog " + __version__)
     parser.add_option("-l", "--listen", dest="host", help="IP address or hostname to listen on (default is to listen on all interfaces)")
     parser.add_option("-p", "--port", type="int", dest="port", help="Port number (default is 10525)")
     parser.add_option("-w", "--workdir", dest="wd", help="Working directory (default is current directory)")
     parser.add_option("-6", "--forceipv6", dest="force_ipv6", help="Force IPv6 usage (default is false; i.e. IPv4)")
+    parser.add_option("-n", "--no-path-check", action="store_true", dest="no_path_check", default=False, help="No path check for Qemu and Qemu-img")
 
     try:
         (options, args) = parser.parse_args()
     except SystemExit:
         sys.exit(1)
+
+    if not options.no_path_check:
+        try:
+            p = subprocess.Popen([QEMU_PATH])
+            p.terminate()
+            print "Qemu path (%s) is valid" % QEMU_PATH
+
+        except OSError, e:
+            print >> sys.stderr, "Unable to start Qemu:", e
+            if not os.path.exists(QEMU_PATH):
+                print >> sys.stderr, "Path to Qemu seems to be invalid, please check. Current path is", QEMU_PATH
+            sys.exit(1)
+
+        try:
+            p = subprocess.Popen([QEMU_IMG_PATH])
+            p.terminate()
+            print "Qemu-img path (%s) is valid" % QEMU_IMG_PATH
+        except OSError, e:
+            print >> sys.stderr, "Unable to start Qemu-img:", e
+            if not os.path.exists(QEMU_IMG_PATH):
+                print >> sys.stderr, "Path to Qemu seems invalid, please check. Current path is", QEMU_IMG_PATH
+            sys.exit(1)
 
     if options.host:
         host = options.host
@@ -1099,27 +1122,6 @@ if __name__ == '__main__':
     print "Qemu Emulator Wrapper (version %s)" % __version__
     print "Copyright (c) 2007-2011 Thomas Pani & Jeremy Grossmann"
     print
-
-    try:
-        p = subprocess.Popen([QEMU_PATH])
-        p.terminate()
-        print "Qemu path (%s) is valid" % QEMU_PATH
-
-    except OSError, e:
-        print >> sys.stderr, "Unable to start Qemu:", e
-        if not os.path.exists(QEMU_PATH):
-            print >> sys.stderr, "Path to Qemu seems to be invalid, please check. Current path is", QEMU_PATH
-        sys.exit(1)
-
-    try:
-        p = subprocess.Popen([QEMU_IMG_PATH])
-        p.terminate()
-        print "Qemu-img path (%s) is valid" % QEMU_IMG_PATH
-    except OSError, e:
-        print >> sys.stderr, "Unable to start Qemu-img:", e
-        if not os.path.exists(QEMU_IMG_PATH):
-            print >> sys.stderr, "Path to Qemu seems invalid, please check. Current path is", QEMU_IMG_PATH
-        sys.exit(1)
 
     if platform.system() == 'Windows':
         try:

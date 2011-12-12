@@ -19,7 +19,7 @@
 # http://www.gns3.net/contact
 #
 
-import os, platform
+import os
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_JunOSPage import Ui_JunOSPage
@@ -35,9 +35,6 @@ class Page_JunOS(QtGui.QWidget, Ui_JunOSPage):
         self.setupUi(self)
         self.setObjectName("Juniper router")
         self.currentNodeID = None
-
-        if platform.system() != 'Linux':
-            self.checkBoxKVM.setVisible(False)
 
         # connect slot
         self.connect(self.pushButtonImageBrowser, QtCore.SIGNAL('clicked()'), self.slotSelectImage)

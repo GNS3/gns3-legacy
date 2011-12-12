@@ -19,7 +19,7 @@
 # http://www.gns3.net/contact
 #
 
-import re, sys, platform
+import re, sys
 import GNS3.Globals as globals
 from GNS3.Utils import translate, getWindowsInterfaces
 from PyQt4 import QtCore, QtGui, QtNetwork

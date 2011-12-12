@@ -19,7 +19,7 @@
 # http://www.gns3.net/contact
 #
 
-import os, platform
+import os
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_IDSPage import Ui_IDSPage
@@ -35,9 +35,6 @@ class Page_IDS(QtGui.QWidget, Ui_IDSPage):
         self.setupUi(self)
         self.setObjectName("Cisco IDS")
         self.currentNodeID = None
-
-        if platform.system() != 'Linux':
-            self.checkBoxKVM.setVisible(False)
 
         # connect slots
         self.connect(self.pushButtonImage1Browser, QtCore.SIGNAL('clicked()'), self.slotSelectImage1)

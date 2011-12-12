@@ -19,7 +19,7 @@
 # http://www.gns3.net/contact
 #
 
-import os, platform
+import os
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from Form_QemuPage import Ui_QemuPage
@@ -35,9 +35,6 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
         self.setupUi(self)
         self.setObjectName("Qemu device")
         self.currentNodeID = None
-
-        if platform.system() != 'Linux':
-            self.checkBoxKVM.setVisible(False)
 
         # connect slot
         self.connect(self.pushButtonImageBrowser, QtCore.SIGNAL('clicked()'), self.slotSelectImage)

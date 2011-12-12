@@ -143,11 +143,11 @@ class QemuManager(object):
         binding = globals.GApp.systconf['qemu'].QemuManager_binding
         #print "ADEBUG: qemuwrapper_path = %s" % str(globals.GApp.systconf['qemu'].qemuwrapper_path)
         if sys.platform.startswith('win') and (globals.GApp.systconf['qemu'].qemuwrapper_path.split('.')[-1] == 'exe'):
-            self.proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"', ['--listen', binding, '--port', str(self.port)])
+            self.proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"', ['--listen', binding, '--port', str(self.port), '--no-path-check'])
         elif hasattr(sys, "frozen"):
-            self.proc.start('python',  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding, '--port', str(self.port)])
+            self.proc.start('python',  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding, '--port', str(self.port), '--no-path-check'])
         else:
-            self.proc.start(sys.executable,  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding, '--port', str(self.port)])
+            self.proc.start(sys.executable,  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding, '--port', str(self.port), '--no-path-check'])
 
         if self.proc.waitForStarted() == False:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Qemu Manager',  unicode(translate("QemuManager", "Can't start Qemu on port %i")) % self.port)
@@ -194,11 +194,11 @@ class QemuManager(object):
         # start Qemuwrapper, use python on all platform but Windows (in release mode)
         if sys.platform.startswith('win') and (globals.GApp.systconf['qemu'].qemuwrapper_path.split('.')[-1] == 'exe'):
             # On Windows hosts, we remove python dependency by pre-compiling Qemuwrapper. (release mode)
-            proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"', ['--listen', binding])
+            proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"', ['--listen', binding, '--no-path-check'])
         elif hasattr(sys, "frozen"):
-            proc.start('python',  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding])
+            proc.start('python',  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding, '--no-path-check'])
         else:
-            proc.start(sys.executable,  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding])
+            proc.start(sys.executable,  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding, '--no-path-check'])
 
         if proc.waitForStarted() == False:
             return False

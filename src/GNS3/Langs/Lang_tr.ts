@@ -3659,11 +3659,6 @@ or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1627"/>
-        <source>Use KVM</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1639"/>
         <source>&amp;Save</source>
         <translation type="unfinished">&amp;Kaydet</translation>
@@ -3711,6 +3706,16 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="269"/>
         <source>&amp;Test Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="478"/>
+        <source>Use KVM (Linux host only)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1627"/>
+        <source>Use KVM (Linux hosts only)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -19,7 +19,7 @@
 # http://www.gns3.net/contact
 #
 
-import os, platform
+import os
 import GNS3.Globals as globals
 from PyQt4 import QtCore,  QtGui
 from Form_ASAPage import Ui_ASAPage
@@ -35,9 +35,6 @@ class Page_ASA(QtGui.QWidget, Ui_ASAPage):
         self.setupUi(self)
         self.setObjectName("ASA firewall")
         self.currentNodeID = None
-
-        if platform.system() != 'Linux':
-            self.checkBoxKVM.setVisible(False)
 
         # connect slots
         self.connect(self.pushButtonInitrdBrowser, QtCore.SIGNAL('clicked()'), self.slotSelectInitrd)
