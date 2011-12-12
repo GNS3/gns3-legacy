@@ -106,7 +106,7 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="33"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="146"/>
@@ -274,7 +274,26 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;GNS3 %VERSION%&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Under GPL v2 license&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Developers:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Alexey Eromenko &amp;quot;Technologov&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Former developers:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Xavier Alt&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Romain Lamaison&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Aurelien Levesque&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;David Ruiz&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="../Ui/Form_About.py" line="74"/>
@@ -297,7 +316,25 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tranzitwww: Romanian translation (code: ro)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Dionissys Anyfantis: Greek translation (code: gr)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg from Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;a name=&quot;:vm&quot;&gt;&lt;/a&gt;Leonard Bernstein from USA&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg from Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;a name=&quot;:vm&quot;&gt;&lt;/a&gt;Leonard Bernstein from USA&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Erik Wenzel: German translation (code: de)&lt;br /&gt;&lt;br /&gt;Huan Ji from Wuhan: Chinese translation (code: cn)&lt;br /&gt;&lt;br /&gt;Jose Sen: Spanish translation (code: es)&lt;br /&gt;&lt;br /&gt;Mark Soe Min: Japanese translation (code: jp)&lt;br /&gt;&lt;br /&gt;Aboulgasem Albusaifi from Tarabulus: Arabic translation (code: ar)&lt;br /&gt;&lt;br /&gt;Marcio de Freitas Minicz: Brazilian-Portuguese translation (code: pt_br)&lt;br /&gt;&lt;br /&gt;Hasan Agirol Aksoy: Turkish translation (code: tr)&lt;br /&gt;&lt;br /&gt;Ivakin Dmitriy: Russian translation (code: ru)&lt;br /&gt;&lt;br /&gt;Hyeonjin Kim: Korean translation (code: kr)&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa: Slovak translation (code: sk)&lt;br /&gt;&lt;br /&gt;Michał Zieliński: Polish translation (code: pl)&lt;br /&gt;&lt;br /&gt;Veljko Dzodic: Serbian translation (code: sr)&lt;br /&gt;&lt;br /&gt;Abalfazl Meshki: Farsi translation (code: fa)&lt;br /&gt;&lt;br /&gt;Ondřej Filip: Czech translation (code: cz)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lyubomir Tsekov: Bulgarian translation (code: bg)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela &amp;amp; Vincenzo Reale: Italian translation (code: it)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kyryl Tumanov: Ukrainian translation (code: uk)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tranzitwww: Romanian translation (code: ro)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Dionissys Anyfantis: Greek translation (code: gr)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -385,7 +422,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="443"/>
         <source>NOTE: This feature is only available for local hypervisors.</source>
-        <translation type="unfinished"></translation>
+        <translation>توجه: این امکان تنها برای هایپروایزور داخلی امکان پذیر است.</translation>
     </message>
 </context>
 <context>
@@ -513,12 +550,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/IOSRouter.py" line="671"/>
         <source>AUX port not available for this router model or base AUX port is set to 0 in preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>پورت AUX برای این ماژول روتر در دسترس نیست و یا مقدار پایه پورت AUX در اولویت ها صفر در نظر گرفته شده است</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="831"/>
         <source>GNS3 is up-to-date!</source>
-        <translation type="unfinished"></translation>
+        <translation>نرمافزار به روز رسانی گردید!</translation>
     </message>
 </context>
 <context>
@@ -541,7 +578,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="115"/>
         <source>Cannot change the hostname of a running device</source>
-        <translation type="unfinished"></translation>
+        <translation>نام دستگاه روشن تغییر پذیر نمی باشد</translation>
     </message>
 </context>
 <context>
@@ -549,22 +586,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AnyVBoxEmuDevice.py" line="236"/>
         <source>New hostname</source>
-        <translation type="unfinished">نام جدید</translation>
+        <translation>نام جدید</translation>
     </message>
     <message>
         <location filename="../Node/AnyVBoxEmuDevice.py" line="118"/>
         <source>Cannot change the hostname of a running device</source>
-        <translation type="unfinished"></translation>
+        <translation>نام دستگاه روشن تغییر پذیر نمی باشد</translation>
     </message>
     <message>
         <location filename="../Node/AnyVBoxEmuDevice.py" line="236"/>
         <source>Cannot rename a connected emulated device</source>
-        <translation type="unfinished">قادر به تغییر نام دستگاه متصل نمی باشد</translation>
+        <translation>نام دستگاه متصل تغییر پذیر نمی باشد</translation>
     </message>
     <message>
         <location filename="../Node/AnyVBoxEmuDevice.py" line="252"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">خطاي دايناميپث</translation>
+        <translation>خطاي دايناميپث</translation>
     </message>
 </context>
 <context>
@@ -837,12 +874,12 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Config/Defaults.py" line="74"/>
         <source>Wireshark Traditional Capture</source>
-        <translation type="unfinished"></translation>
+        <translation>کپچر قدیمی وایرشارک</translation>
     </message>
     <message>
         <location filename="../Config/Defaults.py" line="75"/>
         <source>Wireshark Live Traffic Capture</source>
-        <translation type="unfinished"></translation>
+        <translation>کپچر زنده وایرشارک</translation>
     </message>
 </context>
 <context>
@@ -911,12 +948,12 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../DynagenSub.py" line="266"/>
         <source>Local Qemu guest image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="280"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1116,27 +1153,27 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/Form_IDLEPCDialog.py" line="22"/>
         <source>IDLE PC values</source>
-        <translation type="unfinished"></translation>
+        <translation>مقدار آیدل پیسی</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IDLEPCDialog.py" line="29"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>معمولا مقدار مناسبتر آیدل با علامت &quot;*&quot; مشخص می گردد</translation>
     </message>
     <message>
         <location filename="../IDLEPCDialog.py" line="67"/>
         <source>IDLE PC</source>
-        <translation type="unfinished"></translation>
+        <translation>آیدل پیسی</translation>
     </message>
     <message>
         <location filename="../IDLEPCDialog.py" line="67"/>
         <source>IDLE PC value %s has been applied on %s</source>
-        <translation type="unfinished"></translation>
+        <translation>مقدار آیدل پیسی برای دستگاه پذیرفته شد</translation>
     </message>
     <message>
         <location filename="../IDLEPCDialog.py" line="70"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">خطاي دايناميپث</translation>
+        <translation>خطاي دايناميپث</translation>
     </message>
 </context>
 <context>
@@ -1240,7 +1277,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="105"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="218"/>
@@ -1456,12 +1493,12 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="262"/>
         <source>Base AUX:</source>
-        <translation type="unfinished"></translation>
+        <translation>AUX پایه:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="101"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="258"/>
@@ -1504,12 +1541,12 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Node/IOSRouter.py" line="160"/>
         <source>New hostname</source>
-        <translation type="unfinished">نام جدید</translation>
+        <translation>نام جدید</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="160"/>
         <source>Cannot change the hostname of a running device</source>
-        <translation type="unfinished"></translation>
+        <translation>نام دستگاه روشن تغییر پذیر نمی باشد</translation>
     </message>
 </context>
 <context>
@@ -1697,12 +1734,12 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="561"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="194"/>
         <source> KiB</source>
-        <translation type="unfinished"></translation>
+        <translation>KiB</translation>
     </message>
 </context>
 <context>
@@ -1793,7 +1830,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="69"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="182"/>
@@ -2272,27 +2309,27 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="443"/>
         <source>Console AUX to all devices</source>
-        <translation type="unfinished"></translation>
+        <translation>اتصال کنسول AUX به تمامی دستگاه ها</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="446"/>
         <source>Reset Interface Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>تنظیم مجدد برچسب تمامی اینترفیس ها</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="449"/>
         <source>Check for Update</source>
-        <translation type="unfinished"></translation>
+        <translation>بررسی برای بروزرسانی</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="62"/>
         <source>Device</source>
-        <translation type="unfinished"></translation>
+        <translation>دستگاه</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="247"/>
         <source>Screenshot</source>
-        <translation type="unfinished"></translation>
+        <translation>عکس لحظه ای</translation>
     </message>
 </context>
 <context>
@@ -2378,12 +2415,12 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="280"/>
         <source>New Hypervisor</source>
-        <translation type="unfinished"></translation>
+        <translation>هایپرویژر جدید</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="280"/>
         <source>WARNING: When doing multi-host setup, never use loopback addresses, such as &apos;localhost&apos; or &apos;127.0.0.1&apos;. Use actual IP addresses instead.</source>
-        <translation type="unfinished"></translation>
+        <translation>اخطار: هنگامی که از امکان &quot;multi-host setup&quot; استفاده می کنید، هرگز از آدرس های داخلی مانند &quot;localhost&quot; و نیز &quot;127.0.0.1&quot; استفاده نکرده و در عوض از آدرس های قابل قبول استفاده نمایید.</translation>
     </message>
 </context>
 <context>
@@ -2546,17 +2583,17 @@ to display the configuration page.</source>
     <message>
         <location filename="../NodeConfigurator.py" line="127"/>
         <source>PIX firewalls</source>
-        <translation type="unfinished"></translation>
+        <translation>فایروال های PIX</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="139"/>
         <source>Qemu guests</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu guests</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="142"/>
         <source>VirtualBox guests</source>
-        <translation type="unfinished"></translation>
+        <translation>VirtualBox guests</translation>
     </message>
 </context>
 <context>
@@ -2564,7 +2601,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../DynagenSub.py" line="277"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>ایمیج PIX %s پیدا نشد و هیچ ایمیج جایگزینی پیدا نگردید</translation>
     </message>
 </context>
 <context>
@@ -2572,105 +2609,105 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="14"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished">تنظيمات فايروال</translation>
+        <translation>تنظيمات فايروال</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="20"/>
         <source>PIX Image:</source>
-        <translation type="unfinished"></translation>
+        <translation>ایمیج فایروال:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="49"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="56"/>
         <source>RAM:</source>
-        <translation type="unfinished"></translation>
+        <translation>رم:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="69"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="85"/>
         <source>Number of NICs:</source>
-        <translation type="unfinished"></translation>
+        <translation>تعداد آداپتور های شبکه:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="108"/>
         <source>NIC model:</source>
-        <translation type="unfinished">مدل آداپتور های شبکه:</translation>
+        <translation>مدل آداپتور های شبکه:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="122"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished"></translation>
+        <translation>ne2k_pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="127"/>
         <source>i82551</source>
-        <translation type="unfinished"></translation>
+        <translation>i82551</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="132"/>
         <source>i82557b</source>
-        <translation type="unfinished"></translation>
+        <translation>i82557b</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="137"/>
         <source>i82559er</source>
-        <translation type="unfinished"></translation>
+        <translation>i82559er</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="142"/>
         <source>rtl8139</source>
-        <translation type="unfinished"></translation>
+        <translation>rtl8139</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="147"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="152"/>
         <source>pcnet</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="157"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="165"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished"></translation>
+        <translation>تنظیمات کمو:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="179"/>
         <source>Key:</source>
-        <translation type="unfinished"></translation>
+        <translation>کلید:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="196"/>
         <source>Serial:</source>
-        <translation type="unfinished"></translation>
+        <translation>سریال:</translation>
     </message>
 </context>
 <context>
     <name>Page_ASA</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="123"/>
+        <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="120"/>
         <source>ASA firewall</source>
-        <translation type="unfinished">فایروال ASA</translation>
+        <translation>فایروال ASA</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="123"/>
+        <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="120"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>برای کاهش تعداد اینترفیس ها شما ابتدا باید لینک های  متصل شده را جدا کنید </translation>
     </message>
 </context>
 <context>
@@ -2678,27 +2715,27 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="93"/>
         <source>Add mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>اضافه کردن نگاشت</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="86"/>
         <source>Same source and destination ports</source>
-        <translation type="unfinished"></translation>
+        <translation>پرت های همگون برای مبدا و مقصد</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="93"/>
         <source>Mapping already defined</source>
-        <translation type="unfinished"></translation>
+        <translation>نگاشت قبلا تعریف گردیده است</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="114"/>
         <source>ATM bridge</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM Bridge</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="114"/>
         <source>A link is connected in port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>یک لینک به پورت %i متصل گردید</translation>
     </message>
 </context>
 <context>
@@ -2706,22 +2743,22 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="114"/>
         <source>Add virtual channel</source>
-        <translation type="unfinished"></translation>
+        <translation>اضافه کردن کانال مجازی</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="114"/>
         <source>Mapping already defined</source>
-        <translation type="unfinished"></translation>
+        <translation>نگاشت قبلا تعریف گردیده است</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="139"/>
         <source>ATM switch</source>
-        <translation type="unfinished">ATM سوييچ</translation>
+        <translation>ATM سوييچ</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="139"/>
         <source>Links connected in port %i and port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>لینک ها به پورت %i و نیز پورت %i متصل گردید</translation>
     </message>
 </context>
 <context>
@@ -2729,7 +2766,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_Cloud.py" line="365"/>
         <source>A link is connected with NIO %s</source>
-        <translation type="unfinished"></translation>
+        <translation>A link is connected with NIO %s</translation>
     </message>
 </context>
 <context>
@@ -2737,7 +2774,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ETHSW.py" line="120"/>
         <source>A link is connected in port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>یک لینک به پورت %i متصل گردید</translation>
     </message>
 </context>
 <context>
@@ -2745,30 +2782,30 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="87"/>
         <source>Add virtual channel</source>
-        <translation type="unfinished"></translation>
+        <translation>اضافه کردن کانال مجازی</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="80"/>
         <source>Same source and destination ports</source>
-        <translation type="unfinished"></translation>
+        <translation>پرت های همگون برای مبدا و مقصد</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="87"/>
         <source>Mapping already defined</source>
-        <translation type="unfinished"></translation>
+        <translation>نگاشت قبلا تعریف گردیده است</translation>
     </message>
 </context>
 <context>
     <name>Page_IDS</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="118"/>
+        <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="115"/>
         <source>IDS</source>
-        <translation type="unfinished">IDS</translation>
+        <translation>IDS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="118"/>
+        <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="115"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>برای کاهش تعداد اینترفیس ها شما ابتدا باید لینک های  متصل شده را جدا کنید </translation>
     </message>
 </context>
 <context>
@@ -2776,46 +2813,47 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="144"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>هیچ</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="182"/>
         <source>Invalid MAC address (format required: hh:hh:hh:hh:hh:hh)</source>
-        <translation type="unfinished"></translation>
+        <translation>مک آدرس وارد شده اشتباه است</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="207"/>
         <source>Using npe-g2: there are potential bugs and your IOS image should be unpacked.
 C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
-        <translation type="unfinished"></translation>
+        <translation>Using npe-g2: there are potential bugs and your IOS image should be unpacked.
+C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="224"/>
         <source>You must use &apos;manual mode&apos; to connect a link with a NM-16ESW module</source>
-        <translation type="unfinished"></translation>
+        <translation>برای اتصال لینک با ماژول NM-16ESW باید از مود دستی استفاده کنید</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="251"/>
         <source>Links are connected in slot %i</source>
-        <translation type="unfinished"></translation>
+        <translation>لینک ها به شیار %s متصل شدند</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="286"/>
         <source>C7200-JC-PA can only be used with NPE-G2</source>
-        <translation type="unfinished"></translation>
+        <translation>C7200-JC-PA can only be used with NPE-G2</translation>
     </message>
 </context>
 <context>
     <name>Page_JunOS</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="101"/>
+        <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="98"/>
         <source>JunOS</source>
-        <translation type="unfinished"></translation>
+        <translation>JunOS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="101"/>
+        <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="98"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>برای کاهش تعداد اینترفیس ها شما ابتدا باید لینک های  متصل شده را جدا کنید </translation>
     </message>
 </context>
 <context>
@@ -2823,32 +2861,32 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="96"/>
         <source>Serial</source>
-        <translation type="unfinished"></translation>
+        <translation>سریال</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="96"/>
         <source>Invalid serial (format required: 0xhhhhhhhh)</source>
-        <translation type="unfinished"></translation>
+        <translation>سریال اشتباه وارد شده و باید بصورت 0xhhhhhhhh fhan</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="102"/>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>کلید</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="102"/>
         <source>Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</source>
-        <translation type="unfinished"></translation>
+        <translation>کلید اشتباه وارد شده و باید بصورت 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh باشد</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="111"/>
         <source>PIX firewall</source>
-        <translation type="unfinished">PIX فايروال</translation>
+        <translation>PIX فايروال</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="111"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>برای کاهش تعداد اینترفیس ها شما ابتدا باید لینک های  متصل شده را جدا کنید </translation>
     </message>
 </context>
 <context>
@@ -2856,12 +2894,12 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="102"/>
         <source>Capture directory</source>
-        <translation type="unfinished"></translation>
+        <translation>مسیر کپچر</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="102"/>
         <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
-        <translation type="unfinished"></translation>
+        <translation>مسیری که شما انتخاب کردید باید تنها asciiباشد. داینامیپث بر روی ویندوز از unicode حمایت نمی کند!</translation>
     </message>
 </context>
 <context>
@@ -2869,87 +2907,87 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="541"/>
         <source>Identifier and binary image must be set!</source>
-        <translation type="unfinished"></translation>
+        <translation>Identifier and binary image must be set!</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="800"/>
         <source>Save</source>
-        <translation type="unfinished">ذخيره</translation>
+        <translation>ذخيره</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="541"/>
         <source>JunOS router</source>
-        <translation type="unfinished"></translation>
+        <translation>روتر JunOS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="579"/>
         <source>JunOS settings have been saved</source>
-        <translation type="unfinished"></translation>
+        <translation>تنظیمات روتر JunOS ذخیره گردید</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="646"/>
         <source>ASA firewall</source>
-        <translation type="unfinished">فایروال ASA</translation>
+        <translation>فایروال ASA</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="646"/>
         <source>Identifier, initrd and kernel must be set!</source>
-        <translation type="unfinished"></translation>
+        <translation>Identifier, initrd and kernel must be set!</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="689"/>
         <source>ASA settings have been saved</source>
-        <translation type="unfinished"></translation>
+        <translation>تنظیمات روتر ASA ذخیره گردید</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="758"/>
         <source>IDS</source>
-        <translation type="unfinished">IDS</translation>
+        <translation>IDS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="758"/>
         <source>Identifier, image 1 and image 2 must be set!</source>
-        <translation type="unfinished"></translation>
+        <translation>Identifier, image 1 and image 2 must be set!</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="800"/>
         <source>IDS settings have been saved</source>
-        <translation type="unfinished"></translation>
+        <translation>تنظیمات روتر IDS ذخیره گردید</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="345"/>
         <source>Qemu guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu guest</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="439"/>
         <source>PIX firewall</source>
-        <translation type="unfinished">PIX فايروال</translation>
+        <translation>PIX فايروال</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="472"/>
         <source>Serial</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="472"/>
         <source>Invalid serial (format required: 0xhhhhhhhh)</source>
-        <translation type="unfinished"></translation>
+        <translation>سریال اشتباه وارد شده و باید بصورت 0xhhhhhhhh باشد</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="479"/>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="479"/>
         <source>Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</source>
-        <translation type="unfinished"></translation>
+        <translation>کلید اشتباه وارد شده و باید بصورت 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh باشد</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="486"/>
         <source>PIX settings have been saved</source>
-        <translation type="unfinished"></translation>
+        <translation>تنظیمات روتر PIX ذخیره گردید</translation>
     </message>
 </context>
 <context>
@@ -2957,30 +2995,30 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="323"/>
         <source>VirtualBox guest</source>
-        <translation type="unfinished"></translation>
+        <translation>گست VirtualBox</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="161"/>
         <source>WARNING ! GuestControl is insecure. Passwords are both stored and sent in clear-text. Use at your own risk.</source>
-        <translation type="unfinished"></translation>
+        <translation>WARNING ! GuestControl is insecure. Passwords are both stored and sent in clear-text. Use at your own risk.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="323"/>
         <source>Identifier and binary image must be set!</source>
-        <translation type="unfinished"></translation>
+        <translation>Identifier and binary image must be set!</translation>
     </message>
 </context>
 <context>
     <name>Page_Qemu</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="101"/>
+        <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="98"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>برای کاهش تعداد اینترفیس ها شما ابتدا باید لینک های  متصل شده را جدا کنید </translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="101"/>
+        <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="98"/>
         <source>Qemu guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu guest</translation>
     </message>
 </context>
 <context>
@@ -2988,12 +3026,12 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_VirtualBox.py" line="75"/>
         <source>VirtualBox guest</source>
-        <translation type="unfinished"></translation>
+        <translation>گست VirtualBox</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_VirtualBox.py" line="75"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>برای کاهش تعداد اینترفیس ها شما ابتدا باید لینک های  متصل شده را جدا کنید </translation>
     </message>
 </context>
 <context>
@@ -3031,28 +3069,28 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="68"/>
         <source>Default Presets:</source>
-        <translation type="unfinished"></translation>
+        <translation>Default Presets:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="75"/>
         <source>Use</source>
-        <translation type="unfinished"></translation>
+        <translation>استفاده</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="92"/>
         <source>Hint: To actually start capturing traffic, right click on link&apos;s small colored circle.</source>
-        <translation type="unfinished"></translation>
+        <translation>تذکر:برای شروع کپچر کردن ترافیک بر روی دایره رنگی کوچک لینک کلیک راست کنید.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="103"/>
         <source>%c = capture file</source>
-        <translation type="unfinished"></translation>
+        <translation>%c=فایل کپچر</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="95"/>
         <source>Hint: To actually start capturing traffic, right click on link&apos;s small colored circle
 or the link itself.</source>
-        <translation type="unfinished"></translation>
+        <translation>تذکر:برای شروع کپچر کردن ترافیک بر روی دایره رنگی کوچک لینک کلیک راست کنید.</translation>
     </message>
 </context>
 <context>
@@ -3173,12 +3211,12 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="343"/>
         <source>Allocate a new hypervisor per IOS image</source>
-        <translation type="unfinished"></translation>
+        <translation>Allocate a new hypervisor per IOS image</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="283"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="42"/>
@@ -3339,17 +3377,17 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="291"/>
         <source>&lt;html&gt;This option will attempt to bring existing opened console window to front, instead of opening a new window.&lt;br&gt;If no existing opened console window exists, it will start a new  console window.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;This option will attempt to bring existing opened console window to front, instead of opening a new window.&lt;br&gt;If no existing opened console window exists, it will start a new  console window.&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="294"/>
         <source>Bring console window to front (experimental feature)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bring console window to front (experimental feature)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="208"/>
         <source>Automatically check for update</source>
-        <translation type="unfinished"></translation>
+        <translation>به طور خودکار برای بروزرسانی بررسی کن</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="136"/>
@@ -3637,72 +3675,72 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="189"/>
         <source>Add several wrappers, to make your GNS3 distributed across several hosts.</source>
-        <translation type="unfinished"></translation>
+        <translation>Add several wrappers, to make your GNS3 distributed across several hosts.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="234"/>
         <source>Show QemuWrapper Advanced Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Show QemuWrapper Advanced Options</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="305"/>
         <source>Qemu Guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu guest</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="326"/>
         <source>Qemu Guest Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>تنظیمات Qemu Geust</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1508"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1639"/>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;ذخيره</translation>
+        <translation>&amp;ذخيره</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1646"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;پاك</translation>
+        <translation>&amp;پاك</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="519"/>
         <source>Qemu Guest Images</source>
-        <translation type="unfinished"></translation>
+        <translation>ایمیج های Qemu Guest</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="547"/>
         <source>PIX</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="568"/>
         <source>PIX Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>تنظیمات PIX</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="740"/>
         <source>PIX Specific Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>تنظیمات به خصوص PIX</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="746"/>
         <source>Key:</source>
-        <translation type="unfinished"></translation>
+        <translation>کلید:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="766"/>
         <source>Serial:</source>
-        <translation type="unfinished"></translation>
+        <translation>سریال:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="820"/>
         <source>PIX Images</source>
-        <translation type="unfinished"></translation>
+        <translation>ایمیج PIX</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="269"/>
@@ -3725,197 +3763,197 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>از</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="30"/>
         <source>General Settings</source>
-        <translation type="unfinished">تنظيمات عمومي</translation>
+        <translation>تنظيمات عمومي</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="39"/>
         <source>VBoxwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>VBoxwrapper</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="45"/>
         <source>Path to VBoxwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>Path to VBoxwrapper:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="75"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="65"/>
         <source>Working directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>محل اجرا:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="82"/>
         <source>IP/host binding:</source>
-        <translation type="unfinished"></translation>
+        <translation>IP/host binding:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="99"/>
         <source>Base console port:</source>
-        <translation type="unfinished"></translation>
+        <translation>پورت كنسول پایه:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="122"/>
         <source>Enable VBox Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Enable VBox Manager</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="132"/>
         <source>Use VBox Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>Use VBox Manager when importing</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="145"/>
         <source>External VBoxwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>External VBoxwrapper:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="152"/>
         <source>Add several wrappers, to make your GNS3 distributed across several hosts.</source>
-        <translation type="unfinished"></translation>
+        <translation>Add several wrappers, to make your GNS3 distributed across several hosts.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="159"/>
         <source>Add</source>
-        <translation type="unfinished">اضافه</translation>
+        <translation>اضافه</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="166"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>پاك</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="173"/>
         <source>Registered external VBoxwrappers:</source>
-        <translation type="unfinished"></translation>
+        <translation>Registered external VBoxwrappers:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="183"/>
         <source>Show VBoxWrapper Advanced Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Show VBoxWrapper Advanced Options</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="190"/>
         <source>Show VirtualBox Advanced Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Show VirtualBox Advanced Options</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="197"/>
         <source>VBoxwrapper port:</source>
-        <translation type="unfinished"></translation>
+        <translation>VBoxwrapper port:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="220"/>
         <source>Base UDP port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Base UDP port:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="284"/>
         <source>VirtualBox Guest</source>
-        <translation type="unfinished"></translation>
+        <translation>گست VirtualBox</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="305"/>
         <source>VirtualBox Guest Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>VirtualBox Guest Settings</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="311"/>
         <source>Identifier name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Identifier name:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="321"/>
         <source>VM Name / UUID:</source>
-        <translation type="unfinished"></translation>
+        <translation>VM Name / UUID:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="328"/>
         <source>NIC model:</source>
-        <translation type="unfinished">مدل آداپتور های شبکه:</translation>
+        <translation>مدل آداپتور های شبکه:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="342"/>
         <source>automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>اتوماتیک</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="347"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="352"/>
         <source>pcnet2</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet2</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="357"/>
         <source>pcnet3</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet3</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="362"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="389"/>
         <source>Number of NICs:</source>
-        <translation type="unfinished"></translation>
+        <translation>تعداد آداپتور های شبکه:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="405"/>
         <source>GuestControl User</source>
-        <translation type="unfinished"></translation>
+        <translation>GuestControl User</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="412"/>
         <source>GuestControl Password</source>
-        <translation type="unfinished"></translation>
+        <translation>GuestControl Password</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="419"/>
         <source>Enable GuestControl</source>
-        <translation type="unfinished"></translation>
+        <translation>Enable GuestControl</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="426"/>
         <source>(experimental feature)</source>
-        <translation type="unfinished"></translation>
+        <translation>(experimental feature)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="445"/>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;ذخيره</translation>
+        <translation>&amp;ذخيره</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="452"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;پاك</translation>
+        <translation>&amp;پاك</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="474"/>
         <source>VirtualBox Virtual Machines</source>
-        <translation type="unfinished"></translation>
+        <translation>VirtualBox Virtual Machines</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="482"/>
         <source>GNS3 Name</source>
-        <translation type="unfinished"></translation>
+        <translation>نام GNS3</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="487"/>
         <source>Virtual Machine Name or Unique Identifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Virtual Machine Name or Unique Identifier</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="248"/>
@@ -3936,7 +3974,7 @@ or the link itself.</source>
     <message>
         <location filename="../DynagenSub.py" line="263"/>
         <source>Qemu guest image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu guest image %s cannot be found and cannot find an alternative image</translation>
     </message>
 </context>
 <context>
@@ -4052,7 +4090,7 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="69"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="182"/>
@@ -4080,7 +4118,7 @@ or the link itself.</source>
     <message>
         <location filename="../Scene.py" line="451"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
-        <translation> قبلا مقدار گرفته است.آيا تمايل به محاسبه مجدد داريد  ؟ %s</translation>
+        <translation> قبلا مقدار گرفته است.آيا تمايل به محاسبه مجدد داريد %s؟</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="284"/>
@@ -4215,77 +4253,77 @@ or the link itself.</source>
     <message>
         <location filename="../Scene.py" line="242"/>
         <source>Change AUX port</source>
-        <translation type="unfinished"></translation>
+        <translation>تغییر پورت aux</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="247"/>
         <source>Console to AUX port</source>
-        <translation type="unfinished"></translation>
+        <translation>تغییر پورت کنسول AUX</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="543"/>
         <source>Do you really want to delete these nodes?</source>
-        <translation type="unfinished"></translation>
+        <translation>آیا می خواهید این نود را اک کنید؟</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="189"/>
         <source>Bring display to front</source>
-        <translation type="unfinished"></translation>
+        <translation>تصویر را در جلو قرار ده</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="197"/>
         <source>Hide display window</source>
-        <translation type="unfinished"></translation>
+        <translation>پنجره تصویر را مخفی کن</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="342"/>
         <source>Please wait while calculating an IDLE PC</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفا تا زمان محاسبه آیدل پیسی منتظر باشید</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="781"/>
         <source>AddLink</source>
-        <translation type="unfinished"></translation>
+        <translation>اضافه كردن لينك</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="759"/>
         <source>Qemu machines support only Ethernet links.</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu machines support only Ethernet links.</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="761"/>
         <source>VirtualBox machines support only Ethernet links.</source>
-        <translation type="unfinished"></translation>
+        <translation>VirtualBox machines support only Ethernet links.</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="763"/>
         <source>Ethernet switch supports only Ethernet links.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ethernet switch supports only Ethernet links.</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="769"/>
         <source>ATM switch supports only ATM links.</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM switch supports only ATM links.</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="775"/>
         <source>Frame-Relay switch supports only serial links.</source>
-        <translation type="unfinished"></translation>
+        <translation>Frame-Relay switch supports only serial links.</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="781"/>
         <source>ATM bridge supports only ATM and Ethernet links.</source>
-        <translation type="unfinished"></translation>
+        <translation>ATM bridge supports only ATM and Ethernet links.</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="290"/>
         <source>Lower one layer</source>
-        <translation type="unfinished"></translation>
+        <translation>یک لایه پایین ببر</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="295"/>
         <source>Raise one layer</source>
-        <translation type="unfinished"></translation>
+        <translation>یک لایه بالا ببر</translation>
     </message>
 </context>
 <context>
@@ -4751,107 +4789,107 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Topology.py" line="400"/>
         <source>External VBoxwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>External VBoxwrapper</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="395"/>
         <source>Please register at least one external VBoxwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Please register at least one external VBoxwrapper</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="400"/>
         <source>Please choose your external VBoxwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Please choose your external VBoxwrapper</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="442"/>
         <source>VBoxwrapper error</source>
-        <translation type="unfinished"></translation>
+        <translation>VBoxwrapper error</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="538"/>
         <source>Please configure a Qemu guest:</source>
-        <translation type="unfinished"></translation>
+        <translation>Please configure a Qemu guest:</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="551"/>
         <source>Qemu guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu guest</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="551"/>
         <source>Please choose a Qemu guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Please choose a Qemu guest</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="584"/>
         <source>VBox image</source>
-        <translation type="unfinished"></translation>
+        <translation>ایمیج VBox</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="584"/>
         <source>Please configure a VirtualBox guest:</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفا یک گست  VirtualBox تنظیم کنید:</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="597"/>
         <source>VirtualBox guest</source>
-        <translation type="unfinished"></translation>
+        <translation>گست VirtualBox</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="597"/>
         <source>Please choose a VirtualBox guest</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفا یک گست  VirtualBox تنظیم کنید</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="629"/>
         <source>VirtualBox API</source>
-        <translation type="unfinished"></translation>
+        <translation>VirtualBox API</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="616"/>
         <source>ERROR: VirtualBox API module cannot be loaded !</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: VirtualBox API module cannot be loaded !</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="623"/>
         <source>ERROR: VirtualBox API module cannot start !</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: VirtualBox API module cannot start !</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="636"/>
         <source>VirtualBox VMname/UUID</source>
-        <translation type="unfinished"></translation>
+        <translation>VirtualBox VMname/UUID</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="636"/>
         <source>VirtualBox Machine &apos;%s&apos; seems to not exist, please check</source>
-        <translation type="unfinished"></translation>
+        <translation>ماشین VirtualBox %s به نظر می آید وجود ندارد، لطفا بررسی کنید</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="817"/>
         <source>PIX</source>
-        <translation type="unfinished"></translation>
+        <translation>PIX</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="804"/>
         <source>Please configure a PIX</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفا یک PIX تنظیم کنید</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="817"/>
         <source>Please choose a PIX</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفا یک PIX انتخاب کنید</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="832"/>
         <source>PIX image</source>
-        <translation type="unfinished"></translation>
+        <translation>ایمیج PIX</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="246"/>
         <source>The base config file (%s) specified for this IOS can not be found. Your router will start with a blank configuration.</source>
-        <translation type="unfinished"></translation>
+        <translation>فایل نظیم پایه (%s) برای IOS مورد نظر پیدا نشد، روتز شما بصورت خام روشن خواهد شد.</translation>
     </message>
 </context>
 <context>
@@ -4859,7 +4897,7 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="92"/>
         <source>Local capture working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>مسیر کپچر داخلی</translation>
     </message>
 </context>
 <context>
@@ -4867,67 +4905,67 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="170"/>
         <source>Dynamips binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Dynamips binary</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="176"/>
         <source>Can&apos;t open file: %s</source>
-        <translation type="unfinished">نيست  %s   :قادر به باز كردن فايل</translation>
+        <translation>نيست  %s   :قادر به باز كردن فايل</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="186"/>
         <source>Dynamips path</source>
-        <translation type="unfinished"></translation>
+        <translation>مسیر داینامیپث</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="202"/>
         <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
-        <translation type="unfinished"></translation>
+        <translation>مسیری که شما انتخاب کردید باید تنها asciiباشد. داینامیپث بر روی ویندوز از unicode حمایت نمی کند!</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="192"/>
         <source>Local hypervisor working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>مسیر داخلی هایپرویزور</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="202"/>
         <source>Working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>مسیر کار</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="207"/>
         <source>Message</source>
-        <translation type="unfinished">پيغام</translation>
+        <translation>پيغام</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="207"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>این عمل توپولوژی جاری شما را پاک خواهد کرد، آیا تمایل به ادامه دارید؟</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="248"/>
         <source>Failed to start Dynamips</source>
-        <translation type="unfinished"></translation>
+        <translation>خطای داینامیپث</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="234"/>
         <source>Failed to determine version of Dynamips.</source>
-        <translation type="unfinished"></translation>
+        <translation>قادر به مشخص کردن نسخه داینامیپث نمی باشد.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="238"/>
         <source>Found Dynamips %s, which is not supported. Use 0.2.8+ instead.</source>
-        <translation type="unfinished"></translation>
+        <translation>Found Dynamips %s, which is not supported. Use 0.2.8+ instead.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="246"/>
         <source>Dynamips %s successfully started</source>
-        <translation type="unfinished"></translation>
+        <translation>داینامیپث %s با موفقیت شروع بکار کرد</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="214"/>
         <source>Dynamips path doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>مسیر داینامیپث وجود ندارد</translation>
     </message>
 </context>
 <context>
@@ -4935,17 +4973,17 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="228"/>
         <source>Project Directory</source>
-        <translation type="unfinished">مسیر پروژه</translation>
+        <translation>مسیر پروژه</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="255"/>
         <source>Configuration file</source>
-        <translation type="unfinished">فايل كانفيگ</translation>
+        <translation>فایل تنظیمات</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="255"/>
         <source>Configuration file cleared, default settings will be applied after a restart</source>
-        <translation type="unfinished"></translation>
+        <translation>فایل تنظیمات پاک گردید، تنظیمات پیش فرض پس از راه اندازی مجدد اعمال خواهد گردید</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="204"/>
@@ -4978,57 +5016,57 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="306"/>
         <source>Local Qemu working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>مسیر دایرکتوری کمو</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="845"/>
         <source>Message</source>
-        <translation type="unfinished">پيغام</translation>
+        <translation>پيغام</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="845"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>این عمل توپولوژی جاری شما را پاک خواهد کرد، آیا تمایل به ادامه دارید؟</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="854"/>
         <source>Qemuwrapper path doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>مسیر کمو وجود ندارد</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="863"/>
         <source>Failed to start Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>خطای کمورپر</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="880"/>
         <source>Failed to start qemu</source>
-        <translation type="unfinished"></translation>
+        <translation>خطای کمو</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="906"/>
         <source>Failed to start qemu-img</source>
-        <translation type="unfinished"></translation>
+        <translation>Failed to start qemu-img</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="912"/>
         <source>Qemuwrapper, qemu and qemu-img have successfully started</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemuwrapper, qemu and qemu-img have successfully started</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="883"/>
         <source>You&apos;re running unpatched version of qemu, which won&apos;t work</source>
-        <translation type="unfinished"></translation>
+        <translation>You&apos;re running unpatched version of qemu, which won&apos;t work</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="910"/>
         <source>Qemuwrapper, qemu, qemu-img and pemu have successfully started</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemuwrapper, qemu, qemu-img and pemu have successfully started</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="912"/>
         <source> (except pemu)</source>
-        <translation type="unfinished"></translation>
+        <translation> (except pemu)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="861"/>
@@ -5041,52 +5079,52 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="308"/>
         <source>Local VirtualBox working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>مسیر دایرکتوری VirtualBox </translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="402"/>
         <source>Message</source>
-        <translation type="unfinished">پيغام</translation>
+        <translation>پيغام</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="402"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>این عمل توپولوژی جاری شما را پاک خواهد کرد، آیا تمایل به ادامه دارید؟</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="414"/>
         <source>VBoxwrapper path doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>VBoxwrapper path doesn&apos;t exist</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="428"/>
         <source>Failed to start xdotool</source>
-        <translation type="unfinished"></translation>
+        <translation>Failed to start xdotool</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="450"/>
         <source>Failed to start VBoxwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Failed to start VBoxwrapper</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="453"/>
         <source>VBoxwrapper and VirtualBox API %s have successfully started</source>
-        <translation type="unfinished"></translation>
+        <translation>VBoxwrapper and VirtualBox API %s have successfully started</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="420"/>
         <source>Failed to load vboxapi module. Please check VirtualBox installation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Failed to load vboxapi module. Please check VirtualBox installation.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="434"/>
         <source>Failed to start vboxapi module. Please check VirtualBox installation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Failed to start vboxapi module. Please check VirtualBox installation.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="440"/>
         <source>ERROR: Found VirtualBox v%s. Required: v%s</source>
-        <translation type="unfinished"></translation>
+        <translation>ERROR: Found VirtualBox v%s. Required: v%s</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="448"/>
@@ -5187,32 +5225,32 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../VBoxManager.py" line="71"/>
         <source>Connecting to VBox on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Connecting to VBox on port %i ...</translation>
     </message>
     <message>
         <location filename="../VBoxManager.py" line="71"/>
         <source>Abort</source>
-        <translation type="unfinished"></translation>
+        <translation>درباره</translation>
     </message>
     <message>
         <location filename="../VBoxManager.py" line="95"/>
         <source>Can&apos;t connect to VBox on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Can&apos;t connect to VBox on port %i</translation>
     </message>
     <message>
         <location filename="../VBoxManager.py" line="189"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
-        <translation type="unfinished">مسیر %s بنظر می آید وجود ندارد و یا قابل تغییر نمی باشد لطفا بررسی کنید</translation>
+        <translation>مسیر %s بنظر می آید وجود ندارد و یا قابل تغییر نمی باشد لطفا بررسی کنید</translation>
     </message>
     <message>
         <location filename="../VBoxManager.py" line="136"/>
         <source>VBox is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>VBox is already running on port %i, it will not be shutdown after you quit GNS3</translation>
     </message>
     <message>
         <location filename="../VBoxManager.py" line="153"/>
         <source>Can&apos;t start VBox on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Can&apos;t start VBox on port %i</translation>
     </message>
 </context>
 <context>
@@ -5220,47 +5258,47 @@ ALT + LEFT or RIGHT</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="14"/>
         <source>VirtualBox configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>تنظیمات VirtualBox</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="20"/>
         <source>VM Name / UUID:</source>
-        <translation type="unfinished"></translation>
+        <translation>VM Name / UUID:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="40"/>
         <source>Number of NICs:</source>
-        <translation type="unfinished"></translation>
+        <translation>تعداد آداپتور های شبکه:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="69"/>
         <source>NIC model:</source>
-        <translation type="unfinished">مدل آداپتور های شبکه:</translation>
+        <translation>مدل آداپتور های شبکه:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="83"/>
         <source>automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>اتوماتیک</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="88"/>
         <source>e1000</source>
-        <translation type="unfinished"></translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="93"/>
         <source>pcnet2</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet2</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="98"/>
         <source>pcnet3</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet3</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="103"/>
         <source>virtio</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio</translation>
     </message>
 </context>
 <context>
@@ -5601,47 +5639,47 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="890"/>
         <source>This action is going to stop all your devices and captures, would you like to continue anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>این عمل تمامی دستگاه ها و کپچر های شما را متوقف میکند، آیا می خواهید ادامه دهید؟</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="647"/>
         <source>Interface labels</source>
-        <translation type="unfinished"></translation>
+        <translation>برچسب اینترفیس ها</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="638"/>
         <source>Please hide the interface names before using this option</source>
-        <translation type="unfinished"></translation>
+        <translation>لطفا پیش از استفاده از این آپش نام  اینترفیس ها را مخفی کنید</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="647"/>
         <source>Interface labels have been reset</source>
-        <translation type="unfinished"></translation>
+        <translation>برچسب اینترفیس ها دوباره تنظیم شد</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="1248"/>
         <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>شما گره های در حال اجرا دارید و با این کار تنظیمات درون آن ها را از دست خواهید داد، ایا تمایل به ادامه دارید؟</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="831"/>
         <source>Check For Update</source>
-        <translation type="unfinished"></translation>
+        <translation>بررسی برای بروزرسانی</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="819"/>
         <source>Cannot check for update ... Try again later</source>
-        <translation type="unfinished"></translation>
+        <translation>قادر به بررسی وجو نسخه جدید نیست ... لطفا بعدا تلاش کنید</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="824"/>
         <source>Newer GNS3 version %s is available, do you want to visit our website to download it?</source>
-        <translation type="unfinished"></translation>
+        <translation>نسخه جدید %s  GNS3 قابل دسترسی می باشد، آیا می خواهید برای گرفتن آن به سایت ما سر بزنید؟</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="866"/>
         <source>This will clear your current topology. Continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>این کار تمایم توپولوژی شما را پاک می کند، ایا ادامه می دهید؟</translation>
     </message>
 </context>
 <context>
@@ -5744,12 +5782,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="DynamicStrings.py" line="50"/>
         <source>Qemu guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemu guest</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="51"/>
         <source>VirtualBox guest</source>
-        <translation type="unfinished"></translation>
+        <translation>VirtualBox guest</translation>
     </message>
 </context>
 <context>

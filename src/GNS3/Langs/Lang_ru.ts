@@ -2662,12 +2662,12 @@ to display the configuration page.</source>
 <context>
     <name>Page_ASA</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="123"/>
+        <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="120"/>
         <source>ASA firewall</source>
         <translation>сетевой экран ASA</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="123"/>
+        <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="120"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
         <translation>Вы должны отсоединить это устройство, чтобы снизить количество сетевых портов</translation>
     </message>
@@ -2760,12 +2760,12 @@ to display the configuration page.</source>
 <context>
     <name>Page_IDS</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="118"/>
+        <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="115"/>
         <source>IDS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="118"/>
+        <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="115"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
         <translation>Вы должны отсоединить это устройство, чтобы снизить количество сетевых портов</translation>
     </message>
@@ -2807,12 +2807,12 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
 <context>
     <name>Page_JunOS</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="101"/>
+        <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="98"/>
         <source>JunOS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="101"/>
+        <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="98"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
         <translation>Вы должны отсоединить это устройство, чтобы снизить количество сетевых портов</translation>
     </message>
@@ -2972,12 +2972,12 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
 <context>
     <name>Page_Qemu</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="101"/>
+        <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="98"/>
         <source>Qemu guest</source>
         <translation>Qemu машина</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="101"/>
+        <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="98"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
         <translation>Вы должны отсоединить это устройство, чтобы снизить количество сетевых портов</translation>
     </message>
