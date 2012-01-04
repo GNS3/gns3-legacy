@@ -5,7 +5,7 @@
     <message>
         <location filename="../DynagenSub.py" line="189"/>
         <source>ASA initrd %s cannot be found and cannot find an alternative initrd</source>
-        <translation>L&apos; initrd dell&apos;ASA non è stato trovato, e non è presente un initrd alternativo</translation>
+        <translation>L&apos; initrd dell&apos;ASA non è stato trovato e non è presente un initrd alternativo</translation>
     </message>
 </context>
 <context>
@@ -13,7 +13,7 @@
     <message>
         <location filename="../DynagenSub.py" line="200"/>
         <source>ASA kernel %s cannot be found and cannot find an alternative kernel</source>
-        <translation>Il kernel dell&apos;ASA non è stato trovato, e non è presente un kernel alternativo</translation>
+        <translation>Il kernel dell&apos;ASA non è stato trovato e non è presente un kernel alternativo</translation>
     </message>
 </context>
 <context>
@@ -106,12 +106,12 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="33"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="146"/>
         <source>Use KVM (Linux hosts only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KVM (solo host Linux)</translation>
     </message>
 </context>
 <context>
@@ -274,7 +274,26 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;GNS3 %VERSION%&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Sotto licenza GPL v2&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Sviluppatori:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Alexey Eromenko &amp;quot;Technologov&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Sviluppatori originari:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Xavier Alt&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Romain Lamaison&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Aurelien Levesque&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;David Ruiz&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Effettua una donazione&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="../Ui/Form_About.py" line="74"/>
@@ -297,7 +316,25 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tranzitwww: Romanian translation (code: ro)&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Dionissys Anyfantis: Greek translation (code: gr)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Collaboratori:&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;Mike Fuszner del St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli di Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot dell&apos;Università di Tecnologia di Compiegne, Francia&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg di Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa della Slovacchia&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;a name=&quot;:vm&quot;&gt;&lt;/a&gt;Leonard Bernstein degli USA&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Traduttori:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Mike Fuszner del St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli di Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot dell&apos;Università di Tecnologia di Compiegne, Francia&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg di Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa della Slovacchia&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;a name=&quot;:vm&quot;&gt;&lt;/a&gt;Leonard Bernstein degli USA&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Traduttori:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Erik Wenzel: traduzione tedesca (codice: de)&lt;br /&gt;&lt;br /&gt;Huan Ji di Wuhan: traduzione cinese (codice: cn)&lt;br /&gt;&lt;br /&gt;Jose Sen: traduzione spagnola (codice: es)&lt;br /&gt;&lt;br /&gt;Mark Soe Min: traduzione giapponese (codice: jp)&lt;br /&gt;&lt;br /&gt;Aboulgasem Albusaifi di Tarabulus: traduzione araba (codice: ar)&lt;br /&gt;&lt;br /&gt;Marcio de Freitas Minicz: traduzione braziliana-portoghese (codice: pt_br)&lt;br /&gt;&lt;br /&gt;Hasan Agirol Aksoy: traduzione turca (codice: tr)&lt;br /&gt;&lt;br /&gt;Ivakin Dmitriy: traduzione russa (codice: ru)&lt;br /&gt;&lt;br /&gt;Hyeonjin Kim: traduzione coreana (codice: kr)&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa: traduzione slovacca (codice: sk)&lt;br /&gt;&lt;br /&gt;Michał Zieliński: traduzione polacca (codice: pl)&lt;br /&gt;&lt;br /&gt;Veljko Dzodic: traduzione serba (codice: sr)&lt;br /&gt;&lt;br /&gt;Abalfazl Meshki: traduzione farsi (codice: fa)&lt;br /&gt;&lt;br /&gt;Ondřej Filip: traduzione ceca (codice: cz)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lyubomir Tsekov: traduzione bulgara (codice: bg)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela &amp;amp; Vincenzo Reale: traduzione italiana (codice: it)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kyryl Tumanov: traduzione ucraina (codice: uk)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tranzitwww: traduzione rumena (codice: ro)&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Dionissys Anyfantis: traduzione greca (codice: gr)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -385,7 +422,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="443"/>
         <source>NOTE: This feature is only available for local hypervisors.</source>
-        <translation type="unfinished"></translation>
+        <translation>NOTA: questa funzionalità è disponibile solo per gli hypervisor locali.</translation>
     </message>
 </context>
 <context>
@@ -453,7 +490,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="138"/>
         <source>The device must have no connection to other devices in order to change its hypervisor</source>
-        <translation>Il dispositivo non deve essere connesso ad altri dispositivi perché possa cambiare hypervisor di riferimento</translation>
+        <translation>Il dispositivo non deve essere connesso ad altri dispositivi perché possa cambiare l&apos;hypervisor di riferimento</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="146"/>
@@ -463,12 +500,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="146"/>
         <source>New hypervisor:</source>
-        <translation>Nuova hypervisor:</translation>
+        <translation>Nuovo hypervisor:</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="153"/>
         <source>Invalid format for hypervisor (hostname:port is required)</source>
-        <translation>Formato per hypervisor invalido (il parametro hostname:porta è richiesto)</translation>
+        <translation>Formato dell&apos;hypervisor non valido (nomehost:porta è richiesto)</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="172"/>
@@ -513,12 +550,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/IOSRouter.py" line="671"/>
         <source>AUX port not available for this router model or base AUX port is set to 0 in preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>La porta AUX non è disponibile per questo modello di router o la porta base AUX è impostata a 0 nelle preferenze</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="831"/>
         <source>GNS3 is up-to-date!</source>
-        <translation type="unfinished"></translation>
+        <translation>GNS3 è aggiornato!</translation>
     </message>
 </context>
 <context>
@@ -541,7 +578,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="115"/>
         <source>Cannot change the hostname of a running device</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile cambiare il nome host di un dispositivo in esecuzione</translation>
     </message>
 </context>
 <context>
@@ -549,22 +586,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AnyVBoxEmuDevice.py" line="236"/>
         <source>New hostname</source>
-        <translation type="unfinished">Nuovo nome dell&apos;host</translation>
+        <translation>Nuovo nome host</translation>
     </message>
     <message>
         <location filename="../Node/AnyVBoxEmuDevice.py" line="118"/>
         <source>Cannot change the hostname of a running device</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile cambiare il nome host di un dispositivo in esecuzione</translation>
     </message>
     <message>
         <location filename="../Node/AnyVBoxEmuDevice.py" line="236"/>
         <source>Cannot rename a connected emulated device</source>
-        <translation type="unfinished">Impossibile rinominare il dispositivo connesso emulato</translation>
+        <translation>Impossibile rinominare un dispositivo emulato connesso</translation>
     </message>
     <message>
         <location filename="../Node/AnyVBoxEmuDevice.py" line="252"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Errore di Dynamips</translation>
+        <translation>Errore di Dynamips</translation>
     </message>
 </context>
 <context>
@@ -672,12 +709,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="30"/>
         <source>Generic Ethernet NIO (Administrator or root access required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ethernet NIO generico (richiede l&apos;accesso con Administrator o root)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="78"/>
         <source>Linux Ethernet NIO (Linux only, root access required)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ethernet NIO Linux (solo Linux, richiede l&apos;accesso con root)</translation>
     </message>
 </context>
 <context>
@@ -713,7 +750,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Console.py" line="397"/>
         <source>Please wait while gathering statistics...</source>
-        <translation>Attendere prego, raccolta delle informazioni richieste in corso...</translation>
+        <translation>Raccolta delle informazioni statistiche in corso...</translation>
     </message>
     <message>
         <location filename="../Console.py" line="422"/>
@@ -838,12 +875,12 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Config/Defaults.py" line="74"/>
         <source>Wireshark Traditional Capture</source>
-        <translation type="unfinished"></translation>
+        <translation>Cattura tradizionale di Wireshark</translation>
     </message>
     <message>
         <location filename="../Config/Defaults.py" line="75"/>
         <source>Wireshark Live Traffic Capture</source>
-        <translation type="unfinished"></translation>
+        <translation>Cattura in diretta del traffico con Wireshark</translation>
     </message>
 </context>
 <context>
@@ -876,7 +913,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../DynagenSub.py" line="365"/>
         <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation>Non è stata trovata la directory di lavoro richiesta %s per l&apos;hypervisor %s, verrà usata al suo posto la directory %s</translation>
+        <translation>Non è stata trovata la cartella di lavoro richiesta %s per l&apos;hypervisor %s, verrà usata al suo posto la cartella di lavoro %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="192"/>
@@ -918,7 +955,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../DynagenSub.py" line="266"/>
         <source>Local Qemu guest image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;&apos;immagine guest locale %s di Qemu non è disponibile, usa invece l&apos;immagine %s</translation>
     </message>
 </context>
 <context>
@@ -1085,12 +1122,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../HypervisorManager.py" line="211"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
-        <translation>La cartella di lavoro %s sembra non presente o non scrivibile, per cortesia verificare</translation>
+        <translation>La cartella di lavoro %s sembra non presente o non scrivibile, controlla</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="219"/>
         <source>Can&apos;t set up hypervisor on port %i, please check the settings (writable working directory ...)</source>
-        <translation>Impossibile avviare l&apos;hypervisor sulla porta %i, per cortesia verificare le impostazioni (cartella di lavoro scrivibile, ...)</translation>
+        <translation>Impossibile avviare l&apos;hypervisor sulla porta %i, verifica le impostazioni (cartella di lavoro scrivibile, ...)</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="95"/>
@@ -1100,7 +1137,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../HypervisorManager.py" line="78"/>
         <source>Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?</source>
-        <translation>Apparentemente un&apos;altra hypervisor è in funzione sulla porta %i, vuoi fermare tuti i processi Dynamips?</translation>
+        <translation>Apparentemente un altro hypervisor è in funzione sulla porta %i, vuoi fermare tuti i processi Dynamips?</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="164"/>
@@ -1118,27 +1155,27 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/Form_IDLEPCDialog.py" line="22"/>
         <source>IDLE PC values</source>
-        <translation type="unfinished"></translation>
+        <translation>Valori IDLE PC</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IDLEPCDialog.py" line="29"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>Valori idlepc potenzialmente migliori marcati con &apos;*&apos;</translation>
     </message>
     <message>
         <location filename="../IDLEPCDialog.py" line="67"/>
         <source>IDLE PC</source>
-        <translation type="unfinished">IDLE PC</translation>
+        <translation>IDLE PC</translation>
     </message>
     <message>
         <location filename="../IDLEPCDialog.py" line="67"/>
         <source>IDLE PC value %s has been applied on %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Il valore IDLE PC %s è stato applicato a %s</translation>
     </message>
     <message>
         <location filename="../IDLEPCDialog.py" line="70"/>
         <source>Dynamips error</source>
-        <translation type="unfinished">Errore di Dynamips</translation>
+        <translation>Errore di Dynamips</translation>
     </message>
 </context>
 <context>
@@ -1146,7 +1183,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../DynagenSub.py" line="216"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
-        <translation>L&apos;immagine IDS %s non è presente, e non è possibile trovare un&apos;immagine alternativa</translation>
+        <translation>L&apos;immagine IDS %s non è presente e non è possibile trovare un&apos;immagine alternativa</translation>
     </message>
 </context>
 <context>
@@ -1154,7 +1191,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../DynagenSub.py" line="227"/>
         <source>IDS image %s cannot be found and cannot find an alternative image</source>
-        <translation>L&apos;immagine IDS %s non è presente, e non è possibile trovare un&apos;immagine alternativa</translation>
+        <translation>L&apos;immagine IDS %s non è presente e non è possibile trovare un&apos;immagine alternativa</translation>
     </message>
 </context>
 <context>
@@ -1242,12 +1279,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="105"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="218"/>
         <source>Use KVM (Linux hosts only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KVM (solo host Linux)</translation>
     </message>
 </context>
 <context>
@@ -1255,7 +1292,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../DynagenSub.py" line="398"/>
         <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
-        <translation>L&apos;immagine IOS %s non è presente per l&apos;hypervisor %s, e non è possibile trovare un&apos;immagine alternativa %s</translation>
+        <translation>L&apos;immagine IOS %s non è presente per l&apos;hypervisor %s e non è possibile trovare un&apos;immagine alternativa %s</translation>
     </message>
 </context>
 <context>
@@ -1268,7 +1305,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../IOSDialog.py" line="267"/>
         <source>No hypervisor selected, use the local hypervisor</source>
-        <translation>Nessuna hypervisor selezionata, verrà usata l&apos;hypervisor locale</translation>
+        <translation>Nessun hypervisor selezionato, verrà usato l&apos;hypervisor locale</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="415"/>
@@ -1373,7 +1410,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="308"/>
         <source>External hypervisors</source>
-        <translation>Hypervisor esterne</translation>
+        <translation>Hypervisor esterni</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="169"/>
@@ -1458,17 +1495,17 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="262"/>
         <source>Base AUX:</source>
-        <translation type="unfinished"></translation>
+        <translation>AUX base:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="101"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="258"/>
         <source>Warning: IDLE PC will have to be configured! &lt;a href=&apos;http://www.gns3.net/gns3-simplest-topology&apos; &gt;Find out why and how&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Avviso: IDLE PC deve essere configurato! &lt;a href=&apos;http://www.gns3.net/gns3-simplest-topology&apos; &gt;Scopri perché e come&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -1506,12 +1543,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Node/IOSRouter.py" line="160"/>
         <source>New hostname</source>
-        <translation type="unfinished">Nuovo nome dell&apos;host</translation>
+        <translation>Nuovo nome host</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="160"/>
         <source>Cannot change the hostname of a running device</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile cambiare il nome host di un dispositivo in esecuzione</translation>
     </message>
 </context>
 <context>
@@ -1699,12 +1736,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="561"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="194"/>
         <source> KiB</source>
-        <translation type="unfinished"></translation>
+        <translation> KiB</translation>
     </message>
 </context>
 <context>
@@ -1712,7 +1749,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../DynagenSub.py" line="250"/>
         <source>JunOS image %s cannot be found and cannot find an alternative image</source>
-        <translation>L&apos;immagine JunOS %s non è presente, e non è possibile trovare un&apos;immagine alternativa</translation>
+        <translation>L&apos;immagine JunOS %s non è presente e non è possibile trovare un&apos;immagine alternativa</translation>
     </message>
 </context>
 <context>
@@ -1795,12 +1832,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="69"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="182"/>
         <source>Use KVM (Linux hosts only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KVM (solo host Linux)</translation>
     </message>
 </context>
 <context>
@@ -1856,7 +1893,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Main.py" line="49"/>
         <source>On Unix you can choose the config directory by setting the XDG_CONFIG_HOME environment variable</source>
-        <translation>In Unix si può selezionare la cartella delle configurazioni settando la variabile XDG_CONFIG_HOME</translation>
+        <translation>In Unix puoi selezionare la cartella delle configurazioni impostando la variabile d&apos;ambiente XDG_CONFIG_HOME</translation>
     </message>
 </context>
 <context>
@@ -2274,27 +2311,27 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="443"/>
         <source>Console AUX to all devices</source>
-        <translation type="unfinished"></translation>
+        <translation>Console AUX a tutti i dispositivi</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="446"/>
         <source>Reset Interface Labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripristina le etichette delle interfacce</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="449"/>
         <source>Check for Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Controllo aggiornamenti</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="62"/>
         <source>Device</source>
-        <translation type="unfinished"></translation>
+        <translation>Dispositivo</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="247"/>
         <source>Screenshot</source>
-        <translation type="unfinished"></translation>
+        <translation>Schermata</translation>
     </message>
 </context>
 <context>
@@ -2342,7 +2379,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../NETFile.py" line="614"/>
         <source>Please wait while importing the topology</source>
-        <translation>Attendere che l&apos;importazione della topologia sia terminata</translation>
+        <translation>Attendi che l&apos;importazione della topologia sia terminata</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="1168"/>
@@ -2372,7 +2409,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../NETFile.py" line="1073"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
-        <translation>Occorre essere connessi o aver configurato un&apos;hypervisor per essere registrati</translation>
+        <translation>occorre essere connessi o aver configurato un hypervisor per essere registrati</translation>
     </message>
 </context>
 <context>
@@ -2380,12 +2417,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="280"/>
         <source>New Hypervisor</source>
-        <translation type="unfinished"></translation>
+        <translation>Nuovo hypervisor</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="280"/>
         <source>WARNING: When doing multi-host setup, never use loopback addresses, such as &apos;localhost&apos; or &apos;127.0.0.1&apos;. Use actual IP addresses instead.</source>
-        <translation type="unfinished"></translation>
+        <translation>AVVISO: in caso di configurazione multi-host, non utilizzare mai gli indirizzi di loopback, come &apos;localhost&apos; o &apos;127.0.0.1&apos;. Utilizza invece l&apos;indirizzo IP corrente.</translation>
     </message>
 </context>
 <context>
@@ -2553,12 +2590,12 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../NodeConfigurator.py" line="139"/>
         <source>Qemu guests</source>
-        <translation type="unfinished"></translation>
+        <translation>Guest Qemu</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="142"/>
         <source>VirtualBox guests</source>
-        <translation type="unfinished"></translation>
+        <translation>Guest VirtualBox</translation>
     </message>
 </context>
 <context>
@@ -2566,7 +2603,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../DynagenSub.py" line="277"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
-        <translation>Non è stata trovata l&apos;immagine PIX %s per l&apos;hypervisor %s, e non è stata trovata un&apos;immagine alternativa</translation>
+        <translation>Non è stata trovata l&apos;immagine PIX %s per l&apos;hypervisor %s e non è possibile trovare un&apos;immagine alternativa</translation>
     </message>
 </context>
 <context>
@@ -2574,92 +2611,92 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="14"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished">Configurazione del firewall</translation>
+        <translation>Configurazione del firewall</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="20"/>
         <source>PIX Image:</source>
-        <translation type="unfinished">Immagine PIX:</translation>
+        <translation>Immagine PIX:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="49"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="56"/>
         <source>RAM:</source>
-        <translation type="unfinished"></translation>
+        <translation>RAM:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="69"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="85"/>
         <source>Number of NICs:</source>
-        <translation type="unfinished">Numero di NIC:</translation>
+        <translation>Numero di NIC:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="108"/>
         <source>NIC model:</source>
-        <translation type="unfinished">Modello NIC:</translation>
+        <translation>Modello NIC:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="122"/>
         <source>ne2k_pci</source>
-        <translation type="unfinished">ne2k_pci</translation>
+        <translation>ne2k_pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="127"/>
         <source>i82551</source>
-        <translation type="unfinished">i82551</translation>
+        <translation>i82551</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="132"/>
         <source>i82557b</source>
-        <translation type="unfinished">i82557b</translation>
+        <translation>i82557b</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="137"/>
         <source>i82559er</source>
-        <translation type="unfinished">i82559er</translation>
+        <translation>i82559er</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="142"/>
         <source>rtl8139</source>
-        <translation type="unfinished">rtl8139</translation>
+        <translation>rtl8139</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="147"/>
         <source>e1000</source>
-        <translation type="unfinished">e1000</translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="152"/>
         <source>pcnet</source>
-        <translation type="unfinished">pcnet</translation>
+        <translation>pcnet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="157"/>
         <source>virtio</source>
-        <translation type="unfinished">virtio</translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="165"/>
         <source>Qemu Options:</source>
-        <translation type="unfinished">Opzioni Qemu:</translation>
+        <translation>Opzioni Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="179"/>
         <source>Key:</source>
-        <translation type="unfinished">Chiave:</translation>
+        <translation>Chiave:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="196"/>
         <source>Serial:</source>
-        <translation type="unfinished">Seriale:</translation>
+        <translation>Seriale:</translation>
     </message>
 </context>
 <context>
@@ -2667,12 +2704,12 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="120"/>
         <source>ASA firewall</source>
-        <translation type="unfinished">Firewall ASA</translation>
+        <translation>Firewall ASA</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ASA.py" line="120"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>Devi rimuovere prima i collegamenti attivi per ridurre il numero di interfacce</translation>
     </message>
 </context>
 <context>
@@ -2680,27 +2717,27 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="93"/>
         <source>Add mapping</source>
-        <translation type="unfinished"></translation>
+        <translation>Agiungi mappatura</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="86"/>
         <source>Same source and destination ports</source>
-        <translation type="unfinished"></translation>
+        <translation>Stesse porte di origine e destinazione</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="93"/>
         <source>Mapping already defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Mappatura già definita</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="114"/>
         <source>ATM bridge</source>
-        <translation type="unfinished">Bridge ATM</translation>
+        <translation>Bridge ATM</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMBR.py" line="114"/>
         <source>A link is connected in port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Un collegamento è attivo sulla porta %i</translation>
     </message>
 </context>
 <context>
@@ -2708,22 +2745,22 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="114"/>
         <source>Add virtual channel</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi canale virtuale</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="114"/>
         <source>Mapping already defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Mappatura già definita</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="139"/>
         <source>ATM switch</source>
-        <translation type="unfinished">Switch ATM</translation>
+        <translation>Switch ATM</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ATMSW.py" line="139"/>
         <source>Links connected in port %i and port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Collegamenti attivi sulle porte %i e %i</translation>
     </message>
 </context>
 <context>
@@ -2731,7 +2768,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_Cloud.py" line="365"/>
         <source>A link is connected with NIO %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Un collegamemto è attivo con NIO %s</translation>
     </message>
 </context>
 <context>
@@ -2739,7 +2776,7 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_ETHSW.py" line="120"/>
         <source>A link is connected in port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Un collegamento è attivo sulla porta %i</translation>
     </message>
 </context>
 <context>
@@ -2747,17 +2784,17 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="87"/>
         <source>Add virtual channel</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi canale virtuale</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="80"/>
         <source>Same source and destination ports</source>
-        <translation type="unfinished"></translation>
+        <translation>Stesse porte di origine e destinazione</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_FRSW.py" line="87"/>
         <source>Mapping already defined</source>
-        <translation type="unfinished"></translation>
+        <translation>Mappatura già definita</translation>
     </message>
 </context>
 <context>
@@ -2765,12 +2802,12 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="115"/>
         <source>IDS</source>
-        <translation type="unfinished">IDS</translation>
+        <translation>IDS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_IDS.py" line="115"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>Devi rimuovere prima i collegamenti attivi per ridurre il numero di interfacce</translation>
     </message>
 </context>
 <context>
@@ -2778,33 +2815,34 @@ per visionare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="144"/>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessuno</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="182"/>
         <source>Invalid MAC address (format required: hh:hh:hh:hh:hh:hh)</source>
-        <translation type="unfinished"></translation>
+        <translation>Indirizzo MAC non valido (formato richiesto: hh:hh:hh:hh:hh:h)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="207"/>
         <source>Using npe-g2: there are potential bugs and your IOS image should be unpacked.
 C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilizzo di npe-g2: ci sono dei bug potenziali e l&apos;immagine dell&apos;IOS deve essere scompattata.
+C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX e PA-GE probabilmente non funzioneranno.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="224"/>
         <source>You must use &apos;manual mode&apos; to connect a link with a NM-16ESW module</source>
-        <translation type="unfinished"></translation>
+        <translation>Devi utilizzare &apos;modalità manuale&apos; per attivare un collegamento con un modulo NM-16ESW</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="251"/>
         <source>Links are connected in slot %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Ci sono collegamenti attivi sullo slot %i</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_IOSRouter.py" line="286"/>
         <source>C7200-JC-PA can only be used with NPE-G2</source>
-        <translation type="unfinished"></translation>
+        <translation>C7200-JC-PA può essere usato solo con NPE-G2</translation>
     </message>
 </context>
 <context>
@@ -2812,12 +2850,12 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="98"/>
         <source>JunOS</source>
-        <translation type="unfinished">JunOS</translation>
+        <translation>JunOS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_JunOS.py" line="98"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>Devi rimuovere prima i collegamenti attivi per ridurre il numero di interfacce</translation>
     </message>
 </context>
 <context>
@@ -2825,32 +2863,32 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="96"/>
         <source>Serial</source>
-        <translation type="unfinished"></translation>
+        <translation>Seriale</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="96"/>
         <source>Invalid serial (format required: 0xhhhhhhhh)</source>
-        <translation type="unfinished"></translation>
+        <translation>Seriale non valido (formato richiesto:  0xhhhhhhh)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="102"/>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiave</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="102"/>
         <source>Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiave non valida (formato richiesto:  0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="111"/>
         <source>PIX firewall</source>
-        <translation type="unfinished">Firewall PIX</translation>
+        <translation>Firewall PIX</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="111"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>Devi rimuovere prima i collegamenti attivi per ridurre il numero di interfacce</translation>
     </message>
 </context>
 <context>
@@ -2858,12 +2896,12 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="102"/>
         <source>Capture directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella delle catture</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="102"/>
         <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
-        <translation type="unfinished">Il percorso selezionato dovrebbe contenere solo caratteri ASCII (Inglese). Dynamips (DLL di Cygwin) non supporta l&apos;unicode su Windows!</translation>
+        <translation>Il percorso selezionato dovrebbe contenere solo caratteri ascii (Inglese). Dynamips (DLL di Cygwin) non supporta l&apos;unicode su Windows!</translation>
     </message>
 </context>
 <context>
@@ -2871,87 +2909,87 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="345"/>
         <source>Qemu guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Guest Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="541"/>
         <source>Identifier and binary image must be set!</source>
-        <translation type="unfinished"></translation>
+        <translation>Identificatore e immagine binaria devono essere impostati!</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="439"/>
         <source>PIX firewall</source>
-        <translation type="unfinished">Firewall PIX</translation>
+        <translation>Firewall PIX</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="472"/>
         <source>Serial</source>
-        <translation type="unfinished"></translation>
+        <translation>Seriale</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="472"/>
         <source>Invalid serial (format required: 0xhhhhhhhh)</source>
-        <translation type="unfinished"></translation>
+        <translation>Seriale non valido (formato richiesto:  0xhhhhhhh)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="479"/>
         <source>Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiave</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="479"/>
         <source>Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiave non valida (formato richiesto:  0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="800"/>
         <source>Save</source>
-        <translation type="unfinished">Salva</translation>
+        <translation>Salva</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="486"/>
         <source>PIX settings have been saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Le impostazioni del PIX sono state salvate</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="541"/>
         <source>JunOS router</source>
-        <translation type="unfinished"></translation>
+        <translation>Router JunOS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="579"/>
         <source>JunOS settings have been saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Le impostazioni di JunOS sono state salvate</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="646"/>
         <source>ASA firewall</source>
-        <translation type="unfinished">Firewall ASA</translation>
+        <translation>Firewall ASA</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="646"/>
         <source>Identifier, initrd and kernel must be set!</source>
-        <translation type="unfinished"></translation>
+        <translation>Identificatore, initrd e kernel devono essere impostati!</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="689"/>
         <source>ASA settings have been saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Le impostazioni dell&apos;ASA sono state salvate</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="758"/>
         <source>IDS</source>
-        <translation type="unfinished">IDS</translation>
+        <translation>IDS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="758"/>
         <source>Identifier, image 1 and image 2 must be set!</source>
-        <translation type="unfinished"></translation>
+        <translation>Identificatore, immagine 1 e immagine 2 devono essere impostati!</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="800"/>
         <source>IDS settings have been saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Le impostazioni dell&apos;IDS sono state salvate</translation>
     </message>
 </context>
 <context>
@@ -2959,17 +2997,17 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="323"/>
         <source>VirtualBox guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Guest VirtualBox</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="323"/>
         <source>Identifier and binary image must be set!</source>
-        <translation type="unfinished"></translation>
+        <translation>Identificatore e immagine binaria devono essere impostati!</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="161"/>
         <source>WARNING ! GuestControl is insecure. Passwords are both stored and sent in clear-text. Use at your own risk.</source>
-        <translation type="unfinished"></translation>
+        <translation>AVVISO! GuestControl non è sicuro. Le password sono memorizzate e inviate in chiaro. Usalo a tuo rischio.</translation>
     </message>
 </context>
 <context>
@@ -2977,12 +3015,12 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="98"/>
         <source>Qemu guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Guest Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_Qemu.py" line="98"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>Devi rimuovere prima i collegamenti attivi per ridurre il numero di interfacce</translation>
     </message>
 </context>
 <context>
@@ -2990,12 +3028,12 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_VirtualBox.py" line="75"/>
         <source>VirtualBox guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Guest VirtualBox</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_VirtualBox.py" line="75"/>
         <source>You must remove the connected links first in order to reduce the number of interfaces</source>
-        <translation type="unfinished"></translation>
+        <translation>Devi rimuovere prima i collegamenti attivi per ridurre il numero di interfacce</translation>
     </message>
 </context>
 <context>
@@ -3033,28 +3071,29 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="68"/>
         <source>Default Presets:</source>
-        <translation type="unfinished"></translation>
+        <translation>Preimpostazioni predefinite:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="75"/>
         <source>Use</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="92"/>
         <source>Hint: To actually start capturing traffic, right click on link&apos;s small colored circle.</source>
-        <translation type="unfinished"></translation>
+        <translation>Suggerimento: per avviare una cattura del traffico, fai clic con il tasto destro sul cerchietto colorato del collegamento.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="103"/>
         <source>%c = capture file</source>
-        <translation type="unfinished"></translation>
+        <translation>%c = file della cattura</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesCapture.ui" line="95"/>
         <source>Hint: To actually start capturing traffic, right click on link&apos;s small colored circle
 or the link itself.</source>
-        <translation type="unfinished"></translation>
+        <translation>Suggerimento: per avviare una cattura del traffico, fai clic con il tasto destro sul cerchietto colorato del collegamento
+o sul collegamento stesso.</translation>
     </message>
 </context>
 <context>
@@ -3135,7 +3174,7 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="333"/>
         <source>Use Hypervisor Manager when importing</source>
-        <translation>Usa il gestore hypervisor durante l&apos;importazione</translation>
+        <translation>Usa il gestore degli hypervisor durante l&apos;importazione</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="87"/>
@@ -3175,27 +3214,27 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="343"/>
         <source>Allocate a new hypervisor per IOS image</source>
-        <translation type="unfinished"></translation>
+        <translation>Alloca un nuovo hypervisor per l&apos;immagine IOS</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="283"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="42"/>
         <source>Executable path to Dynamips:</source>
-        <translation type="unfinished"></translation>
+        <translation>Percorso dell&apos;eseguibile di Dynamips:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="66"/>
         <source>Working directory for Dynamips:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella di lavoro per Dynamips:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesDynamips.ui" line="222"/>
         <source>&amp;Test Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Prova impos&amp;tazioni</translation>
     </message>
 </context>
 <context>
@@ -3344,22 +3383,22 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="291"/>
         <source>&lt;html&gt;This option will attempt to bring existing opened console window to front, instead of opening a new window.&lt;br&gt;If no existing opened console window exists, it will start a new  console window.&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;Questa opzione tenterà di portare in primo piano le console aperte, invece che aprire una nuova finestra.&lt;br&gt;Se non ci sono console aperte, aprirà la finestra di una nuova console.&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="294"/>
         <source>Bring console window to front (experimental feature)</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta in primo piano la finestra della console (funzionalità sperimentale)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="208"/>
         <source>Automatically check for update</source>
-        <translation type="unfinished"></translation>
+        <translation>Controlla automaticamente gli aggiornamenti</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="136"/>
         <source>OS image (IOS, Qemu, PIX etc.) directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella immagini OS (IOS, Qemu, PIX ecc.):</translation>
     </message>
 </context>
 <context>
@@ -3672,57 +3711,57 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="305"/>
         <source>Qemu Guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Guest Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="326"/>
         <source>Qemu Guest Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni guest Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1639"/>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Salva</translation>
+        <translation>&amp;Salva</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1646"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Elimina</translation>
+        <translation>&amp;Elimina</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="519"/>
         <source>Qemu Guest Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagini guest Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="189"/>
         <source>Add several wrappers, to make your GNS3 distributed across several hosts.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi diversi wrapper, per distribuire GNS3 su diversi host.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="234"/>
         <source>Show QemuWrapper Advanced Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra le opzioni avanzate di Qemuwrapper</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1508"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="269"/>
         <source>&amp;Test Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Prova impos&amp;tazioni</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="478"/>
         <source>Use KVM (Linux host only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KVM (solo host Linux)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1627"/>
         <source>Use KVM (Linux hosts only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KVM (solo host Linux)</translation>
     </message>
 </context>
 <context>
@@ -3730,202 +3769,202 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Modulo</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="30"/>
         <source>General Settings</source>
-        <translation type="unfinished">Impostazioni generali</translation>
+        <translation>Impostazioni generali</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="39"/>
         <source>VBoxwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>VBoxwrapper</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="45"/>
         <source>Path to VBoxwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>Percorso VBoxwrapper:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="75"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="65"/>
         <source>Working directory:</source>
-        <translation type="unfinished">Cartella di lavoro:</translation>
+        <translation>Cartella di lavoro:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="82"/>
         <source>IP/host binding:</source>
-        <translation type="unfinished">Associazione IP/host:</translation>
+        <translation>Associazione IP/host:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="197"/>
         <source>VBoxwrapper port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta VBoxwrapper:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="220"/>
         <source>Base UDP port:</source>
-        <translation type="unfinished">Porta UDP di partenza:</translation>
+        <translation>Porta UDP di partenza:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="99"/>
         <source>Base console port:</source>
-        <translation type="unfinished">Console di partenza:</translation>
+        <translation>Porta console di partenza:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="122"/>
         <source>Enable VBox Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita VBox Manager</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="132"/>
         <source>Use VBox Manager when importing</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa VBox Manager in fase di importazione</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="145"/>
         <source>External VBoxwrapper:</source>
-        <translation type="unfinished"></translation>
+        <translation>VBoxwrapper esterno:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="159"/>
         <source>Add</source>
-        <translation type="unfinished">Aggiungi</translation>
+        <translation>Aggiungi</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="166"/>
         <source>Delete</source>
-        <translation type="unfinished">Elimina</translation>
+        <translation>Elimina</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="173"/>
         <source>Registered external VBoxwrappers:</source>
-        <translation type="unfinished"></translation>
+        <translation>VBoxwrapper esterni registrati:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="284"/>
         <source>VirtualBox Guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Guest VirtualBox</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="305"/>
         <source>VirtualBox Guest Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni guest VirtualBox</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="311"/>
         <source>Identifier name:</source>
-        <translation type="unfinished">Nome identificatore:</translation>
+        <translation>Nome identificatore:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="321"/>
         <source>VM Name / UUID:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome VM /UUID:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="328"/>
         <source>NIC model:</source>
-        <translation type="unfinished">Modello NIC:</translation>
+        <translation>Modello NIC:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="342"/>
         <source>automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>automatico</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="347"/>
         <source>e1000</source>
-        <translation type="unfinished">e1000</translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="352"/>
         <source>pcnet2</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet2</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="357"/>
         <source>pcnet3</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet3</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="362"/>
         <source>virtio</source>
-        <translation type="unfinished">virtio</translation>
+        <translation>virtio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="389"/>
         <source>Number of NICs:</source>
-        <translation type="unfinished">Numero di NIC:</translation>
+        <translation>Numero di NIC:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="445"/>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Salva</translation>
+        <translation>&amp;Salva</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="452"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Elimina</translation>
+        <translation>&amp;Elimina</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="474"/>
         <source>VirtualBox Virtual Machines</source>
-        <translation type="unfinished"></translation>
+        <translation>Macchine virtuali di VirtualBox</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="482"/>
         <source>GNS3 Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome GNS3</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="487"/>
         <source>Virtual Machine Name or Unique Identifier</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome macchina virtuale o identificatore univoco</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="152"/>
         <source>Add several wrappers, to make your GNS3 distributed across several hosts.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi diversi wrapper, per distribuire GNS3 su diversi host.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="405"/>
         <source>GuestControl User</source>
-        <translation type="unfinished"></translation>
+        <translation>Utente GuestControl</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="412"/>
         <source>GuestControl Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Password GuestControl</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="419"/>
         <source>Enable GuestControl</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita GuestControl</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="426"/>
         <source>(experimental feature)</source>
-        <translation type="unfinished"></translation>
+        <translation>(funzionalità sperimentale)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="183"/>
         <source>Show VBoxWrapper Advanced Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra le opzioni avanzate di VBoxwrapper</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="190"/>
         <source>Show VirtualBox Advanced Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra le opzioni avanzate di VirtualBox</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="248"/>
         <source>&amp;Test Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Prova impos&amp;tazioni</translation>
     </message>
 </context>
 <context>
@@ -3941,7 +3980,7 @@ or the link itself.</source>
     <message>
         <location filename="../DynagenSub.py" line="263"/>
         <source>Qemu guest image %s cannot be found and cannot find an alternative image</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;immagine del guest Qemu %s non è presente e non è possibile trovare un&apos;immagine alternativa</translation>
     </message>
 </context>
 <context>
@@ -3949,7 +3988,7 @@ or the link itself.</source>
     <message>
         <location filename="../QemuManager.py" line="72"/>
         <source>Connecting to Qemu on port %i ...</source>
-        <translation>Connessione a Qemu sulla porta %i in corso ...</translation>
+        <translation>Connessione a Qemu sulla porta %i in corso...</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="72"/>
@@ -3964,7 +4003,7 @@ or the link itself.</source>
     <message>
         <location filename="../QemuManager.py" line="186"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
-        <translation>La cartella di lavoro %s sembra non presente o non scrivibile, per cortesia verificare</translation>
+        <translation>La cartella di lavoro %s sembra non presente o non scrivibile, controlla</translation>
     </message>
     <message>
         <location filename="../QemuManager.py" line="135"/>
@@ -4057,12 +4096,12 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="69"/>
         <source> MiB</source>
-        <translation type="unfinished"></translation>
+        <translation> MiB</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="182"/>
         <source>Use KVM (Linux hosts only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa KVM (solo host Linux)</translation>
     </message>
 </context>
 <context>
@@ -4125,7 +4164,7 @@ or the link itself.</source>
     <message>
         <location filename="../Scene.py" line="451"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
-        <translation>%s ha già un valore idlepc configurato, si vuole procedere con un ricalcolo?</translation>
+        <translation>%s ha già un valore idlepc configurato, vuoi ricalcolarlo?</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="127"/>
@@ -4220,77 +4259,77 @@ or the link itself.</source>
     <message>
         <location filename="../Scene.py" line="242"/>
         <source>Change AUX port</source>
-        <translation type="unfinished"></translation>
+        <translation>Cambia la porta AUX</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="247"/>
         <source>Console to AUX port</source>
-        <translation type="unfinished"></translation>
+        <translation>Console a porta AUX</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="543"/>
         <source>Do you really want to delete these nodes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vuoi davvero eliminare questi nodi?</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="342"/>
         <source>Please wait while calculating an IDLE PC</source>
-        <translation type="unfinished"></translation>
+        <translation>Attendi il calcolo di un IDLE PC</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="781"/>
         <source>AddLink</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi collegamento</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="759"/>
         <source>Qemu machines support only Ethernet links.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le macchine Qemu supportano solo collegamenti Ethernet.</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="761"/>
         <source>VirtualBox machines support only Ethernet links.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le macchine VirtualBox supportano solo collegamenti Ethernet.</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="763"/>
         <source>Ethernet switch supports only Ethernet links.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lo switch Ethernet supporta solo collegamenti Ethernet.</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="769"/>
         <source>ATM switch supports only ATM links.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lo switch ATM supporta solo collegamenti ATM.</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="775"/>
         <source>Frame-Relay switch supports only serial links.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lo switch Frame-Relay supporta solo collegamenti seriali.</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="781"/>
         <source>ATM bridge supports only ATM and Ethernet links.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il bridge ATM supporta solo collegamenti ATM e Ethernet.</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="189"/>
         <source>Bring display to front</source>
-        <translation type="unfinished"></translation>
+        <translation>Porta in primo piano lo schermo</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="197"/>
         <source>Hide display window</source>
-        <translation type="unfinished"></translation>
+        <translation>Nascondi la finestra dello schermo</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="290"/>
         <source>Lower one layer</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbassa di un livello</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="295"/>
         <source>Raise one layer</source>
-        <translation type="unfinished"></translation>
+        <translation>Alza di un livello</translation>
     </message>
 </context>
 <context>
@@ -4628,7 +4667,7 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Topology.py" line="1086"/>
         <source>You have to connect at least one router to the switch</source>
-        <translation>Occorre connettere almeno un router allo switch</translation>
+        <translation>Devi connettere almeno un router allo switch</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="832"/>
@@ -4653,7 +4692,7 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Topology.py" line="832"/>
         <source>%s seems to not exist, please check</source>
-        <translation>%s sembra non presente, per cortesia verificare</translation>
+        <translation>%s sembra non presente, controlla</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="680"/>
@@ -4693,7 +4732,7 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Topology.py" line="328"/>
         <source>Please choose your external Qemuwrapper</source>
-        <translation>Scegliere il Qemuwrapper esterno</translation>
+        <translation>Scegli il Qemuwrapper esterno</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="1062"/>
@@ -4778,87 +4817,87 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Topology.py" line="400"/>
         <source>External VBoxwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>VBoxwrapper esterno</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="395"/>
         <source>Please register at least one external VBoxwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Registra almeno un VBoxwrapper esterno</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="400"/>
         <source>Please choose your external VBoxwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli il Qemuwrapper esterno</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="442"/>
         <source>VBoxwrapper error</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore VBoxwrapper</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="538"/>
         <source>Please configure a Qemu guest:</source>
-        <translation type="unfinished"></translation>
+        <translation>Configura un guest Qemu:</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="551"/>
         <source>Qemu guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Guest Qemu</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="551"/>
         <source>Please choose a Qemu guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli un guest Qemu</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="584"/>
         <source>VBox image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine VBox</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="584"/>
         <source>Please configure a VirtualBox guest:</source>
-        <translation type="unfinished"></translation>
+        <translation>Configura un guest VirtualBox:</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="597"/>
         <source>VirtualBox guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Guest VirtualBox</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="597"/>
         <source>Please choose a VirtualBox guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli un guest VirtualBox</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="629"/>
         <source>VirtualBox API</source>
-        <translation type="unfinished"></translation>
+        <translation>VirtualBox API</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="616"/>
         <source>ERROR: VirtualBox API module cannot be loaded !</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRORE: il modulo VirtualBox API non può essere caricato!</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="636"/>
         <source>VirtualBox VMname/UUID</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome VM di VirtualBox/UUID</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="636"/>
         <source>VirtualBox Machine &apos;%s&apos; seems to not exist, please check</source>
-        <translation type="unfinished"></translation>
+        <translation>La macchina &apos;%s&apos; di VirtualBox sembra non esistere, controlla</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="623"/>
         <source>ERROR: VirtualBox API module cannot start !</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRORE: il modulo VirtualBox API non può essere avviato!</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="246"/>
         <source>The base config file (%s) specified for this IOS can not be found. Your router will start with a blank configuration.</source>
-        <translation type="unfinished"></translation>
+        <translation>Il file di configurazione di base (%s) specificato per questo IOS non può essere trovato. Il router sarà avviato con una configurazione vuota.</translation>
     </message>
 </context>
 <context>
@@ -4866,7 +4905,7 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="92"/>
         <source>Local capture working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella di lavoro locale per le catture</translation>
     </message>
 </context>
 <context>
@@ -4874,67 +4913,67 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="170"/>
         <source>Dynamips binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Binario di Dynamips</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="176"/>
         <source>Can&apos;t open file: %s</source>
-        <translation type="unfinished">Impossibile aprire il file: %s</translation>
+        <translation>Impossibile aprire il file: %s</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="186"/>
         <source>Dynamips path</source>
-        <translation type="unfinished"></translation>
+        <translation>Percorso di Dynamips</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="202"/>
         <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
-        <translation type="unfinished">Il percorso selezionato dovrebbe contenere solo caratteri ASCII (Inglese). Dynamips (DLL di Cygwin) non supporta l&apos;unicode su Windows!</translation>
+        <translation>Il percorso selezionato dovrebbe contenere solo caratteri ascii (Inglese). Dynamips (DLL di Cygwin) non supporta l&apos;unicode su Windows!</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="192"/>
         <source>Local hypervisor working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella di lavoro dell&apos;hypervisor locale</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="202"/>
         <source>Working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella di lavoro</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="207"/>
         <source>Message</source>
-        <translation type="unfinished">Messaggio</translation>
+        <translation>Messaggio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="207"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Questa azione eliminerà la topologia corrente, desideri continuare?</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="248"/>
         <source>Failed to start Dynamips</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvio di Dynamips non riuscito</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="234"/>
         <source>Failed to determine version of Dynamips.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile determinare la versione di Dynamips.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="238"/>
         <source>Found Dynamips %s, which is not supported. Use 0.2.8+ instead.</source>
-        <translation type="unfinished"></translation>
+        <translation>Trovato Dynamips %s, che non è supportato. Usa invece 0.2.8+.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="246"/>
         <source>Dynamips %s successfully started</source>
-        <translation type="unfinished"></translation>
+        <translation>Dynamips %s avviato correttamente</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="214"/>
         <source>Dynamips path doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Il percorso di Dynamips non esiste</translation>
     </message>
 </context>
 <context>
@@ -4942,42 +4981,42 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="228"/>
         <source>Project Directory</source>
-        <translation type="unfinished">Cartella del progetto</translation>
+        <translation>Cartella del progetto</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="255"/>
         <source>Configuration file</source>
-        <translation type="unfinished">File di configurazione</translation>
+        <translation>File di configurazione</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="255"/>
         <source>Configuration file cleared, default settings will be applied after a restart</source>
-        <translation type="unfinished"></translation>
+        <translation>File di configurazione cancellato, le impostazioni predefinite saranno applicate al riavvio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="204"/>
         <source>Project directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella del progetto</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="204"/>
         <source>Cannot create project directory: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile creare la cartella del progetto: %s</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="211"/>
         <source>Image directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella delle immagini</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="211"/>
         <source>Cannot create image directory: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile creare la cartella delle immagini: %s</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="236"/>
         <source>Image Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella delle immagini</translation>
     </message>
 </context>
 <context>
@@ -4985,62 +5024,62 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="306"/>
         <source>Local Qemu working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella di lavoro di Qemu locale</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="845"/>
         <source>Message</source>
-        <translation type="unfinished">Messaggio</translation>
+        <translation>Messaggio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="845"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Questa azione eliminerà la topologia corrente, desideri continuare?</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="854"/>
         <source>Qemuwrapper path doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Il percorso di Qemuwrapper non esiste</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="863"/>
         <source>Failed to start Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvio di Qemuwrapper non riuscito</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="880"/>
         <source>Failed to start qemu</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvio di qemu non riuscito</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="906"/>
         <source>Failed to start qemu-img</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvio di qemu-img non riuscito</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="912"/>
         <source>Qemuwrapper, qemu and qemu-img have successfully started</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemuwrapper, qemu e qemu-img sono stati avviati correttamente</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="883"/>
         <source>You&apos;re running unpatched version of qemu, which won&apos;t work</source>
-        <translation type="unfinished"></translation>
+        <translation>Stai eseguendo una versione di qemu senza patch, che non funzionerà</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="910"/>
         <source>Qemuwrapper, qemu, qemu-img and pemu have successfully started</source>
-        <translation type="unfinished"></translation>
+        <translation>Qemuwrapper, qemu, qemu-img e pemu sono stati avviati correttamente</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="912"/>
         <source> (except pemu)</source>
-        <translation type="unfinished"></translation>
+        <translation> (eccetto pemu)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="861"/>
         <source>Failed to start Qemuwrapper (python.exe path must be in your PATH environment variable)</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvio di Qemuwrapper non riuscito (il percorso a python.exe deve essere presente nella variabile d&apos;ambiente PATH)</translation>
     </message>
 </context>
 <context>
@@ -5048,57 +5087,57 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="308"/>
         <source>Local VirtualBox working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella di lavoro di VirtualBox locale</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="402"/>
         <source>Message</source>
-        <translation type="unfinished">Messaggio</translation>
+        <translation>Messaggio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="402"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Questa azione eliminerà la topologia corrente, desideri continuare?</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="414"/>
         <source>VBoxwrapper path doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Il percorso di VBoxwrapper non esiste</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="450"/>
         <source>Failed to start VBoxwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvio di VBoxwrapper non riuscito</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="453"/>
         <source>VBoxwrapper and VirtualBox API %s have successfully started</source>
-        <translation type="unfinished"></translation>
+        <translation>VBoxwrapper e VirtualBox API %s sono stati avviati correttamente</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="428"/>
         <source>Failed to start xdotool</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvio di xdotool non riuscito</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="420"/>
         <source>Failed to load vboxapi module. Please check VirtualBox installation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Caricamento del modulo vboxapi non riuscito. Controlla l&apos;installazione di VirtualBox.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="434"/>
         <source>Failed to start vboxapi module. Please check VirtualBox installation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvio del modulo vboxapi non riuscito. Controlla l&apos;installazione di VirtualBox.</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="440"/>
         <source>ERROR: Found VirtualBox v%s. Required: v%s</source>
-        <translation type="unfinished"></translation>
+        <translation>ERRORE: trovato VirtualBox v%s. Richiesto: v%s</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="448"/>
         <source>Failed to start VBoxwrapper (python.exe path must be in your PATH environment variable)</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvio di VBoxwrapper non riuscito (il percorso a python.exe deve essere presente nella variabile d&apos;ambiente PATH)</translation>
     </message>
 </context>
 <context>
@@ -5194,32 +5233,32 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../VBoxManager.py" line="71"/>
         <source>Connecting to VBox on port %i ...</source>
-        <translation type="unfinished"></translation>
+        <translation>Connessione a VBox sulla porta %i in corso...</translation>
     </message>
     <message>
         <location filename="../VBoxManager.py" line="71"/>
         <source>Abort</source>
-        <translation type="unfinished">Annulla</translation>
+        <translation>Annulla</translation>
     </message>
     <message>
         <location filename="../VBoxManager.py" line="95"/>
         <source>Can&apos;t connect to VBox on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile connettersi a VBox sulla porta %i</translation>
     </message>
     <message>
         <location filename="../VBoxManager.py" line="189"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
-        <translation type="unfinished">La cartella di lavoro %s sembra non presente o non scrivibile, per cortesia verificare</translation>
+        <translation>La cartella di lavoro %s sembra non esistere o non scrivibile, controlla</translation>
     </message>
     <message>
         <location filename="../VBoxManager.py" line="136"/>
         <source>VBox is already running on port %i, it will not be shutdown after you quit GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>VBox è già in esecuzione sulla porta %i, non sarà spento all&apos;uscita da GNS3</translation>
     </message>
     <message>
         <location filename="../VBoxManager.py" line="153"/>
         <source>Can&apos;t start VBox on port %i</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile avviare VBox sulla porta %i</translation>
     </message>
 </context>
 <context>
@@ -5227,47 +5266,47 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="14"/>
         <source>VirtualBox configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurazione di VirtualBox</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="20"/>
         <source>VM Name / UUID:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome VM /UUID:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="40"/>
         <source>Number of NICs:</source>
-        <translation type="unfinished">Numero di NIC:</translation>
+        <translation>Numero di NIC:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="69"/>
         <source>NIC model:</source>
-        <translation type="unfinished">Modello NIC:</translation>
+        <translation>Modello NIC:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="83"/>
         <source>automatic</source>
-        <translation type="unfinished"></translation>
+        <translation>automatico</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="88"/>
         <source>e1000</source>
-        <translation type="unfinished">e1000</translation>
+        <translation>e1000</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="93"/>
         <source>pcnet2</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet2</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="98"/>
         <source>pcnet3</source>
-        <translation type="unfinished"></translation>
+        <translation>pcnet3</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="103"/>
         <source>virtio</source>
-        <translation type="unfinished">virtio</translation>
+        <translation>virtio</translation>
     </message>
 </context>
 <context>
@@ -5308,7 +5347,12 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;Check that the path to Dynamips and the working directory are valid.&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;Test using the provided button.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;Controlla che il percorso a Dynamips e la cartella di lavoro siano validi.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;Prova utilizzando il pulsante fornito.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="82"/>
@@ -5318,12 +5362,17 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;Configure the path to your IOS image directory. &lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;This is where you should store all your images.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;Configura il percorso alla cartella delle immagini dell&apos;IOS. &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;La posizione in cui conserverai le tue immagini.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="94"/>
         <source>Step 3</source>
-        <translation type="unfinished">Passo 3</translation>
+        <translation>Passo 3</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="115"/>
@@ -5334,12 +5383,18 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;Add one or more uncompressed IOS images.&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;The IDLE PC will have to be configured later.&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;To find out how, please read this &lt;/span&gt;&lt;a href=&quot;http://www.gns3.net/gns3-simplest-topology&quot;&gt;&lt;span style=&quot; font-size:14pt; text-decoration: underline; color:#0000ff;&quot;&gt;tutorial&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;Aggiungi una o più immagini non compresse dell&apos;IOS.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;L&apos;IDLE PC dovrà essere configurato in seguito.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;Per scoprire come, leggi questa &lt;/span&gt;&lt;a href=&quot;http://www.gns3.net/gns3-simplest-topology&quot;&gt;&lt;span style=&quot; font-size:14pt; text-decoration: underline; color:#0000ff;&quot;&gt;guida&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="134"/>
         <source>Getting started</source>
-        <translation type="unfinished"></translation>
+        <translation>Per iniziare</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="139"/>
@@ -5350,7 +5405,13 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This simple setup wizard will help you to configure GNS3 to start your first IOS virtual router.&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Once you have done these 3 steps, you should be able to drag and drop a router on the &lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;main topology area. Please consult the documentation on our &lt;a href=&quot;http://www.gns3.net/documentation&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt; to find more help.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Questa semplice procedura guidata ti aiuterà a configurare GNS3 per avviare il tuo primo router virtuale con IOS.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Una volta completati i tre passi, dovresti poter trascinare e rilasciare un router sull&apos;area della topologia&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;principale. Consulta la documentazione su &lt;a href=&quot;http://www.gns3.net/documentation&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;website&lt;/span&gt;&lt;/a&gt; to find more help.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -5378,7 +5439,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="859"/>
         <source>Starting nodes ...</source>
-        <translation>Avvio dei nodi in corso ...</translation>
+        <translation>Avvio dei nodi in corso...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="734"/>
@@ -5453,7 +5514,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="385"/>
         <source>Directory to write startup-configs</source>
-        <translation>Cartella per scrivere le startup config</translation>
+        <translation>Cartella in cui scrivere le startup-config</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="624"/>
@@ -5478,7 +5539,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="1064"/>
         <source>Please wait while creating a snapshot</source>
-        <translation>Attendere prego, creazione della snapshot in corso</translation>
+        <translation>Creazione istantanea in corso</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="716"/>
@@ -5493,12 +5554,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="376"/>
         <source>Extracting to a directory</source>
-        <translation>Estrazione nella cartella in corso</translation>
+        <translation>Estrazione in una cartella</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="378"/>
         <source>Importing from a directory</source>
-        <translation>Importazione da cartella in corso</translation>
+        <translation>Importazione da una cartella</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="372"/>
@@ -5508,12 +5569,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="372"/>
         <source>Please choose an option</source>
-        <translation>Scegliere un&apos;opzione</translation>
+        <translation>Scegli un&apos;opzione</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="398"/>
         <source>Directory to read startup-configs</source>
-        <translation>Cartella per vedere le startup-config</translation>
+        <translation>Cartella da cui leggere le startup-config</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="419"/>
@@ -5563,7 +5624,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="746"/>
         <source>Reloading nodes ...</source>
-        <translation>Riavvio dei nodi in corso ...</translation>
+        <translation>Riavvio dei nodi in corso...</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="473"/>
@@ -5608,47 +5669,47 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="890"/>
         <source>This action is going to stop all your devices and captures, would you like to continue anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Questa azione fermerà tutti i dispositivi e le catture, desideri continuare comunque?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="647"/>
         <source>Interface labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Etichette delle interfacce</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="638"/>
         <source>Please hide the interface names before using this option</source>
-        <translation type="unfinished"></translation>
+        <translation>Nascondi i nomi delle interfacce prima di utilizzare questa opzione</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="647"/>
         <source>Interface labels have been reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Le etichette delle interfacce sono state ripristinate</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="1248"/>
         <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ci sono nodi in esecuzione e potresti perdere la loro configurazione, desideri continuare comunque?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="831"/>
         <source>Check For Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Controllo aggiornamenti</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="819"/>
         <source>Cannot check for update ... Try again later</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile verificare la presenza di aggiornamenti. Prova più tardi</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="824"/>
         <source>Newer GNS3 version %s is available, do you want to visit our website to download it?</source>
-        <translation type="unfinished"></translation>
+        <translation>La nuova versione %s di GNS3 è disponibile, vuoi visitare il sito web per scaricarla?</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="866"/>
         <source>This will clear your current topology. Continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>Questa azione cancellerà la topologia corrente. Vuoi continuare?</translation>
     </message>
 </context>
 <context>
@@ -5746,17 +5807,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="DynamicStrings.py" line="46"/>
         <source>EtherSwitch router</source>
-        <translation type="unfinished"></translation>
+        <translation>Router EtherSwitch</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="50"/>
         <source>Qemu guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Guest Qemu</translation>
     </message>
     <message>
         <location filename="DynamicStrings.py" line="51"/>
         <source>VirtualBox guest</source>
-        <translation type="unfinished"></translation>
+        <translation>Guest VirtualBox</translation>
     </message>
 </context>
 <context>
