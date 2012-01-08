@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Sun Dec 11 20:02:35 2011
+# Created: Sun Jan  8 16:42:20 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_PreferencesGeneral(object):
     def setupUi(self, PreferencesGeneral):
         PreferencesGeneral.setObjectName(_fromUtf8("PreferencesGeneral"))
-        PreferencesGeneral.resize(539, 544)
+        PreferencesGeneral.resize(539, 480)
         PreferencesGeneral.setWindowTitle(QtGui.QApplication.translate("PreferencesGeneral", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesGeneral)
         self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))

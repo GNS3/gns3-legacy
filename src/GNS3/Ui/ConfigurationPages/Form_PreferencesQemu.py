@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesQemu.ui'
 #
-# Created: Sun Dec 11 20:02:35 2011
+# Created: Sun Jan  8 16:42:21 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_PreferencesQemu(object):
     def setupUi(self, PreferencesQemu):
         PreferencesQemu.setObjectName(_fromUtf8("PreferencesQemu"))
-        PreferencesQemu.resize(510, 565)
+        PreferencesQemu.resize(510, 491)
         PreferencesQemu.setWindowTitle(QtGui.QApplication.translate("PreferencesQemu", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.verticalLayout_17 = QtGui.QVBoxLayout(PreferencesQemu)
         self.verticalLayout_17.setObjectName(_fromUtf8("verticalLayout_17"))
@@ -186,7 +186,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 438, 484))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 246, 388))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.verticalLayout = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
@@ -308,7 +308,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName(_fromUtf8("scrollArea_2"))
         self.scrollAreaWidgetContents_2 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 423, 525))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 233, 460))
         self.scrollAreaWidgetContents_2.setObjectName(_fromUtf8("scrollAreaWidgetContents_2"))
         self.verticalLayout_9 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_9.setObjectName(_fromUtf8("verticalLayout_9"))
@@ -463,7 +463,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.scrollArea_3.setObjectName(_fromUtf8("scrollArea_3"))
         self.scrollAreaWidgetContents_3 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_3.setGeometry(QtCore.QRect(0, 0, 438, 484))
+        self.scrollAreaWidgetContents_3.setGeometry(QtCore.QRect(0, 0, 253, 388))
         self.scrollAreaWidgetContents_3.setObjectName(_fromUtf8("scrollAreaWidgetContents_3"))
         self.verticalLayout_4 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents_3)
         self.verticalLayout_4.setObjectName(_fromUtf8("verticalLayout_4"))
@@ -590,7 +590,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.scrollArea_4.setObjectName(_fromUtf8("scrollArea_4"))
         self.scrollAreaWidgetContents_4 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 423, 549))
+        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 233, 487))
         self.scrollAreaWidgetContents_4.setObjectName(_fromUtf8("scrollAreaWidgetContents_4"))
         self.verticalLayout_3 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents_4)
         self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
@@ -742,7 +742,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.scrollArea_5.setObjectName(_fromUtf8("scrollArea_5"))
         self.scrollAreaWidgetContents_5 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_5.setGeometry(QtCore.QRect(0, 0, 438, 484))
+        self.scrollAreaWidgetContents_5.setGeometry(QtCore.QRect(0, 0, 267, 417))
         self.scrollAreaWidgetContents_5.setObjectName(_fromUtf8("scrollAreaWidgetContents_5"))
         self.verticalLayout_8 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents_5)
         self.verticalLayout_8.setObjectName(_fromUtf8("verticalLayout_8"))
