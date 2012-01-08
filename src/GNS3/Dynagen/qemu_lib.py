@@ -60,6 +60,7 @@ debugmsg(2, msg)
 from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
 from dynamips_lib import NIO_udp, send, dowarning, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW, DynamipsWarning
 import random
+import hashlib
 
 #version = "0.11.0.091411"
 (MAJOR, MINOR, SUB, RCVER) = (0, 2, 1, .1)
@@ -320,10 +321,6 @@ class AnyEmuDevice(object):
         self._image = None
         self._console = None
         self.state = 'stopped'
-        self.first_mac_number = random.choice('abcdef123456789')
-        self.second_mac_number = random.choice('abcdef123456789')
-        self.third_mac_number = random.choice('abcdef123456789')
-        self.fourth_mac_number = random.choice('abcdef123456789')
         self.defaults = {
             'image': None,
             'ram': 128,
@@ -594,7 +591,8 @@ class AnyEmuDevice(object):
         # burned in the EEPROM! Watch for overlap with real NICs;
         # it's unlikely, but possible.
         debugmsg(2, "AnyEmuDevice::add_interface()")
-        send(self.p, 'qemu create_nic %s %i 00:aa:00:%s%s:%s%s:0%i' % (self.name, port1, self.first_mac_number, self.second_mac_number, self.third_mac_number, self.fourth_mac_number, port1))
+        mac = hashlib.md5(self.name).hexdigest()
+        send(self.p, 'qemu create_nic %s %i 00:ab:%s:%s:%s:%02d' % (self.name, port1, mac[2:4], mac[4:6], mac[6:8], port1))
 
     def __allocate_udp_port(self, remote_hypervisor):
         """allocate a new src and dst udp port from hypervisors"""
