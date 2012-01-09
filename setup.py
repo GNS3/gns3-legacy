@@ -185,7 +185,7 @@ elif sys.platform.startswith('darwin'):
     os.system('cp ../qt.conf ./GNS3.app/Contents/Resources')
 
     print '*** Installing Dynamips ***'
-    os.system('cp ../dynamips-0.2.8-RC3-community-OSX.intel64.bin ./GNS3.app/Contents/Resources')
+    os.system('cp ../dynamips-0.2.8-RC3-community-OSX.intel64.bin ./GNS3.app/Contents/MacOS')
 
 #    print '*** Installing Patched Qemu ***'
 #    os.system('cp -R ../qemu-0.15.0/* ./GNS3.app/Contents/Resources/')

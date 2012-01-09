@@ -160,7 +160,7 @@ class Console(PyCutExt, Dynagen_Console):
         """Print hypervisors, dynagen, GNS3, libs versions and credits"""
 
         import sip
-        from __main__ import VERSION
+        from __main__ import VERSION, GNS3_RUN_PATH
 
         pythonver = str(sys.version_info[0])+'.'+str(sys.version_info[1])+'.'+str(sys.version_info[2])
         if hasattr(sys, "frozen"):
@@ -172,6 +172,8 @@ class Console(PyCutExt, Dynagen_Console):
         print 'SIP version is ' + sip.SIP_VERSION_STR
         print 'Python version is ' + pythonver
         
+        print unicode("\nGNS3 run path is %s\n" % GNS3_RUN_PATH)
+
         try:
             Dynagen_Console.do_ver(self, args)
         except Exception,e:
