@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sun Jan  8 16:42:17 2012
+# Created: Sun Jan  8 17:21:27 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -448,6 +448,13 @@ class Ui_MainWindow(object):
         self.action_CheckForUpdate = QtGui.QAction(MainWindow)
         self.action_CheckForUpdate.setText(QtGui.QApplication.translate("MainWindow", "Check for Update", None, QtGui.QApplication.UnicodeUTF8))
         self.action_CheckForUpdate.setObjectName(_fromUtf8("action_CheckForUpdate"))
+        self.action_ShowVirtualBoxManager = QtGui.QAction(MainWindow)
+        icon30 = QtGui.QIcon()
+        icon30.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/virtualbox.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.action_ShowVirtualBoxManager.setIcon(icon30)
+        self.action_ShowVirtualBoxManager.setText(QtGui.QApplication.translate("MainWindow", "Show VirtualBox Manager", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ShowVirtualBoxManager.setToolTip(QtGui.QApplication.translate("MainWindow", "Show VirtualBox Manager", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ShowVirtualBoxManager.setObjectName(_fromUtf8("action_ShowVirtualBoxManager"))
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -482,6 +489,7 @@ class Ui_MainWindow(object):
         self.menuControl.addAction(self.action_SuspendAll)
         self.menuControl.addAction(self.action_StopAll)
         self.menuControl.addAction(self.action_ReloadAll)
+        self.menuControl.addAction(self.action_ShowVirtualBoxManager)
         self.menuControl.addAction(self.action_ConsoleAuxAll)
         self.menuControl.addAction(self.action_TelnetAll)
         self.menuAnnotate.addAction(self.action_AddNote)
@@ -514,6 +522,7 @@ class Ui_MainWindow(object):
         self.toolBar_Emulation.addAction(self.action_SuspendAll)
         self.toolBar_Emulation.addAction(self.action_StopAll)
         self.toolBar_Emulation.addAction(self.action_ReloadAll)
+        self.toolBar_Emulation.addAction(self.action_ShowVirtualBoxManager)
         self.toolBar_drawing.addAction(self.action_AddNote)
         self.toolBar_drawing.addAction(self.action_InsertImage)
         self.toolBar_drawing.addAction(self.action_DrawRectangle)

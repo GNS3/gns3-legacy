@@ -104,6 +104,7 @@
     <addaction name="action_SuspendAll"/>
     <addaction name="action_StopAll"/>
     <addaction name="action_ReloadAll"/>
+    <addaction name="action_ShowVirtualBoxManager"/>
     <addaction name="action_ConsoleAuxAll"/>
     <addaction name="action_TelnetAll"/>
    </widget>
@@ -227,6 +228,7 @@
    <addaction name="action_SuspendAll"/>
    <addaction name="action_StopAll"/>
    <addaction name="action_ReloadAll"/>
+   <addaction name="action_ShowVirtualBoxManager"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget_TopoSum">
    <property name="sizePolicy">
@@ -870,6 +872,18 @@
   <action name="action_CheckForUpdate">
    <property name="text">
     <string>Check for Update</string>
+   </property>
+  </action>
+  <action name="action_ShowVirtualBoxManager">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/virtualbox.png</normaloff>:/icons/virtualbox.png</iconset>
+   </property>
+   <property name="text">
+    <string>Show VirtualBox Manager</string>
+   </property>
+   <property name="toolTip">
+    <string>Show VirtualBox Manager</string>
    </property>
   </action>
  </widget>

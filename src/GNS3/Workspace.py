@@ -19,11 +19,12 @@
 # http://www.gns3.net/contact
 #
 
-import os, socket, glob, shutil, time, base64
+import os, sys, socket, glob, shutil, time, base64, subprocess
 import GNS3.NETFile as netfile
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
 import GNS3.UndoFramework as undo
+import GNS3.WindowManipulator as winm
 from PyQt4 import QtGui, QtCore, QtNetwork
 from PyQt4.QtGui import QMainWindow, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
@@ -131,21 +132,22 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_ZoomReset, QtCore.SIGNAL('triggered()'), self.__action_ZoomReset)
         self.connect(self.action_SelectAll, QtCore.SIGNAL('triggered()'), self.__action_SelectAll)
         self.connect(self.action_SelectNone, QtCore.SIGNAL('triggered()'), self.__action_SelectNone)
-        self.connect(self.action_TelnetAll,  QtCore.SIGNAL('triggered()'), self.__action_TelnetAll)
-        self.connect(self.action_ConsoleAuxAll,  QtCore.SIGNAL('triggered()'), self.__action_ConsoleAuxAll)
-        self.connect(self.action_StartAll,  QtCore.SIGNAL('triggered()'), self.__action_StartAll)
-        self.connect(self.action_StopAll,  QtCore.SIGNAL('triggered()'), self.__action_StopAll)
-        self.connect(self.action_SuspendAll,  QtCore.SIGNAL('triggered()'), self.__action_SuspendAll)
-        self.connect(self.action_ReloadAll,  QtCore.SIGNAL('triggered()'), self.__action_ReloadAll)
-        self.connect(self.action_OnlineHelp,  QtCore.SIGNAL('triggered()'), self.__action_Help)
-        self.connect(self.action_About,  QtCore.SIGNAL('triggered()'), self.__action_About)
-        self.connect(self.action_AboutQt,  QtCore.SIGNAL('triggered()'), self.__action_AboutQt)
-        self.connect(self.action_CheckForUpdate,  QtCore.SIGNAL('triggered()'), self.__action_CheckForUpdate)
-        self.connect(self.action_New,  QtCore.SIGNAL('triggered()'), self.__action_NewProject)
-        self.connect(self.action_SaveProjectAs,  QtCore.SIGNAL('triggered()'), self.__action_SaveProjectAs)
-        self.connect(self.action_Open,  QtCore.SIGNAL('triggered()'), self.__action_OpenFile)
-        self.connect(self.action_Save,  QtCore.SIGNAL('triggered()'), self.__action_Save)
-        self.connect(self.action_SaveAs,  QtCore.SIGNAL('triggered()'), self.__action_SaveAs)
+        self.connect(self.action_TelnetAll, QtCore.SIGNAL('triggered()'), self.__action_TelnetAll)
+        self.connect(self.action_ConsoleAuxAll, QtCore.SIGNAL('triggered()'), self.__action_ConsoleAuxAll)
+        self.connect(self.action_StartAll, QtCore.SIGNAL('triggered()'), self.__action_StartAll)
+        self.connect(self.action_StopAll, QtCore.SIGNAL('triggered()'), self.__action_StopAll)
+        self.connect(self.action_SuspendAll, QtCore.SIGNAL('triggered()'), self.__action_SuspendAll)
+        self.connect(self.action_ReloadAll, QtCore.SIGNAL('triggered()'), self.__action_ReloadAll)
+        self.connect(self.action_ShowVirtualBoxManager, QtCore.SIGNAL('triggered()'), self.__action_ShowVirtualBoxManager)
+        self.connect(self.action_OnlineHelp, QtCore.SIGNAL('triggered()'), self.__action_Help)
+        self.connect(self.action_About, QtCore.SIGNAL('triggered()'), self.__action_About)
+        self.connect(self.action_AboutQt, QtCore.SIGNAL('triggered()'), self.__action_AboutQt)
+        self.connect(self.action_CheckForUpdate, QtCore.SIGNAL('triggered()'), self.__action_CheckForUpdate)
+        self.connect(self.action_New, QtCore.SIGNAL('triggered()'), self.__action_NewProject)
+        self.connect(self.action_SaveProjectAs, QtCore.SIGNAL('triggered()'), self.__action_SaveProjectAs)
+        self.connect(self.action_Open, QtCore.SIGNAL('triggered()'), self.__action_OpenFile)
+        self.connect(self.action_Save, QtCore.SIGNAL('triggered()'), self.__action_Save)
+        self.connect(self.action_SaveAs, QtCore.SIGNAL('triggered()'), self.__action_SaveAs)
         self.connect(self.action_Preferences, QtCore.SIGNAL('triggered()'), self.__action_Preferences)
         self.connect(self.action_AddNote, QtCore.SIGNAL('triggered()'), self.__action_AddNote)
         self.connect(self.action_Clear, QtCore.SIGNAL('triggered()'), self.__action_Clear)
@@ -720,7 +722,32 @@ class Workspace(QMainWindow, Ui_MainWindow):
         progress.setValue(count)
         progress.deleteLater()
         progress = None
-    
+
+    def __action_ShowVirtualBoxManager(self):
+        """ Show VirtualBox Manager
+        """
+
+        if not self.bringVirtualBoxManagerToFront():
+            if sys.platform.startswith('win'):
+                subprocess.Popen(os.environ['VBOX_INSTALL_PATH'] + 'VirtualBox.exe', shell=False)
+            else:
+                subprocess.Popen("VirtualBox &", shell=True)
+
+    def bringVirtualBoxManagerToFront(self):
+        """ Attempts to bring VirtualBoxManager to front, and returns True if succeeds.
+            False means that further processing required.
+        """
+
+        #Technologov: This code is experimental.
+        #FIXME: Maybe it should be based on PIDs, rather than window names?
+        if sys.platform.startswith('win'):
+            return winm.bringWindowToFront("Oracle VM VirtualBox Manager", "")
+        elif sys.platform.startswith('darwin'):
+            # Not implemented.
+            return False
+        else: # X11-based UNIX-like system
+            return winm.bringWindowToFront("", "VirtualBox Manager")
+
     def __action_StartAll(self):
         """ Start all nodes
         """
@@ -744,7 +771,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
         
         self.__launchProgressDialog('reload', translate("Workspace", "Reloading nodes ..."))
-        
+
     def __action_Help(self):
         """ Launch a browser for the pointing to the documentation page
         """
