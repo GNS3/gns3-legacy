@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>658</width>
-    <height>541</height>
+    <width>642</width>
+    <height>445</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,14 +28,14 @@
        <widget class="QPushButton" name="pushButton_Step1">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>110</horstretch>
-          <verstretch>96</verstretch>
+          <horstretch>64</horstretch>
+          <verstretch>64</verstretch>
          </sizepolicy>
         </property>
         <property name="minimumSize">
          <size>
-          <width>110</width>
-          <height>96</height>
+          <width>64</width>
+          <height>64</height>
          </size>
         </property>
         <property name="text">
@@ -47,27 +47,11 @@
         </property>
         <property name="iconSize">
          <size>
-          <width>64</width>
-          <height>64</height>
+          <width>32</width>
+          <height>32</height>
          </size>
         </property>
        </widget>
-      </item>
-      <item>
-       <spacer>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Minimum</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>21</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
       <item>
        <widget class="QLabel" name="label">
@@ -107,14 +91,14 @@ p, li { white-space: pre-wrap; }
        <widget class="QPushButton" name="pushButton_Step2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>110</horstretch>
-          <verstretch>96</verstretch>
+          <horstretch>64</horstretch>
+          <verstretch>64</verstretch>
          </sizepolicy>
         </property>
         <property name="minimumSize">
          <size>
-          <width>110</width>
-          <height>96</height>
+          <width>64</width>
+          <height>64</height>
          </size>
         </property>
         <property name="text">
@@ -126,27 +110,11 @@ p, li { white-space: pre-wrap; }
         </property>
         <property name="iconSize">
          <size>
-          <width>64</width>
-          <height>64</height>
+          <width>32</width>
+          <height>32</height>
          </size>
         </property>
        </widget>
-      </item>
-      <item>
-       <spacer>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Minimum</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>21</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
       <item>
        <widget class="QLabel" name="label_3">
@@ -186,14 +154,14 @@ p, li { white-space: pre-wrap; }
        <widget class="QPushButton" name="pushButton_Step3">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>110</horstretch>
-          <verstretch>96</verstretch>
+          <horstretch>64</horstretch>
+          <verstretch>64</verstretch>
          </sizepolicy>
         </property>
         <property name="minimumSize">
          <size>
-          <width>110</width>
-          <height>96</height>
+          <width>64</width>
+          <height>64</height>
          </size>
         </property>
         <property name="text">
@@ -205,27 +173,11 @@ p, li { white-space: pre-wrap; }
         </property>
         <property name="iconSize">
          <size>
-          <width>64</width>
-          <height>64</height>
+          <width>32</width>
+          <height>32</height>
          </size>
         </property>
        </widget>
-      </item>
-      <item>
-       <spacer>
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Minimum</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>21</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
       <item>
        <widget class="QLabel" name="label_4">
