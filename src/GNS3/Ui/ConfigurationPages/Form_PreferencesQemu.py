@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesQemu.ui'
+# Form implementation generated from reading ui file 'ConfigurationPages/Form_PreferencesQemu.ui'
 #
-# Created: Sun Jan  8 16:42:21 2012
+# Created: Sun Jan  8 22:59:29 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!

@@ -425,11 +425,14 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
                 except OSError:
                     self.labelVBoxStatus.setText('<font color="brown">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start xdotool")  + '</font>')
                     return
-  
+
             from __main__ import g_VBoxmgr, VBOXVER_REQUIRED, VBOXVER_FLOAT, VBOXVER_REQUIRED1_MAJOR, VBOXVER_REQUIRED1_MINOR, VBOXVER_MAJOR, VBOXVER_MINOR
 
             if not g_VBoxmgr:
-                self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start vboxapi module. Please check VirtualBox installation.")  + '</font>')
+                if platform.system() == 'Windows' and not os.path.exists(os.environ['VBOX_INSTALL_PATH'] + 'VirtualBox.exe'):
+                    self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "VirtualBox is not installed. <a href='http://www.virtualbox.org/wiki/Downloads'>Download it</a>")  + '</font>')
+                else:
+                    self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start vboxapi module. Please check that VirtualBox is installed.")  + '</font>')
                 return
                 
             VBOXVER = str(g_VBoxmgr.vbox.version)
