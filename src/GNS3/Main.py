@@ -19,13 +19,13 @@
 # http://www.gns3.net/contact
 #
 
-import sys
+import sys, os
 import GNS3.Globals as globals
 from optparse import OptionParser
 from GNS3.Application import Application
 from GNS3.Utils import translate
 from PyQt4 import QtCore
-from __main__ import VERSION
+from __main__ import VERSION, GNS3_RUN_PATH
 
 usage = "usage: %prog [--debug] [--configdir <config_dir>] <net_file>"
 parser = OptionParser(usage, version="gns3 " + VERSION)
@@ -56,6 +56,10 @@ file = None
 
 if len(args) >= 1:
     file = args.pop()
+
+# if gns3.ini is the running dir, use it
+if sys.platform.startswith('win') and os.path.exists(GNS3_RUN_PATH + os.sep + 'gns3.ini'):
+    QtCore.QSettings.setPath(QtCore.QSettings.IniFormat, QtCore.QSettings.UserScope, GNS3_RUN_PATH)
 
 app = Application()
 app.run(file)
