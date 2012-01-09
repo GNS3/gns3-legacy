@@ -19,7 +19,10 @@
 # http://www.gns3.net/contact
 #
 
+import sys, re
+from PyQt4 import QtNetwork
 from GNS3.Node.AbstractNode import AbstractNode
+from GNS3.Utils import getWindowsInterfaces
 import GNS3.Globals as globals
 
 cloud_id = 1
@@ -103,6 +106,23 @@ class Cloud(AbstractNode):
         """
 
         self.create_config()
+        
+        # Add all network interface when using Cloud with computer symbol
+        if not self.default_symbol:
+            if sys.platform.startswith('win'):
+                interfaces = getWindowsInterfaces()
+                for interface in interfaces:
+                    match = re.search(r"""^rpcap://(\\Device\\NPF_{[a-fA-F0-9\-]*}).*""", interface)
+                    interface = match.group(1)
+                    nio = 'nio_gen_eth:' + str(interface).lower()
+                    if not nio in self.config['nios']:
+                        self.config['nios'].append(nio)
+            else:
+                interfaces = map(lambda interface: interface.name(), QtNetwork.QNetworkInterface.allInterfaces())
+                for interface in interfaces:
+                    nio = 'nio_gen_eth:' + str(interface)
+                    if not nio in self.config['nios']:
+                        self.config['nios'].append(nio)
         return True
 
     def startNode(self):

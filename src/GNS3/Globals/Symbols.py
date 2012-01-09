@@ -159,6 +159,12 @@ SYMBOLS = [
     'select_svg_file': ":/symbols/computer.selected.svg", 
     'translated': True,
     },
+           
+    {'name': "Host", 'object': Cloud,
+    'normal_svg_file': ":/symbols/computer.normal.svg",
+    'select_svg_file': ":/symbols/computer.selected.svg", 
+    'translated': True,
+    },
 
     {'name': "Cloud", 'object': Cloud,
     'normal_svg_file': ":/symbols/cloud.normal.svg",

@@ -524,18 +524,20 @@ class Application(QApplication, Singleton):
         if not os.access(configFile, os.F_OK):
             dialog = Wizard()
             dialog.show()
-            dialog.raise_()
-            dialog.activateWindow()
-
-        if file:
-            self.mainWindow.load_netfile(file)
-        elif confo.project_startup and os.access(configFile, os.F_OK):
-            dialog = ProjectDialog(parent=self.mainWindow, newProject=True)
-            dialog.show()
             self.mainWindow.centerDialog(dialog)
             dialog.raise_()
-            dialog.activateWindow()
             self.mainWindow.raise_()
+            dialog.activateWindow()
+        else:
+            if file:
+                self.mainWindow.load_netfile(file)
+            elif confo.project_startup and os.access(configFile, os.F_OK):
+                dialog = ProjectDialog(parent=self.mainWindow, newProject=True)
+                dialog.show()
+                self.mainWindow.centerDialog(dialog)
+                dialog.raise_()
+                self.mainWindow.raise_()
+                dialog.activateWindow()
 
         retcode = QApplication.exec_()
 

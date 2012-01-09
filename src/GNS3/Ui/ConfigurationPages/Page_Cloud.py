@@ -100,7 +100,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
     def slotAddGenEth(self):
         """ Add a new generic Ethernet NIO
         """
-    
+
         interface = unicode(self.lineEditGenEth.text())
         if interface:
             if sys.platform.startswith('win'):
@@ -110,7 +110,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             if not nio in self.nios:
                 self.listWidgetGenericEth.addItem(nio)
                 self.nios.append(nio)
-        
+
     def slotDeleteGenEth(self):
         """ Delete the selected generic Ethernet NIO
         """
