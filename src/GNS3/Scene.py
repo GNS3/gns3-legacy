@@ -489,6 +489,7 @@ class Scene(QtGui.QGraphicsView):
 
         idlepcdiag = IDLEPCDialog(router, idles, options)
         idlepcdiag.show()
+        idlepcdiag.raise_()
         idlepcdiag.exec_()
 
     def slotConfigNode(self):

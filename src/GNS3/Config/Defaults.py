@@ -27,10 +27,10 @@ from __main__ import GNS3_RUN_PATH
 if sys.platform.startswith('win'):
     DYNAMIPS_DEFAULT_PATH = unicode('dynamips.exe')
 elif sys.platform.startswith('darwin'):
-    DYNAMIPS_DEFAULT_PATH = os.getcwd() + os.sep + 'dynamips-0.2.8-RC3-community-OSX.intel64.bin'
+    DYNAMIPS_DEFAULT_PATH = os.getcwdu() + os.sep + 'dynamips-0.2.8-RC3-community-OSX.intel64.bin'
 else:
     DYNAMIPS_DEFAULT_PATH = unicode('dynamips')
-    
+
 # Default path to Dynamips working directory
 if os.environ.has_key("TEMP"):
     DYNAMIPS_DEFAULT_WORKDIR = unicode(os.environ["TEMP"], errors='replace')

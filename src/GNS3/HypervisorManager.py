@@ -157,9 +157,7 @@ class HypervisorManager(object):
             globals.hypervisor_baseport += 1
             time.sleep(0.2)
         else:
-            if last_exception:
-                debug("Hypervisor manager: last exception raised by socket: " + unicode(last_exception))
-            else:
+            if not last_exception:
                 last_exception = 'Unknown problem'
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
                                        unicode(translate("HypervisorManager", "Can't connect to the hypervisor on port %i: %s")) % (hypervisor['port'], last_exception))
