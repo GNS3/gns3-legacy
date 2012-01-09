@@ -209,6 +209,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             if reply == QtGui.QMessageBox.No:
                 return
 
+        self.saveConf()
         if globals.GApp.systconf['dynamips'].path:
             if os.path.exists(globals.GApp.systconf['dynamips'].path) == False:
                 self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Dynamips path doesn't exist")  + '</font>')

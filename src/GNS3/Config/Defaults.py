@@ -27,7 +27,10 @@ from __main__ import GNS3_RUN_PATH
 if sys.platform.startswith('win'):
     DYNAMIPS_DEFAULT_PATH = unicode('dynamips.exe')
 elif sys.platform.startswith('darwin'):
-    DYNAMIPS_DEFAULT_PATH = os.getcwdu() + os.sep + 'dynamips-0.2.8-RC3-community-OSX.intel64.bin'
+    if hasattr(sys, "frozen"):
+        DYNAMIPS_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/dynamips-0.2.8-RC3-community-OSX.intel64.bin'
+    else:
+        DYNAMIPS_DEFAULT_PATH = os.getcwdu() + os.sep + 'dynamips-0.2.8-RC3-community-OSX.intel64.bin'
 else:
     DYNAMIPS_DEFAULT_PATH = unicode('dynamips')
 
@@ -43,7 +46,7 @@ else:
 if sys.platform.startswith('win'):
     QEMUWRAPPER_DEFAULT_PATH = unicode('qemuwrapper.exe')
 elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
-    QEMUWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + 'qemuwrapper.py'
+    QEMUWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/qemuwrapper.py'
 else:
     QEMUWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + 'qemuwrapper/qemuwrapper.py'
 
@@ -59,7 +62,7 @@ else:
 if sys.platform.startswith('win'):
     VBOXWRAPPER_DEFAULT_PATH = unicode('vboxwrapper.exe')
 elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
-    VBOXWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + 'vboxwrapper.py'
+    VBOXWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/vboxwrapper.py'
 else:
     VBOXWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + 'vboxwrapper/vboxwrapper.py'
     

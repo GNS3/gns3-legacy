@@ -526,8 +526,9 @@ class Application(QApplication, Singleton):
             dialog.show()
             self.mainWindow.centerDialog(dialog)
             dialog.raise_()
-            self.mainWindow.raise_()
             dialog.activateWindow()
+            self.mainWindow.raise_()
+            dialog.raise_()
         else:
             if file:
                 self.mainWindow.load_netfile(file)
@@ -536,8 +537,9 @@ class Application(QApplication, Singleton):
                 dialog.show()
                 self.mainWindow.centerDialog(dialog)
                 dialog.raise_()
-                self.mainWindow.raise_()
                 dialog.activateWindow()
+                self.mainWindow.raise_()
+                dialog.raise_()
 
         retcode = QApplication.exec_()
 

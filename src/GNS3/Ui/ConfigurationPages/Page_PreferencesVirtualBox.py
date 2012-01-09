@@ -405,8 +405,6 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
                 return
         
         self.saveConf()
-        
-        
         if globals.GApp.systconf['vbox'].vboxwrapper_path:
             #print "ADEBUG: Entered UiConfig_PreferencesVirtualBox::__testVBox(), if #1"
             if os.path.exists(globals.GApp.systconf['vbox'].vboxwrapper_path) == False:
