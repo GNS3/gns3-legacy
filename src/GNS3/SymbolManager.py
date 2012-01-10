@@ -113,6 +113,13 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
             item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(translate("nodesDock", "Decorative node")))
             item.setSelected(True)
 
+            self.lineEditNodeName.setText(name)
+            index = self.comboBoxNodeType.findText(translate("nodesDock", "Decorative node"))
+            if index != -1:
+                self.comboBoxNodeType.setCurrentIndex(index)
+            self.treeWidgetNodes.setCurrentItem(item)
+
+
     def slotRemove(self):
         """ Remove a symbol from the node list
         """
