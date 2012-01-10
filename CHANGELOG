@@ -1,5 +1,27 @@
 CHANGELOG
 
+GNS3 0.8.2 BETA - 12.12.2011.
+
+ * Official integration of VirtualBox Edition features.
+ * Auto-update checker / notifier (by default disabled on Linux, BSD, enabled on Mac and Windows).
+ * Qemu got a predictable MAC address pseudo-random number generator (brezular’s case).
+ * VirtualBox interface numbering match VBox VM vNics numbering – VBox ethernet adapter now starts counting with “e2″, instead of “e0″ to remove confusion with VBox GUI. (this change may break existing topologies, so people will need to manually edit them. Making automatic converter is too problematic.)
+ * Windows version is now pre-compiled. (like in v0.7.x), 64-bit version is introduced.
+ * Windows all-in-one package includes Wireshark.
+ * Windows all-in-one package allows you to choose between 32-bit and 64-bit versions.
+ * Live Capture is now enabled by default on all platforms.
+ * Fixed screenshots (enabled Qt 4.7.x library in GNS3 + shipped Qt 4.7.4 on Windows)
+ * Dynagen: Fixed standalone text-mode / CLI operation.
+ * Fixed QemuManager, which failed to start qemuwrapper.py (Windows XP hosts only).
+ * Main: should start from relative paths now.
+ * GUI: Hide display window errors fixed.
+ * GUI: got new ‘Device’ menu mirroring contextual menu (right-click on a device).
+ * GNS3 version is saved in topology files.
+ * Many small GUI improvements all over the place. (RedNectar’s wishes).
+ * Improvements for setup Wizard and first time users.
+ * Reverted GUI limit to hide Linux options (VDE, NIO_Linux, KVM) due to use case: Windows GUI + Linux server.
+ * Experimental:  layers < 0 are now considered background layers. Only annotations, pictures and shaped items can be on a background layer. Once on a background layer, an item cannot be selected and moved anymore. However they still can be individually selected why right-click.
+
 GNS3 0.8.0 VirtualBox Edition
 
   Major Improvements:
