@@ -26,6 +26,7 @@ from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
 from GNS3.Utils import fileBrowser, translate, testOpenFile
 from GNS3.Config.Objects import iosImageConf, hypervisorConf
 from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Uncompress import isIOScompressed, uncompressIOS
 
 # known platforms and corresponding chassis
 PLATFORMS = {
@@ -182,6 +183,24 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                     QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn't support unicode on Windows!"))
 
             self.lineEditIOSImage.clear()
+
+            try:
+                if isIOScompressed(path):
+                    reply = QtGui.QMessageBox.question(self, translate("IOSDialog", "IOS Image"), unicode(translate("IOSDialog", "Your IOS image is compressed. Would you like to extract it? This action will create %s.extracted")) % os.path.basename(path),
+                                                       QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+                    if reply == QtGui.QMessageBox.Yes:
+                        extracted_ios = path + '.extracted'
+                        if os.path.exists(extracted_ios):
+                            QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Image"), unicode(translate("IOSDialog", "%s already exists")) % extracted_ios)
+                        else:
+                            try:
+                                uncompressIOS(path, extracted_ios)
+                                path = extracted_ios
+                            except:
+                                QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Image"), translate("IOSDialog", "Sorry, impossible to extract the IOS image"))
+            except:
+                pass
+
             self.lineEditIOSImage.setText(path)
             
             # basename doesn't work on Unix with Windows paths, so let's use this little trick

@@ -11,7 +11,6 @@ GUI
  * Add an Open Recent option to the file menu, lists say last 6 projects.
  * Add a Clear Configuration button to the startup configuration option, and/or add a Clear All Configurations option to the control menu.
  * Style options for node labels
- * Change the scrolling behavior for the scene
  * Option to draw a line or draw an arrow on the scene
  * Dynamic notes
 
@@ -28,7 +27,7 @@ Dynamips
 
 Client/Server
 
- * Dynamipswrapper for remote labs (not need to share an IOS image)
+ * Dynamipswrapper for remote labs (not need to share an IOS image), intended for teaching environments
 
 Import/Export
 
@@ -40,6 +39,7 @@ Misc.
 
  * New logo for GNS3?
  * DMG installer for Mac OS X (http://chromasoft.blogspot.com/2010/02/building-dmg-installer-for-mac-simple.html)
+ * OSX compiled version: include __boot__.py in setup.py
 
 (by Technologov)
  * Real Cisco icons, including the various cards out there (like Cisco Packet Tracer does)
