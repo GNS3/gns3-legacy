@@ -221,6 +221,10 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             return False
         return True
 
+    def startCapture(self):
+
+        self.__captureAction()
+
     def __captureAction(self):
         """ Capture frames on the link
         """

@@ -353,6 +353,16 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             interface_list.add(interface)
         return interface_list
 
+    def getConnectedLinkByName(self, ifname):
+        """ Returns the link object corresponding to an interface name
+        """
+
+        for edge in self.__edgeList:
+            interface = edge.getLocalInterface(self)
+            if interface == ifname:
+                return edge
+        return None
+
     def getConnectedNeighbor(self, ifname):
         """ Returns the connected neighbor's node and interface
         """

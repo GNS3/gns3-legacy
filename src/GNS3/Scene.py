@@ -179,8 +179,14 @@ class Scene(QtGui.QGraphicsView):
             consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
             self.connect(consoleAct, QtCore.SIGNAL('triggered()'), self.slotConsole)
 
+            # Action: Capture traffic on an interface
+            captureAct = QtGui.QAction(translate('Scene', 'Capture'), menu)
+            captureAct.setIcon(QtGui.QIcon(':/icons/inspect.svg'))
+            self.connect(captureAct, QtCore.SIGNAL('triggered()'), self.slotCapture)
+
             menu.addAction(consolePortAct)
             menu.addAction(consoleAct)
+            menu.addAction(captureAct)
 
         instances = map(lambda item: isinstance(item, AnyVBoxEmuDevice), items)
         if True in instances:
@@ -198,6 +204,12 @@ class Scene(QtGui.QGraphicsView):
                 displayWindowHideAct.setIcon(QtGui.QIcon(':/symbols/computer.normal.svg'))
                 self.connect(displayWindowHideAct, QtCore.SIGNAL('triggered()'), self.slotDisplayWindowHide)
                 menu.addAction(displayWindowHideAct)
+
+            # Action: Capture traffic on an interface
+            captureAct = QtGui.QAction(translate('Scene', 'Capture'), menu)
+            captureAct.setIcon(QtGui.QIcon(':/icons/inspect.svg'))
+            self.connect(captureAct, QtCore.SIGNAL('triggered()'), self.slotCapture)
+            menu.addAction(captureAct)
 
         instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice), items)
         if True in instances:
@@ -609,6 +621,23 @@ class Scene(QtGui.QGraphicsView):
             if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 item.console()
 
+    def slotCapture(self):
+        """ Slot called to capture on the selected items
+        """
+
+        for item in self.__topology.selectedItems():
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
+                links = []
+                for localif in item.getConnectedInterfaceList():
+                    linkobj = item.getConnectedLinkByName(localif)
+                    (neighbor, neighborif) = linkobj.getConnectedNeighbor(item)
+                    links.append("%s connected to %s %s" % (localif, neighbor.hostname, neighborif))
+                (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Scene", "Capture"), translate("Scene", "Please choose a link"), links, 0, False)
+                if ok:
+                    interface = unicode(selection).split(' ')[0]
+                    linkobj = item.getConnectedLinkByName(interface)
+                    linkobj.startCapture()
+
     def slotDisplayWindowFocus(self):
         """ Slot called to bring VM's display as foreground window and focus on it
         """
@@ -675,7 +704,7 @@ class Scene(QtGui.QGraphicsView):
                 count += 1
 
         if count > 1:
-            reply = QtGui.QMessageBox.question(self, translate("Scene", "Message"), translate("Scene", "Do you really want to stop these devices?"), 
+            reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("Scene", "Message"), translate("Scene", "Do you really want to stop these devices?"), 
                                             QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
             if reply == QtGui.QMessageBox.No:
@@ -703,7 +732,7 @@ class Scene(QtGui.QGraphicsView):
                 count += 1
 
         if count > 1:
-            reply = QtGui.QMessageBox.question(self, translate("Scene", "Message"), translate("Scene", "Do you really want to reload these devices?"), 
+            reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("Scene", "Message"), translate("Scene", "Do you really want to reload these devices?"), 
                                             QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
             if reply == QtGui.QMessageBox.No:
