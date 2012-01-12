@@ -169,6 +169,18 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         else:
             QtGui.QGraphicsPathItem.keyReleaseEvent(self, event)
 
+    def addLinkActionsToMenu(self, menu):
+        """ Populate contextual menu
+        """
+
+        if self.capturing == True:
+            menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Stop capturing"))
+            menu.addAction(QtGui.QIcon(':/icons/wireshark.png'), translate("AbstractEdge", "Start Wireshark"))
+        else:
+            menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Capture"))
+        menu.addAction(QtGui.QIcon(':/icons/delete.svg'), translate("AbstractEdge", "Delete"))
+        menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.mousePressEvent_actions)
+
     def mousePressEvent(self, event):
         """ Call when the edge is clicked
             event: QtGui.QGraphicsSceneMouseEvent instance
@@ -181,13 +193,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             if self.fake:
                 return
             menu = QtGui.QMenu()
-            if self.capturing == True:
-                menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Stop capturing"))
-                menu.addAction(QtGui.QIcon(':/icons/wireshark.png'), translate("AbstractEdge", "Start Wireshark"))
-            else:
-                menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Capture"))
-            menu.addAction(QtGui.QIcon(':/icons/delete.svg'), translate("AbstractEdge", "Delete"))
-            menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.mousePressEvent_actions)
+            self.addLinkActionsToMenu(menu)
             menu.exec_(QtGui.QCursor.pos())
 
     def mousePressEvent_actions(self, action):

@@ -61,6 +61,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
                 list.append(interface)
                 list.append(neighbor[0].hostname)
                 list.append(neighbor[1])
+                list.append(hostname)
                 item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(list))
                 newText = unicode(translate('topologySummaryDock', '%s is connected to %s %s')) \
                             % (interface, neighbor[0].hostname, neighbor[1])
@@ -98,7 +99,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
         # Translate current item
         data = item.data(0, QtCore.Qt.UserRole).toStringList()
 
-        if data.count() == 3:
+        if data.count() == 4:
             newText = unicode(translate('topologySummaryDock', '%s is connected to %s %s')) \
                         % (unicode(data[0]), unicode(data[1]), unicode(data[2]))
             item.setText(0, newText)
@@ -138,6 +139,20 @@ class topologySummaryDock(QtGui.QTreeWidget):
         self.connect(collapseAll, QtCore.SIGNAL('triggered()'), self.slotCollapseAll)
         menu.addAction(expandAll)
         menu.addAction(collapseAll)
+
+        # add link actions to menu if link info item is selected
+        curitem = self.currentItem()
+        if curitem:
+            data = curitem.data(0, QtCore.Qt.UserRole).toStringList()
+            if data.count() == 4:
+                node_interface = data[0]
+                node_hostname = data[3]
+                node = globals.GApp.topology.getNode(globals.GApp.topology.getNodeID(node_hostname))
+                if node:
+                    link = node.getConnectedLinkByName(node_interface)
+                    if link:
+                        link.addLinkActionsToMenu(menu)
+
         menu.exec_(QtGui.QCursor.pos())
 
     def slotExpandAll(self):
