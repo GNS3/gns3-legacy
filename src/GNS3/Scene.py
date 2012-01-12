@@ -565,6 +565,7 @@ class Scene(QtGui.QGraphicsView):
         """ Lower Z value
         """
  
+        show_message = True
         for item in self.__topology.selectedItems():
             zvalue = item.zValue()
             if zvalue > 0:
@@ -574,6 +575,9 @@ class Scene(QtGui.QGraphicsView):
                 # shape items, annotations and pictures can have a z value lower than 0
                 command = undo.NewZValue(item, zvalue - 1)
                 self.__topology.undoStack.push(command)
+                if zvalue == 0 and show_message:
+                    QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("Scene", "Layer position"),  translate("Scene", "Object moved to a background layer. You will now have to use the right-click action to select this object in the future and raise it to layer 0 to be able to move it"))
+                    show_message = False
 
     def slotraiseZValue(self):
         """ Raise Z value

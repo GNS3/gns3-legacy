@@ -909,5 +909,4 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             if bPEMUfound:
                 self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "Qemuwrapper, qemu, qemu-img and pemu have successfully started")  + '</font>')
             else:
-                self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "Qemuwrapper, qemu and qemu-img have successfully started")  + '</font>'+'<font color="red">' + translate("UiConfig_PreferencesQemu", " (except pemu)")  + '</font>')
-
+                self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "Qemuwrapper, qemu and qemu-img have successfully started")  + '</font><br>'+'<a href="http://www.gns3.net/gns3-pix-firewall-emulation/"><font color="red">' + translate("UiConfig_PreferencesQemu", " (except pemu)")  + '</font></a>')

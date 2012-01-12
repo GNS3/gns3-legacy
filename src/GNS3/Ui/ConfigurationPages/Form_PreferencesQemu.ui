@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>510</width>
-    <height>491</height>
+    <height>565</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -281,6 +281,9 @@
            <property name="text">
             <string/>
            </property>
+           <property name="openExternalLinks">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
         </layout>
@@ -315,8 +318,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>246</width>
-            <height>388</height>
+            <width>438</width>
+            <height>484</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -557,8 +560,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>233</width>
-            <height>460</height>
+            <width>423</width>
+            <height>525</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -858,8 +861,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>253</width>
-            <height>388</height>
+            <width>438</width>
+            <height>484</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1117,8 +1120,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>233</width>
-            <height>487</height>
+            <width>423</width>
+            <height>549</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -1417,8 +1420,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>267</width>
-            <height>417</height>
+            <width>438</width>
+            <height>484</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
