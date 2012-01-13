@@ -186,12 +186,16 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
             try:
                 if isIOScompressed(path):
-                    reply = QtGui.QMessageBox.question(self, translate("IOSDialog", "IOS Image"), unicode(translate("IOSDialog", "Your IOS image is compressed. Would you like to extract it? This action will create %s.extracted")) % os.path.basename(path),
+                    if path.endswith('.bin'):
+                        extracted_ios = path.rsplit(".bin")[0] + '.image'
+                    else:
+                        extracted_ios = path + '.image'
+                    reply = QtGui.QMessageBox.question(self, translate("IOSDialog", "IOS Image"), unicode(translate("IOSDialog", "Your IOS image is compressed. Would you like to extract it? This action will create %s")) % os.path.basename(extracted_ios),
                                                        QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                     if reply == QtGui.QMessageBox.Yes:
-                        extracted_ios = path + '.extracted'
                         if os.path.exists(extracted_ios):
-                            QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Image"), unicode(translate("IOSDialog", "%s already exists")) % extracted_ios)
+                            QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Image"), unicode(translate("IOSDialog", "%s already exists, let's use it")) % extracted_ios)
+                            path = extracted_ios
                         else:
                             try:
                                 uncompressIOS(path, extracted_ios)
