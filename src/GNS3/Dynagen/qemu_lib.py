@@ -662,7 +662,6 @@ class AnyEmuDevice(object):
         #create the emulated device side of UDP connection
         send(self.p, 'qemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
         self.nios[local_port] = UDPConnection(src_udp, dst_ip, dst_udp, self, local_port)
-        debugmsg(1, "src_ip(not sent): %s || local_port(vlan): %i" % (src_ip, local_port))
 
         #create the dynamips side of UDP connection - the NIO and connect it to the router
         remote_nio = NIO_udp(dynamips, dst_udp, src_ip, src_udp, None, remote_slot, dst_port)
@@ -718,13 +717,13 @@ class AnyEmuDevice(object):
                 if (self.isLocalhost(src_ip) is False) or (self.isLocalhost(dst_ip) is False):
                     dowarning('In case of multi-server operation, make sure you do not use "localhost" or "127.0.0.1" string in definition of dynamips hypervisor. Use actual IP addresses instead.')
         #create the local emulated device side of UDP connection
-        send(self.p, 'qemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
+        send(self.p, 'qemu create_udp %s %i %s %i %s %i' % (self.name, local_port, src_ip, src_udp, dst_ip, dst_udp))
         self.nios[local_port] = UDPConnection(src_udp, dst_ip, dst_udp, self, local_port)
 
         #create the remote device side of UDP connection
         if isinstance(remote_emulated_device, AnyEmuDevice):
             debugmsg(3, "remote_emulated_device is AnyEmuDevice")
-            send(remote_emulated_device.p, 'qemu create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))
+            send(remote_emulated_device.p, 'qemu create_udp %s %i %s %i %s %i' % (remote_emulated_device.name, remote_port, dst_ip, dst_udp, src_ip, src_udp))
         if isinstance(remote_emulated_device, AnyVBoxEmuDevice):
             debugmsg(3, "remote_emulated_device is AnyVBoxEmuDevice")
             send(remote_emulated_device.p, 'vbox create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))

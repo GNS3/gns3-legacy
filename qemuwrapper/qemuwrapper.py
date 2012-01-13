@@ -97,11 +97,11 @@ else:
     PEMU_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class UDPConnection:
-    def __init__(self, sport, daddr, dport):
+    def __init__(self, saddr, sport, daddr, dport):
+        self.shost = saddr
         self.sport = sport
         self.daddr = daddr
         self.dport = dport
-        self.shost = "0.0.0.0"
 
     def resolve_names(self):
         try:
@@ -894,12 +894,12 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
 
     def do_qemu_create_udp(self, data):
         debugmsg(2, "QemuWrapperRequestHandler::do_qemu_create_udp(%s)" % str(data))
-        name, vlan, sport, daddr, dport = data
+        name, vlan, saddr, sport, daddr, dport = data
         if not name in QEMU_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
                             "unable to find Qemu '%s'" % name)
             return
-        udp_connection = UDPConnection(sport, daddr, dport)
+        udp_connection = UDPConnection(saddr, sport, daddr, dport)
         udp_connection.resolve_names()
         QEMU_INSTANCES[name].udp[int(vlan)] = udp_connection
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
