@@ -101,7 +101,7 @@ class UDPConnection:
         self.sport = sport
         self.daddr = daddr
         self.dport = dport
-        self.shost = 0.0.0.0
+        self.shost = "0.0.0.0"
 
     def resolve_names(self):
         try:
