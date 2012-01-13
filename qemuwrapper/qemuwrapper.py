@@ -603,7 +603,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             'delete' : (1, 1),
             'setattr' : (3, 3),
             'create_nic' : (3, 3),
-            'create_udp' : (5, 5),
+            'create_udp' : (6, 6),
             'delete_udp' : (2, 2),
             'create_capture' : (3, 3),
             'delete_capture' : (2, 2),
