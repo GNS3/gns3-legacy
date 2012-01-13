@@ -204,7 +204,7 @@ else:
             author_email = 'http://www.gns3.net/contact',
             platforms = 'Windows, Unix and MacOSX',
             url = 'http://www.gns3.net/',
-            scripts = [ 'gns3.pyw' ],
+            scripts = [ 'gns3' ],
             package_dir = { '': 'src' },
             packages = [
                 'GNS3',

@@ -35,7 +35,7 @@ if debuglevel > 0:
     else:
         debugfilename = "/tmp/gns3-qemulib-log.txt"
     try:
-        dfile = open(debugfilename, 'wb')    
+        dfile = open(debugfilename, 'wb')
     except:
         dfile = 0
         print "WARNING: log file cannot be created !"
@@ -45,7 +45,7 @@ if debuglevel > 0:
 def debugmsg(level, message):
     if debuglevel == 0:
         return
-    if debuglevel >= level:        
+    if debuglevel >= level:
         print message
         if dfile:
             #In python 2.6, print with redirections always uses UNIX line-ending,
@@ -79,7 +79,7 @@ class UDPConnection:
         self.adapter = self.dev
         self.port = port
         self.reverse_nio = None
-        
+
     def info(self):
         debugmsg(2, "qemu_lib.py: UDPConnection::info()")
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
@@ -94,11 +94,11 @@ class UDPConnection:
                 if rem_int_name == 'e':
                     rem_int_full_name = 'Ethernet'
                 elif rem_int_name == 'f':
-                    rem_int_full_name = 'FastEthernet'    
+                    rem_int_full_name = 'FastEthernet'
                 return ' is connected to router ' + remote_device.name + " " + rem_int_full_name + str(rem_dynagen_port)
-            
+
             return ' is connected to router ' + remote_device.name + " " + remote_adapter.interface_name + str(remote_adapter.slot) + \
-                "/" + str(rem_dynagen_port)            
+                "/" + str(rem_dynagen_port)
 
         elif isinstance(remote_device, FRSW):
             return ' is connected to frame-relay switch ' + remote_device.name + ' port ' + str(remote_port) + '\n'
@@ -170,35 +170,35 @@ class Qemu(object):
         self._qemuimgpath = 'qemu-img'
         self.configchange = False
 
-    def close(self):        
+    def close(self):
         """ Close the connection to the Qemuwrapper (but leave it running)"""
         debugmsg(2, "Qemu::close(%s, %s)" % (str(name), str(port)))
 
         self.s.close()
 
-    def reset(self):        
+    def reset(self):
         """ Reset the Qemuwrapper (but leave it running)"""
         debugmsg(2, "Qemu::reset()")
 
         send(self, 'qemuwrapper reset')
-        
-    def _setbaseconsole(self, baseconsole):        
+
+    def _setbaseconsole(self, baseconsole):
         """ Set the baseconsole
         baseconsole: (int) the base console port
         """
         debugmsg(2, "Qemu::_setbaseconsole(%s)" % str(baseconsole))
 
         self._baseconsole = baseconsole
-        
+
     def _getbaseconsole(self):
         """ Returns the base console port
         """
         debugmsg(2, "Qemu::_getbaseconsole(), returns %s" % str(self._baseconsole))
 
         return self._baseconsole
-    
+
     baseconsole = property(_getbaseconsole, _setbaseconsole, doc='The base console port')
-        
+
     def _setbaseudp(self, baseudp):
         """ Set the baseudp
         baseudp: (int) the base UDP port
@@ -208,14 +208,14 @@ class Qemu(object):
         self.udp = baseudp
         self.default_udp = self.udp
         self.starting_udp = self.udp
-        
+
     def _getbaseudp(self):
         """ Returns the base UDP port
         """
         debugmsg(2, "Qemu::_getbaseudp(), returns %s" % str(self.starting_udp))
 
         return self.starting_udp
-    
+
     baseudp = property(_getbaseudp, _setbaseudp, doc='The base UDP port')
 
     def _setqemupath(self, qemupath):
@@ -238,7 +238,7 @@ class Qemu(object):
         return self._qemupath
 
     qemupath = property(_getqemupath, _setqemupath, doc='The Qemu path')
-    
+
     def _setqemuimgpath(self, qemuimgpath):
         """ Set the path to Qemu-img for this network
         qemuimgpath: (string) path
@@ -297,9 +297,9 @@ class Qemu(object):
         """ Return the version of qemuwrapper"""
         debugmsg(2, "Qemu::_getversion(), returns %s" % str(self._version))
         return self._version
-    
+
     version = property(_getversion, doc='The qemuwrapper version')
-        
+
 
 class AnyEmuDevice(object):
 
@@ -352,11 +352,11 @@ class AnyEmuDevice(object):
         #set the console to Qemu baseconsole
         self.console = self.p.baseconsole
         self.p.baseconsole += 1
-        
+
     def delete(self):
         """delete the emulated device instance in Qemu"""
         debugmsg(2, "AnyEmuDevice::delete()")
-    
+
         try:
             send(self.p, 'qemu delete %s' % self.name)
         except:
@@ -382,14 +382,14 @@ class AnyEmuDevice(object):
         r = send(self.p, 'qemu stop %s' % self.name)
         self.state = 'stopped'
         return r
-    
+
     def clean(self):
         """clean the disk files for this Qemu instance"""
         debugmsg(2, "AnyEmuDevice::clean()")
 
         r = send(self.p, 'qemu clean %s' % self.name)
         return r
-    
+
     def unbase(self):
         """unbase the disk files to have no dependency"""
         debugmsg(2, "AnyEmuDevice::unbase()")
@@ -585,7 +585,7 @@ class AnyEmuDevice(object):
         """
         debugmsg(2, "AnyEmuDevice::idleprop()")
         return ['100-OK']
-        
+
     def add_interface(self, pa1, port1):
         # Some guest drivers won't accept non-standard MAC addresses
         # burned in the EEPROM! Watch for overlap with real NICs;
@@ -636,7 +636,7 @@ class AnyEmuDevice(object):
         if self.p.host == dynamips.host:
             # source and dest adapters are on the same dynamips server, perform loopback binding optimization
             src_ip = '127.0.0.1'
-            dst_ip = '127.0.0.1'        
+            dst_ip = '127.0.0.1'
         elif (self.p.host == 'localhost' or self.p.host == '127.0.0.1' or self.p.host == '::1') and (dynamips.host == 'localhost' or dynamips.host == '127.0.0.1' or dynamips.host == '::1'):
             # 'localhost', IP: '127.0.0.1' and IPv6 '::1' are equal.
             src_ip = '127.0.0.1'
@@ -662,6 +662,7 @@ class AnyEmuDevice(object):
         #create the emulated device side of UDP connection
         send(self.p, 'qemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
         self.nios[local_port] = UDPConnection(src_udp, dst_ip, dst_udp, self, local_port)
+        debugmsg(1, "src_ip(not sent): %s || local_port(vlan): %i" % (src_ip, local_port))
 
         #create the dynamips side of UDP connection - the NIO and connect it to the router
         remote_nio = NIO_udp(dynamips, dst_udp, src_ip, src_udp, None, remote_slot, dst_port)
@@ -675,7 +676,7 @@ class AnyEmuDevice(object):
         #set reverse nios
         remote_nio.reverse_nio = self.nios[local_port]
         self.nios[local_port].reverse_nio = remote_nio
-        
+
     def disconnect_from_dynamips(self, local_port):
 
         #delete the emulated device side of UDP connection
@@ -691,7 +692,7 @@ class AnyEmuDevice(object):
             return False
 
     def connect_to_emulated_device(self, local_port, remote_emulated_device, remote_port):
-        debugmsg(2, "AnyEmuDevice::connect_to_emulated_device(%s, %s, %s)" % (str(local_port), str(remote_emulated_device), str(remote_port)))        
+        debugmsg(2, "AnyEmuDevice::connect_to_emulated_device(%s, %s, %s)" % (str(local_port), str(remote_emulated_device), str(remote_port)))
         from dynagen_vbox_lib import VBox, VBoxDevice, AnyVBoxEmuDevice
         (src_udp, dst_udp) = self.__allocate_udp_port(remote_emulated_device.p)
         """ # WARNING: This code crashes on multi-host setups:
@@ -728,21 +729,21 @@ class AnyEmuDevice(object):
             debugmsg(3, "remote_emulated_device is AnyVBoxEmuDevice")
             send(remote_emulated_device.p, 'vbox create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))
         remote_emulated_device.nios[remote_port] = UDPConnection(dst_udp, src_ip, src_udp, remote_emulated_device, remote_port)
-        
+
         #set reverse nios
         self.nios[local_port].reverse_nio = remote_emulated_device.nios[remote_port]
         remote_emulated_device.nios[remote_port].reverse_nio = self.nios[local_port]
-        
-        
-    def disconnect_from_emulated_device(self, local_port, remote_emulated_device, remote_port):        
+
+
+    def disconnect_from_emulated_device(self, local_port, remote_emulated_device, remote_port):
         debugmsg(2, "AnyEmuDevice::disconnect_from_emulated_device()")
         from dynagen_vbox_lib import VBox, VBoxDevice, AnyVBoxEmuDevice
-        
+
         # disconnect the local emulated device side of UDP connection
         send(self.p, 'qemu delete_udp %s %i' % (self.name, local_port))
         if self.nios.has_key(local_port):
             del self.nios[local_port]
-        
+
         # disconnect the remote device side of UDP connection
         if isinstance(remote_emulated_device, AnyEmuDevice):
             debugmsg(3, "remote_emulated_device is AnyEmuDevice")
@@ -753,7 +754,7 @@ class AnyEmuDevice(object):
         if remote_emulated_device.nios.has_key(remote_port):
             del remote_emulated_device.nios[remote_port]
 
-    def slot_info(self):        
+    def slot_info(self):
         #gather information about interfaces and connections
         #debugmsg(2, "AnyEmuDevice::slot_info()")
         from dynagen_vbox_lib import VBox, VBoxDevice, AnyVBoxEmuDevice
@@ -782,11 +783,11 @@ class AnyEmuDevice(object):
                 slot_info = slot_info + ' is empty\n'
         debugmsg(3, "AnyEmuDevice::slot_info(), returns %s" % str(slot_info))
         return slot_info
-    
+
     def info(self):
         """prints information about specific device"""
         #debugmsg(2, "AnyEmuDevice::info()")
-       
+
         info = '\n'.join([
             '%s %s is %s' % (self._ufd_machine, self.name, self.state),
             '  Hardware is %s %s with %s MB RAM' % (self._ufd_hardware, self.model_string, self._ram),
@@ -799,10 +800,10 @@ class AnyEmuDevice(object):
             info += '\n' + self.extended_info()
 
         info += '\n' + self.slot_info()
-        
+
         debugmsg(3, "AnyEmuDevice::info(), returns %s" % str(info))
         return info
-        
+
     def gen_cfg_name(self, name=None):
         debugmsg(2, "AnyEmuDevice::gen_cfg_name()")
         if not name:
@@ -816,7 +817,7 @@ class JunOS(AnyEmuDevice):
     _ufd_machine = 'Juniper router'
     _ufd_hardware = 'Juniper Olive router'
     available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options']
-    
+
 class IDS(AnyEmuDevice):
     model_string = 'IDS-4215'
     qemu_dev_type = 'ids'
@@ -824,7 +825,7 @@ class IDS(AnyEmuDevice):
     _ufd_machine = 'IDS'
     _ufd_hardware = 'Qemu emulated Cisco IDS'
     available_options = ['image1', 'image2', 'nics', 'ram', 'netcard', 'kvm', 'options']
-    
+
     def __init__(self, *args, **kwargs):
         super(IDS, self).__init__(*args, **kwargs)
         self.defaults.update({
@@ -854,7 +855,7 @@ class IDS(AnyEmuDevice):
         return self._image1
 
     image1 = property(_getimage1, _setimage1, doc='The image (hda) file for this device')
-    
+
     def _setimage2(self, image):
         """ Set the IOS image (hdb) for this emulated device
             image: path to IOS image file
@@ -875,10 +876,10 @@ class IDS(AnyEmuDevice):
         return self._image2
 
     image2 = property(_getimage2, _setimage2, doc='The image (hdb) file for this device')
-    
+
     def extended_info(self):
         return '  Image 1 (hda) path %s\n  Image 2 (hdb) path %s' % (self._image1, self._image2)
-    
+
 class QemuDevice(AnyEmuDevice):
     debugmsg(2, "class QemuDevice")
     model_string = 'QemuDevice'
@@ -895,7 +896,7 @@ class ASA(AnyEmuDevice):
     _ufd_machine = 'ASA firewall'
     _ufd_hardware = 'qemu-emulated Cisco ASA'
     available_options = ['ram', 'nics', 'netcard', 'kvm', 'options', 'initrd', 'kernel', 'kernel_cmdline']
-    
+
     def __init__(self, *args, **kwargs):
         super(ASA, self).__init__(*args, **kwargs)
         self.defaults.update({
@@ -906,7 +907,7 @@ class ASA(AnyEmuDevice):
         self._initrd = self.defaults['initrd']
         self._kernel = self.defaults['kernel']
         self._kernel_cmdline = self.defaults['kernel_cmdline']
-        
+
     def _setinitrd(self, initrd):
         """ Set the initrd for this emulated device
         initrd: path to initrd file
@@ -927,7 +928,7 @@ class ASA(AnyEmuDevice):
         return self._initrd
 
     initrd = property(_getinitrd, _setinitrd, doc='The initrd file for this device')
-    
+
     def _setkernel(self, kernel):
         """ Set the kernel for this emulated device
         kernel: path to kernel file
@@ -948,7 +949,7 @@ class ASA(AnyEmuDevice):
         return self._kernel
 
     kernel = property(_getkernel, _setkernel, doc='The kernel file for this device')
-    
+
     def _setkernel_cmdline(self, kernel_cmdline):
         """ Set the kernel command line for this emulated device
         kernel_cmdline: kernel command line
@@ -987,7 +988,7 @@ class PIX(AnyEmuDevice):
         })
         self._serial = self.defaults['serial']
         self._key = self.defaults['key']
-        
+
     def _setserial(self, serial):
         """ Set the serial for this pix
         serial: serial number of this pix
