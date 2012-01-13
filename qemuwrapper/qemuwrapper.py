@@ -77,7 +77,7 @@ __author__ = 'Thomas Pani and Jeremy Grossmann'
 __version__ = '0.8.2'
 
 # XXX: BAD, take user input path in preferences.......
-QEMU_PATH = "/tmp/qemu"
+QEMU_PATH = "qemu"
 QEMU_IMG_PATH = "qemu-img"
 PORT = 10525
 IP = ""
@@ -101,6 +101,7 @@ class UDPConnection:
         self.sport = sport
         self.daddr = daddr
         self.dport = dport
+        self.shost =
 
     def resolve_names(self):
         try:
