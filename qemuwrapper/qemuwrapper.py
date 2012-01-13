@@ -133,33 +133,6 @@ class xEMUInstance(object):
         self.workdir = WORKDIR
         self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options']
 
-    def preexecFreeBSD(self):
-        # FreeBSD preexec_fn hack to unblock signals in child processes
-        # to work around the bug in this PR:
-        #        http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/153167
-        # inspired by:
-        #        http://stackoverflow.com/questions/3791398/how-to-stop-python-from-propagating-signals-to-subprocesses
-
-        # Get the size of the array used to
-        # represent the signal mask
-        SIGSET_NWORDS = 1024 / (8 * ctypes.sizeof(ctypes.c_uint))
-
-        # Define the sigset_t structure
-        class SIGSET(ctypes.Structure):
-            _fields_ = [
-                ('val', ctypes.c_uint * SIGSET_NWORDS)
-            ]
-
-        # Create a new sigset_t to mask out SIGINT
-        sigs = (ctypes.c_uint * SIGSET_NWORDS)()
-        mask = SIGSET(sigs)
-
-        SIG_SETMASK = 3
-        libc = ctypes.CDLL('libc.so')
-
-        # Unblock all signals
-        libc.sigprocmask(SIG_SETMASK, ctypes.pointer(mask), 0)
-
     def create(self):
         debugmsg(2, "xEMUInstance::create()")
         self.workdir = os.path.join(os.getcwdu(), self.name)
@@ -178,15 +151,9 @@ class xEMUInstance(object):
 
         print "    command:", command
         try:
-            if platform.system() == 'FreeBSD':
-                self.process = subprocess.Popen(command,
-                                                stdin=subprocess.PIPE,
-                                                preexec_fn=self.preexecFreeBSD,
-                                                cwd=self.workdir)
-            else:
-                self.process = subprocess.Popen(command,
-                                                stdin=subprocess.PIPE,
-                                                cwd=self.workdir)
+            self.process = subprocess.Popen(command,
+                                            stdin=subprocess.PIPE,
+                                            cwd=self.workdir)
         except OSError, e:
             print >> sys.stderr, "Unable to start instance", self.name, "of", self.__class__
             print >> sys.stderr, e
