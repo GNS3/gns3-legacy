@@ -101,7 +101,7 @@ class UDPConnection:
         self.sport = sport
         self.daddr = daddr
         self.dport = dport
-        self.shost =
+        self.shost = 0.0.0.0
 
     def resolve_names(self):
         try:
@@ -221,7 +221,7 @@ class xEMUInstance(object):
                             # TODO: Make GNS3 send the local address to bind to
                             print self.udp[vlan].dport
                             print self.udp[vlan].sport
-                            options.append('socket,id=gns3-%s,udp=0.0.0.0:%s,localaddr=%s:%s' % (vlan, self.udp[vlan].sport, self.udp[vlan].daddr, self.udp[vlan].dport))
+                            options.append('socket,id=gns3-%s,udp=%s:%s,localaddr=%s:%s' % (vlan, self.udp[vlan].shost, self.udp[vlan].sport, self.udp[vlan].daddr, self.udp[vlan].dport))
                             if vlan in self.nic:
                                 options.extend(['-device', '%s,mac=%s,netdev=gns3-%s' % (self.netcard, self.nic[vlan], vlan)])
                             else:
