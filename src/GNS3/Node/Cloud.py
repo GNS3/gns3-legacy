@@ -20,7 +20,7 @@
 #
 
 import sys, re
-from PyQt4 import QtNetwork
+from PyQt4 import QtNetwork, QtGui
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Utils import translate, getWindowsInterfaces
 import GNS3.Globals as globals
@@ -112,6 +112,16 @@ class Cloud(AbstractNode):
             self.setToolTip(info)
         else:
             AbstractNode.setCustomToolTip(self)
+
+    def _actionHovered(self, action):
+        """ Show tooltip for rpcap interface (Windows only)
+        """
+
+        if sys.platform.startswith('win') and self.config:
+            # tooltip is by default interface name
+            tip = unicode(action.toolTip(), errors='replace')
+            if self.config['rpcap_mapping'].has_key(tip):
+                QtGui.QToolTip.showText(QtGui.QCursor.pos(), self.config['rpcap_mapping'][tip])
 
     def getInterfaces(self):
         """ Return all interfaces

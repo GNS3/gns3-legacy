@@ -379,6 +379,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
         menu = QtGui.QMenu()
+        self.connect(menu, QtCore.SIGNAL("hovered(QAction *)"), self._actionHovered)
         interfaces_list = self.getInterfaces()
         if len(interfaces_list) == 0:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Connection"), translate("AbstractNode", "No interface available, please configure this device"))
@@ -400,6 +401,10 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.slotSelectedInterface)
         menu.exec_(QtGui.QCursor.pos())
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+
+    # Overloaded in Cloud
+    def _actionHovered(self, action):
+        pass
 
     def showHostname(self):
         """ Show the hostname on the scene
