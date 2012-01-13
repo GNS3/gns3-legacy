@@ -109,3 +109,4 @@ GNS3-Related bugs in 3rd party products: (by Technologov)
     (happens on VM stop and on netadp disable.) (VBox bug #9239)
     This leads to GNS3 lock-ups and crashes.
  * VirtualBox: GuestControl execution from python fails on Windows hosts. (Bug #9295)
+ * Cloud not working for NIO_GenEth on window 64-bit, most likely because Dynamips is not 64-bit compiled (this would require cygwin 64-bit which doesn't exists).

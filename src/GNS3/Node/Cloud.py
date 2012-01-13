@@ -22,7 +22,7 @@
 import sys, re
 from PyQt4 import QtNetwork
 from GNS3.Node.AbstractNode import AbstractNode
-from GNS3.Utils import getWindowsInterfaces
+from GNS3.Utils import translate, getWindowsInterfaces
 import GNS3.Globals as globals
 
 cloud_id = 1
@@ -41,19 +41,19 @@ class Cloud(AbstractNode):
 
         # assign a new hostname
         global cloud_id
-        
+
         # check if hostname has already been assigned
         for node in globals.GApp.topology.nodes.itervalues():
             if 'C' + str(cloud_id) == node.hostname:
                 cloud_id = cloud_id + 1
                 break
-        
+
         self.hostname = 'C' + str(cloud_id)
         cloud_id = cloud_id + 1
-        self.setCustomToolTip()
 
         self.config = None
         self.dynagen = globals.GApp.dynagen
+        self.setCustomToolTip()
 
     def __del__(self):
     
@@ -65,19 +65,21 @@ class Cloud(AbstractNode):
 
         self.config = {}
         self.config['nios'] = []
+        self.config['rpcap_mapping'] = {}
 
     def get_config(self):
         """ Returns the local configuration copy
         """
 
         return self.config
-        
+
     def duplicate_config(self):
         """ Returns a copy of the configuration
         """
-        
+
         config = self.config.copy()
         config['nios'] = list(self.config['nios'])
+        config['rpcap_mapping'] = dict(self.config['rpcap_mapping'])
         return (config)
 
     def set_config(self, config):
@@ -87,7 +89,29 @@ class Cloud(AbstractNode):
 
         self.config = config.copy()
         self.config['nios'] = list(config['nios'])
+        self.config['rpcap_mapping'] = dict(config['rpcap_mapping'])
         globals.GApp.topology.changed = True
+
+    def setCustomToolTip(self):
+        """ Set a custom tool tip
+        """
+
+        if self.config:
+            info = unicode(translate("Cloud", "Cloud name: %s")) % self.hostname
+            info += "\n"
+            for nio in self.config['nios']:
+                info += "\n" + nio
+                if sys.platform.startswith('win') and self.config['rpcap_mapping'].has_key(nio):
+                    info += " " + self.config['rpcap_mapping'][nio]
+                neighbor = self.getConnectedNeighbor(nio)
+                if neighbor:
+                    (neighbor, ifname) = neighbor
+                    info += " is connected to " + neighbor.hostname + " " + ifname
+                else:
+                    info += " is not connected"
+            self.setToolTip(info)
+        else:
+            AbstractNode.setCustomToolTip(self)
 
     def getInterfaces(self):
         """ Return all interfaces
@@ -112,11 +136,13 @@ class Cloud(AbstractNode):
             if sys.platform.startswith('win'):
                 interfaces = getWindowsInterfaces()
                 for interface in interfaces:
-                    match = re.search(r"""^rpcap://(\\Device\\NPF_{[a-fA-F0-9\-]*}).*""", interface)
+                    match = re.search(r"""^rpcap://(\\Device\\NPF_{[a-fA-F0-9\-]*})(.*)""", interface)
                     interface = match.group(1)
                     nio = 'nio_gen_eth:' + str(interface).lower()
                     if not nio in self.config['nios']:
                         self.config['nios'].append(nio)
+                        name_match = re.search(r"""^\ :\ (.*)\ on local host:.*""", match.group(2))
+                        self.config['rpcap_mapping'][nio] = name_match.group(1) 
             else:
                 interfaces = map(lambda interface: interface.name(), QtNetwork.QNetworkInterface.allInterfaces())
                 for interface in interfaces:

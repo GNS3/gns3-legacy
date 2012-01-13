@@ -371,6 +371,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             interface = edge.getLocalInterface(self)
             if interface == ifname:
                 return edge.getConnectedNeighbor(self)
+        return None
 
     def showMenuInterface(self, unavailable_interfaces=[]):
         """ Show a contextual menu to choose an interface on a specific node

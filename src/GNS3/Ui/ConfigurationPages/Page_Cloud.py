@@ -65,6 +65,8 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         self.connect(self.listWidgetNull,  QtCore.SIGNAL('currentRowChanged(int)'),  self.slotNullselected)
         
         self.nios = []
+        self.rpcap_mapping = {}
+
         if sys.platform.startswith('win'):
             interfaces = getWindowsInterfaces()
         else:
@@ -104,12 +106,15 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         interface = unicode(self.lineEditGenEth.text())
         if interface:
             if sys.platform.startswith('win'):
-                match = re.search(r"""^rpcap://(\\Device\\NPF_{[a-fA-F0-9\-]*}).*""", interface)
+                match = re.search(r"""^rpcap://(\\Device\\NPF_{[a-fA-F0-9\-]*})(.*)""", interface)
                 interface = match.group(1)
             nio = 'nio_gen_eth:' + interface.lower()
             if not nio in self.nios:
                 self.listWidgetGenericEth.addItem(nio)
                 self.nios.append(nio)
+                if sys.platform.startswith('win'):
+                    name_match = re.search(r"""^\ :\ (.*)\ on local host:.*""", match.group(2))
+                    self.rpcap_mapping[nio] = name_match.group(1)
 
     def slotDeleteGenEth(self):
         """ Delete the selected generic Ethernet NIO
@@ -435,6 +440,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             Cloudconfig  = self.node.duplicate_config()
 
         Cloudconfig['nios'] = self.nios
+        Cloudconfig['rpcap_mapping'] = self.rpcap_mapping
 
         return Cloudconfig
             
