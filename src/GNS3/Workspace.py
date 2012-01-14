@@ -1015,7 +1015,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         node.get_dynagen_device().unbase()
 
                     if isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir:
-                        
+
                         # Stop this node
                         node.stopNode()
                         qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)

@@ -51,7 +51,7 @@ if sys.platform.startswith('win'):
 
     # Settings for py2exe, packages values are to tell to py2exe about hidden imports
     setup(windows=[{"script":"gns3.pyw",
-                "icon_resources": [(1, r'..\gns3.ico')]}],
+                "icon_resources": [(1, r'..\gns3_icon.ico')]}],
                 zipfile=None,
                 data_files=data_files,
                 options={"py2exe":

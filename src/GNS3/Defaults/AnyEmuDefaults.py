@@ -66,7 +66,8 @@ class AnyEmuDefaults(AbstractDefaults):
             self.config['image'] = image
 
 class QemuDefaults(AnyEmuDefaults):
-    pass
+    def __init__(self):
+        AnyEmuDefaults.__init__(self)
 
 class PIXDefaults(AnyEmuDefaults):
     def __init__(self):
@@ -82,7 +83,8 @@ class ASADefaults(AnyEmuDefaults):
         self.default_kernel_cmdline = 'None'
     
 class JunOSDefaults(AnyEmuDefaults):
-    pass
+    def __init__(self):
+        AnyEmuDefaults.__init__(self)
 
 class IDSDefaults(AnyEmuDefaults):
     def __init__(self):

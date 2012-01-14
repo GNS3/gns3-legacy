@@ -72,25 +72,11 @@ It needs to be broken up into smaller functions, that are readable and easy to d
 
 Debugging
 
- * Duplicated packets with ETHSW?
  * Test QinQ
- * PIX booting with 256M RAM?! => 128 Minimum
- * Unicode error with PIX
-
----------Traceback lines (saved in exception.log)----------
-Traceback (most recent call last):
-
-  File "C:\Program Files\GNS3 VirtualBox Edition\src\GNS3\Ui\ConfigurationPages\Page_PreferencesQemu.py", line 486, in slotSavePIXImage
-    key = str(self.PIXKey.text())
-
-UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: ordinal not in range(128)
-
 
 GNS3-Related feature-requests in 3rd party products: (by Technologov)
 
- * Wireshark: Wish 5982 - Feature-request: Please support live-capture from saved pcap file
  * IPv6 support for our engines: VirtualBox / Qemu / Dynamips
- * Qemu: Push Qemu UDP patch upstream
  * Qt4: [feature-request] Please add new GUI container element, that shows/hides others, "QIArrowButtonSwitch" (QTBUG-19984)
  * VirtualBox: serial port TCP / Telnet listener (Wish #1851)
  * VirtualBox: Direct Linux Boot (required for ASA guests; Wish #8401)
@@ -104,7 +90,6 @@ GNS3-Related bugs in 3rd party products: (by Technologov)
 
  * VirtualBox: Guest IP retrieval works incorrectly if you have several IP addresses on the same NIC (bug #9006)
  * VirtualBox: Only first 4 out of 8 ethernet cards work with Windows XP guest (bug #8772)
- * FIXED: VirtualBox: Duplicate MAC addresses on import/export OVF appliance and clone VM (UldisD's case; bug #9074)
  * VirtualBox: Critical bug(!!!): VBoxSVC locks up on Windows XP hosts; reproducible with my vboxtestcase.py
     (happens on VM stop and on netadp disable.) (VBox bug #9239)
     This leads to GNS3 lock-ups and crashes.

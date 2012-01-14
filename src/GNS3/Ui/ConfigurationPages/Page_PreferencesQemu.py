@@ -467,17 +467,19 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.nic = str(self.PIXNIC.currentText())
         conf.options = str(self.PIXOptions.text())
 
-        serial = str(self.PIXSerial.text())
+        serial = str(self.PIXSerial.text().toAscii())
         if serial and not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):
             QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "Serial"),
                                        translate("Page_PreferencesQemu", "Invalid serial (format required: 0xhhhhhhhh)"))
+            return
         else:
             conf.serial = serial
 
-        key = str(self.PIXKey.text())
+        key = str(self.PIXKey.text().toAscii())
         if key and not re.search(r"""^(0x[0-9a-fA-F]{8},){3}0x[0-9a-fA-F]{8}$""", key):
             QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "Key"),
                                        translate("Page_PreferencesQemu", "Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)"))
+            return
         else:
             conf.key = key
 

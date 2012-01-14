@@ -427,6 +427,7 @@ class NETFile(object):
                     cloud = Cloud(normal_renderer, select_renderer)
                     config = {}
                     config['nios'] = []
+                    config['rpcap_mapping'] = {}
                     cloud.type = symbol_name
                     if not default_symbol:
                         cloud.default_symbol = False
