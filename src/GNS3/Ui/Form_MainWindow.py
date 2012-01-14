@@ -528,6 +528,24 @@ class Ui_MainWindow(object):
         self.toolBar_drawing.addAction(self.action_DrawRectangle)
         self.toolBar_drawing.addAction(self.action_DrawEllipse)
 
+        # Add recent files menu with open icon
+        
+        self.openRecent = QtGui.QMenu("Recent Files")
+        self.openRecent.setIcon(icon2)
+        
+        self.menu_File.insertMenu(self.action_Save, self.openRecent)
+        
+        # Load the settings and populate the menu
+        
+        settings = QtCore.QSettings()
+        
+        for i in range(0, 5):
+            if settings.value("file" + str(i)).toString() != "":
+                entry = self.openRecent.addAction(settings.value("file" + str(i)).toString())
+                self.connect(entry, QtCore.SIGNAL('triggered()'), lambda: self.loadNetfile(settings.value("file" + str(i)).toString()))
+        
+        #
+
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.action_Quit, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)

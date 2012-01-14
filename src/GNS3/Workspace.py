@@ -1193,6 +1193,39 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if path and (selected == 'NET file (*.net)' or selected == ''):
             self.loadNetfile(path)
+            
+        # Open recent files code
+                    
+        found = 0
+        elems = []
+        settings = QtCore.QSettings()
+
+        # Check is the file is already in list
+        for i in range(0, 5):
+            if (settings.value("file" + str(i)).toString() == path):
+                found = 1
+
+        #If file not already in list
+
+        if not found:
+            i = 5
+            while i > 0:
+                settings.setValue("file" + str(i), QtCore.QVariant(settings.value("file" + str(i - 1)).toString()))
+                i = i - 1
+                
+            settings.setValue("file" + str(0), QtCore.QVariant(path))
+         
+            # We redraw the menu for recent files   
+      
+            self.openRecent.clear()
+        
+            settings = QtCore.QSettings()
+        
+            for i in range(0, 5):
+                if settings.value("file" + str(i)).toString() != "":
+                    entry = self.openRecent.addAction(settings.value("file" + str(i)).toString())
+                    self.connect(entry, QtCore.SIGNAL('triggered()'), lambda: self.loadNetfile(settings.value("file" + str(i)).toString()))
+
                 
     def loadNetfile(self, path):
 
