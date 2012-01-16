@@ -67,13 +67,13 @@ def error(msg):
     """
 
     print '*** Error:', unicode(msg)
-    
+
 def killAll(process_name):
     """ Killall
     """
 
     if sys.platform.startswith('win'):
-        command = ['taskkill.exe', '/f', '/t', '/im']  
+        command = ['taskkill.exe', '/f', '/t', '/im']
     else:
         command = ['killall', '-SIGKILL']
     try:
@@ -81,7 +81,7 @@ def killAll(process_name):
         return True
     except:
         return False
-  
+
 def getWindowsInterfaces():
     """ Try to detect all available interfaces on Windows
     """
@@ -90,7 +90,7 @@ def getWindowsInterfaces():
         import _winreg
     except:
         pass
-        
+
     interfaces = []
     dynamips = globals.GApp.systconf['dynamips']
     if dynamips == '':
@@ -115,13 +115,13 @@ def getWindowsInterfaces():
                 interfaces.append(match.group(0) + interface_name)
     except:
         return []
-    return interfaces  
-    
+    return interfaces
+
 class fileBrowser(object):
     """ fileBrowser class
     """
 
-    def __init__(self, caption, directory = '.', filter = 'All files (*.*)', parent = None):
+    def __init__(self, caption, directory = '.', filter = 'All files (*)', parent = None):
 
         self.filedialog = QtGui.QFileDialog(parent)
         self.selected = QtCore.QString()
