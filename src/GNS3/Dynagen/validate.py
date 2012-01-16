@@ -1,3 +1,5 @@
+# vim: expandtab ts=4 sw=4 sts=4:
+# -*- coding: utf-8 -*-
 # validate.py
 # A Validator object
 # Copyright (C) 2005-2010 Michael Foord, Mark Andrews, Nicola Larosa

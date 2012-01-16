@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# vim: expandtab ts=4 sw=4 sts=4:
 # -*- coding: utf-8 -*-
 """Setup script for the GNS3 packages."""
 

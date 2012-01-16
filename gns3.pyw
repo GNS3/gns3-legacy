@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# vim: expandtab ts=4 sw=4 sts=4:
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) 2007-2011 GNS3 Development Team (http://www.gns3.net/team).
