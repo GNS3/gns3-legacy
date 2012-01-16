@@ -41,7 +41,7 @@ foreach (@ARGV)
         open OFILE, ">", $_ or die "open $_: $!.\n";
         my @data = <IFILE>;
         my $idx = 0;
-        if ($data[0] =~ m/^\#\!/)
+        if (scalar(@data) > 1 && $data[0] =~ m/^\#\!/)
         {
                 $idx = 1;
         }
