@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Thu Jan 19 17:35:15 2012
+# Created: Thu Jan 19 22:35:31 2012
 #      by: PyQt4 UI code generator 4.9
 #
 # WARNING! All changes made in this file will be lost!
@@ -211,13 +211,18 @@ class Ui_MainWindow(object):
         self.action_StartAll = QtGui.QAction(MainWindow)
         self.action_StartAll.setEnabled(True)
         icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/play.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/play2-test.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/play2-test.svg")), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/play7-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/play7-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.On)
         self.action_StartAll.setIcon(icon8)
         self.action_StartAll.setObjectName(_fromUtf8("action_StartAll"))
         self.action_StopAll = QtGui.QAction(MainWindow)
         self.action_StopAll.setEnabled(True)
         icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/stop.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon9.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/stop2-test.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon9.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/stop3-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        icon9.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/stop3-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.On)
         self.action_StopAll.setIcon(icon9)
         self.action_StopAll.setObjectName(_fromUtf8("action_StopAll"))
         self.action_ShowHostnames = QtGui.QAction(MainWindow)
@@ -269,7 +274,9 @@ class Ui_MainWindow(object):
         self.action_Redo.setObjectName(_fromUtf8("action_Redo"))
         self.action_SuspendAll = QtGui.QAction(MainWindow)
         icon16 = QtGui.QIcon()
-        icon16.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/pause.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon16.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/pause2-test.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon16.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/pause3-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        icon16.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/pause3-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.On)
         self.action_SuspendAll.setIcon(icon16)
         self.action_SuspendAll.setObjectName(_fromUtf8("action_SuspendAll"))
         self.action_Clear = QtGui.QAction(MainWindow)
@@ -306,13 +313,17 @@ class Ui_MainWindow(object):
         self.action_DrawRectangle = QtGui.QAction(MainWindow)
         self.action_DrawRectangle.setCheckable(True)
         icon23 = QtGui.QIcon()
-        icon23.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/rectangle.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon23.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/rectangle3-test.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon23.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/rectangle2-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        icon23.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/rectangle2-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.On)
         self.action_DrawRectangle.setIcon(icon23)
         self.action_DrawRectangle.setObjectName(_fromUtf8("action_DrawRectangle"))
         self.action_DrawEllipse = QtGui.QAction(MainWindow)
         self.action_DrawEllipse.setCheckable(True)
         icon24 = QtGui.QIcon()
-        icon24.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/ellipse.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon24.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/ellipse3-test.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon24.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/ellipse2-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        icon24.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/ellipse2-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.On)
         self.action_DrawEllipse.setIcon(icon24)
         self.action_DrawEllipse.setObjectName(_fromUtf8("action_DrawEllipse"))
         self.action_ShowinterfaceNames = QtGui.QAction(MainWindow)

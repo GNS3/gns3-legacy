@@ -550,7 +550,10 @@
    </property>
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/play.svg</normaloff>:/icons/play.svg</iconset>
+     <normaloff>:/icons/play2-test.svg</normaloff>
+     <normalon>:/icons/play2-test.svg</normalon>
+     <activeoff>:/icons/play7-test.svg</activeoff>
+     <activeon>:/icons/play7-test.svg</activeon>:/icons/play2-test.svg</iconset>
    </property>
    <property name="text">
     <string>Start/Resume all devices</string>
@@ -568,7 +571,9 @@
    </property>
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/stop.svg</normaloff>:/icons/stop.svg</iconset>
+     <normaloff>:/icons/stop2-test.svg</normaloff>
+     <activeoff>:/icons/stop3-test.svg</activeoff>
+     <activeon>:/icons/stop3-test.svg</activeon>:/icons/stop2-test.svg</iconset>
    </property>
    <property name="text">
     <string>Stop all devices</string>
@@ -748,7 +753,9 @@
   <action name="action_SuspendAll">
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/pause.svg</normaloff>:/icons/pause.svg</iconset>
+     <normaloff>:/icons/pause2-test.svg</normaloff>
+     <activeoff>:/icons/pause3-test.svg</activeoff>
+     <activeon>:/icons/pause3-test.svg</activeon>:/icons/pause2-test.svg</iconset>
    </property>
    <property name="text">
     <string>Suspend all devices</string>
@@ -865,7 +872,9 @@
    </property>
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/rectangle.svg</normaloff>:/icons/rectangle.svg</iconset>
+     <normaloff>:/icons/rectangle3-test.svg</normaloff>
+     <activeoff>:/icons/rectangle2-test.svg</activeoff>
+     <activeon>:/icons/rectangle2-test.svg</activeon>:/icons/rectangle3-test.svg</iconset>
    </property>
    <property name="text">
     <string>Draw Rectangle</string>
@@ -883,7 +892,9 @@
    </property>
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/ellipse.svg</normaloff>:/icons/ellipse.svg</iconset>
+     <normaloff>:/icons/ellipse3-test.svg</normaloff>
+     <activeoff>:/icons/ellipse2-test.svg</activeoff>
+     <activeon>:/icons/ellipse2-test.svg</activeon>:/icons/ellipse3-test.svg</iconset>
    </property>
    <property name="text">
     <string>Draw Ellipse</string>
