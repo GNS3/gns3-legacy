@@ -20,11 +20,11 @@
 #
 
 
-import sys, os
+import sys, os, time
 import GNS3.Globals as globals
 import GNS3.Config.Defaults as Defaults
-from PyQt4.QtGui import QApplication
-from PyQt4.QtCore import QVariant, QSettings
+from PyQt4.QtGui import QApplication, QSplashScreen, QPixmap
+from PyQt4.QtCore import Qt, QVariant, QSettings
 from GNS3.Utils import Singleton
 from GNS3.Workspace import Workspace
 from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf, systemCaptureConf, systemQemuConf, systemVBoxConf
@@ -38,7 +38,9 @@ from GNS3.DynagenSub import DynagenSub
 from GNS3.ProjectDialog import ProjectDialog
 from GNS3.Wizard import Wizard
 from __main__ import VERSION_INTEGER
+	
 
+	
 class Application(QApplication, Singleton):
     """ GNS3 Application instance
         Used for containing global app variable,
@@ -345,8 +347,29 @@ class Application(QApplication, Singleton):
 
     VBoxManager = property(__getVBoxManager, __setVBoxManager, doc = 'VBoxManager instance')
 
+	
+    def processSplashScreen(self):
+		""" Processes the splash screen, Prints a loading picture before entering the application
+		"""
+		
+		self.splashMessage = 'Starting Graphical Network Simulator...'
+		self.splashSleepTime = 5
+		self.splashPath = ':/images/logo_gns3_splash.png'
+	
+		pixmap = QPixmap(self.splashPath)
+		self.splash = QSplashScreen(pixmap, Qt.WindowStaysOnTopHint)
+		self.splash.show()
+		self.splash.showMessage(self.splashMessage, Qt.AlignRight | Qt.AlignTop, Qt.black)
+		#self.app.processEvents() # make sure Qt really display the splash screen 
+		time.sleep(self.splashSleepTime)
+		self.splash.finish(self.__mainWindow)
+		return
+	
     def run(self, file):
 
+		# Display splash screen while waiting for the application to open
+        self.processSplashScreen()
+	
         # Instantiation of Dynagen
         self.__dynagen = DynagenSub()
 
