@@ -63,6 +63,8 @@
     </property>
     <addaction name="action_Clear"/>
     <addaction name="action_Open"/>
+    <addaction name="action_RecentFiles"/>
+    <addaction name="separator"/>
     <addaction name="action_Save"/>
     <addaction name="action_SaveAs"/>
     <addaction name="action_New"/>
@@ -855,7 +857,7 @@
    </property>
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/aux.svg</normaloff>:/icons/aux.svg</iconset>
+     <normaloff>:/icons/aux-console.svg</normaloff>:/icons/aux-console.svg</iconset>
    </property>
    <property name="text">
     <string>Console AUX to all devices</string>
@@ -884,6 +886,15 @@
    </property>
    <property name="toolTip">
     <string>Show VirtualBox Manager</string>
+   </property>
+  </action>
+  <action name="action_RecentFiles">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/open.svg</normaloff>:/icons/open.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Recent Files</string>
    </property>
   </action>
  </widget>

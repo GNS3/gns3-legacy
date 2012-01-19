@@ -1226,7 +1226,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     entry = self.openRecent.addAction(settings.value("file" + str(i)).toString())
                     self.connect(entry, QtCore.SIGNAL('triggered()'), lambda: self.loadNetfile(settings.value("file" + str(i)).toString()))
 
-                
     def loadNetfile(self, path):
 
         try:

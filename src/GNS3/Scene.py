@@ -257,7 +257,7 @@ class Scene(QtGui.QGraphicsView):
 
             # Action: Console (Connect to the node console)
             AuxAct = QtGui.QAction(translate('Scene', 'Console to AUX port'), menu)
-            AuxAct.setIcon(QtGui.QIcon(':/icons/aux.svg'))
+            AuxAct.setIcon(QtGui.QIcon(':/icons/aux-console.svg'))
             self.connect(AuxAct, QtCore.SIGNAL('triggered()'), self.slotAuxConsole)
 
             # Action: Calculate IDLE PC

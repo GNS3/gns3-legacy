@@ -438,7 +438,7 @@ class Ui_MainWindow(object):
         self.action_ConsoleAuxAll = QtGui.QAction(MainWindow)
         self.action_ConsoleAuxAll.setEnabled(True)
         icon29 = QtGui.QIcon()
-        icon29.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/aux.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon29.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/aux-console.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_ConsoleAuxAll.setIcon(icon29)
         self.action_ConsoleAuxAll.setText(QtGui.QApplication.translate("MainWindow", "Console AUX to all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ConsoleAuxAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Console AUX to all devices", None, QtGui.QApplication.UnicodeUTF8))
