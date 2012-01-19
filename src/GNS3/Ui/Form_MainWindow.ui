@@ -33,6 +33,9 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="statusTip">
+       <string>Topology Graphic View</string>
+      </property>
      </widget>
     </item>
    </layout>
@@ -43,7 +46,7 @@
      <x>0</x>
      <y>0</y>
      <width>944</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -189,6 +192,9 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="statusTip">
+        <string>Select Node Type</string>
+       </property>
        <property name="iconSize">
         <size>
          <width>24</width>
@@ -270,6 +276,9 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="statusTip">
+        <string>Topology Summary</string>
+       </property>
        <column>
         <property name="text">
          <string>1</string>
@@ -312,6 +321,9 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="statusTip">
+        <string>Console</string>
+       </property>
       </widget>
      </item>
     </layout>
@@ -351,7 +363,11 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="UndoView" name="UndoViewDock"/>
+      <widget class="UndoView" name="UndoViewDock">
+       <property name="statusTip">
+        <string>Undo Stack</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -375,6 +391,9 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="statusTip">
+        <string>Captures</string>
        </property>
        <property name="iconSize">
         <size>
@@ -404,6 +423,9 @@
    <property name="text">
     <string>&amp;About</string>
    </property>
+   <property name="statusTip">
+    <string>About</string>
+   </property>
    <property name="menuRole">
     <enum>QAction::AboutRole</enum>
    </property>
@@ -417,7 +439,7 @@
     <string>&amp;Quit</string>
    </property>
    <property name="statusTip">
-    <string/>
+    <string>Quit</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -434,6 +456,9 @@
    <property name="toolTip">
     <string>Open project or topology file</string>
    </property>
+   <property name="statusTip">
+    <string>Open project or topology file</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
@@ -447,6 +472,9 @@
     <string>&amp;Save</string>
    </property>
    <property name="toolTip">
+    <string>Save project or topology file</string>
+   </property>
+   <property name="statusTip">
     <string>Save project or topology file</string>
    </property>
    <property name="shortcut">
@@ -470,6 +498,9 @@
    <property name="toolTip">
     <string>Add a link</string>
    </property>
+   <property name="statusTip">
+    <string>Add a link</string>
+   </property>
   </action>
   <action name="action_IOS_images">
    <property name="icon">
@@ -477,6 +508,9 @@
      <normaloff>:/icons/binary.svg</normaloff>:/icons/binary.svg</iconset>
    </property>
    <property name="text">
+    <string>IOS images and hypervisors</string>
+   </property>
+   <property name="statusTip">
     <string>IOS images and hypervisors</string>
    </property>
    <property name="shortcut">
@@ -491,6 +525,9 @@
    <property name="text">
     <string>&amp;Online Help</string>
    </property>
+   <property name="statusTip">
+    <string>Online Help</string>
+   </property>
   </action>
   <action name="action_Export">
    <property name="icon">
@@ -501,6 +538,9 @@
     <string>&amp;Screenshot</string>
    </property>
    <property name="toolTip">
+    <string>Screenshot</string>
+   </property>
+   <property name="statusTip">
     <string>Screenshot</string>
    </property>
   </action>
@@ -518,6 +558,9 @@
    <property name="toolTip">
     <string>Start/Resume all devices</string>
    </property>
+   <property name="statusTip">
+    <string>Start/Resume all devices</string>
+   </property>
   </action>
   <action name="action_StopAll">
    <property name="enabled">
@@ -531,6 +574,9 @@
     <string>Stop all devices</string>
    </property>
    <property name="toolTip">
+    <string>Stop all devices</string>
+   </property>
+   <property name="statusTip">
     <string>Stop all devices</string>
    </property>
   </action>
@@ -548,6 +594,9 @@
    <property name="toolTip">
     <string>Show hostnames</string>
    </property>
+   <property name="statusTip">
+    <string>Show hostnames</string>
+   </property>
   </action>
   <action name="action_TelnetAll">
    <property name="enabled">
@@ -561,6 +610,9 @@
     <string>Console to all devices</string>
    </property>
    <property name="toolTip">
+    <string>Console to all devices</string>
+   </property>
+   <property name="statusTip">
     <string>Console to all devices</string>
    </property>
   </action>
@@ -578,10 +630,16 @@
    <property name="toolTip">
     <string>Save topology file as...</string>
    </property>
+   <property name="statusTip">
+    <string>Save topology file as...</string>
+   </property>
   </action>
   <action name="action_AboutQt">
    <property name="text">
     <string>About &amp;Qt</string>
+   </property>
+   <property name="statusTip">
+    <string>About Qt</string>
    </property>
    <property name="menuRole">
     <enum>QAction::AboutQtRole</enum>
@@ -591,6 +649,9 @@
    <property name="text">
     <string>Zoom &amp;In</string>
    </property>
+   <property name="statusTip">
+    <string>Zoom In</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl++</string>
    </property>
@@ -598,6 +659,9 @@
   <action name="action_ZoomOut">
    <property name="text">
     <string>Zoom &amp;Out</string>
+   </property>
+   <property name="statusTip">
+    <string>Zoom Out</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+-</string>
@@ -607,6 +671,9 @@
    <property name="text">
     <string>Zoom &amp;1:1</string>
    </property>
+   <property name="statusTip">
+    <string>Zoom Reset (1:1)</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+/</string>
    </property>
@@ -615,6 +682,9 @@
    <property name="text">
     <string>Select &amp;All</string>
    </property>
+   <property name="statusTip">
+    <string>Select All</string>
+   </property>
    <property name="shortcut">
     <string>Ctrl+A</string>
    </property>
@@ -622,6 +692,9 @@
   <action name="action_SelectNone">
    <property name="text">
     <string>Select &amp;None</string>
+   </property>
+   <property name="statusTip">
+    <string>Select None</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+A</string>
@@ -634,6 +707,9 @@
    </property>
    <property name="text">
     <string>&amp;Preferences...</string>
+   </property>
+   <property name="statusTip">
+    <string>Preferences</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+P</string>
@@ -680,6 +756,9 @@
    <property name="toolTip">
     <string>Suspend all devices</string>
    </property>
+   <property name="statusTip">
+    <string>Suspend all devices</string>
+   </property>
   </action>
   <action name="action_Clear">
    <property name="icon">
@@ -690,6 +769,9 @@
     <string>New blank topology</string>
    </property>
    <property name="toolTip">
+    <string>New blank topology</string>
+   </property>
+   <property name="statusTip">
     <string>New blank topology</string>
    </property>
   </action>
@@ -707,6 +789,9 @@
    <property name="toolTip">
     <string>Add a note</string>
    </property>
+   <property name="statusTip">
+    <string>Add a note</string>
+   </property>
   </action>
   <action name="action_New">
    <property name="icon">
@@ -720,6 +805,9 @@
     <string>New Project</string>
    </property>
    <property name="toolTip">
+    <string>New blank project</string>
+   </property>
+   <property name="statusTip">
     <string>New blank project</string>
    </property>
    <property name="shortcut">
@@ -737,6 +825,9 @@
    <property name="toolTip">
     <string>Import/Export Startup Configs</string>
    </property>
+   <property name="statusTip">
+    <string>Import/Export Startup Configs</string>
+   </property>
   </action>
   <action name="action_InsertImage">
    <property name="icon">
@@ -749,6 +840,9 @@
    <property name="toolTip">
     <string>Insert a picture</string>
    </property>
+   <property name="statusTip">
+    <string>Insert a picture</string>
+   </property>
   </action>
   <action name="action_Symbol_Manager">
    <property name="icon">
@@ -757,6 +851,9 @@
    </property>
    <property name="text">
     <string>&amp;Symbol Manager</string>
+   </property>
+   <property name="statusTip">
+    <string>Symbol Manager</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
@@ -776,6 +873,9 @@
    <property name="toolTip">
     <string>Draw a rectangle</string>
    </property>
+   <property name="statusTip">
+    <string>Draw a rectangle</string>
+   </property>
   </action>
   <action name="action_DrawEllipse">
    <property name="checkable">
@@ -789,6 +889,9 @@
     <string>Draw Ellipse</string>
    </property>
    <property name="toolTip">
+    <string>Draw an ellipse</string>
+   </property>
+   <property name="statusTip">
     <string>Draw an ellipse</string>
    </property>
   </action>
@@ -806,6 +909,9 @@
    <property name="toolTip">
     <string>Show interface labels</string>
    </property>
+   <property name="statusTip">
+    <string>Show interface labels</string>
+   </property>
   </action>
   <action name="action_Snapshot">
    <property name="icon">
@@ -818,12 +924,18 @@
    <property name="toolTip">
     <string>Snapshot</string>
    </property>
+   <property name="statusTip">
+    <string>Snapshot</string>
+   </property>
   </action>
   <action name="action_ShowLayers">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
+    <string>Show layers</string>
+   </property>
+   <property name="statusTip">
     <string>Show layers</string>
    </property>
   </action>
@@ -838,6 +950,9 @@
    <property name="toolTip">
     <string>Save project as...</string>
    </property>
+   <property name="statusTip">
+    <string>Save project as...</string>
+   </property>
   </action>
   <action name="action_ReloadAll">
    <property name="icon">
@@ -848,6 +963,9 @@
     <string>Reload all devices</string>
    </property>
    <property name="toolTip">
+    <string>Reload all devices</string>
+   </property>
+   <property name="statusTip">
     <string>Reload all devices</string>
    </property>
   </action>
@@ -865,14 +983,23 @@
    <property name="toolTip">
     <string>Console AUX to all devices</string>
    </property>
+   <property name="statusTip">
+    <string>Console AUX to all devices</string>
+   </property>
   </action>
   <action name="action_ResetInterfaceLabels">
    <property name="text">
     <string>Reset Interface Labels</string>
    </property>
+   <property name="statusTip">
+    <string>Reset Interface Labels</string>
+   </property>
   </action>
   <action name="action_CheckForUpdate">
    <property name="text">
+    <string>Check for Update</string>
+   </property>
+   <property name="statusTip">
     <string>Check for Update</string>
    </property>
   </action>
@@ -887,6 +1014,9 @@
    <property name="toolTip">
     <string>Show VirtualBox Manager</string>
    </property>
+   <property name="statusTip">
+    <string>Show VirtualBox Manager</string>
+   </property>
   </action>
   <action name="action_RecentFiles">
    <property name="icon">
@@ -895,6 +1025,9 @@
    </property>
    <property name="text">
     <string>Recent Files</string>
+   </property>
+   <property name="statusTip">
+    <string>Recent files</string>
    </property>
   </action>
  </widget>
