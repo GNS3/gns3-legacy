@@ -40,12 +40,14 @@ foreach (@ARGV)
         open IFILE, $filename or die "open $filename: $!.\n";
         open OFILE, ">", $_ or die "open $_: $!.\n";
         my @data = <IFILE>;
+        my @clean_data = map { s/\r\n/\n/g; $_; } @data;
+        close IFILE;
         my $idx = 0;
-        if (scalar(@data) > 1 && $data[0] =~ m/^\#\!/)
+        if (scalar(@clean_data) > 1 && $data[0] =~ m/^\#\!/)
         {
                 $idx = 1;
         }
-        foreach (@data)
+        foreach (@clean_data)
         {
                 my $line = $_;
                 my $i = 0;
@@ -63,19 +65,11 @@ foreach (@ARGV)
         }
         foreach (@header)
         {
-                splice @data, $idx, 0, $_;
+                splice @clean_data, $idx, 0, $_;
         }
-        my @clean_data = map { s/\r\n/\n/g; $_; } @data;
         foreach (@clean_data)
         {
                 print OFILE $_;
         }
-        close IFILE;
         close OFILE;
 }
-
-# if shebang, write to FILE2
-# write header to FILE2
-# for each line not matching any of @header
-# write to FILE2
-# \r\n -> \n
