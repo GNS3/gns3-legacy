@@ -73,6 +73,7 @@ class Application(QApplication, Singleton):
         self.__junosimages = {}
         self.__asaimages = {}
         self.__idsimages = {}
+        self.__recentfiles = []
         self.iosimages_ids = 0
         self.hypervisors_ids = 0
         self.qemuimages_ids = 0
@@ -274,6 +275,21 @@ class Application(QApplication, Singleton):
         return self.__libraries
 
     libraries = property(__getLibraries, __setLibraries, doc = 'Libraries dictionnary')
+    
+    def __setRecentFiles(self, recentfiles):
+        """ register the sysconf instance
+        """
+
+        self.__recentfiles = recentfiles
+
+    def __getRecentFiles(self):
+        """ return the sysconf instance
+        """
+
+        return self.__recentfiles
+
+    recentfiles = property(__getRecentFiles, __setRecentFiles, doc = 'Recent files array')
+
 
     def __setHypervisors(self, hypervisors):
         """ register the sysconf instance
@@ -523,6 +539,7 @@ class Application(QApplication, Singleton):
         GNS_Conf().IDS_images()
         GNS_Conf().Libraries()
         GNS_Conf().Symbols()
+        GNS_Conf().RecentFiles()
 
         # Workspace create a ` Scene' object,
         # so it also set self.__topology
@@ -563,6 +580,8 @@ class Application(QApplication, Singleton):
                 dialog.activateWindow()
                 self.mainWindow.raise_()
                 dialog.raise_()
+            else:
+                self.mainWindow.raise_()
 
         retcode = QApplication.exec_()
 
@@ -700,6 +719,11 @@ class Application(QApplication, Singleton):
         c.remove("")
         c.endGroup()
         
+        # Clear Recent.files group
+        c.beginGroup("Recent.files")
+        c.remove("")
+        c.endGroup()
+        
         # Clear Symbol.libraries group
         c.beginGroup("Symbol.settings")
         c.remove("")
@@ -805,7 +829,14 @@ class Application(QApplication, Singleton):
             basekey = "Symbol.libraries/" + str(id)
             c.set(basekey + "/path", o.path)
             id += 1
-            
+
+        # Recent Files
+        id = 0
+        for o in self.__recentfiles:
+            basekey = "Recent.files/" + str(id)
+            c.set(basekey + "/path", o.path)
+            id += 1
+
         # Symbols
         id = 0
         for symbol in SYMBOLS:

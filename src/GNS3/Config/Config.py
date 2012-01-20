@@ -21,7 +21,7 @@
 
 import os
 import GNS3.Globals as globals
-from GNS3.Config.Objects import iosImageConf, hypervisorConf, libraryConf, qemuImageConf, pixImageConf, junosImageConf, asaImageConf, idsImageConf, vboxImageConf
+from GNS3.Config.Objects import iosImageConf, hypervisorConf, libraryConf, recentFilesConf, qemuImageConf, pixImageConf, junosImageConf, asaImageConf, idsImageConf, vboxImageConf
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Node.DecorativeNode import DecorativeNode
 from PyQt4 import QtCore
@@ -407,6 +407,25 @@ class GNS_Conf(object):
 
             if conf.id >= globals.GApp.idsimages_ids:
                 globals.GApp.idsimages_ids = conf.id + 1
+
+    def RecentFiles(self):
+        """ Load recent file paths from config file
+        """
+
+        # Loading recent files conf
+        basegroup = "Recent.files"
+        c = ConfDB()
+        c.beginGroup(basegroup)
+        childGroups = c.childGroups()
+        c.endGroup()
+
+        for id in childGroups:
+
+            cgroup = basegroup + '/' + id
+            path = c.get(cgroup + "/path", unicode(''))
+            conf = recentFilesConf()
+            conf.path = unicode(path)
+            globals.GApp.recentfiles.append(conf)
 
     def Libraries(self):
         """ Load libraries settings from config file

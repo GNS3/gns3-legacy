@@ -49,7 +49,7 @@ class ConfigObject(object):
             #try:
             super(ConfigObject, self).__getattr__(name)
             #except:
-	    #    print "WARNING: object" + str(name) + "doesn't have __getattr__ attribute"
+            #    print "WARNING: object" + str(name) + "doesn't have __getattr__ attribute"
 
     def __setattr__(self, name, value):
         # We must bypass `conf' and `types' attributes, because we use
@@ -91,6 +91,12 @@ class libraryConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_library_defaults.copy()
         self.types = Defaults.conf_library_types
+        
+class recentFilesConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_recentfiles_defaults.copy()
+        self.types = Defaults.conf_recentfiles_types
             
 class iosImageConf(ConfigObject):
     def __init__(self):

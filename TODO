@@ -8,7 +8,6 @@ Qemu/Pemu
 
 GUI
 
- * Add an Open Recent option to the file menu, lists say last 6 projects.
  * Add a Clear Configuration button to the startup configuration option, and/or add a Clear All Configurations option to the control menu.
  * Style options for node labels
  * Option to draw a line or draw an arrow on the scene

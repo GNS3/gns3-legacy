@@ -255,6 +255,14 @@ conf_library_types = {
     'path': unicode,
 }
 
+conf_recentfiles_defaults = {
+    'path': '',
+}
+
+conf_recentfiles_types = {
+    'path': unicode,
+}
+
 conf_iosImage_defaults = {
     'id': -1,
     'filename': '',

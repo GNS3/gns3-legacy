@@ -35,6 +35,7 @@ from GNS3.ProjectDialog import ProjectDialog
 from GNS3.SnapshotDialog import SnapshotDialog
 from GNS3.Utils import debug, translate, fileBrowser
 from GNS3.Config.Preferences import PreferencesDialog
+from GNS3.Config.Objects import recentFilesConf
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice, JunOS, IDS, QemuDevice
 from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice, VBoxDevice
@@ -54,10 +55,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # Initialize the windows 
         QMainWindow.__init__(self)
-        self.submenu_Docks = QtGui.QMenu()
+        self.submenu_Docks = QtGui.QMenu(self)
+        self.submenu_RecentFiles = QtGui.QMenu(self)
         Ui_MainWindow.setupUi(self, self)
 
-        self.__createMenus()
+        self.__createSubMenus()
         self.__connectActions()
         self.setCorner(QtCore.Qt.TopLeftCorner, QtCore.Qt.LeftDockWidgetArea)
         self.setCorner(QtCore.Qt.BottomLeftCorner, QtCore.Qt.LeftDockWidgetArea)
@@ -95,9 +97,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         action.setShortcut(translate("Workspace", "Ctrl+Y"))
         action.setIcon(QIcon(':/icons/edit-redo.svg'))
         self.menu_Edit.insertAction(self.action_SelectAll, action)
-
         self.menu_Edit.insertAction(self.action_SelectAll, self.menu_Edit.addSeparator())
-        
+
         # Class to display error/warning messages once
         self.errorMessage = QtGui.QErrorMessage(self)
         self.errorMessage.setMinimumSize(350, 200)
@@ -169,18 +170,29 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.menuDevice.clear()
         globals.GApp.scene.makeContextualMenu(self.menuDevice)
             
-    def __createMenus(self):
-        """ Add own menu actions, and create new sub-menu
+    def __createSubMenus(self):
+        """ Create new sub-menus
         """
 
-        self.subm = self.submenu_Docks
-        self.subm.addAction(self.dockWidget_NodeTypes.toggleViewAction())
-        self.subm.addAction(self.dockWidget_TopoSum.toggleViewAction())
-        self.subm.addAction(self.dockWidget_Console.toggleViewAction())
-        self.subm.addAction(self.dockWidget_UndoView.toggleViewAction())
-        self.subm.addAction(self.dockWidget_Capture.toggleViewAction())
+        # Create and populate docks submenu
+        self.submenu_Docks.addAction(self.dockWidget_NodeTypes.toggleViewAction())
+        self.submenu_Docks.addAction(self.dockWidget_TopoSum.toggleViewAction())
+        self.submenu_Docks.addAction(self.dockWidget_Console.toggleViewAction())
+        self.submenu_Docks.addAction(self.dockWidget_UndoView.toggleViewAction())
+        self.submenu_Docks.addAction(self.dockWidget_Capture.toggleViewAction())
         self.menu_View.addSeparator().setText(translate("Workspace", "Docks"))
-        self.menu_View.addMenu(self.subm)
+        self.menu_View.addMenu(self.submenu_Docks)
+
+        # Create and populate recent files submenu
+        for recent_file_conf in globals.GApp.recentfiles:
+            action = QtGui.QAction(recent_file_conf.path, self.submenu_RecentFiles)
+            self.connect(action, QtCore.SIGNAL('triggered()'), lambda: self.loadNetfile(recent_file_conf.path))
+            self.submenu_RecentFiles.addAction(action)
+
+        self.submenu_RecentFiles.setTitle(translate("Workspace", "Recent Files"))
+        self.submenu_RecentFiles.setIcon(QtGui.QIcon(":/icons/open.svg"))
+        separator = self.menu_File.insertSeparator(self.action_Save)
+        self.menu_File.insertMenu(separator, self.submenu_RecentFiles)
 
     def retranslateUi(self, MainWindow):
     
@@ -1122,17 +1134,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     except (OSError, IOError), e:
                         debug("Warning: cannot copy " + file + " to " + snapshot_workdir + ": " + e.strerror)
                         continue
-		        """
-            if isinstance(node, AnyVBoxEmuDevice):
-                vbox_files = glob.glob(os.path.normpath(node.vbox.workingdir) + os.sep + node.hostname)
-                for file in vbox_files:
-                    try:
-                        shutil.copytree(file, snapshot_workdir + os.sep + node.hostname)
-                    except (OSError, IOError), e:
-                        debug("Warning: cannot copy " + file + " to " + snapshot_workdir + ": " + e.strerror)
-                        continue
-		        #"""
-            
+
         try:
             for hypervisor in globals.GApp.dynagen.dynamips.values():
                 hypervisor.workingdir = snapshot_workdir
@@ -1182,7 +1184,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.openFile()
 
     def openFile(self):
-    
+
         if globals.GApp.systconf['dynamips'].path == '':
             QtGui.QMessageBox.warning(self, translate("Workspace", "Open a file"), translate("Workspace", "The path to Dynamips must be configured"))
             self.__action_Preferences()
@@ -1195,36 +1197,25 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.loadNetfile(path)
             
         # Open recent files code
-                    
-        found = 0
-        elems = []
-        settings = QtCore.QSettings()
 
-        # Check is the file is already in list
-        for i in range(0, 5):
-            if (settings.value("file" + str(i)).toString() == path):
-                found = 1
+        # Check is the file is not already in list
+        for recent_file_conf in globals.GApp.recentfiles:
+            if recent_file_conf.path == path:
+                return
 
-        #If file not already in list
+        # Limit number of recent file paths to 5
+        if len(globals.GApp.recentfiles) == 5:
+            globals.GApp.recentfiles.pop(0)
+        recent_file_conf = recentFilesConf()
+        recent_file_conf.path = path
+        globals.GApp.recentfiles.append(recent_file_conf)
 
-        if not found:
-            i = 5
-            while i > 0:
-                settings.setValue("file" + str(i), QtCore.QVariant(settings.value("file" + str(i - 1)).toString()))
-                i = i - 1
-                
-            settings.setValue("file" + str(0), QtCore.QVariant(path))
-         
-            # We redraw the menu for recent files   
-      
-            self.openRecent.clear()
-        
-            settings = QtCore.QSettings()
-        
-            for i in range(0, 5):
-                if settings.value("file" + str(i)).toString() != "":
-                    entry = self.openRecent.addAction(settings.value("file" + str(i)).toString())
-                    self.connect(entry, QtCore.SIGNAL('triggered()'), lambda: self.loadNetfile(settings.value("file" + str(i)).toString()))
+        # Redraw recent files submenu
+        self.submenu_RecentFiles.clear()
+        for recent_file_conf in globals.GApp.recentfiles:
+            action = QtGui.QAction(recent_file_conf.path, self.submenu_RecentFiles)
+            self.connect(action, QtCore.SIGNAL('triggered()'), lambda: self.loadNetfile(recent_file_conf.path))
+            self.submenu_RecentFiles.addAction(action)
 
     def loadNetfile(self, path):
 

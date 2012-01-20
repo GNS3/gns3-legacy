@@ -46,7 +46,7 @@
      <x>0</x>
      <y>0</y>
      <width>944</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -66,8 +66,6 @@
     </property>
     <addaction name="action_Clear"/>
     <addaction name="action_Open"/>
-    <addaction name="action_RecentFiles"/>
-    <addaction name="separator"/>
     <addaction name="action_Save"/>
     <addaction name="action_SaveAs"/>
     <addaction name="action_New"/>
@@ -1027,18 +1025,6 @@
    </property>
    <property name="statusTip">
     <string>Show VirtualBox Manager</string>
-   </property>
-  </action>
-  <action name="action_RecentFiles">
-   <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/open.svg</normaloff>:/icons/open.svg</iconset>
-   </property>
-   <property name="text">
-    <string>Recent Files</string>
-   </property>
-   <property name="statusTip">
-    <string>Recent files</string>
    </property>
   </action>
  </widget>
