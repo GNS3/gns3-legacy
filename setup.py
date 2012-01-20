@@ -101,9 +101,9 @@ elif sys.platform.startswith('darwin'):
 
     data_files = [('', glob(r'src/GNS3/Langs/*.qm')),
                   ('src/GNS3/Dynagen/configspec'),
-                  ('qemuwrapper/qemuwrapper.py'),
-                  ('vboxwrapper/vboxwrapper.py'),
-                  ('vboxwrapper/vboxcontroller_4_1.py'),
+                  ('/usr/local/libexec/gns3/', ['qemuwrapper/qemuwrapper.py',
+                                                'vboxwrapper/vboxwrapper.py',
+                                                'vboxwrapper/vboxcontroller_4_1.py']),
                   ('LICENSE'),
                   ("../PlugIns/iconengines", [QTDIR + r'/plugins/iconengines/libqsvgicon.dylib']),
                   ("../PlugIns/imageformats", [QTDIR + r'/plugins/imageformats/libqgif.dylib',
@@ -132,7 +132,7 @@ elif sys.platform.startswith('darwin'):
                             'GNS3.Ui.ConfigurationPages.Page_PIX',
                             'GNS3.Ui.ConfigurationPages.Page_ASA',
                             'GNS3.Ui.ConfigurationPages.Page_JunOS',
-                            'GNS3.Ui.ConfigurationPages.Page_IDS',                                                                                                         
+                            'GNS3.Ui.ConfigurationPages.Page_IDS',
                             'GNS3.Ui.ConfigurationPages.Page_Qemu',
                             'GNS3.Ui.ConfigurationPages.Page_VirtualBox',
                             'GNS3.Ui.ConfigurationPages.Page_DecorativeNode',
@@ -142,7 +142,7 @@ elif sys.platform.startswith('darwin'):
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesQemu',
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesVirtualBox'
                             ],
-                
+
                 'plist'    : {  'CFBundleName': 'GNS3',
                                 'CFBundleDisplayName': 'GNS3',
                                 'CFBundleGetInfoString' : 'GNS3, Graphical Network Simulator',
@@ -168,20 +168,20 @@ elif sys.platform.startswith('darwin'):
           options={'py2app': OPTIONS},
           setup_requires=['py2app'],
           )
-        
+
     print '*** Removing Qt debug libs ***'
     for root, dirs, files in os.walk('./dist'):
         for file in files:
             if 'debug' in file:
                 print 'Deleting', file
                 os.remove(os.path.join(root,file))
-     
+
     os.chdir('dist')
     print '*** Patching __boot__.py ***'
     # This adds sys.path = [os.path.join(os.environ['RESOURCEPATH'], 'lib', 'python2.x', 'lib-dynload')] + sys.path
     # to dist/GNS3.app/Contents/Resources/__boot__.py
     os.system('cp ../__boot__.py ./GNS3.app/Contents/Resources')
-    
+
     print '*** Installing qt.conf ***'
     os.system('cp ../qt.conf ./GNS3.app/Contents/Resources')
 
