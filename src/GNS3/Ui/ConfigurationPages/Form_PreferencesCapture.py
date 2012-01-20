@@ -1,9 +1,8 @@
-# vim: expandtab ts=4 sw=4 sts=4:
 # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesCapture.ui'
 #
-# Created: Sun Jan  8 16:42:21 2012
+# Created: Fri Jan 20 00:58:51 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -18,7 +17,7 @@ except AttributeError:
 class Ui_PreferencesCapture(object):
     def setupUi(self, PreferencesCapture):
         PreferencesCapture.setObjectName(_fromUtf8("PreferencesCapture"))
-        PreferencesCapture.resize(550, 370)
+        PreferencesCapture.resize(550, 373)
         PreferencesCapture.setWindowTitle(QtGui.QApplication.translate("PreferencesCapture", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.vboxlayout = QtGui.QVBoxLayout(PreferencesCapture)
         self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))

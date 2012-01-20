@@ -1,9 +1,8 @@
-# vim: expandtab ts=4 sw=4 sts=4:
 # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_ATMSWPage.ui'
 #
-# Created: Sun Jan  8 16:42:19 2012
+# Created: Fri Jan 20 00:58:50 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!

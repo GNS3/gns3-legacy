@@ -1,9 +1,8 @@
-# vim: expandtab ts=4 sw=4 sts=4:
 # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesVirtualBox.ui'
 #
-# Created: Sun Jan  8 16:42:21 2012
+# Created: Fri Jan 20 00:58:52 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -18,7 +17,7 @@ except AttributeError:
 class Ui_PreferencesVirtualBox(object):
     def setupUi(self, PreferencesVirtualBox):
         PreferencesVirtualBox.setObjectName(_fromUtf8("PreferencesVirtualBox"))
-        PreferencesVirtualBox.resize(504, 460)
+        PreferencesVirtualBox.resize(504, 522)
         PreferencesVirtualBox.setWindowTitle(QtGui.QApplication.translate("PreferencesVirtualBox", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.verticalLayout_17 = QtGui.QVBoxLayout(PreferencesVirtualBox)
         self.verticalLayout_17.setObjectName(_fromUtf8("verticalLayout_17"))
@@ -157,6 +156,7 @@ class Ui_PreferencesVirtualBox(object):
         sizePolicy.setHeightForWidth(self.labelVBoxStatus.sizePolicy().hasHeightForWidth())
         self.labelVBoxStatus.setSizePolicy(sizePolicy)
         self.labelVBoxStatus.setText(_fromUtf8(""))
+        self.labelVBoxStatus.setOpenExternalLinks(True)
         self.labelVBoxStatus.setObjectName(_fromUtf8("labelVBoxStatus"))
         self.hboxlayout.addWidget(self.labelVBoxStatus)
         self.verticalLayout_2.addLayout(self.hboxlayout)
@@ -171,7 +171,7 @@ class Ui_PreferencesVirtualBox(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 327, 366))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 352, 427))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.verticalLayout = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
