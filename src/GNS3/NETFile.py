@@ -423,11 +423,10 @@ class NETFile(object):
                         normal_renderer = globals.GApp.scene.renders[symbol_name]['normal']
                         select_renderer = globals.GApp.scene.renders[symbol_name]['selected']
 
-
                     cloud = Cloud(normal_renderer, select_renderer)
                     config = {}
                     config['nios'] = []
-                    config['rpcap_mapping'] = {}
+                    config['rpcap_mapping'] = dict(self.dynagen.getRpcapMapping())
                     cloud.type = symbol_name
                     if not default_symbol:
                         cloud.default_symbol = False

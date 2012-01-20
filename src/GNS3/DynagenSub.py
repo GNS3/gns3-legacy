@@ -42,6 +42,7 @@ class DynagenSub(Dynagen):
         debugmsg(2, "DynagenSub::__init__()")
         Dynagen.__init__(self)
         self.gns3_data = None
+        self.rpcap_mapping = {}
 
     def check_replace_GUID_NIO(self, filename):
         """ Check and replace non-existing GUID (network interface ID) on Windows
@@ -52,22 +53,25 @@ class DynagenSub(Dynagen):
         lines = file.readlines()
         cregex = re.compile("^.*nio_gen_eth:(.*)")
         niolist = []
-        
+
         for currentline in lines:
             currentline = currentline.lower().strip() 
             match_obj = cregex.match(currentline)
             if match_obj:
                 niolist.append(match_obj.group(1))
-                
+
+        self.rpcap_mapping.clear()
         niolist = set(niolist)
         if len(niolist):
             
             rpcaps = getWindowsInterfaces()
             interfaces = {}
             for rpcap in rpcaps:
-                match = re.search(r"""^rpcap://(\\Device\\NPF_{[a-fA-F0-9\-]*}).*:(.*)""", rpcap)
+                match = re.search(r"""^rpcap://(\\Device\\NPF_{[a-fA-F0-9\-]*})\ :\ (.*)""", rpcap)
                 interface_guid = str(match.group(1)).lower()
                 interfaces[interface_guid] = unicode(match.group(2)).strip()
+                name_match = re.search(r"""^(.*)\ on local host:.*""", match.group(2))
+                self.rpcap_mapping[interface_guid] = name_match.group(1) 
 
             for nio in niolist:
                 if not interfaces.has_key(nio):
@@ -460,6 +464,12 @@ class DynagenSub(Dynagen):
         debugmsg(2, "DynagenSub::getGNS3Data(), returns: %s" % str(self.gns3_data))
 
         return self.gns3_data
+
+    def getRpcapMapping(self):
+        """ Returns RPCAP mapping
+        """
+
+        return self.rpcap_mapping
 
     def doerror(self, msg):
         """Print out an error message"""
