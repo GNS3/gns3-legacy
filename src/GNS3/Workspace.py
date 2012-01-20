@@ -186,13 +186,21 @@ class Workspace(QMainWindow, Ui_MainWindow):
         # Create and populate recent files submenu
         for recent_file_conf in globals.GApp.recentfiles:
             action = QtGui.QAction(recent_file_conf.path, self.submenu_RecentFiles)
-            self.connect(action, QtCore.SIGNAL('triggered()'), lambda: self.loadNetfile(recent_file_conf.path))
             self.submenu_RecentFiles.addAction(action)
 
         self.submenu_RecentFiles.setTitle(translate("Workspace", "Recent Files"))
         self.submenu_RecentFiles.setIcon(QtGui.QIcon(":/icons/open.svg"))
         separator = self.menu_File.insertSeparator(self.action_Save)
         self.menu_File.insertMenu(separator, self.submenu_RecentFiles)
+        self.submenu_RecentFiles.connect(self.submenu_RecentFiles, QtCore.SIGNAL("triggered(QAction *)"), self.slotLoadRecentFile)
+
+    def slotLoadRecentFile(self, action):
+        """ Called when a file is selected from the Recent Files submenu
+            action: QtCore.QAction instance
+        """
+
+        recent_file_path = unicode(action.text())
+        self.loadNetfile(recent_file_path)
 
     def retranslateUi(self, MainWindow):
     
@@ -1214,7 +1222,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.submenu_RecentFiles.clear()
         for recent_file_conf in globals.GApp.recentfiles:
             action = QtGui.QAction(recent_file_conf.path, self.submenu_RecentFiles)
-            self.connect(action, QtCore.SIGNAL('triggered()'), lambda: self.loadNetfile(recent_file_conf.path))
             self.submenu_RecentFiles.addAction(action)
 
     def loadNetfile(self, path):
