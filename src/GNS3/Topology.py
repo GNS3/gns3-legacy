@@ -342,14 +342,15 @@ class Topology(QtGui.QGraphicsScene):
                 host = self.getHost(host)
             else:
                 port = 10525
-        
+
         qemu_name = host + ':' + str(port)
         debug('Qemuwrapper: ' + qemu_name)
         if not self.dynagen.dynamips.has_key(qemu_name):
             #create the Qemu instance and add it to global dictionary
             self.dynagen.dynamips[qemu_name] = qlib.Qemu(host, port)
             self.dynagen.dynamips[qemu_name].reset()
-            if globals.GApp.systconf['qemu'].enable_QemuManager and self.isLocalhost(host):
+            if (globals.GApp.systconf['qemu'].enable_QemuManager and self.isLocalhost(host)) or \
+                 (not globals.GApp.systconf['qemu'].enable_QemuManager and globals.GApp.systconf['qemu'].send_path_external_QemuWrapper):
                 self.dynagen.dynamips[qemu_name].qemupath = globals.GApp.systconf['qemu'].qemu_path
                 self.dynagen.dynamips[qemu_name].qemuimgpath = globals.GApp.systconf['qemu'].qemu_img_path
 
@@ -358,8 +359,9 @@ class Topology(QtGui.QGraphicsScene):
             self.dynagen.get_defaults_config()
             self.dynagen.update_running_config()
             self.dynagen.dynamips[qemu_name].configchange = True
-            
-            if globals.GApp.systconf['qemu'].enable_QemuManager and self.isLocalhost(host):
+
+            if (globals.GApp.systconf['qemu'].enable_QemuManager and self.isLocalhost(host)) or \
+                (not globals.GApp.systconf['qemu'].enable_QemuManager and globals.GApp.systconf['qemu'].send_path_external_QemuWrapper):
                 if globals.GApp.workspace.projectWorkdir:
                     workdir = globals.GApp.workspace.projectWorkdir
                 elif globals.GApp.systconf['qemu'].qemuwrapper_workdir:

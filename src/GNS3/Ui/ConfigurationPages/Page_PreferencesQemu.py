@@ -96,6 +96,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.conf.enable_QemuWrapperAdvOptions = True
             self.checkBoxEnableQemuManager.setVisible(True)
             self.checkBoxQemuManagerImport.setVisible(True)
+            self.checkBoxSendQemuPaths.setVisible(True)
             #self.baseUDP.setVisible(True)
             #self.label_31.setVisible(True)
             self.comboBoxBinding.setVisible(True)
@@ -111,6 +112,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.conf.enable_QemuWrapperAdvOptions = False
             self.checkBoxEnableQemuManager.setVisible(False)
             self.checkBoxQemuManagerImport.setVisible(False)
+            self.checkBoxSendQemuPaths.setVisible(False)
             #self.baseUDP.setVisible(False)
             #self.label_31.setVisible(False)
             self.comboBoxBinding.setVisible(False)
@@ -159,10 +161,16 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.checkBoxEnableQemuManager.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxEnableQemuManager.setCheckState(QtCore.Qt.Unchecked)
+
         if self.conf.import_use_QemuManager == True:
             self.checkBoxQemuManagerImport.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxQemuManagerImport.setCheckState(QtCore.Qt.Unchecked)
+
+        if self.conf.send_path_external_QemuWrapper == True:
+            self.checkBoxSendQemuPaths.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxSendQemuPaths.setCheckState(QtCore.Qt.Unchecked)
 
         if self.conf.enable_QemuWrapperAdvOptions:
             self.checkBoxQemuWrapperShowAdvancedOptions.setCheckState(QtCore.Qt.Checked)
@@ -256,10 +264,16 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.conf.enable_QemuManager = True
         else:
             self.conf.enable_QemuManager  = False
+
         if self.checkBoxQemuManagerImport.checkState() == QtCore.Qt.Checked:
             self.conf.import_use_QemuManager = True
         else:
             self.conf.import_use_QemuManager  = False
+
+        if self.checkBoxSendQemuPaths.checkState() == QtCore.Qt.Checked:
+            self.conf.send_path_external_QemuWrapper = True
+        else:
+            self.conf.send_path_external_QemuWrapper  = False
 
         self.conf.qemuwrapper_port = self.port.value()
         self.conf.qemuwrapper_baseUDP = self.baseUDP.value()

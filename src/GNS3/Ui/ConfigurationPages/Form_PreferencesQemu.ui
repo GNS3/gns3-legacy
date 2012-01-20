@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>510</width>
-    <height>565</height>
+    <width>507</width>
+    <height>588</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -107,14 +107,14 @@
             </property>
            </widget>
           </item>
-          <item row="5" column="0">
+          <item row="4" column="0">
            <widget class="QLabel" name="label_35">
             <property name="text">
              <string>Qemuwrapper port:</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1" colspan="6">
+          <item row="4" column="1" colspan="6">
            <widget class="QSpinBox" name="port">
             <property name="enabled">
              <bool>true</bool>
@@ -130,14 +130,14 @@
             </property>
            </widget>
           </item>
-          <item row="9" column="0">
+          <item row="5" column="0">
            <widget class="QLabel" name="label_30">
             <property name="text">
              <string>Base console port:</string>
             </property>
            </widget>
           </item>
-          <item row="9" column="1" colspan="6">
+          <item row="5" column="1" colspan="6">
            <widget class="QSpinBox" name="baseConsole">
             <property name="enabled">
              <bool>true</bool>
@@ -153,96 +153,14 @@
             </property>
            </widget>
           </item>
-          <item row="14" column="0" colspan="3">
-           <widget class="QCheckBox" name="checkBoxEnableQemuManager">
-            <property name="text">
-             <string>Enable Qemu Manager</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="15" column="0" colspan="4">
-           <widget class="QCheckBox" name="checkBoxQemuManagerImport">
-            <property name="text">
-             <string>Use Qemu Manager when importing</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="16" column="0" colspan="2">
-           <widget class="QLabel" name="label_5">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="text">
-             <string>External Qemuwrapper:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="16" column="2" colspan="2">
-           <widget class="QLineEdit" name="lineEditHostExternalQemu">
-            <property name="toolTip">
-             <string>Add several wrappers, to make your GNS3 distributed across several hosts.</string>
-            </property>
-           </widget>
-          </item>
-          <item row="16" column="4">
-           <widget class="QPushButton" name="pushButtonAddExternalQemuwrapper">
-            <property name="text">
-             <string>Add</string>
-            </property>
-           </widget>
-          </item>
-          <item row="16" column="5" colspan="2">
-           <widget class="QPushButton" name="pushButtonDeleteExternalQemuwrapper">
-            <property name="text">
-             <string>Delete</string>
-            </property>
-           </widget>
-          </item>
-          <item row="17" column="0" colspan="3">
-           <widget class="QLabel" name="label_36">
-            <property name="text">
-             <string>Registered external Qemuwrappers:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="17" column="3" colspan="4">
-           <widget class="QComboBox" name="comboBoxExternalQemuwrappers"/>
-          </item>
-          <item row="12" column="1" colspan="6">
-           <widget class="QComboBox" name="comboBoxBinding">
-            <property name="sizeAdjustPolicy">
-             <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="12" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>IP/host binding:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="0" colspan="4">
-           <widget class="QCheckBox" name="checkBoxQemuWrapperShowAdvancedOptions">
-            <property name="text">
-             <string>Show QemuWrapper Advanced Options</string>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="0">
+          <item row="6" column="0">
            <widget class="QLabel" name="label_31">
             <property name="text">
              <string>Base UDP port:</string>
             </property>
            </widget>
           </item>
-          <item row="10" column="1" colspan="6">
+          <item row="6" column="1" colspan="6">
            <widget class="QSpinBox" name="baseUDP">
             <property name="enabled">
              <bool>true</bool>
@@ -257,6 +175,98 @@
              <number>65535</number>
             </property>
            </widget>
+          </item>
+          <item row="7" column="0" colspan="5">
+           <widget class="QCheckBox" name="checkBoxQemuWrapperShowAdvancedOptions">
+            <property name="text">
+             <string>Show QemuWrapper Advanced Options</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>IP/host binding:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1" colspan="6">
+           <widget class="QComboBox" name="comboBoxBinding">
+            <property name="sizeAdjustPolicy">
+             <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="9" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxEnableQemuManager">
+            <property name="text">
+             <string>Enable Qemu Manager</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0" colspan="4">
+           <widget class="QCheckBox" name="checkBoxQemuManagerImport">
+            <property name="text">
+             <string>Use Qemu Manager when importing</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0" colspan="7">
+           <widget class="QCheckBox" name="checkBoxSendQemuPaths">
+            <property name="text">
+             <string>Send Qemu paths to external Qemuwrapper</string>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>External Qemuwrapper:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="1" colspan="3">
+           <widget class="QLineEdit" name="lineEditHostExternalQemu">
+            <property name="toolTip">
+             <string>Add several wrappers, to make your GNS3 distributed across several hosts.</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="4">
+           <widget class="QPushButton" name="pushButtonAddExternalQemuwrapper">
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="5" colspan="2">
+           <widget class="QPushButton" name="pushButtonDeleteExternalQemuwrapper">
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="0" colspan="3">
+           <widget class="QLabel" name="label_36">
+            <property name="text">
+             <string>Registered external Qemuwrappers:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="3" colspan="3">
+           <widget class="QComboBox" name="comboBoxExternalQemuwrappers"/>
           </item>
          </layout>
         </widget>
@@ -318,8 +328,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>273</width>
-            <height>445</height>
+            <width>435</width>
+            <height>507</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -560,7 +570,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>273</width>
+            <width>420</width>
             <height>525</height>
            </rect>
           </property>
@@ -861,8 +871,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>277</width>
-            <height>445</height>
+            <width>435</width>
+            <height>507</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1120,7 +1130,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>273</width>
+            <width>420</width>
             <height>549</height>
            </rect>
           </property>
@@ -1420,8 +1430,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>303</width>
-            <height>478</height>
+            <width>435</width>
+            <height>507</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_8">
