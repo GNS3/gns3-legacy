@@ -351,7 +351,7 @@ class Application(QApplication, Singleton):
 		"""
 
         self.splashMessage = translate("Application", "Starting Graphical Network Simulator...")
-        self.splashSleepTime = 5
+        self.splashSleepTime = 1
         self.splashPath = ':/images/logo_gns3_splash.png'
 
         pixmap = QPixmap(self.splashPath)

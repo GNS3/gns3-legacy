@@ -48,7 +48,12 @@ if sys.platform.startswith('win'):
 elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
     QEMUWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/qemuwrapper.py'
 else:
-    QEMUWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + 'qemuwrapper/qemuwrapper.py'
+    # look for qemuwrapper in the current working directory
+    qemuwrapper_path = os.getcwdu() + os.sep + 'qemuwrapper/qemuwrapper.py'
+    if os.path.exists(qemuwrapper_path):
+        QEMUWRAPPER_DEFAULT_PATH = qemuwrapper_path
+    else:
+        QEMUWRAPPER_DEFAULT_PATH = unicode("/usr/local/libexec/gns3/qemuwrapper.py")
 
 # Default path to qemuwrapper working directory
 if os.environ.has_key("TEMP"):
@@ -64,7 +69,12 @@ if sys.platform.startswith('win'):
 elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
     VBOXWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/vboxwrapper.py'
 else:
-    VBOXWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + 'vboxwrapper/vboxwrapper.py'
+    # look for vboxwrapper in the current working directory
+    vboxwrapper_path = os.getcwdu() + os.sep + 'vboxwrapper/vboxwrapper.py'
+    if os.path.exists(qemuwrapper_path):
+        VBOXWRAPPER_DEFAULT_PATH = vboxwrapper_path
+    else:
+        VBOXWRAPPER_DEFAULT_PATH = unicode("/usr/local/libexec/gns3/vboxwrapper.py")
     
 # Default path to vboxwrapper working directory
 if os.environ.has_key("TEMP"):
