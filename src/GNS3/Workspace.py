@@ -131,6 +131,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_ZoomIn, QtCore.SIGNAL('triggered()'), self.__action_ZoomIn)
         self.connect(self.action_ZoomOut, QtCore.SIGNAL('triggered()'), self.__action_ZoomOut)
         self.connect(self.action_ZoomReset, QtCore.SIGNAL('triggered()'), self.__action_ZoomReset)
+        self.connect(self.action_DefaultStyle, QtCore.SIGNAL('triggered()'), self.__action_DefaultStyle)
+        self.connect(self.action_EnergySavingStyle, QtCore.SIGNAL('triggered()'), self.__action_EnergySavingStyle)
         self.connect(self.action_SelectAll, QtCore.SIGNAL('triggered()'), self.__action_SelectAll)
         self.connect(self.action_SelectNone, QtCore.SIGNAL('triggered()'), self.__action_SelectNone)
         self.connect(self.action_TelnetAll, QtCore.SIGNAL('triggered()'), self.__action_TelnetAll)
@@ -614,7 +616,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         globals.GApp.scene.resetMatrix()
-
+		
+    def __action_DefaultStyle(self):
+        """ Restore/Put stylesheet back to normal (and destroy the planet)
+        """
+		
+        self.setStyleSheet('')
+		
+    def __action_EnergySavingStyle(self):
+        """ Put stylesheet meant to save energy, very popular these days
+        """
+		
+        self.setStyleSheet(' QMainWindow {} QMenuBar { background: black; } QDockWidget { background: black; color: white; } QToolBar { background: black; } QFrame { background: gray; } QToolButton { width: 30px; height: 30px; /*border:solid 1px black opacity 0.4;*/ /*background-none;*/ } QStatusBar { /*	background-image: url(:/pictures/pictures/texture_blackgrid.png);*/ 	background: black; color: rgb(255,255,255); } ')
+		
     def __action_ShowHostnames(self):
         """ Display/Hide hostnames for all the nodes on the scene
         """

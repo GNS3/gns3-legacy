@@ -17,6 +17,9 @@
    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
     <normaloff>:/images/logo_icon.png</normaloff>:/images/logo_icon.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout">
     <property name="margin">
@@ -46,7 +49,7 @@
      <x>0</x>
      <y>0</y>
      <width>944</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -90,6 +93,13 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
+    <widget class="QMenu" name="menuWindow_Style">
+     <property name="title">
+      <string>Window Style</string>
+     </property>
+     <addaction name="action_DefaultStyle"/>
+     <addaction name="action_EnergySavingStyle"/>
+    </widget>
     <addaction name="action_ZoomIn"/>
     <addaction name="action_ZoomOut"/>
     <addaction name="action_ZoomReset"/>
@@ -98,6 +108,7 @@
     <addaction name="action_ResetInterfaceLabels"/>
     <addaction name="action_ShowHostnames"/>
     <addaction name="action_ShowinterfaceNames"/>
+    <addaction name="menuWindow_Style"/>
    </widget>
    <widget class="QMenu" name="menuControl">
     <property name="title">
@@ -1025,6 +1036,16 @@
    </property>
    <property name="statusTip">
     <string>Show VirtualBox Manager</string>
+   </property>
+  </action>
+  <action name="action_EnergySavingStyle">
+   <property name="text">
+    <string>Energy Saving</string>
+   </property>
+  </action>
+  <action name="action_DefaultStyle">
+   <property name="text">
+    <string>Default</string>
    </property>
   </action>
  </widget>
