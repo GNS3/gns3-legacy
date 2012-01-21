@@ -71,7 +71,7 @@ class DynagenSub(Dynagen):
                 interface_guid = str(match.group(1)).lower()
                 interfaces[interface_guid] = unicode(match.group(2)).strip()
                 name_match = re.search(r"""^(.*)\ on local host:.*""", match.group(2))
-                self.rpcap_mapping[interface_guid] = name_match.group(1) 
+                self.rpcap_mapping['nio_gen_eth:' + interface_guid] = name_match.group(1)
 
             for nio in niolist:
                 if not interfaces.has_key(nio):
