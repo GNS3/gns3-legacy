@@ -101,9 +101,9 @@ elif sys.platform.startswith('darwin'):
 
     data_files = [('', glob(r'src/GNS3/Langs/*.qm')),
                   ('src/GNS3/Dynagen/configspec'),
-                  ('/usr/local/libexec/gns3/', ['qemuwrapper/qemuwrapper.py',
-                                                'vboxwrapper/vboxwrapper.py',
-                                                'vboxwrapper/vboxcontroller_4_1.py']),
+                  ('qemuwrapper/qemuwrapper.py'),
+                  ('vboxwrapper/vboxwrapper.py'),
+                  ('vboxwrapper/vboxcontroller_4_1.py'),
                   ('LICENSE'),
                   ("../PlugIns/iconengines", [QTDIR + r'/plugins/iconengines/libqsvgicon.dylib']),
                   ("../PlugIns/imageformats", [QTDIR + r'/plugins/imageformats/libqgif.dylib',
