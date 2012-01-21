@@ -190,19 +190,32 @@ class Workspace(QMainWindow, Ui_MainWindow):
             action = QtGui.QAction(recent_file_conf.path, self.submenu_RecentFiles)
             self.submenu_RecentFiles.addAction(action)
 
+        # Add clear menu action
+        if len(globals.GApp.recentfiles):
+            self.submenu_RecentFiles.addSeparator()
+            clear_action = QtGui.QAction(translate("Workspace", "Clear Menu"), self.submenu_RecentFiles)
+            self.submenu_RecentFiles.addAction(clear_action)
+
+        # Insert recent files submenu in File menu
         self.submenu_RecentFiles.setTitle(translate("Workspace", "Recent Files"))
         self.submenu_RecentFiles.setIcon(QtGui.QIcon(":/icons/open.svg"))
         separator = self.menu_File.insertSeparator(self.action_Save)
         self.menu_File.insertMenu(separator, self.submenu_RecentFiles)
-        self.submenu_RecentFiles.connect(self.submenu_RecentFiles, QtCore.SIGNAL("triggered(QAction *)"), self.slotLoadRecentFile)
+        self.connect(self.submenu_RecentFiles, QtCore.SIGNAL("triggered(QAction *)"), self.slotLoadRecentFile)
+
 
     def slotLoadRecentFile(self, action):
         """ Called when a file is selected from the Recent Files submenu
             action: QtCore.QAction instance
         """
 
-        recent_file_path = unicode(action.text())
-        self.loadNetfile(recent_file_path)
+        action_text = unicode(action.text())
+        # If action is Clear Menu, then we clear the recent files submenu
+        if translate("Workspace", "Clear Menu") == action_text:
+            globals.GApp.recentfiles = []
+            self.submenu_RecentFiles.clear()
+            return
+        self.loadNetfile(action_text)
 
     def retranslateUi(self, MainWindow):
     
@@ -1237,6 +1250,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         for recent_file_conf in globals.GApp.recentfiles:
             action = QtGui.QAction(recent_file_conf.path, self.submenu_RecentFiles)
             self.submenu_RecentFiles.addAction(action)
+
+        # Need to put back the clear menu action
+        self.submenu_RecentFiles.addSeparator()
+        clear_action = QtGui.QAction(translate("Workspace", "Clear Menu"), self.submenu_RecentFiles)
+        self.submenu_RecentFiles.addAction(clear_action)
 
     def loadNetfile(self, path):
 
