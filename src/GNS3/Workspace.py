@@ -875,7 +875,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Check if a newer version is available
         """
 
-        request = QtNetwork.QNetworkRequest(QtCore.QUrl("http://www.gns3.net/latest_release.txt"))
+        request = QtNetwork.QNetworkRequest(QtCore.QUrl("http://update.gns3.net/latest_release.txt"))
         request.setRawHeader("User-Agent", "GNS3 Check For Update");
         request.setAttribute(QtNetwork.QNetworkRequest.User, QtCore.QVariant(silent))
         reply = self.networkManager.get(request)
@@ -1074,21 +1074,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                 continue
                             except:
                                 continue
-                    """
-                    if isinstance(node, AnyVBoxEmuDevice) and self.projectWorkdir != node.vbox.workingdir:
-                        
-                        # Stop this node
-                        node.stopNode()
-                        vbox_files = glob.glob(os.path.normpath(node.vbox.workingdir) + os.sep + node.hostname)
-                        for file in vbox_files:
-                            try:
-                                shutil.copytree(file, self.projectWorkdir + os.sep + node.hostname)
-                            except (OSError, IOError), e:
-                                debug("Warning: cannot copy " + file + " to " + self.projectWorkdir)
-                                continue
-                            except:
-                                continue
-                    #"""
 
                 # set the new working directory
                 try:

@@ -98,11 +98,10 @@ class Cloud(AbstractNode):
 
         if self.config:
             info = unicode(translate("Cloud", "Cloud name: %s")) % self.hostname
-            info += "\n"
             for nio in self.config['nios']:
-                info += "\n" + nio
+                info += "\n\n" + nio
                 if sys.platform.startswith('win') and self.config['rpcap_mapping'].has_key(nio):
-                    info += " " + self.config['rpcap_mapping'][nio]
+                    info += "\n    " + self.config['rpcap_mapping'][nio]
                 neighbor = self.getConnectedNeighbor(nio)
                 if neighbor:
                     (neighbor, ifname) = neighbor
