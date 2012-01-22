@@ -889,15 +889,27 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             if platform.system() != 'Windows':
                 # we test this only on non-Windows versions of GNS3, because our patched
                 # Qemu-0.11 for Windows is buggy, and fails to return 'qemu --help' results.
+                qemu_check= 0
                 try:
                     p = subprocess.Popen([globals.GApp.systconf['qemu'].qemu_path, '--help'], cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir, stdout = subprocess.PIPE)
                     qemustdout = p.communicate()
                 except:
                     self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start qemu")  + '</font>')
                     return
-                if not qemustdout[0].__contains__('ynamips'):
-                    self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "You're running unpatched version of qemu, which won't work")  + '</font>')
-                    #return
+                if qemustdout[0].__contains__('for dynamips/pemu/GNS3'):
+                    qemu_check = qemu_check + 1
+                try:
+                    p = subprocess.Popen([globals.GApp.systconf['qemu'].qemu_path, '--net', 'socket'], cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir, stderr = subprocess.PIPE)
+                    qemustderr = p.communicate()
+                except:
+                    self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start qemu")  + '</font>')
+                    return
+                if qemustderr[1].__contains__('udp='):
+                    qemu_check = qemu_check + 1
+
+                if qemu_check == 0:
+                    self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "You're running an old AND unpatched version of qemu, which won't work")  + '</font>')
+                    return
 
             PEMU_BIN = "pemu"
 
