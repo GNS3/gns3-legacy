@@ -49,6 +49,7 @@ foreach (@ARGV)
         }
         foreach (@clean_data)
         {
+                $_ =~ s/\s+\n$/\n/;
                 my $line = $_;
                 my $i = 0;
                 foreach (@header)
