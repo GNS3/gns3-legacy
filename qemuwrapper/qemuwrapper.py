@@ -77,7 +77,6 @@ debugmsg(2, msg)
 __author__ = 'Thomas Pani and Jeremy Grossmann'
 __version__ = '0.8.2'
 
-# XXX: BAD, take user input path in preferences.......
 QEMU_PATH = "qemu"
 QEMU_IMG_PATH = "qemu-img"
 PORT = 10525
@@ -219,7 +218,6 @@ class xEMUInstance(object):
         for vlan in range(int(self.nics)):
                 if qemuprotocol == 1:
                             options.append('-netdev')
-                            # TODO: Make GNS3 send the local address to bind to
                             print self.udp[vlan].dport
                             print self.udp[vlan].sport
                             options.append('socket,id=gns3-%s,udp=%s:%s,localaddr=%s:%s' % (vlan, self.udp[vlan].shost, self.udp[vlan].sport, self.udp[vlan].daddr, self.udp[vlan].dport))
