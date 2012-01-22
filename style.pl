@@ -19,6 +19,8 @@
 # http://redmine.gns3.net/projects/gns3-devel/wiki/CodingStyle
 # This tool is not part of the GNS3 distribution
 
+# find . \! -path "*build*" \! -path "*Ui*" -name "*.py" -exec ./style.pl {} \;
+
 use strict;
 use warnings;
 
@@ -72,5 +74,6 @@ foreach (@ARGV)
         {
                 print OFILE $_;
         }
+        unlink $filename;
         close OFILE;
 }
