@@ -217,35 +217,35 @@ class xEMUInstance(object):
 
         for vlan in range(int(self.nics)):
                 if qemuprotocol == 1:
-                            options.append('-netdev')
-                            print self.udp[vlan].dport
-                            print self.udp[vlan].sport
-                            options.append('socket,id=gns3-%s,udp=%s:%s,localaddr=%s:%s' % (vlan, self.udp[vlan].shost, self.udp[vlan].sport, self.udp[vlan].daddr, self.udp[vlan].dport))
-                            if vlan in self.nic:
-                                options.extend(['-device', '%s,mac=%s,netdev=gns3-%s' % (self.netcard, self.nic[vlan], vlan)])
-                            else:
-                                # add a default NIC for Qemu
-                                options.extend(['-device', '%s,mac=00:00:ab:%02x:%02x:%02d,netdev=gns3-%s' % (self.netcard,
-                                                                                                         random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan,
-                                                                                                         vlan)])
+                    options.append('-netdev')
+                    print self.udp[vlan].dport
+                    print self.udp[vlan].sport
+                    options.append('socket,id=gns3-%s,udp=%s:%s,localaddr=%s:%s' % (vlan, self.udp[vlan].shost, self.udp[vlan].sport, self.udp[vlan].daddr, self.udp[vlan].dport))
+                    if vlan in self.nic:
+                        options.extend(['-device', '%s,mac=%s,netdev=gns3-%s' % (self.netcard, self.nic[vlan], vlan)])
+                    else:
+                        # add a default NIC for Qemu
+                        options.extend(['-device', '%s,mac=00:00:ab:%02x:%02x:%02d,netdev=gns3-%s' % (self.netcard,
+                                                                                                 random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan,
+                                                                                                 vlan)])
 
-                            # TODO: dump relies on vlans, incompatible with the new syntax: patch it.
-                            #if vlan in self.capture:
-                                #options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
+                    # TODO: dump relies on vlans, incompatible with the new syntax: patch it.
+                    #if vlan in self.capture:
+                        #options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
                 else:
-                            options.append('-net')
-                            if vlan in self.nic:
-                                options.append('nic,vlan=%d,macaddr=%s,model=%s' % (vlan, self.nic[vlan], self.netcard))
-                            else:
-                                # add a default NIC for Qemu
-                                options.append('nic,vlan=%d,macaddr=00:00:ab:%02x:%02x:%02d,model=%s' % (vlan, random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan, self.netcard))
-                            if vlan in self.udp:
-                                options.extend(['-net', 'udp,vlan=%s,sport=%s,dport=%s,daddr=%s' %
-                                        (vlan, self.udp[vlan].sport,
-                                         self.udp[vlan].dport,
-                                         self.udp[vlan].daddr)])
-                            if vlan in self.capture:
-                                options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
+                    options.append('-net')
+                    if vlan in self.nic:
+                        options.append('nic,vlan=%d,macaddr=%s,model=%s' % (vlan, self.nic[vlan], self.netcard))
+                    else:
+                        # add a default NIC for Qemu
+                        options.append('nic,vlan=%d,macaddr=00:00:ab:%02x:%02x:%02d,model=%s' % (vlan, random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan, self.netcard))
+                    if vlan in self.udp:
+                        options.extend(['-net', 'udp,vlan=%s,sport=%s,dport=%s,daddr=%s' %
+                                (vlan, self.udp[vlan].sport,
+                                 self.udp[vlan].dport,
+                                 self.udp[vlan].daddr)])
+                    if vlan in self.capture:
+                        options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
 
         return options
 
