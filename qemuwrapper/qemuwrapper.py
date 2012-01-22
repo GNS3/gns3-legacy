@@ -150,12 +150,12 @@ class xEMUInstance(object):
         debugmsg(2, "xEMUInstance::start()")
         command = self._build_command()
 
-        print "    command:", command
+        print "command:", " ".join(command)
         try:
             self.process = subprocess.Popen(command,
                                             stdin=subprocess.PIPE,
                                             cwd=self.workdir)
-        except OSError, e:
+        except e:
             print >> sys.stderr, "Unable to start instance", self.name, "of", self.__class__
             print >> sys.stderr, e
             return False
@@ -224,6 +224,7 @@ class xEMUInstance(object):
             except:
                 print >> sys.stderr, "Unable to execute %s --help" % self.bin
                 return options
+            # ARGH??
             if not qemustdout[0].__contains__('for dynamips/pemu/GNS3'):
                 print "Falling back to the new qemu syntax"
                 qemuprotocol = 1
@@ -239,36 +240,31 @@ class xEMUInstance(object):
                 qemuprotocol = 0
 
         for vlan in range(int(self.nics)):
-                if qemuprotocol == 1:
-                    options.append('-netdev')
-                    print self.udp[vlan].dport
-                    print self.udp[vlan].sport
-                    options.append('socket,id=gns3-%s,udp=%s:%s,localaddr=%s:%s' % (vlan, self.udp[vlan].shost, self.udp[vlan].sport, self.udp[vlan].daddr, self.udp[vlan].dport))
-                    if vlan in self.nic:
-                        options.extend(['-device', '%s,mac=%s,netdev=gns3-%s' % (self.netcard, self.nic[vlan], vlan)])
-                    else:
-                        # add a default NIC for Qemu
-                        options.extend(['-device', '%s,mac=00:00:ab:%02x:%02x:%02d,netdev=gns3-%s' % (self.netcard,
-                                                                                                 random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan,
-                                                                                                 vlan)])
-
-                    # TODO: dump relies on vlans, incompatible with the new syntax: patch it.
-                    #if vlan in self.capture:
-                        #options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
+            if qemuprotocol == 1:
+                if vlan in self.nic and vlan in self.udp:
+                    options.extend(['-device', '%s,mac=%s,netdev=gns3-%s' % (self.netcard, self.nic[vlan], vlan)])
                 else:
-                    options.append('-net')
-                    if vlan in self.nic:
-                        options.append('nic,vlan=%d,macaddr=%s,model=%s' % (vlan, self.nic[vlan], self.netcard))
-                    else:
-                        # add a default NIC for Qemu
-                        options.append('nic,vlan=%d,macaddr=00:00:ab:%02x:%02x:%02d,model=%s' % (vlan, random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan, self.netcard))
-                    if vlan in self.udp:
-                        options.extend(['-net', 'udp,vlan=%s,sport=%s,dport=%s,daddr=%s' %
-                                (vlan, self.udp[vlan].sport,
-                                 self.udp[vlan].dport,
-                                 self.udp[vlan].daddr)])
-                    if vlan in self.capture:
-                        options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
+                    options.extend(['-device', '%s,mac=00:00:ab:%02x:%02x:%02d' % (self.netcard, random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan)])
+                if vlan in self.udp:
+                    options.append('-netdev')
+                    options.append('socket,id=gns3-%s,udp=%s:%s,localaddr=%s:%s' % (vlan, self.udp[vlan].shost, self.udp[vlan].sport, self.udp[vlan].daddr, self.udp[vlan].dport))
+                # TODO: dump relies on vlans, incompatible with the new syntax: patch it.
+                #if vlan in self.capture:
+                    #options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
+            else:
+                options.append('-net')
+                if vlan in self.nic:
+                    options.append('nic,vlan=%d,macaddr=%s,model=%s' % (vlan, self.nic[vlan], self.netcard))
+                else:
+                    # add a default NIC for Qemu
+                    options.append('nic,vlan=%d,macaddr=00:00:ab:%02x:%02x:%02d,model=%s' % (vlan, random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan, self.netcard))
+                if vlan in self.udp:
+                    options.extend(['-net', 'udp,vlan=%s,sport=%s,dport=%s,daddr=%s' %
+                            (vlan, self.udp[vlan].sport,
+                             self.udp[vlan].dport,
+                             self.udp[vlan].daddr)])
+                if vlan in self.capture:
+                    options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
 
         return options
 
