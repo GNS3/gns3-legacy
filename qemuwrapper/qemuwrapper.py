@@ -224,7 +224,6 @@ class xEMUInstance(object):
             except:
                 print >> sys.stderr, "Unable to execute %s --help" % self.bin
                 return options
-            # ARGH??
             if not qemustdout[0].__contains__('for dynamips/pemu/GNS3'):
                 print "Falling back to the new qemu syntax"
                 qemuprotocol = 1
