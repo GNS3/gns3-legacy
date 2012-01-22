@@ -34,7 +34,7 @@ class VBoxTestCase():
 
     def stop(self):
         return self.vbc.stop()
-        
+
     def suspend(self):
         return self.vbc.suspend()
 

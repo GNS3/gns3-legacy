@@ -41,13 +41,13 @@ class ETHSW(AbstractNode):
 
         # assign a new hostname
         global ethsw_id
-        
+
         # check if hostname has already been assigned
         for node in globals.GApp.topology.nodes.itervalues():
             if 'SW' + str(ethsw_id) == node.hostname:
                 ethsw_id = ethsw_id + 1
                 break
-        
+
         self.hostname = 'SW' + str(ethsw_id)
         ethsw_id = ethsw_id + 1
         AbstractNode.setCustomToolTip(self)
@@ -87,7 +87,7 @@ class ETHSW(AbstractNode):
         self.hostname = hostname
         self.e = 'ETHSW ' + self.hostname
         self.updateToolTips()
-        
+
     def setCustomToolTip(self):
         """ Set a custom tool tip
         """
@@ -119,12 +119,12 @@ class ETHSW(AbstractNode):
     def duplicate_config(self):
         """ Returns a copy of the configuration
         """
-        
+
         config = self.config.copy()
         config['vlans'] = self.config['vlans'].copy()
         config['ports'] = self.config['ports'].copy()
         return (config)
-            
+
     def get_config(self):
         """ Returns the local configuration copy
         """
@@ -163,7 +163,7 @@ class ETHSW(AbstractNode):
     def getInterfaces(self):
         """ Returns all interfaces
         """
-        
+
         self.autoAllocateFreePort()
         ports = map(str, self.config['ports'].keys())
         return (ports)

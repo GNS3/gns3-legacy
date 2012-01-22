@@ -100,7 +100,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             # key : [display string, pixmap name, dialog module name, parent key,
             #        reference to configuration page (must always be last)]
             # The dialog module must have the module function create to create
-            # the configuration page. This must have the method save to save 
+            # the configuration page. This must have the method save to save
             # the settings.
             "Routers (1700)" : \
                 [translate("NodeConfigurator", "Routers c1700"), ":/symbols/router.normal.svg",
@@ -203,7 +203,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                 item.setExpanded(True)
                 self.itmDict[parent] = item
 
-        # create the children items 
+        # create the children items
         for node in self.nodeitems:
             if not self.assocPage.has_key(type(node)):
                 continue

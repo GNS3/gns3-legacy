@@ -43,7 +43,7 @@ class StyleDialog(QtGui.QDialog, Ui_StyleDialog):
         self.borderStyle = QtCore.Qt.SolidLine
         self.font = QtGui.QFont("TypeWriter", 10, QtGui.QFont.Bold)
         self.rotation = 0
-        
+
         self.comboBox_borderStyle.addItem(translate("StyleDialog", "Solid"), QtCore.QVariant(QtCore.Qt.SolidLine))
         self.comboBox_borderStyle.addItem(translate("StyleDialog", "Dash"), QtCore.QVariant(QtCore.Qt.DashLine))
         self.comboBox_borderStyle.addItem(translate("StyleDialog", "Dot"), QtCore.QVariant(QtCore.Qt.DotLine))
@@ -52,13 +52,13 @@ class StyleDialog(QtGui.QDialog, Ui_StyleDialog):
         self.comboBox_borderStyle.addItem(translate("StyleDialog", "No border"), QtCore.QVariant(QtCore.Qt.NoPen))
 
     def loadFontValues(self, color, font, rotation):
-    
+
         self.color = color
         self.font = font
         self.spinBox_Rotation.setValue(rotation)
-        
+
     def loadShapeItemValues(self, color, borderColor, borderWidth, borderStyle, rotation):
-    
+
         self.color = color
         self.borderColor = borderColor
         self.borderWidth = borderWidth
@@ -68,9 +68,9 @@ class StyleDialog(QtGui.QDialog, Ui_StyleDialog):
             self.comboBox_borderStyle.setCurrentIndex(index)
         self.spinBox_borderWidth.setValue(self.borderWidth)
         self.spinBox_Rotation.setValue(rotation)
-        
+
     def __setFont(self):
-        
+
         ok = None
         (selected_font, ok) = QtGui.QFontDialog.getFont(self.font)
         if ok:
@@ -79,11 +79,11 @@ class StyleDialog(QtGui.QDialog, Ui_StyleDialog):
     def __setColor(self):
 
         self.color = QtGui.QColorDialog.getColor(self.color)
-        
+
     def __setBorderColor(self):
 
         self.borderColor = QtGui.QColorDialog.getColor(self.borderColor)
-        
+
     def on_buttonBox_clicked(self, button):
         """ Private slot called by a button of the button box clicked.
             button: button that was clicked (QAbstractButton)
@@ -97,4 +97,4 @@ class StyleDialog(QtGui.QDialog, Ui_StyleDialog):
             self.borderStyle = QtCore.Qt.PenStyle(self.comboBox_borderStyle.itemData(self.comboBox_borderStyle.currentIndex(), QtCore.Qt.UserRole).toInt()[0])
             QtGui.QDialog.accept(self)
 
-        
+

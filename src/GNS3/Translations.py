@@ -32,7 +32,7 @@ class Translator(object):
 
         self.__langs = {}
         self.__langs_code = []
-        self.__lang_current = "" 
+        self.__lang_current = ""
         self.__lastTranslator = None
         self.__lastQtTranslator = None
 
@@ -57,7 +57,7 @@ class Translator(object):
                 self.__i18n_dirs.append(os.environ["HOME"] + "/.gns3/Langs")
             else:
                 debug('Translation: unable to find HOME in environ')
-        
+
         # Now find all available languages...
         self.findAvailableLangs()
 
@@ -149,7 +149,7 @@ class Translator(object):
         return self.switchLangTo(lang_fallback)
 
     def switchLangTo(self, lang):
-    
+
         if (len(lang) > 5):
             lang = lang[:5]
 
@@ -167,7 +167,7 @@ class Translator(object):
             qt_translator.load("qt_" + lang, lang_dir)
             r_code = translator.load("Lang_" + lang, lang_dir)
             if r_code == True:
-                break 
+                break
         if r_code == False:
             # TODO: Show a ERROR MsgBox (Warning: switchLangTo
             #       are called more than once, so find a mechanism

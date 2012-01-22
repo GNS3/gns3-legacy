@@ -41,13 +41,13 @@ class ATMBR(AbstractNode):
 
         # assign a new hostname
         global atmbr_id
-        
+
         # check if hostname has already been assigned
         for node in globals.GApp.topology.nodes.itervalues():
             if 'BR' + str(atmbr_id) == node.hostname:
                 atmbr_id = atmbr_id + 1
                 break
-        
+
         self.hostname = 'BR' + str(atmbr_id)
         atmbr_id = atmbr_id + 1
         AbstractNode.setCustomToolTip(self)
@@ -87,11 +87,11 @@ class ATMBR(AbstractNode):
         self.hostname = hostname
         self.a= 'ATMBR ' + self.hostname
         self.updateToolTips()
-    
+
     def setCustomToolTip(self):
         """ Set a custom tool tip
         """
-        
+
         if self.atmbr:
             self.setToolTip(self.atmbr.info())
         else:
@@ -127,11 +127,11 @@ class ATMBR(AbstractNode):
         self.config['mapping'] = config['mapping'].copy()
         globals.GApp.topology.changed = True
         self.mapping()
-        
+
     def duplicate_config(self):
         """ Returns a copy of the configuration
         """
-        
+
         config = self.config.copy()
         config['ports'] = list(self.config['ports'])
         config['mapping'] = self.config['mapping'].copy()
@@ -195,7 +195,7 @@ class ATMBR(AbstractNode):
     def mapping(self):
         """ Configure ATM mapping
         """
-        
+
         connected_interfaces = map(int, self.getConnectedInterfaceList())
         for (source, destination) in self.config['mapping'].iteritems():
             srcport = source
@@ -204,12 +204,12 @@ class ATMBR(AbstractNode):
 
             if int(srcport) in connected_interfaces and int(destport) in connected_interfaces:
                 if not self.atmbr.mapping.has_key(int(srcport)):
-                    self.atmbr.configure(int(srcport), int(destport), int(destvpi), int(destvci))        
+                    self.atmbr.configure(int(srcport), int(destport), int(destvpi), int(destvci))
 
     def startNode(self):
         """ Start the node
         """
-    
+
         self.mapping()
         self.startupInterfaces()
         self.state = 'running'

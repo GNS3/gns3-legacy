@@ -36,7 +36,7 @@ def find_offset(f, magic):
     else:
         spaceCol = -1
 
-    hexwidth = 3 * width 
+    hexwidth = 3 * width
     if spaceCol != -1:
         hexwidth += 1
 
@@ -59,7 +59,7 @@ def find_offset(f, magic):
             return (offset)
         pos = pos + length
     return (None)
-    
+
 def executeCommand(cmd):
 
     try:
@@ -76,7 +76,7 @@ def executeCommand(cmd):
 def unpackASA7(path, output):
     ''' Unpack ASA v7 and early binary images
     '''
-    
+
     try:
         f = open(path, "rb")
     except IOError:
@@ -216,4 +216,4 @@ if __name__ == '__main__':
         usage()
         sys.exit(2)
 
-    
+

@@ -37,7 +37,7 @@ from confConsole import AbstractConsole, confHypervisorConsole, confConsole
 
 # True = Dynagen text-mode, False = GNS3 GUI-mode.
 if __name__ == 'console':
-    PureDynagen = True 
+    PureDynagen = True
 else:
     PureDynagen = False
 
@@ -63,7 +63,7 @@ class progressBar:
         self.max = maxValue
         self.span = maxValue - minValue
         self.width = totalWidth
-        self.amount = 0       # When amount == max, we are 100% done 
+        self.amount = 0       # When amount == max, we are 100% done
         self.updateAmount(0)  # Build progress bar string
 
     def updateAmount(self, newAmount = 0):
@@ -86,7 +86,7 @@ class progressBar:
         self.progBar = "[" + '#'*numHashes + ' '*(allFull-numHashes) + "]"
 
         # figure out where to put the percentage, roughly centered
-        percentPlace = (len(self.progBar) / 2) - len(str(percentDone)) 
+        percentPlace = (len(self.progBar) / 2) - len(str(percentDone))
         percentString = str(percentDone) + "%"
 
         # slice the percentage into the bar
@@ -159,7 +159,7 @@ class Console(AbstractConsole):
                 row.append('%-10s' % device.aux)
             except AttributeError:
                 row.append('%-10s' % 'n/a')
-                
+
             table.append(row)
         table.sort(con_cmp)  # Sort the table by the console port #
         for line in table:
@@ -173,17 +173,17 @@ class Console(AbstractConsole):
     \tswitch into configuration mode of the specific hypervisor eg. 'conf localhost'. If the hypervisor does not exist it will be created.
     conf
     \tswitch into global config mode"""
-    
+
             if '?' in args:
                 print self.do_conf.__doc__
                 return
-    
+
             #if this is a conf <nothing> command go into global config mode
             if args.strip() == "":
                 nested_cmd = confConsole(self.dynagen, self)
                 nested_cmd.cmdloop()
                 return
-    
+
             #if this is a conf <hypervisor_name> go into hypervisor config mode
             #check if this hypervisor already exists
             found = False
@@ -201,7 +201,7 @@ class Console(AbstractConsole):
             else:
                 error('Syntax error in ' + params + ' . Use <hypervisor address>:<hypervisor port> syntax')
                 return
-    
+
             for server in self.dynagen.dynamips.values():
                 if hyp_name == server.host and hyp_port == server.port:
                     found = True
@@ -209,13 +209,13 @@ class Console(AbstractConsole):
             if not found:
                 #if not found create the hypervisor instance...
                 dynamips = self.dynagen.create_dynamips_hypervisor(hyp_name, hyp_port)
-    
+
                 #call hypervisor config mode
                 if dynamips != None:
                     nested_cmd = confHypervisorConsole(dynamips, self.dynagen)
                     nested_cmd.cmdloop()
             else:
-    
+
                 #looks like we found an already existing hypervisor instance, so let's jump into nested conf Cmd to configure it
                 nested_cmd = confHypervisorConsole(server, self.dynagen)
                 nested_cmd.cmdloop()
@@ -261,7 +261,7 @@ class Console(AbstractConsole):
     def do_vboxexec(self, args):
         """vboxexec <VBOX device> <command>\nVirtualBox GuestControl execute sends a command to VirtualBox guest and prints it's output (experimental feature).
 This requires VirtualBox Guest Additions to be installed inside the guest VM."""
-        
+
         if '?' in args or args.strip() == "":
             print self.do_vboxexec.__doc__
             return
@@ -270,7 +270,7 @@ This requires VirtualBox Guest Additions to be installed inside the guest VM."""
         #if devname in devices[0]:
         devname =  devices[0]
         #print "ADEBUG: console.py: devname = ", devname
-        
+
         try:
             device = self.dynagen.devices[devname]
             if not isinstance(device, self.namespace.AnyVBoxEmuDevice):
@@ -304,7 +304,7 @@ This requires VirtualBox Guest Additions to be installed inside the guest VM."""
         """
 
         startdelay = self.dynagen.startdelay
-        
+
         if '?' in args or args.strip() == "":
             print self.do_start.__doc__
             return
@@ -508,7 +508,7 @@ And big thanks of course to Christophe Fillot as the author of Dynamips.
     if PureDynagen:
         def do_shell(self, args):
             """Pass command to a system shell when line begins with '!'"""
-    
+
             os.system(args)
 
     def do_telnet(self, args):
@@ -1430,7 +1430,7 @@ Examples:
     if PureDynagen:
         def do_cpuinfo(self, args):
             """cpuinfo  {/all | router1 [router2] ...}\nshow CPU info for a specific router(s)"""
-    
+
             if '?' in args or args.strip() == '':
                 print self.do_cpuinfo.__doc__
                 return
@@ -1452,7 +1452,7 @@ Examples:
                         print "Note: " + str(e)
                         return
                 return
-    
+
             for device in devices:
                 try:
                     print self.dynagen.devices[device].cpuinfo[0].strip()
@@ -1467,23 +1467,23 @@ Examples:
 
     def telnet(self, device):
         """Telnet to the console port of device"""
-    
+
         import dynagen as dyn
         telnetstring = dyn.telnetstring
         port = str(self.dynagen.devices[device].console)
         host = str(self.dynagen.devices[device].dynamips.host)
-    
+
         if telnetstring and not dyn.notelnet:
             telnetstring = telnetstring.replace('%h', host)
             telnetstring = telnetstring.replace('%p', port)
             telnetstring = telnetstring.replace('%d', device)
-    
+
             os.system(telnetstring)
             time.sleep(0.5)  # Give the telnet client a chance to start
 
     def aux(self, device):
         """Telnet to the AUX port of device"""
-    
+
         import dynagen as dyn
         telnetstring = dyn.telnetstring
         port = str(self.dynagen.devices[device].aux)
@@ -1499,7 +1499,7 @@ Examples:
 
     def debug(self, string):
         """ Print string if debugging is true"""
-    
+
         # Debug level 2, console debugs
         if self.dynagen.debuglevel >= 2:
             print '  DEBUG: ' + str(string)

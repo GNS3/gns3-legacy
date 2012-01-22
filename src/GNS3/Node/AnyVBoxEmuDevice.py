@@ -44,7 +44,7 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
     """
 
     model = 'AbstractAnyVBoxEmuDevice'
-    
+
     def __init__(self, renderer_normal, renderer_select):
         #print "AnyVBoxEmuDevice::__init__()"
         AbstractNode.__init__(self, renderer_normal, renderer_select)
@@ -54,13 +54,13 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         global vbox_emu_id
         if not vbox_emu_id:
             vbox_emu_id = 1
-        
+
         # check if hostname has already been assigned
         for node in globals.GApp.topology.nodes.itervalues():
             if self.basehostname + str(vbox_emu_id) == node.hostname:
                 vbox_emu_id = vbox_emu_id + 1
                 break
-        
+
         self.hostname = self.basehostname + str(vbox_emu_id)
         vbox_emu_id = vbox_emu_id + 1
         AbstractNode.setCustomToolTip(self)
@@ -113,10 +113,10 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
     def changeHostname(self):
         """ Called to change the hostname
         """
-        
+
         if self.emu_vboxdev.state != 'stopped':
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyVBoxEmuDevice", "New hostname"),
-                                       translate("AnyVBoxEmuDevice", "Cannot change the hostname of a running device"))            
+                                       translate("AnyVBoxEmuDevice", "Cannot change the hostname of a running device"))
             return
         AbstractNode.changeHostname(self)
 
@@ -128,7 +128,7 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
             self.setToolTip(self.emu_vboxdev.info())
         else:
             AbstractNode.setCustomToolTip(self)
-        
+
     def get_running_config_name(self):
         """ Return node name as stored in the running config
         """
@@ -154,7 +154,7 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         #print "AnyVBoxEmuDevice::get_config()"
         assert(self.emu_vboxdev)
         return self.local_config
-        
+
     def duplicate_config(self):
         """ Returns a copy of the local configuration
         """
@@ -199,7 +199,7 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         for i in range(1, self.emu_vboxdev.nics + 1):
             interfaces.append('e' + str(i))
         return (interfaces)
-    
+
     def showMenuInterface(self):
         """ Call AbstractNode method with unavailable_interfaces argument to allow us to "gray out" interface e1 which is managed by VirtualBox GUI (NAT, Bridge, etc.)
         """
@@ -370,7 +370,7 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
     def reloadNode(self, progress=False):
         """ Reload this node
         """
- 
+
         if self.emu_vboxdev.state != 'running':
             return
         #Slow way: (useful for testing)
@@ -426,7 +426,7 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         """
 
         AbstractNode.mousePressEvent(self, event)
-    
+
 class VBoxDevice(AnyVBoxEmuDevice, VBoxDefaults):
 
     instance_counter = 0

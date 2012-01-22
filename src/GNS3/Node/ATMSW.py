@@ -41,13 +41,13 @@ class ATMSW(AbstractNode):
 
         # assign a new hostname
         global atmsw_id
-        
+
         # check if hostname has already been assigned
         for node in globals.GApp.topology.nodes.itervalues():
             if 'ATM' + str(atmsw_id) == node.hostname:
                 atmsw_id = atmsw_id + 1
                 break
-        
+
         self.hostname = 'ATM' + str(atmsw_id)
         atmsw_id = atmsw_id + 1
         AbstractNode.setCustomToolTip(self)
@@ -87,7 +87,7 @@ class ATMSW(AbstractNode):
         self.hostname = hostname
         self.a = 'ATMSW ' + self.hostname
         self.updateToolTips()
-        
+
     def setCustomToolTip(self):
         """ Set a custom tool tip
         """
@@ -131,7 +131,7 @@ class ATMSW(AbstractNode):
     def duplicate_config(self):
         """ Returns a copy of the configuration
         """
-        
+
         config = self.config.copy()
         config['ports'] = list(self.config['ports'])
         config['mapping'] = self.config['mapping'].copy()

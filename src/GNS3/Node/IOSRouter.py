@@ -120,7 +120,7 @@ class IOSRouter(AbstractNode):
             'mac',
             'iomem',
             'npe',
-            'midplane', 
+            'midplane',
             ]
 
     def __del__(self):
@@ -155,10 +155,10 @@ class IOSRouter(AbstractNode):
     def changeHostname(self):
         """ Called to change the hostname
         """
-        
+
         if self.router.state != 'stopped':
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "New hostname"),
-                                       translate("IOSRouter", "Cannot change the hostname of a running device"))            
+                                       translate("IOSRouter", "Cannot change the hostname of a running device"))
             return
         AbstractNode.changeHostname(self)
 
@@ -228,7 +228,7 @@ class IOSRouter(AbstractNode):
         config = self.local_config.copy()
         config['slots'] = list(self.local_config['slots'])
         return config
-        
+
     def set_config(self, config):
         """ Set a configuration in Dynamips
             config: dict
@@ -327,7 +327,7 @@ class IOSRouter(AbstractNode):
     def changeStartupConfig(self):
         """ Called to change the startup-config
         """
-     
+
         startupConfigDlg = StartupConfigDialog(self.router)
         startupConfigDlg.setWindowTitle(unicode(translate("IOSRouter", "Startup-Config for %s")) % self.hostname)
         startupConfigDlg.show()
@@ -536,7 +536,7 @@ class IOSRouter(AbstractNode):
         self.set_config(self.local_config)
         for link in links:
             globals.GApp.topology.addLink(link.source.id, link.srcIf, link.dest.id, link.destIf)
-            
+
         # Update base config
         try:
             config = base64.decodestring(self.router.config_b64)
@@ -631,11 +631,11 @@ class IOSRouter(AbstractNode):
             self.state = self.router.state
             self.updateToolTips()
             globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
-            
+
     def reloadNode(self, progress=False):
         """ Reload this node
         """
- 
+
         if self.router.state != 'running':
             return
         self.stopNode(progress)
@@ -663,7 +663,7 @@ class IOSRouter(AbstractNode):
 
         if self.router and self.router.state == 'running' and self.router.console:
             console.connect(self.hypervisor.host, self.router.console, self.hostname)
-            
+
     def aux(self):
         """ Start a telnet console and connect it to this router's AUX port
         """
@@ -673,7 +673,7 @@ class IOSRouter(AbstractNode):
 
         if self.router and self.router.state == 'running':
             console.connect(self.hypervisor.host, self.router.aux, self.hostname)
-    
+
     def isStarted(self):
         """ Returns True if this router is started
         """

@@ -38,9 +38,9 @@ class Wizard(QtGui.QDialog, Ui_Wizard):
         self.connect(self.pushButton_Step1, QtCore.SIGNAL('clicked()'), self.slotStep1)
         self.connect(self.pushButton_Step2, QtCore.SIGNAL('clicked()'), self.slotStep2)
         self.connect(self.pushButton_Step3, QtCore.SIGNAL('clicked()'), self.slotStep3)
-        
+
     def slotStep1(self):
-    
+
         globals.preferencesWindow = PreferencesDialog()
 
         # show Dynamips pane when Preferences dialog opens.
@@ -60,7 +60,7 @@ class Wizard(QtGui.QDialog, Ui_Wizard):
         globals.preferencesWindow = None
 
     def slotStep3(self):
-    
+
         dialog = IOSDialog()
         dialog.setModal(True)
         dialog.show()

@@ -91,7 +91,7 @@ class IOSRouterDefaults(AbstractDefaults):
                 del self.config['ghostios']
         else:
             self.config['ghostios'] = bool(ghostios)
-            
+
     def set_jitsharing(self, jitsharing):
         """ Enable or disable JIT blocks sharing feature
         """

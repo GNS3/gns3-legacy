@@ -19,7 +19,7 @@
 # developers@gns3.net
 #
 
-# This file is for pylupdate4, to allow us to translate strings that we 
+# This file is for pylupdate4, to allow us to translate strings that we
 # use dynamically in GNS3 with Qtlinguist
 
 # Translation of the current language name

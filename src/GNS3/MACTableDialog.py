@@ -43,9 +43,9 @@ class MACTableDialog(QtGui.QDialog, Ui_MACTableDialog):
     def __refreshTable(self):
 
         self.plainTextEditMACTable.clear()
-        if self.node.ethsw:   
+        if self.node.ethsw:
             try:
-                result = self.node.ethsw.show_mac()    
+                result = self.node.ethsw.show_mac()
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, translate("MACTableDialog", "Dynamips error"),  unicode(msg))
                 return
@@ -66,7 +66,7 @@ class MACTableDialog(QtGui.QDialog, Ui_MACTableDialog):
                             table = table + infos[1] + ' ' + translate("MACTableDialog", "learned from port") + ' ' + str(port) + "\n"
                             break
             self.plainTextEditMACTable.setPlainText(table)
-        
+
     def __clearTable(self):
 
         if self.node.ethsw:
@@ -80,7 +80,7 @@ class MACTableDialog(QtGui.QDialog, Ui_MACTableDialog):
             except (lib.DynamipsErrorHandled, socket.error):
                 QtGui.QMessageBox.critical(self, translate("MACTableDialog", "Dynamips error"), translate("MACTableDialog", "Connection lost"))
                 return
-        
+
     def on_buttonBox_clicked(self, button):
         """ Private slot called by a button of the button box clicked.
             button: button that was clicked (QAbstractButton)
@@ -88,4 +88,4 @@ class MACTableDialog(QtGui.QDialog, Ui_MACTableDialog):
 
         QtGui.QDialog.accept(self)
 
-        
+

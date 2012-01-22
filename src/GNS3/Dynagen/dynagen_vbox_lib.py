@@ -35,7 +35,7 @@ if debuglevel > 0:
     else:
         debugfilename = "/tmp/gns3-vboxlib-log.txt"
     try:
-        dfile = open(debugfilename, 'wb')    
+        dfile = open(debugfilename, 'wb')
     except:
         dfile = 0
         print "WARNING: log file cannot be created !"
@@ -45,7 +45,7 @@ if debuglevel > 0:
 def debugmsg(level, message):
     if debuglevel == 0:
         return
-    if debuglevel >= level:        
+    if debuglevel >= level:
         print message
         if dfile:
             #In python 2.6, print with redirections always uses UNIX line-ending,
@@ -53,7 +53,7 @@ def debugmsg(level, message):
             print >> dfile, message,
             dfile.write(os.linesep)
             dfile.flush()
-            
+
 msg = "WELCOME to dynagen_vbox_lib.py"
 debugmsg(2, msg)
 
@@ -78,7 +78,7 @@ class UDPConnection:
         self.adapter = self.dev
         self.port = port
         self.reverse_nio = None
-        
+
     def info(self):
         debugmsg(4, "dynagen_vbox_lib.py: UDPConnection::info()")
         (remote_device, remote_adapter, remote_port) = get_reverse_udp_nio(self)
@@ -93,11 +93,11 @@ class UDPConnection:
                 if rem_int_name == 'e':
                     rem_int_full_name = 'Ethernet'
                 elif rem_int_name == 'f':
-                    rem_int_full_name = 'FastEthernet'    
+                    rem_int_full_name = 'FastEthernet'
                 return ' is connected to router ' + remote_device.name + " " + rem_int_full_name + str(rem_dynagen_port)
-            
+
             return ' is connected to router ' + remote_device.name + " " + remote_adapter.interface_name + str(remote_adapter.slot) + \
-                "/" + str(rem_dynagen_port)            
+                "/" + str(rem_dynagen_port)
 
         elif isinstance(remote_device, FRSW):
             return ' is connected to frame-relay switch ' + remote_device.name + ' port ' + str(remote_port) + '\n'
@@ -178,7 +178,7 @@ class VBox(object):
         debugmsg(2, "VBox::reset()")
 
         send(self, 'vboxwrapper reset')
-        
+
     def _setbaseconsole(self, baseconsole):
         """ Set the baseconsole
         baseconsole: (int) the base console port
@@ -186,16 +186,16 @@ class VBox(object):
         debugmsg(2, "VBox::_setbaseconsole(%s)" % str(baseconsole))
 
         self._baseconsole = baseconsole
-        
+
     def _getbaseconsole(self):
         """ Returns the base console port
         """
         debugmsg(2, "VBox::_getbaseconsole(), returns %s" % str(self._baseconsole))
 
         return self._baseconsole
-    
+
     baseconsole = property(_getbaseconsole, _setbaseconsole, doc='The base console port')
-        
+
     def _setbaseudp(self, baseudp):
         """ Set the baseudp
         baseudp: (int) the base UDP port
@@ -205,14 +205,14 @@ class VBox(object):
         self.udp = baseudp
         self.default_udp = self.udp
         self.starting_udp = self.udp
-        
+
     def _getbaseudp(self):
         """ Returns the base UDP port
         """
         debugmsg(2, "VBox::_getbaseudp(), returns %s" % str(self.starting_udp))
 
         return self.starting_udp
-    
+
     baseudp = property(_getbaseudp, _setbaseudp, doc='The base UDP port')
 
     def _setworkingdir(self, directory):
@@ -249,9 +249,9 @@ class VBox(object):
     def _getversion(self):
         """ Return the version of vboxwrapper"""
         return self._version
-    
+
     version = property(_getversion, doc='The vboxwrapper version')
-        
+
 
 class AnyVBoxEmuDevice(object):
 
@@ -296,11 +296,11 @@ class AnyVBoxEmuDevice(object):
         #set the console to VBox baseconsole
         self.console = self.p.baseconsole
         self.p.baseconsole += 1
-        
+
     def delete(self):
         """delete the virtualized device instance in VBox"""
         debugmsg(2, "AnyVBoxEmuDevice::delete()")
-        
+
         try:
             send(self.p, 'vbox delete %s' % self.name)
         except:
@@ -347,7 +347,7 @@ class AnyVBoxEmuDevice(object):
         r = send(self.p, 'vbox clean %s' % self.name)
         r = send(self.p, 'vbox clean %s' % self.name)
         return r
-    
+
     def unbase(self):
         """unbase the disk files to have no dependency"""
         debugmsg(2, "AnyVBoxEmuDevice::unbase()")
@@ -388,7 +388,7 @@ class AnyVBoxEmuDevice(object):
         debugmsg(3, "AnyVBoxEmuDevice::suspend(), r = %s" % str(r))
         self.state = 'suspended'
         return r
-     
+
     def resume(self):
         """resumes the virtualized device instance in VBox"""
         debugmsg(2, "AnyVBoxEmuDevice::resume()")
@@ -408,7 +408,7 @@ class AnyVBoxEmuDevice(object):
         if self.state != 'running':
             raise DynamipsError, 'virtualized device %s is not running' % self.name
             return
-            
+
         r = send(self.p, 'vbox exec %s %s' % (self.name, command))
         r = send(self.p, 'vbox exec %s %s' % (self.name, command))
         #print "ADEBUG: dynagen_vbox_lib.py: r[0][0:10] = %s" % r[0][0:10]
@@ -434,7 +434,7 @@ class AnyVBoxEmuDevice(object):
         return self._console
 
     console = property(_getconsole, _setconsole, doc='The virtualized device console port')
-    
+
     def _setnics(self, nics):
         """ Set the number of NICs to be used by this virtualized device
         nics: (int) number
@@ -570,7 +570,7 @@ class AnyVBoxEmuDevice(object):
         """
         debugmsg(2, "AnyVBoxEmuDevice::idleprop()")
         return ['100-OK']
-        
+
     def add_interface(self, pa1, port1):
         # Some guest drivers won't accept non-standard MAC addresses
         # burned in the EEPROM! Watch for overlap with real NICs;
@@ -579,9 +579,9 @@ class AnyVBoxEmuDevice(object):
         send(self.p, 'vbox create_nic %s %i' % (self.name, port1))
 
     def __allocate_udp_port(self, remote_hypervisor):
-        """allocate a new src and dst udp port from hypervisors"""        
+        """allocate a new src and dst udp port from hypervisors"""
         debugmsg(2, "AnyVBoxEmuDevice::__allocate_udp_port()")
-        
+
         # Allocate a UDP port for the local side of the NIO
         src_udp = self.p.udp
         self.p.udp = self.p.udp + 1
@@ -618,7 +618,7 @@ class AnyVBoxEmuDevice(object):
 
         debugmsg(3, "self.p.host = %s" % self.p.host)
         debugmsg(3, "dynamips.host = %s" % dynamips.host)
-        
+
         """ # WARNING: This code crashes on multi-host setups: (when connecting to Dynamips switch)
         if self.p.host == dynamips.host:
             # source and dest adapters are on the same dynamips server, perform loopback binding optimization
@@ -662,7 +662,7 @@ class AnyVBoxEmuDevice(object):
         #set reverse nios
         remote_nio.reverse_nio = self.nios[local_port]
         self.nios[local_port].reverse_nio = remote_nio
-        
+
     def disconnect_from_dynamips(self, local_port):
 
         #delete the virtualized device side of UDP connection
@@ -681,7 +681,7 @@ class AnyVBoxEmuDevice(object):
         debugmsg(2, "AnyVBoxEmuDevice::connect_to_emulated_device(%s, %s, %s)" % (str(local_port), str(remote_emulated_device), str(remote_port)))
         from qemu_lib import Qemu, QemuDevice, AnyEmuDevice
         (src_udp, dst_udp) = self.__allocate_udp_port(remote_emulated_device.p)
-        
+
         """ # WARNING: This code crashes on multi-host setups: (when connecting to Dynamips switch)
         if self.p.host == remote_emulated_device.p.host:
             # source and dest adapters are on the same dynamips server, perform loopback binding optimization
@@ -716,12 +716,12 @@ class AnyVBoxEmuDevice(object):
             debugmsg(3, "remote_emulated_device is AnyEmuDevice")
             send(remote_emulated_device.p, 'qemu create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))
         remote_emulated_device.nios[remote_port] = UDPConnection(dst_udp, src_ip, src_udp, remote_emulated_device, remote_port)
-        
+
         #set reverse nios
         self.nios[local_port].reverse_nio = remote_emulated_device.nios[remote_port]
         remote_emulated_device.nios[remote_port].reverse_nio = self.nios[local_port]
-        
-        
+
+
     def disconnect_from_emulated_device(self, local_port, remote_emulated_device, remote_port):
         debugmsg(2, "AnyVBoxEmuDevice::disconnect_from_emulated_device()")
         from qemu_lib import Qemu, QemuDevice, AnyEmuDevice
@@ -729,7 +729,7 @@ class AnyVBoxEmuDevice(object):
         send(self.p, 'vbox delete_udp %s %i' % (self.name, local_port))
         if self.nios.has_key(local_port):
             del self.nios[local_port]
-        
+
         # disconnect the remote device side of UDP connection
         if isinstance(remote_emulated_device, AnyVBoxEmuDevice):
             debugmsg(3, "remote_emulated_device is AnyVBoxEmuDevice")
@@ -815,11 +815,11 @@ class AnyVBoxEmuDevice(object):
                 slot_info = slot_info + ' is empty\n'
         debugmsg(3, "AnyVBoxEmuDevice::slot_info(), returns %s" % str(slot_info))
         return slot_info
-    
+
     def info(self):
         """prints information about specific device"""
         #debugmsg(2, "AnyVBoxEmuDevice::info()")
-       
+
         info = '\n'.join([
             '%s %s is %s' % (self._ufd_machine, self.name, self.state),
             #'  Hardware is %s %s with %s MB RAM' % (self._ufd_hardware, self.model_string, self._ram),
@@ -833,16 +833,16 @@ class AnyVBoxEmuDevice(object):
             info += '\n' + self.extended_info()
 
         info += '\n' + self.slot_info()
-        
+
         debugmsg(3, "AnyVBoxEmuDevice::info(), returns %s" % str(info))
         return info
-        
+
     def gen_cfg_name(self, name=None):
         debugmsg(2, "AnyVBoxEmuDevice::gen_cfg_name()")
         if not name:
             name = self.name
         return '%s %s' % (self.basehostname, name)
-    
+
 class VBoxDevice(AnyVBoxEmuDevice):
     debugmsg(2, "class VBoxDevice")
     model_string = 'VBoxDevice'

@@ -45,7 +45,7 @@ if debuglevel > 0:
     else:
         debugfilename = "/tmp/gns3-vboxcontroller_4_1-log.txt"
     try:
-        dfile = open(debugfilename, 'wb')    
+        dfile = open(debugfilename, 'wb')
     except:
         dfile = False
         print "WARNING: log file cannot be created !"
@@ -55,7 +55,7 @@ if debuglevel > 0:
 def debugmsg(level, message):
     if debuglevel == 0:
         return
-    if debuglevel >= level:        
+    if debuglevel >= level:
         print message
         if dfile:
             #In python 2.6, print with redirections always uses UNIX line-ending,
@@ -163,7 +163,7 @@ class VBoxController_4_1():
                 #Do not crash "vboxwrapper", if stopping VM fails.
                 #But return True anyway, so VM state in GNS3 can become "stopped"
                 #This can happen, if user manually kills VBox VM.
-                return True        
+                return True
 
         #Shutdown all managed interfaces:
         if not self._safeLockMachine():
@@ -173,7 +173,7 @@ class VBoxController_4_1():
         except:
             debugmsg(3, "mach2=self.session.machine FAILED ! Skipping shutdown of interfaces...")
             return True
-        
+
         for vnic in range(1, self.maxNics):
             debugmsg(3, "Disabling managed netadp %s" % str(vnic))
             if not self._safeDisableNetAdpFromMachine(mach2, vnic):
@@ -183,10 +183,10 @@ class VBoxController_4_1():
         self._safeSaveSettings(mach2)  #Doesn't matter if command returns True or False...
         self._safeUnlockMachine()  #Doesn't matter if command returns True or False...
         return True
-        
+
     def suspend(self):
         debugmsg(2, "VBoxController_4_1::suspend()")
-        try: 
+        try:
           self.console.pause()
         except:
           return False
@@ -194,12 +194,12 @@ class VBoxController_4_1():
 
     def resume(self):
         debugmsg(2, "VBoxController_4_1::resume()")
-        try: 
+        try:
           self.console.resume()
         except:
           return False
         return True
-    
+
     def displayWindowFocus(self):
         debugmsg(2, "VBoxController_4_1::displayWindowFocus()")
         # For example, look at "VBoxGlobal.cpp"
@@ -210,7 +210,7 @@ class VBoxController_4_1():
             #Usually due to COM Error: "The object is not ready"
             debugmsg(1, e)
         return True
-        
+
     def create_udp(self, i_vnic, sport, daddr, dport):
         debugmsg(2, "VBoxController_4_1::create_udp(%s, %s, %s, %s)" % (str(i_vnic), str(sport), str(daddr), str(dport)))
         # FlexiNetwork: Link hot-add
@@ -225,7 +225,7 @@ class VBoxController_4_1():
             if retry == (retries-1):
                 debugmsg(1, "delete_udp() FAILED, no retries left, giving up...")
                 return False
-            try:                
+            try:
                 mach2=self.session.machine
                 netadp = mach2.getNetworkAdapter(int(i_vnic))
                 netadp.cableConnected=True
@@ -260,10 +260,10 @@ class VBoxController_4_1():
             if retry == (retries-1):
                 debugmsg(1, "delete_udp() FAILED, no retries left, giving up...")
                 return False
-            try:                
+            try:
                 mach2=self.session.machine
                 netadp = mach2.getNetworkAdapter(int(i_vnic))
-                netadp.attachmentType=self.constants.NetworkAttachmentType_Null                
+                netadp.attachmentType=self.constants.NetworkAttachmentType_Null
                 netadp.cableConnected=False
                 mach2.saveSettings()
                 break
@@ -286,24 +286,24 @@ class VBoxController_4_1():
         #To reproduce: Try to configure several VMs, and restart them all in
         #  loop on heavily loaded hosts.
         if not self._safeLockMachine():
-            return False            
+            return False
         try:
             mach2=self.session.machine
         except:
             debugmsg(1, "_net_options() -> self.session.machine FAILED !")
-            return False        
+            return False
         debugmsg(3, "self.nics = %s" % str(self.nics))
         debugmsg(3, "self.maxNics = %s" % str(self.maxNics))
-        
+
         try:
             netadp_mgmt = mach2.getNetworkAdapter(0)
-            adaptertype_mgmt = netadp_mgmt.adapterType    
+            adaptertype_mgmt = netadp_mgmt.adapterType
         except:
             #Usually due to COM Error: "The object is not ready"
             debugmsg(1, "_net_options() -> getNetworkAdapter() FAILED !")
             return False
 
-        
+
         for vnic in range(2, int(self.nics) + 1):
         #for vnic in range(min(int(self.nics), self.maxNics-1)):
             # By design, we leave vNIC #1 (vnic = 0) for VirtualBox management purposes
@@ -313,7 +313,7 @@ class VBoxController_4_1():
             except:
                 #Usually due to COM Error on loaded hosts: "The object is not ready"
                 debugmsg(1, "_net_options() -> getNetworkAdapter() FAILED !")
-                return False            
+                return False
 
             try:
                 adaptertype = netadp.adapterType
@@ -389,7 +389,7 @@ class VBoxController_4_1():
         # If machine is not yet created (or is stopped), just skip...
         try:
             if self.mach: pass
-        except:            
+        except:
             return True
         try:
             # We skip first vNIC, as this is not managed by GNS3.
@@ -491,7 +491,7 @@ class VBoxController_4_1():
         timeout = 10 # in seconds
         flags = 0
         env = ""
-        # VirtualBox GuestControl execute doesn't simulate shell properly, 
+        # VirtualBox GuestControl execute doesn't simulate shell properly,
         #so many things must be workarounded in our code.
         # In particular, it cannot auto-guess file extensions, and cannot execute shell commands.
         #windows_shell_commands = ['dir', 'type', 'copy', 'move', 'start', 'echo']
@@ -540,7 +540,7 @@ class VBoxController_4_1():
                 self.result = "VirtualBox Exception: "+e.__str__()
             except Exception, e2:
                 debugmsg(3, e2)
-        
+
         # Our TCP client, dynagen_vbox_lib, apparently dies when receives the
         #output of GuestControl exec as-is, so I do some pre-formatting here,
         #before sending the result back.
@@ -664,7 +664,7 @@ class VBoxController_4_1():
         #_safe*() functions exist as a protection against COM failure on loaded hosts.
         debugmsg(3, "VBoxController_4_1::_safeSaveSettings()")
         try:
-            i_mach.saveSettings()            
+            i_mach.saveSettings()
         except:
             #Usually due to COM Error: "The object is not ready"
             debugmsg(1, "_safeSaveSettings() FAILED !")
@@ -675,7 +675,7 @@ class VBoxController_4_1():
         #_safe*() functions exist as a protection against COM failure on loaded hosts.
         debugmsg(3, "VBoxController_4_1::_safeGetSessionObject()")
         try:
-            self.session = self.mgr.mgr.getSessionObject(self.vbox)            
+            self.session = self.mgr.mgr.getSessionObject(self.vbox)
         except:
             #FAILs on heavily loaded hosts...
             debugmsg(1, "getSessionObject() FAILED")

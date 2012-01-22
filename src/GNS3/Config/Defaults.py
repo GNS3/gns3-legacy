@@ -75,7 +75,7 @@ else:
         VBOXWRAPPER_DEFAULT_PATH = vboxwrapper_path
     else:
         VBOXWRAPPER_DEFAULT_PATH = unicode("/usr/local/libexec/gns3/vboxwrapper.py")
-    
+
 # Default path to vboxwrapper working directory
 if os.environ.has_key("TEMP"):
     VBOXWRAPPER_DEFAULT_WORKDIR = unicode(os.environ["TEMP"], errors='replace')
@@ -101,7 +101,7 @@ elif platform.system() == 'FreeBSD':
 elif platform.system() == 'Windows' and os.path.exists("C:\Program Files (x86)\Wireshark\wireshark.exe"):
     CAPTURE_PRESET_CMDS = {
                            Traditional_Capture_String  + ' (Windows 64 bit)': "C:\Program Files (x86)\Wireshark\wireshark.exe %c",
-                           Traditional_Capture_String  + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe %c",                            
+                           Traditional_Capture_String  + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe %c",
                            Live_Traffic_Capture_String + ' (Windows 64-bit)': 'tail.exe -f -c +0b %c | "C:\Program Files (x86)\Wireshark\wireshark.exe" -k -i -',
                            Live_Traffic_Capture_String + ' (Windows)': 'tail.exe -f -c +0b %c | "C:\Program Files\Wireshark\wireshark.exe" -k -i -',
                            }
@@ -148,7 +148,7 @@ elif os.environ.has_key("TMP"):
     CAPTURE_DEFAULT_WORKDIR = unicode(os.environ["TMP"], errors='replace')
 else:
     CAPTURE_DEFAULT_WORKDIR = unicode('/tmp', errors='replace')
-    
+
 # Default predefined sets of Terminal commands on various OSes:
 if platform.system() == 'Linux' or platform.system().__contains__("BSD"):
     TERMINAL_PRESET_CMDS = {
@@ -231,7 +231,7 @@ elif os.environ.has_key("TMP"):
     PROJECT_DEFAULT_DIR = unicode(os.environ["TMP"], errors='replace')
 else:
     PROJECT_DEFAULT_DIR = unicode('/tmp')
-    
+
 # Default IOS image directory
 if sys.platform.startswith('win') and os.environ.has_key("HOMEDRIVE") and os.environ.has_key("HOMEPATH"):
     IOS_DEFAULT_DIR = unicode(os.environ["HOMEDRIVE"] + os.environ["HOMEPATH"] + os.sep + 'GNS3' + os.sep + 'Images', errors='replace')
@@ -271,7 +271,7 @@ conf_iosImage_defaults = {
     'chassis': '',
     'idlepc': '',
     'default_ram': 0,
-    'hypervisors': [], 
+    'hypervisors': [],
     'default': False
 }
 
@@ -282,8 +282,8 @@ conf_iosImage_types = {
     'platform': str,
     'chassis': str,
     'idlepc': str,
-    'default_ram': int, 
-    'hypervisors': list, 
+    'default_ram': int,
+    'hypervisors': list,
     'default': bool
 }
 
@@ -295,7 +295,7 @@ conf_hypervisor_defaults = {
     'baseUDP': 10000,
     'baseConsole': 2001,
     'baseAUX': 2501,
-    'used_ram':0, 
+    'used_ram':0,
 }
 
 conf_hypervisor_types = {
@@ -306,7 +306,7 @@ conf_hypervisor_types = {
     'baseUDP': int,
     'baseConsole': int,
     'baseAUX': int,
-    'used_ram': int, 
+    'used_ram': int,
 }
 
 conf_qemuImage_defaults = {
@@ -451,7 +451,7 @@ conf_systemDynamips_defaults = {
     'path': '',
     'port': 7200,
     'workdir': '',
-    'clean_workdir': True, 
+    'clean_workdir': True,
     'baseUDP': 10000,
     'baseConsole': 2000,
     'baseAUX': 2100,
@@ -463,14 +463,14 @@ conf_systemDynamips_defaults = {
     'udp_incrementation': 100,
     'import_use_HypervisorManager': True,
     'allocateHypervisorPerIOS': True,
-    'HypervisorManager_binding': u'localhost', 
+    'HypervisorManager_binding': u'localhost',
 }
 
 conf_systemDynamips_types = {
     'path': unicode,
     'port': int,
     'workdir': unicode,
-    'clean_workdir': bool, 
+    'clean_workdir': bool,
     'baseUDP': int,
     'baseConsole': int,
     'baseAUX': int,
@@ -482,7 +482,7 @@ conf_systemDynamips_types = {
     'udp_incrementation': int,
     'import_use_HypervisorManager': bool,
     'allocateHypervisorPerIOS': bool,
-    'HypervisorManager_binding': unicode, 
+    'HypervisorManager_binding': unicode,
 }
 
 conf_systemGeneral_defaults = {

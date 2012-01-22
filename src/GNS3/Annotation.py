@@ -39,7 +39,7 @@ class Annotation(QtGui.QGraphicsTextItem):
         self.deviceIf = None
         self.setZValue(2)
         self.prevText = None
-        
+
     def keyPressEvent(self, event):
 
         key = event.key()
@@ -91,26 +91,26 @@ class Annotation(QtGui.QGraphicsTextItem):
         return QtGui.QGraphicsTextItem.focusOutEvent(self, event)
 
     def paint(self, painter, option, widget=None):
-        
+
         QtGui.QGraphicsTextItem.paint(self, painter, option, widget)
-        
+
         # Don't draw if not activated
         if globals.GApp.workspace.flg_showLayerPos == False:
             return
-        
+
         # Show layer level of this node
         brect = self.boundingRect()
-        
+
         # Don't draw if the object is too small ...
         if brect.width() < 20 or brect.height() < 20:
             return
-        
+
         center = self.mapFromItem(self, brect.width() / 2.0, brect.height() / 2.0)
-        
+
         painter.setBrush(QtCore.Qt.red)
         painter.setPen(QtCore.Qt.red)
         painter.drawRect((brect.width() / 2.0) - 10, (brect.height() / 2.0) - 10, 20,20)
-        
+
         painter.setPen(QtCore.Qt.black)
         painter.setFont(QtGui.QFont("TypeWriter", 14, QtGui.QFont.Bold))
         zval = str(int(self.zValue()))

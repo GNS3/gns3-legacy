@@ -79,7 +79,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
                 item.setText(0, name)
                 item.setIcon(0,  QtGui.QIcon(':/symbols/' + symbol))
                 item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(':/symbols/' + symbol))
-        
+
         # load libraries
         for (library_name, conf) in globals.GApp.libraries.iteritems():
             self.addLibrarySymbols(library_name, conf.path)
@@ -90,7 +90,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
     def slotAdd(self):
         """ Add a symbol to the node list
         """
-    
+
         symbols = self.treeWidgetSymbols.selectedItems()
         for symbol in symbols:
             name = unicode(symbol.text(0))
@@ -104,7 +104,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
             SYMBOLS.append(
                            {'name': name, 'object': DecorativeNode,
                             'normal_svg_file': normal_svg_file,
-                            'select_svg_file': selected_svg_file, 
+                            'select_svg_file': selected_svg_file,
                             'translated': False })
 
             item = QtGui.QTreeWidgetItem(self.treeWidgetNodes)
@@ -123,7 +123,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
     def slotRemove(self):
         """ Remove a symbol from the node list
         """
-        
+
         nodes = self.treeWidgetNodes.selectedItems()
         for node in nodes:
             name = unicode(node.text(0))
@@ -153,7 +153,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
                     break
             current.setText(0, name)
             current.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(type))
-                
+
     def slotNodeSelectionChanged(self):
         """ Check if an entry is selected in the list of nodes
         """
@@ -163,7 +163,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
             self.pushButtonRemove.setEnabled(True)
             self.treeWidgetSymbols.clearSelection()
 
-            
+
     def slotSymbolSelectionChanged(self):
         """ Check if an entry is selected in the list of symbols
         """
@@ -181,14 +181,14 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
         type_name = node.data(0, QtCore.Qt.UserRole).toString()
         index = self.comboBoxNodeType.findText(type_name)
         if index != -1:
-            self.comboBoxNodeType.setCurrentIndex(index) 
+            self.comboBoxNodeType.setCurrentIndex(index)
         else:
             print 'Warning: cannot find type ' + type_name
 
     def slotLibrarySelected(self, item):
         """ Load library settings
         """
-        
+
         if item and not item.parent():
             path = item.data(0, QtCore.Qt.UserRole).toString()
             self.lineEditLibrary.setText(path)
@@ -196,7 +196,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
     def addLibrarySymbols(self, library_name, path):
         """ Add library symbols in the list
         """
-    
+
         library = QtGui.QTreeWidgetItem()
         library.setText(0, library_name)
         library.setIcon(0,  QtGui.QIcon(':/icons/package.svg'))
@@ -208,11 +208,11 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
             item.setText(0, symbol)
             item.setIcon(0, QtGui.QIcon(':/' + library_name + '/' + symbol))
             item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(':/' + library_name + '/' + symbol))
-            
+
     def slotAddLibrary(self):
         """ Add a library
         """
-        
+
         path = unicode(self.lineEditLibrary.text())
         if not path:
             return
@@ -223,7 +223,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
         if not QtCore.QResource.registerResource(path, ":/" + library_name):
             QtGui.QMessageBox.critical(self, translate("SymbolManager", "Library"), unicode(translate("SymbolManager", "Can't open library: %s")) % path)
             return
-            
+
         self.addLibrarySymbols(library_name, path)
         conf = libraryConf()
         conf.path = path
@@ -254,5 +254,5 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
         if path is not None and path != '':
             self.lineEditLibrary.clear()
             self.lineEditLibrary.setText(os.path.normpath(path))
-            
+
 

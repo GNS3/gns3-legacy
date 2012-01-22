@@ -28,11 +28,11 @@ from PyQt4 import QtGui
 class UndoView(QtGui.QUndoView):
 
     def __init__(self, parent=None):
-    
+
         QtGui.QUndoView.__init__(self, parent)
 
 class AddNode(QtGui.QUndoCommand):
-    
+
     def __init__(self, topology, node):
 
         QtGui.QUndoCommand.__init__(self)
@@ -58,9 +58,9 @@ class AddNode(QtGui.QUndoCommand):
         self.topology.deleteNode(self.node.id)
         self.node.__del__()
         self.deleted = True
-        
+
 class DeleteNode(QtGui.QUndoCommand):
-    
+
     def __init__(self, topology, node):
 
         QtGui.QUndoCommand.__init__(self)
@@ -72,15 +72,15 @@ class DeleteNode(QtGui.QUndoCommand):
 
         self.config = self.node.duplicate_config()
         self.topology.deleteNode(self.node.id)
-        self.node.__del__()   
+        self.node.__del__()
 
     def undo(self):
 
         self.topology.addNode(self.node)
         self.node.set_config(self.config)
-        
+
 class AddItem(QtGui.QUndoCommand):
-    
+
     def __init__(self, topology, item, type):
 
         QtGui.QUndoCommand.__init__(self)
@@ -95,9 +95,9 @@ class AddItem(QtGui.QUndoCommand):
     def undo(self):
 
         self.topology.removeItem(self.item)
-        
+
 class DeleteItem(QtGui.QUndoCommand):
-    
+
     def __init__(self, topology, item):
 
         QtGui.QUndoCommand.__init__(self)
@@ -108,13 +108,13 @@ class DeleteItem(QtGui.QUndoCommand):
     def redo(self):
 
         self.topology.removeItem(self.item)
-        
+
     def undo(self):
-        
+
         self.topology.addItem(self.item)
 
 class AddLink(QtGui.QUndoCommand):
-    
+
     def __init__(self, topology, srcid, srcif, dstid, dstif):
 
         QtGui.QUndoCommand.__init__(self)
@@ -127,7 +127,7 @@ class AddLink(QtGui.QUndoCommand):
         self.srcif = srcif
         self.dstid = dstid
         self.dstif = dstif
-        
+
     def redo(self):
 
         self.status = self.topology.addLink(self.srcid, self.srcif, self.dstid, self.dstif)
@@ -146,11 +146,11 @@ class AddLink(QtGui.QUndoCommand):
                 link.adjust()
 
     def getStatus(self):
-    
+
         return self.status
-        
+
 class DeleteLink(QtGui.QUndoCommand):
-    
+
     def __init__(self, topology, link):
 
         QtGui.QUndoCommand.__init__(self)
@@ -162,9 +162,9 @@ class DeleteLink(QtGui.QUndoCommand):
         self.dstid = link.dest.id
         self.dstif = link.destIf
         self.status = None
-        
+
     def redo(self):
-        
+
         for link in self.topology.links:
             if (link.source.id == self.srcid or link.dest.id == self.srcid) and \
             (link.srcIf == self.srcif or link.destIf == self.srcif) and \
@@ -182,11 +182,11 @@ class DeleteLink(QtGui.QUndoCommand):
             self.topology.addLink(self.srcid, self.srcif, self.dstid, self.dstif)
 
     def getStatus(self):
-    
+
         return self.status
 
 class AddConfig(QtGui.QUndoCommand):
-    
+
     def __init__(self, node, config, prevConfig):
 
         QtGui.QUndoCommand.__init__(self)
@@ -202,9 +202,9 @@ class AddConfig(QtGui.QUndoCommand):
     def undo(self):
 
         self.node.set_config(self.previousConfig)
-        
+
 class NewHostname(QtGui.QUndoCommand):
-    
+
     def __init__(self, node, hostname):
 
         QtGui.QUndoCommand.__init__(self)
@@ -230,9 +230,9 @@ class NewHostname(QtGui.QUndoCommand):
             self.node.removeHostname()
             self.node.showHostname()
         self.node.updateToolTips()
-        
+
 class NewZValue(QtGui.QUndoCommand):
-    
+
     def __init__(self, item, zval):
 
         QtGui.QUndoCommand.__init__(self)
@@ -244,11 +244,11 @@ class NewZValue(QtGui.QUndoCommand):
     def redo(self):
 
         self.item.setZValue(self.zval)
-        
+
         from GNS3.ShapeItem import AbstractShapeItem
         from GNS3.Pixmap import Pixmap
         from GNS3.Annotation import Annotation
-            
+
         if isinstance(self.item, AbstractShapeItem) or isinstance(self.item, Annotation) or isinstance(self.item, Pixmap):
             if self.zval < 0:
                 self.item.setFlag(self.item.ItemIsSelectable, False)
@@ -262,11 +262,11 @@ class NewZValue(QtGui.QUndoCommand):
     def undo(self):
 
         self.item.setZValue(self.prevZval)
-        
+
         from GNS3.ShapeItem import AbstractShapeItem
         from GNS3.Pixmap import Pixmap
         from GNS3.Annotation import Annotation
-            
+
         if isinstance(self.item, AbstractShapeItem) or isinstance(self.item, Annotation) or isinstance(self.item, Pixmap):
             if self.zval < 0:
                 self.item.setFlag(self.item.ItemIsSelectable, False)
@@ -276,9 +276,9 @@ class NewZValue(QtGui.QUndoCommand):
                 self.item.setFlag(self.item.ItemIsMovable, True)
 
         self.item.update()
-        
+
 class NewConsolePort(QtGui.QUndoCommand):
-    
+
     def __init__(self, node, port):
 
         QtGui.QUndoCommand.__init__(self)
@@ -297,9 +297,9 @@ class NewConsolePort(QtGui.QUndoCommand):
             self.status = msg
         except (lib.DynamipsErrorHandled, socket.error):
             self.status = translate("UndoFramework", "Connection lost")
-        
+
     def undo(self):
-        
+
         try:
             if self.node.get_dynagen_device().console != self.prevPort:
                 self.node.get_dynagen_device().console = self.prevPort
@@ -308,11 +308,11 @@ class NewConsolePort(QtGui.QUndoCommand):
             pass
 
     def getStatus(self):
-    
+
         return self.status
-    
+
 class NewAUXPort(QtGui.QUndoCommand):
-    
+
     def __init__(self, node, port):
 
         QtGui.QUndoCommand.__init__(self)
@@ -331,9 +331,9 @@ class NewAUXPort(QtGui.QUndoCommand):
             self.status = msg
         except (lib.DynamipsErrorHandled, socket.error):
             self.status = translate("UndoFramework", "Connection lost")
-        
+
     def undo(self):
-        
+
         try:
             if self.node.get_dynagen_device().aux != self.prevPort:
                 self.node.get_dynagen_device().aux = self.prevPort
@@ -342,11 +342,11 @@ class NewAUXPort(QtGui.QUndoCommand):
             pass
 
     def getStatus(self):
-    
+
         return self.status
-    
+
 class NewStartupConfigPath(QtGui.QUndoCommand):
-    
+
     def __init__(self, router, path):
 
         QtGui.QUndoCommand.__init__(self)
@@ -384,11 +384,11 @@ class NewStartupConfigPath(QtGui.QUndoCommand):
                 del config['cnfg']
 
     def getStatus(self):
-    
+
         return self.status
 
 class NewStartupConfigNvram(QtGui.QUndoCommand):
-    
+
     def __init__(self, router, encoded):
 
         QtGui.QUndoCommand.__init__(self)
@@ -419,13 +419,13 @@ class NewStartupConfigNvram(QtGui.QUndoCommand):
             globals.GApp.dynagen.devices[self.router.name].config_b64 = self.prevEncoded
         except:
             pass
-        
+
     def getStatus(self):
-    
+
         return self.status
-        
+
 class NewAnnotationStyle(QtGui.QUndoCommand):
-    
+
     def __init__(self, item, defaultTextColor, font, rotation):
 
         QtGui.QUndoCommand.__init__(self)
@@ -458,9 +458,9 @@ class NewAnnotationStyle(QtGui.QUndoCommand):
             self.item.rotate(-self.item.rotation)
         self.item.rotation = self.prevRotation
         self.item.rotate(self.item.rotation)
-        
+
 class NewItemStyle(QtGui.QUndoCommand):
-    
+
     def __init__(self, item, pen, brush, rotation):
 
         QtGui.QUndoCommand.__init__(self)
@@ -495,7 +495,7 @@ class NewItemStyle(QtGui.QUndoCommand):
         self.item.rotate(self.item.rotation)
 
 class NewAnnotationText(QtGui.QUndoCommand):
-    
+
     def __init__(self, item, prevText):
 
         QtGui.QUndoCommand.__init__(self)

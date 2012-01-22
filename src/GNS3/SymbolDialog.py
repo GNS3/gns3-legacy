@@ -40,7 +40,7 @@ class SymbolDialog(QtGui.QDialog, Ui_SymbolDialog):
                 item = QtGui.QTreeWidgetItem()
                 item.setText(0, name)
                 item.setIcon(0, QtGui.QIcon(':/symbols/' + symbol))
-                self.treeWidgetSymbols.addTopLevelItem(item)     
+                self.treeWidgetSymbols.addTopLevelItem(item)
 
     def on_applyButton_clicked(self):
         """ Apply settings for a node
@@ -55,7 +55,7 @@ class SymbolDialog(QtGui.QDialog, Ui_SymbolDialog):
                 item.setRenderers(normal_renderer, select_renderer)
                 item.default_symbol = False
                 item.type = name
-            
+
     def on_buttonBox_clicked(self, button):
         """ Private slot called by a button of the button box clicked.
             button: button that was clicked (QAbstractButton)

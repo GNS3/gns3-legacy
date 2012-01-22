@@ -38,7 +38,7 @@ class IOSRouter3700(IOSRouter, IOSRouter3700Defaults):
 
         assert(self.router)
         return ('')
-    
+
     def create_router(self):
 
         IOSRouter.create_router(self)

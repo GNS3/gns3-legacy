@@ -53,7 +53,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.projectWorkdir= None
         self.projectConfigs = None
 
-        # Initialize the windows 
+        # Initialize the windows
         QMainWindow.__init__(self)
         self.submenu_Docks = QtGui.QMenu(self)
         self.submenu_RecentFiles = QtGui.QMenu(self)
@@ -70,16 +70,16 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.flg_showHostname = True
         self.action_ShowHostnames.setText(translate('Workspace', 'Hide hostnames'))
         self.action_ShowHostnames.setChecked(True)
-        
+
         # By default don't show interface names
         self.flg_showInterfaceNames = False
-        
+
         # By default show only saved interface names (after loading a topology)
         self.flg_showOnlySavedInterfaceNames = False
-        
+
         # By default don't show layer positioning
         self.flg_showLayerPos = False
-    
+
         # Load UndoView with the Undo Stack
         self.UndoViewDock.setStack(globals.GApp.topology.undoStack)
 
@@ -92,7 +92,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         action.setShortcut(translate("Workspace", "Ctrl+Z"))
         self.menu_Edit.addAction(action)
         self.menu_Edit.insertAction(self.action_SelectAll, action)
-        
+
         action = globals.GApp.topology.undoStack.createRedoAction(self)
         action.setShortcut(translate("Workspace", "Ctrl+Y"))
         action.setIcon(QIcon(':/icons/edit-redo.svg'))
@@ -102,14 +102,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
         # Class to display error/warning messages once
         self.errorMessage = QtGui.QErrorMessage(self)
         self.errorMessage.setMinimumSize(350, 200)
-        
+
         # Auto save timer
         self.timer = QtCore.QTimer()
         QtCore.QObject.connect(self.timer, QtCore.SIGNAL("timeout()"), self.__action_Autosave)
-        
+
         # Network Manager (used to check for update)
         self.networkManager = QtNetwork.QNetworkAccessManager(self)
-        
+
         # Automatic check for update every 2 weeks (1209600 seconds)
         if globals.GApp.systconf['general'].auto_check_for_update:
             currentEpoch = int(time.mktime(time.localtime()))
@@ -166,12 +166,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # Device menu is contextual and is build on-the-fly
         self.connect(self.menuDevice, QtCore.SIGNAL('aboutToShow()'), self.__action_ShowDeviceMenu)
-          
+
     def __action_ShowDeviceMenu(self):
-        
+
         self.menuDevice.clear()
         globals.GApp.scene.makeContextualMenu(self.menuDevice)
-            
+
     def __createSubMenus(self):
         """ Create new sub-menus
         """
@@ -218,7 +218,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.loadNetfile(action_text)
 
     def retranslateUi(self, MainWindow):
-    
+
         Ui_MainWindow.retranslateUi(self, MainWindow)
         self.submenu_Docks.setTitle(translate('Workspace', 'Docks'))
 
@@ -233,7 +233,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def centerDialog(self, dialog):
         """ Manually center a dialog on the screen
         """
-    
+
         layoutSizeHint = dialog.layout().sizeHint()
         p = dialog.geometry().center()
         r = QtCore.QRect(QtCore.QPoint (0, 0), layoutSizeHint)
@@ -258,7 +258,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             painter.end()
         else:
 
-#            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Yes - Take all the workspace\nNo - Take only what I see"), 
+#            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Yes - Take all the workspace\nNo - Take only what I see"),
 #                                            QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 #
 #            if reply == QtGui.QMessageBox.Yes:
@@ -278,7 +278,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 #                y = min_y - 30
 #                width = abs(x) + max_x + 200
 #                height = abs(y) + max_y + 200
-#    
+#
 #            else:
 
             rect = self.graphicsView.viewport().rect()
@@ -299,11 +299,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_Export(self):
         """ Export the scene to an image file
         """
-    
+
         filedialog = QtGui.QFileDialog(self)
         selected = QtCore.QString()
         exports = 'PNG File (*.png);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PDF File (*.pdf)'
-        
+
         if self.projectFile:
             directory = os.path.dirname(self.projectFile)
         else:
@@ -364,14 +364,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
         # First stop all nodes
         self.__action_StopAll()
-     
+
         globals.GApp.workspace.setWindowTitle("GNS3")
         projectWorkdir = self.projectWorkdir
         self.timer.stop()
         self.projectFile = None
         self.projectWorkdir = None
         self.projectConfigs = None
-        
+
         globals.GApp.topology.clear()
 
         self.clear_workdir(projectWorkdir)
@@ -380,7 +380,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_Clear(self):
         """ Clear the topology
         """
-        
+
         running_nodes = False
         for node in globals.GApp.topology.nodes.itervalues():
             if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice)) and node.get_dynagen_device().state == 'running':
@@ -398,7 +398,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
             if reply == QtGui.QMessageBox.No:
                 return
-        
+
         self.clear()
 
     def __action_Config(self):
@@ -418,7 +418,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def extractConfigs(self):
         """ Extract all startup-config
         """
-        
+
         fb = fileBrowser(translate('Workspace', 'Directory to write startup-configs'), directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self)
         path = fb.getDir()
         if path:
@@ -427,11 +427,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
             for device in globals.GApp.dynagen.devices.values():
                 if isinstance(device, lib.Router):
                     net.export_router_config(device)
-                    
+
     def importConfigs(self):
         """ Import all startup-config
         """
-        
+
         fb = fileBrowser(translate('Workspace', 'Directory to read startup-configs'), directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self)
         path = fb.getDir()
         if path:
@@ -476,7 +476,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         else:
             globals.addingNote = True
             globals.GApp.scene.setCursor(QtCore.Qt.IBeamCursor)
-            
+
     def __action_InsertImage(self):
         """ Insert an image
         """
@@ -492,7 +492,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if path != None and path != '':
             pixmap_image = QtGui.QPixmap(path)
             if not pixmap_image.isNull():
-            
+
                 # copy the image in the project directory
                 if self.projectWorkdir:
                     try:
@@ -554,7 +554,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog.setModal(True)
         dialog.show()
         dialog.exec_()
-        
+
     def __action_Symbol_Manager(self):
         """ Implement the QAction `Symbol_Manager'
         - Show a dialog to configure the symbols
@@ -567,12 +567,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
         globals.GApp.scene.reloadRenderers()
         self.nodesDock.clear()
         self.nodesDock.populateNodeDock()
-    
+
     def __action_Undo(self):
         """ Implement the QAction `Undo'
         - Undo a action
         """
-        
+
         globals.GApp.topology.undoStack.undo()
 
     def __action_Redo(self):
@@ -581,7 +581,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         globals.GApp.topology.undoStack.redo()
-        
+
     def __action_ShowLayers(self):
         """ Implement the QAction `Show layers'
         - Show layer positioning for every items
@@ -629,23 +629,23 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         globals.GApp.scene.resetMatrix()
-		
+
     def __action_DefaultStyle(self):
         """ Restore/Put stylesheet back to normal (and destroy the planet)
         """
-		
+
         self.setStyleSheet('')
-		
+
     def __action_EnergySavingStyle(self):
         """ Put stylesheet meant to save energy, very popular these days
         """
-		
+
         self.setStyleSheet(' QMainWindow {} QMenuBar { background: black; } QDockWidget { background: black; color: white; } QToolBar { background: black; } QFrame { background: gray; } QToolButton { width: 30px; height: 30px; /*border:solid 1px black opacity 0.4;*/ /*background-none;*/ } QStatusBar { /*	background-image: url(:/pictures/pictures/texture_blackgrid.png);*/ 	background: black; color: rgb(255,255,255); } ')
-		
+
     def __action_ShowHostnames(self):
         """ Display/Hide hostnames for all the nodes on the scene
         """
-    
+
         if self.flg_showHostname == False:
             self.flg_showHostname = True
             self.action_ShowHostnames.setText(translate('Workspace', 'Hide hostnames'))
@@ -656,15 +656,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.action_ShowHostnames.setText(translate('Workspace', 'Show hostnames'))
             for node in globals.GApp.topology.nodes.itervalues():
                 node.removeHostname()
-                
+
     def __action_ShowInterfaceNames(self):
         """ Display/Hide interface names for all the nodes on the scene
         """
-        
+
         if self.flg_showInterfaceNames == False:
 
             if not len(globals.interfaceLabels) and self.flg_showOnlySavedInterfaceNames:
-                reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Reset saved interface labels?"), 
+                reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Reset saved interface labels?"),
                 QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
                     self.flg_showOnlySavedInterfaceNames = False
@@ -682,7 +682,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_ResetInterfaceLabels(self):
         """ Reset saved Interface Labels
         """
-         
+
         if self.flg_showInterfaceNames:
             QtGui.QMessageBox.warning(self, translate("Workspace", "Interface labels"), translate("Workspace", "Please hide the interface names before using this option"))
             return
@@ -698,7 +698,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_TelnetAll(self):
         """ Telnet to all started IOS routers
         """
-    
+
         for node in globals.GApp.topology.nodes.itervalues():
             if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice)) and node.get_dynagen_device().state == 'running':
                 node.console()
@@ -706,7 +706,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_ConsoleAuxAll(self):
         """ Console AUX to all started IOS routers
         """
-    
+
         for node in globals.GApp.topology.nodes.itervalues():
             if isinstance(node, IOSRouter) and node.get_dynagen_device().state == 'running':
                 node.aux()
@@ -716,7 +716,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             action: string
             text: string
         """
-    
+
         node_list = []
         if autostart == True:
             for (hostname,value) in globals.GApp.dynagen.autostart.iteritems():
@@ -727,7 +727,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             for node in globals.GApp.topology.nodes.values():
                 if isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice):
                     node_list.append(node)
-                
+
         count = len(node_list)
         if count == 0:
             return
@@ -800,23 +800,23 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         self.__launchProgressDialog('start', translate("Workspace", "Starting nodes ..."))
-        
+
     def __action_StopAll(self):
         """ Stop all nodes
         """
-        
+
         self.__launchProgressDialog('stop', translate("Workspace", "Stopping nodes ..."))
 
     def __action_SuspendAll(self):
         """ Suspend all nodes
         """
-        
+
         self.__launchProgressDialog('suspend', translate("Workspace", "Suspending nodes ..."))
-        
+
     def __action_ReloadAll(self):
         """ Reload all nodes
         """
-        
+
         self.__launchProgressDialog('reload', translate("Workspace", "Reloading nodes ..."))
 
     def __action_Help(self):
@@ -828,7 +828,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_DrawRectangle(self):
         """ Draw a rectangle on the scene
         """
-        
+
         if not self.action_DrawRectangle.isChecked():
             globals.drawingRectangle = False
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
@@ -839,7 +839,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def __action_DrawEllipse(self):
         """ Draw an ellipse on the scene
         """
-        
+
         if not self.action_DrawEllipse.isChecked():
             globals.drawingEllipse = False
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
@@ -854,7 +854,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog = QtGui.QDialog()
         ui = Ui_AboutDialog()
         ui.setupUi(dialog)
-        
+
         # Dynamically put current version number in About dialog
         from __main__ import VERSION
         text = ui.aboutText.text()
@@ -864,13 +864,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog.show()
         self.centerDialog(dialog)
         dialog.exec_()
-    
+
     def __action_AboutQt(self):
         """ Show Qt about dialog
         """
-        
+
         QtGui.QMessageBox.aboutQt(self)
-        
+
     def __action_CheckForUpdate(self, silent=False):
         """ Check if a newer version is available
         """
@@ -886,21 +886,21 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         from __main__ import VERSION
-        
+
         network_reply = self.sender()
         isSilent = network_reply.request().attribute(QtNetwork.QNetworkRequest.User).toBool()
         if network_reply.error() != QtNetwork.QNetworkReply.NoError and not isSilent:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Check For Update"),translate("Workspace", "Cannot check for update ... Try again later"))
         else:
             latest_release = str(network_reply.readAll()).rstrip()
-            
+
             if VERSION < latest_release:
                 reply = QtGui.QMessageBox.question(self, translate("Workspace", "Check For Update"),
                                                unicode(translate("Workspace", "Newer GNS3 version %s is available, do you want to visit our website to download it?"))  % latest_release, QtGui.QMessageBox.Yes, \
                                                QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
                     QtGui.QDesktopServices.openUrl(QtCore.QUrl("http://www.gns3.net/download"))
-            
+
             elif not isSilent:
                 QtGui.QMessageBox.information(self, translate("Workspace", "Check For Update"), translate("AbstractNode", "GNS3 is up-to-date!"))
 
@@ -979,7 +979,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         projectDialog.show()
         self.centerDialog(projectDialog)
         projectDialog.exec_()
-    
+
     def createProject(self, settings):
         """ Create a new project
         """
@@ -1001,7 +1001,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 os.mkdir(self.projectConfigs)
             except (OSError, IOError), e:
                 print "Warning: cannot create directory: " + self.projectConfigs + ": " + e.strerror
-        
+
         if len(globals.GApp.dynagen.devices):
             if self.projectConfigs:
                 for node in globals.GApp.topology.nodes.values():
@@ -1017,14 +1017,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         node.router.cnfg = self.projectConfigs + os.sep + config
 
             if self.projectWorkdir:
-                
+
 
                 unbase = False
                 instances = map(lambda node: isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS), globals.GApp.topology.nodes.values())
                 if True in instances:
                     reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)"),
                                                        QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-                    
+
                     if reply == QtGui.QMessageBox.Yes:
                         unbase = True
 
@@ -1032,20 +1032,20 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 for node in globals.GApp.topology.nodes.values():
                     if (isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir) or (isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir) or (isinstance(node, AnyVBoxEmuDevice) and self.projectWorkdir != node.vbox.workingdir):
                         node.stopNode()
-                        
+
                 globals.GApp.mainWindow.capturesDock.stopAllCaptures()
 
                 # move dynamips & Qemu files
                 for node in globals.GApp.topology.nodes.values():
                     if isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir:
-                        
+
                         dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_nvram*')
                         dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_disk*')
                         dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_slot*')
                         dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_rom')
                         dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_*flash*')
                         dynamips_files += [os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_dynagen_device().formatted_ghost_file()]
-                            
+
                         for file in dynamips_files:
                             try:
                                 shutil.copy(file, self.projectWorkdir)
@@ -1083,7 +1083,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error")+ "%s: %s") % (self.projectWorkdir, unicode(msg)))
 
         self.__action_Save(auto=True)
-        self.setWindowTitle("GNS3 Project - " + self.projectFile) 
+        self.setWindowTitle("GNS3 Project - " + self.projectFile)
 
     def __action_Snapshot(self):
         """ Open snapshot dialog
@@ -1122,7 +1122,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         splash.show()
         splash.showMessage(translate("Workspace", "Please wait while creating a snapshot"))
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-        
+
         # copy dynamips & Qemu files + IOS configs
         for node in globals.GApp.topology.nodes.values():
             if isinstance(node, IOSRouter):
@@ -1145,7 +1145,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         continue
                     config = os.path.basename(node.router.cnfg)
                     node.router.cnfg = snapshot_configs + os.sep + config
-                
+
             if isinstance(node, AnyEmuDevice):
                 qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)
                 for file in qemu_files:
@@ -1317,7 +1317,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             elif reply == QtGui.QMessageBox.Cancel:
                 event.ignore()
                 return
-                
+
         elif running_nodes:
             reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "You have running nodes and you may lose your configurations inside them, would you like to continue anyway?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)

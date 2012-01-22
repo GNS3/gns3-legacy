@@ -37,11 +37,11 @@ class IDLEPCDialog(QtGui.QDialog, Ui_IDLEPCDialog):
         self.idles = idles
         self.router = router
         self.comboBox.addItems(options)
-        
+
     def apply(self, message=False):
         """ Apply the IDLE PC to the router
         """
-        
+
         try:
             selection = str(self.comboBox.currentText()).split(':')[0].strip('* ')
             index = int(selection)
@@ -74,7 +74,7 @@ class IDLEPCDialog(QtGui.QDialog, Ui_IDLEPCDialog):
         """ Private slot called by a button of the button box clicked.
             button: button that was clicked (QAbstractButton)
         """
-        
+
         if button == self.buttonBox.button(QtGui.QDialogButtonBox.Cancel):
             QtGui.QDialog.reject(self)
         elif button == self.buttonBox.button(QtGui.QDialogButtonBox.Apply):
@@ -83,4 +83,4 @@ class IDLEPCDialog(QtGui.QDialog, Ui_IDLEPCDialog):
             self.apply(message=True)
             QtGui.QDialog.accept(self)
 
-        
+

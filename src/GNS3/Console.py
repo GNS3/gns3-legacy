@@ -171,7 +171,7 @@ class Console(PyCutExt, Dynagen_Console):
         print 'PyQt version is ' + QtCore.PYQT_VERSION_STR
         print 'SIP version is ' + sip.SIP_VERSION_STR
         print 'Python version is ' + pythonver
-        
+
         print unicode("\nGNS3 run path is %s\n" % GNS3_RUN_PATH)
 
         try:
@@ -268,7 +268,7 @@ Example for Linux guest:
         if not globals.GApp.systconf['vbox'].enable_GuestControl:
             print "VirtualBox GuestControl execution is disabled in preferences"
             return
-            
+
         try:
             node_name = args.split(' ')[0]
             for node in globals.GApp.topology.nodes.values():
@@ -298,11 +298,11 @@ show run <device_name>
 show hypervisors
 \tshow allocated memory for hypervisors by Hypervisor Manager
         """
-        
+
         if '?' in args or args.strip() == '':
             print self.do_show.__doc__
             return
-        
+
         command = args.split()[0].lower()
 
         if command == 'hypervisors' and globals.GApp.HypervisorManager:
@@ -551,7 +551,7 @@ Examples:
 
     def do_debug(self, args):
         """debug [level]\nActivate/Desactivate debugs\nLevel 0: no debugs\nLevel 1: dynamips lib debugs only\nLevel 2: GNS3 debugs only\nLevel 3: GNS3 debugs and dynamips lib debugs"""
-    
+
         if len(args) == 1:
             try:
                 level = int(args[0])

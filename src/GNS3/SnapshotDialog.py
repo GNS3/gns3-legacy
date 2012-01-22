@@ -33,14 +33,14 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
 
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
-        
+
         self.connect(self.pushButtonCreate, QtCore.SIGNAL('clicked()'), self.slotCreateSnapshot)
         self.connect(self.pushButtonDelete, QtCore.SIGNAL('clicked()'), self.slotDeleteSnapshot)
         self.connect(self.pushButtonLoad, QtCore.SIGNAL('clicked()'), self.slotLoadSnapshot)
         self.listSnaphosts()
 
     def listSnaphosts(self):
-        
+
         self.SnapshotList.clear()
         if not globals.GApp.workspace.projectFile:
             return
@@ -53,7 +53,7 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
                 name = match_obj.group(2)
                 filename = os.path.basename(match_obj.group(1))
                 date = match_obj.group(3)[:2] + '/' + match_obj.group(3)[2:4] + '/' + match_obj.group(3)[4:]
-                time = match_obj.group(4)[:2] + ':' + match_obj.group(4)[2:4] + ':' + match_obj.group(4)[4:]    
+                time = match_obj.group(4)[:2] + ':' + match_obj.group(4)[2:4] + ':' + match_obj.group(4)[4:]
                 item = QtGui.QListWidgetItem(self.SnapshotList)
                 item.setText(name + ' on ' + date + ' at ' + time)
                 item.setData(QtCore.Qt.UserRole, QtCore.QVariant(match_obj.group(0) + os.sep + filename + '.net'))
@@ -63,7 +63,7 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
 
         (text, ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("AbstractNode", "Snapshot name"),
                                     translate("AbstractNode", "Snapshot name:"), QtGui.QLineEdit.Normal, "Unnamed")
-        
+
         if ok and text:
             snapshot_name = unicode(text)
         else:
@@ -74,18 +74,18 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
             return
         globals.GApp.workspace.createSnapshot(snapshot_name)
         self.listSnaphosts()
-        
+
     def slotDeleteSnapshot(self):
-        
+
         items = self.SnapshotList.selectedItems()
         if len(items):
             item = items[0]
             snapshot_path = os.path.dirname(unicode(item.data(QtCore.Qt.UserRole).toString()))
             shutil.rmtree(snapshot_path, ignore_errors=True)
             self.listSnaphosts()
-        
+
     def slotLoadSnapshot(self):
-        
+
         items = self.SnapshotList.selectedItems()
         if len(items):
             item = items[0]

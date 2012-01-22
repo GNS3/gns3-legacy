@@ -86,8 +86,8 @@ def _findChildWindows(hwnd, starttext):
         CHILD_WINDOW_HANDLERS.append(hwnd)
         debugmsg(2, "ADEBUG: WindowManipulator.py: _findChildWindows(), CHILD_WINDOW_NAME = %s, CHILD_WINDOW_HANDLER = %s" % (str(s), str(hwnd)))
         return None
-    return 1  
-    
+    return 1
+
 def activateWindow(hwnd):
     debugmsg(3, "ADEBUG: WindowManipulator.py: activateWindow(%s)" % str(hwnd))
     hwnd = int(hwnd)

@@ -52,13 +52,13 @@ class VBoxManager(object):
         """
         #print "Entered VBoxManager::waitVBox()"
         binding = globals.GApp.systconf['vbox'].VBoxManager_binding
-        
+
         # give 15 seconds to VBox to accept connections
         count = 15
-        progress = None        
+        progress = None
         connection_success = False
         debug("VBox manager: connecting to %s on port %s" % (str(binding), str(self.port)))
-        for nb in range(count + 1):            
+        for nb in range(count + 1):
             #print "ADEBUG: VBoxManager.py: binding = " + binding
             if binding.__contains__(':'):
                 # IPv6 address support
@@ -68,7 +68,7 @@ class VBoxManager(object):
             s.setblocking(0)
             s.settimeout(300)
             if nb == 3:
-                progress = QtGui.QProgressDialog(unicode(translate("VBoxManager", "Connecting to VBox on port %i ...")) % self.port, 
+                progress = QtGui.QProgressDialog(unicode(translate("VBoxManager", "Connecting to VBox on port %i ...")) % self.port,
                                                  translate("VBoxManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
@@ -101,7 +101,7 @@ class VBoxManager(object):
             progress.deleteLater()
             progress = None
         return True
-        
+
 
     def startVBox(self, port):
         """ Start VBox
@@ -109,7 +109,7 @@ class VBoxManager(object):
         #print "Entered VBoxManager::startVBox()"
         binding = globals.GApp.systconf['vbox'].VBoxManager_binding
         self.port = port
-        
+
         if self.proc and self.proc.state():
             debug('VBoxManager: VBox is already started with pid ' + str(self.proc.pid()))
             return True
@@ -117,7 +117,7 @@ class VBoxManager(object):
         self.proc = QtCore.QProcess(globals.GApp.mainWindow)
         if globals.GApp.systconf['vbox'].vboxwrapper_workdir:
             if not os.access(globals.GApp.systconf['vbox'].vboxwrapper_workdir, os.F_OK | os.W_OK):
-                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'VBox Manager', 
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'VBox Manager',
                                           unicode(translate("VBoxManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.systconf['vbox'].vboxwrapper_workdir)
             # set the working directory
             self.proc.setWorkingDirectory(globals.GApp.systconf['vbox'].vboxwrapper_workdir)
@@ -157,7 +157,7 @@ class VBoxManager(object):
         if self.proc and self.proc.state():
             debug('VBoxManager: VBox has been started with pid ' + str(self.proc.pid()))
         return True
-        
+
 
     def stopVBox(self):
         """ Stop VBox
@@ -175,7 +175,7 @@ class VBoxManager(object):
             debug('VBoxManager: stop VBox with pid ' + str(self.proc.pid()))
             self.proc.close()
         self.proc = None
-        
+
     def preloadVBoxwrapper(self):
         """ Preload VBoxwrapper
         """
@@ -186,13 +186,13 @@ class VBoxManager(object):
 
         if globals.GApp.systconf['vbox'].vboxwrapper_workdir:
             if not os.access(globals.GApp.systconf['vbox'].vboxwrapper_workdir, os.F_OK | os.W_OK):
-                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'VBox Manager', 
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'VBox Manager',
                                           unicode(translate("VBoxManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.systconf['vbox'].vboxwrapper_workdir)
                 return False
             # set the working directory
             proc.setWorkingDirectory(globals.GApp.systconf['vbox'].vboxwrapper_workdir)
-        
-        
+
+
         # start VBoxwrapper, use python on all platform but Windows (in release mode)
         if sys.platform.startswith('win')  and (globals.GApp.systconf['vbox'].vboxwrapper_path.split('.')[-1] == 'exe'):
             # On Windows hosts, we remove python dependency by pre-compiling VBoxwrapper. (release mode)
@@ -208,7 +208,7 @@ class VBoxManager(object):
         # give 5 seconds to the hypervisor to accept connections
         count = 5
         connection_success = False
-        for nb in range(count + 1):            
+        for nb in range(count + 1):
             #print "ADEBUG: VBoxManager.py: binding = " + binding
             if binding.__contains__(':'):
                 # IPv6 address support

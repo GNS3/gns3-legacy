@@ -40,21 +40,21 @@ class DecorativeNode(AbstractNode):
 
         # assign a new hostname
         global decoration_id
-        
+
         # check if hostname has already been assigned
         for node in globals.GApp.topology.nodes.itervalues():
             if 'N' + str(decoration_id) == node.hostname:
                 decoration_id = decoration_id + 1
                 break
-        
+
         self.hostname = 'N' + str(decoration_id)
         decoration_id = decoration_id + 1
-        
+
         self.setCustomToolTip()
         self.config = None
-        
+
     def __del__(self):
-    
+
         pass
 
     def set_hostname(self, hostname):
@@ -70,20 +70,20 @@ class DecorativeNode(AbstractNode):
 
         self.config = {}
         self.config['interfaces'] = []
-        # 8 interfaces by default 
+        # 8 interfaces by default
         for interface in range(1, 9):
             self.config['interfaces'].append(str(interface))
-    
+
     def get_config(self):
         """ Returns the local configuration copy
         """
 
         return self.config
-        
+
     def duplicate_config(self):
         """ Returns a copy of the configuration
         """
-        
+
         config = self.config.copy()
         config['interfaces'] = list(self.config['interfaces'])
         return (config)
@@ -92,7 +92,7 @@ class DecorativeNode(AbstractNode):
         """ Set a configuration
             config: dict
         """
-        
+
         self.config = config.copy()
         self.config['interfaces'] = list(config['interfaces'])
 

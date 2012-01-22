@@ -40,7 +40,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
     """
 
     model = 'AbstractAnyEmuDevice'
-    
+
     def __init__(self, renderer_normal, renderer_select):
 
         AbstractNode.__init__(self, renderer_normal, renderer_select)
@@ -50,13 +50,13 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         global emu_id
         if not emu_id:
             emu_id = 1
-        
+
         # check if hostname has already been assigned
         for node in globals.GApp.topology.nodes.itervalues():
             if self.basehostname + str(emu_id) == node.hostname:
                 emu_id = emu_id + 1
                 break
-        
+
         self.hostname = self.basehostname + str(emu_id)
         emu_id = emu_id + 1
         AbstractNode.setCustomToolTip(self)
@@ -110,10 +110,10 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
     def changeHostname(self):
         """ Called to change the hostname
         """
-        
+
         if self.emudev.state != 'stopped':
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyEmuDevice", "New hostname"),
-                                       translate("AnyEmuDevice", "Cannot change the hostname of a running device"))            
+                                       translate("AnyEmuDevice", "Cannot change the hostname of a running device"))
             return
         AbstractNode.changeHostname(self)
 
@@ -125,7 +125,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
             self.setToolTip(self.emudev.info())
         else:
             AbstractNode.setCustomToolTip(self)
-        
+
     def get_running_config_name(self):
         """ Return node name as stored in the running config
         """
@@ -151,7 +151,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
 
         assert(self.emudev)
         return self.local_config
-        
+
     def duplicate_config(self):
         """ Returns a copy of the local configuration
         """
@@ -344,7 +344,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
     def reloadNode(self, progress=False):
         """ Reload this node
         """
- 
+
         if self.emudev.state != 'running':
             return
         self.stopNode(progress)
@@ -378,7 +378,7 @@ class PIX(AnyEmuDevice, PIXDefaults):
     model = '525'
     basehostname = 'PIX'
     friendly_name = 'Firewall'
-    
+
     def __init__(self, *args, **kwargs):
         AnyEmuDevice.__init__(self, *args, **kwargs)
         PIXDefaults.__init__(self)
@@ -386,7 +386,7 @@ class PIX(AnyEmuDevice, PIXDefaults):
             'key',
             'serial',
             ])
-        
+
     def _make_devinstance(self, qemu_name):
         from GNS3.Dynagen import qemu_lib
         return qemu_lib.PIX(self.dynagen.dynamips[qemu_name], self.hostname)
@@ -396,7 +396,7 @@ class ASA(AnyEmuDevice, ASADefaults):
     model = '5520'
     basehostname = 'ASA'
     friendly_name ='ASAFirewall'
-    
+
     def __init__(self, *args, **kwargs):
         AnyEmuDevice.__init__(self, *args, **kwargs)
         ASADefaults.__init__(self)
@@ -406,11 +406,11 @@ class ASA(AnyEmuDevice, ASADefaults):
             'kernel_cmdline',
             ])
         debug('Hello, I have initialized and my model is %s' % self.model)
-    
+
     def _make_devinstance(self, qemu_name):
         from GNS3.Dynagen import qemu_lib
         return qemu_lib.ASA(self.dynagen.dynamips[qemu_name], self.hostname)
-    
+
     def startNode(self, progress=False):
         """ Start the node
         """
@@ -446,7 +446,7 @@ class JunOS(AnyEmuDevice, JunOSDefaults):
     def _make_devinstance(self, qemu_name):
         from GNS3.Dynagen import qemu_lib
         return qemu_lib.JunOS(self.dynagen.dynamips[qemu_name], self.hostname)
-    
+
 class IDS(AnyEmuDevice, IDSDefaults):
 
     instance_counter = 0

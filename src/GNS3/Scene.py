@@ -27,7 +27,7 @@ debuglevel = 0
 def debugmsg(level, message):
     if debuglevel == 0:
         return
-    if debuglevel >= level:        
+    if debuglevel >= level:
         print message
 
 import sys
@@ -80,14 +80,14 @@ class Scene(QtGui.QGraphicsView):
         self.newedge = None
         self.resetAddingLink()
         self.reloadRenderers()
-        
+
         self.sceneDragging = False
-        self.lastMousePos = None 
+        self.lastMousePos = None
 
     def reloadRenderers(self):
         """ Load all needed renderers
         """
-            
+
         # Load all renders
         self.renders = {}
         for item in SYMBOLS:
@@ -139,32 +139,32 @@ class Scene(QtGui.QGraphicsView):
 
         instances = map(lambda item: isinstance(item, ETHSW) or isinstance(item, ATMSW) or isinstance(item, ATMBR) or isinstance(item, FRSW), items)
         if True in instances:
-            
+
             # Action: ChangeHypervisor (Change the hypervisor)
             changeHypervisor = QtGui.QAction(translate('Scene', 'Set an hypervisor'), menu)
             changeHypervisor.setIcon(QtGui.QIcon(":/icons/applications.svg"))
             self.connect(changeHypervisor, QtCore.SIGNAL('triggered()'), self.slotChangeHypervisor)
-            
+
             menu.addAction(changeHypervisor)
-            
+
         instances = map(lambda item: isinstance(item, ETHSW), items)
         if True in instances:
-            
+
             # Action: MAC Table
             MACTableAct = QtGui.QAction(translate('Scene', 'MAC Address Table'), menu)
             MACTableAct.setIcon(QtGui.QIcon(':/icons/inspect.svg'))
             self.connect(MACTableAct, QtCore.SIGNAL('triggered()'), self.slotMACTable)
 
             menu.addAction(MACTableAct)
-            
+
         instances = map(lambda item: isinstance(item, AbstractNode), items)
         if True in instances:
 
             # Action: Change symbol
             changeSymbol = QtGui.QAction(translate('Scene', 'Change Symbol'), menu)
             changeSymbol.setIcon(QtGui.QIcon(':/icons/node_conception.svg'))
-            self.connect(changeSymbol, QtCore.SIGNAL('triggered()'), self.slotchangeSymbol)        
-            menu.addAction(changeSymbol)            
+            self.connect(changeSymbol, QtCore.SIGNAL('triggered()'), self.slotchangeSymbol)
+            menu.addAction(changeSymbol)
 
         instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice), items)
         if True in instances:
@@ -173,7 +173,7 @@ class Scene(QtGui.QGraphicsView):
             consolePortAct = QtGui.QAction(translate('Scene', 'Change console port'), menu)
             consolePortAct.setIcon(QtGui.QIcon(':/icons/console_port.svg'))
             self.connect(consolePortAct, QtCore.SIGNAL('triggered()'), self.slotChangeConsolePort)
-            
+
             # Action: Console (Connect to the node console)
             consoleAct = QtGui.QAction(translate('Scene', 'Console'), menu)
             consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
@@ -238,7 +238,7 @@ class Scene(QtGui.QGraphicsView):
             stopAct = QtGui.QAction(translate('Scene', 'Stop'), menu)
             stopAct.setIcon(QtGui.QIcon(':/icons/stop.svg'))
             self.connect(stopAct, QtCore.SIGNAL('triggered()'), self.slotStopNode)
-            
+
             # Action: Reload (stop and start IOS on hypervisor)
             reloadAct = QtGui.QAction(translate('Scene', 'Reload'), menu)
             reloadAct.setIcon(QtGui.QIcon(':/icons/reload.svg'))
@@ -264,62 +264,62 @@ class Scene(QtGui.QGraphicsView):
             idlepcAct = QtGui.QAction(translate('Scene', 'Idle PC'), menu)
             idlepcAct.setIcon(QtGui.QIcon(':/icons/calculate.svg'))
             self.connect(idlepcAct, QtCore.SIGNAL('triggered()'), self.slotIdlepc)
-            
+
             # Action: Change the startup-config
             StartupConfigAct = QtGui.QAction(translate('Scene', 'Startup-config'), menu)
             StartupConfigAct.setIcon(QtGui.QIcon(':/icons/startup_config.svg'))
             self.connect(StartupConfigAct, QtCore.SIGNAL('triggered()'), self.slotStartupConfig)
 
             menu.addAction(auxPortAct)
-            menu.addAction(AuxAct)            
+            menu.addAction(AuxAct)
             menu.addAction(idlepcAct)
             menu.addAction(StartupConfigAct)
 
         instances = map(lambda item: isinstance(item, Annotation) or isinstance(item, AbstractShapeItem), items)
         if True in instances:
-        
+
             # Action: Style
             styleAct = QtGui.QAction(translate('Scene', 'Style'), menu)
             styleAct.setIcon(QtGui.QIcon(':/icons/drawing.svg'))
             self.connect(styleAct, QtCore.SIGNAL('triggered()'), self.slotStyle)
 
             menu.addAction(styleAct)
-            
+
             # Action: Duplicate
             duplicateAct = QtGui.QAction(translate('Scene', 'Duplicate'), menu)
             duplicateAct.setIcon(QtGui.QIcon(':/icons/new.svg'))
             self.connect(duplicateAct, QtCore.SIGNAL('triggered()'), self.slotDuplicate)
 
             menu.addAction(duplicateAct)
-            
+
         # Action: Delete (Delete the node)
         deleteAct = QtGui.QAction(translate('Scene', 'Delete'), menu)
         deleteAct.setIcon(QtGui.QIcon(':/icons/delete.svg'))
         self.connect(deleteAct, QtCore.SIGNAL('triggered()'), self.slotDeleteNode)
         menu.addAction(deleteAct)
-        
+
         # Action: Lower Z value
         lowerZvalueAct = QtGui.QAction(translate('Scene', 'Lower one layer'), menu)
         lowerZvalueAct.setIcon(QtGui.QIcon(':/icons/lower_z_value.svg'))
         self.connect(lowerZvalueAct, QtCore.SIGNAL('triggered()'), self.slotlowerZValue)
-            
+
         # Action: Raise Z value
         raiseZvalueAct = QtGui.QAction(translate('Scene', 'Raise one layer'), menu)
         raiseZvalueAct.setIcon(QtGui.QIcon(':/icons/raise_z_value.svg'))
         self.connect(raiseZvalueAct, QtCore.SIGNAL('triggered()'), self.slotraiseZValue)
-        
+
         menu.addAction(raiseZvalueAct)
         menu.addAction(lowerZvalueAct)
 
         items = self.__topology.selectedItems()
         if len(items) > 1:
-       
+
             # Action: Align horizontally
             hozAlignAct = QtGui.QAction(translate('Scene', 'Align horizontally'), menu)
             hozAlignAct.setIcon(QtGui.QIcon(':/icons/horizontally.svg'))
             self.connect(hozAlignAct, QtCore.SIGNAL('triggered()'), self.slotHozAlignment)
             menu.addAction(hozAlignAct)
-            
+
             # Action: Align vertically
             vertAlignAct = QtGui.QAction(translate('Scene', 'Align vertically'), menu)
             vertAlignAct.setIcon(QtGui.QIcon(':/icons/vertically.svg'))
@@ -373,11 +373,11 @@ class Scene(QtGui.QGraphicsView):
         hozPos = self.__topology.selectedItems()[0].y()
         for item in self.__topology.selectedItems():
             item.setPos(item.x(), hozPos)
-            
+
     def slotVertAlignment(self):
         """ Vertically align items
         """
-        
+
         vertPos = self.__topology.selectedItems()[0].x()
         for item in self.__topology.selectedItems():
             item.setPos(vertPos, item.y())
@@ -385,7 +385,7 @@ class Scene(QtGui.QGraphicsView):
     def slotStyle(self):
         """ Change the style of an annotation or a shape item
         """
-        
+
         style = StyleDialog()
         style.setModal(True)
         if self.__topology.selectedItems():
@@ -416,7 +416,7 @@ class Scene(QtGui.QGraphicsView):
     def slotDuplicate(self):
         """ Duplicate an item
         """
-        
+
         for item in self.__topology.selectedItems():
             if isinstance(item, Annotation):
                 dupnote = Annotation()
@@ -523,7 +523,7 @@ class Scene(QtGui.QGraphicsView):
 
         for item in self.__topology.selectedItems():
             item.changeHostname()
-            
+
     def slotChangeHypervisor(self):
         """ Slot called to change hypervisor of selected items
         """
@@ -551,9 +551,9 @@ class Scene(QtGui.QGraphicsView):
         for item in self.__topology.selectedItems():
             if not isinstance(item, Annotation) and not isinstance(item, Pixmap) and not isinstance(item, AbstractShapeItem):
                 count += 1
-        
+
         if count > 1:
-            reply = QtGui.QMessageBox.question(self, translate("Scene", "Message"), translate("Scene", "Do you really want to delete these nodes?"), 
+            reply = QtGui.QMessageBox.question(self, translate("Scene", "Message"), translate("Scene", "Do you really want to delete these nodes?"),
                                             QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
             if reply == QtGui.QMessageBox.No:
@@ -576,7 +576,7 @@ class Scene(QtGui.QGraphicsView):
     def slotlowerZValue(self):
         """ Lower Z value
         """
- 
+
         show_message = True
         for item in self.__topology.selectedItems():
             zvalue = item.zValue()
@@ -594,16 +594,16 @@ class Scene(QtGui.QGraphicsView):
     def slotraiseZValue(self):
         """ Raise Z value
         """
-    
+
         for item in self.__topology.selectedItems():
             zvalue = item.zValue()
             command = undo.NewZValue(item, zvalue + 1)
             self.__topology.undoStack.push(command)
-            
+
     def slotchangeSymbol(self):
         """ Change a device's symbol
         """
-        
+
         item_list = []
         for item in self.__topology.selectedItems():
             if isinstance(item, AbstractNode):
@@ -669,7 +669,7 @@ class Scene(QtGui.QGraphicsView):
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 item.changeConsolePort()
-                
+
     def slotChangeAUXPort(self):
         """ Slot called to change the aux port
         """
@@ -697,19 +697,19 @@ class Scene(QtGui.QGraphicsView):
     def slotStopNode(self):
         """ Slot called to stop the selected items
         """
-     
+
         count = 0
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 count += 1
 
         if count > 1:
-            reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("Scene", "Message"), translate("Scene", "Do you really want to stop these devices?"), 
+            reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("Scene", "Message"), translate("Scene", "Do you really want to stop these devices?"),
                                             QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
             if reply == QtGui.QMessageBox.No:
                 return
-     
+
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 item.stopNode()
@@ -721,7 +721,7 @@ class Scene(QtGui.QGraphicsView):
         for item in self.__topology.selectedItems():
             if  isinstance(item, IOSRouter) or isinstance(item, AnyVBoxEmuDevice):
                 item.suspendNode()
-                
+
     def slotReloadNode(self):
         """ Slot called to reload the selected items
         """
@@ -732,7 +732,7 @@ class Scene(QtGui.QGraphicsView):
                 count += 1
 
         if count > 1:
-            reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("Scene", "Message"), translate("Scene", "Do you really want to reload these devices?"), 
+            reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("Scene", "Message"), translate("Scene", "Do you really want to reload these devices?"),
                                             QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
             if reply == QtGui.QMessageBox.No:
@@ -741,13 +741,13 @@ class Scene(QtGui.QGraphicsView):
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 item.reloadNode()
-                
+
     def getSourceNode(self):
-    
+
         return globals.GApp.topology.getNode(self.__sourceNodeID)
-        
+
     def getDestNode(self):
-    
+
         return globals.GApp.topology.getNode(self.__destNodeID)
 
     def __addLink(self):
@@ -768,7 +768,7 @@ class Scene(QtGui.QGraphicsView):
         # add the link into the topology
         if self.__topology.addLinkFromScene(self.__sourceNodeID, self.__sourceInterface, self.__destNodeID, self.__destInterface) == False:
             self.__isFirstClick = True
-        
+
         self.__sourceNodeID = None
         self.__destNodeID = None
 
@@ -786,7 +786,7 @@ class Scene(QtGui.QGraphicsView):
             return
 
         node = self.__topology.getNode(id)
-        
+
         if globals.currentLinkType == globals.Enum.LinkType.Serial or globals.currentLinkType == globals.Enum.LinkType.ATM or globals.currentLinkType == globals.Enum.LinkType.POS:
             if isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice) or isinstance(node, ETHSW):
                 if isinstance(node, AnyEmuDevice):
@@ -952,7 +952,7 @@ class Scene(QtGui.QGraphicsView):
             self.lastMousePos = self.mapFromGlobal(event.globalPos())
             self.sceneDragging = True
             globals.GApp.scene.setCursor(QtCore.Qt.ClosedHandCursor)
-            return 
+            return
 
         if show and event.modifiers() & QtCore.Qt.ShiftModifier and event.button() == QtCore.Qt.LeftButton and item and not globals.addingLinkFlag:
 #            print 'HERE'
@@ -983,7 +983,7 @@ class Scene(QtGui.QGraphicsView):
             note.setPos(self.mapToScene(event.pos()))
             pos_x = note.pos().x()
             pos_y = note.pos().y() - (note.boundingRect().height() / 2)
-            note.setPos(pos_x, pos_y)      
+            note.setPos(pos_x, pos_y)
             command = undo.AddItem(self.__topology, note, translate("Scene", "annotation"))
             self.__topology.undoStack.push(command)
             note.editText()
@@ -1013,11 +1013,11 @@ class Scene(QtGui.QGraphicsView):
         """ If The Left and Right mouse buttons are not still pressed TOGETHER and neither is the middle button
             this means the user is no longer trying to drag the scene
         """
-        
+
         if self.sceneDragging and not event.buttons() == (QtCore.Qt.LeftButton | QtCore.Qt.RightButton) and not event.buttons() & QtCore.Qt.MidButton:
             self.sceneDragging = False
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
-        else:   
+        else:
             QtGui.QGraphicsView.mouseReleaseEvent(self, event)
 
     def mouseDoubleClickEvent(self, event):
@@ -1040,7 +1040,7 @@ class Scene(QtGui.QGraphicsView):
             if so it sets the value of the scene scroll bars based on the change between
             the previous and current mouse position
         """
-        
+
         if self.sceneDragging:
             mappedGlobalPos = self.mapFromGlobal(event.globalPos())
             hBar = self.horizontalScrollBar()

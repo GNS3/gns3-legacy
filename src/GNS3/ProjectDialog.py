@@ -36,7 +36,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         self.connect(self.NewProject_browser, QtCore.SIGNAL('clicked()'), self.__setProjectDir)
         self.connect(self.pushButtonOpenProject, QtCore.SIGNAL('clicked()'), self.__openProject)
         self.connect(self.ProjectName, QtCore.SIGNAL('textEdited(const QString &)'), self.__projectNameEdited)
-                   
+
         if newProject == False:
 
             if projectFile:
@@ -71,7 +71,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
     def __projectNameEdited(self, text):
         """ Propose a project directory when changing the project name
         """
-        
+
         self.ProjectPath.clear()
         if text and globals.GApp.systconf['general'].project_path:
             self.ProjectPath.setText(os.path.normpath(globals.GApp.systconf['general'].project_path) + os.sep + text)
@@ -109,15 +109,15 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         else:
             projectConfigs = None
         return (projectFile, projectWorkdir, projectConfigs)
-        
+
     def accept(self):
 
         settings = self.saveProjectSettings()
         globals.GApp.mainWindow.createProject(settings)
         QtGui.QDialog.accept(self)
-        
+
     def __openProject(self):
-    
+
         globals.GApp.mainWindow.openFile()
         QtGui.QDialog.accept(self)
 

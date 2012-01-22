@@ -245,7 +245,7 @@ class GNS_Conf(object):
         for id in childGroups:
 
             cgroup = basegroup + '/' + id
-            
+
             conf = qemuImageConf()
             conf.id = int(id)
             conf.name = c.get(cgroup + "/name", unicode(''))
@@ -256,7 +256,7 @@ class GNS_Conf(object):
             conf.options = str(c.get(cgroup + "/options", ''))
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
             globals.GApp.qemuimages[conf.name] = conf
-            
+
             if conf.id >= globals.GApp.qemuimages_ids:
                 globals.GApp.qemuimages_ids = conf.id + 1
 
@@ -274,7 +274,7 @@ class GNS_Conf(object):
         for id in childGroups:
 
             cgroup = basegroup + '/' + id
-            
+
             conf = vboxImageConf()
             conf.id = int(id)
             conf.name = c.get(cgroup + "/name", unicode(''))
@@ -284,7 +284,7 @@ class GNS_Conf(object):
             conf.guestcontrol_user = str(c.get(cgroup + "/guestcontrol_user", ''))
             conf.guestcontrol_password = str(c.get(cgroup + "/guestcontrol_password", ''))
             globals.GApp.vboximages[conf.name] = conf
-            
+
             if conf.id >= globals.GApp.vboximages_ids:
                 globals.GApp.vboximages_ids = conf.id + 1
 
@@ -302,7 +302,7 @@ class GNS_Conf(object):
         for id in childGroups:
 
             cgroup = basegroup + '/' + id
-            
+
             conf = pixImageConf()
             conf.id = int(id)
             conf.name = c.get(cgroup + "/name", unicode(''))
@@ -314,10 +314,10 @@ class GNS_Conf(object):
             conf.key = str(c.get(cgroup + "/key", ''))
             conf.serial = str(c.get(cgroup + "/serial", ''))
             globals.GApp.piximages[conf.name] = conf
-            
+
             if conf.id >= globals.GApp.piximages_ids:
                 globals.GApp.piximages_ids = conf.id + 1
-                
+
     def JUNOS_images(self):
         """ Load JunOS images settings from config file
         """
@@ -332,7 +332,7 @@ class GNS_Conf(object):
         for id in childGroups:
 
             cgroup = basegroup + '/' + id
-            
+
             conf = junosImageConf()
             conf.id = int(id)
             conf.name = c.get(cgroup + "/name", unicode(''))
@@ -346,7 +346,7 @@ class GNS_Conf(object):
 
             if conf.id >= globals.GApp.junosimages_ids:
                 globals.GApp.junosimages_ids = conf.id + 1
-                
+
     def ASA_images(self):
         """ Load ASA images settings from config file
         """
@@ -361,7 +361,7 @@ class GNS_Conf(object):
         for id in childGroups:
 
             cgroup = basegroup + '/' + id
-            
+
             conf = asaImageConf()
             conf.id = int(id)
             conf.name = c.get(cgroup + "/name", unicode(''))
@@ -377,7 +377,7 @@ class GNS_Conf(object):
 
             if conf.id >= globals.GApp.asaimages_ids:
                 globals.GApp.asaimages_ids = conf.id + 1
-                
+
     def IDS_images(self):
         """ Load IDS images settings from config file
         """
@@ -392,7 +392,7 @@ class GNS_Conf(object):
         for id in childGroups:
 
             cgroup = basegroup + '/' + id
-            
+
             conf = idsImageConf()
             conf.id = int(id)
             conf.image1 = c.get(cgroup + "/image1", unicode(''))
@@ -442,16 +442,16 @@ class GNS_Conf(object):
 
             cgroup = basegroup + '/' + id
             path = c.get(cgroup + "/path", unicode(''))
-            
+
             library_name = os.path.basename(unicode(path))
             if not QtCore.QResource.registerResource(path, ":/" + library_name):
                 print unicode(translate("Config", "Can't open library: %s")) % path
                 continue
-    
+
             conf = libraryConf()
             conf.path = path
             globals.GApp.libraries[library_name] = conf
-            
+
     def Symbols(self):
         """ Load symbols settings from config file
         """
@@ -481,7 +481,7 @@ class GNS_Conf(object):
             SYMBOLS.append(
                                 {'name': name, 'object': object,
                                 'normal_svg_file': normal_svg_file,
-                                'select_svg_file': selected_svg_file, 
+                                'select_svg_file': selected_svg_file,
                                 'translated': False})
 
     # Static Methods stuffs

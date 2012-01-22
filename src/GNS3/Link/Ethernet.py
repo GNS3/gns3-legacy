@@ -29,7 +29,7 @@ class Ethernet(AbstractEdge):
     """ Ethernet class
         Draw an Ethernet link
     """
- 
+
     def __init__(self, sourceNode, sourceIf, destNode, destIf, Fake = False, Multi = 0):
         """ sourceNode: MNode instance
             destNode: MNode instance
@@ -104,12 +104,12 @@ class Ethernet(AbstractEdge):
 
             painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
             point1 = QtCore.QPointF(self.src + self.edgeOffset) + QtCore.QPointF((self.dx * self.srcCollisionOffset) / self.length, (self.dy * self.srcCollisionOffset) / self.length)
-            
+
             # avoid any collision of the status point with the source node
             while self.source.contains(self.mapFromScene(self.mapToItem(self.source, point1))):
                 self.srcCollisionOffset += 10
                 point1 = QtCore.QPointF(self.src + self.edgeOffset) + QtCore.QPointF((self.dx * self.srcCollisionOffset) / self.length, (self.dy * self.srcCollisionOffset) / self.length)
-            
+
             # check with we can paint the status point more closely of the source node
             if not self.source.contains(self.mapFromScene(self.mapToItem(self.source, point1))):
                 check_point = QtCore.QPointF(self.src + self.edgeOffset) + QtCore.QPointF((self.dx * (self.srcCollisionOffset - 20)) / self.length, (self.dy * (self.srcCollisionOffset - 20)) / self.length)
@@ -157,7 +157,7 @@ class Ethernet(AbstractEdge):
 
             painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
             point2 = QtCore.QPointF(self.dst -  self.edgeOffset) - QtCore.QPointF((self.dx * self.dstCollisionOffset) / self.length, (self.dy * self.dstCollisionOffset) / self.length)
-            
+
             # avoid any collision of the status point with the destination node
             while self.dest.contains(self.mapFromScene(self.mapToItem(self.dest, point2))):
                 self.dstCollisionOffset += 10

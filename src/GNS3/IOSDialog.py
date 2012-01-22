@@ -70,7 +70,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         self.connect(self.treeWidgetIOSimages,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotIOSSelectionChanged)
         self.connect(self.treeWidgetHypervisor, QtCore.SIGNAL('itemSelectionChanged()'),  self.slotHypervisorSelectionChanged)
         self.connect(self.labelCheckRAM,  QtCore.SIGNAL('linkActivated(const QString &)'), self.slotCheckRAMrequirement)
-        
+
         # insert known platforms
         self.comboBoxPlatform.insertItems(0, PLATFORMS.keys())
 
@@ -175,7 +175,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             if not testOpenFile(path):
                 QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), unicode(translate("IOSDialog", "Can't open file: %s")) % path)
                 return
-            
+
             if sys.platform.startswith('win'):
                 try:
                     path.encode('ascii')
@@ -206,13 +206,13 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 pass
 
             self.lineEditIOSImage.setText(path)
-            
+
             # basename doesn't work on Unix with Windows paths, so let's use this little trick
             image = path
             if not sys.platform.startswith('win') and image[1] == ":":
                 image = image[2:]
                 image = image.replace("\\", "/")
-                
+
             # try to guess the platform
             platform = self._getIOSplatform(os.path.basename(image))
             if platform == '2600':
@@ -253,13 +253,13 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             if not testOpenFile(path):
                 QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), unicode(translate("IOSDialog", "Can't open file: %s")) % path)
                 return
-            
+
             if sys.platform.startswith('win'):
                 try:
                     path.encode('ascii')
                 except:
                     QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn't support unicode on Windows!"))
-            
+
             self.lineEditBaseConfig.clear()
             self.lineEditBaseConfig.setText(path)
 
@@ -268,7 +268,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """
 
         imagename = unicode(self.lineEditIOSImage.text())
-        
+
         if not imagename:
             return
 
@@ -276,12 +276,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         if idlepc and not re.search(r"""^0x[0-9a-fA-F]{8}$""", idlepc):
             QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "IDLE PC not valid (format required: 0xhhhhhhhh)"))
             return
-        
+
         if not idlepc:
             self.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Warning: IDLE PC will have to be configured! <a href='http://www.gns3.net/gns3-simplest-topology' >Find out why and how</a>")  + '</font>')
         else:
             self.label_IdlePCWarning.setText('')
-        
+
         hypervisors = []
         if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Unchecked:
             # external hypervisor, don't use the hypervisor manager
@@ -374,7 +374,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         item = self.treeWidgetIOSimages.currentItem()
         if item != None:
-            self.pushButtonDeleteIOS.setEnabled(True) 
+            self.pushButtonDeleteIOS.setEnabled(True)
             imagekey = unicode(item.text(0))
             self.selectionChanged = False
             if globals.GApp.iosimages.has_key(imagekey):
@@ -400,7 +400,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                         if items:
                             items[0].setSelected(True)
                 else:
-                    self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked) 
+                    self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
         else:
             self.pushButtonDeleteIOS.setEnabled(False)
 
@@ -439,7 +439,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         if path:
             self.lineEditWorkingDir.clear()
             self.lineEditWorkingDir.setText(os.path.normpath(path))
-            
+
             if sys.platform.startswith('win'):
                 try:
                     path.encode('ascii')

@@ -383,7 +383,7 @@ class Dynamips(object):
         return self.__baseconsole
 
     baseconsole = property(__getbaseconsole, __setbaseconsole, doc='The starting console port')
-    
+
     def __setbaseaux(self, baseaux):
         """ Set the base auxiliary TCP port for this server
             directory: (int) the starting console port number
@@ -532,7 +532,7 @@ class Dynamips(object):
 
 class NIO(object):
     """abstract NIO class"""
-    
+
     def get_stats(self, dynamips, nio_name):
         #print "ADEBUG: dynamips_lib.py: NIO::get_stats(dynamips = %s, nio_name = %s)" % (str(dynamips), str(nio_name))
         # dynamips < 0.2.8 RC3 doesn't support NIO stats
@@ -636,7 +636,7 @@ class NIO_udp(NIO):
             elif rem_int_name == 'p':
                 rem_int_full_name = 'POS'
             elif rem_int_name == 'g':
-                rem_int_full_name = 'GigabitEthernet'    
+                rem_int_full_name = 'GigabitEthernet'
             if remote_device.model_string in ['1710', '1720', '1721', '1750']:
                 return ' is connected to router ' + remote_device.name + " " + rem_int_full_name + str(rem_dynagen_port) + stats
             # remote_port >= 16 means it's a wic module
@@ -1062,15 +1062,15 @@ class BaseAdapter(object):
                 0,
                 adapter,
             ))
-            
+
         # generate an OIR event if the router is running
         if router.state == 'running':
-            
+
             # only c7200 and since dynamips 0.2.8-RC3, c3600 and c3745 with NM-4T are supported
             if router.model == 'c7200' or ((router.model == 'c3600' and router.chassis == '3660') \
                 or (router.model == 'c3745' and adapter == 'NM-4T') \
                 and router.dynamips.intversion >= 208.3):
-                            
+
                 # if version of dynamips is > 0.2.8-RC2, then use 'vm slot_oir_start' command
                 if router.dynamips.intversion > 208.2:
                     send(router.dynamips, '%s %s %i 0' % ('vm slot_oir_start', router.name, slot))
@@ -1458,10 +1458,10 @@ class PA_C7200_IO_GE_E(PA):
         return False
 
 class PA_C7200_JC_PA(PA):
-    
+
     """ A C7200-JC-PA Port Adapter Jacket Card adapter
     """
-    
+
     def __init__(self, router, slot):
         ports = 0
         intlist = ()
@@ -1475,7 +1475,7 @@ class PA_C7200_JC_PA(PA):
             intlist,
         )
         self.interface_name = ''
-    
+
     def can_be_removed(self):
         return False
 
@@ -2129,8 +2129,8 @@ class Router(Dynamips_device):
             'exec_area': None,
             'mmap': True,
             'ghost_status': 0,
-            'ghost_file': None, 
-            'jitsharing_group': None, 
+            'ghost_file': None,
+            'jitsharing_group': None,
             'sparsemem': 'False',
             'idlemax': 1500,
             'idlesleep': 30,
@@ -2150,7 +2150,7 @@ class Router(Dynamips_device):
                     break
                 else:
                     console += 1
-                    
+
             if self.__d.baseaux:
                 aux = self.__d.baseaux + self.__instance
                 while True:
@@ -2286,7 +2286,7 @@ class Router(Dynamips_device):
                             self.slot[slot].interfaces_mips2dyn[dynaport] = (interface, currentport_s)
                             currentport_s += 1
                         dynaport += 1
-                        
+
     def uninstallwic(self, slot):
         """ Installs a WIC from a WIC slot
         """
@@ -2355,7 +2355,7 @@ class Router(Dynamips_device):
             raise DynamipsWarning, 'router %s is stopped and cannot be suspended' % self.name
 
         r = send(self.__d, 'vm suspend %s' % self.__name)
-        #print "ADEBUG: dynamips_lib.py: suspend(), r = ", r        
+        #print "ADEBUG: dynamips_lib.py: suspend(), r = ", r
         self.__state = 'suspended'
         return r
 
@@ -2420,15 +2420,15 @@ class Router(Dynamips_device):
             for i in range(0, len(self.slot[0].wics)):
                 if self.slot[0].wics[i] != None:
                     interfaces = WICS[self.slot[0].wics[i]]  # A list of the interface types provided by this WIC
-                    
+
                     int_count = len(interfaces)
                     if int_count == 1:
                         int_string = ' interface\n'
                     else:
                         int_string = ' interfaces\n'
-                        
+
                     slot_info = slot_info + "   " + self.slot[0].wics[i] + " installed with " + str(int_count) + int_string
-                    
+
                     dynaport = 16 * (i + 1)
                     for interface in interfaces:
                         nio = self.slot[0].nio(dynaport)
@@ -2442,7 +2442,7 @@ class Router(Dynamips_device):
                             slot_info += nio.info() + '\n'
                         else:
                             #no NIO on this port, so it must be empty
-                            slot_info = slot_info + ' is empty\n'      
+                            slot_info = slot_info + ' is empty\n'
                         dynaport += 1
         #finally we ran over all slot and produced info about every one of them
         return slot_info
@@ -2710,7 +2710,7 @@ class Router(Dynamips_device):
                 send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
                 self.__npe = npe
                 return
-            
+
             if npe in ['npe-g1', 'npe-g2'] and type(self.slot[0]) != PA_C7200_IO_GE_E:
                 #lets change the IO card to the GE one
                 #TODO handle all the connections on the card
@@ -2718,7 +2718,7 @@ class Router(Dynamips_device):
                 self.slot[0] = None
                 send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
                 self.slot[0] = PA_C7200_IO_GE_E(self, 0)
-                
+
             # Bad idea to override the IO controller just based on the NPE in this case
             elif npe in [
                 'npe-100',
@@ -2734,11 +2734,11 @@ class Router(Dynamips_device):
                 self.slot[0] = None
                 send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
                 self.slot[0] = PA_C7200_IO_2FE(self, 0)
-            
+
             else:
                 send(self.__d, '%s set_npe %s %s' % (self.__model, self.__name, npe))
                 self.__npe = npe
-            
+
         else:
             raise DynamipsError, 'Cannot change NPE on running router'
 
@@ -3611,7 +3611,7 @@ class Emulated_switch(Dynamips_device):
         """
 
         return False
-            
+
     def connected(self, interface, port):
         """ Returns a boolean indicating if a port on this adapter is connected or not
             interface: The interface type for the local device (e.g. 'f', 's', 'an' for "FastEthernet", "Serial", "Analysis-Module", and so forth")
@@ -3657,7 +3657,7 @@ class Emulated_switch(Dynamips_device):
                 direction: 'in' for rx, 'out' for tx, or 'both'
                 options: a list of options to pass to this filter
             '''
-    
+
             filters = ['freq_drop', 'capture', 'none']  # a list of the known filters
             filterName = filterName.lower()
             if filterName not in filters:
@@ -3665,13 +3665,13 @@ class Emulated_switch(Dynamips_device):
             direction = direction.lower()
             if direction not in ['in', 'out', 'both']:
                 raise DynamipsError, 'invalid filter direction'
-    
+
             if options == None:
                 if filterName.lower() == 'capture':
                     raise DynamipsError, 'Error: No capture file specified'
                 else:
                     options = ''
-    
+
             # Determine the nio
             try:
                 # Determine the real port
@@ -3681,7 +3681,7 @@ class Emulated_switch(Dynamips_device):
                 raise DynamipsError, 'Invalid interface'
             except KeyError:
                 raise DynamipsError, 'Invalid interface'
-    
+
             if direction == 'in':
                 dirint = 0
             elif direction == 'out':
@@ -3689,9 +3689,9 @@ class Emulated_switch(Dynamips_device):
             else:
                 # Both
                 dirint = 2
-    
+
             d = self._d
-    
+
             # First bind the filter
             # e.g. nio bind_filter nio_udp1 0 freq_drop
             if filterName == 'none':
@@ -3700,13 +3700,13 @@ class Emulated_switch(Dynamips_device):
                 return
             else:
                 send(d, 'nio bind_filter %s %s %s' % (nioName, dirint, filterName))
-    
+
             # Next, setup the filter
             # e.g nio setup_filter nio_udp1 0 50
             send(d, 'nio setup_filter %s %s %s' % (nioName, dirint, options))
 
 
-########################################################################################	    
+########################################################################################
 
 
 class Bridge(Emulated_switch):
@@ -3786,7 +3786,7 @@ class FRSW(Emulated_switch):
 
         self._nios = {}  # A dict of NETIO objects indexed by switch port
         self._pvcs = {}  # A dict of PVCs used in show run output of confDYnagen
-        self.slot = {}  
+        self.slot = {}
         self.slot[0] = self
         if create:
             send(self._d, 'frsw create ' + self._name)
@@ -3859,8 +3859,8 @@ class FRSW(Emulated_switch):
                 raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port2)
         except DynamipsWarning, e:
             raise DynamipsError, e
-       
-        
+
+
         send(self._d, 'frsw create_vc %s %s %i %s %i' % (
             self._name,
             nio1,
@@ -3927,7 +3927,7 @@ class FRSW(Emulated_switch):
                 raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port2)
         except DynamipsWarning, e:
             raise DynamipsError, e
-        
+
         send(self._d, 'frsw delete_vc %s %s %i %s %i' % (self._name, nio1, dlci1, nio2, dlci2))
 
         #untrack the connections
@@ -3986,7 +3986,7 @@ class FRSW(Emulated_switch):
         for (x,y) in self.pvcs.keys():
             u[x] = 1
         ports = u.keys()
-        for port1 in ports:    
+        for port1 in ports:
             nio = self.nio(port1)
             subconfig[f][str(port1)] = nio.config_info()
 
@@ -4012,7 +4012,7 @@ class ATMBR(Emulated_switch):
 
         self._nios = {}  # A dict of NETIO objects indexed by switch port
         self._mapping = {}  # A dict of PVCs used in show run output of confDYnagen
-        self.slot = {} 
+        self.slot = {}
         self.slot[0] = self
         if create:
             send(self._d, 'atm_bridge create ' + self._name)
@@ -4127,7 +4127,7 @@ class ATMBR(Emulated_switch):
                 raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port2)
         except DynamipsWarning, e:
             raise DynamipsError, e
-        
+
         send(self._d, 'atm_bridge unconfigure %s' % self._name)
 
         del self._mapping[port1]
@@ -4162,7 +4162,7 @@ class ATMBR(Emulated_switch):
                 return self._nios[port]
             except KeyError:
                 return None
-                
+
         if isinstance(nio, NIO):
             # Set the NETIO for this port
             self._nios[port] = nio
@@ -4197,7 +4197,7 @@ class ATMBR(Emulated_switch):
             (port2, vci2, vpi2) = self.mapping[port1]
             nio = self.nio(port1)
             subconfig[f][str(port1)] = str(port2) + ':' + str(vci2) + ':' + str(vpi2) +  ' ' + nio.config_info()
-     
+
 ######################################################################################
 
 class ATMSW(Emulated_switch):
@@ -4220,7 +4220,7 @@ class ATMSW(Emulated_switch):
 
         self._nios = {}  # A dict of NETIO objects indexed by switch port
         self._vpivci_map = {}  #A dict tracking the mapping of (port1, vpi1) -> (port2, vpi2)
-        self.slot = {} 
+        self.slot = {}
         self.slot[0] = self
         if create:
             send(self._d, 'atmsw create ' + self._name)
@@ -4239,7 +4239,7 @@ class ATMSW(Emulated_switch):
 
         uniq_keys.sort()
         map_info = ''
-        for port in uniq_keys:         
+        for port in uniq_keys:
             map_info += '   Port '+str(port) + '\n'
             #add mapping info
             for key in self._vpivci_map.keys():
@@ -4346,7 +4346,7 @@ class ATMSW(Emulated_switch):
                 raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port2)
         except DynamipsWarning, e:
             raise DynamipsError, e
-        
+
         send(self._d, 'atmsw create_vpc %s %s %i %s %i' % (
             self._name,
             nio1,
@@ -4457,7 +4457,7 @@ class ATMSW(Emulated_switch):
                 raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port2)
         except DynamipsWarning, e:
             raise DynamipsError, e
-        
+
         send(self._d, 'atmsw create_vcc %s %s %i %i %s %i %i' % (
             self._name,
             nio1,
@@ -4499,7 +4499,7 @@ class ATMSW(Emulated_switch):
         self.nio(port).delete()
         #delete from frontend
         del self._nios[port]
-        
+
     def nio(self, port, nio=None):
         """ Returns the NETIO object for this port
             or if nio is set, sets the NETIO for this port
@@ -4539,10 +4539,10 @@ class ATMSW(Emulated_switch):
 
     def config(self, subconfig):
         """parse the all data structures associated with this atmsw and return the running_config properly"""
-        
+
         a = 'ATMSW ' + self.name
         subconfig[a] = {}
-        
+
         #add mapping information
         keys = self.vpivci_map.keys()
         keys.sort()
@@ -4558,7 +4558,7 @@ class ATMSW(Emulated_switch):
                 (port1, vpi1, vci1) = key
                 (port2, vpi2, vci2) = self.vpivci_map[key]
                 subconfig[a][str(port1) + ':' + str(vpi1) + ':' + str(vci1)] = str(port2) + ':' + str(vpi2) + ':' + str(vci2)
-        
+
         #add connection information
         #make the keys unique
         u = {}
@@ -4594,7 +4594,7 @@ class ETHSW(Emulated_switch):
 
         self.nios = {}  # A dict of NETIO objects indexed by switch port
         self.mapping = {} # A dict of port -> (porttype, vlan) mapping the state of ports
-        self.slot = {} 
+        self.slot = {}
         self.slot[0] = self
         if create:
             send(self._d, 'ethsw create ' + self._name)
@@ -4631,7 +4631,7 @@ class ETHSW(Emulated_switch):
             raise DynamipsError, e
         except AttributeError, e:
             raise DynamipsError, 'the switchport does not exist'
-        
+
         #not implemented yet in dynamips
         #send(self._d, 'ethsw unset_port ' + self._name + ' ' + nio + ' ' + str(vlan))
         del self.mapping[port]
@@ -4653,7 +4653,7 @@ class ETHSW(Emulated_switch):
             raise DynamipsError, e
         except AttributeError, e:
             raise DynamipsError, 'the switchport does not exist'
-        
+
         porttype = porttype.lower()
         if porttype != 'access' and porttype != 'dot1q' and porttype != 'qinq':
             raise DynamipsError, 'invalid porttype'
@@ -4692,7 +4692,7 @@ class ETHSW(Emulated_switch):
         self.nios[localport].delete()
         del self.nios[localport]
 
-        
+
     def nio(
         self,
         port,

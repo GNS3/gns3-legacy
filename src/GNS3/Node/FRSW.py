@@ -40,13 +40,13 @@ class FRSW(AbstractNode):
 
         # assign a new hostname
         global frsw_id
-        
+
         # check if hostname has already been assigned
         for node in globals.GApp.topology.nodes.itervalues():
             if 'FR' + str(frsw_id) == node.hostname:
                 frsw_id = frsw_id + 1
                 break
-        
+
         self.hostname = 'FR' + str(frsw_id)
         frsw_id = frsw_id + 1
         AbstractNode.setCustomToolTip(self)
@@ -86,7 +86,7 @@ class FRSW(AbstractNode):
         self.hostname = hostname
         self.f = 'FRSW ' + self.hostname
         self.updateToolTips()
-        
+
     def setCustomToolTip(self):
         """ Set a custom tool tip
         """
@@ -119,12 +119,12 @@ class FRSW(AbstractNode):
     def duplicate_config(self):
         """ Returns a copy of the configuration
         """
-        
+
         config = self.config.copy()
         config['ports'] = list(self.config['ports'])
         config['mapping'] = self.config['mapping'].copy()
         return (config)
-        
+
     def set_config(self, config):
         """ Set a configuration in Dynamips
             config: dict
@@ -194,7 +194,7 @@ class FRSW(AbstractNode):
     def mapping(self):
         """ Configure Frame-relay DLCI mapping
         """
-        
+
         connected_interfaces = map(int, self.getConnectedInterfaceList())
         for (source,  destination) in self.config['mapping'].iteritems():
             (srcport, srcdlci) = source.split(':')
@@ -208,7 +208,7 @@ class FRSW(AbstractNode):
     def startNode(self):
         """ Start the node
         """
-        
+
         self.mapping()
         self.startupInterfaces()
         self.state = 'running'

@@ -31,7 +31,7 @@ SLOT_RE = re.compile('^slot[0-7]', re.IGNORECASE)
 
 # True = Dynagen text-mode, False = GNS3 GUI-mode.
 if __name__ == 'confConsole':
-    PureDynagen = True 
+    PureDynagen = True
 else:
     PureDynagen = False
 
@@ -126,16 +126,16 @@ class AbstractConsole(cmd.Cmd):
         """Do nothing on empty input line"""
 
         pass
-    
+
     if PureDynagen:
         def do_py(self, line):
             """py <python statement(s)>
 \tExecute python statements"""
-    
+
             if line == '?':
                 print self.do_py.__doc__
                 return
-    
+
             try:
                 exec line in self._locals, self._globals
             except Exception, e:
@@ -156,7 +156,7 @@ class AbstractConsole(cmd.Cmd):
     if PureDynagen:
         def do_exit(self, args):
             """Exits from the console"""
-    
+
             return -1
 
     def do_end(self, args):
@@ -1054,7 +1054,7 @@ no <option> = <option_value>
                 error(e)
         else:
             error('the only possible options are True or False, not: ' + args)
-            
+
     def do_slot(self, args):
         if '?' in args or args.strip() == '':
             print self.do_slot.__doc__
@@ -1393,7 +1393,7 @@ class confATMBRConsole(AbstractConfSWConsole):
             if len(right_side) == 3:
                 try:
                     port1 = int(left_side)
-                    port2 = int(right_side[0])                  
+                    port2 = int(right_side[0])
                     vpi2 = int(right_side[1])
                     #1 = 2:0:201 R1 a1/0
                     try:

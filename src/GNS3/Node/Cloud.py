@@ -56,9 +56,9 @@ class Cloud(AbstractNode):
         self.setCustomToolTip()
 
     def __del__(self):
-    
+
         pass
-        
+
     def create_config(self):
         """ Creates the configuration of this cloud
         """
@@ -139,7 +139,7 @@ class Cloud(AbstractNode):
         """
 
         self.create_config()
-        
+
         # Add all network interface when using Cloud with computer symbol
         if not self.default_symbol:
             if sys.platform.startswith('win'):
@@ -151,7 +151,7 @@ class Cloud(AbstractNode):
                     if not nio in self.config['nios']:
                         self.config['nios'].append(nio)
                         name_match = re.search(r"""^\ :\ (.*)\ on local host:.*""", match.group(2))
-                        self.config['rpcap_mapping'][nio] = name_match.group(1) 
+                        self.config['rpcap_mapping'][nio] = name_match.group(1)
             else:
                 interfaces = map(lambda interface: interface.name(), QtNetwork.QNetworkInterface.allInterfaces())
                 for interface in interfaces:

@@ -61,7 +61,7 @@ class HypervisorManager(object):
         """
 
         proc = QtCore.QProcess(globals.GApp.mainWindow)
-        
+
         if self.hypervisor_wd:
             # set the working directory
             proc.setWorkingDirectory(self.hypervisor_wd)
@@ -74,10 +74,10 @@ class HypervisorManager(object):
             try:
                 s.connect(('localhost', port))
                 s.close()
-    
+
                 reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"), unicode(translate("HypervisorManager", "Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?")) % port,
                                                    QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-                if reply == QtGui.QMessageBox.Yes:       
+                if reply == QtGui.QMessageBox.Yes:
                     killAll(os.path.basename(self.hypervisor_path))
                     time.sleep(1)
                 else:
@@ -88,13 +88,13 @@ class HypervisorManager(object):
                     globals.hypervisor_baseport += 100
                     globals.GApp.dynagen.globaludp += 100
                     port = globals.hypervisor_baseport
-    
+
                 s.connect(('localhost', port))
                 s.close()
-        
+
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"),
                                            unicode(translate("HypervisorManager", "A program is still running on port %i, you will have to stop it manually or change port settings")) % port)
-    
+
                 globals.hypervisor_baseport += 1
                 return None
             except:
@@ -201,12 +201,12 @@ class HypervisorManager(object):
         # use project workdir in priority
         if globals.GApp.workspace.projectWorkdir:
             if not os.access(globals.GApp.workspace.projectWorkdir, os.F_OK | os.W_OK):
-                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'HypervisorManager', 
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'HypervisorManager',
                                           unicode(translate("HypervisorManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.workspace.projectWorkdir)
             globals.GApp.dynagen.defaults_config['workingdir'] = globals.GApp.workspace.projectWorkdir
         elif self.hypervisor_wd:
             if not os.access(self.hypervisor_wd, os.F_OK | os.W_OK):
-                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'HypervisorManager', 
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'HypervisorManager',
                                           unicode(translate("HypervisorManager", "Working directory %s seems to not exist or be writable, please check")) % self.hypervisor_wd)
             globals.GApp.dynagen.defaults_config['workingdir'] = self.hypervisor_wd
         try:
@@ -249,7 +249,7 @@ class HypervisorManager(object):
                 if hypervisor['load'] <= 0:
                     hypervisor['load'] = 0
                 break
-            
+
     def changeHypervisorLoad(self, node, port, old_default_ram):
         """ Change the hypervisor RAM load for a given node
         """

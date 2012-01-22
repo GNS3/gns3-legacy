@@ -47,7 +47,7 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
 
         config_path = unicode(self.router.cnfg)
         self.lineEditStartupConfig.setText(config_path)
- 
+
         if config_path and config_path != 'None':
             self.loadConfig(config_path)
 
@@ -76,19 +76,19 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
         path = fileBrowser('Startup-config', directory=directory, parent=self).getFile()
         if path != None and path[0] != '':
             self.lineEditStartupConfig.setText(os.path.normpath(path[0]))
-            
+
     def slotSelectLoadStartupConfig(self):
         """ Load/Refresh Startup-config (from a file)
         """
-        
+
         config_path = unicode(self.lineEditStartupConfig.text())
         if config_path and config_path != 'None':
             self.loadConfig(config_path)
-            
+
     def slotSelectStartupConfigFromNvram(self):
         """ Load/Refresh Startup-config (from nvram)
         """
-        
+
         try:
             config = base64.decodestring(self.router.config_b64)
             if config:
@@ -101,7 +101,7 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
             QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "Dynamips warning")),  unicode(msg))
         except:
             print "Unknown error ..."
-                
+
     def on_buttonBox_clicked(self, button):
         """ Private slot called by a button of the button box clicked.
             button: button that was clicked (QAbstractButton)
@@ -124,7 +124,7 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
                         if command.getStatus() != None:
                             self.topology.undoStack.undo()
                             QtGui.QMessageBox.critical(self, translate("StartupConfigDialog", "Startup-config"), unicode(command.getStatus()))
-                            return                            
+                            return
                     except IOError, e:
                         QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "IO Error")),  unicode(e))
                         return
@@ -141,9 +141,9 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
                 self.topology.undoStack.undo()
                 QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "Dynamips error")),  unicode(command.getStatus()))
                 return
-            
+
             QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("StartupConfigDialog", "Startup-config"),
                                             unicode(translate("StartupConfigDialog", "The startup-config has been saved, now you can synchronize it in IOS\ni.e. #copy start run")))
-            
+
             if button == self.buttonBox.button(QtGui.QDialogButtonBox.Ok):
-                QtGui.QDialog.accept(self)        
+                QtGui.QDialog.accept(self)

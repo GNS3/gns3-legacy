@@ -23,7 +23,7 @@ import re
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Utils import translate, debug
-import GNS3.UndoFramework as undo 
+import GNS3.UndoFramework as undo
 
 class AbstractNode(QtSvg.QGraphicsSvgItem):
     """ AbstractNode class
@@ -44,7 +44,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         self.dynagen = globals.GApp.dynagen
         self.default_symbol = True
-        
+
         # status used in the topology summary
         self.state = 'stopped'
 
@@ -63,28 +63,28 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.setFlags(flags)
         self.setAcceptsHoverEvents(True)
         self.setSharedRenderer(self.__render_normal)
-        
+
         # x&y position for hostname
         self.hostname_xpos = None
         self.hostname_ypos = None
-        
+
         self.default_hostname_xpos = None
         self.default_hostname_ypos = None
-        
+
         # Used by the undo process to prevent to ask again to choose an image
         self.image_reference = None
-        
+
         self.setZValue(1)
 
     def setRenderers(self, render_normal, render_select):
         """ renderer_normal: QtSvg.QSvgRenderer
             renderer_select: QtSvg.QSvgRenderer
         """
-        
+
         self.__render_normal = render_normal
         self.__render_select = render_select
-        self.setSharedRenderer(self.__render_normal)      
-        
+        self.setSharedRenderer(self.__render_normal)
+
     def getState(self):
         """ Returns the current node state
         """
@@ -94,12 +94,12 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
     def updateToolTips(self):
         """ Update node and child links tooltip
         """
-            
+
         self.setCustomToolTip()
         for edge in self.__edgeList:
             edge.setCustomToolTip()
         globals.GApp.mainWindow.treeWidget_TopologySummary.refresh()
-        
+
     def setUndoConfig(self, config, prevConfig):
         """ Set a new config to be put on the undo stack
         """
@@ -117,7 +117,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         if ok and text:
             text = unicode(text)
             if not re.search(r"""^[\w,.]*$""", text, re.UNICODE):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hostname"), 
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hostname"),
                                            translate("AbstractNode", "Please use only alphanumeric characters"))
                 self.changeHostname()
                 return
@@ -129,16 +129,16 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
             command = undo.NewHostname(self, text)
             globals.GApp.topology.undoStack.push(command)
-            
+
     def changeHypervisor(self):
         """ Called to change an hypervisor
         """
 
         if len(self.__edgeList) > 0:
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractNode", "Hypervisor"), 
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractNode", "Hypervisor"),
                                       translate("AbstractNode", "The device must have no connection to other devices in order to change its hypervisor"))
             return
-        
+
         if self.d:
             currentHypervisor = self.d
         else:
@@ -146,11 +146,11 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         (text, ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("AbstractNode", "Set hypervisor"),
                                     translate("AbstractNode", "New hypervisor:"), QtGui.QLineEdit.Normal,
                                     currentHypervisor)
-        
+
         if ok and text:
             hypervisor = unicode(text)
             if not re.search(r"""^.*:[0-9]*$""", text, re.UNICODE):
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hypervisor"), 
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hypervisor"),
                                            translate("AbstractNode", "Invalid format for hypervisor (hostname:port is required)"))
                 return
             (host, port) = hypervisor.rsplit(':',  1)
@@ -166,7 +166,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                     self.dynagen.defaults_config['workingdir'] = globals.GApp.workspace.projectWorkdir
                 elif globals.GApp.systconf['dynamips'].workdir:
                     self.dynagen.defaults_config['workingdir'] = globals.GApp.systconf['dynamips'].workdir
-                
+
                 dynamips_hypervisor = self.dynagen.create_dynamips_hypervisor(host, int(port))
                 if not dynamips_hypervisor:
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hypervisor"),
@@ -200,7 +200,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             if command.getStatus() != None:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Console port"), unicode(command.getStatus()))
                 globals.GApp.topology.undoStack.undo()
-                
+
     def changeAUXPort(self):
         """ Called to change the aux port
         """
@@ -230,15 +230,15 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             _local_option.state = QtGui.QStyle.State_None
 
         QtSvg.QGraphicsSvgItem.paint(self, painter, _local_option, widget)
-        
+
         # Don't draw if not activated
         if globals.GApp.workspace.flg_showLayerPos == False:
             return
-        
+
         # Show layer level of this node
         brect = self.boundingRect()
         center = self.mapFromItem(self, brect.width() / 2.0, brect.height() / 2.0)
-        
+
         painter.setBrush(QtCore.Qt.red)
         painter.setPen(QtCore.Qt.red)
         painter.drawRect((brect.width() / 2.0) - 10, (brect.height() / 2.0) - 10, 20,20)

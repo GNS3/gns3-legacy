@@ -3,7 +3,7 @@
 #
 #       OpenAlea.Visualea: OpenAlea graphical user interface
 #
-#       Copyright 2006 INRIA - CIRAD - INRA  
+#       Copyright 2006 INRIA - CIRAD - INRA
 #
 #       File author(s): Samuel Dufour-Kowalski <samuel.dufour@sophia.inria.fr>
 #                       Christophe Pradal <christophe.prada@cirad.fr>
@@ -11,7 +11,7 @@
 #       Distributed under the CeCILL v2 License.
 #       See accompanying file LICENSE.txt or copy at
 #           http://www.cecill.info/licences/Licence_CeCILL_V2-en.html
-# 
+#
 #       OpenAlea WebSite : http://openalea.gforge.inria.fr
 #
 
@@ -48,7 +48,7 @@ class MultipleRedirection:
 
         for f in self.files:
             f.write(str)
-            
+
 
 class PyCutExt(QTextEdit):
 
@@ -60,14 +60,14 @@ class PyCutExt(QTextEdit):
     problem by interfacing the Python interpreter to a PyQt widget.
 
     """
-    
+
     def __init__(self, interpreter, message="", log='', parent=None):
         """Constructor.
         @param interpreter : InteractiveInterpreter in which
         the code will be executed
 
         @param message : welcome message string
-        
+
         @param 'log' : specifies the file in which the
         interpreter session is to be logged.
 
@@ -90,18 +90,18 @@ class PyCutExt(QTextEdit):
         else:
             self.eofKey = None
 
-        # capture all interactive input/output 
+        # capture all interactive input/output
         sys.stdout   = self
         sys.stderr   = MultipleRedirection((sys.stderr, self))
         sys.stdin    = self
 
-        
+
         # last line + last incomplete lines
         self.line    = QtCore.QString()
         self.lines   = []
         # the cursor position in the last line
         self.point   = 0
-        # flag: the interpreter needs more input to run the last lines. 
+        # flag: the interpreter needs more input to run the last lines.
         self.more    = 0
         # flag: readline() is being used for e.g. raw_input() and input()
         self.reading = 0
@@ -149,13 +149,13 @@ class PyCutExt(QTextEdit):
 #                   ' for more information on Python.\n')
         self.write(message+'\n\n')
         self.write(sys.ps1)
-        
+
 
     def get_interpreter(self):
         """ Return the interpreter object """
 
         return self.interpreter
-        
+
 
     def moveCursor(self, operation, mode=QTextCursor.MoveAnchor):
         """
@@ -165,7 +165,7 @@ class PyCutExt(QTextEdit):
         cursor = self.textCursor()
         cursor.movePosition(operation, mode)
         self.setTextCursor(cursor)
-        
+
 
     def flush(self):
         """
@@ -179,7 +179,7 @@ class PyCutExt(QTextEdit):
         Simulate stdin, stdout, and stderr.
         """
         return 1
-    
+
 
     def readline(self):
         """
@@ -194,9 +194,9 @@ class PyCutExt(QTextEdit):
         if self.line.length() == 0:
             return '\n'
         else:
-            return str(self.line) 
+            return str(self.line)
 
-    
+
     def write(self, text):
         """
         Simulate stdin, stdout, and stderr.
@@ -239,7 +239,7 @@ class PyCutExt(QTextEdit):
             self.write('\n')
             self._run()
 
-            
+
     def _run(self):
         """
         Append the last line to the history list, let the interpreter execute
@@ -265,7 +265,7 @@ class PyCutExt(QTextEdit):
             self.lines = []
         self._clearLine()
 
-        
+
     def _clearLine(self):
         """
         Clear input line buffer
@@ -273,7 +273,7 @@ class PyCutExt(QTextEdit):
         self.line.truncate(0)
         self.point = 0
 
-        
+
     def __insertText(self, text):
         """
         Insert text at the current cursor position.
@@ -300,8 +300,8 @@ class PyCutExt(QTextEdit):
                 cursor.movePosition(QTextCursor.PreviousCharacter, QTextCursor.KeepAnchor)
                 cursor.removeSelectedText()
                 self.color_line()
-            
-                self.point -= 1 
+
+                self.point -= 1
                 self.line.remove(self.point, 1)
 
         elif key == Qt.Key_Delete:
@@ -309,37 +309,37 @@ class PyCutExt(QTextEdit):
             cursor.movePosition(QTextCursor.NextCharacter, QTextCursor.KeepAnchor)
             cursor.removeSelectedText()
             self.color_line()
-                        
+
             self.line.remove(self.point, 1)
-            
+
         elif key == Qt.Key_Return or key == Qt.Key_Enter:
             self.write('\n')
             if self.reading:
                 self.reading = 0
             else:
                 self._run()
-                
+
         elif key == Qt.Key_Tab:
             self.onKeyPress_Tab()
 
         elif key == Qt.Key_Left:
-            if self.point : 
+            if self.point :
                 self.moveCursor(QTextCursor.Left)
-                self.point -= 1 
+                self.point -= 1
         elif key == Qt.Key_Right:
             if self.point < self.line.length():
                 self.moveCursor(QTextCursor.Right)
-                self.point += 1 
+                self.point += 1
 
         elif key == Qt.Key_Home:
             cursor = self.textCursor ()
             cursor.setPosition(self.cursor_pos)
             self.setTextCursor (cursor)
-            self.point = 0 
+            self.point = 0
 
         elif key == Qt.Key_End:
             self.moveCursor(QTextCursor.EndOfLine)
-            self.point = self.line.length() 
+            self.point = self.line.length()
 
         elif key == Qt.Key_Up:
 
@@ -348,7 +348,7 @@ class PyCutExt(QTextEdit):
                     self.pointer = len(self.history)
                 self.pointer -= 1
                 self.__recall()
-                
+
         elif key == Qt.Key_Down:
             if len(self.history):
                 self.pointer += 1
@@ -378,15 +378,15 @@ class PyCutExt(QTextEdit):
             self.write(sys.ps2)
         else:
             self.write(sys.ps1)
-            
+
 
         self._clearLine()
         self.__insertText(self.history[self.pointer])
 
-        
+
 #     def focusNextPrevChild(self, next):
 #         """
-#         Suppress tabbing to the next window in multi-line commands. 
+#         Suppress tabbing to the next window in multi-line commands.
 #         """
 #         if next and self.more:
 #             return 0
@@ -398,7 +398,7 @@ class PyCutExt(QTextEdit):
         """
         if e.button() == Qt.LeftButton:
             self.moveCursor(QTextCursor.End)
-            
+
 
     def contentsContextMenuEvent(self,ev):
         """
@@ -406,16 +406,16 @@ class PyCutExt(QTextEdit):
         """
         pass
 
-    
+
     def color_line(self):
         """ Color the current line """
-        
+
         cursor = self.textCursor()
         cursor.movePosition(QTextCursor.StartOfLine)
 
         newpos = cursor.position()
         pos = -1
-        
+
         while(newpos != pos):
             cursor.movePosition(QTextCursor.NextWord)
 
@@ -426,13 +426,13 @@ class PyCutExt(QTextEdit):
             word = str(cursor.selectedText ().toAscii())
 
             if(not word) : continue
-            
+
             (R,G,B) = self.colorizer.get_color(word)
-            
+
             format = cursor.charFormat()
             format.setForeground( QtGui.QBrush(QtGui.QColor(R,G,B)))
             cursor.setCharFormat(format)
-            
+
 
 
 
@@ -444,25 +444,25 @@ class SyntaxColor:
                 "as", "elif", "global", "or", "with",
                 "assert", "else", "if", "pass", "yield",
                 "break", "except", "import", "print",
-                "class", "exec", "in", "raise",              
+                "class", "exec", "in", "raise",
                 "continue", "finally", "is", "return",
                 "def", "for", "lambda", "try"])
 
     def __init__(self):
         pass
-        
+
 
     def get_color(self, word):
         """ Return a color tuple (R,G,B) depending of the string word """
 
         stripped = word.strip()
-        
+
         if(stripped in self.keywords):
             return (165, 42, 42) # brown
 
         elif(self.is_python_string(stripped)):
             return (61, 120, 9) # dark green
-        
+
         else:
             return (0,0,0)
 
@@ -473,6 +473,6 @@ class SyntaxColor:
 #             (str.startswith("'''") and str.endswith("'''")) or
 #             (str.startswith('"""') and str.endswith('"""')) or
 #             (str.startswith("'") and str.endswith("'")) or
-#             (str.startswith('"') and str.endswith('"')) 
+#             (str.startswith('"') and str.endswith('"'))
 #             )
         return False

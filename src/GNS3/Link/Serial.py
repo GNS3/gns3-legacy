@@ -105,7 +105,7 @@ class Serial(AbstractEdge):
                 color = QtCore.Qt.red
 
             painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
-            
+
             if globals.GApp.workspace.flg_showInterfaceNames:
                 if self.labelSouceIf == None:
 
@@ -147,7 +147,7 @@ class Serial(AbstractEdge):
                 color = QtCore.Qt.red
 
             painter.setPen(QtGui.QPen(color, self.pointSize, QtCore.Qt.SolidLine, QtCore.Qt.RoundCap, QtCore.Qt.MiterJoin))
-            
+
             if globals.GApp.workspace.flg_showInterfaceNames:
                 if self.labelDestIf  == None:
 
@@ -174,9 +174,9 @@ class Serial(AbstractEdge):
 
                 if self.labelDestIf and not self.labelDestIf.isVisible():
                     self.labelDestIf.show()
-                    
-                    
+
+
             elif self.labelDestIf and globals.GApp.workspace.flg_showInterfaceNames == False:
                 self.labelDestIf.hide()
-            
+
             painter.drawPoint(self.dst)

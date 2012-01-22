@@ -69,7 +69,7 @@ class QemuManager(object):
             s.setblocking(0)
             s.settimeout(300)
             if nb == 3:
-                progress = QtGui.QProgressDialog(unicode(translate("QemuManager", "Connecting to Qemu on port %i ...")) % self.port, 
+                progress = QtGui.QProgressDialog(unicode(translate("QemuManager", "Connecting to Qemu on port %i ...")) % self.port,
                                                  translate("QemuManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
@@ -116,9 +116,9 @@ class QemuManager(object):
         self.proc = QtCore.QProcess(globals.GApp.mainWindow)
         if globals.GApp.systconf['qemu'].qemuwrapper_workdir:
             if not os.access(globals.GApp.systconf['qemu'].qemuwrapper_workdir, os.F_OK | os.W_OK):
-                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Qemu Manager', 
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Qemu Manager',
                                           unicode(translate("QemuManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.systconf['qemu'].qemuwrapper_workdir)
-                
+
             # set the working directory to be the same as qemuwrapper, important to use relative paths with qemu and qemu-img
             self.proc.setWorkingDirectory(os.path.dirname(globals.GApp.systconf['qemu'].qemuwrapper_path))
 
@@ -173,7 +173,7 @@ class QemuManager(object):
             debug('QemuManager: stop Qemu with pid ' + str(self.proc.pid()))
             self.proc.close()
         self.proc = None
-        
+
     def preloadQemuwrapper(self):
         """ Preload Qemuwrapper
         """
@@ -183,7 +183,7 @@ class QemuManager(object):
 
         if globals.GApp.systconf['qemu'].qemuwrapper_workdir:
             if not os.access(globals.GApp.systconf['qemu'].qemuwrapper_workdir, os.F_OK | os.W_OK):
-                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Qemu Manager', 
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Qemu Manager',
                                           unicode(translate("QemuManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.systconf['qemu'].qemuwrapper_workdir)
                 return False
 
