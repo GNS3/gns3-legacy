@@ -49,7 +49,7 @@ def uncompressIOS(ios_image, dest_file):
     data = tmp_fd.read()
 
     # look for ZIP 'end of central directory' signature
-    pos = data.find('\x50\x4b\x05\x06')
+    pos = data.rfind('\x50\x4b\x05\x06')
     if pos > 0:
         # size of 'ZIP end of central directory record'
         tmp_fd.seek(pos + 22)
