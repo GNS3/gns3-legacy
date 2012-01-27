@@ -1,5 +1,29 @@
 CHANGELOG
 
+GNS3 0.8.2 BETA2 - to be released
+
+- Farsi, Czech, Japanese and Italian translations updated.
+- IOS images can be directly uncompressed by GNS3.
+- Configuration file gns3.ini can be in same location as gns3.exe (Windows only), GNS3 can easily be standalone on USB stick for instance.
+- New host device, a cloud with computer symbol and configured with all host interfaces.
+- Qemu mac address generator fixed.
+- Access to VirtualBox Manager from the GUI.
+- Soft link gns3.py -> gns3.pyw (Unix/Linux only).
+- Changed default paths for wrappers on OSX and UNIX/Linux.
+- Wrappers are GPL licensed.
+- PEMU binary has been removed from source repository.
+- Capture is now available from "Device" contextual menu.
+- Link actions are available from the summary topology window pane.
+- Show rpcap interface name in a tooltip when hovering an entry in the interface menu (Windows only)
+- Tooltip for clouds.
+- Open recent files menu.
+- Qemuwrapper support new Qemu networking syntax.
+- User guidance: status bar messages.
+- New icons with fancy hover effects (start, stop, pause, ellipse and rectangle).
+- Splash screen at startup.
+- Option to send Qemu and Qemu-img paths to an external Qemuwrapper.
+- Possibility to use stylesheets in view menu, for now only Energy saving theme is available.
+
 GNS3 0.8.2 BETA - 12.12.2011.
 
  * Official integration of VirtualBox Edition features.
