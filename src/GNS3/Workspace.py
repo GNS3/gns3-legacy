@@ -871,11 +871,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         QtGui.QMessageBox.aboutQt(self)
 
-    def __action_CheckForUpdate(self, silent=False):
+    def __action_CheckForUpdate(self, silent=False, url=None):
         """ Check if a newer version is available
         """
 
-        request = QtNetwork.QNetworkRequest(QtCore.QUrl("http://update.gns3.net/latest_release.txt"))
+        if url:
+            request = QtNetwork.QNetworkRequest(url)
+        else:
+            request = QtNetwork.QNetworkRequest(QtCore.QUrl("http://update.gns3.net/latest_release.txt"))
         request.setRawHeader("User-Agent", "GNS3 Check For Update");
         request.setAttribute(QtNetwork.QNetworkRequest.User, QtCore.QVariant(silent))
         reply = self.networkManager.get(request)
@@ -889,6 +892,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         network_reply = self.sender()
         isSilent = network_reply.request().attribute(QtNetwork.QNetworkRequest.User).toBool()
+
+        # Follow any redirection
+        possibleRedirect = network_reply.attribute(QtNetwork.QNetworkRequest.RedirectionTargetAttribute).toUrl()
+        if not possibleRedirect.isEmpty():
+            self.__action_CheckForUpdate(isSilent, possibleRedirect)
+            return
+
         if network_reply.error() != QtNetwork.QNetworkReply.NoError and not isSilent:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Check For Update"),translate("Workspace", "Cannot check for update ... Try again later"))
         else:
