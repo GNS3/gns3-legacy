@@ -563,7 +563,7 @@ class Application(QApplication, Singleton):
         configFile = unicode(ConfDB().fileName())
         # if we cannot find our config file, we start the Wizard dialog
         if not os.access(configFile, os.F_OK):
-            dialog = Wizard()
+            dialog = Wizard(parent=self.mainWindow)
             dialog.show()
             self.mainWindow.centerDialog(dialog)
             dialog.raise_()

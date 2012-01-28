@@ -29,9 +29,9 @@ class Wizard(QtGui.QDialog, Ui_Wizard):
     """ Wizard class
     """
 
-    def __init__(self):
+    def __init__(self, parent=None):
 
-        QtGui.QDialog.__init__(self)
+        QtGui.QDialog.__init__(self, parent)
         self.setupUi(self)
 
         # connections to slots
