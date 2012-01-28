@@ -160,8 +160,10 @@ class Console(PyCutExt, Dynagen_Console):
         """Print hypervisors, dynagen, GNS3, libs versions and credits"""
 
         import sip
+        import struct
         from __main__ import VERSION, GNS3_RUN_PATH
 
+        bitness = struct.calcsize("P") * 8
         pythonver = str(sys.version_info[0])+'.'+str(sys.version_info[1])+'.'+str(sys.version_info[2])
         if hasattr(sys, "frozen"):
             print 'GNS3 version is ' + VERSION + " (compiled)"
@@ -170,7 +172,7 @@ class Console(PyCutExt, Dynagen_Console):
         print 'Qt version is ' + QtCore.QT_VERSION_STR
         print 'PyQt version is ' + QtCore.PYQT_VERSION_STR
         print 'SIP version is ' + sip.SIP_VERSION_STR
-        print 'Python version is ' + pythonver
+        print "Python version is %s (%d-bit)" % (pythonver, bitness)
 
         print unicode("\nGNS3 run path is %s\n" % GNS3_RUN_PATH)
 
