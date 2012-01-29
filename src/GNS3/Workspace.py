@@ -776,6 +776,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if not self.bringVirtualBoxManagerToFront():
             if sys.platform.startswith('win'):
+                if not os.environ.has_key('VBOX_INSTALL_PATH'):
+                    QtGui.QMessageBox.critical(self, translate("Workspace", "VirtualBox Manager"), translate("Workspace", "VirtualBox is not installed!"))
+                    return
                 subprocess.Popen(os.environ['VBOX_INSTALL_PATH'] + 'VirtualBox.exe', shell=False)
             else:
                 subprocess.Popen("VirtualBox &", shell=True)

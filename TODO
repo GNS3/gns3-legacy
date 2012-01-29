@@ -1,23 +1,26 @@
 TODO LIST
 
-Qemu/Pemu
-
- * Extract/write files from Qemu qcow2 format image files using libguestfs
- * Implement Qemu monitor functions (need to update the Qemu patch)
- * VNC support for Qemu (-vnc 127.0.0.1:i++) + entry in the contextual memu to start VNC
-
 GUI
 
- * Add a Clear Configuration button to the startup configuration option, and/or add a Clear All Configurations option to the control menu.
- * Style options for node labels
- * Option to draw a line or draw an arrow on the scene
- * Dynamic notes
+ * Add a Clear startup configuration button and/or add a Clear All Startup configurations option to the control menu.
+ * Style options for node labels.
+ * Option to draw lines and arrows on the scene.
+ * Drag'n'drop a topology (.net file) inside GNS3
+ * Create more 'Show advanced options' where there are too many options in Preferences.
+ * New logo for GNS3?
+ 
+OSX
+
+ * Open .net files from Finder on Mac OS X (http://www.gns3.net/phpBB/topic1817.html)
+ * DMG installer for Mac OS X (http://chromasoft.blogspot.com/2010/02/building-dmg-installer-for-mac-simple.html)
+ * OSX compiled version: include __boot__.py in setup.py
 
 Dynamips
 
  * NIO Multicast support, is this useful? (supported only in dynamips-community version) 
  * Set system ID (can be useful for pageant IOS)
- * Automatic console login for IOS (idlepc is not effective until hitting returns in the IOS console)
+ * Test implemented QinQ
+ * Automatic console login for IOS (idlepc is not effective until hitting returns in the IOS console), use expect scripts?
  * Auto UDP (supported in dynamips-community): to simplify the UDP port mapping stuff and the binding problems that can occur
  	-> The first command to use is: "nio create_udp_auto <nio_name> <local_addr> <local_port_start> <local_port_end>"
  	-> It will return the allocated port number. local_addr is an IPv4/IPv6 address (0.0.0.0 on IPv4 and :: on IPv6 to listen on all addresses). local_port_start and local_port_end define a port range (it can be useful if you are behind a firewall).
@@ -26,54 +29,15 @@ Dynamips
 
 Client/Server
 
- * Dynamipswrapper for remote labs (not need to share an IOS image), intended for teaching environments
+ * Dynamips Management Server intended for teaching environments (not need to share an IOS image).
+ * Client/Server protocol should become asynchronous, so users won't wait until all VMs actually start.
 
-Import/Export
+Misc. (by Technologov)
 
- * Open .net files from Finder on Mac OS X (http://www.gns3.net/phpBB/topic1817.html)
- * Do not remove original comments in .net files.
- * Drag'n'drop a .net topology inside GNS3
-
-Misc.
-
- * New logo for GNS3?
- * DMG installer for Mac OS X (http://chromasoft.blogspot.com/2010/02/building-dmg-installer-for-mac-simple.html)
- * OSX compiled version: include __boot__.py in setup.py
-
-(by Technologov)
- * Real Cisco icons, including the various cards out there (like Cisco Packet Tracer does)
-     Not on topology -- but in Node configuration options.
- * Link Packet loss + delay (like Marionnet does)
- * Built-in Exercises + Labs (like Boson NetSim does)
- * backward-and-forward format compatibility (GNS3 format + dynagen topology format)
-     That is: topology importing fails, when GNS3 topology was made with newer version of software, and imported with older. (like Marionnet does)
-     Should ignore unknown parameters for import with older versions;
-     Should provide default parameters for import with newer versions;
- * Client/Server protocol must become asynchronoous, so ppl won't wait until all VMs actually start (like Marionnet does)
  * Investigate possibility of GuestIP address retrieval from Dynamips Routers by means of SNMP 
      (+pre-configured SNMP startup-config + management interface)
- * Consider Quagga integration, like "VisualNetKit" does
- * Automatic Network Topology Generator, like "AutoNetkit" does
-     http://bandicoot.maths.adelaide.edu.au/AutoNetKit/AutoNetkit.pdf
-     http://www.eleceng.adelaide.edu.au/personal/sknight/AutoNetkit/AutoNetkit.pdf
 
-Code Refactoring
-
-REMOVAL of:
-1. *Defaults.py (can be merged into *Devices.py ?)
-2. initialization scripts may be merged: gns3.pyw + main.py + application.py (main.py might be merged either into application.py or into gns3.pyw)
-
-Cleanup:
-3. DynagenSub.py: open_config() -- one *huge* function.
-This is import/export code, but it is very ugly/unreadable. Spaghetti code, which is very hard to debug and understand.
-It needs to be broken up into smaller functions, that are readable and easy to debug.
-(I afraid to touch this code, because I don't understand it fully, and I may break features)
-
-Debugging
-
- * Test QinQ
-
-GNS3-Related feature-requests in 3rd party products: (by Technologov)
+GNS3 related feature requests in 3rd party products: (by Technologov)
 
  * IPv6 support for our engines: VirtualBox / Qemu / Dynamips
  * Qt4: [feature-request] Please add new GUI container element, that shows/hides others, "QIArrowButtonSwitch" (QTBUG-19984)
@@ -85,7 +49,7 @@ GNS3-Related feature-requests in 3rd party products: (by Technologov)
  * VirtualBox: [feature-request] Guest Additions: Please provide clipboard copy paste for text-mode console VMs (without X.org) (Wish #9291) (jarle's case)
  * VirtualBox: Multicast support (many procotols use multicast, like OSPF, RIPv2 etc.)
 
-GNS3-Related bugs in 3rd party products: (by Technologov)
+GNS3 related bugs in 3rd party products: (by Technologov)
 
  * VirtualBox: Guest IP retrieval works incorrectly if you have several IP addresses on the same NIC (bug #9006)
  * VirtualBox: Only first 4 out of 8 ethernet cards work with Windows XP guest (bug #8772)
