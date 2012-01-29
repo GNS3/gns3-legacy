@@ -1236,8 +1236,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 if recent_file_conf.path == path:
                     return
 
-            # Limit number of recent file paths to 5
-            if len(globals.GApp.recentfiles) == 5:
+            # Limit number of recent file paths to 10
+            if len(globals.GApp.recentfiles) == 10:
                 globals.GApp.recentfiles.pop(0)
             recent_file_conf = recentFilesConf()
             recent_file_conf.path = path

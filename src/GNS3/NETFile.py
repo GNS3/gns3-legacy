@@ -406,6 +406,7 @@ class NETFile(object):
                     continue
                 if devtype.lower() == 'cloud':
                     default_symbol = True
+                    symbol_name = None
                     if gns3data[section].has_key('symbol') and gns3data[section]['symbol']:
                         symbol_name = gns3data[section]['symbol']
 
@@ -419,7 +420,8 @@ class NETFile(object):
                                 break
 
                     if default_symbol:
-                        symbol_name = 'Cloud'
+                        if not symbol_name:
+                            symbol_name = 'Cloud'
                         normal_renderer = globals.GApp.scene.renders[symbol_name]['normal']
                         select_renderer = globals.GApp.scene.renders[symbol_name]['selected']
 
