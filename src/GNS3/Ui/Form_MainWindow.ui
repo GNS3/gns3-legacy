@@ -532,7 +532,10 @@
      <normaloff>:/icons/help.svg</normaloff>:/icons/help.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;Online Help</string>
+    <string>&amp;Online help</string>
+   </property>
+   <property name="toolTip">
+    <string>Online help</string>
    </property>
    <property name="statusTip">
     <string>Online Help</string>
@@ -661,7 +664,10 @@
   </action>
   <action name="action_ZoomIn">
    <property name="text">
-    <string>Zoom &amp;In</string>
+    <string>Zoom &amp;in</string>
+   </property>
+   <property name="toolTip">
+    <string>Zoom in</string>
    </property>
    <property name="statusTip">
     <string>Zoom In</string>
@@ -672,7 +678,10 @@
   </action>
   <action name="action_ZoomOut">
    <property name="text">
-    <string>Zoom &amp;Out</string>
+    <string>Zoom &amp;out</string>
+   </property>
+   <property name="toolTip">
+    <string>Zoom out</string>
    </property>
    <property name="statusTip">
     <string>Zoom Out</string>
@@ -694,7 +703,7 @@
   </action>
   <action name="action_SelectAll">
    <property name="text">
-    <string>Select &amp;All</string>
+    <string>Select &amp;all</string>
    </property>
    <property name="statusTip">
     <string>Select All</string>
@@ -705,7 +714,7 @@
   </action>
   <action name="action_SelectNone">
    <property name="text">
-    <string>Select &amp;None</string>
+    <string>Select &amp;none</string>
    </property>
    <property name="statusTip">
     <string>Select None</string>
@@ -800,7 +809,7 @@
      <normaloff>:/icons/add-note.svg</normaloff>:/icons/add-note.svg</iconset>
    </property>
    <property name="text">
-    <string>Add Note</string>
+    <string>Add note</string>
    </property>
    <property name="toolTip">
     <string>Add a note</string>
@@ -851,7 +860,7 @@
      <normaloff>:/icons/image.svg</normaloff>:/icons/image.svg</iconset>
    </property>
    <property name="text">
-    <string>Insert Picture</string>
+    <string>Insert picture</string>
    </property>
    <property name="toolTip">
     <string>Insert a picture</string>
@@ -866,7 +875,10 @@
      <normaloff>:/icons/node_conception.svg</normaloff>:/icons/node_conception.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;Symbol Manager</string>
+    <string>&amp;Symbol manager</string>
+   </property>
+   <property name="toolTip">
+    <string>Symbol manager</string>
    </property>
    <property name="statusTip">
     <string>Symbol Manager</string>
@@ -886,7 +898,7 @@
      <activeon>:/icons/rectangle2-test.svg</activeon>:/icons/rectangle3-test.svg</iconset>
    </property>
    <property name="text">
-    <string>Draw Rectangle</string>
+    <string>Draw rectangle</string>
    </property>
    <property name="toolTip">
     <string>Draw a rectangle</string>
@@ -906,7 +918,7 @@
      <activeon>:/icons/ellipse2-test.svg</activeon>:/icons/ellipse3-test.svg</iconset>
    </property>
    <property name="text">
-    <string>Draw Ellipse</string>
+    <string>Draw ellipse</string>
    </property>
    <property name="toolTip">
     <string>Draw an ellipse</string>
@@ -924,7 +936,7 @@
      <normaloff>:/icons/show-interface-names.svg</normaloff>:/icons/show-interface-names.svg</iconset>
    </property>
    <property name="text">
-    <string>Show Interface Labels</string>
+    <string>Show interface labels</string>
    </property>
    <property name="toolTip">
     <string>Show interface labels</string>
@@ -1009,7 +1021,10 @@
   </action>
   <action name="action_ResetInterfaceLabels">
    <property name="text">
-    <string>Reset Interface Labels</string>
+    <string>Reset interface labels</string>
+   </property>
+   <property name="toolTip">
+    <string>Reset interface labels</string>
    </property>
    <property name="statusTip">
     <string>Reset Interface Labels</string>
