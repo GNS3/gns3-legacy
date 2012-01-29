@@ -21,7 +21,7 @@
 
 # Functions to uncompress IOS images
 
-import mmap, zipfile, shutil, tempfile
+import os, mmap, zipfile, shutil, tempfile
 
 def isIOScompressed(ios_image):
     """ Check either a IOS image is compress or not
@@ -32,7 +32,7 @@ def isIOScompressed(ios_image):
     map = mmap.mmap(fd.fileno(), 0)
 
     # look for ZIP 'end of central directory' signature
-    pos = map.find('\x50\x4b\x05\x06')
+    pos = map.rfind('\x50\x4b\x05\x06')
     map.close()
     fd.close()
 
@@ -44,7 +44,7 @@ def isIOScompressed(ios_image):
 def uncompressIOS(ios_image, dest_file):
 
     # we don't touch the original image
-    tmp_fd = tempfile.NamedTemporaryFile()
+    tmp_fd = tempfile.NamedTemporaryFile(delete=False)
     shutil.copyfile(ios_image, tmp_fd.name)
     data = tmp_fd.read()
 
@@ -67,7 +67,11 @@ def uncompressIOS(ios_image, dest_file):
             source.close()
             target.close()
         zip_file.close()
-    tmp_fd.close()
+    try:
+        tmp_fd.close()
+        os.remove(tmp_fd.name)
+    except:
+        pass
 
 if __name__ == '__main__':
 
