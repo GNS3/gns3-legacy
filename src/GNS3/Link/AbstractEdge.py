@@ -394,7 +394,6 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             return
         capture_conf = globals.GApp.systconf['capture']
         if capture_conf.auto_start and (host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or host == 'localhost'):
-            time.sleep(2)
             self.__startWiresharkAction()
 
     def stopCapturing(self, showMessage=True):
@@ -443,15 +442,15 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Please configure capture options"))
             return
 
-        try:
-            statinfo = os.stat(self.capfile)
-            if not statinfo.st_size:
-                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),
-                                            unicode(translate("AbstractEdge",  "%s is empty, no traffic captured on the link. Try again later")) % self.capfile)
-                return
-        except (OSError, IOError), e:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot find %s : %s")) % (self.capfile, e.strerror)+os.linesep+unicode(translate("AbstractEdge", "NOTE: This feature is only available for local hypervisors.")))
-            return
+#        try:
+#            statinfo = os.stat(self.capfile)
+#            if not statinfo.st_size:
+#                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),
+#                                            unicode(translate("AbstractEdge",  "%s is empty, no traffic captured on the link. Try again later")) % self.capfile)
+#                return
+#        except (OSError, IOError), e:
+#            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot find %s : %s")) % (self.capfile, e.strerror)+os.linesep+unicode(translate("AbstractEdge", "NOTE: This feature is only available for local hypervisors.")))
+#            return
 
         try:
             path = unicode(capture_conf.cap_cmd.replace("%c", '"%s"')) % self.capfile
