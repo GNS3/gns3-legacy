@@ -143,6 +143,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
         # add link actions to menu if link info item is selected
         curitem = self.currentItem()
         if curitem:
+            menu.addSeparator()
             data = curitem.data(0, QtCore.Qt.UserRole).toStringList()
             if data.count() == 4:
                 node_interface = data[0]

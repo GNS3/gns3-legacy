@@ -33,26 +33,33 @@ class capturesDock(QtGui.QTreeWidget):
     def __init__(self, parent):
 
         QtGui.QTreeWidget.__init__(self, parent)
-        self.connect(self, QtCore.SIGNAL('itemClicked(QTreeWidgetItem *, int)'),  self.slotItemClicked)
+        self.stoppedLinks = {}
 
     def refresh(self):
         """ Refresh topology summary
         """
 
         self.clear()
-        for link in globals.GApp.topology.links:
+        refreshed_stoppedLinks = {}
+        for link in globals.GApp.topology.links.copy():
+            if link.capturing or self.stoppedLinks.has_key(link):
+                
+                if self.stoppedLinks.has_key(link):
+                    captureInfo = self.stoppedLinks[link]
+                    refreshed_stoppedLinks[link] = captureInfo
+                else:
+                    captureInfo = link.captureInfo
 
-            #captureInfo
-            if link.capturing:
-                device = globals.GApp.dynagen.devices[link.captureInfo[0]]
+                device = globals.GApp.dynagen.devices[captureInfo[0]]
+
                 if isinstance(device, qemu.AnyEmuDevice):
-                    (hostname, port) = link.captureInfo
+                    (hostname, port) = captureInfo
                     port = 'e' + port
                 elif isinstance(device, vboxlib.AnyVBoxEmuDevice):
-                    (hostname, port) = link.captureInfo
+                    (hostname, port) = captureInfo
                     port = 'e' + port
                 else:
-                    (hostname, slot, inttype, port) = link.captureInfo
+                    (hostname, slot, inttype, port, encapsulation) = captureInfo
                     if device.model_string in ['1710', '1720', '1721', '1750']:
                         port = inttype + str(port)
                     else:
@@ -62,29 +69,62 @@ class capturesDock(QtGui.QTreeWidget):
                 item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant([hostname, port]))
                 item.setText(0, hostname)
                 
-                if device.state == 'running':
-                    item.setIcon(0, QtGui.QIcon(':/icons/led_green.svg'))
-                else:
+                if self.stoppedLinks.has_key(link) or device.state != 'running':
                     item.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
-                    
+                    if link.capturing and not self.stoppedLinks.has_key(link):
+                        link.stopCapturing(showMessage=False, refresh=False)
+                        refreshed_stoppedLinks[link] = captureInfo
+                else:
+                    item.setIcon(0, QtGui.QIcon(':/icons/led_green.svg'))
+
                 item.setText(1, port)
                 self.insertTopLevelItem(0, item)
         
         self.sortByColumn(0, QtCore.Qt.AscendingOrder)
         self.resizeColumnToContents(0)
         self.resizeColumnToContents(1)
+        self.stoppedLinks = refreshed_stoppedLinks
+
+    def mousePressEvent(self, event):
+
+        if event.button() == QtCore.Qt.RightButton:
+            self.showContextualMenu()
+        else:
+            QtGui.QTreeWidget.mousePressEvent(self, event)
 
     def showContextualMenu(self):
 
         menu = QtGui.QMenu()
-        stopCapture = QtGui.QAction(translate('Widget_capturesDock', 'Stop capturing'), menu)
-        stopCapture.setIcon(QtGui.QIcon(':/icons/inspect.svg'))
-        self.connect(stopCapture, QtCore.SIGNAL('triggered()'), self.slotStopCapture)
-        startWireshark = QtGui.QAction(translate('Widget_capturesDock', 'Start Wireshark'), menu)
-        startWireshark.setIcon(QtGui.QIcon(":/icons/wireshark.png"))
-        self.connect(startWireshark, QtCore.SIGNAL('triggered()'), self.slotStartWireshark)
-        menu.addAction(stopCapture)
-        menu.addAction(startWireshark)
+        startAllCaptures = QtGui.QAction(translate('Widget_capturesDock', 'Start all captures'), menu)
+        startAllCaptures.setIcon(QtGui.QIcon(":/icons/capture-start.svg"))
+        self.connect(startAllCaptures, QtCore.SIGNAL('triggered()'), self.startAllCaptures)
+        stopAllCaptures = QtGui.QAction(translate('Widget_capturesDock', 'Stop all captures'), menu)
+        stopAllCaptures.setIcon(QtGui.QIcon(":/icons/capture-stop.svg"))
+        self.connect(stopAllCaptures, QtCore.SIGNAL('triggered()'), self.stopAllCaptures)  
+        menu.addAction(startAllCaptures)
+        menu.addAction(stopAllCaptures)
+
+        curitem = self.currentItem()
+        if curitem:
+
+            menu.addSeparator()
+            link = self.getLink()
+
+            if self.stoppedLinks.has_key(link) or not link.capturing:
+                startCapture = QtGui.QAction(translate('Widget_capturesDock', 'Start capturing'), menu)
+                startCapture.setIcon(QtGui.QIcon(':/icons/capture-start.svg'))
+                self.connect(startCapture, QtCore.SIGNAL('triggered()'), self.slotStartCapture)
+                menu.addAction(startCapture)
+            else:
+                stopCapture = QtGui.QAction(translate('Widget_capturesDock', 'Stop capturing'), menu)
+                stopCapture.setIcon(QtGui.QIcon(':/icons/capture-stop.svg'))
+                self.connect(stopCapture, QtCore.SIGNAL('triggered()'), self.slotStopCapture)
+                menu.addAction(stopCapture)
+                startWireshark = QtGui.QAction(translate('Widget_capturesDock', 'Start Wireshark'), menu)
+                startWireshark.setIcon(QtGui.QIcon(":/icons/wireshark.png"))
+                self.connect(startWireshark, QtCore.SIGNAL('triggered()'), self.slotStartWireshark)
+                menu.addAction(startWireshark)
+
         menu.exec_(QtGui.QCursor.pos())
             
     def getLink(self):
@@ -99,30 +139,68 @@ class capturesDock(QtGui.QTreeWidget):
             elif link.dest.hostname == hostname and link.destIf == interface:
                 return link
         return None
-    
+
     def stopAllCaptures(self):
 
         for link in globals.GApp.topology.links:
-            link.stopCapturing()
+            if link.capturing:
+                self.stoppedLinks[link] = link.captureInfo
+                link.stopCapturing()
         self.refresh()
-            
+
+    def startAllCaptures(self):
+
+        for (link, captureInfo) in self.stoppedLinks.iteritems():
+            self.startCapturing(link, captureInfo)
+        self.stoppedLinks = {}
+        self.refresh()
+
     def slotStopCapture(self):
 
         link = self.getLink()
-        if not link:
-            print 'Cannot get link, please report'
-            return
+        # this should never happen
+        assert(link)
+
+        self.stoppedLinks[link] = link.captureInfo
         link.stopCapturing()
+        #self.refresh()
+
+    def startCapturing(self, link, captureInfo):
+        
+        device = globals.GApp.dynagen.devices[captureInfo[0]]
+        encapsulation = None
+
+        if isinstance(device, qemu.AnyEmuDevice):
+            (hostname, port) = captureInfo
+            port = 'e' + port
+        elif isinstance(device, vboxlib.AnyVBoxEmuDevice):
+            (hostname, port) = captureInfo
+            port = 'e' + port
+        else:
+            (hostname, slot, inttype, port, encapsulation) = captureInfo
+            if device.model_string in ['1710', '1720', '1721', '1750']:
+                port = inttype + str(port)
+            else:
+                port = inttype + str(slot) + '/' + str(port)
+
+        link.startCapturing(hostname, port, encapsulation)
+
+    def slotStartCapture(self):
+
+        link = self.getLink()
+        # this should never happen
+        assert(link)
+
+        if self.stoppedLinks.has_key(link):
+            captureInfo = self.stoppedLinks[link]
+            del self.stoppedLinks[link]
+            self.startCapturing(link, captureInfo)
+        #self.refresh()
 
     def slotStartWireshark(self):
 
         link = self.getLink()
-        if not link:
-            print 'Cannot get link, please report'
-            return
+
+        # this should never happen
+        assert(link)
         link.startWireshark()
-     
-    def slotItemClicked(self, item, column):
-        
-        if item:
-            self.showContextualMenu()

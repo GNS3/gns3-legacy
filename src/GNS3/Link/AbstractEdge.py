@@ -174,10 +174,10 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """
 
         if self.capturing == True:
-            menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Stop capturing"))
+            menu.addAction(QtGui.QIcon(':/icons/capture-stop.svg'), translate("AbstractEdge", "Stop capturing"))
             menu.addAction(QtGui.QIcon(':/icons/wireshark.png'), translate("AbstractEdge", "Start Wireshark"))
         else:
-            menu.addAction(QtGui.QIcon(':/icons/inspect.svg'), translate("AbstractEdge", "Capture"))
+            menu.addAction(QtGui.QIcon(':/icons/capture-start.svg'), translate("AbstractEdge", "Start capturing"))
         menu.addAction(QtGui.QIcon(':/icons/delete.svg'), translate("AbstractEdge", "Delete"))
         menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.mousePressEvent_actions)
 
@@ -203,7 +203,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         action = action.text()
         if action == translate("AbstractEdge", "Delete"):
             self.__deleteAction()
-        elif action == translate("AbstractEdge", "Capture"):
+        elif action == translate("AbstractEdge", "Start capturing"):
             self.__captureAction()
         elif action == translate("AbstractEdge", "Stop capturing"):
             self.__stopCaptureAction()
@@ -280,6 +280,25 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             return True
         else:
             return False
+        
+    def startCapturing(self, device, interface, encapsulation):
+
+        if not self.capturing:
+            if isinstance(globals.GApp.dynagen.devices[device], qemu.AnyEmuDevice):
+                if globals.GApp.dynagen.devices[device].state != 'stopped':
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s must be restarted to start capturing traffic")) % device)
+                self.__captureQemuDevice(device, interface)
+            elif isinstance(globals.GApp.dynagen.devices[device], vboxlib.AnyVBoxEmuDevice):
+                if globals.GApp.dynagen.devices[device].state != 'stopped':
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s must be restarted to start capturing traffic")) % device)
+                self.__captureVBoxDevice(device, interface)
+            else:
+                if globals.GApp.dynagen.devices[device].state != 'running':
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s is not running")) % device)
+                    return
+                self.__captureDynamipsDevice(device, interface, encapsulation)
+
+        globals.GApp.mainWindow.capturesDock.refresh()
 
     def __captureQemuDevice(self, device, interface):
         """ Capture for Qemu based devices
@@ -371,6 +390,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             slot = 0
 
         try:
+            original_encapsulation = encapsulation
             encapsulation = encapsulation[1:-1].split(':')[1]
             encapsulation = self.encapsulationTransform[encapsulation]
             capture_conf = globals.GApp.systconf['capture']
@@ -386,7 +406,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.capfile = unicode(workdir + sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
             debug("Start capture to " + self.capfile)
             globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + '"' + self.capfile + '"')
-            self.captureInfo = (device, slot, inttype, port)
+            self.captureInfo = (device, slot, inttype, port, original_encapsulation)
             self.capturing = True
             debug("Capturing to " + self.capfile)
         except lib.DynamipsError, msg:
@@ -396,12 +416,12 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         if capture_conf.auto_start and (host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or host == 'localhost'):
             self.__startWiresharkAction()
 
-    def stopCapturing(self, showMessage=True):
+    def stopCapturing(self, showMessage=True, refresh=True):
 
         if self.capturing:
-            self.__stopCaptureAction(showMessage)
+            self.__stopCaptureAction(showMessage, refresh)
 
-    def __stopCaptureAction(self, showMessage=True):
+    def __stopCaptureAction(self, showMessage=True, refresh=True):
         """ Stop capturing frames on the link
         """
 
@@ -416,7 +436,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 globals.GApp.dynagen.devices[device].capture(int(port), '')
 
             else:
-                (device, slot, inttype, port) = self.captureInfo
+                (device, slot, inttype, port, encapsulation) = self.captureInfo
                 globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port, 'none', 'both')
 
             self.capturing = False
@@ -427,7 +447,8 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  unicode(msg))
             return
 
-        globals.GApp.mainWindow.capturesDock.refresh()
+        if refresh:
+            globals.GApp.mainWindow.capturesDock.refresh()
 
     def startWireshark(self):
 
