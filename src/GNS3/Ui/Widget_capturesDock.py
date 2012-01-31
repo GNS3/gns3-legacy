@@ -150,9 +150,13 @@ class capturesDock(QtGui.QTreeWidget):
 
     def startAllCaptures(self):
 
+        refreshed_stoppedLinks = {}
         for (link, captureInfo) in self.stoppedLinks.iteritems():
             self.startCapturing(link, captureInfo)
-        self.stoppedLinks = {}
+            if not link.capturing:
+                refreshed_stoppedLinks[link] = captureInfo
+
+        self.stoppedLinks = refreshed_stoppedLinks
         self.refresh()
 
     def slotStopCapture(self):
