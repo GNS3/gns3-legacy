@@ -1,28 +1,30 @@
 CHANGELOG
 
-GNS3 0.8.2 BETA2 - to be released
+GNS3 0.8.2 BETA2 - 31.01.2012
 
-- Farsi, Czech, Japanese and Italian translations updated.
-- IOS images can be directly uncompressed by GNS3.
-- Configuration file gns3.ini can be in same location as gns3.exe (Windows only), GNS3 can easily be standalone on USB stick for instance.
-- New host device, a cloud with computer symbol and configured with all host interfaces.
-- Qemu mac address generator fixed.
-- Access to VirtualBox Manager from the GUI.
-- Soft link gns3.py -> gns3.pyw (Unix/Linux only).
-- Changed default paths for wrappers on OSX and UNIX/Linux.
-- Wrappers are GPL licensed.
-- PEMU binary has been removed from source repository.
-- Capture is now available from "Device" contextual menu.
-- Link actions are available from the summary topology window pane.
-- Show rpcap interface name in a tooltip when hovering an entry in the interface menu (Windows only)
-- Tooltip for clouds.
-- Open recent files menu.
-- Qemuwrapper support new Qemu networking syntax.
-- User guidance: status bar messages.
-- New icons with fancy hover effects (start, stop, pause, ellipse and rectangle).
-- Splash screen at startup.
-- Option to send Qemu and Qemu-img paths to an external Qemuwrapper.
-- Possibility to use stylesheets in view menu, for now only Energy saving theme is available.
+ * IOS images can be directly uncompressed by GNS3.
+ * Open recent files menu.
+ * “Start all captures” and “stop all captures” options for Captures Dock.
+ * New icons with fancy hover effects (start, stop, pause, ellipse and rectangle).
+ * Farsi, Czech, Japanese and Italian translations updated.
+ * GNS3 settings file (gns3.ini) can be put in the same folder as gns3.exe (Windows only). This allows GNS3 to be standalone on USB stick for instance.
+ * New host device: a cloud with the ‘computer’ symbol and configured with all host interfaces.
+ * Qemu mac address generator has been fixed.
+ * Access to VirtualBox Manager from the GUI.
+ * Soft link gns3 -> gns3.pyw has been added (Unix/Linux only).
+ * Changed default paths for wrappers on OSX and UNIX/Linux.
+ * Wrappers are now GPL licensed.
+ * PEMU binary has been removed from our sources (it is still available on our download page).
+ * Capture option is now available from the “Device” contextual menu.
+ * Link actions are available from the summary topology window pane.
+ * Show rpcap interface names in a tooltip when hovering an entry in the interface menu (Windows only).
+ * Qemuwrapper support for the new Qemu networking syntax.
+ * Option to send Qemu and Qemu-img paths to an external Qemuwrapper.
+ * Possibility to use stylesheets from the view menu, for now only the ‘Energy saving’ theme is available.
+ * Tooltip for clouds.
+ * User guidance: status bar messages.
+ * Splash screen at startup.
+ * Small improvements and bug fixes all over the place.
 
 GNS3 0.8.2 BETA - 12.12.2011.
 
