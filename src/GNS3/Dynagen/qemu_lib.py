@@ -659,9 +659,9 @@ class AnyEmuDevice(object):
             if (self.isLocalhost(src_ip)) or (self.isLocalhost(dst_ip)):
                 if (self.isLocalhost(src_ip) is False) or (self.isLocalhost(dst_ip) is False):
                     dowarning('In case of multi-server operation, make sure you do not use "localhost" or "127.0.0.1" string in definition of dynamips hypervisor. Use actual IP addresses instead.')
-        debugmsg(3, "qemu_lib.py: 'qemu create_udp self.name=%s local_port=%i src_udp=%i dst_ip=%s dst_udp=%i'" % (self.name, local_port, src_udp, dst_ip, dst_udp))
+        debugmsg(3, "qemu_lib.py: 'qemu create_udp self.name=%s local_port=%i src_ip=%i src_udp=%i dst_ip=%s dst_udp=%i'" % (self.name, local_port, src_ip, src_udp, dst_ip, dst_udp))
         #create the emulated device side of UDP connection
-        send(self.p, 'qemu create_udp %s %i %i %s %i' % (self.name, local_port, src_udp, dst_ip, dst_udp))
+        send(self.p, 'qemu create_udp %s %i %i %s %i' % (self.name, local_port, src_ip, src_udp, dst_ip, dst_udp))
         self.nios[local_port] = UDPConnection(src_udp, dst_ip, dst_udp, self, local_port)
 
         #create the dynamips side of UDP connection - the NIO and connect it to the router
