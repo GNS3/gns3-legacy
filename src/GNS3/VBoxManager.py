@@ -173,6 +173,8 @@ class VBoxManager(object):
                     continue
         if self.proc and self.proc.state():
             debug('VBoxManager: stop VBox with pid ' + str(self.proc.pid()))
+            self.proc.terminate()
+            time.sleep(0.5)
             self.proc.close()
         self.proc = None
 

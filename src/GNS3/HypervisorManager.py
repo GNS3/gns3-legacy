@@ -291,6 +291,8 @@ class HypervisorManager(object):
                     continue
         for hypervisor in self.hypervisors:
             debug("Hypervisor manager: close hypervisor on port " + str(hypervisor['port']))
+            hypervisor['proc_instance'].terminate()
+            time.sleep(0.5)
             hypervisor['proc_instance'].close()
             hypervisor['proc_instance'] = None
         self.hypervisors = []

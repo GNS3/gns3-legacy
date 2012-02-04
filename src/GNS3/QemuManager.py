@@ -171,6 +171,8 @@ class QemuManager(object):
                     continue
         if self.proc and self.proc.state():
             debug('QemuManager: stop Qemu with pid ' + str(self.proc.pid()))
+            self.proc.terminate()
+            time.sleep(0.5)
             self.proc.close()
         self.proc = None
 
