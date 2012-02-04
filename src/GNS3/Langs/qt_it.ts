@@ -24,7 +24,7 @@
     <message>
         <location filename="../src/qt3support/other/q3accel.cpp" line="497"/>
         <source>Ambiguous %1 not handled</source>
-        <translation type="unfinished"></translation>
+        <translation>Ambiguità %1 non gestita</translation>
     </message>
 </context>
 <context>
@@ -376,19 +376,22 @@ Check path and filename.</source>
         <location filename="../src/qt3support/network/q3localfs.cpp" line="113"/>
         <source>Could not read directory
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile leggere la cartella
+%1</translation>
     </message>
     <message>
         <location filename="../src/qt3support/network/q3localfs.cpp" line="158"/>
         <source>Could not create directory
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile creare la cartella
+%1</translation>
     </message>
     <message>
         <location filename="../src/qt3support/network/q3localfs.cpp" line="192"/>
         <source>Could not remove file or directory
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile rimuovere il filo o la cartella
+%1</translation>
     </message>
     <message>
         <location filename="../src/qt3support/network/q3localfs.cpp" line="219"/>
@@ -396,19 +399,24 @@ Check path and filename.</source>
 %1
 to
 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile rinominare
+%1
+in
+%2</translation>
     </message>
     <message>
         <location filename="../src/qt3support/network/q3localfs.cpp" line="244"/>
         <source>Could not open
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile aprire
+%1</translation>
     </message>
     <message>
         <location filename="../src/qt3support/network/q3localfs.cpp" line="312"/>
         <source>Could not write
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile scrivere
+%1</translation>
     </message>
 </context>
 <context>
@@ -421,7 +429,7 @@ to
     <message>
         <location filename="../src/qt3support/widgets/q3mainwindow.cpp" line="2052"/>
         <source>Customize...</source>
-        <translation type="unfinished"></translation>
+        <translation>Personalizza...</translation>
     </message>
 </context>
 <context>

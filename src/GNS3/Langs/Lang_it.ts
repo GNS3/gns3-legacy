@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="it_IT" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.0" language="it_IT">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -252,7 +253,7 @@
         <source>&amp;License Agreement</source>
         <translation>&amp;Licenza d&apos;uso</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_About.py" line="76"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -317,7 +318,28 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;GNS3 %VERSION%&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Sotto licenza GPL v2&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Sviluppatori:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Benjamin Marsili&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Claire Goudjil&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Alexey Eromenko &amp;quot;Technologov&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Sviluppatori originali:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Xavier Alt&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Romain Lamaison&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Aurelien Levesque&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;David Ruiz&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Effettua una donazione&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -395,7 +417,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="206"/>
         <source>Start capturing</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvia la cattura</translation>
     </message>
 </context>
 <context>
@@ -433,7 +455,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="385"/>
         <source>No interface available, please configure this device</source>
-        <translation>Nessuna interfaccia disponibile, configurare il dispositivo</translation>
+        <translation>Nessuna interfaccia disponibile, configura il dispositivo</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="194"/>
@@ -582,7 +604,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Application.py" line="369"/>
         <source>Starting Graphical Network Simulator...</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvio simulatore grafico di rete in corso...</translation>
     </message>
 </context>
 <context>
@@ -590,7 +612,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/Cloud.py" line="100"/>
         <source>Cloud name: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome della nuvola: %s</translation>
     </message>
 </context>
 <context>
@@ -937,13 +959,14 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../DynagenSub.py" line="78"/>
         <source>NIC binding</source>
-        <translation type="unfinished"></translation>
+        <translation>Associazione NIC</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="78"/>
         <source>NIC ID %s cannot be found on this host
 Please choose an alternate network interface:</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;ID %s della NIC non esiste su questo host
+Scegli un&apos;interfaccia di rete alternativa:</translation>
     </message>
 </context>
 <context>
@@ -1498,22 +1521,22 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../IOSDialog.py" line="204"/>
         <source>IOS Image</source>
-        <translation type="unfinished"></translation>
+        <translation>Immagine IOS</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="193"/>
         <source>The IOS image is compressed. Would you like to uncompress it? Yes will create %s</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;immagine di IOS è compressa. Vuoi decomprimerla? La scelta di Sì creerà %s</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="197"/>
         <source>%s already exists, let&apos;s use it</source>
-        <translation type="unfinished"></translation>
+        <translation>%s esiste già, sarà utilizzata</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="204"/>
         <source>Sorry, impossible to extract the IOS image</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile estrarre l&apos;immagine di IOS</translation>
     </message>
 </context>
 <context>
@@ -2039,7 +2062,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="335"/>
         <source>Zoom &amp;1:1</source>
-        <translation>Zoom &amp;1:1</translation>
+        <translation>Ingrandimento &amp;1:1</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="337"/>
@@ -2089,7 +2112,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="424"/>
         <source>Insert a picture</source>
-        <translation>Inserisci una figura</translation>
+        <translation>Inserisci un&apos;immagine</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="105"/>
@@ -2201,7 +2224,7 @@ Please choose an alternate network interface:</source>
         <source>Console to all devices</source>
         <translation>Console per tutti i dispositivi</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="312"/>
         <source>Save topology &amp;as…</source>
         <translation>Salva topologi&amp;a come...</translation>
@@ -2246,7 +2269,7 @@ Please choose an alternate network interface:</source>
         <source>Show interface labels</source>
         <translation>Mostra le etichette delle interfacce</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="483"/>
         <source>&amp;Save project as…</source>
         <translation>&amp;Salva progetto come…</translation>
@@ -2289,162 +2312,162 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="38"/>
         <source>Topology Graphic View</source>
-        <translation type="unfinished"></translation>
+        <translation>Vista grafica di topologia</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="58"/>
         <source>Window Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Stile della finestra</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="96"/>
         <source>Select Node Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona tipo nodo</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="204"/>
         <source>About</source>
-        <translation type="unfinished">Informazioni</translation>
+        <translation>Informazioni</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="212"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>Esci</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="255"/>
         <source>&amp;Online help</source>
-        <translation type="unfinished"></translation>
+        <translation>Aiut&amp;o in linea</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="256"/>
         <source>Online help</source>
-        <translation type="unfinished"></translation>
+        <translation>Aiuto in linea</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="257"/>
         <source>Online Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Aiuto in linea</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="319"/>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>Informazioni su Qt</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="323"/>
         <source>Zoom &amp;in</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ingrandisci</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="324"/>
         <source>Zoom in</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingrandisci</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="325"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingrandisci</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="329"/>
         <source>Zoom &amp;out</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimpicci&amp;olisci</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="330"/>
         <source>Zoom out</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimpicciolisci</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="331"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimpicciolisci</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="336"/>
         <source>Zoom Reset (1:1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripristina ingrandimento (1:1)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="340"/>
         <source>Select &amp;all</source>
-        <translation type="unfinished"></translation>
+        <translation>Selezion&amp;a tutto</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="341"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona tutto</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="345"/>
         <source>Select &amp;none</source>
-        <translation type="unfinished"></translation>
+        <translation>Deselezio&amp;na tutto</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="346"/>
         <source>Select None</source>
-        <translation type="unfinished"></translation>
+        <translation>Deseleziona tutto</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="354"/>
         <source>Preferences</source>
-        <translation type="unfinished">Preferenze</translation>
+        <translation>Preferenze</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="396"/>
         <source>Add note</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiungi una nota</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="422"/>
         <source>Insert picture</source>
-        <translation type="unfinished"></translation>
+        <translation>Inserisci un&apos;immagine</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="430"/>
         <source>&amp;Symbol manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestore dei &amp;simboli</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="431"/>
         <source>Symbol manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestore dei simboli</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="432"/>
         <source>Symbol Manager</source>
-        <translation type="unfinished">Gestore dei simboli</translation>
+        <translation>Gestore dei simboli</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="442"/>
         <source>Draw rectangle</source>
-        <translation type="unfinished"></translation>
+        <translation>Disegna un rettangolo</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="453"/>
         <source>Draw ellipse</source>
-        <translation type="unfinished"></translation>
+        <translation>Disegna un&apos;ellisse</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="506"/>
         <source>Reset interface labels</source>
-        <translation type="unfinished"></translation>
+        <translation>Ripristina le etichette delle interfacce</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="519"/>
         <source>Show VirtualBox Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra il gestore di VirtualBox</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="522"/>
         <source>Energy Saving</source>
-        <translation type="unfinished"></translation>
+        <translation>Risparmio energetico</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="525"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Predefinito</translation>
     </message>
 </context>
 <context>
@@ -2638,7 +2661,7 @@ Please choose an alternate network interface:</source>
         <source>Please select a node in the list 
 to display the configuration page.</source>
         <translation>Seleziona un nodo nella lista 
-per visionare la pagina di configurazione.</translation>
+per visualizzare la pagina di configurazione.</translation>
     </message>
     <message>
         <location filename="../NodeConfigurator.py" line="304"/>
@@ -3879,7 +3902,7 @@ o sul collegamento stesso.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="223"/>
         <source>Send Qemu paths to external Qemuwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Invia i percorsi Qemu al Qemuwrapper esterno</translation>
     </message>
 </context>
 <context>
@@ -4452,22 +4475,22 @@ o sul collegamento stesso.</translation>
     <message>
         <location filename="../Scene.py" line="635"/>
         <source>Capture</source>
-        <translation type="unfinished"></translation>
+        <translation>Cattura</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="591"/>
         <source>Layer position</source>
-        <translation type="unfinished"></translation>
+        <translation>Posizione del livello</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="591"/>
         <source>Object moved to a background layer. You will now have to use the right-click action to select this object in the future and raise it to layer 0 to be able to move it</source>
-        <translation type="unfinished"></translation>
+        <translation>Oggetto spostato in un livello inferiore. Dovrai utilizzare l&apos;azione del tasto destro per selezionare questo oggetto e portarlo al livello 0 per poterlo spostare</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="635"/>
         <source>Please choose a link</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli un collegamento</translation>
     </message>
 </context>
 <context>
@@ -4598,7 +4621,7 @@ es: #copy start run</translation>
         <source>Rotation:</source>
         <translation>Rotazione:</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_StyleDialog.py" line="66"/>
         <source>°</source>
         <translation></translation>
@@ -5217,7 +5240,7 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="911"/>
         <source>You&apos;re running an old AND unpatched version of qemu, which won&apos;t work</source>
-        <translation type="unfinished"></translation>
+        <translation>Stai eseguendo una versione di qemu vecchia E senza patch, che non funzionerà</translation>
     </message>
 </context>
 <context>
@@ -5275,12 +5298,12 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="433"/>
         <source>VirtualBox is not installed. &lt;a href=&apos;http://www.virtualbox.org/wiki/Downloads&apos;&gt;Download it&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>VirtualBox non è installato. &lt;a href=&apos;http://www.virtualbox.org/wiki/Downloads&apos;&gt;Scaricalo&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="435"/>
         <source>Failed to start vboxapi module. Please check that VirtualBox is installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvio del modulo vboxapi non riuscito. Controlla che VirtualBox sia installato.</translation>
     </message>
 </context>
 <context>
@@ -5467,17 +5490,17 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Ui/Widget_capturesDock.py" line="98"/>
         <source>Start all captures</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvia tutte le catture</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_capturesDock.py" line="101"/>
         <source>Stop all captures</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferma tutte le catture</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_capturesDock.py" line="114"/>
         <source>Start capturing</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvia la cattura</translation>
     </message>
 </context>
 <context>
@@ -5872,22 +5895,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="1254"/>
         <source>Clear Menu</source>
-        <translation type="unfinished"></translation>
+        <translation>Pulisci il menu</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="200"/>
         <source>Recent Files</source>
-        <translation type="unfinished"></translation>
+        <translation>File recenti</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="780"/>
         <source>VirtualBox Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestore di VirtualBox</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="780"/>
         <source>VirtualBox is not installed!</source>
-        <translation type="unfinished"></translation>
+        <translation>VirtualBox non è installato!</translation>
     </message>
 </context>
 <context>
