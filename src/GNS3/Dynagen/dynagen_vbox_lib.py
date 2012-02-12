@@ -714,7 +714,7 @@ class AnyVBoxEmuDevice(object):
             send(remote_emulated_device.p, 'vbox create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))
         if isinstance(remote_emulated_device, AnyEmuDevice):
             debugmsg(3, "remote_emulated_device is AnyEmuDevice")
-            send(remote_emulated_device.p, 'qemu create_udp %s %i %i %s %i' % (remote_emulated_device.name, remote_port, dst_udp, src_ip, src_udp))
+            send(remote_emulated_device.p, 'qemu create_udp %s %i %s %i %s %i' % (remote_emulated_device.name, remote_port, dst_ip, dst_udp, src_ip, src_udp))
         remote_emulated_device.nios[remote_port] = UDPConnection(dst_udp, src_ip, src_udp, remote_emulated_device, remote_port)
 
         #set reverse nios
