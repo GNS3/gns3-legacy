@@ -197,12 +197,12 @@ class xVBOXInstance(object):
     def create_udp(self, i_vnic, sport, daddr, dport):
         debugmsg(2, "xVBOXInstance::create_udp(%s, %s, %s, %s)" % (str(i_vnic), str(sport), str(daddr), str(dport)))
         # FlexiNetwork: Link hot-add
-        return self.vbc.create_udp(i_vnic, sport, daddr, dport)
+        return self.vbc.create_udp(int(i_vnic)-1, sport, daddr, dport)
 
     def delete_udp(self, i_vnic):
         debugmsg(2, "xVBOXInstance::delete_udp(%s)" % str(i_vnic))
         # FlexiNetwork: Link hot-remove
-        return self.vbc.delete_udp(i_vnic)
+        return self.vbc.delete_udp(int(i_vnic)-1)
 
     def get_nio_stats(self, vnic):
         # This function retrieves sent/received bytes from VMs.
