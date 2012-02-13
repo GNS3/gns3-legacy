@@ -30,7 +30,7 @@ def debugmsg(level, message):
     if debuglevel >= level:
         print message
 
-import sys
+import sys, time
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.UndoFramework as undo
@@ -619,6 +619,7 @@ class Scene(QtGui.QGraphicsView):
 
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
+                time.sleep(1)
                 item.console()
 
     def slotCapture(self):
@@ -660,6 +661,7 @@ class Scene(QtGui.QGraphicsView):
 
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter):
+                time.sleep(1)
                 item.aux()
 
     def slotChangeConsolePort(self):

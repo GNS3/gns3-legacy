@@ -179,7 +179,8 @@ elif platform.system() == 'Windows':
 elif platform.system() == 'Darwin':
     TERMINAL_PRESET_CMDS = {
                             'Terminal (Mac OS X)': "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",
-                            'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'"
+                            'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'",
+                            'SecureCRT (Mac OS X)': '/Applications/SecureCRT.app/Contents/MacOS/SecureCRT /arg %d /T /telnet %h %p'
                             }
 else:  # For unknown platforms, or if detection failed, we list all options.
     TERMINAL_PRESET_CMDS = {
@@ -196,10 +197,11 @@ else:  # For unknown platforms, or if detection failed, we list all options.
                             'Gnome Terminal (Linux/BSD)': 'gnome-terminal -t %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
                             'KDE Konsole (Linux/BSD)': '/usr/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &',
                             'Terminal (Mac OS X)': "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",
-                            'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'"
+                            'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'",
+                            'SecureCRT (Mac OS X)': '/Applications/SecureCRT.app/Contents/MacOS/SecureCRT /arg %d /T /telnet %h %p'
                             }
 
-# Default terminal command
+# Default capture command
 if platform.system() == 'Darwin':
     CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (Mac OS X)'])
 elif platform.system() == 'Windows' and os.path.exists("C:\Program Files (x86)\Wireshark\wireshark.exe"):
@@ -213,6 +215,7 @@ elif platform.system() == 'FreeBSD':
 else:
     CAPTURE_DEFAULT_CMD = unicode("/usr/bin/wireshark %c")
 
+# Default terminal command
 if sys.platform.startswith('darwin'):
     TERMINAL_DEFAULT_CMD = unicode(TERMINAL_PRESET_CMDS['Terminal (Mac OS X)'])
 elif sys.platform.startswith('win'):

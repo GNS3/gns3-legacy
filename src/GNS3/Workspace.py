@@ -701,6 +701,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         for node in globals.GApp.topology.nodes.itervalues():
             if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice)) and node.get_dynagen_device().state == 'running':
+                time.sleep(1)
                 node.console()
 
     def __action_ConsoleAuxAll(self):
@@ -709,6 +710,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         for node in globals.GApp.topology.nodes.itervalues():
             if isinstance(node, IOSRouter) and node.get_dynagen_device().state == 'running':
+                time.sleep(1)
                 node.aux()
 
     def __launchProgressDialog(self, action, text, autostart=False):
