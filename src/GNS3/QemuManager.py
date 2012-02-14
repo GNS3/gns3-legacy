@@ -30,6 +30,7 @@ import GNS3.Dynagen.qemu_lib as qlib
 from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug, killAll
+from __main__ import VERSION
 
 class QemuManager(object):
     """ QemuManager class
@@ -225,6 +226,19 @@ class QemuManager(object):
             connection_success = True
             break
         if connection_success:
+            # check qemuwrapper version
+            proc.waitForReadyRead()
+            output = proc.readAllStandardOutput()
+            ver = QtCore.QByteArray('(version ')
+            ver_offset = output.indexOf(ver) + len('(version ')
+            if ver_offset != -1:
+                ver = QtCore.QByteArray(")\n")
+                endver_offset = output.indexOf(ver, ver_offset) - ver_offset
+                wrapper_ver = output.mid(ver_offset, endver_offset)
+                if wrapper_ver != VERSION:
+                    print "QemuManager: qemuwrapper version check failed"
+                    return False
+
             s.close()
             proc.close()
             return True
