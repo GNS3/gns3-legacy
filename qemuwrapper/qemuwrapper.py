@@ -131,12 +131,11 @@ class xEMUInstance(object):
         self.kvm = False
         self.options = ''
         self.process = None
-        self.workdir = WORKDIR
+        self.workdir = WORKDIR + '/' + name
         self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options']
 
     def create(self):
         debugmsg(2, "xEMUInstance::create()")
-        self.workdir = os.path.join(os.getcwdu(), self.name)
         if not os.path.exists(self.workdir):
             os.makedirs(self.workdir)
 
@@ -218,7 +217,7 @@ class xEMUInstance(object):
 
         #FIXME: do not check on Windows, we use Qemu 0.11.0 which is patched BUT doesn't support new syntax!
         if platform.system() != 'Windows':
-            
+
             # fallback on another syntax if the current one is not supported
             if qemuprotocol == 0:
                 try:
