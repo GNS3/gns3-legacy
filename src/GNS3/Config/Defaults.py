@@ -139,7 +139,7 @@ elif platform.system() == 'Linux':
 elif platform.system() == 'FreeBSD':
     CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (FreeBSD)'])
 else:
-    CAPTURE_DEFAULT_CMD = unicode("/usr/bin/wireshark %c")
+    CAPTURE_DEFAULT_CMD = unicode("wireshark %c")
 
 # Default path to capture working directory
 if os.environ.has_key("TEMP"):
