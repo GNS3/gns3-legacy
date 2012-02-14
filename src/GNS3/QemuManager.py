@@ -229,5 +229,6 @@ class QemuManager(object):
             proc.close()
             return True
         if proc.state():
+            s.close()
             proc.close()
         return False
