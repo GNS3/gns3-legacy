@@ -117,6 +117,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 # let's check for an update
                 self.__action_CheckForUpdate(silent=True)
                 globals.GApp.systconf['general'].last_check_for_update = currentEpoch
+    
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
@@ -131,6 +132,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_ZoomIn, QtCore.SIGNAL('triggered()'), self.__action_ZoomIn)
         self.connect(self.action_ZoomOut, QtCore.SIGNAL('triggered()'), self.__action_ZoomOut)
         self.connect(self.action_ZoomReset, QtCore.SIGNAL('triggered()'), self.__action_ZoomReset)
+        self.connect(self.action_Router, QtCore.SIGNAL('triggered()'), self.__action_Router)
+        self.connect(self.action_Switch, QtCore.SIGNAL('triggered()'), self.__action_Switch)
+        self.connect(self.action_EndDevices, QtCore.SIGNAL('triggered()'), self.__action_EndDevices)
+        self.connect(self.action_Firewall, QtCore.SIGNAL('triggered()'), self.__action_Firewall)
+        self.connect(self.action_IDS, QtCore.SIGNAL('triggered()'), self.__action_IDS)
+        self.connect(self.action_OtherDevices, QtCore.SIGNAL('triggered()'), self.__action_OtherDevices)
         self.connect(self.action_DefaultStyle, QtCore.SIGNAL('triggered()'), self.__action_DefaultStyle)
         self.connect(self.action_EnergySavingStyle, QtCore.SIGNAL('triggered()'), self.__action_EnergySavingStyle)
         self.connect(self.action_SelectAll, QtCore.SIGNAL('triggered()'), self.__action_SelectAll)
@@ -166,6 +173,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # Device menu is contextual and is build on-the-fly
         self.connect(self.menuDevice, QtCore.SIGNAL('aboutToShow()'), self.__action_ShowDeviceMenu)
+        
+        # By default, don't show the NodeTypes dock                 # A bit dirty but doesn't work if put before
+        self.dockWidget_NodeTypes.setVisible(False)
 
     def __action_ShowDeviceMenu(self):
 
@@ -629,6 +639,57 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         globals.GApp.scene.resetMatrix()
+
+    def __doSlidingWindow(self, type):
+        """ Make the NodeDock appear (sliding effect is in progress)
+               with the appropriate title and the devices concerned listed.
+               Make window disappear if click on same category.
+        """
+
+        if self.dockWidget_NodeTypes.windowTitle() == type:
+            self.dockWidget_NodeTypes.setVisible(False)
+            self.dockWidget_NodeTypes.setWindowTitle('')
+        else:
+            self.dockWidget_NodeTypes.setWindowTitle(type)
+            self.dockWidget_NodeTypes.setVisible(True)
+            self.nodesDock.clear()
+            self.nodesDock.populateNodeDock(type)
+            
+    def __action_Router(self):
+        """ Display all devices in the "router" category.
+        """
+
+        self.__doSlidingWindow('Router')
+		
+    def __action_Switch(self):
+        """ Display all devices in the "switch" category.
+        """
+        
+        self.__doSlidingWindow('Switch')
+		
+    def __action_EndDevices(self):
+        """ Display all devices in the "end device" category.
+        """
+        
+        self.__doSlidingWindow('End Device')
+		
+    def __action_Firewall(self):
+        """ Display all devices in the "firewall" category.
+        """
+        
+        self.__doSlidingWindow('Firewall')
+		
+    def __action_IDS(self):
+        """ Display all devices in the "IDS" category.
+        """
+        
+        self.__doSlidingWindow('IDS')
+		
+    def __action_OtherDevices(self):
+        """ Display all devices in the "other devices" category.
+        """
+        
+        self.__doSlidingWindow('Other Device')
 
     def __action_DefaultStyle(self):
         """ Restore/Put stylesheet back to normal (and destroy the planet)

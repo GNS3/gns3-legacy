@@ -34,7 +34,7 @@ class nodesDock(QtGui.QTreeWidget):
         QtGui.QTreeWidget.__init__(self, parent)
         self.header().hide()
 
-    def populateNodeDock(self):
+    def populateNodeDock(self, nodeType):
         """ Fill the node dock
         """
 
@@ -66,9 +66,12 @@ class nodesDock(QtGui.QTreeWidget):
         
         count = 0
         for symbol in SYMBOLS:
+            if symbol['type'] != nodeType:
+                count += 1
+                continue
             if symbol['object'] == DecorativeNode:
                 item = QtGui.QTreeWidgetItem(parent_decorative_nodes, 1000 + count)
-            else:
+            else:    
                 item = QtGui.QTreeWidgetItem(parent_emulated_devices, 1000 + count)
             if symbol['translated']:
                 item.setText(0, translate("nodesDock", symbol['name']))
@@ -101,6 +104,7 @@ class nodesDock(QtGui.QTreeWidget):
         drag.setHotSpot(QtCore.QPoint(iconeSize.width(), iconeSize.height()))
         drag.setPixmap(icone.pixmap(iconeSize))
         drag.start(QtCore.Qt.MoveAction)
+        self.parent().parent().setVisible(False)
 
     def retranslateItem(self, item):
 
@@ -120,4 +124,4 @@ class nodesDock(QtGui.QTreeWidget):
     def retranslateUi(self, MainWindow):
 
         self.populateNodeDock()
-
+        return

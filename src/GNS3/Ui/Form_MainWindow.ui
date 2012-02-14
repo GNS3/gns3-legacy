@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -18,7 +21,12 @@
     <normaloff>:/images/logo_icon.png</normaloff>:/images/logo_icon.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">#toolBar_Devices QToolButton {
+width: 50px;
+height: 50px;
+border:solid 1px black opacity 0.4;
+background-none;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout">
@@ -176,6 +184,12 @@
    <addaction name="action_Add_link"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget_NodeTypes">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
    <property name="allowedAreas">
     <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
    </property>
@@ -222,6 +236,38 @@
      </item>
     </layout>
    </widget>
+  </widget>
+  <widget class="QToolBar" name="toolBar_Devices">
+   <property name="windowTitle">
+    <string>Devices</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>64</width>
+     <height>64</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonIconOnly</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_Router"/>
+   <addaction name="separator"/>
+   <addaction name="action_Switch"/>
+   <addaction name="separator"/>
+   <addaction name="action_EndDevices"/>
+   <addaction name="separator"/>
+   <addaction name="action_Firewall"/>
+   <addaction name="separator"/>
+   <addaction name="action_IDS"/>
+   <addaction name="separator"/>
+   <addaction name="action_OtherDevices"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QToolBar" name="toolBar_Emulation">
    <property name="windowTitle">
@@ -1073,6 +1119,102 @@
   <action name="action_DefaultStyle">
    <property name="text">
     <string>Default</string>
+   </property>
+  </action>
+  <action name="action_Router">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/router.png</normaloff>
+     <activeoff>:/icons/router-hover.png</activeoff>:/icons/router.png</iconset>
+   </property>
+   <property name="text">
+    <string>Router</string>
+   </property>
+   <property name="toolTip">
+    <string>Router</string>
+   </property>
+   <property name="statusTip">
+    <string>Select Router</string>
+   </property>
+  </action>
+  <action name="action_Switch">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/switch.png</normaloff>
+     <activeoff>:/icons/switch-hover.png</activeoff>:/icons/switch.png</iconset>
+   </property>
+   <property name="text">
+    <string>Switch</string>
+   </property>
+   <property name="toolTip">
+    <string>Switch</string>
+   </property>
+   <property name="statusTip">
+    <string>Select Switch</string>
+   </property>
+  </action>
+  <action name="action_EndDevices">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/PC.png</normaloff>
+     <activeoff>:/icons/PC-hover.png</activeoff>:/icons/PC.png</iconset>
+   </property>
+   <property name="text">
+    <string>End devices</string>
+   </property>
+   <property name="toolTip">
+    <string>End devices</string>
+   </property>
+   <property name="statusTip">
+    <string>Select End device</string>
+   </property>
+  </action>
+  <action name="action_OtherDevices">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/other-devices.png</normaloff>
+     <activeoff>:/icons/other-devices-hover.png</activeoff>:/icons/other-devices.png</iconset>
+   </property>
+   <property name="text">
+    <string>Other devices</string>
+   </property>
+   <property name="toolTip">
+    <string>Other devices</string>
+   </property>
+   <property name="statusTip">
+    <string>Select Other devices</string>
+   </property>
+  </action>
+  <action name="action_Firewall">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/firewall.png</normaloff>
+     <activeoff>:/icons/firewall-hover.png</activeoff>:/icons/firewall.png</iconset>
+   </property>
+   <property name="text">
+    <string>Firewall</string>
+   </property>
+   <property name="toolTip">
+    <string>Firewall</string>
+   </property>
+   <property name="statusTip">
+    <string>Select Firewall</string>
+   </property>
+  </action>
+  <action name="action_IDS">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/ids.png</normaloff>
+     <activeoff>:/icons/ids-hover.png</activeoff>:/icons/ids.png</iconset>
+   </property>
+   <property name="text">
+    <string>IDS</string>
+   </property>
+   <property name="toolTip">
+    <string>IDS</string>
+   </property>
+   <property name="statusTip">
+    <string>Select Intrusion Detection System</string>
    </property>
   </action>
  </widget>
