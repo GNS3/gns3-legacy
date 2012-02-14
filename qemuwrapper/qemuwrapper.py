@@ -45,6 +45,7 @@ import time
 import random
 import ctypes
 import hashlib
+import fcntl
 
 if debuglevel > 0:
     if platform.system() == 'Windows':
@@ -154,6 +155,7 @@ class xEMUInstance(object):
         try:
             self.process = subprocess.Popen(command,
                                             stdin=subprocess.PIPE,
+                                            stdout=subprocess.PIPE,
                                             cwd=self.workdir)
         except e:
             print >> sys.stderr, "Unable to start instance", self.name, "of", self.__class__
@@ -162,6 +164,22 @@ class xEMUInstance(object):
 
         # give us some time to wait for Qemu to start
         time.sleep(1)
+
+        # set Qemu's stdout to be non blocking in order to parse monitor mode's output
+        fl = fcntl.fcntl(self.process.stdout, fcntl.F_GETFL)
+        fcntl.fcntl(self.process.stdout, fcntl.F_SETFL, fl | os.O_NONBLOCK)
+        # consume the first lines of output of qemu monitor mode
+        output = ''
+        while 1:
+            try:
+                output += self.process.stdout.read(512)
+            # IOError: [Errno 35] (EWOULDBLOCK, nothing to read)
+            except IOError:
+                if len(output) == 0 or '(qemu) 'not in output:
+                    time.sleep(1)
+                    continue
+                else:
+                    break
 
         print "    pid:", self.process.pid
 
@@ -218,7 +236,7 @@ class xEMUInstance(object):
 
         #FIXME: do not check on Windows, we use Qemu 0.11.0 which is patched BUT doesn't support new syntax!
         if platform.system() != 'Windows':
-            
+
             # fallback on another syntax if the current one is not supported
             if qemuprotocol == 0:
                 try:
@@ -250,7 +268,7 @@ class xEMUInstance(object):
                 if vlan in self.udp:
                     options.append('-netdev')
                     options.append('socket,id=gns3-%s,udp=%s:%s,localaddr=%s:%s' % (vlan, self.udp[vlan].shost, self.udp[vlan].sport, self.udp[vlan].daddr, self.udp[vlan].dport))
-                # TODO: dump relies on vlans, incompatible with the new syntax: patch it.
+                # FIXME: dump relies on vlans, incompatible with the new syntax: patch it.
                 #if vlan in self.capture:
                     #options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
             else:
@@ -333,6 +351,7 @@ class QEMUInstance(xEMUInstance):
         debugmsg(3, "QEMUInstance::_build_command()")
         "Builds the command as a list of shell arguments."
         command = [self.bin]
+        command.extend(['-monitor', 'stdio'])
         command.extend(['-name', self.name])
         command.extend(['-m', str(self.ram)])
         command.extend(self._disk_options())
@@ -631,6 +650,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             'stop' : (1, 1),
             'clean': (1, 1),
             'unbase': (1, 1),
+            'monitor': (2, 2),
             }
         }
 
@@ -1002,6 +1022,50 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             return
         QEMU_INSTANCES[name].unbase_disk()
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
+
+    # QEMU MONITOR MODE
+    # Use a busy loop since python's select is not portable
+    # on Windows, it won't work with file objects.
+    # Waiting 1 second if we still expect data, this
+    # could be optimized, usage will tell us how to react, for
+    # now it's stable.
+    def do_qemu_monitor(self, data):
+        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_monitor(%s)" % (str(data)))
+        name, command = data
+        command += "\n"
+        if not QEMU_INSTANCES[name].process:
+            self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
+                            "unable to find Qemu '%s', is it started?" % name)
+            return
+
+        # send the command to qemu monitor mode
+        QEMU_INSTANCES[name].process.stdin.write(command)
+
+        output = ''
+        fout = QEMU_INSTANCES[name].process.stdout
+        while 1:
+            try:
+                output += fout.read(512)
+            # IOError: [Errno 35] (EWOULDBLOCK, nothing to read)
+            # XXX: affiner? ou alors tester si le processus et encore la...
+            except IOError:
+                if len(output) == 0 or '(qemu) 'not in output:
+                    time.sleep(1)
+                    continue
+                else:
+                    break
+        output = output.replace("\r", "")
+        # remove the first line (trash input and ESC sequence)
+        output = output[output.find("\n") + 1:]
+        # remove the qemu prompt
+        output = output[:-9]
+        # Serialize newlines: can only send a single line
+        output = output.replace("\n", '\n')
+        # Some commands don't generate any output, means it's OK
+        if len(output) == 0:
+            output = 'OK'
+        self.send_reply(self.HSC_INFO_OK, 1, output)
+
 
 class DaemonThreadingMixIn(SocketServer.ThreadingMixIn):
     daemon_threads = True
