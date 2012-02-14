@@ -410,6 +410,15 @@ class AnyEmuDevice(object):
 
         return self.name + ' does not support resuming'
 
+    def qmonitor(self, command):
+        """ Communicate with qemu monitor mode"""
+        debugmsg(2, "AnyEmuDevice::qmonitor(%s)" % str(command))
+        r = send(self.p, 'qemu monitor %s %s' % (self.name, str(command)))
+        r = str(r)
+        r = r.replace("\\n", "\n")
+        r = r.replace("\\t", "    ")
+        return r
+
     def _setconsole(self, console):
         """ Set console port
         console: (int) TCP port of console

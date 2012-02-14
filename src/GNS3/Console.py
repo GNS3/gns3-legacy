@@ -58,6 +58,7 @@ class Console(PyCutExt, Dynagen_Console):
                     "suspend",
                     "telnet",
                     "vboxexec",
+                    "qmonitor",
                     "ver"])
 
     def __init__(self, parent):
@@ -283,6 +284,22 @@ Example for Linux guest:
             QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  unicode(msg))
         except (lib.DynamipsErrorHandled,  socket.error):
             QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
+
+    def do_qmonitor(self, args):
+        """qmonitor <QEMU device> <command>\nCommunicate with qemu monitor mode. more: qmonitor <QEMU device> help"""
+
+        if '?' in args or args.strip() == '':
+            print self.do_qmonitor.__doc__
+            return
+
+        try:
+            Dynagen_Console.do_qmonitor(self, args)
+        except lib.DynamipsError, msg:
+            QtGui.QMessageBox.critical(self, translate("Console", "Dynamips error"),  unicode(msg))
+        except lib.DynamipsWarning,  msg:
+            QtGui.QMessageBox.warning(self,  translate("Console", "Dynamips warning"),  unicode(msg))
+        except (lib.DynamipsErrorHandled,  socket.error):
+            QtGui.QMessageBox.critical(self, translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
 
     def do_show(self, args):
         """show mac <ethernet_switch_name>
