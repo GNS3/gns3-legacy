@@ -237,6 +237,8 @@ class QemuManager(object):
                 wrapper_ver = output.mid(ver_offset, endver_offset)
                 if wrapper_ver != VERSION:
                     print "QemuManager: qemuwrapper version check failed"
+                    s.close()
+                    proc.close()
                     return False
 
             s.close()
