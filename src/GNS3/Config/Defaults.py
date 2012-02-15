@@ -201,20 +201,6 @@ else:  # For unknown platforms, or if detection failed, we list all options.
                             'SecureCRT (Mac OS X)': '/Applications/SecureCRT.app/Contents/MacOS/SecureCRT /arg %d /T /telnet %h %p'
                             }
 
-# Default capture command
-if platform.system() == 'Darwin':
-    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (Mac OS X)'])
-elif platform.system() == 'Windows' and os.path.exists("C:\Program Files (x86)\Wireshark\wireshark.exe"):
-    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (Windows 64-bit)'])
-elif platform.system() == 'Windows':
-    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (Windows)'])
-elif platform.system() == 'Linux':
-    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (Linux)'])
-elif platform.system() == 'FreeBSD':
-    CAPTURE_DEFAULT_CMD = unicode(CAPTURE_PRESET_CMDS[Live_Traffic_Capture_String + ' (FreeBSD)'])
-else:
-    CAPTURE_DEFAULT_CMD = unicode("/usr/bin/wireshark %c")
-
 # Default terminal command
 if sys.platform.startswith('darwin'):
     TERMINAL_DEFAULT_CMD = unicode(TERMINAL_PRESET_CMDS['Terminal (Mac OS X)'])
