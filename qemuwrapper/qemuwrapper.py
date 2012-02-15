@@ -84,6 +84,7 @@ IP = ""
 QEMU_INSTANCES = {}
 FORCE_IPV6 = False
 
+# set correctly the working directory for qemuwrapper
 WORKDIR = os.getcwdu()
 if os.environ.has_key("TEMP"):
     WORKDIR = unicode(os.environ["TEMP"], errors='replace')
