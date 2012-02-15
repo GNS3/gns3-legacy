@@ -137,7 +137,7 @@ class xVBOXInstance(object):
         self.guestcontrol_user = ''
         self.guestcontrol_password = ''
         self.process = None
-        self.workdir = WORKDIR
+        self.workdir = WORKDIR + '/' + name
         self.valid_attr_names = ['image',  'console', 'nics', 'netcard', 'guestcontrol_user', 'guestcontrol_password']
         self.mgr = g_vboxManager
         self.vbox = self.mgr.vbox
@@ -162,7 +162,6 @@ class xVBOXInstance(object):
 
     def create(self):
         debugmsg(2, "xVBOXInstance::create()")
-        self.workdir = os.path.join(os.getcwdu(), self.name)
         if not os.path.exists(self.workdir):
             os.makedirs(self.workdir)
 
