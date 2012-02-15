@@ -1125,6 +1125,7 @@ if __name__ == '__main__':
     print "Qemu Emulator Wrapper (version %s)" % __version__
     print "Copyright (c) 2007-2011 Thomas Pani & Jeremy Grossmann"
     print
+    sys.stdout.flush()
 
     if platform.system() == 'Windows':
         try:
