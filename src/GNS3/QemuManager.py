@@ -227,7 +227,7 @@ class QemuManager(object):
             break
         if connection_success:
             # check qemuwrapper version
-            proc.waitForReadyRead()
+            proc.waitForReadyRead(5000)
             output = proc.readAllStandardOutput()
             ver = QtCore.QByteArray('(version ')
             ver_offset = output.indexOf(ver) + len('(version ')
