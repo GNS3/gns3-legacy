@@ -225,6 +225,7 @@ class QemuManager(object):
                 continue
             connection_success = True
             break
+        s.close()
         if connection_success:
             # check qemuwrapper version
             proc.waitForReadyRead(5000)
@@ -237,14 +238,12 @@ class QemuManager(object):
                 wrapper_ver = output.mid(ver_offset, endver_offset)
                 if wrapper_ver != VERSION:
                     print "QemuManager: qemuwrapper version check failed"
-                    s.close()
+                    print "QemuManager: please update your qemuwrapper and check its path in the settings"
                     proc.close()
                     return False
 
-            s.close()
             proc.close()
             return True
         if proc.state():
-            s.close()
             proc.close()
         return False
