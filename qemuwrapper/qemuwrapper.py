@@ -1047,7 +1047,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             try:
                 output += fout.read(512)
             # IOError: [Errno 35] (EWOULDBLOCK, nothing to read)
-            # XXX: affiner? ou alors tester si le processus et encore la...
             except IOError:
                 if len(output) == 0 or '(qemu) 'not in output:
                     time.sleep(1)
