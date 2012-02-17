@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Tue Feb 14 16:57:55 2012
+# Created: Fri Feb 17 15:56:02 2012
 #      by: PyQt4 UI code generator 4.9
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,7 +27,9 @@ class Ui_MainWindow(object):
 "height: 50px;\n"
 "border:solid 1px black opacity 0.4;\n"
 "background-none;\n"
-"}"))
+"}\n"
+"\n"
+""))
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridlayout = QtGui.QGridLayout(self.centralwidget)
@@ -429,6 +431,8 @@ class Ui_MainWindow(object):
         icon38.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/ids-hover.png")), QtGui.QIcon.Active, QtGui.QIcon.Off)
         self.action_IDS.setIcon(icon38)
         self.action_IDS.setObjectName(_fromUtf8("action_IDS"))
+        self.action_HighContrastStyle = QtGui.QAction(MainWindow)
+        self.action_HighContrastStyle.setObjectName(_fromUtf8("action_HighContrastStyle"))
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -453,6 +457,7 @@ class Ui_MainWindow(object):
         self.menu_About.addAction(self.action_About)
         self.menuWindow_Style.addAction(self.action_DefaultStyle)
         self.menuWindow_Style.addAction(self.action_EnergySavingStyle)
+        self.menuWindow_Style.addAction(self.action_HighContrastStyle)
         self.menu_View.addAction(self.action_ZoomIn)
         self.menu_View.addAction(self.action_ZoomOut)
         self.menu_View.addAction(self.action_ZoomReset)
@@ -676,6 +681,7 @@ class Ui_MainWindow(object):
         self.action_ShowVirtualBoxManager.setToolTip(QtGui.QApplication.translate("MainWindow", "Show VirtualBox Manager", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowVirtualBoxManager.setStatusTip(QtGui.QApplication.translate("MainWindow", "Show VirtualBox Manager", None, QtGui.QApplication.UnicodeUTF8))
         self.action_EnergySavingStyle.setText(QtGui.QApplication.translate("MainWindow", "Energy Saving", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_EnergySavingStyle.setStatusTip(QtGui.QApplication.translate("MainWindow", "Energy Saving Mode", None, QtGui.QApplication.UnicodeUTF8))
         self.action_DefaultStyle.setText(QtGui.QApplication.translate("MainWindow", "Default", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Router.setText(QtGui.QApplication.translate("MainWindow", "Router", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Router.setToolTip(QtGui.QApplication.translate("MainWindow", "Router", None, QtGui.QApplication.UnicodeUTF8))
@@ -694,7 +700,9 @@ class Ui_MainWindow(object):
         self.action_Firewall.setStatusTip(QtGui.QApplication.translate("MainWindow", "Select Firewall", None, QtGui.QApplication.UnicodeUTF8))
         self.action_IDS.setText(QtGui.QApplication.translate("MainWindow", "IDS", None, QtGui.QApplication.UnicodeUTF8))
         self.action_IDS.setToolTip(QtGui.QApplication.translate("MainWindow", "IDS", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_IDS.setStatusTip(QtGui.QApplication.translate("MainWindow", "Select IDS", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_IDS.setStatusTip(QtGui.QApplication.translate("MainWindow", "Select Intrusion Detection System", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_HighContrastStyle.setText(QtGui.QApplication.translate("MainWindow", "High Contrast", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_HighContrastStyle.setStatusTip(QtGui.QApplication.translate("MainWindow", "High Contrast Mode", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.UndoFramework import UndoView
 from GNS3.Ui.Widget_nodesDock import nodesDock

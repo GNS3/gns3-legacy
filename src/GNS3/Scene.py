@@ -76,6 +76,7 @@ class Scene(QtGui.QGraphicsView):
         self.setRenderHint(QtGui.QPainter.Antialiasing)
         self.setTransformationAnchor(self.AnchorUnderMouse)
         self.setResizeAnchor(self.AnchorViewCenter)
+        self.setDragMode(QtGui.QGraphicsView.ScrollHandDrag)
 
         self.newedge = None
         self.resetAddingLink()

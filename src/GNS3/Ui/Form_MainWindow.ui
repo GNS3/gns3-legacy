@@ -26,7 +26,9 @@ width: 50px;
 height: 50px;
 border:solid 1px black opacity 0.4;
 background-none;
-}</string>
+}
+
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout">
@@ -107,6 +109,7 @@ background-none;
      </property>
      <addaction name="action_DefaultStyle"/>
      <addaction name="action_EnergySavingStyle"/>
+     <addaction name="action_HighContrastStyle"/>
     </widget>
     <addaction name="action_ZoomIn"/>
     <addaction name="action_ZoomOut"/>
@@ -1115,6 +1118,9 @@ background-none;
    <property name="text">
     <string>Energy Saving</string>
    </property>
+   <property name="statusTip">
+    <string>Energy Saving Mode</string>
+   </property>
   </action>
   <action name="action_DefaultStyle">
    <property name="text">
@@ -1215,6 +1221,14 @@ background-none;
    </property>
    <property name="statusTip">
     <string>Select Intrusion Detection System</string>
+   </property>
+  </action>
+  <action name="action_HighContrastStyle">
+   <property name="text">
+    <string>High Contrast</string>
+   </property>
+   <property name="statusTip">
+    <string>High Contrast Mode</string>
    </property>
   </action>
  </widget>

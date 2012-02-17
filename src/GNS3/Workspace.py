@@ -140,6 +140,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_OtherDevices, QtCore.SIGNAL('triggered()'), self.__action_OtherDevices)
         self.connect(self.action_DefaultStyle, QtCore.SIGNAL('triggered()'), self.__action_DefaultStyle)
         self.connect(self.action_EnergySavingStyle, QtCore.SIGNAL('triggered()'), self.__action_EnergySavingStyle)
+        self.connect(self.action_HighContrastStyle, QtCore.SIGNAL('triggered()'), self.__action_HighContrastStyle)
         self.connect(self.action_SelectAll, QtCore.SIGNAL('triggered()'), self.__action_SelectAll)
         self.connect(self.action_SelectNone, QtCore.SIGNAL('triggered()'), self.__action_SelectNone)
         self.connect(self.action_TelnetAll, QtCore.SIGNAL('triggered()'), self.__action_TelnetAll)
@@ -703,6 +704,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         self.setStyleSheet(' QMainWindow {} QMenuBar { background: black; } QDockWidget { background: black; color: white; } QToolBar { background: black; } QFrame { background: gray; } QToolButton { width: 30px; height: 30px; /*border:solid 1px black opacity 0.4;*/ /*background-none;*/ } QStatusBar { /*	background-image: url(:/pictures/pictures/texture_blackgrid.png);*/ 	background: black; color: rgb(255,255,255); } ')
 
+    def __action_HighContrastStyle(self):
+        """ Put stylesheet meant to display high contrast icons, useful for low vision people
+        """
+
+        self.action_StartAll.setIcon(QtGui.QIcon(':/icons/play7-test.svg'))
+        self.action_SuspendAll.setIcon(QtGui.QIcon(':/icons/pause3-test.svg'))
+        self.action_StopAll.setIcon(QtGui.QIcon(':/icons/stop3-test.svg'))
+        
     def __action_ShowHostnames(self):
         """ Display/Hide hostnames for all the nodes on the scene
         """
