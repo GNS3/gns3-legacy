@@ -121,7 +121,7 @@ class QemuManager(object):
                                           unicode(translate("QemuManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.systconf['qemu'].qemuwrapper_workdir)
 
             # set the working directory to be the same as qemuwrapper, important to use relative paths with qemu and qemu-img
-            self.proc.setWorkingDirectory(os.path.dirname(globals.GApp.systconf['qemu'].qemuwrapper_path))
+            self.proc.setWorkingDirectory(globals.GApp.systconf['qemu'].qemuwrapper_workdir)
 
         # test if Qemu is already running on this port
         if binding.__contains__(':'):
@@ -191,8 +191,7 @@ class QemuManager(object):
                 return False
 
             # set the working directory to be the same as qemuwrapper, important to use relative paths with qemu and qemu-img
-            proc.setWorkingDirectory(os.path.dirname(globals.GApp.systconf['qemu'].qemuwrapper_path))
-
+            proc.setWorkingDirectory(globals.GApp.systconf['qemu'].qemuwrapper_workdir)
 
         # start Qemuwrapper, use python on all platform but Windows (in release mode)
         if sys.platform.startswith('win') and (globals.GApp.systconf['qemu'].qemuwrapper_path.split('.')[-1] == 'exe'):
