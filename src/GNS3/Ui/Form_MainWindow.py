@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Feb 18 17:42:36 2012
+# Created: Sat Feb 18 19:44:04 2012
 #      by: PyQt4 UI code generator 4.9
 #
 # WARNING! All changes made in this file will be lost!
@@ -434,6 +434,12 @@ class Ui_MainWindow(object):
         self.action_IDS.setObjectName(_fromUtf8("action_IDS"))
         self.action_HighContrastStyle = QtGui.QAction(MainWindow)
         self.action_HighContrastStyle.setObjectName(_fromUtf8("action_HighContrastStyle"))
+        self.action_BrowseAllDevices = QtGui.QAction(MainWindow)
+        icon39 = QtGui.QIcon()
+        icon39.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/browse-all-icons.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon39.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/browse-all-icons-hover.png")), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        self.action_BrowseAllDevices.setIcon(icon39)
+        self.action_BrowseAllDevices.setObjectName(_fromUtf8("action_BrowseAllDevices"))
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -496,6 +502,8 @@ class Ui_MainWindow(object):
         self.toolBar_General.addAction(self.action_ShowinterfaceNames)
         self.toolBar_General.addAction(self.action_ShowHostnames)
         self.toolBar_General.addAction(self.action_Add_link)
+        self.toolBar_Devices.addAction(self.action_BrowseAllDevices)
+        self.toolBar_Devices.addSeparator()
         self.toolBar_Devices.addAction(self.action_Router)
         self.toolBar_Devices.addSeparator()
         self.toolBar_Devices.addAction(self.action_Switch)
@@ -704,6 +712,9 @@ class Ui_MainWindow(object):
         self.action_IDS.setStatusTip(QtGui.QApplication.translate("MainWindow", "Select Intrusion Detection System", None, QtGui.QApplication.UnicodeUTF8))
         self.action_HighContrastStyle.setText(QtGui.QApplication.translate("MainWindow", "High Contrast", None, QtGui.QApplication.UnicodeUTF8))
         self.action_HighContrastStyle.setStatusTip(QtGui.QApplication.translate("MainWindow", "High Contrast Mode", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_BrowseAllDevices.setText(QtGui.QApplication.translate("MainWindow", "Browse all devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_BrowseAllDevices.setToolTip(QtGui.QApplication.translate("MainWindow", "Browse all devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_BrowseAllDevices.setStatusTip(QtGui.QApplication.translate("MainWindow", "Browse all devices", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.UndoFramework import UndoView
 from GNS3.Ui.Widget_nodesDock import nodesDock

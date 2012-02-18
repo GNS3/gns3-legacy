@@ -132,6 +132,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_ZoomIn, QtCore.SIGNAL('triggered()'), self.__action_ZoomIn)
         self.connect(self.action_ZoomOut, QtCore.SIGNAL('triggered()'), self.__action_ZoomOut)
         self.connect(self.action_ZoomReset, QtCore.SIGNAL('triggered()'), self.__action_ZoomReset)
+        self.connect(self.action_BrowseAllDevices, QtCore.SIGNAL('triggered()'), self.__action_BrowseAllDevices)
         self.connect(self.action_Router, QtCore.SIGNAL('triggered()'), self.__action_Router)
         self.connect(self.action_Switch, QtCore.SIGNAL('triggered()'), self.__action_Switch)
         self.connect(self.action_EndDevices, QtCore.SIGNAL('triggered()'), self.__action_EndDevices)
@@ -655,6 +656,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.dockWidget_NodeTypes.setVisible(True)
             self.nodesDock.clear()
             self.nodesDock.populateNodeDock(type)
+
+    def __action_BrowseAllDevices(self):
+        """ Display all devices from all categories.
+        """
+
+        self.__doSlidingWindow('All')
             
     def __action_Router(self):
         """ Display all devices in the "router" category.

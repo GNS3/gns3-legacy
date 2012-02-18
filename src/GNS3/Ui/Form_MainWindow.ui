@@ -262,6 +262,8 @@ background-none;
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="action_BrowseAllDevices"/>
+   <addaction name="separator"/>
    <addaction name="action_Router"/>
    <addaction name="separator"/>
    <addaction name="action_Switch"/>
@@ -1232,6 +1234,22 @@ background-none;
    </property>
    <property name="statusTip">
     <string>High Contrast Mode</string>
+   </property>
+  </action>
+  <action name="action_BrowseAllDevices">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/browse-all-icons.png</normaloff>
+     <activeoff>:/icons/browse-all-icons-hover.png</activeoff>:/icons/browse-all-icons.png</iconset>
+   </property>
+   <property name="text">
+    <string>Browse all devices</string>
+   </property>
+   <property name="toolTip">
+    <string>Browse all devices</string>
+   </property>
+   <property name="statusTip">
+    <string>Browse all devices</string>
    </property>
   </action>
  </widget>

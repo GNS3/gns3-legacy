@@ -66,7 +66,7 @@ class nodesDock(QtGui.QTreeWidget):
         
         count = 0
         for symbol in SYMBOLS:
-            if 'type' in symbol and symbol['type'] != nodeType:
+            if nodeType != 'All' and 'type' in symbol and symbol['type'] != nodeType:
                 count += 1
                 continue
             if symbol['object'] == DecorativeNode:
