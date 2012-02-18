@@ -718,12 +718,31 @@ class Workspace(QMainWindow, Ui_MainWindow):
             and the user wants to go back to default style
         """
 
-        self.action_StartAll.setIcon(QtGui.QIcon(':/icons/play2-test.svg'))
-        self.action_SuspendAll.setIcon(QtGui.QIcon(':/icons/pause2-test.svg'))
-        self.action_StopAll.setIcon(QtGui.QIcon(':/icons/stop2-test.svg'))
-        if self.action_StartAll.hover():
-            self.action_StartAll.setIcon(QtGui.QIcon(':/icons/play7-test.svg'))
+        #self.action_StartAll.setIcon(QtGui.QIcon(':/icons/play2-test.svg'))
+        #self.action_SuspendAll.setIcon(QtGui.QIcon(':/icons/pause2-test.svg'))
+        #self.action_StopAll.setIcon(QtGui.QIcon(':/icons/stop2-test.svg'))
+        #if self.action_StartAll.hover():
+            #self.action_StartAll.setIcon(QtGui.QIcon(':/icons/play7-test.svg'))
+
+        startAllIcon = QtGui.QIcon()
+        startAllIcon.addPixmap(QtGui.QPixmap(":/icons/play2-test.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        #startAllIcon.addPixmap(QtGui.QPixmap(":/icons/play2-test.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        startAllIcon.addPixmap(QtGui.QPixmap(":/icons/play7-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        startAllIcon.addPixmap(QtGui.QPixmap(":/icons/play7-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.On)
+        self.action_StartAll.setIcon(startAllIcon)
         
+        pauseAllIcon = QtGui.QIcon()
+        pauseAllIcon.addPixmap(QtGui.QPixmap(":/icons/pause2-test.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        pauseAllIcon.addPixmap(QtGui.QPixmap(":/icons/pause3-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        pauseAllIcon.addPixmap(QtGui.QPixmap(":/icons/pause3-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.On)
+        self.action_SuspendAll.setIcon(pauseAllIcon)
+        
+        stopAllIcon = QtGui.QIcon()
+        stopAllIcon.addPixmap(QtGui.QPixmap(":/icons/stop2-test.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        stopAllIcon.addPixmap(QtGui.QPixmap(":/icons/stop3-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        stopAllIcon.addPixmap(QtGui.QPixmap(":/icons/stop3-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.On)
+        self.action_StopAll.setIcon(stopAllIcon)
+
     def __action_ShowHostnames(self):
         """ Display/Hide hostnames for all the nodes on the scene
         """
