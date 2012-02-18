@@ -66,7 +66,7 @@ class nodesDock(QtGui.QTreeWidget):
         
         count = 0
         for symbol in SYMBOLS:
-            if symbol['type'] != nodeType:
+            if 'type' in symbol and symbol['type'] != nodeType:
                 count += 1
                 continue
             if symbol['object'] == DecorativeNode:
@@ -105,6 +105,7 @@ class nodesDock(QtGui.QTreeWidget):
         drag.setPixmap(icone.pixmap(iconeSize))
         drag.start(QtCore.Qt.MoveAction)
         self.parent().parent().setVisible(False)
+        self.parent().parent().setWindowTitle('')
 
     def retranslateItem(self, item):
 

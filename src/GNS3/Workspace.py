@@ -697,6 +697,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         self.setStyleSheet('')
+        self.__restoreIcons()
 
     def __action_EnergySavingStyle(self):
         """ Put stylesheet meant to save energy, very popular these days
@@ -711,6 +712,17 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.action_StartAll.setIcon(QtGui.QIcon(':/icons/play7-test.svg'))
         self.action_SuspendAll.setIcon(QtGui.QIcon(':/icons/pause3-test.svg'))
         self.action_StopAll.setIcon(QtGui.QIcon(':/icons/stop3-test.svg'))
+
+    def __restoreIcons(self):
+        """ Put normal icons back if the High Contrast Mode has been activated
+            and the user wants to go back to default style
+        """
+
+        self.action_StartAll.setIcon(QtGui.QIcon(':/icons/play2-test.svg'))
+        self.action_SuspendAll.setIcon(QtGui.QIcon(':/icons/pause2-test.svg'))
+        self.action_StopAll.setIcon(QtGui.QIcon(':/icons/stop2-test.svg'))
+        if self.action_StartAll.hover():
+            self.action_StartAll.setIcon(QtGui.QIcon(':/icons/play7-test.svg'))
         
     def __action_ShowHostnames(self):
         """ Display/Hide hostnames for all the nodes on the scene
