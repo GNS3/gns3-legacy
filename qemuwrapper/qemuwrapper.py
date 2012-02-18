@@ -45,7 +45,7 @@ import time
 import random
 import ctypes
 import hashlib
-import fcntl
+import Queue
 
 if debuglevel > 0:
     if platform.system() == 'Windows':
@@ -133,6 +133,7 @@ class xEMUInstance(object):
         self.kvm = False
         self.options = ''
         self.process = None
+        self.processq = None
         self.workdir = WORKDIR + '/' + name
         self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options']
 
@@ -166,22 +167,23 @@ class xEMUInstance(object):
         time.sleep(1)
 
         # set Qemu's stdout to be non blocking in order to parse monitor mode's output
-        fl = fcntl.fcntl(self.process.stdout, fcntl.F_GETFL)
-        fcntl.fcntl(self.process.stdout, fcntl.F_SETFL, fl | os.O_NONBLOCK)
+        self.processq = Queue.Queue()
+        t = threading.Thread(target=self._enqueue_output, args=(self.process.stdout, self.processq))
+        t.daemon = True
+        t.start()
         # consume the first lines of output of qemu monitor mode
         output = ''
         while 1:
             try:
-                output += self.process.stdout.read(512)
-            # IOError: [Errno 35] (EWOULDBLOCK, nothing to read)
-            except IOError:
-                if len(output) == 0 or '(qemu) 'not in output:
+                output += self.processq.get_nowait()
+            except Queue.Empty:
+                if len(output) == 0 or 'monitor -'not in output:
                     time.sleep(1)
                     continue
                 else:
                     break
 
-        print "    pid:", self.process.pid
+        print "PID:", self.process.pid
 
         if platform.system() == 'Windows':
             print "Setting priority class to BELOW_NORMAL"
@@ -226,6 +228,11 @@ class xEMUInstance(object):
         self.process = None
 
         return True
+
+    def _enqueue_output(self, out, queue):
+        for line in iter(out.readline, b''):
+            queue.put(line)
+        out.close()
 
     def _net_options(self):
         global qemuprotocol
@@ -1024,11 +1031,6 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     # QEMU MONITOR MODE
-    # Use a busy loop since python's select is not portable
-    # on Windows, it won't work with file objects.
-    # Waiting 1 second if we still expect data, this
-    # could be optimized, usage will tell us how to react, for
-    # now it's stable.
     def do_qemu_monitor(self, data):
         debugmsg(2, "QemuWrapperRequestHandler::do_qemu_monitor(%s)" % (str(data)))
         name, command = data
@@ -1040,15 +1042,14 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
 
         # send the command to qemu monitor mode
         QEMU_INSTANCES[name].process.stdin.write(command)
+        QEMU_INSTANCES[name].process.stdin.write("\n")
 
         output = ''
-        fout = QEMU_INSTANCES[name].process.stdout
         while 1:
             try:
-                output += fout.read(512)
-            # IOError: [Errno 35] (EWOULDBLOCK, nothing to read)
-            except IOError:
-                if len(output) == 0 or '(qemu) 'not in output:
+                output += QEMU_INSTANCES[name].processq.get_nowait()
+            except Queue.Empty:
+                if len(output) == 0 or output.rfind('(qemu) ') == len(output) - 6:
                     time.sleep(1)
                     continue
                 else:
