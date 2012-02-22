@@ -232,7 +232,7 @@ class QemuManager(object):
             ver = QtCore.QByteArray('(version ')
             ver_offset = output.indexOf(ver) + len('(version ')
             if ver_offset != -1:
-                ver = QtCore.QByteArray(")\n")
+                ver = QtCore.QByteArray(")" + os.linesep)
                 endver_offset = output.indexOf(ver, ver_offset) - ver_offset
                 wrapper_ver = output.mid(ver_offset, endver_offset)
                 if wrapper_ver != VERSION:
