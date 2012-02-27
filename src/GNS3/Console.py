@@ -286,7 +286,7 @@ Example for Linux guest:
             QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
 
     def do_qmonitor(self, args):
-        """qmonitor <QEMU device> <command>\nCommunicate with qemu monitor mode. more: qmonitor <QEMU device> help"""
+        """qmonitor <QEMU device> <command>\nCommunicate with qemu monitor mode.\nDisplay available commands: qmonitor <QEMU device> help"""
 
         if '?' in args or args.strip() == '':
             print self.do_qmonitor.__doc__

@@ -411,7 +411,11 @@ class AnyEmuDevice(object):
         return self.name + ' does not support resuming'
 
     def qmonitor(self, command):
-        """ Communicate with qemu monitor mode"""
+        """ Communicate with qemu monitor mode
+            command: one string ('info cpus', 'stop', etc)
+
+            returns the filtered output of Qemu monitor CLI
+        """
         debugmsg(2, "AnyEmuDevice::qmonitor(%s)" % str(command))
         r = send(self.p, 'qemu monitor %s %s' % (self.name, str(command)))
         r = str(r)
