@@ -396,19 +396,38 @@ class AnyEmuDevice(object):
         debugmsg(2, "AnyEmuDevice::unbase()")
 
         r = send(self.p, 'qemu unbase %s' % self.name)
+        r = [r]
         return r
 
     def suspend(self):
         """suspends the emulated device instance in Qemu"""
         debugmsg(2, "AnyEmuDevice::suspend()")
 
-        return [self.name + ' does not support suspending']
+        if self.state == 'suspended':
+            raise DynamipsWarning, 'virtualized device %s is already suspended' % self.name
+        if self.state == 'stopped':
+            raise DynamipsWarning, 'virtualized device %s is not running' % self.name
+
+        r = self.qmonitor('stop')
+        self.state = 'suspended'
+        r = r[1:-1] + ' VM ' + self.name + " suspended\n"
+        r = [r]
+        return r
 
     def resume(self):
         """resumes the emulated device instance in Qemu"""
         debugmsg(2, "AnyEmuDevice::resume()")
 
-        return self.name + ' does not support resuming'
+        if self.state == 'running':
+            raise DynamipsWarning, 'virtualized device %s is already running' % self.name
+        if self.state == 'stopped':
+            raise DynamipsWarning, 'virtualized device %s is stopped and cannot be resumed' % self.name
+
+        r = self.qmonitor('cont')
+        self.state = 'running'
+        r = r[1:-1] + ' VM ' + self.name + " resumed\n"
+        r = [r]
+        return r
 
     def qmonitor(self, command):
         """ Communicate with qemu monitor mode

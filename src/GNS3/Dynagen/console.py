@@ -272,7 +272,8 @@ class Console(AbstractConsole):
             return
         result = device.qmonitor(" ".join(args.split(" ")[1:]))
         # remove the enclosing '[100-' and ']'
-        print str(result[6:-2])
+        result = result[6:-2]
+        print result
 
     def do_vboxexec(self, args):
         """vboxexec <VBOX device> <command>\nVirtualBox GuestControl execute sends a command to VirtualBox guest and prints it's output (experimental feature).

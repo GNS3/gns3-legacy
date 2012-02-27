@@ -221,7 +221,7 @@ class Scene(QtGui.QGraphicsView):
 
             menu.addAction(startAct)
 
-        instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, AnyVBoxEmuDevice), items)
+        instances = map(lambda item: isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice), items)
         if True in instances:
 
             # Action: Suspend / Pause (Suspend IOS on hypervisor/pause VM)
@@ -721,7 +721,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if  isinstance(item, IOSRouter) or isinstance(item, AnyVBoxEmuDevice):
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 item.suspendNode()
 
     def slotReloadNode(self):
