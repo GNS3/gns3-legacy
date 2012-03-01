@@ -280,7 +280,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             return True
         else:
             return False
-        
+
     def startCapturing(self, device, interface, encapsulation):
 
         if not self.capturing:
