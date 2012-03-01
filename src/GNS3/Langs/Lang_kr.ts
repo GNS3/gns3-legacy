@@ -233,12 +233,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../Ui/Form_About.py" line="21"/>
+        <location filename="../Ui/Form_About.py" line="366"/>
         <source>About</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="408"/>
+        <location filename="../Ui/Form_About.py" line="389"/>
         <source>&amp;About</source>
         <translation>&amp;About</translation>
     </message>
@@ -253,7 +253,7 @@
         <translation>&amp;License Agreement</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_About.py" line="76"/>
+        <location filename="../Ui/Form_About.py" line="390"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -276,7 +276,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="43"/>
+        <location filename="../Ui/Form_About.py" line="367"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -508,7 +508,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="918"/>
+        <location filename="../Workspace.py" line="920"/>
         <source>GNS3 is up-to-date!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1122,12 +1122,12 @@ Please choose an alternate network interface:</source>
 <context>
     <name>IDLEPCDialog</name>
     <message>
-        <location filename="../Ui/Form_IDLEPCDialog.py" line="22"/>
+        <location filename="../Ui/Form_IDLEPCDialog.py" line="45"/>
         <source>IDLE PC values</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IDLEPCDialog.py" line="29"/>
+        <location filename="../Ui/Form_IDLEPCDialog.py" line="46"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1282,97 +1282,97 @@ Please choose an alternate network interface:</source>
         <translation>작업 디렉터리를 선택</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="21"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="272"/>
         <source>IOS images and hypervisors</source>
         <translation>IOS 이미지와 하이퍼바이저</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="307"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="293"/>
         <source>IOS Images</source>
         <translation>IOS 이미지</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="191"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="294"/>
         <source>Settings</source>
         <translation>설정</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="251"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="301"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="130"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="288"/>
         <source>Platform:</source>
         <translation>플랫폼:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="89"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="282"/>
         <source>IDLE PC:</source>
         <translation>IDLE PC:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="34"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="273"/>
         <source>Images</source>
         <translation>이미지</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="42"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="274"/>
         <source>IOS image</source>
         <translation>IOS 이미지</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="267"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="303"/>
         <source>Hypervisors</source>
         <translation>하이퍼바이저</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="145"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="290"/>
         <source>Use the hypervisor manager</source>
         <translation>하이퍼바이저 관리자를 사용합니다</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="281"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="306"/>
         <source>&amp;Save</source>
         <translation>저장(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="286"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="307"/>
         <source>&amp;Delete</source>
         <translation>삭제(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="196"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="295"/>
         <source>Host:</source>
         <translation>호스트:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="206"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="297"/>
         <source>Port:</source>
         <translation>포트:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="219"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="298"/>
         <source>Base UDP:</source>
         <translation>기본 UDP:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="243"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="300"/>
         <source>Working directory:</source>
         <translation>작업 디렉터리:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="274"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="304"/>
         <source>Host:Port</source>
         <translation>호스트:포트</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="275"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="305"/>
         <source>Base UDP</source>
         <translation>기본 UDP</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="232"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="299"/>
         <source>Base console:</source>
         <translation>기본 콘솔:</translation>
     </message>
@@ -1387,17 +1387,17 @@ Please choose an alternate network interface:</source>
         <translation>IOS 이미지를 선택해주세요</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="43"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="275"/>
         <source>Model/Chassis</source>
         <translation>모델/섀시</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="77"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="281"/>
         <source>Model:</source>
         <translation>모델:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="112"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="286"/>
         <source>Default image for this platform</source>
         <translation>이 플랫폼에 대한 기본 이미지를 설정</translation>
     </message>
@@ -1412,12 +1412,12 @@ Please choose an alternate network interface:</source>
         <translation>%s 파일을 열 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="97"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="283"/>
         <source>Default RAM:</source>
         <translation>Default RAM:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="108"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="285"/>
         <source>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Check for minimum RAM requirement&lt;/a&gt;</source>
         <translation>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Check for minimum RAM requirement&lt;/a&gt;</translation>
     </message>
@@ -1432,22 +1432,22 @@ Please choose an alternate network interface:</source>
         <translation>이미지 파일 대화상자가 비어 있습니다</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="202"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="296"/>
         <source>127.0.0.1</source>
         <translation>127.0.0.1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="57"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="277"/>
         <source>Image file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="69"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="279"/>
         <source>Base config:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="73"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="280"/>
         <source>baseconfig.txt</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1462,12 +1462,12 @@ Please choose an alternate network interface:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="262"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="302"/>
         <source>Base AUX:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="101"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="284"/>
         <source> MiB</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1832,17 +1832,17 @@ Please choose an alternate network interface:</source>
 <context>
     <name>MACTableDialog</name>
     <message>
-        <location filename="../Ui/Form_MACTableDialog.py" line="21"/>
+        <location filename="../Ui/Form_MACTableDialog.py" line="44"/>
         <source>MAC Address Table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MACTableDialog.py" line="31"/>
+        <location filename="../Ui/Form_MACTableDialog.py" line="45"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MACTableDialog.py" line="35"/>
+        <location filename="../Ui/Form_MACTableDialog.py" line="46"/>
         <source>Clear table</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1893,537 +1893,537 @@ Please choose an alternate network interface:</source>
         <translation>한국어</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="21"/>
+        <location filename="../Ui/Form_MainWindow.py" line="456"/>
         <source>GNS3</source>
         <translation>GNS3</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="46"/>
+        <location filename="../Ui/Form_MainWindow.py" line="458"/>
         <source>&amp;Edit</source>
         <translation>편집(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="49"/>
+        <location filename="../Ui/Form_MainWindow.py" line="459"/>
         <source>&amp;File</source>
         <translation>파일(&amp;F)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="52"/>
+        <location filename="../Ui/Form_MainWindow.py" line="460"/>
         <source>&amp;Help</source>
         <translation>도움말(&amp;H)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="55"/>
+        <location filename="../Ui/Form_MainWindow.py" line="461"/>
         <source>&amp;View</source>
         <translation>보기(&amp;V)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="74"/>
+        <location filename="../Ui/Form_MainWindow.py" line="466"/>
         <source>General</source>
         <translation>일반 설정</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="82"/>
+        <location filename="../Ui/Form_MainWindow.py" line="467"/>
         <source>Nodes Types</source>
         <translation>노드의 종류</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="133"/>
+        <location filename="../Ui/Form_MainWindow.py" line="473"/>
         <source>1</source>
         <translation>1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="131"/>
+        <location filename="../Ui/Form_MainWindow.py" line="472"/>
         <source>Topology Summary</source>
         <translation>토폴로지 요약</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="154"/>
+        <location filename="../Ui/Form_MainWindow.py" line="475"/>
         <source>Console</source>
         <translation>콘솔</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="203"/>
+        <location filename="../Ui/Form_MainWindow.py" line="483"/>
         <source>&amp;About</source>
         <translation>GNS3에 대해(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="211"/>
+        <location filename="../Ui/Form_MainWindow.py" line="485"/>
         <source>&amp;Quit</source>
         <translation>종료(&amp;Q)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="213"/>
+        <location filename="../Ui/Form_MainWindow.py" line="487"/>
         <source>Ctrl+Q</source>
         <translation>Ctrl+Q</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="219"/>
+        <location filename="../Ui/Form_MainWindow.py" line="488"/>
         <source>&amp;Open</source>
         <translation>열기(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="222"/>
+        <location filename="../Ui/Form_MainWindow.py" line="491"/>
         <source>Ctrl+O</source>
         <translation>Ctrl+O</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="228"/>
+        <location filename="../Ui/Form_MainWindow.py" line="492"/>
         <source>&amp;Save</source>
         <translation>저장(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="231"/>
+        <location filename="../Ui/Form_MainWindow.py" line="495"/>
         <source>Ctrl+S</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="241"/>
+        <location filename="../Ui/Form_MainWindow.py" line="499"/>
         <source>Add a link</source>
         <translation>링크를 추가</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="249"/>
+        <location filename="../Ui/Form_MainWindow.py" line="502"/>
         <source>Ctrl+Shift+I</source>
         <translation>Ctrl+Shift+I</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="297"/>
+        <location filename="../Ui/Form_MainWindow.py" line="517"/>
         <source>Show hostnames</source>
         <translation>호스트 이름을 보여줍니다</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="313"/>
+        <location filename="../Ui/Form_MainWindow.py" line="522"/>
         <source>Save As</source>
         <translation>다른 이름으로 저장</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="408"/>
+        <location filename="../Ui/Form_MainWindow.py" line="564"/>
         <source>Ctrl+N</source>
         <translation>Ctrl+N</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="318"/>
+        <location filename="../Ui/Form_MainWindow.py" line="525"/>
         <source>About &amp;Qt</source>
         <translation>&amp;Qt 에 대해</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="326"/>
+        <location filename="../Ui/Form_MainWindow.py" line="530"/>
         <source>Ctrl++</source>
         <translation>Ctrl++</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="332"/>
+        <location filename="../Ui/Form_MainWindow.py" line="534"/>
         <source>Ctrl+-</source>
         <translation>Ctrl+-</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="335"/>
+        <location filename="../Ui/Form_MainWindow.py" line="535"/>
         <source>Zoom &amp;1:1</source>
         <translation>배율 &amp;1:1</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="337"/>
+        <location filename="../Ui/Form_MainWindow.py" line="537"/>
         <source>Ctrl+/</source>
         <translation>Ctrl+/</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="342"/>
+        <location filename="../Ui/Form_MainWindow.py" line="540"/>
         <source>Ctrl+A</source>
         <translation>Ctrl+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="347"/>
+        <location filename="../Ui/Form_MainWindow.py" line="543"/>
         <source>Ctrl+Shift+A</source>
         <translation>Ctrl+Shift+A</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="353"/>
+        <location filename="../Ui/Form_MainWindow.py" line="544"/>
         <source>&amp;Preferences...</source>
         <translation>설정(&amp;P)...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="355"/>
+        <location filename="../Ui/Form_MainWindow.py" line="546"/>
         <source>Ctrl+Shift+P</source>
         <translation>Ctrl+Shift+P</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="248"/>
+        <location filename="../Ui/Form_MainWindow.py" line="501"/>
         <source>IOS images and hypervisors</source>
         <translation>IOS 이미지와 하이퍼바이저</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="398"/>
+        <location filename="../Ui/Form_MainWindow.py" line="559"/>
         <source>Add a note</source>
         <translation>메모를 추가</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="405"/>
+        <location filename="../Ui/Form_MainWindow.py" line="561"/>
         <source>New Project</source>
         <translation>새로운 프로젝트</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="433"/>
+        <location filename="../Ui/Form_MainWindow.py" line="574"/>
         <source>Ctrl+Shift+S</source>
         <translation>Ctrl+Shift+S</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="424"/>
+        <location filename="../Ui/Form_MainWindow.py" line="570"/>
         <source>Insert a picture</source>
         <translation>그림 파일을 넣어주세요</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="105"/>
+        <location filename="../Ui/Form_MainWindow.py" line="470"/>
         <source>Emulation</source>
         <translation>에뮬레이션</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="160"/>
+        <location filename="../Ui/Form_MainWindow.py" line="476"/>
         <source>Drawing</source>
         <translation>그리기</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="444"/>
+        <location filename="../Ui/Form_MainWindow.py" line="577"/>
         <source>Draw a rectangle</source>
         <translation>사각형 그리기</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="455"/>
+        <location filename="../Ui/Form_MainWindow.py" line="580"/>
         <source>Draw an ellipse</source>
         <translation>타원 그리기</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="472"/>
+        <location filename="../Ui/Form_MainWindow.py" line="586"/>
         <source>Snapshot</source>
         <translation>스냅샷</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="174"/>
+        <location filename="../Ui/Form_MainWindow.py" line="478"/>
         <source>Undo Stack</source>
         <translation>Undo Stack (한글로 뭐라고 해야 할지..)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="362"/>
+        <location filename="../Ui/Form_MainWindow.py" line="547"/>
         <source>&amp;Undo</source>
         <translation>되돌리기(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="363"/>
+        <location filename="../Ui/Form_MainWindow.py" line="548"/>
         <source>Ctrl+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="370"/>
+        <location filename="../Ui/Form_MainWindow.py" line="549"/>
         <source>&amp;Redo</source>
         <translation>다시 실행(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="371"/>
+        <location filename="../Ui/Form_MainWindow.py" line="550"/>
         <source>Ctrl+Y</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="477"/>
+        <location filename="../Ui/Form_MainWindow.py" line="588"/>
         <source>Show layers</source>
         <translation>레이어 보여주기</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="61"/>
+        <location filename="../Ui/Form_MainWindow.py" line="463"/>
         <source>Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="64"/>
+        <location filename="../Ui/Form_MainWindow.py" line="464"/>
         <source>Annotate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="193"/>
+        <location filename="../Ui/Form_MainWindow.py" line="480"/>
         <source>Captures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="197"/>
+        <location filename="../Ui/Form_MainWindow.py" line="481"/>
         <source>Hostname</source>
         <translation type="unfinished">호스트 이름</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="198"/>
+        <location filename="../Ui/Form_MainWindow.py" line="482"/>
         <source>Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="221"/>
+        <location filename="../Ui/Form_MainWindow.py" line="490"/>
         <source>Open project or topology file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="230"/>
+        <location filename="../Ui/Form_MainWindow.py" line="494"/>
         <source>Save project or topology file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="263"/>
+        <location filename="../Ui/Form_MainWindow.py" line="506"/>
         <source>&amp;Screenshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="277"/>
+        <location filename="../Ui/Form_MainWindow.py" line="511"/>
         <source>Start/Resume all devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="288"/>
+        <location filename="../Ui/Form_MainWindow.py" line="514"/>
         <source>Stop all devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="306"/>
+        <location filename="../Ui/Form_MainWindow.py" line="520"/>
         <source>Console to all devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_MainWindow.py" line="312"/>
+        <location filename="../Ui/Form_MainWindow.py" line="521"/>
         <source>Save topology &amp;as…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="315"/>
+        <location filename="../Ui/Form_MainWindow.py" line="524"/>
         <source>Save topology file as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="381"/>
+        <location filename="../Ui/Form_MainWindow.py" line="553"/>
         <source>Suspend all devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="389"/>
+        <location filename="../Ui/Form_MainWindow.py" line="556"/>
         <source>New blank topology</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="404"/>
+        <location filename="../Ui/Form_MainWindow.py" line="560"/>
         <source>&amp;New blank project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="407"/>
+        <location filename="../Ui/Form_MainWindow.py" line="563"/>
         <source>New blank project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="414"/>
+        <location filename="../Ui/Form_MainWindow.py" line="565"/>
         <source>&amp;Import/Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="416"/>
+        <location filename="../Ui/Form_MainWindow.py" line="567"/>
         <source>Import/Export Startup Configs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="464"/>
+        <location filename="../Ui/Form_MainWindow.py" line="583"/>
         <source>Show interface labels</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_MainWindow.py" line="483"/>
+        <location filename="../Ui/Form_MainWindow.py" line="589"/>
         <source>&amp;Save project as…</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="485"/>
+        <location filename="../Ui/Form_MainWindow.py" line="591"/>
         <source>Save project as...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="493"/>
+        <location filename="../Ui/Form_MainWindow.py" line="594"/>
         <source>Reload all devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="502"/>
+        <location filename="../Ui/Form_MainWindow.py" line="597"/>
         <source>Console AUX to all devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="507"/>
+        <location filename="../Ui/Form_MainWindow.py" line="600"/>
         <source>Reset Interface Labels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="511"/>
+        <location filename="../Ui/Form_MainWindow.py" line="602"/>
         <source>Check for Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="67"/>
+        <location filename="../Ui/Form_MainWindow.py" line="465"/>
         <source>Device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="265"/>
+        <location filename="../Ui/Form_MainWindow.py" line="508"/>
         <source>Screenshot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="38"/>
+        <location filename="../Ui/Form_MainWindow.py" line="457"/>
         <source>Topology Graphic View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="58"/>
+        <location filename="../Ui/Form_MainWindow.py" line="462"/>
         <source>Window Style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="96"/>
+        <location filename="../Ui/Form_MainWindow.py" line="468"/>
         <source>Select Node Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="204"/>
+        <location filename="../Ui/Form_MainWindow.py" line="484"/>
         <source>About</source>
         <translation type="unfinished">About</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="212"/>
+        <location filename="../Ui/Form_MainWindow.py" line="486"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="255"/>
+        <location filename="../Ui/Form_MainWindow.py" line="503"/>
         <source>&amp;Online help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="256"/>
+        <location filename="../Ui/Form_MainWindow.py" line="504"/>
         <source>Online help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="257"/>
+        <location filename="../Ui/Form_MainWindow.py" line="505"/>
         <source>Online Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="319"/>
+        <location filename="../Ui/Form_MainWindow.py" line="526"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="323"/>
+        <location filename="../Ui/Form_MainWindow.py" line="527"/>
         <source>Zoom &amp;in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="324"/>
+        <location filename="../Ui/Form_MainWindow.py" line="528"/>
         <source>Zoom in</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="325"/>
+        <location filename="../Ui/Form_MainWindow.py" line="529"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="329"/>
+        <location filename="../Ui/Form_MainWindow.py" line="531"/>
         <source>Zoom &amp;out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="330"/>
+        <location filename="../Ui/Form_MainWindow.py" line="532"/>
         <source>Zoom out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="331"/>
+        <location filename="../Ui/Form_MainWindow.py" line="533"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="336"/>
+        <location filename="../Ui/Form_MainWindow.py" line="536"/>
         <source>Zoom Reset (1:1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="340"/>
+        <location filename="../Ui/Form_MainWindow.py" line="538"/>
         <source>Select &amp;all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="341"/>
+        <location filename="../Ui/Form_MainWindow.py" line="539"/>
         <source>Select All</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="345"/>
+        <location filename="../Ui/Form_MainWindow.py" line="541"/>
         <source>Select &amp;none</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="346"/>
+        <location filename="../Ui/Form_MainWindow.py" line="542"/>
         <source>Select None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="354"/>
+        <location filename="../Ui/Form_MainWindow.py" line="545"/>
         <source>Preferences</source>
         <translation type="unfinished">환경 설정</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="396"/>
+        <location filename="../Ui/Form_MainWindow.py" line="557"/>
         <source>Add note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="422"/>
+        <location filename="../Ui/Form_MainWindow.py" line="568"/>
         <source>Insert picture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="430"/>
+        <location filename="../Ui/Form_MainWindow.py" line="571"/>
         <source>&amp;Symbol manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="431"/>
+        <location filename="../Ui/Form_MainWindow.py" line="572"/>
         <source>Symbol manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="432"/>
+        <location filename="../Ui/Form_MainWindow.py" line="573"/>
         <source>Symbol Manager</source>
         <translation type="unfinished">심볼 관리자</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="442"/>
+        <location filename="../Ui/Form_MainWindow.py" line="575"/>
         <source>Draw rectangle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="453"/>
+        <location filename="../Ui/Form_MainWindow.py" line="578"/>
         <source>Draw ellipse</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="506"/>
+        <location filename="../Ui/Form_MainWindow.py" line="599"/>
         <source>Reset interface labels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="519"/>
+        <location filename="../Ui/Form_MainWindow.py" line="605"/>
         <source>Show VirtualBox Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="522"/>
+        <location filename="../Ui/Form_MainWindow.py" line="606"/>
         <source>Energy Saving</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_MainWindow.py" line="525"/>
+        <location filename="../Ui/Form_MainWindow.py" line="607"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2522,42 +2522,42 @@ Please choose an alternate network interface:</source>
 <context>
     <name>NewProject</name>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="21"/>
+        <location filename="../Ui/Form_NewProject.py" line="76"/>
         <source>New Project</source>
         <translation>새로운 프로젝트</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="48"/>
+        <location filename="../Ui/Form_NewProject.py" line="80"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="66"/>
+        <location filename="../Ui/Form_NewProject.py" line="83"/>
         <source>&amp;Open a project</source>
         <translation>프로젝트 열기(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="33"/>
+        <location filename="../Ui/Form_NewProject.py" line="78"/>
         <source>Project name:</source>
         <translation>프로젝트 이름:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="41"/>
+        <location filename="../Ui/Form_NewProject.py" line="79"/>
         <source>Project directory:</source>
         <translation type="unfinished">프로젝트 디렉터리:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="28"/>
+        <location filename="../Ui/Form_NewProject.py" line="77"/>
         <source>Project settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="53"/>
+        <location filename="../Ui/Form_NewProject.py" line="81"/>
         <source>Save nvrams and virtual hard drives</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="58"/>
+        <location filename="../Ui/Form_NewProject.py" line="82"/>
         <source>Save IOS startup configurations</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2600,22 +2600,22 @@ Please choose an alternate network interface:</source>
         <translation>그룹의 %d %s</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NodeConfigurator.py" line="21"/>
+        <location filename="../Ui/Form_NodeConfigurator.py" line="90"/>
         <source>Node configurator</source>
         <translation>노드 설정</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NodeConfigurator.py" line="38"/>
+        <location filename="../Ui/Form_NodeConfigurator.py" line="91"/>
         <source>Nodes</source>
         <translation>노드</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NodeConfigurator.py" line="52"/>
+        <location filename="../Ui/Form_NodeConfigurator.py" line="92"/>
         <source>Node Configuration</source>
         <translation>노드 설정</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NodeConfigurator.py" line="74"/>
+        <location filename="../Ui/Form_NodeConfigurator.py" line="93"/>
         <source>Please select a node in the list 
 to display the configuration page.</source>
         <translation>구성 페이지에서 보이는 리스트 중에서
@@ -3191,7 +3191,7 @@ or the link itself.</source>
 <context>
     <name>PreferencesDialog</name>
     <message>
-        <location filename="../Ui/Form_PreferencesDialog.py" line="26"/>
+        <location filename="../Ui/Form_PreferencesDialog.py" line="93"/>
         <source>Preferences</source>
         <translation>환경 설정</translation>
     </message>
@@ -4080,32 +4080,32 @@ or the link itself.</source>
 <context>
     <name>QemuManager</name>
     <message>
-        <location filename="../QemuManager.py" line="72"/>
+        <location filename="../QemuManager.py" line="73"/>
         <source>Connecting to Qemu on port %i ...</source>
         <translation>Qemu 포트 %i에 연결중...</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="72"/>
+        <location filename="../QemuManager.py" line="73"/>
         <source>Abort</source>
         <translation>중지</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="96"/>
+        <location filename="../QemuManager.py" line="97"/>
         <source>Can&apos;t connect to Qemu on port %i</source>
         <translation>Qemu 포트 %i에 연결할 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="186"/>
+        <location filename="../QemuManager.py" line="189"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>%s 작업 디렉터리가 존재하지 않거나 사용할 수 없습니다. 다시한번 확인을 부탁드립니다</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="135"/>
+        <location filename="../QemuManager.py" line="136"/>
         <source>Qemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
         <translation>Qemu가 이미 %i 포트에서 실행되고 있습니다. GNS3를 종료하기 전에는 Qemu가 종료되지 않습니다</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="153"/>
+        <location filename="../QemuManager.py" line="154"/>
         <source>Can&apos;t start Qemu on port %i</source>
         <translation>Qemu 포트 %i에서 시작할 수 없습니다</translation>
     </message>
@@ -4296,17 +4296,17 @@ or the link itself.</source>
         <translation>하이퍼바이저를 설정</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="987"/>
+        <location filename="../Scene.py" line="989"/>
         <source>annotation</source>
         <translation>주석</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="996"/>
+        <location filename="../Scene.py" line="998"/>
         <source>rectangle</source>
         <translation>사각형</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1004"/>
+        <location filename="../Scene.py" line="1006"/>
         <source>ellipse</source>
         <translation>타원</translation>
     </message>
@@ -4336,17 +4336,17 @@ or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="735"/>
+        <location filename="../Scene.py" line="737"/>
         <source>Message</source>
         <translation type="unfinished">메시지</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="707"/>
+        <location filename="../Scene.py" line="709"/>
         <source>Do you really want to stop these devices?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="735"/>
+        <location filename="../Scene.py" line="737"/>
         <source>Do you really want to reload these devices?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4381,37 +4381,37 @@ or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="815"/>
+        <location filename="../Scene.py" line="817"/>
         <source>AddLink</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="793"/>
+        <location filename="../Scene.py" line="795"/>
         <source>Qemu machines support only Ethernet links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="795"/>
+        <location filename="../Scene.py" line="797"/>
         <source>VirtualBox machines support only Ethernet links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="797"/>
+        <location filename="../Scene.py" line="799"/>
         <source>Ethernet switch supports only Ethernet links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="803"/>
+        <location filename="../Scene.py" line="805"/>
         <source>ATM switch supports only ATM links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="809"/>
+        <location filename="../Scene.py" line="811"/>
         <source>Frame-Relay switch supports only serial links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="815"/>
+        <location filename="../Scene.py" line="817"/>
         <source>ATM bridge supports only ATM and Ethernet links.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4426,7 +4426,7 @@ or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="635"/>
+        <location filename="../Scene.py" line="636"/>
         <source>Capture</source>
         <translation type="unfinished">캡쳐</translation>
     </message>
@@ -4441,7 +4441,7 @@ or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="635"/>
+        <location filename="../Scene.py" line="636"/>
         <source>Please choose a link</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4462,22 +4462,22 @@ or the link itself.</source>
 <context>
     <name>Snapshots</name>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="21"/>
+        <location filename="../Ui/Form_Snapshots.py" line="50"/>
         <source>Snapshots</source>
         <translation>스냅샷</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="31"/>
+        <location filename="../Ui/Form_Snapshots.py" line="51"/>
         <source>Create</source>
         <translation>만들기</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="35"/>
+        <location filename="../Ui/Form_Snapshots.py" line="52"/>
         <source>Load</source>
         <translation>불러오기</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Snapshots.py" line="44"/>
+        <location filename="../Ui/Form_Snapshots.py" line="53"/>
         <source>Delete</source>
         <translation>지우기</translation>
     </message>
@@ -4485,27 +4485,27 @@ or the link itself.</source>
 <context>
     <name>StartupConfigDialog</name>
     <message>
-        <location filename="../Ui/Form_StartupConfig.py" line="21"/>
+        <location filename="../Ui/Form_StartupConfig.py" line="66"/>
         <source>Startup-config</source>
         <translation>Startup-config</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StartupConfig.py" line="28"/>
+        <location filename="../Ui/Form_StartupConfig.py" line="67"/>
         <source>Config file:</source>
         <translation>Config 파일:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StartupConfig.py" line="35"/>
+        <location filename="../Ui/Form_StartupConfig.py" line="68"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StartupConfig.py" line="48"/>
+        <location filename="../Ui/Form_StartupConfig.py" line="69"/>
         <source>Load config from nvram</source>
         <translation>NVRAM 으로부터 config를 불러옴</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StartupConfig.py" line="55"/>
+        <location filename="../Ui/Form_StartupConfig.py" line="70"/>
         <source>Save changes into the config file</source>
         <translation>변경된 부분을 config 파일에 저장</translation>
     </message>
@@ -4534,52 +4534,52 @@ i.e. #copy start run</source>
 <context>
     <name>StyleDialog</name>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="21"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="78"/>
         <source>Style</source>
         <translation>스타일</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="28"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="79"/>
         <source>Options</source>
         <translation>옵션</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="33"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="80"/>
         <source>&amp;Select color</source>
         <translation>색상 선택(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="37"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="81"/>
         <source>&amp;Select font</source>
         <translation>폰트 선택(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="41"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="82"/>
         <source>&amp;Select border color</source>
         <translation>테두리 색상 선택(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="45"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="83"/>
         <source>Border width:</source>
         <translation>테두리 폭:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="55"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="84"/>
         <source>Border style:</source>
         <translation>테두리 스타일:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="62"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="85"/>
         <source>Rotation:</source>
         <translation>회전 각도:</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_StyleDialog.py" line="66"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="86"/>
         <source>°</source>
         <translation>°</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="72"/>
+        <location filename="../Ui/Form_StyleDialog.py" line="87"/>
         <source>Rotation can be ajusted on the scene for a selected item with
 ALT + LEFT or RIGHT</source>
         <translation>ALT + 왼쪽/오른쪽 버튼으로 각도를 조정할 수 있습니다</translation>
@@ -4618,12 +4618,12 @@ ALT + LEFT or RIGHT</source>
 <context>
     <name>SymbolDialog</name>
     <message>
-        <location filename="../Ui/Form_SymbolDialog.py" line="21"/>
+        <location filename="../Ui/Form_SymbolDialog.py" line="43"/>
         <source>Change symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolDialog.py" line="31"/>
+        <location filename="../Ui/Form_SymbolDialog.py" line="44"/>
         <source>Symbols</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4644,72 +4644,72 @@ ALT + LEFT or RIGHT</source>
 <context>
     <name>SymbolManager</name>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="21"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="117"/>
         <source>Symbol Manager</source>
         <translation>심볼 관리자</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="28"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="118"/>
         <source>Symbol librairies</source>
         <translation>심볼 라이브러리</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="33"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="119"/>
         <source>Library path:</source>
         <translation>라이브러리 경로:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="40"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="120"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="44"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="121"/>
         <source>&amp;Add</source>
         <translation>추가(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="48"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="122"/>
         <source>&amp;Remove</source>
         <translation>제거(&amp;R)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="59"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="123"/>
         <source>&gt;</source>
         <translation>&gt;</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="63"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="124"/>
         <source>&lt;</source>
         <translation>&lt;</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="70"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="125"/>
         <source>Customized node settings</source>
         <translation>사용자 지정 노드의 설정</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="75"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="126"/>
         <source>Name:</source>
         <translation>이름:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="82"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="127"/>
         <source>Type:</source>
         <translation>타입:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="91"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="128"/>
         <source>&amp;Apply</source>
         <translation>적용(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="99"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="129"/>
         <source>Available symbols</source>
         <translation>가능한 심볼</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_SymbolManager.py" line="106"/>
+        <location filename="../Ui/Form_SymbolManager.py" line="130"/>
         <source>Customized nodes</source>
         <translation>사용자 지정 노드</translation>
     </message>
@@ -5363,7 +5363,7 @@ ALT + LEFT or RIGHT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../VBoxManager.py" line="189"/>
+        <location filename="../VBoxManager.py" line="191"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation type="unfinished">%s 작업 디렉터리가 존재하지 않거나 사용할 수 없습니다. 다시한번 확인을 부탁드립니다</translation>
     </message>
@@ -5457,22 +5457,22 @@ ALT + LEFT or RIGHT</source>
 <context>
     <name>Wizard</name>
     <message>
-        <location filename="../Ui/Form_Wizard.py" line="21"/>
+        <location filename="../Ui/Form_Wizard.py" line="120"/>
         <source>Setup Wizard</source>
         <translation>설정 마법사</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Wizard.py" line="28"/>
+        <location filename="../Ui/Form_Wizard.py" line="121"/>
         <source>Step 1</source>
         <translation>1번째 단계</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Wizard.py" line="59"/>
+        <location filename="../Ui/Form_Wizard.py" line="128"/>
         <source>Step 2</source>
         <translation>2번째 단계</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Wizard.py" line="47"/>
+        <location filename="../Ui/Form_Wizard.py" line="122"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -5482,7 +5482,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Wizard.py" line="78"/>
+        <location filename="../Ui/Form_Wizard.py" line="129"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -5492,12 +5492,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Wizard.py" line="90"/>
+        <location filename="../Ui/Form_Wizard.py" line="135"/>
         <source>Step 3</source>
         <translation type="unfinished">3번째 단계</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Wizard.py" line="109"/>
+        <location filename="../Ui/Form_Wizard.py" line="136"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -5508,12 +5508,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Wizard.py" line="128"/>
+        <location filename="../Ui/Form_Wizard.py" line="143"/>
         <source>Getting started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_Wizard.py" line="133"/>
+        <location filename="../Ui/Form_Wizard.py" line="144"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -5532,37 +5532,37 @@ p, li { white-space: pre-wrap; }
         <translation>Docks</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1269"/>
+        <location filename="../Workspace.py" line="1271"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="765"/>
+        <location filename="../Workspace.py" line="767"/>
         <source>Connection lost</source>
         <translation>연결 종료</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="734"/>
+        <location filename="../Workspace.py" line="736"/>
         <source>Abort</source>
         <translation>중지</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="946"/>
+        <location filename="../Workspace.py" line="948"/>
         <source>Starting nodes ...</source>
         <translation>노드를 시작 중 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="811"/>
+        <location filename="../Workspace.py" line="813"/>
         <source>Stopping nodes ...</source>
         <translation>노드를 중지 중...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="817"/>
+        <location filename="../Workspace.py" line="819"/>
         <source>Suspending nodes ...</source>
         <translation>노드를 일시정지 중 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="939"/>
+        <location filename="../Workspace.py" line="941"/>
         <source>Loading</source>
         <translation>불러오는 중</translation>
     </message>
@@ -5577,22 +5577,22 @@ p, li { white-space: pre-wrap; }
         <translation>호스트 이름을 보여줍니다</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1226"/>
+        <location filename="../Workspace.py" line="1228"/>
         <source>Open a file</source>
         <translation>파일 열기</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1222"/>
+        <location filename="../Workspace.py" line="1224"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Dynamips의 경로가 반드시 설정되어 있어야 합니다</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1005"/>
+        <location filename="../Workspace.py" line="1007"/>
         <source>New Project</source>
         <translation>새로운 프로젝트</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1335"/>
+        <location filename="../Workspace.py" line="1337"/>
         <source>Message</source>
         <translation>메시지</translation>
     </message>
@@ -5607,17 +5607,17 @@ p, li { white-space: pre-wrap; }
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1005"/>
+        <location filename="../Workspace.py" line="1007"/>
         <source>Can&apos;t create a project</source>
         <translation>프로젝트를 만들 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="939"/>
+        <location filename="../Workspace.py" line="941"/>
         <source>Invalid file %s</source>
         <translation>%s 파일이 잘못되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1326"/>
+        <location filename="../Workspace.py" line="1328"/>
         <source>Would you like to save the current topology?</source>
         <translation>현재의 토폴로지를 저장하시겠습니까?</translation>
     </message>
@@ -5637,7 +5637,7 @@ p, li { white-space: pre-wrap; }
         <translation>인터페이스 이름을 보이기</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1131"/>
+        <location filename="../Workspace.py" line="1133"/>
         <source>Snapshot</source>
         <translation>스냅샷</translation>
     </message>
@@ -5647,17 +5647,17 @@ p, li { white-space: pre-wrap; }
         <translation>%s 디렉터리를 생성할 수 없습니다: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1136"/>
+        <location filename="../Workspace.py" line="1138"/>
         <source>Please wait while creating a snapshot</source>
         <translation>스냅샷을 만드는 동안 잠시만 기다려 주세요</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="765"/>
+        <location filename="../Workspace.py" line="767"/>
         <source>%s: Dynamips error</source>
         <translation>%s: Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="762"/>
+        <location filename="../Workspace.py" line="764"/>
         <source>%s: Dynamips warning</source>
         <translation>%s: Dynamips 경고</translation>
     </message>
@@ -5732,7 +5732,7 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="823"/>
+        <location filename="../Workspace.py" line="825"/>
         <source>Reloading nodes ...</source>
         <translation>노드를 다시 불러오는 중입니다...</translation>
     </message>
@@ -5742,7 +5742,7 @@ p, li { white-space: pre-wrap; }
         <translation>사진</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1175"/>
+        <location filename="../Workspace.py" line="1177"/>
         <source>Dynamips error: %s</source>
         <translation>Dynamips 에러: %s</translation>
     </message>
@@ -5752,32 +5752,32 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1131"/>
+        <location filename="../Workspace.py" line="1133"/>
         <source>Cannot create directories in %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1203"/>
+        <location filename="../Workspace.py" line="1205"/>
         <source>Dynamips error!!: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1269"/>
+        <location filename="../Workspace.py" line="1271"/>
         <source>Connection lost with Dynamips hypervisor (crashed?)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1301"/>
+        <location filename="../Workspace.py" line="1303"/>
         <source>Save As...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1038"/>
+        <location filename="../Workspace.py" line="1040"/>
         <source>Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="977"/>
+        <location filename="../Workspace.py" line="979"/>
         <source>This action is going to stop all your devices and captures, would you like to continue anyway?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5797,32 +5797,32 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1335"/>
+        <location filename="../Workspace.py" line="1337"/>
         <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="918"/>
+        <location filename="../Workspace.py" line="920"/>
         <source>Check For Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="906"/>
+        <location filename="../Workspace.py" line="908"/>
         <source>Cannot check for update ... Try again later</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="911"/>
+        <location filename="../Workspace.py" line="913"/>
         <source>Newer GNS3 version %s is available, do you want to visit our website to download it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="953"/>
+        <location filename="../Workspace.py" line="955"/>
         <source>This will clear your current topology. Continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1254"/>
+        <location filename="../Workspace.py" line="1256"/>
         <source>Clear Menu</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5832,12 +5832,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="780"/>
+        <location filename="../Workspace.py" line="782"/>
         <source>VirtualBox Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="780"/>
+        <location filename="../Workspace.py" line="782"/>
         <source>VirtualBox is not installed!</source>
         <translation type="unfinished"></translation>
     </message>
