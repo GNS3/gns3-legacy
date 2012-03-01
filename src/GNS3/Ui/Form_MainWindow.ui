@@ -562,10 +562,10 @@
    </property>
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/play2-test.svg</normaloff>
-     <normalon>:/icons/play2-test.svg</normalon>
-     <activeoff>:/icons/play7-test.svg</activeoff>
-     <activeon>:/icons/play7-test.svg</activeon>:/icons/play2-test.svg</iconset>
+     <normaloff>:/icons/play7-test.svg</normaloff>
+     <normalon>:/icons/play7-test.svg</normalon>
+     <activeoff>:/icons/play2-test.svg</activeoff>
+     <activeon>:/icons/play2-test.svg</activeon>:/icons/play7-test.svg</iconset>
    </property>
    <property name="text">
     <string>Start/Resume all devices</string>
@@ -583,9 +583,9 @@
    </property>
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/stop2-test.svg</normaloff>
-     <activeoff>:/icons/stop3-test.svg</activeoff>
-     <activeon>:/icons/stop3-test.svg</activeon>:/icons/stop2-test.svg</iconset>
+     <normaloff>:/icons/stop3-test.svg</normaloff>
+     <activeoff>:/icons/stop2-test.svg</activeoff>
+     <activeon>:/icons/stop2-test.svg</activeon>:/icons/stop3-test.svg</iconset>
    </property>
    <property name="text">
     <string>Stop all devices</string>
@@ -771,9 +771,9 @@
   <action name="action_SuspendAll">
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/pause2-test.svg</normaloff>
-     <activeoff>:/icons/pause3-test.svg</activeoff>
-     <activeon>:/icons/pause3-test.svg</activeon>:/icons/pause2-test.svg</iconset>
+     <normaloff>:/icons/pause3-test.svg</normaloff>
+     <activeoff>:/icons/pause2-test.svg</activeoff>
+     <activeon>:/icons/pause2-test.svg</activeon>:/icons/pause3-test.svg</iconset>
    </property>
    <property name="text">
     <string>Suspend all devices</string>
