@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_SymbolDialog.ui'
 #
-# Created: Mon Jan 30 23:30:22 2012
-#      by: PyQt4 UI code generator 4.8.6
+# Created: Fri Mar  2 03:13:09 2012
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -18,7 +18,6 @@ class Ui_SymbolDialog(object):
     def setupUi(self, SymbolDialog):
         SymbolDialog.setObjectName(_fromUtf8("SymbolDialog"))
         SymbolDialog.resize(337, 490)
-        SymbolDialog.setWindowTitle(QtGui.QApplication.translate("SymbolDialog", "Change symbol", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         SymbolDialog.setWindowIcon(icon)
@@ -28,7 +27,6 @@ class Ui_SymbolDialog(object):
         self.treeWidgetSymbols.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
         self.treeWidgetSymbols.setIconSize(QtCore.QSize(24, 24))
         self.treeWidgetSymbols.setObjectName(_fromUtf8("treeWidgetSymbols"))
-        self.treeWidgetSymbols.headerItem().setText(0, QtGui.QApplication.translate("SymbolDialog", "Symbols", None, QtGui.QApplication.UnicodeUTF8))
         self.verticalLayout.addWidget(self.treeWidgetSymbols)
         self.buttonBox = QtGui.QDialogButtonBox(SymbolDialog)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
@@ -42,6 +40,7 @@ class Ui_SymbolDialog(object):
         QtCore.QMetaObject.connectSlotsByName(SymbolDialog)
 
     def retranslateUi(self, SymbolDialog):
-        pass
+        SymbolDialog.setWindowTitle(QtGui.QApplication.translate("SymbolDialog", "Change symbol", None, QtGui.QApplication.UnicodeUTF8))
+        self.treeWidgetSymbols.headerItem().setText(0, QtGui.QApplication.translate("SymbolDialog", "Symbols", None, QtGui.QApplication.UnicodeUTF8))
 
 import svg_resources_rc

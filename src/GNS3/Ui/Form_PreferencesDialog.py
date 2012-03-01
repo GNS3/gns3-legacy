@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_PreferencesDialog.ui'
 #
-# Created: Mon Jan 30 23:30:21 2012
-#      by: PyQt4 UI code generator 4.8.6
+# Created: Fri Mar  2 03:13:08 2012
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -23,7 +23,6 @@ class Ui_PreferencesDialog(object):
         sizePolicy.setVerticalStretch(2)
         sizePolicy.setHeightForWidth(PreferencesDialog.sizePolicy().hasHeightForWidth())
         PreferencesDialog.setSizePolicy(sizePolicy)
-        PreferencesDialog.setWindowTitle(QtGui.QApplication.translate("PreferencesDialog", "Preferences", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         PreferencesDialog.setWindowIcon(icon)
@@ -39,8 +38,8 @@ class Ui_PreferencesDialog(object):
         self.listWidget.setMaximumSize(QtCore.QSize(160, 16777215))
         font = QtGui.QFont()
         font.setPointSize(12)
-        font.setBold(True)
         font.setWeight(75)
+        font.setBold(True)
         self.listWidget.setFont(font)
         self.listWidget.setObjectName(_fromUtf8("listWidget"))
         self.gridlayout.addWidget(self.listWidget, 0, 0, 1, 1)
@@ -91,6 +90,6 @@ class Ui_PreferencesDialog(object):
         PreferencesDialog.setTabOrder(self.listWidget, self.buttonBox)
 
     def retranslateUi(self, PreferencesDialog):
-        pass
+        PreferencesDialog.setWindowTitle(QtGui.QApplication.translate("PreferencesDialog", "Preferences", None, QtGui.QApplication.UnicodeUTF8))
 
 import svg_resources_rc
