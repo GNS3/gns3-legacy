@@ -230,14 +230,14 @@ class QemuManager(object):
             proc.waitForReadyRead(5000)
             output = proc.readAllStandardOutput()
             ver = QtCore.QByteArray('(version ')
-            ver_offset = output.indexOf(ver) + len('(version ')
-            if ver_offset != -1:
+            verOffset = output.indexOf(ver) + len('(version ')
+            if verOffset != -1:
                 ver = QtCore.QByteArray(")" + os.linesep)
-                endver_offset = output.indexOf(ver, ver_offset) - ver_offset
-                wrapper_ver = output.mid(ver_offset, endver_offset)
-                if wrapper_ver != VERSION:
-                    print "QemuManager: qemuwrapper version check failed"
-                    print "QemuManager: please update your qemuwrapper and check its path in the settings"
+                endVerOffset = output.indexOf(ver, verOffset) - verOffset
+                wrapperVer = output.mid(verOffset, endVerOffset)
+                if wrapperVer != VERSION:
+                    print 'QemuManager: qemuwrapper version check failed: (' + wrapperVer  + '|' + VERSION + ')'
+                    print 'QemuManager: please update your qemuwrapper and check its path in the settings'
                     proc.close()
                     return False
 
