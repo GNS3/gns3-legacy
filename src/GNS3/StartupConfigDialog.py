@@ -45,11 +45,11 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
         self.connect(self.LoadStartupConfig, QtCore.SIGNAL('clicked()'),  self.slotSelectLoadStartupConfig)
         self.connect(self.pushButtonConfigFromNvram, QtCore.SIGNAL('clicked()'),  self.slotSelectStartupConfigFromNvram)
 
-        config_path = unicode(self.router.cnfg)
-        self.lineEditStartupConfig.setText(config_path)
+        self.config_path = unicode(self.router.cnfg)
+        self.lineEditStartupConfig.setText(self.config_path)
 
-        if config_path and config_path != 'None':
-            self.loadConfig(config_path)
+        if self.config_path and self.config_path != 'None':
+            self.loadConfig(self.config_path)
 
     def loadConfig(self, path):
         """ Load the startup-config from a file
