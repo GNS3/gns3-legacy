@@ -463,15 +463,18 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Please configure capture options"))
             return
 
-#        try:
-#            statinfo = os.stat(self.capfile)
-#            if not statinfo.st_size:
-#                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),
-#                                            unicode(translate("AbstractEdge",  "%s is empty, no traffic captured on the link. Try again later")) % self.capfile)
-#                return
-#        except (OSError, IOError), e:
-#            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot find %s : %s")) % (self.capfile, e.strerror)+os.linesep+unicode(translate("AbstractEdge", "NOTE: This feature is only available for local hypervisors.")))
-#            return
+        try:
+            if not capture_conf.cap_cmd.__contains__('tail'):
+                # leave some time for packets to have a chance to be recorded into the capture file
+                time.sleep(2)
+                statinfo = os.stat(self.capfile)
+                if not statinfo.st_size:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),
+                                                unicode(translate("AbstractEdge",  "%s is empty, no traffic has been captured on the link yet. Please try again later")) % self.capfile)
+                    return
+        except (OSError, IOError), e:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot find %s : %s")) % (self.capfile, e.strerror) + os.linesep + unicode(translate("AbstractEdge", "NOTE: This feature is only available for local hypervisors.")))
+            return
 
         try:
             path = unicode(capture_conf.cap_cmd.replace("%c", '"%s"')) % self.capfile
