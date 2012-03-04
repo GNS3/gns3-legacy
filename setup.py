@@ -9,7 +9,7 @@ from distutils.core import setup, Extension
 from glob import glob
 
 # current version of GNS3
-VERSION = "0.8.2-BETA2"
+VERSION = "0.8.2"
 
 try:
     # delete previous build
