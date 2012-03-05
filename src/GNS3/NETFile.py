@@ -420,8 +420,10 @@ class NETFile(object):
                                 break
 
                     if default_symbol:
-                        if not symbol_name:
+                        if not symbol_name or not globals.GApp.scene.renders.has_key(symbol_name):
                             symbol_name = 'Cloud'
+                        else:
+                            default_symbol = False
                         normal_renderer = globals.GApp.scene.renders[symbol_name]['normal']
                         select_renderer = globals.GApp.scene.renders[symbol_name]['selected']
 
