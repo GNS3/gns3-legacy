@@ -315,7 +315,7 @@ p, li { white-space: pre-wrap; }
         <translation>Iniciar Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="489"/>
+        <location filename="../Link/AbstractEdge.py" line="492"/>
         <source>Capture</source>
         <translation>Capturar</translation>
     </message>
@@ -355,7 +355,7 @@ p, li { white-space: pre-wrap; }
         <translation>El dispositivo %s no esta en funcionamiento</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="489"/>
+        <location filename="../Link/AbstractEdge.py" line="492"/>
         <source>Cannot start %s : %s</source>
         <translation>No se puede iniciar %s : %s</translation>
     </message>
@@ -377,6 +377,21 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="206"/>
         <source>Start capturing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="472"/>
+        <source>%s is empty, no traffic has been captured on the link yet. Please try again later</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="476"/>
+        <source>Cannot find %s : %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="476"/>
+        <source>NOTE: This feature is only available for local hypervisors.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2432,77 +2447,77 @@ Please choose an alternate network interface:</source>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="600"/>
+        <location filename="../NETFile.py" line="602"/>
         <source>Save</source>
         <translation>Guardar</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="600"/>
+        <location filename="../NETFile.py" line="602"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Por favor configure el camino para Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="896"/>
+        <location filename="../NETFile.py" line="898"/>
         <source>Dynamips error</source>
         <translation>Error Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="900"/>
+        <location filename="../NETFile.py" line="902"/>
         <source>Dynamips warning</source>
         <translation>Advertencia Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="641"/>
+        <location filename="../NETFile.py" line="643"/>
         <source>Exception detected, stopping importation...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="893"/>
+        <location filename="../NETFile.py" line="895"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Exportando la configuracion de %s a %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1170"/>
+        <location filename="../NETFile.py" line="1172"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Error IO: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="641"/>
+        <location filename="../NETFile.py" line="643"/>
         <source>Importation</source>
         <translation>Importando</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="616"/>
+        <location filename="../NETFile.py" line="618"/>
         <source>Please wait while importing the topology</source>
         <translation>Por favor mientras se importa la topologia</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1170"/>
+        <location filename="../NETFile.py" line="1172"/>
         <source>IOError</source>
         <translation>ErrorIO</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="665"/>
+        <location filename="../NETFile.py" line="667"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>Advertencia: GNS3 todavia no soporta las sentencias de lan, ignorelas</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="530"/>
+        <location filename="../NETFile.py" line="532"/>
         <source>Cannot load image: %s</source>
         <translation>No se puede cargar la imagen: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="476"/>
+        <location filename="../NETFile.py" line="478"/>
         <source>Cannot load font: %s</source>
         <translation>No se puede cargar la tipografia: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="541"/>
+        <location filename="../NETFile.py" line="543"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
         <translation>%s: no se encuentra el imbolo %s, verifique si el simbolo esta su lista de nodos y recargue el archivo .net</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1075"/>
+        <location filename="../NETFile.py" line="1077"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
         <translation>debe estar conectado o debe existir un hypervisor para poder estar registrado</translation>
     </message>

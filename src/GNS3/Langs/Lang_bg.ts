@@ -315,7 +315,7 @@ p, li { white-space: pre-wrap; }
         <translation>Стартирай Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="489"/>
+        <location filename="../Link/AbstractEdge.py" line="492"/>
         <source>Capture</source>
         <translation>Прехващане</translation>
     </message>
@@ -355,7 +355,7 @@ p, li { white-space: pre-wrap; }
         <translation>Устройството %и не е включено</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="489"/>
+        <location filename="../Link/AbstractEdge.py" line="492"/>
         <source>Cannot start %s : %s</source>
         <translation>Не може да стартира %и :%и</translation>
     </message>
@@ -377,6 +377,21 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="206"/>
         <source>Start capturing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="472"/>
+        <source>%s is empty, no traffic has been captured on the link yet. Please try again later</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="476"/>
+        <source>Cannot find %s : %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="476"/>
+        <source>NOTE: This feature is only available for local hypervisors.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2431,77 +2446,77 @@ Please choose an alternate network interface:</source>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="600"/>
+        <location filename="../NETFile.py" line="602"/>
         <source>Save</source>
         <translation>Запис</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="600"/>
+        <location filename="../NETFile.py" line="602"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Моля, конфигурираите път до Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="896"/>
+        <location filename="../NETFile.py" line="898"/>
         <source>Dynamips error</source>
         <translation>Dynamips грешка</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="900"/>
+        <location filename="../NETFile.py" line="902"/>
         <source>Dynamips warning</source>
         <translation>Dynamips предупреждение</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="641"/>
+        <location filename="../NETFile.py" line="643"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Засечено изключение, спиране на импортирането...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="893"/>
+        <location filename="../NETFile.py" line="895"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Експортване %и конфигурацията към %и</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1170"/>
+        <location filename="../NETFile.py" line="1172"/>
         <source>%s: IO Error: %s</source>
         <translation>%и Входно-изходна грешка: %и</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="641"/>
+        <location filename="../NETFile.py" line="643"/>
         <source>Importation</source>
         <translation>Импортиране</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="616"/>
+        <location filename="../NETFile.py" line="618"/>
         <source>Please wait while importing the topology</source>
         <translation>Моля, изчакайте докато се импортира топологията</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1170"/>
+        <location filename="../NETFile.py" line="1172"/>
         <source>IOError</source>
         <translation>Входно-изходна грешка</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="665"/>
+        <location filename="../NETFile.py" line="667"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>Внимание: GNS3 все още не поддържа LAN състоянията, игнорирайте ги</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="530"/>
+        <location filename="../NETFile.py" line="532"/>
         <source>Cannot load image: %s</source>
         <translation>Не може да зареди изобранието: %и</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="476"/>
+        <location filename="../NETFile.py" line="478"/>
         <source>Cannot load font: %s</source>
         <translation>Не може да зареди шрифт: %и</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="541"/>
+        <location filename="../NETFile.py" line="543"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
         <translation>%и: не може да намери %и символа, моля проверете този символ във възела и презаредете .net файлът</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1075"/>
+        <location filename="../NETFile.py" line="1077"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
         <translation>трябва да бъде свързан към хипервайзър за да може да бъде регистриран</translation>
     </message>

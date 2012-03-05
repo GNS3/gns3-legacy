@@ -315,7 +315,7 @@ p, li { white-space: pre-wrap; }
         <translation>Wireshark를 실행</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="489"/>
+        <location filename="../Link/AbstractEdge.py" line="492"/>
         <source>Capture</source>
         <translation>캡쳐</translation>
     </message>
@@ -355,7 +355,7 @@ p, li { white-space: pre-wrap; }
         <translation>장치 %s 가 실행중이지 않습니다</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="489"/>
+        <location filename="../Link/AbstractEdge.py" line="492"/>
         <source>Cannot start %s : %s</source>
         <translation>%s 를 시작할 수 없습니다 : %s</translation>
     </message>
@@ -377,6 +377,21 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="206"/>
         <source>Start capturing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="472"/>
+        <source>%s is empty, no traffic has been captured on the link yet. Please try again later</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="476"/>
+        <source>Cannot find %s : %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="476"/>
+        <source>NOTE: This feature is only available for local hypervisors.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2431,77 +2446,77 @@ Please choose an alternate network interface:</source>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="600"/>
+        <location filename="../NETFile.py" line="602"/>
         <source>Save</source>
         <translation>저장</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="600"/>
+        <location filename="../NETFile.py" line="602"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamips의 경로를 설정해주세요</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="896"/>
+        <location filename="../NETFile.py" line="898"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="900"/>
+        <location filename="../NETFile.py" line="902"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 경고</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="641"/>
+        <location filename="../NETFile.py" line="643"/>
         <source>Exception detected, stopping importation...</source>
         <translation>에러가 발생하여 불러오기를 중단합니다...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="893"/>
+        <location filename="../NETFile.py" line="895"/>
         <source>Exporting %s configuration to %s</source>
         <translation>%s 의 설정을 %s 로 내보내는 중</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1170"/>
+        <location filename="../NETFile.py" line="1172"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO 에러: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="641"/>
+        <location filename="../NETFile.py" line="643"/>
         <source>Importation</source>
         <translation>불러오기</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="616"/>
+        <location filename="../NETFile.py" line="618"/>
         <source>Please wait while importing the topology</source>
         <translation>토폴로지를 불러오는 중입니다. 잠시만 기다려 주세요</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1170"/>
+        <location filename="../NETFile.py" line="1172"/>
         <source>IOError</source>
         <translation>입출력 관련 에러</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="665"/>
+        <location filename="../NETFile.py" line="667"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>경고: GNS3 doesn&apos;t yet support lan statements, ignore it</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="530"/>
+        <location filename="../NETFile.py" line="532"/>
         <source>Cannot load image: %s</source>
         <translation>%s 이미지를 불러오지 못했습니다</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="476"/>
+        <location filename="../NETFile.py" line="478"/>
         <source>Cannot load font: %s</source>
         <translation>%s 폰트를 불러오지 못했습니다</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="541"/>
+        <location filename="../NETFile.py" line="543"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
         <translation>%s 장비에 대한 %s 심벌을 찾을 수 없습니다. 해당 심벌이 사용가능한 심벌인지 노드 리스트에서 확인 후 .Net 파일을 다시 불러와서 확인을 해주세요</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1075"/>
+        <location filename="../NETFile.py" line="1077"/>
         <source>must be connected or have a hypervisor set in order to be registered</source>
         <translation>등록을 하기 위해서는 연결이 되어 있어야 하거나 하이퍼바이저가 설정되어 있어야 합니다</translation>
     </message>
