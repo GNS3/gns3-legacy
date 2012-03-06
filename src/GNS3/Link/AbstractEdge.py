@@ -324,7 +324,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """
         if capture_conf.workdir and (host == globals.GApp.systconf['qemu'].QemuManager_binding or self.isLocalhost(host)):
             # We only provide capture directory to locally running wrappers.
-            self.capfile = unicode(capture_conf.workdir + '/' + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+            self.capfile = unicode(capture_conf.workdir + os.linesep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
         else:
             # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
             self.capfile = unicode(self.source.hostname + '_to_' + self.dest.hostname + '.cap')
@@ -360,7 +360,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """
         if capture_conf.workdir and (host == globals.GApp.systconf['vbox'].VBoxManager_binding or self.isLocalhost(host)):
             # We only provide capture directory to locally running wrappers.
-            self.capfile = unicode(capture_conf.workdir + '/' + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+            self.capfile = unicode(capture_conf.workdir + os.linesep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
         else:
             # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
             self.capfile = unicode(self.source.hostname + '_to_' + self.dest.hostname + '.cap')
@@ -399,11 +399,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 workdir = capture_conf.workdir
             else:
                 workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
-            if '/' in workdir:
-                sep = '/'
-            else:
-                sep = '\\'
-            self.capfile = unicode(workdir + sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+            self.capfile = unicode(workdir + os.linesep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
             debug("Start capture to " + self.capfile)
             globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + '"' + self.capfile + '"')
             self.captureInfo = (device, slot, inttype, port, original_encapsulation)
