@@ -137,7 +137,7 @@ class xVBOXInstance(object):
         self.guestcontrol_user = ''
         self.guestcontrol_password = ''
         self.process = None
-        self.workdir = WORKDIR + '/' + name
+        self.workdir = WORKDIR + os.sep + name
         self.valid_attr_names = ['image',  'console', 'nics', 'netcard', 'guestcontrol_user', 'guestcontrol_password']
         self.mgr = g_vboxManager
         self.vbox = self.mgr.vbox

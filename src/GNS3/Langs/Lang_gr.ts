@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="el_GR" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.0" language="el_GR">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -252,7 +253,7 @@
         <source>&amp;License Agreement</source>
         <translation>&amp;Συμφωνία Αδείας</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_About.py" line="390"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -2198,7 +2199,7 @@ Please choose an alternate network interface:</source>
         <source>Console to all devices</source>
         <translation>Σύνδεση κονσόλας σε όλες τισ συκευές</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="521"/>
         <source>Save topology &amp;as…</source>
         <translation>Αποθήκευση τοπολογίας &amp;ώς...</translation>
@@ -2243,7 +2244,7 @@ Please choose an alternate network interface:</source>
         <source>Show interface labels</source>
         <translation>Εμφάνιση όλων των ετικετών των διεπαφών</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="589"/>
         <source>&amp;Save project as…</source>
         <translation>&amp;Αποθήκευση έργου ώς...</translation>
@@ -4590,7 +4591,7 @@ i.e. #copy start run</source>
         <source>Rotation:</source>
         <translation>Περιστροφή:</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_StyleDialog.py" line="86"/>
         <source>°</source>
         <translation>°</translation>

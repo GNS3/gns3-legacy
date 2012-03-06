@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="cs_CZ" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.0" language="cs_CZ">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -252,7 +253,7 @@
         <source>&amp;License Agreement</source>
         <translation>&amp;Licenční smlouva</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_About.py" line="390"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -2198,7 +2199,7 @@ Please choose an alternate network interface:</source>
         <source>Console to all devices</source>
         <translation>Otevřít konzoli všech zařízení</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="521"/>
         <source>Save topology &amp;as…</source>
         <translation>Uložit topologii j&amp;ako…</translation>
@@ -2243,7 +2244,7 @@ Please choose an alternate network interface:</source>
         <source>Show interface labels</source>
         <translation>Ukázat názvy rozhraní</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="589"/>
         <source>&amp;Save project as…</source>
         <translation>Uložit &amp;projekt jako…</translation>
@@ -4595,7 +4596,7 @@ Např. #copy start run</translation>
         <source>Rotation:</source>
         <translation>Rotace:</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_StyleDialog.py" line="86"/>
         <source>°</source>
         <translation></translation>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="fr" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.0" language="fr">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -252,7 +253,7 @@
         <source>&amp;License Agreement</source>
         <translation>&amp;License</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_About.py" line="390"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -2199,7 +2200,7 @@ panier:</translation>
         <source>Console to all devices</source>
         <translation>Lancer une console tous les équipements</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="521"/>
         <source>Save topology &amp;as…</source>
         <translation>Sauver la topologie &amp;sous...</translation>
@@ -2244,7 +2245,7 @@ panier:</translation>
         <source>Show interface labels</source>
         <translation>Afficher les noms des interfaces</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="589"/>
         <source>&amp;Save project as…</source>
         <translation>&amp;Sauver le projet sous...</translation>
@@ -4594,7 +4595,7 @@ i.e. #copy start run</translation>
         <source>Rotation:</source>
         <translation>Rotation:</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_StyleDialog.py" line="86"/>
         <source>°</source>
         <translation></translation>
