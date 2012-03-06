@@ -1022,7 +1022,7 @@ class Dynagen:
         self.debug('pathname -> ' + pathname)
         CONFIGSPECPATH.append(pathname)
         for dir in CONFIGSPECPATH:
-            configspec = dir + os.linesep + CONFIGSPEC
+            configspec = dir + os.sep + CONFIGSPEC
             self.debug('configspec -> ' + configspec)
 
             # Check to see if configuration file exists
@@ -1747,7 +1747,7 @@ class Dynagen:
         self.debug('pathname -> ' + realpath)
         INIPATH.append(pathname)
         for dir in INIPATH:
-            inifile = dir + os.linesep + FILENAME
+            inifile = dir + os.sep + FILENAME
 
             # Check to see if configuration file exists
             try:

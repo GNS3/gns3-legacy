@@ -189,7 +189,6 @@ class QemuManager(object):
                                           unicode(translate("QemuManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.systconf['qemu'].qemuwrapper_workdir)
                 return False
 
-
             proc.setWorkingDirectory(globals.GApp.systconf['qemu'].qemuwrapper_workdir)
 
         # start Qemuwrapper, use python on all platform but Windows (in release mode)
