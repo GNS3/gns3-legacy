@@ -13,7 +13,6 @@ OSX
 
  * Open .net files from Finder on Mac OS X (http://www.gns3.net/phpBB/topic1817.html)
  * DMG installer for Mac OS X (http://chromasoft.blogspot.com/2010/02/building-dmg-installer-for-mac-simple.html)
- * OSX compiled version: include __boot__.py in setup.py
 
 Dynamips
 

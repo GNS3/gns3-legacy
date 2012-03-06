@@ -1,5 +1,19 @@
 CHANGELOG
 
+GNS3 0.8.2 - 5.03.2012
+
+ * Start/pause/stop icons have the same look as before BETA2.
+ * Checks for the correct version of Qemuwrapper and VBoxwrapper.
+ * New SecureCRT command line for OSX in terminal settings preferences.
+ * A 500ms delay has been added when consoling to more than one device at the same time.
+ * Qemu <-> VBox linking has been fixed.
+ * FlexiNetwork VirtualBox feature had been patched.
+ * Italian translation has been updated.
+ * Give a chance to hypervisor/wrapper processes to stop before they get killed.
+ * An issue when trying to choose the file in the Startup-Config dialog has been fixed.
+ * Additional check to avoid false positives when detecting compressed IOS.
+ * Symbol import/export issue for 'Cloud' nodes has been fixed.
+
 GNS3 0.8.2 BETA2 - 31.01.2012
 
  * IOS images can be directly uncompressed by GNS3.
