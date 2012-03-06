@@ -132,7 +132,7 @@ class xEMUInstance(object):
         self.kvm = False
         self.options = ''
         self.process = None
-        self.workdir = WORKDIR + '/' + name
+        self.workdir = WORKDIR + os.sep + name
         self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options']
 
     def create(self):
