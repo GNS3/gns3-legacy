@@ -184,14 +184,13 @@ background-none;
    <addaction name="separator"/>
    <addaction name="action_ShowinterfaceNames"/>
    <addaction name="action_ShowHostnames"/>
-   <addaction name="action_Add_link"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget_NodeTypes">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="visible">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="floating">
     <bool>false</bool>
@@ -275,6 +274,8 @@ background-none;
    <addaction name="action_IDS"/>
    <addaction name="separator"/>
    <addaction name="action_OtherDevices"/>
+   <addaction name="separator"/>
+   <addaction name="action_AddLink"/>
    <addaction name="separator"/>
   </widget>
   <widget class="QToolBar" name="toolBar_Emulation">
@@ -544,27 +545,6 @@ background-none;
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
-   </property>
-  </action>
-  <action name="action_Add_link">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/connection.svg</normaloff>:/icons/connection.svg</iconset>
-   </property>
-   <property name="text">
-    <string>Add a link</string>
-   </property>
-   <property name="iconText">
-    <string>Add a link</string>
-   </property>
-   <property name="toolTip">
-    <string>Add a link</string>
-   </property>
-   <property name="statusTip">
-    <string>Add a link</string>
    </property>
   </action>
   <action name="action_IOS_images">
@@ -1250,6 +1230,25 @@ background-none;
    </property>
    <property name="statusTip">
     <string>Browse all devices</string>
+   </property>
+  </action>
+  <action name="action_AddLink">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/connection-new.svg</normaloff>
+     <activeoff>:/icons/connection-new-hover.svg</activeoff>:/icons/connection-new.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Add link</string>
+   </property>
+   <property name="toolTip">
+    <string>Add a link</string>
+   </property>
+   <property name="statusTip">
+    <string>Add a link</string>
    </property>
   </action>
  </widget>

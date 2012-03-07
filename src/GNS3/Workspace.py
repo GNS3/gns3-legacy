@@ -124,7 +124,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         self.connect(self.action_Export, QtCore.SIGNAL('triggered()'), self.__action_Export)
-        self.connect(self.action_Add_link, QtCore.SIGNAL('triggered()'), self.__action_addLink)
+        self.connect(self.action_AddLink, QtCore.SIGNAL('triggered()'), self.__action_AddLink)
         self.connect(self.action_IOS_images, QtCore.SIGNAL('triggered()'), self.__action_IOSImages)
         self.connect(self.action_Symbol_Manager, QtCore.SIGNAL('triggered()'), self.__action_Symbol_Manager)
         self.connect(self.action_ShowHostnames, QtCore.SIGNAL('triggered()'), self.__action_ShowHostnames)
@@ -521,15 +521,18 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 # add the image to the scene
                 command = undo.AddItem(globals.GApp.topology, item, translate('Workspace', 'picture'))
                 globals.GApp.topology.undoStack.push(command)
-
-    def __action_addLink(self):
+            
+    def __action_AddLink(self):
         """ Implement the QAction `addLink'
         - This function manage the creation of a connection between two nodes.
         """
 
-        if not self.action_Add_link.isChecked():
-            self.action_Add_link.setText(translate('Workspace', 'Add a link'))
-            self.action_Add_link.setIcon(QIcon(':/icons/connection.svg'))
+        if not self.action_AddLink.isChecked():
+            self.action_AddLink.setText(translate('Workspace', 'Add a link'))
+            newLinkIcon = QtGui.QIcon()
+            newLinkIcon.addPixmap(QtGui.QPixmap(":/icons/connection-new.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+            newLinkIcon.addPixmap(QtGui.QPixmap(":/icons/connection-new-hover.svg"), QtGui.QIcon.Active, QtGui.QIcon.On)
+            self.action_AddLink.setIcon(newLinkIcon)
             globals.addingLinkFlag = False
             globals.GApp.scene.resetAddingLink()
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
@@ -543,10 +546,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
             else:
                 globals.currentLinkType =  globals.Enum.LinkType.Manual
 
-            self.action_Add_link.setText(translate('Workspace', 'Cancel'))
-            self.action_Add_link.setIcon(QIcon(':/icons/cancel.svg'))
+            self.action_AddLink.setText(translate('Workspace', 'Cancel'))
+            self.action_AddLink.setIcon(QIcon(':/icons/cancel-connection.svg'))
             globals.addingLinkFlag = True
             globals.GApp.scene.setCursor(QtCore.Qt.CrossCursor)
+        
 
     def __setLinkType(self,  action):
         """ Set the link type to use
@@ -725,28 +729,18 @@ class Workspace(QMainWindow, Ui_MainWindow):
             and the user wants to go back to default style
         """
 
-        #self.action_StartAll.setIcon(QtGui.QIcon(':/icons/play2-test.svg'))
-        #self.action_SuspendAll.setIcon(QtGui.QIcon(':/icons/pause2-test.svg'))
-        #self.action_StopAll.setIcon(QtGui.QIcon(':/icons/stop2-test.svg'))
-        #if self.action_StartAll.hover():
-            #self.action_StartAll.setIcon(QtGui.QIcon(':/icons/play7-test.svg'))
-
         startAllIcon = QtGui.QIcon()
-        startAllIcon.addPixmap(QtGui.QPixmap(":/icons/play2-test.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        #startAllIcon.addPixmap(QtGui.QPixmap(":/icons/play2-test.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        startAllIcon.addPixmap(QtGui.QPixmap(":/icons/play7-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        startAllIcon.addPixmap(QtGui.QPixmap(":/icons/play2-test.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         startAllIcon.addPixmap(QtGui.QPixmap(":/icons/play7-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.On)
         self.action_StartAll.setIcon(startAllIcon)
         
         pauseAllIcon = QtGui.QIcon()
-        pauseAllIcon.addPixmap(QtGui.QPixmap(":/icons/pause2-test.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        pauseAllIcon.addPixmap(QtGui.QPixmap(":/icons/pause3-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        pauseAllIcon.addPixmap(QtGui.QPixmap(":/icons/pause2-test.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         pauseAllIcon.addPixmap(QtGui.QPixmap(":/icons/pause3-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.On)
         self.action_SuspendAll.setIcon(pauseAllIcon)
         
         stopAllIcon = QtGui.QIcon()
-        stopAllIcon.addPixmap(QtGui.QPixmap(":/icons/stop2-test.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        stopAllIcon.addPixmap(QtGui.QPixmap(":/icons/stop3-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        stopAllIcon.addPixmap(QtGui.QPixmap(":/icons/stop2-test.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
         stopAllIcon.addPixmap(QtGui.QPixmap(":/icons/stop3-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.On)
         self.action_StopAll.setIcon(stopAllIcon)
 
