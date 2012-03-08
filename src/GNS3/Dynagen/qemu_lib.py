@@ -324,7 +324,7 @@ class AnyEmuDevice(object):
         self.state = 'stopped'
         self.defaults = {
             'image': None,
-            'ram': 128,
+            'ram': 256,
             'nics': 6,
             'netcard': 'rtl8139',
             'kvm': False,
