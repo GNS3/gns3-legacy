@@ -911,14 +911,13 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                     self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "You're running an old AND unpatched version of qemu, which won't work")  + '</font>')
                     return
 
-            PEMU_BIN = "pemu"
-
+            # PEMU must be located in the same folder as Qemuwrapper
             if platform.system() == 'Windows':
+                PEMU_BIN = "pemu.exe"
+            else:
+                PEMU_BIN = "pemu"
 
-                if hasattr(sys, "frozen"):
-                    PEMU_BIN = os.path.dirname(os.path.abspath(sys.executable)) + os.sep + 'pemu.exe'
-                else:
-                    PEMU_BIN = os.path.dirname(os.path.abspath(__file__)) + os.sep + 'pemu.exe'
+            PEMU_BIN = os.path.dirname(globals.GApp.systconf['qemu'].qemuwrapper_path) + os.sep + PEMU_BIN
 
             bPEMUfound = True
             try:

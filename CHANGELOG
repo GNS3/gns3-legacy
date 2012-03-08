@@ -1,8 +1,8 @@
 CHANGELOG
 
-GNS3 0.8.2 - 5.03.2012
+GNS3 0.8.2 - To be released
 
- * Start/pause/stop icons have the same look as before BETA2.
+ * Start/pause/stop icons are colored as before BETA2.
  * Checks for the correct version of Qemuwrapper and VBoxwrapper.
  * New SecureCRT command line for OSX in terminal settings preferences.
  * A 500ms delay has been added when consoling to more than one device at the same time.
