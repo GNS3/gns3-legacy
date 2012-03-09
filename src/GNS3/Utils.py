@@ -102,7 +102,7 @@ def getWindowsInterfaces():
         for line in outputlines:
             match = re.search(r"""^rpcap://\\Device\\NPF_({[a-fA-F0-9\-]*}).*""",  line.strip())
             if match:
-                interface_name = ': '
+                interface_name = ": "
                 try:
                     reg_key = "SYSTEM\\CurrentControlSet\\Control\\Network\\{4D36E972-E325-11CE-BFC1-08002BE10318}\\%s\\Connection" % match.group(1)
                     key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, reg_key, _winreg.KEY_READ)
@@ -112,7 +112,7 @@ def getWindowsInterfaces():
                 except:
                     interface_name += "unknown name"
                     pass
-                interfaces.append(match.group(0) + interface_name)
+                interfaces.append(unicode(match.group(0) + interface_name, 'utf-8', errors='replace'))
     except:
         return []
     return interfaces

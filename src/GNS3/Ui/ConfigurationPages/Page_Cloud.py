@@ -103,7 +103,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         """ Add a new generic Ethernet NIO
         """
 
-        interface = unicode(self.lineEditGenEth.text())
+        interface = unicode(self.lineEditGenEth.text(), 'utf-8', errors='replace')
         if interface:
             if sys.platform.startswith('win'):
                 match = re.search(r"""^rpcap://(\\Device\\NPF_{[a-fA-F0-9\-]*})(.*)""", interface)
