@@ -68,7 +68,7 @@ class VBoxManager(object):
             s.setblocking(0)
             s.settimeout(300)
             if nb == 3:
-                progress = QtGui.QProgressDialog(unicode(translate("VBoxManager", "Connecting to VBox on port %i ...")) % self.port,
+                progress = QtGui.QProgressDialog(translate("VBoxManager", "Connecting to VBox on port %i ...") % self.port,
                                                  translate("VBoxManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
@@ -93,7 +93,7 @@ class VBoxManager(object):
             time.sleep(0.2)
         else:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'VBox Manager',
-                                       unicode(translate("VBoxManager", "Can't connect to VBox on port %i")) % self.port)
+                                       translate("VBoxManager", "Can't connect to VBox on port %i") % self.port)
             self.stopVBox()
             return False
         if progress:
@@ -118,7 +118,7 @@ class VBoxManager(object):
         if globals.GApp.systconf['vbox'].vboxwrapper_workdir:
             if not os.access(globals.GApp.systconf['vbox'].vboxwrapper_workdir, os.F_OK | os.W_OK):
                 QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'VBox Manager',
-                                          unicode(translate("VBoxManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.systconf['vbox'].vboxwrapper_workdir)
+                                          translate("VBoxManager", "Working directory %s seems to not exist or be writable, please check") % globals.GApp.systconf['vbox'].vboxwrapper_workdir)
             # set the working directory
             self.proc.setWorkingDirectory(globals.GApp.systconf['vbox'].vboxwrapper_workdir)
 
@@ -134,7 +134,7 @@ class VBoxManager(object):
         try:
             s.connect((binding, self.port))
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'VBox Manager',
-                                       unicode(translate("VBoxManager", "VBox is already running on port %i, it will not be shutdown after you quit GNS3")) % self.port)
+                                       translate("VBoxManager", "VBox is already running on port %i, it will not be shutdown after you quit GNS3") % self.port)
             s.close()
             return True
         except:
@@ -150,7 +150,7 @@ class VBoxManager(object):
             self.proc.start(sys.executable,  [globals.GApp.systconf['vbox'].vboxwrapper_path, '--listen', binding, '--port', str(self.port)])
 
         if self.proc.waitForStarted() == False:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'VBox Manager',  unicode(translate("VBoxManager", "Can't start VBox on port %i")) % self.port)
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'VBox Manager', translate("VBoxManager", "Can't start VBox on port %i") % self.port)
             return False
 
         self.waitVBox()
@@ -189,7 +189,7 @@ class VBoxManager(object):
         if globals.GApp.systconf['vbox'].vboxwrapper_workdir:
             if not os.access(globals.GApp.systconf['vbox'].vboxwrapper_workdir, os.F_OK | os.W_OK):
                 QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'VBox Manager',
-                                          unicode(translate("VBoxManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.systconf['vbox'].vboxwrapper_workdir)
+                                          translate("VBoxManager", "Working directory %s seems to not exist or be writable, please check") % globals.GApp.systconf['vbox'].vboxwrapper_workdir)
                 return False
             # set the working directory
             proc.setWorkingDirectory(globals.GApp.systconf['vbox'].vboxwrapper_workdir)

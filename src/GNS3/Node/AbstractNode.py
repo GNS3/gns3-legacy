@@ -170,7 +170,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 dynamips_hypervisor = self.dynagen.create_dynamips_hypervisor(host, int(port))
                 if not dynamips_hypervisor:
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hypervisor"),
-                                               unicode(translate("AbstractNode", "Can't connect to the hypervisor on %s")) % hypervisor)
+                                               translate("AbstractNode", "Can't connect to the hypervisor on %s") % hypervisor)
                     if self.dynagen.dynamips.has_key(hypervisor):
                         del self.dynagen.dynamips[hypervisor]
                     return
@@ -184,7 +184,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
             self.reconfigNode(self.hostname)
             self.dynagen.update_running_config()
             QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("AbstractNode", "Hypervisor"),
-                                           unicode(translate("AbstractNode", "New hypervisor %s has been set on device %s")) % (hypervisor, self.hostname))
+                                          translate("AbstractNode", "New hypervisor %s has been set on device %s") % (hypervisor, self.hostname))
 
     def changeConsolePort(self):
         """ Called to change the console port
@@ -192,7 +192,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         device = self.get_dynagen_device()
         (port, ok) = QtGui.QInputDialog.getInteger(globals.GApp.mainWindow, translate("AbstractNode", "Change the console port"),
-                                          unicode(translate("AbstractNode", "Console port for %s:")) % self.hostname, device.console, 1, 65535, 1)
+                                                   translate("AbstractNode", "Console port for %s:") % self.hostname, device.console, 1, 65535, 1)
         if ok and device.console != port:
 
             command = undo.NewConsolePort(self, port)
@@ -207,12 +207,13 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         device = self.get_dynagen_device()
         if not device.aux:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "AUX port"), unicode(translate("AbstractNode", "AUX port not available for this router model or base AUX port is set to 0 in preferences")))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "AUX port"),
+                                       translate("AbstractNode", "AUX port not available for this router model or base AUX port is set to 0 in preferences"))
             return False
 
         current_aux = device.aux
         (port, ok) = QtGui.QInputDialog.getInteger(globals.GApp.mainWindow, translate("AbstractNode", "Change the aux port"),
-                                          unicode(translate("AbstractNode", "AUX port for %s:")) % self.hostname, current_aux, 1, 65535, 1)
+                                                   translate("AbstractNode", "AUX port for %s:") % self.hostname, current_aux, 1, 65535, 1)
         if ok and device.aux != port:
 
             command = undo.NewAUXPort(self, port)
@@ -308,7 +309,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         """ Set a custom tool tip
         """
 
-        self.setToolTip(unicode(translate("AbstractNode", "Hostname: %s")) % self.hostname)
+        self.setToolTip(translate("AbstractNode", "Hostname: %s") % self.hostname)
 
     def keyPressEvent(self, event):
         """ Key press handler

@@ -277,7 +277,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
     def slotAddExternalVBoxwrapper(self):
         part1 = self.lineEditHostExternalVBox.text().split(':')[0]
         if part1 == '127.0.0.1' or part1 == 'localhost':
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("New Hypervisor", "New Hypervisor"), unicode(translate("New Hypervisor", "WARNING: When doing multi-host setup, never use loopback addresses, such as 'localhost' or '127.0.0.1'. Use actual IP addresses instead.")))
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("New Hypervisor", "New Hypervisor"), translate("New Hypervisor", "WARNING: When doing multi-host setup, never use loopback addresses, such as 'localhost' or '127.0.0.1'. Use actual IP addresses instead."))
         
         external_vboxwrapper = self.lineEditHostExternalVBox.text()
         if external_vboxwrapper and external_vboxwrapper not in self.external_hosts:
@@ -438,7 +438,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             VBOXVER = str(g_VBoxmgr.vbox.version)
 
             if not (VBOXVER_REQUIRED1_MAJOR == VBOXVER_MAJOR and VBOXVER_REQUIRED1_MINOR == VBOXVER_MINOR):
-                self.labelVBoxStatus.setText('<font color="red">' + unicode(translate("UiConfig_PreferencesVirtualBox", "ERROR: Found VirtualBox v%s. Required: v%s")) % (VBOXVER, str(VBOXVER_REQUIRED)  + '</font>'))
+                self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "ERROR: Found VirtualBox v%s. Required: v%s") % (VBOXVER, str(VBOXVER_REQUIRED)  + '</font>'))
                 return
 
             globals.GApp.workspace.clear()
@@ -451,4 +451,4 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
                     self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start VBoxwrapper")  + '</font>')
                 return
 
-            self.labelVBoxStatus.setText('<font color="green">' + unicode(translate("UiConfig_PreferencesVirtualBox", "VBoxwrapper and VirtualBox API %s have successfully started")) % (VBOXVER)  + '</font>')
+            self.labelVBoxStatus.setText('<font color="green">' + translate("UiConfig_PreferencesVirtualBox", "VBoxwrapper and VirtualBox API %s have successfully started") % (VBOXVER)  + '</font>')

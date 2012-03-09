@@ -475,7 +475,7 @@ class NETFile(object):
                         if font.fromString(gns3data[section]['font'][1:-1]):
                             note_object.setFont(font)
                         else:
-                            print unicode(translate("NETFile", "Cannot load font: %s")) % gns3data[section]['font']
+                            print translate("NETFile", "Cannot load font: %s") % gns3data[section]['font']
                     if gns3data[section].has_key('rotate'):
                         note_object.rotation = int(gns3data[section]['rotate'])
                         note_object.rotate(note_object.rotation)
@@ -529,7 +529,7 @@ class NETFile(object):
                     if not pixmap_image.isNull():
                         pixmap_object= Pixmap(pixmap_image, pixmap_path)
                     else:
-                        print unicode(translate("NETFile", "Cannot load image: %s")) % pixmap_path
+                        print translate("NETFile", "Cannot load image: %s") % pixmap_path
                         continue
                     pixmap_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     if gns3data[section].has_key('z'):
@@ -540,7 +540,7 @@ class NETFile(object):
                     hostname = unicode(hostname)
                     symbol = unicode(gns3data[section]['symbol'])
                     if not globals.GApp.scene.renders.has_key(symbol):
-                        print unicode(translate("NETFile", "%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file")) % (hostname, symbol)
+                        print translate("NETFile", "%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file") % (hostname, symbol)
                         continue
                     renders = globals.GApp.scene.renders[symbol]
                     decorative_node = DecorativeNode(renders['normal'], renders['selected'])
@@ -892,7 +892,7 @@ class NETFile(object):
             # Write out the config to a file
             file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.cfg'
             if auto == False:
-                print unicode(translate("NETFile", "Exporting %s configuration to %s")) % (device.name, file_path)
+                print translate("NETFile", "Exporting %s configuration to %s") % (device.name, file_path)
         except lib.DynamipsError, msg:
             if auto == False:
                 print unicode(device.name + ': ' + translate("NETFile", "Dynamips error") + ': ') + unicode(msg)
@@ -912,7 +912,7 @@ class NETFile(object):
             self.dynagen.running_config[device.dynamips.host + ':' + str(device.dynamips.port)]['ROUTER ' + device.name]['cnfg'] = file_path
         except IOError, e:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow,
-                                      unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, unicode(e)))
+                                      unicode(device.name) + ': ' + translate("NETFile", "IOError"), translate("NETFile", "%s: IO Error: %s") % (file_path, unicode(e)))
             return
 
     def export_net_file(self, path, auto=False):
@@ -1170,7 +1170,7 @@ class NETFile(object):
             self.dynagen.running_config.write()
         except IOError, e:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow,
-                                      unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (path, unicode(e)))
+                                      unicode(device.name) + ': ' + translate("NETFile", "IOError"), translate("NETFile", "%s: IO Error: %s") % (path, unicode(e)))
         self.dynagen.running_config.filename = None
 
     def convert_to_relpath(self, path, config_path):

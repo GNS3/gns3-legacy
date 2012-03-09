@@ -340,7 +340,7 @@ Examples:
             print translate("Console", "Incorrect number of paramaters or invalid parameters")
             return
         except KeyError:
-            print unicode(translate("Console", "Unknown device: %s")) % device
+            print translate("Console", "Unknown device: %s") % device
             return
         except lib.DynamipsError, e:
             print e
@@ -395,7 +395,7 @@ Examples:
                 if command == 'get':
                     current_idlepc = self.dynagen.devices[device].idlepc
                     if len(params) < 2 or params[1] != 'force' and current_idlepc != None:
-                        print unicode(translate("Console", "%s already has an idlepc value applied (%s).")) % (device, current_idlepc)
+                        print translate("Console", "%s already has an idlepc value applied (%s).") % (device, current_idlepc)
                         return
 
                     print translate("Console", "Please wait while gathering statistics...")
@@ -425,7 +425,7 @@ Examples:
                 if len(idles) == 0:
                     print translate("Console", "No idlepc values found")
                 else:
-                    output = unicode(translate("Console", "Potentially better idlepc values marked with '*'\nEnter the number of the idlepc value to apply [1-%i] or ENTER for no change:\n")) % len(idles) + output
+                    output = translate("Console", "Potentially better idlepc values marked with '*'\nEnter the number of the idlepc value to apply [1-%i] or ENTER for no change:\n") % len(idles) + output
                     globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
                     (selection,  ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, 'idlepc',
                                           output, QtGui.QLineEdit.Normal)
@@ -440,7 +440,7 @@ Examples:
 
                     try:
                         self.dynagen.devices[device].idleprop(lib.IDLEPROPSET, idles[int(selection)])
-                        print unicode(translate("Console", "Applied idlepc value %s to %s\n")) % (idles[int(selection)], device)
+                        print translate("Console", "Applied idlepc value %s to %s\n") % (idles[int(selection)], device)
                         for node in globals.GApp.topology.nodes.values():
                             if isinstance(node, IOSRouter) and node.hostname == device:
                                 router = node.get_dynagen_device()
@@ -456,7 +456,7 @@ Examples:
             print translate("Console", "Incorrect number of paramaters or invalid parameters")
             return
         except KeyError:
-            print unicode(translate("Console", "Unknown device: %s")) % device
+            print translate("Console", "Unknown device: %s") % device
             return
         except lib.DynamipsError, e:
             print e

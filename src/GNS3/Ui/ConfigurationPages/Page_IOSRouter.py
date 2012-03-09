@@ -229,7 +229,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                     interface_type = interfaces.keys()[0]
                     for port in interfaces[interface_type].values():
                         if router.slot[slot_number].connected(interface_type, port):
-                            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'Slots', unicode(translate("Page_IOSRouter", "Links are connected in slot %i")) % slot_number)
+                            QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'Slots', translate("Page_IOSRouter", "Links are connected in slot %i") % slot_number)
                             collision = True
                             break
                 if collision:
@@ -248,7 +248,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
                     if remove:
                         router_config['slots'][slot_number] = None
                     else:
-                        QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'Slots', unicode(translate("Page_IOSRouter", "Links are connected in slot %i")) % slot_number)
+                        QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'Slots', translate("Page_IOSRouter", "Links are connected in slot %i") % slot_number)
                         continue
                 except:
                     pass
@@ -272,7 +272,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
 #                        else:
 #                            router_config['wics'][wic_number] = wic_name
 #                    else:
-#                        QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'WICs', unicode(translate("Page_IOSRouter", "Links are connected in WICS slot %i")) % wic_number)
+#                        QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'WICs', translate("Page_IOSRouter", "Links are connected in WICS slot %i") % wic_number)
 #                        continue
 #            except IndexError, e:
 #                continue

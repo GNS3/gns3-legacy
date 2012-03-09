@@ -97,7 +97,7 @@ class Cloud(AbstractNode):
         """
 
         if self.config:
-            info = unicode(translate("Cloud", "Cloud name: %s")) % self.hostname
+            info = translate("Cloud", "Cloud name: %s") % self.hostname
             for nio in self.config['nios']:
                 info += "\n\n" + nio
                 if sys.platform.startswith('win') and self.config['rpcap_mapping'].has_key(nio):

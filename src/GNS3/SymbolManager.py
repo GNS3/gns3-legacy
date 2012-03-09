@@ -218,10 +218,10 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
             return
         library_name = os.path.basename(path)
         if len(self.treeWidgetSymbols.findItems(library_name, QtCore.Qt.MatchFixedString)):
-            QtGui.QMessageBox.critical(self, translate("SymbolManager", "Library"), unicode(translate("SymbolManager", "This library is already loaded: %s")) % library_name)
+            QtGui.QMessageBox.critical(self, translate("SymbolManager", "Library"), translate("SymbolManager", "This library is already loaded: %s") % library_name)
             return
         if not QtCore.QResource.registerResource(path, ":/" + library_name):
-            QtGui.QMessageBox.critical(self, translate("SymbolManager", "Library"), unicode(translate("SymbolManager", "Can't open library: %s")) % path)
+            QtGui.QMessageBox.critical(self, translate("SymbolManager", "Library"), translate("SymbolManager", "Can't open library: %s") % path)
             return
 
         self.addLibrarySymbols(library_name, path)
@@ -238,7 +238,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
             return
         library_name = os.path.basename(path)
         if not QtCore.QResource.unregisterResource(path, ":/" + library_name):
-            QtGui.QMessageBox.critical(self, translate("SymbolManagement", "Library"), unicode(translate("SymbolManager", "Can't remove library: %s")) % path)
+            QtGui.QMessageBox.critical(self, translate("SymbolManagement", "Library"), translate("SymbolManager", "Can't remove library: %s") % path)
             return
 
         library = self.treeWidgetSymbols.findItems(library_name, QtCore.Qt.MatchFixedString)[0]

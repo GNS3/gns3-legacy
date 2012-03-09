@@ -117,7 +117,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
             vlan = int(item.text(1))
             connected_ports = self.node.getConnectedInterfaceList()
             if str(port) in connected_ports:
-                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'Ports', unicode(translate("Page_ETHSW", "A link is connected in port %i")) % port)
+                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'Ports', translate("Page_ETHSW", "A link is connected in port %i") % port)
                 return
             del self.ports[port]
             self.vlans[vlan].remove(port)

@@ -202,14 +202,14 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
                 os.makedirs(self.conf.project_path)
             except (OSError, IOError), e:
                 QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Project directory"),
-                                           unicode(translate("UiConfig_PreferencesGeneral", "Cannot create project directory: %s")) % e.strerror)
+                                           translate("UiConfig_PreferencesGeneral", "Cannot create project directory: %s") % e.strerror)
 
         if self.conf.ios_path and not os.path.exists(self.conf.ios_path):
             try:
                 os.makedirs(self.conf.ios_path)
             except (OSError, IOError), e:
                 QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Image directory"),
-                                           unicode(translate("UiConfig_PreferencesGeneral", "Cannot create image directory: %s")) % e.strerror)
+                                           translate("UiConfig_PreferencesGeneral", "Cannot create image directory: %s") % e.strerror)
                 
         if not os.path.exists(self.conf.ios_path + os.sep + 'baseconfig.txt'):
             try:

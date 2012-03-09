@@ -289,7 +289,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
     def slotAddExternalQemuwrapper(self):
         part1 = self.lineEditHostExternalQemu.text().split(':')[0]
         if part1 == '127.0.0.1' or part1 == 'localhost':
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("New Hypervisor", "New Hypervisor"), unicode(translate("New Hypervisor", "WARNING: When doing multi-host setup, never use loopback addresses, such as 'localhost' or '127.0.0.1'. Use actual IP addresses instead.")))
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("New Hypervisor", "New Hypervisor"), translate("New Hypervisor", "WARNING: When doing multi-host setup, never use loopback addresses, such as 'localhost' or '127.0.0.1'. Use actual IP addresses instead."))
 
         external_qemuwrapper = self.lineEditHostExternalQemu.text()
         if external_qemuwrapper and external_qemuwrapper not in self.external_hosts:

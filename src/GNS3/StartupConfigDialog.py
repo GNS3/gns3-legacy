@@ -61,7 +61,7 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
             self.EditStartupConfig.setPlainText(config)
             f.close()
         except IOError, e:
-            QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "IO Error")),  unicode(e))
+            QtGui.QMessageBox.critical(self, translate("StartupConfigDialog", "IO Error"),  unicode(e))
             return
 
     def slotSelectStartupConfigPath(self):
@@ -95,10 +95,10 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
                 config = config.replace('\r', "")
                 self.EditStartupConfig.setPlainText(config)
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "Dynamips error")), unicode(msg) + \
+            QtGui.QMessageBox.critical(self, translate("StartupConfigDialog", "Dynamips error"), unicode(msg) + \
                                        "\nMake sure you saved your config in IOS\ni.e. #copy run start")
         except lib.DynamipsWarning, msg:
-            QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "Dynamips warning")),  unicode(msg))
+            QtGui.QMessageBox.critical(self, translate("StartupConfigDialog", "Dynamips warning"), unicode(msg))
         except:
             print "Unknown error ..."
 
@@ -126,7 +126,7 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
                             QtGui.QMessageBox.critical(self, translate("StartupConfigDialog", "Startup-config"), unicode(command.getStatus()))
                             return
                     except IOError, e:
-                        QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "IO Error")),  unicode(e))
+                        QtGui.QMessageBox.critical(self, translate("StartupConfigDialog", "IO Error"),  unicode(e))
                         return
 
             # Save changes into nvram
@@ -139,11 +139,11 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
             self.topology.undoStack.push(command)
             if command.getStatus() != None:
                 self.topology.undoStack.undo()
-                QtGui.QMessageBox.critical(self, unicode(translate("StartupConfigDialog", "Dynamips error")),  unicode(command.getStatus()))
+                QtGui.QMessageBox.critical(self, translate("StartupConfigDialog", "Dynamips error"),  unicode(command.getStatus()))
                 return
 
             QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("StartupConfigDialog", "Startup-config"),
-                                            unicode(translate("StartupConfigDialog", "The startup-config has been saved, now you can synchronize it in IOS\ni.e. #copy start run")))
+                                          translate("StartupConfigDialog", "The startup-config has been saved, now you can synchronize it in IOS\ni.e. #copy start run"))
 
             if button == self.buttonBox.button(QtGui.QDialogButtonBox.Ok):
                 QtGui.QDialog.accept(self)

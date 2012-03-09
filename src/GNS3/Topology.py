@@ -224,7 +224,7 @@ class Topology(QtGui.QGraphicsScene):
             dynamips_hypervisor = self.dynagen.create_dynamips_hypervisor(host, int(port))
             if not dynamips_hypervisor:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Hypervisor"),
-                                           unicode(translate("Topology", "Can't connect to the external hypervisor on %s")) % external_hypervisor_key)
+                                           translate("Topology", "Can't connect to the external hypervisor on %s") % external_hypervisor_key)
                 if self.dynagen.dynamips.has_key(external_hypervisor_key):
                     del self.dynagen.dynamips[external_hypervisor_key]
                 return False
@@ -243,7 +243,7 @@ class Topology(QtGui.QGraphicsScene):
         """
 
         if not os.access(config_path, os.F_OK):
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, unicode(translate("Topology", "IOS Base config")), unicode(translate("Topology", "The base config file (%s) specified for this IOS can not be found. Your router will start with a blank configuration."), 'utf-8', errors='replace') % config_path)
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS Base config"), translate("Topology", "The base config file (%s) specified for this IOS can not be found. Your router will start with a blank configuration.") % config_path)
             return
         try:
             f = open(config_path, 'r')
@@ -254,7 +254,7 @@ class Topology(QtGui.QGraphicsScene):
             encoded = ("").join(base64.encodestring(config).split())
             node.router.config_b64 = encoded
         except IOError, e:
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, unicode(translate("Topology", "IOS Base config")), unicode(translate("Topology", "%s: %s"), errors='replace') % (config_path, e[1]))
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS Base config"), translate("Topology", "%s: %s") % (config_path, e[1]))
         except:
             debug("Cannot apply IOS base config")
             pass
@@ -479,7 +479,7 @@ class Topology(QtGui.QGraphicsScene):
 
                 if len(selected_images) == 0:
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"),
-                                              unicode(translate("Topology", "No image for platform %s")) % node.platform)
+                                              translate("Topology", "No image for platform %s") % node.platform)
                     init_router_id(node.id)
                     return False
 
@@ -526,7 +526,8 @@ class Topology(QtGui.QGraphicsScene):
                         return False
                     # give a warning if the IOS path is not accessible
                     if not os.access(image_conf.filename, os.F_OK):
-                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), unicode(translate("Topology", "%s seems to not exist, please check")) % image_conf.filename)
+                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), 
+                                                  translate("Topology", "%s seems to not exist, please check") % image_conf.filename)
                 else:
                     # use an external hypervisor
                     if self.useExternalHypervisor(node, image_conf.hypervisors) == False:
@@ -566,7 +567,8 @@ class Topology(QtGui.QGraphicsScene):
 
                 # give a warning if the Qemu image path is not accessible
                 if not os.access(conf.filename, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Qemu image"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.filename)
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "Qemu image"),
+                                              translate("Topology", "%s seems to not exist, please check") % conf.filename)
 
                 if self.emuDeviceSetup(node) == False:
                     init_emu_id(node.id)
@@ -615,27 +617,31 @@ class Topology(QtGui.QGraphicsScene):
                     try:
                         from vboxapi import VirtualBoxManager
                     except:
-                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox API"), unicode(translate("Topology", "ERROR: VirtualBox API module cannot be loaded !")))
+                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox API"),
+                                                   translate("Topology", "ERROR: VirtualBox API module cannot be loaded !"))
                         return False
                     #mgr = VirtualBoxManager(None, None)
                     #vbox = mgr.vbox
 
                     from __main__ import g_VBoxmgr, VBOXVER_REQUIRED, VBOXVER_FLOAT
                     if not g_VBoxmgr:
-                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox API"), unicode(translate("Topology", "ERROR: VirtualBox API module cannot start !")))
+                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox API"),
+                                                   translate("Topology", "ERROR: VirtualBox API module cannot start !"))
                         return False
 
                     vbox = g_VBoxmgr.vbox
 
                     if VBOXVER_FLOAT < VBOXVER_REQUIRED:
-                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox API"), unicode(translate("Topology", "ERROR: Detected VirtualBox version %s, which is too old.\nMinimum required is: %s" % (g_VBoxmgr.vbox.version, str(VBOXVER_REQUIRED)))))
+                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox API"),
+                                                   translate("Topology", "ERROR: Detected VirtualBox version %s, which is too old.\nMinimum required is: %s" % (g_VBoxmgr.vbox.version, str(VBOXVER_REQUIRED))))
                         return False
 
                     vmname = conf.filename  #Qemu's Disk Image equals to VMname/UUID in this release.
                     try:
                         mach = vbox.findMachine(vmname)
                     except Exception, e:
-                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "VirtualBox VMname/UUID"), unicode(translate("Topology", "VirtualBox Machine '%s' seems to not exist, please check")) % conf.filename)
+                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "VirtualBox VMname/UUID"),
+                                                  translate("Topology", "VirtualBox Machine '%s' seems to not exist, please check") % conf.filename)
 
                 if self.vboxDeviceSetup(node) == False:
                     init_vbox_emu_id(node.id)
@@ -679,7 +685,8 @@ class Topology(QtGui.QGraphicsScene):
 
                 # give a warning if the JunOS image path is not accessible
                 if not os.access(conf.filename, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "JunOS image"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.filename)
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "JunOS image"),
+                                              translate("Topology", "%s seems to not exist, please check") % conf.filename)
 
                 if self.emuDeviceSetup(node) == False:
                     init_emu_id(node.id)
@@ -725,9 +732,11 @@ class Topology(QtGui.QGraphicsScene):
 
                 # give a warning if the IDS image paths are not accessible
                 if not os.access(conf.image1, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.image1)
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"),
+                                              translate("Topology", "%s seems to not exist, please check") % conf.image1)
                 if not os.access(conf.image2, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.image2)
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IDS images"),
+                                              translate("Topology", "%s seems to not exist, please check") % conf.image2)
 
                 if self.emuDeviceSetup(node) == False:
                     init_emu_id(node.id)
@@ -776,11 +785,13 @@ class Topology(QtGui.QGraphicsScene):
 
                 # give a warning if the ASA initrd path is not accessible
                 if not os.access(conf.initrd, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA initrd"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.initrd)
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA initrd"),
+                                              translate("Topology", "%s seems to not exist, please check") % conf.initrd)
 
                 # give a warning if the ASA kernel path is not accessible
                 if not os.access(conf.kernel, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA kernel"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.kernel)
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "ASA kernel"),
+                                              translate("Topology", "%s seems to not exist, please check") % conf.kernel)
 
                 if self.emuDeviceSetup(node) == False:
                     init_emu_id(node.id)
@@ -831,7 +842,8 @@ class Topology(QtGui.QGraphicsScene):
 
                 # give a warning if the PIX image path is not accessible
                 if not os.access(conf.filename, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"), unicode(translate("Topology", "%s seems to not exist, please check")) % conf.filename)
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "PIX image"),
+                                              translate("Topology", "%s seems to not exist, please check") % conf.filename)
 
                 if self.emuDeviceSetup(node) == False:
                     init_emu_id(node.id)

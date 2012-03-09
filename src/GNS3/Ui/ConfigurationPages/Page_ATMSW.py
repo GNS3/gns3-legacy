@@ -136,7 +136,8 @@ class Page_ATMSW(QtGui.QWidget, Ui_ATMSWPage):
             vc = destination.split(':')
             port2 = vc[0]
             if port1 in connected_ports and port2 in connected_ports:
-                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMSW", "ATM switch"), unicode(translate("Page_ATMSW", "Links connected in port %i and port %i")) % (int(port1), int(port2)))
+                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMSW", "ATM switch"),
+                                           translate("Page_ATMSW", "Links connected in port %i and port %i")) % (int(port1), int(port2))
                 return
             del self.mapping[source]
             self.treeWidgetVCmap.takeTopLevelItem(self.treeWidgetVCmap.indexOfTopLevelItem(item))

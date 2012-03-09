@@ -332,7 +332,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         try:
             self.__export(path, format.upper())
         except IOError, (errno, strerror):
-            QtGui.QMessageBox.critical(self, translate("Workspace", "I/O Error"),  unicode(translate("Workspace", "I/O Error: %s")) % strerror)
+            QtGui.QMessageBox.critical(self, translate("Workspace", "I/O Error"), translate("Workspace", "I/O Error: %s") % strerror)
 
     def clear_workdir(self, projectWorkdir):
         """ Delete useless working directory files
@@ -356,7 +356,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 try:
                     os.remove(file)
                 except (OSError, IOError), e:
-                    #print unicode(translate("Workspace", "Warning: Can't delete %s => %s")) % (file, e.strerror)
+                    #print translate("Workspace", "Warning: Can't delete %s => %s") % (file, e.strerror)
                     continue
 
     def clear(self):
@@ -438,12 +438,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
             try:
                 contents = os.listdir(path)
             except OSError, e:
-                QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "IO Error")),  unicode(e))
+                QtGui.QMessageBox.critical(self, translate("Workspace", "IO Error"),  unicode(e))
                 return
             for file in contents:
                 if file[-4:].lower() == '.cfg':
                     device = file[:-4]
-                    print unicode(translate("Workspace", "Importing %s from %s")) % (device, file)
+                    print translate("Workspace", "Importing %s from %s") % (device, file)
                     try:
                         f = open(path + os.sep + file, 'r')
                         config = f.read()
@@ -453,16 +453,16 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         encoded = ("").join(base64.encodestring(config).split())
                         globals.GApp.dynagen.devices[device].config_b64 = encoded
                     except IOError, e:
-                        QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "IO Error")),  unicode(e))
+                        QtGui.QMessageBox.critical(self, translate("Workspace", "IO Error"),  unicode(e))
                         return
                     except KeyError:
-                        print unicode(translate("Workspace", "Ignoring unknown device %s")) % device
+                        print translate("Workspace", "Ignoring unknown device %s") % device
                     except lib.DynamipsError, e:
-                        print unicode(translate("Workspace", "Dynamips Error: %s")) % e
+                        print translate("Workspace", "Dynamips Error: %s") % e
                     except lib.DynamipsWarning, e:
-                        print unicode(translate("Workspace", "Dynamips Warning: %s")) % e
+                        print translate("Workspace", "Dynamips Warning: %s") % e
                     except (lib.DynamipsErrorHandled,  socket.error):
-                        QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "%s: Dynamips error")) % device, translate("Workspace", "Connection lost"))
+                        QtGui.QMessageBox.critical(self, translate("Workspace", "%s: Dynamips error") % device, translate("Workspace", "Connection lost"))
 
         self.__action_Save(auto=True)
 
@@ -759,12 +759,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 if action == 'reload':
                     node.reloadNode(progress=True)
             except lib.DynamipsError, msg:
-                QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "%s: Dynamips error")) % node.hostname,  unicode(msg))
+                QtGui.QMessageBox.critical(self, translate("Workspace", "%s: Dynamips error") % node.hostname,  unicode(msg))
             except lib.DynamipsWarning,  msg:
-                QtGui.QMessageBox.warning(self, unicode(translate("Workspace", "%s: Dynamips warning")) % node.hostname,  unicode(msg))
+                QtGui.QMessageBox.warning(self, translate("Workspace", "%s: Dynamips warning") % node.hostname,  unicode(msg))
                 continue
             except (lib.DynamipsErrorHandled,  socket.error):
-                QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "%s: Dynamips error")) % node.hostname, translate("Workspace", "Connection lost"))
+                QtGui.QMessageBox.critical(self, translate("Workspace", "%s: Dynamips error") % node.hostname, translate("Workspace", "Connection lost"))
                 progress.reset()
                 return
             current += 1
@@ -911,7 +911,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
             if VERSION < latest_release:
                 reply = QtGui.QMessageBox.question(self, translate("Workspace", "Check For Update"),
-                                               unicode(translate("Workspace", "Newer GNS3 version %s is available, do you want to visit our website to download it?"))  % latest_release, QtGui.QMessageBox.Yes, \
+                                               translate("Workspace", "Newer GNS3 version %s is available, do you want to visit our website to download it?") % latest_release, QtGui.QMessageBox.Yes, \
                                                QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
                     QtGui.QDesktopServices.openUrl(QtCore.QUrl("http://www.gns3.net/download"))
@@ -938,7 +938,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         path = os.path.abspath(file)
         if not os.path.isfile(path):
-            QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"), unicode(translate("Workspace", "Invalid file %s")) % file)
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"), translate("Workspace", "Invalid file %s") % file)
             return
         self.projectFile = path
         self.setWindowTitle("GNS3 - " + self.projectFile)
@@ -1095,7 +1095,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     for hypervisor in globals.GApp.dynagen.dynamips.values():
                         hypervisor.workingdir = self.projectWorkdir
                 except lib.DynamipsError, msg:
-                    QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error")+ "%s: %s") % (self.projectWorkdir, unicode(msg)))
+                    QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error %s: %s") % (self.projectWorkdir, unicode(msg)))
 
         self.__action_Save(auto=True)
         self.setWindowTitle("GNS3 Project - " + self.projectFile)
@@ -1130,7 +1130,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             os.mkdir(snapshot_workdir)
             os.mkdir(snapshot_configs)
         except (OSError, IOError), e:
-            QtGui.QMessageBox.critical(self, translate("Workspace", "Snapshot"), unicode(translate("Workspace", "Cannot create directories in %s: %s")) % (snapshot_dir, e.strerror))
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Snapshot"), translate("Workspace", "Cannot create directories in %s: %s") % (snapshot_dir, e.strerror))
             return
 
         splash = QtGui.QSplashScreen(QtGui.QPixmap(":images/logo_gns3_splash.png"))
@@ -1174,7 +1174,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             for hypervisor in globals.GApp.dynagen.dynamips.values():
                 hypervisor.workingdir = snapshot_workdir
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), unicode(translate("Workspace", "Dynamips error: %s")) % msg)
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Dynamips error: %s") % msg)
 
         save_wd = self.projectWorkdir
         if not self.projectWorkdir:
@@ -1202,7 +1202,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         config = os.path.basename(node.router.cnfg)
                         node.router.cnfg = self.projectConfigs + os.sep + config
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), unicode(translate("Workspace", "Dynamips error!!: %s")) % msg)
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Dynamips error!!: %s") % msg)
 
     def __action_OpenFile(self):
         """ Open a file
@@ -1268,7 +1268,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         except (lib.DynamipsErrorHandled, socket.error):
-            QtGui.QMessageBox.critical(self, unicode(translate("Workspace", "Dynamips error")), translate("Workspace", "Connection lost with Dynamips hypervisor (crashed?)"))
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Connection lost with Dynamips hypervisor (crashed?)"))
 
     def __action_Autosave(self):
         """ Autosave feature
