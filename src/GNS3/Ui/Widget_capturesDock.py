@@ -23,6 +23,7 @@ import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 import GNS3.Dynagen.qemu_lib as qemu
 import GNS3.Dynagen.dynagen_vbox_lib as vboxlib
+from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Utils import translate
 
 class capturesDock(QtGui.QTreeWidget):
@@ -68,12 +69,14 @@ class capturesDock(QtGui.QTreeWidget):
                 item = QtGui.QTreeWidgetItem(self)
                 item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant([hostname, port]))
                 item.setText(0, hostname)
-                
-                if self.stoppedLinks.has_key(link) or device.state != 'running':
+
+                if self.stoppedLinks.has_key(link) or (isinstance(device, IOSRouter) and device.state != 'running'):
                     item.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
                     if link.capturing and not self.stoppedLinks.has_key(link):
                         link.stopCapturing(showMessage=False, refresh=False)
                         refreshed_stoppedLinks[link] = captureInfo
+                elif device.state != 'running':
+                    item.setIcon(0, QtGui.QIcon(':/icons/led_red.svg'))
                 else:
                     item.setIcon(0, QtGui.QIcon(':/icons/led_green.svg'))
 
