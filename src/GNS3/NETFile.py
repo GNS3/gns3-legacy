@@ -275,7 +275,7 @@ class NETFile(object):
         conf_image = iosImageConf()
         conf_image.id = globals.GApp.iosimages_ids
         globals.GApp.iosimages_ids += 1
-        conf_image.filename = unicode(device.image, 'utf-8', errors='replace')
+        conf_image.filename = unicode(device.image)
         # dynamips lib doesn't return c3700, force platform
         if device.model == 'c3725' or device.model == 'c3745':
             conf_image.platform = 'c3700'
@@ -292,14 +292,14 @@ class NETFile(object):
             globals.GApp.iosimages[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + device.image] = conf_image
         else:
             # this is an external hypervisor
-            host = unicode(device.dynamips.host, 'utf-8', errors='replace')
+            host = unicode(device.dynamips.host)
             conf_image.hypervisors = [host + ':' + str(device.dynamips.port)]
             conf_hypervisor = hypervisorConf()
             conf_hypervisor.id = globals.GApp.hypervisors_ids
             globals.GApp.hypervisors_ids +=1
             conf_hypervisor.host = host
             conf_hypervisor.port = device.dynamips.port
-            conf_hypervisor.workdir = unicode(device.dynamips.workingdir, 'utf-8', errors='replace')
+            conf_hypervisor.workdir = unicode(device.dynamips.workingdir)
             conf_hypervisor.baseUDP = device.dynamips.udp
             conf_hypervisor.baseConsole = device.dynamips.baseconsole
             conf_hypervisor.baseAUX = device.dynamips.baseaux
@@ -434,7 +434,7 @@ class NETFile(object):
                     cloud.type = symbol_name
                     if not default_symbol:
                         cloud.default_symbol = False
-                    cloud.hostname = unicode(hostname, 'utf-8', errors='replace')
+                    cloud.hostname = unicode(hostname)
                     if gns3data[section].has_key('x') and gns3data[section].has_key('y') \
                         and gns3data[section]['x'] != None and gns3data[section]['y'] != None:
                         cloud.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
@@ -517,13 +517,13 @@ class NETFile(object):
                     globals.GApp.topology.addItem(shape_object)
 
                 if devtype.lower() == 'pixmap':
-                    pixmap_path = unicode(gns3data[section]['path'], 'utf-8', errors='replace')
+                    pixmap_path = unicode(gns3data[section]['path'])
 
                     # Check if this is a relative pixmap path and convert to an absolute path if necessary
                     abspath = os.path.join(os.path.dirname(self.dynagen.filename), pixmap_path)
                     if os.path.exists(abspath):
                         pixmap_path = abspath
-                        debug(unicode("Converting relative pixmap path to absolute path: %s", 'utf-8', errors='replace') % pixmap_path)
+                        debug(unicode("Converting relative pixmap path to absolute path: %s") % pixmap_path)
 
                     pixmap_image = QtGui.QPixmap(pixmap_path)
                     if not pixmap_image.isNull():
@@ -537,8 +537,8 @@ class NETFile(object):
                     globals.GApp.topology.addItem(pixmap_object)
 
                 if devtype.lower() == 'node':
-                    hostname = unicode(hostname, 'utf-8', errors='replace')
-                    symbol = unicode(gns3data[section]['symbol'], 'utf-8', errors='replace')
+                    hostname = unicode(hostname)
+                    symbol = unicode(gns3data[section]['symbol'])
                     if not globals.GApp.scene.renders.has_key(symbol):
                         print translate("NETFile", "%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file") % (hostname, symbol)
                         continue

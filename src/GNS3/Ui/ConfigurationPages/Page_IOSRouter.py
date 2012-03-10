@@ -139,7 +139,7 @@ class Page_IOSRouter(QtGui.QWidget, Ui_IOSRouterPage):
             self.spinBoxIomem.setEnabled(False)
 
         if router.cnfg:
-            self.textLabel_StartupConfig.setText(unicode(router.cnfg, 'utf-8', errors='replace'))
+            self.textLabel_StartupConfig.setText(unicode(router.cnfg))
         else:
             self.textLabel_StartupConfig.setText(translate("Page_IOSRouter", "None"))
 

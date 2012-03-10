@@ -45,7 +45,7 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
         self.connect(self.LoadStartupConfig, QtCore.SIGNAL('clicked()'),  self.slotSelectLoadStartupConfig)
         self.connect(self.pushButtonConfigFromNvram, QtCore.SIGNAL('clicked()'),  self.slotSelectStartupConfigFromNvram)
 
-        self.config_path = unicode(self.router.cnfg, 'utf-8', errors='replace')
+        self.config_path = unicode(self.router.cnfg)
         self.lineEditStartupConfig.setText(self.config_path)
 
         if self.config_path and self.config_path != 'None':

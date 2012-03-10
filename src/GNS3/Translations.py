@@ -89,7 +89,7 @@ class Translator(object):
                 if r_code == False:
                     # got error?
                     continue
-                lang_name = unicode(local_translator.translate("MainWindow", "English"), 'utf-8', errors='replace')
+                lang_name = unicode(local_translator.translate("MainWindow", "English"))
 
                 # Create/Update langs dictionnary
                 if self.__langs.has_key(lang_code):
