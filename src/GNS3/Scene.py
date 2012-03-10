@@ -619,7 +619,7 @@ class Scene(QtGui.QGraphicsView):
 
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
-                time.sleep(0.5)
+                time.sleep(globals.GApp.systconf['general'].console_delay)
                 item.console()
 
     def slotCapture(self):
@@ -661,7 +661,7 @@ class Scene(QtGui.QGraphicsView):
 
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter):
-                time.sleep(0.5)
+                time.sleep(globals.GApp.systconf['general'].console_delay)
                 item.aux()
 
     def slotChangeConsolePort(self):

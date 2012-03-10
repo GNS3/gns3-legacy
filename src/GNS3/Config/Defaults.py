@@ -491,6 +491,7 @@ conf_systemGeneral_defaults = {
     'scene_height': 1000,
     'auto_check_for_update': True,
     'last_check_for_update': 0,
+    'console_delay': 0.5,
 }
 
 conf_systemGeneral_types = {
@@ -510,6 +511,7 @@ conf_systemGeneral_types = {
     'scene_height': int,
     'auto_check_for_update': bool,
     'last_check_for_update': int,
+    'console_delay': float,
 }
 
 conf_systemCapture_defaults = {

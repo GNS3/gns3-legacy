@@ -136,6 +136,9 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             
         self.labelConfigurationPath.setText(os.path.normpath(unicode(ConfDB().fileName(), 'utf-8', errors='replace')))
 
+        # Delay between console starts
+        self.doubleSpinBoxConsoleDelay.setValue(self.conf.console_delay)
+
     def saveConf(self):
 
         new_idx = self.langsBox.currentIndex()
@@ -195,6 +198,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.conf.scene_height = self.workspaceHeight.value()
         self.conf.slow_start = self.slowStartAll.value()
         self.conf.autosave = self.autoSave.value()
+        self.conf.console_delay = self.doubleSpinBoxConsoleDelay.value()
 
         # Create project and image directories if they don't exist
         if self.conf.project_path and not os.path.exists(self.conf.project_path):

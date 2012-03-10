@@ -500,6 +500,7 @@ class Application(QApplication, Singleton):
         confo.draw_selected_rectangle = ConfDB().value("GNS3/gui_draw_selected_rectangle", QVariant(False)).toBool()
         confo.scene_width = int(ConfDB().get('GNS3/scene_width', 2000))
         confo.scene_height = int(ConfDB().get('GNS3/scene_height', 1000))
+        confo.console_delay = float(ConfDB().get('GNS3/console_delay', 0.5))
         if sys.platform.startswith('win') or sys.platform.startswith('darwin'):
             # by default auto check for update only on Windows or OSX
             confo.auto_check_for_update = ConfDB().value("GNS3/auto_check_for_update", QVariant(True)).toBool()
@@ -624,6 +625,7 @@ class Application(QApplication, Singleton):
         c.set('GNS3/scene_height', confo.scene_height)
         c.set('GNS3/auto_check_for_update', confo.auto_check_for_update)
         c.set('GNS3/last_check_for_update', confo.last_check_for_update)
+        c.set('GNS3/console_delay', confo.console_delay)
 
         # Dynamips settings
         confo = self.systconf['dynamips']
