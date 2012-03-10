@@ -245,10 +245,10 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
     def saveConf(self):
 
         # VBoxwrapper
-        self.conf.vboxwrapper_path = unicode(self.lineEditVBoxwrapperPath.text())
-        self.conf.vboxwrapper_workdir = unicode(self.lineEditVBoxwrapperWorkdir.text())
+        self.conf.vboxwrapper_path = unicode(self.lineEditVBoxwrapperPath.text(), 'utf-8', errors='replace')
+        self.conf.vboxwrapper_workdir = unicode(self.lineEditVBoxwrapperWorkdir.text(), 'utf-8', errors='replace')
         self.conf.external_hosts = self.external_hosts
-        self.conf.VBoxManager_binding = unicode(self.comboBoxBinding.currentText())
+        self.conf.VBoxManager_binding = unicode(self.comboBoxBinding.currentText(), 'utf-8', errors='replace')
         
         if self.checkBoxEnableVBoxManager.checkState() == QtCore.Qt.Checked:
             self.conf.enable_VBoxManager = True
@@ -282,7 +282,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         external_vboxwrapper = self.lineEditHostExternalVBox.text()
         if external_vboxwrapper and external_vboxwrapper not in self.external_hosts:
             self.comboBoxExternalVBoxwrappers.addItem(self.lineEditHostExternalVBox.text())
-            self.external_hosts.append(unicode(external_vboxwrapper))
+            self.external_hosts.append(unicode(external_vboxwrapper, 'utf-8', errors='replace'))
 
     def slotDeleteExternalVBoxwrapper(self):
         
@@ -290,7 +290,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         index = self.comboBoxExternalVBoxwrappers.findText(external_vboxwrapper)
         if index != -1 and external_vboxwrapper in self.external_hosts:
             self.comboBoxExternalVBoxwrappers.removeItem(index)
-            self.external_hosts.remove(unicode(external_vboxwrapper))
+            self.external_hosts.remove(unicode(external_vboxwrapper, 'utf-8', errors='replace'))
         
 
     def slotSelectVBoxWrapperPath(self):
@@ -316,8 +316,8 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         """
 
         #name = unicode(self.comboBoxNameVBoxImage.text())
-        name = unicode(self.comboBoxNameVBoxImage.currentText())
-        image = unicode(self.VBoxImage.text())
+        name = unicode(self.comboBoxNameVBoxImage.currentText(), 'utf-8', errors='replace')
+        image = unicode(self.VBoxImage.text(), 'utf-8', errors='replace')
         
         if not name or not image:
             QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesVirtualBox", "VirtualBox guest"), 
@@ -361,7 +361,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         item = self.treeWidgetVBoxImages.currentItem()
         if (item != None):
             self.treeWidgetVBoxImages.takeTopLevelItem(self.treeWidgetVBoxImages.indexOfTopLevelItem(item))
-            name = unicode(item.text(0))
+            name = unicode(item.text(0), 'utf-8', errors='replace')
             del globals.GApp.vboximages[name]
             globals.GApp.syncConf()
             
@@ -373,7 +373,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         items = self.treeWidgetVBoxImages.selectedItems()
         if len(items):
             item = items[0]
-            name = unicode(item.text(0))
+            name = unicode(item.text(0), 'utf-8', errors='replace')
 
             conf = globals.GApp.vboximages[name]
             

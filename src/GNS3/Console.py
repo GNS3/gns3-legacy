@@ -192,11 +192,11 @@ class Console(PyCutExt, Dynagen_Console):
                     node.startupInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'running')
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  unicode(msg))
+            QtGui.QMessageBox.critical(self, translate("Console", "%s: Dynamips error") % node.hostname,  unicode(msg))
         except lib.DynamipsWarning,  msg:
-            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  unicode(msg))
+            QtGui.QMessageBox.warning(self, translate("Console", "%s: Dynamips warning") % node.hostname,  unicode(msg))
         except (lib.DynamipsErrorHandled,  socket.error):
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
+            QtGui.QMessageBox.critical(self, translate("Console", "%s: Dynamips error") % node.hostname, translate("Console", "Connection lost"))
 
     def do_stop(self, args):
         """stop  {/all | device1 [device2] ...}\nstop all or a specific device(s)"""
@@ -209,11 +209,11 @@ class Console(PyCutExt, Dynagen_Console):
                     node.shutdownInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'stopped')
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  unicode(msg))
+            QtGui.QMessageBox.critical(self, translate("Console", "%s: Dynamips error") % node.hostname,  unicode(msg))
         except lib.DynamipsWarning,  msg:
-            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  unicode(msg))
+            QtGui.QMessageBox.warning(self, translate("Console", "%s: Dynamips warning") % node.hostname,  unicode(msg))
         except (lib.DynamipsErrorHandled,  socket.error):
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
+            QtGui.QMessageBox.critical(self, translate("Console", "%s: Dynamips error") % node.hostname, translate("Console", "Connection lost"))
 
     def do_suspend(self, args):
         """suspend  {/all | device1 [device2] ...}\nsuspend all or a specific device(s)"""
@@ -226,11 +226,11 @@ class Console(PyCutExt, Dynagen_Console):
                     node.suspendInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'suspended')
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  unicode(msg))
+            QtGui.QMessageBox.critical(self, translate("Console", "%s: Dynamips error") % node.hostname,  unicode(msg))
         except lib.DynamipsWarning,  msg:
-            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  unicode(msg))
+            QtGui.QMessageBox.warning(self, translate("Console", "%s Dynamips warning") % node.hostname,  unicode(msg))
         except (lib.DynamipsErrorHandled,  socket.error):
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
+            QtGui.QMessageBox.critical(self, translate("Console", "%s Dynamips error") % node.hostname, translate("Console", "Connection lost"))
 
     def do_resume(self, args):
         """resume  {/all | device1 [device2] ...}\nresume all or a specific device(s)"""
@@ -243,11 +243,11 @@ class Console(PyCutExt, Dynagen_Console):
                     node.startupInterfaces()
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'running')
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  unicode(msg))
+            QtGui.QMessageBox.critical(self, translate("Console", "%s: Dynamips error") % node.hostname,  unicode(msg))
         except lib.DynamipsWarning,  msg:
-            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  unicode(msg))
+            QtGui.QMessageBox.warning(self, translate("Console", "%s: Dynamips warning") % node.hostname,  unicode(msg))
         except (lib.DynamipsErrorHandled,  socket.error):
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
+            QtGui.QMessageBox.critical(self, translate("Console", "%s: Dynamips error") % node.hostname, translate("Console", "Connection lost"))
 
     def do_reload(self, args):
         """reload  {/all | device1 [device2] ...}\nreboots all or a specific device(s)"""
@@ -278,11 +278,11 @@ Example for Linux guest:
                     break
             Dynagen_Console.do_vboxexec(self, args)
         except lib.DynamipsError, msg:
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"),  unicode(msg))
+            QtGui.QMessageBox.critical(self, translate("Console", "%s: Dynamips error") % node.hostname,  unicode(msg))
         except lib.DynamipsWarning,  msg:
-            QtGui.QMessageBox.warning(self,  node.hostname + ': ' + translate("Console", "Dynamips warning"),  unicode(msg))
+            QtGui.QMessageBox.warning(self, translate("Console", "%s: Dynamips warning") % node.hostname,  unicode(msg))
         except (lib.DynamipsErrorHandled,  socket.error):
-            QtGui.QMessageBox.critical(self, node.hostname + ': ' + translate("Console", "Dynamips error"), translate("Console", "Connection lost"))
+            QtGui.QMessageBox.critical(self, translate("Console", "%s: Dynamips error") % node.hostname, translate("Console", "Connection lost"))
 
     def do_show(self, args):
         """show mac <ethernet_switch_name>
@@ -350,7 +350,7 @@ Examples:
         """print a list of commands that have been entered"""
 
         for entry in self.history:
-            print unicode(entry)
+            print unicode(entry, 'utf-8', errors='replace')
 
     def do_idlepc(self, args):
         """idlepc {get|set|show|save|idlemax|idlesleep|showdrift} device [value]

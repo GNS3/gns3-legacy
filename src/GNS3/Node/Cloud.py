@@ -118,7 +118,7 @@ class Cloud(AbstractNode):
 
         if sys.platform.startswith('win') and self.config:
             # tooltip is by default interface name
-            tip = unicode(action.toolTip(), errors='replace')
+            tip = unicode(action.toolTip(), 'utf-8', errors='replace')
             if self.config['rpcap_mapping'].has_key(tip):
                 QtGui.QToolTip.showText(QtGui.QCursor.pos(), self.config['rpcap_mapping'][tip])
 

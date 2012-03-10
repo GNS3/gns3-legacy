@@ -87,7 +87,7 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
         else:
             qemu_config = node.duplicate_config()
 
-        image = unicode(self.lineEditImage.text())
+        image = unicode(self.lineEditImage.text(), 'utf-8', errors='replace')
         if image:
             qemu_config['image'] = image
 

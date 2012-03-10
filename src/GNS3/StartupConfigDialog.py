@@ -45,7 +45,7 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
         self.connect(self.LoadStartupConfig, QtCore.SIGNAL('clicked()'),  self.slotSelectLoadStartupConfig)
         self.connect(self.pushButtonConfigFromNvram, QtCore.SIGNAL('clicked()'),  self.slotSelectStartupConfigFromNvram)
 
-        self.config_path = unicode(self.router.cnfg)
+        self.config_path = unicode(self.router.cnfg, 'utf-8', errors='replace')
         self.lineEditStartupConfig.setText(self.config_path)
 
         if self.config_path and self.config_path != 'None':
@@ -81,7 +81,7 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
         """ Load/Refresh Startup-config (from a file)
         """
 
-        config_path = unicode(self.lineEditStartupConfig.text())
+        config_path = unicode(self.lineEditStartupConfig.text(), 'utf-8', errors='replace')
         if config_path and config_path != 'None':
             self.loadConfig(config_path)
 
@@ -112,7 +112,7 @@ class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
         else:
 
             # Save changes into config file
-            config_path = unicode(self.lineEditStartupConfig.text())
+            config_path = unicode(self.lineEditStartupConfig.text(), 'utf-8', errors='replace')
             if self.checkBoxSaveIntoConfigFile.checkState() == QtCore.Qt.Checked:
                 if config_path and config_path != 'None':
                     try:

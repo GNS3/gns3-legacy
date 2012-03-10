@@ -134,7 +134,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         else:
             self.checkBoxCheckForUpdate.setCheckState(QtCore.Qt.Unchecked)
             
-        self.labelConfigurationPath.setText(os.path.normpath(unicode(ConfDB().fileName())))
+        self.labelConfigurationPath.setText(os.path.normpath(unicode(ConfDB().fileName(), 'utf-8', errors='replace')))
 
     def saveConf(self):
 
@@ -188,9 +188,9 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf.auto_check_for_update = False
             self.conf.last_check_for_update = 0
 
-        self.conf.project_path = unicode(self.ProjectPath.text())
-        self.conf.ios_path = unicode(self.IOSPath.text())
-        self.conf.term_cmd = unicode(self.lineEditTermCommand.text())
+        self.conf.project_path = unicode(self.ProjectPath.text(), 'utf-8', errors='replace')
+        self.conf.ios_path = unicode(self.IOSPath.text(), 'utf-8', errors='replace')
+        self.conf.term_cmd = unicode(self.lineEditTermCommand.text(), 'utf-8', errors='replace')
         self.conf.scene_width = self.workspaceWidth.value()
         self.conf.scene_height = self.workspaceHeight.value()
         self.conf.slow_start = self.slowStartAll.value()

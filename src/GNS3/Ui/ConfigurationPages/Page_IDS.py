@@ -100,11 +100,11 @@ class Page_IDS(QtGui.QWidget, Ui_IDSPage):
         else:
             ids_config = node.duplicate_config()
 
-        image1 = unicode(self.lineEditImage1.text())
+        image1 = unicode(self.lineEditImage1.text(), 'utf-8', errors='replace')
         if image1:
             ids_config['image1'] = image1
             
-        image2 = unicode(self.lineEditImage2.text())
+        image2 = unicode(self.lineEditImage2.text(), 'utf-8', errors='replace')
         if image2:
             ids_config['image2'] = image2
 

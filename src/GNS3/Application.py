@@ -560,7 +560,7 @@ class Application(QApplication, Singleton):
         self.mainWindow.restoreState(ConfDB().value("GUIState/State").toByteArray())
         self.mainWindow.show()
 
-        configFile = unicode(ConfDB().fileName())
+        configFile = unicode(ConfDB().fileName(), 'utf-8', errors='replace')
         # if we cannot find our config file, we start the Wizard dialog
         if not os.access(configFile, os.F_OK):
             dialog = Wizard(parent=self.mainWindow)

@@ -275,7 +275,7 @@ class NETFile(object):
         conf_image = iosImageConf()
         conf_image.id = globals.GApp.iosimages_ids
         globals.GApp.iosimages_ids += 1
-        conf_image.filename = unicode(device.image)
+        conf_image.filename = unicode(device.image, 'utf-8', errors='replace')
         # dynamips lib doesn't return c3700, force platform
         if device.model == 'c3725' or device.model == 'c3745':
             conf_image.platform = 'c3700'
@@ -292,14 +292,14 @@ class NETFile(object):
             globals.GApp.iosimages[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + device.image] = conf_image
         else:
             # this is an external hypervisor
-            host = unicode(device.dynamips.host)
+            host = unicode(device.dynamips.host, 'utf-8', errors='replace')
             conf_image.hypervisors = [host + ':' + str(device.dynamips.port)]
             conf_hypervisor = hypervisorConf()
             conf_hypervisor.id = globals.GApp.hypervisors_ids
             globals.GApp.hypervisors_ids +=1
             conf_hypervisor.host = host
             conf_hypervisor.port = device.dynamips.port
-            conf_hypervisor.workdir = unicode(device.dynamips.workingdir)
+            conf_hypervisor.workdir = unicode(device.dynamips.workingdir, 'utf-8', errors='replace')
             conf_hypervisor.baseUDP = device.dynamips.udp
             conf_hypervisor.baseConsole = device.dynamips.baseconsole
             conf_hypervisor.baseAUX = device.dynamips.baseaux
@@ -434,7 +434,7 @@ class NETFile(object):
                     cloud.type = symbol_name
                     if not default_symbol:
                         cloud.default_symbol = False
-                    cloud.hostname = unicode(hostname)
+                    cloud.hostname = unicode(hostname, 'utf-8', errors='replace')
                     if gns3data[section].has_key('x') and gns3data[section].has_key('y') \
                         and gns3data[section]['x'] != None and gns3data[section]['y'] != None:
                         cloud.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
@@ -517,13 +517,13 @@ class NETFile(object):
                     globals.GApp.topology.addItem(shape_object)
 
                 if devtype.lower() == 'pixmap':
-                    pixmap_path = unicode(gns3data[section]['path'])
+                    pixmap_path = unicode(gns3data[section]['path'], 'utf-8', errors='replace')
 
                     # Check if this is a relative pixmap path and convert to an absolute path if necessary
                     abspath = os.path.join(os.path.dirname(self.dynagen.filename), pixmap_path)
                     if os.path.exists(abspath):
                         pixmap_path = abspath
-                        debug(unicode("Converting relative pixmap path to absolute path: %s") % pixmap_path)
+                        debug(unicode("Converting relative pixmap path to absolute path: %s", 'utf-8', errors='replace') % pixmap_path)
 
                     pixmap_image = QtGui.QPixmap(pixmap_path)
                     if not pixmap_image.isNull():
@@ -537,8 +537,8 @@ class NETFile(object):
                     globals.GApp.topology.addItem(pixmap_object)
 
                 if devtype.lower() == 'node':
-                    hostname = unicode(hostname)
-                    symbol = unicode(gns3data[section]['symbol'])
+                    hostname = unicode(hostname, 'utf-8', errors='replace')
+                    symbol = unicode(gns3data[section]['symbol'], 'utf-8', errors='replace')
                     if not globals.GApp.scene.renders.has_key(symbol):
                         print translate("NETFile", "%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file") % (hostname, symbol)
                         continue
@@ -895,11 +895,11 @@ class NETFile(object):
                 print translate("NETFile", "Exporting %s configuration to %s") % (device.name, file_path)
         except lib.DynamipsError, msg:
             if auto == False:
-                print unicode(device.name + ': ' + translate("NETFile", "Dynamips error") + ': ') + unicode(msg)
+                print translate("NETFile", "%s: Dynamips error: %s") % (device.name, msg)
             return
         except lib.DynamipsWarning, msg:
             if auto == False:
-                print unicode(device.name + ': ' + translate("NETFile", "Dynamips warning") + ': ') + unicode(msg)
+                print translate("NETFile", "%s: Dynamips warning: %s") % (device.name, msg)
             return
         except:
             error('Unknown error exporting config for ' + device.name)
@@ -911,8 +911,7 @@ class NETFile(object):
             device.cnfg = file_path
             self.dynagen.running_config[device.dynamips.host + ':' + str(device.dynamips.port)]['ROUTER ' + device.name]['cnfg'] = file_path
         except IOError, e:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow,
-                                      unicode(device.name) + ': ' + translate("NETFile", "IOError"), translate("NETFile", "%s: IO Error: %s") % (file_path, unicode(e)))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "%s: IOError") % device.name, translate("NETFile", "%s: IO Error: %s") % (file_path, e))
             return
 
     def export_net_file(self, path, auto=False):
@@ -980,7 +979,7 @@ class NETFile(object):
                 self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
                 config = self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)]
 
-                config['text'] = unicode(item.toPlainText()).replace("\n", "\\n")
+                config['text'] = unicode(item.toPlainText(), 'utf-8', errors='replace').replace("\n", "\\n")
                 config['x'] = item.x()
                 config['y'] = item.y()
 
@@ -1074,7 +1073,7 @@ class NETFile(object):
                     item.showHostname()
                 # record node x & y positions
                 if not item.d:
-                    print item.hostname + unicode(' ' + translate("NETFile", "must be connected or have a hypervisor set in order to be registered"))
+                    print translate("NETFile", "%s must be connected or have a hypervisor set in order to be registered") % item.hostname
                     continue
                 if not item.default_symbol:
                     self.dynagen.running_config[item.d][item.get_running_config_name()]['symbol'] = item.type
@@ -1169,8 +1168,7 @@ class NETFile(object):
             debugmsg(3, ("NETFile.py: writing... dynagen.running_config = ", self.dynagen.running_config))
             self.dynagen.running_config.write()
         except IOError, e:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow,
-                                      unicode(device.name) + ': ' + translate("NETFile", "IOError"), translate("NETFile", "%s: IO Error: %s") % (path, unicode(e)))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "%s: IOError") % device.name, translate("NETFile", "%s: IO Error: %s") % (path, e))
         self.dynagen.running_config.filename = None
 
     def convert_to_relpath(self, path, config_path):

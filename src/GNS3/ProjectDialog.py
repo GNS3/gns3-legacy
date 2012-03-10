@@ -82,8 +82,8 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         """ Save project settings
         """
 
-        projectName = unicode(self.ProjectName.text())
-        projectDir = os.path.normpath(unicode(self.ProjectPath.text()))
+        projectName = unicode(self.ProjectName.text(), 'utf-8', errors='replace')
+        projectDir = os.path.normpath(unicode(self.ProjectPath.text(), 'utf-8', errors='replace'))
 
         if not projectName or not projectDir:
             return (None, None, None)

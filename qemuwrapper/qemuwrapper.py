@@ -87,9 +87,9 @@ FORCE_IPV6 = False
 # set correctly the working directory for qemuwrapper
 WORKDIR = os.getcwdu()
 if os.environ.has_key("TEMP"):
-    WORKDIR = unicode(os.environ["TEMP"], errors='replace')
+    WORKDIR = unicode(os.environ["TEMP"], 'utf-8', errors='replace')
 elif os.environ.has_key("TMP"):
-    WORKDIR = unicode(os.environ["TMP"], errors='replace')
+    WORKDIR = unicode(os.environ["TMP"], 'utf-8', errors='replace')
 
 # __file__ is not supported by py2exe and py2app
 if hasattr(sys, "frozen"):

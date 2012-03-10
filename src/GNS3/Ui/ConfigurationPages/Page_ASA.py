@@ -101,15 +101,15 @@ class Page_ASA(QtGui.QWidget, Ui_ASAPage):
         else:
             asa_config = node.duplicate_config()
 
-        initrd = unicode(self.lineEditInitrd.text())
+        initrd = unicode(self.lineEditInitrd.text(), 'utf-8', errors='replace')
         if initrd:
             asa_config['initrd'] = initrd
             
-        kernel = unicode(self.lineEditKernel.text())
+        kernel = unicode(self.lineEditKernel.text(), 'utf-8', errors='replace')
         if kernel:
             asa_config['kernel'] = kernel
 
-        kernel_cmdline = unicode(self.lineEditKernelCmdLine.text())
+        kernel_cmdline = unicode(self.lineEditKernelCmdLine.text(), 'utf-8', errors='replace')
         if kernel_cmdline:
             asa_config['kernel_cmdline'] = kernel_cmdline
 

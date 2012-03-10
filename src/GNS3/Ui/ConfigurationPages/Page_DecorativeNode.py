@@ -45,7 +45,7 @@ class Page_DecorativeNode(QtGui.QWidget, Ui_DecorativeNodePage):
         """ Add a new interface
         """
     
-        interface = unicode(self.lineEditInterface.text())
+        interface = unicode(self.lineEditInterface.text(), 'utf-8', errors='replace')
         if interface and interface not in self.interfaces:
             self.listWidgetInterfaces.addItem(interface)
             self.interfaces.append(interface)
@@ -56,7 +56,7 @@ class Page_DecorativeNode(QtGui.QWidget, Ui_DecorativeNodePage):
         
         item = self.listWidgetInterfaces.currentItem()
         if (item != None):
-            interface = unicode(item.text())
+            interface = unicode(item.text(), 'utf-8', errors='replace')
             self.interfaces.remove(interface)
             self.listWidgetInterfaces.takeItem(self.listWidgetInterfaces.currentRow())
 

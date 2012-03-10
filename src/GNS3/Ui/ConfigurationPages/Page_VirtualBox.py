@@ -66,7 +66,7 @@ class Page_VirtualBox(QtGui.QWidget, Ui_VirtualBoxPage):
         else:
             vbox_config = node.duplicate_config()
 
-        image = unicode(self.lineEditImage.text())
+        image = unicode(self.lineEditImage.text(), 'utf-8', errors='replace')
         if image:
             vbox_config['image'] = image
         

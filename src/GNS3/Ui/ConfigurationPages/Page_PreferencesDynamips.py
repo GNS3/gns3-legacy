@@ -114,8 +114,8 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         """ Save widget settings to syst. config
         """
         
-        self.conf.workdir = unicode(self.dynamips_workdir.text())
-        self.conf.path = unicode(self.dynamips_path.text())
+        self.conf.workdir = unicode(self.dynamips_workdir.text(), 'utf-8', errors='replace')
+        self.conf.path = unicode(self.dynamips_path.text(), 'utf-8', errors='replace')
         self.conf.port = self.dynamips_port.value()
         self.conf.baseUDP = self.dynamips_baseUDP.value()
         self.conf.baseConsole = self.dynamips_baseConsole.value()
@@ -152,7 +152,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.conf.mmap = False
         
         # update IOS images used by the hypervisor manager
-        binding = unicode(self.comboBoxBinding.currentText())
+        binding = unicode(self.comboBoxBinding.currentText(), 'utf-8', errors='replace')
         if self.conf.HypervisorManager_binding != binding:
             self.conf.HypervisorManager_binding = binding
             for name in globals.GApp.iosimages.keys():

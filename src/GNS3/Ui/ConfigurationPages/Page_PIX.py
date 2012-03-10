@@ -87,7 +87,7 @@ class Page_PIX(QtGui.QWidget, Ui_PIXPage):
         else:
             pix_config = node.duplicate_config()
 
-        image = unicode(self.lineEditImage.text())
+        image = unicode(self.lineEditImage.text(), 'utf-8', errors='replace')
         if image:
             pix_config['image'] = image
 

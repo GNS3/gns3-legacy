@@ -209,7 +209,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             action: QtCore.QAction instance
         """
 
-        action_text = unicode(action.text())
+        action_text = unicode(action.text(), 'utf-8', errors='replace')
         # If action is Clear Menu, then we clear the recent files submenu
         if translate("Workspace", "Clear Menu") == action_text:
             globals.GApp.recentfiles = []
@@ -312,7 +312,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         path = QtGui.QFileDialog.getSaveFileName(filedialog, 'Screenshot', directory, exports, selected)
         if not path:
             return
-        path = unicode(path)
+        path = unicode(path, 'utf-8', errors='replace')
         #FIXME: bug with Qt 4.5, selected always empty! Temporary work-around, users have to specify the extension:
         if selected == '':
             format = path[-3:]

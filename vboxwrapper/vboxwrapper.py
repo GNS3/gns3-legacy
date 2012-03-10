@@ -99,9 +99,9 @@ g_result=""
 #Working Dir in VirtualBox is mainly needed for "Traffic Captures".
 WORKDIR = os.getcwdu()
 if os.environ.has_key("TEMP"):
-    WORKDIR = unicode(os.environ["TEMP"], errors='replace')
+    WORKDIR = unicode(os.environ["TEMP"], 'utf-8', errors='replace')
 elif os.environ.has_key("TMP"):
-    WORKDIR = unicode(os.environ["TMP"], errors='replace')
+    WORKDIR = unicode(os.environ["TMP"], 'utf-8', errors='replace')
 
 class UDPConnection:
     def __init__(self, sport, daddr, dport):

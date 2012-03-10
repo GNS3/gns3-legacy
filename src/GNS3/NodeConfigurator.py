@@ -211,7 +211,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             self.itmDict[parent].addID(node.id)
             hostname = node.hostname
             if type(hostname) != unicode:
-                hostname = unicode(node.hostname)
+                hostname = unicode(node.hostname, 'utf-8', errors='replace')
             item = ConfigurationPageItem(self.itmDict[parent], hostname, parent,  None)
             item.addID(node.id)
             item.tmpConfig = node.get_config()
