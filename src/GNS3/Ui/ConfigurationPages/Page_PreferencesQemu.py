@@ -917,7 +917,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             else:
                 PEMU_BIN = "pemu"
 
-            PEMU_BIN = os.path.dirname(globals.GApp.systconf['qemu'].qemuwrapper_path) + os.sep + PEMU_BIN
+            PEMU_BIN = os.path.dirname(os.path.abspath(globals.GApp.systconf['qemu'].qemuwrapper_path)) + os.sep + PEMU_BIN
 
             bPEMUfound = True
             try:

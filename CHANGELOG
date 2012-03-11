@@ -1,11 +1,14 @@
 CHANGELOG
 
-GNS3 0.8.2 - To be released
+GNS3 0.8.2 - 12.03.1012
 
+ * The issue with Qemu VMs that were stuck on “Booting from Hard Disk” message when using Qemu Manager on Linux has been fixed.
+ * Vboxwrapper can be started on a remote host and VirtualBox VMs locally controlled in GNS3.
+ * Loopback Manager included in Windows all-in-one now work on Win7.
  * Start/pause/stop icons are colored as before BETA2.
  * Checks for the correct version of Qemuwrapper and VBoxwrapper.
  * New SecureCRT command line for OSX in terminal settings preferences.
- * A 500ms delay has been added when consoling to more than one device at the same time.
+ * New option to set a delay between console when consoling to all devices.
  * Qemu <-> VBox linking has been fixed.
  * FlexiNetwork VirtualBox feature had been patched.
  * Italian translation has been updated.
@@ -13,6 +16,7 @@ GNS3 0.8.2 - To be released
  * An issue when trying to choose the file in the Startup-Config dialog has been fixed.
  * Additional check to avoid false positives when detecting compressed IOS.
  * Symbol import/export issue for 'Cloud' nodes has been fixed.
+ * Unicode support improvements.
 
 GNS3 0.8.2 BETA2 - 31.01.2012
 

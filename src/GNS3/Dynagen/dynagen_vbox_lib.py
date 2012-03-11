@@ -132,7 +132,7 @@ class VBox(object):
             try:
                 self.s.connect((self.host, self.port))
             except:
-                raise DynamipsError, 'Could not connect to vboxwrapper at %s:%i' % (self.host, self.port)
+                raise DynamipsError, '101-Could not connect to vboxwrapper at %s:%i' % (self.host, self.port)
         #version checking
         try:
             version = send(self, 'vboxwrapper version')[0][4:]
@@ -154,7 +154,7 @@ class VBox(object):
             intver = 999999
 
         if intver < INTVER:
-            raise DynamipsVerError, 'This version of Dynagen requires at least version %s of vboxwrapper. \n Server %s is runnning version %s.' % (STRVER, self.host, version)
+            raise DynamipsVerError, '101-This version of Dynagen requires at least version %s of vboxwrapper. \n Server %s is runnning version %s.' % (STRVER, self.host, version)
         self._version = version
 
         #vbox version checking
