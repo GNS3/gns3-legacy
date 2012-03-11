@@ -23,6 +23,8 @@
 import sys, os, re, platform
 import GNS3.Globals as globals
 import subprocess
+import GNS3.Dynagen.dynagen_vbox_lib as vboxlib
+import GNS3.Dynagen.dynamips_lib as dynlib
 from PyQt4 import QtGui, QtCore, QtNetwork
 from GNS3.VBoxManager import VBoxManager
 from GNS3.Ui.ConfigurationPages.Form_PreferencesVirtualBox import Ui_PreferencesVirtualBox
@@ -68,34 +70,68 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
 
         # Auto-fill of VirtualBox VM name
         self.connect(self.comboBoxNameVBoxImage, QtCore.SIGNAL('editTextChanged(QString)'), self.VBoxImage, QtCore.SLOT('setText(QString)'))
-        
+
+        # Refresh VM list
+        self.connect(self.pushButtonRefresh, QtCore.SIGNAL('clicked()'), self.slotRefreshVMlist)
+
         # Hide base console port - not available in VirtualBox:
         self.label_30.setVisible(False)
         self.baseConsole.setVisible(False)
-        
-        # Prepare combo box:
-        self.fillVMnames()
-        
+
         self.loadConf()
-        
-    def fillVMnames(self):
-        combo = self.comboBoxNameVBoxImage
+
+    def slotRefreshVMlist(self):
+
+        self.fillVMnames()
+
+    def fillVMnames(self, vbox=None):
+
+        self.comboBoxNameVBoxImage.clear()
         self.comboBoxNameVBoxImage.addItem("")
-        from __main__ import g_VBoxmgr
-        if not g_VBoxmgr:
-            return
+
+
+        if not vbox:
+            if globals.GApp.systconf['vbox'].enable_VBoxManager:
+                host = globals.GApp.systconf['vbox'].VBoxManager_binding
+                port = globals.GApp.systconf['vbox'].vboxwrapper_port
+                if globals.GApp.VBoxManager.startVBox(port) == False:
+                    return
+            else:
+                external_hosts = globals.GApp.systconf['vbox'].external_hosts
+
+                if len(external_hosts) == 0:
+                    QtGui.QMessageBox.warning(self, translate("UiConfig_PreferencesVirtualBox", "External VBoxwrapper"),
+                                                  translate("Topology", "Please register at least one external VBoxwrapper"))
+                    return
+
+                if len(external_hosts) > 1:
+                    (selection,  ok) = QtGui.QInputDialog.getItem(self, translate("UiConfig_PreferencesVirtualBox", "External VBoxwrapper"),
+                                                                  translate("UiConfig_PreferencesVirtualBox", "Please choose your external VBoxwrapper"), external_hosts, 0, False)
+                    if ok:
+                        vboxwrapper = unicode(selection)
+                    else:
+                        return
+                else:
+                    vboxwrapper = external_hosts[0]
+
+                host = vboxwrapper
+                if ':' in host:
+                    port = int(host.split(':')[-1])
+                    host = self.getHost(host)
+                else:
+                    port = 11525
+
+        vmlist = []
         try:
-            machines = g_VBoxmgr.getArray(g_VBoxmgr.vbox, 'machines')
-            unsortedArray = []
-            for ni in range(len(machines)):
-                #print "ADEBUG: Page_PreferencesVirtualBox.py: machines[%d].name = " % ni, machines[ni].name
-                unsortedArray.append(machines[ni].name)
-            #print "ADEBUG: Page_PreferencesVirtualBox.py: unsortedArray = ", unsortedArray
-            for name in sorted(unsortedArray):
-                combo.addItem(name)             
-        except Exception, e:
-            #print "ADEBUG: Page_PreferencesVirtualBox.py: e = ", e
-            return
+            if not vbox:
+                vbox = vboxlib.VBox(host, port)
+            vmlist = vbox.vm_list()
+            vbox.close()
+        except:
+            pass
+
+        for name in sorted(vmlist):
+            self.comboBoxNameVBoxImage.addItem(name)
 
     def slotCheckBoxVBoxWrapperShowAdvancedOptions(self):
         if self.checkBoxVBoxWrapperShowAdvancedOptions.checkState() == QtCore.Qt.Checked:
@@ -395,6 +431,16 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             index = self.VBoxNIC.findText(conf.nic)
             if index != -1:
                 self.VBoxNIC.setCurrentIndex(index)
+
+    def getHost(self, i_strAddress):
+        # IPv6: gets the "host" portion from "host:port" string
+        elements = i_strAddress.split(':')
+        for x in range(len(elements)-1): #Except TCP port
+            if x == 0:
+                hostname = elements[x]
+            else:
+                hostname += ':' + elements[x]
+        return hostname
                 
     def __testVBox(self):    
     
@@ -403,7 +449,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
             if reply == QtGui.QMessageBox.No:
                 return
-        
+
         self.saveConf()
         if globals.GApp.systconf['vbox'].vboxwrapper_path:
             #print "ADEBUG: Entered UiConfig_PreferencesVirtualBox::__testVBox(), if #1"
@@ -412,13 +458,51 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
                 self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "VBoxwrapper path doesn't exist")  + '</font>')
                 return
 
+            globals.GApp.workspace.clear()
+
+            if globals.GApp.systconf['vbox'].enable_VBoxManager:
+                host = globals.GApp.systconf['vbox'].VBoxManager_binding
+                port = globals.GApp.systconf['vbox'].vboxwrapper_port
+                if globals.GApp.VBoxManager.startVBox(port) == False:
+                    self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start VBoxwrapper")  + '</font>')
+                    return
+            else:
+                external_hosts = globals.GApp.systconf['vbox'].external_hosts
+
+                if len(external_hosts) == 0:
+                    QtGui.QMessageBox.warning(self, translate("UiConfig_PreferencesVirtualBox", "External VBoxwrapper"),
+                                              translate("Topology", "Please register at least one external VBoxwrapper"))
+                    return False
+
+                if len(external_hosts) > 1:
+                    (selection,  ok) = QtGui.QInputDialog.getItem(self, translate("UiConfig_PreferencesVirtualBox", "External VBoxwrapper"),
+                                                                  translate("UiConfig_PreferencesVirtualBox", "Please choose your external VBoxwrapper"), external_hosts, 0, False)
+                    if ok:
+                        vboxwrapper = unicode(selection)
+                    else:
+                        return False
+                else:
+                    vboxwrapper = external_hosts[0]
+
+                host = vboxwrapper
+                if ':' in host:
+                    port = int(host.split(':')[-1])
+                    host = self.getHost(host)
+                else:
+                    port = 11525
+
             try:
-                from vboxapi import VirtualBoxManager
-            except:
-                self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to load vboxapi module. Please check VirtualBox installation.")  + '</font>')
+                vbox = vboxlib.VBox(host, port)
+            except dynlib.DynamipsError, msg:
+                self.labelVBoxStatus.setText("<font color='red'>%s</font>" % unicode(msg)[4:])
                 return
-            
-            if not (platform.system() == 'Windows' or platform.system() == 'Darwin'):
+            except dynlib.DynamipsVerError, msg:
+                self.labelVBoxStatus.setText("<font color='red'>%s</font>" % unicode(msg)[4:])
+                return
+
+            vbox_version = vbox.vbox_version
+
+            if globals.GApp.systconf['vbox'].enable_VBoxManager and platform.system() != 'Windows' and platform.system() != 'Darwin':
                 try:
                     p = subprocess.Popen(['xdotool'])
                     p.terminate()
@@ -426,29 +510,6 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
                     self.labelVBoxStatus.setText('<font color="brown">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start xdotool")  + '</font>')
                     return
 
-            from __main__ import g_VBoxmgr, VBOXVER_REQUIRED, VBOXVER_FLOAT, VBOXVER_REQUIRED1_MAJOR, VBOXVER_REQUIRED1_MINOR, VBOXVER_MAJOR, VBOXVER_MINOR
-
-            if not g_VBoxmgr:
-                if platform.system() == 'Windows' and not os.environ.has_key('VBOX_INSTALL_PATH'):
-                    self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "VirtualBox is not installed. <a href='http://www.virtualbox.org/wiki/Downloads'>Download it</a>")  + '</font>')
-                else:
-                    self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start vboxapi module. Please check that VirtualBox is installed.")  + '</font>')
-                return
-                
-            VBOXVER = str(g_VBoxmgr.vbox.version)
-
-            if not (VBOXVER_REQUIRED1_MAJOR == VBOXVER_MAJOR and VBOXVER_REQUIRED1_MINOR == VBOXVER_MINOR):
-                self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "ERROR: Found VirtualBox v%s. Required: v%s") % (VBOXVER, str(VBOXVER_REQUIRED)  + '</font>'))
-                return
-
-            globals.GApp.workspace.clear()
-            globals.GApp.VBoxManager = VBoxManager()
-            if globals.GApp.VBoxManager.preloadVBoxwrapper() == False:
-                #print "ADEBUG: Entered UiConfig_PreferencesVirtualBox::__testVBox(), if #3"
-                if hasattr(sys, "frozen") and (globals.GApp.systconf['vbox'].qemuwrapper_path.split('.')[-1] == 'py'):
-                    self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start VBoxwrapper (python.exe path must be in your PATH environment variable)")  + '</font>')
-                else:
-                    self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start VBoxwrapper")  + '</font>')
-                return
-
-            self.labelVBoxStatus.setText('<font color="green">' + translate("UiConfig_PreferencesVirtualBox", "VBoxwrapper and VirtualBox API %s have successfully started") % (VBOXVER)  + '</font>')
+            self.labelVBoxStatus.setText('<font color="green">' + translate("UiConfig_PreferencesVirtualBox", "VBoxwrapper and VirtualBox API %s have successfully started") % vbox_version  + '</font>')
+            self.fillVMnames(vbox)
+            globals.GApp.VBoxManager.stopVBox()

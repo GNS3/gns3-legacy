@@ -67,34 +67,31 @@ def debugmsg(level, message):
             dfile.write(os.linesep)
             dfile.flush()
 
-msg = "WELCOME to vboxwrapper.py"
-debugmsg(2, msg)
+debugmsg(2, 'Starting vboxwrapper')
 debugmsg(1, "debuglevel =  %s" % debuglevel + os.linesep)
 
 __author__ = 'Thomas Pani, Jeremy Grossmann and Alexey Eromenko "Technologov"'
 __version__ = '0.8.2'
 
-try:
-    from vboxapi import VirtualBoxManager
-except:
-    msg = "ERROR: cannot load 'vboxapi' module !" + os.linesep
-    msg += "Please check your Python and VirtualBox installation."
-    print msg
-    debugmsg(1, msg)
-    exit()
-
 PORT = 11525
 IP = ""
 VBOX_INSTANCES = {}
-FORCE_IPV6=False
+FORCE_IPV6 = False
 VBOX_STREAM = 0
 VBOXVER = 0.0
+VBOXVER_REQUIRED = 4.1
 CACHED_REPLY = ""
 CACHED_REQUEST = ""
 CACHED_TIME = 0.0
 g_stats=""
-g_vboxManager=0
+g_vboxManager = 0
 g_result=""
+
+try:
+    from vboxapi import VirtualBoxManager
+    g_vboxManager = VirtualBoxManager(None, None)
+except:
+    pass
 
 #Working Dir in VirtualBox is mainly needed for "Traffic Captures".
 WORKDIR = os.getcwdu()
@@ -273,6 +270,8 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             },
         'vbox' : {
             'version' : (0, 0),
+            'vm_list' : (0, 0),
+            'find_vm' : (1, 1),
             'create' : (2, 2),
             'delete' : (1, 1),
             'setattr' : (3, 3),
@@ -526,7 +525,6 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_vboxwrapper_working_dir(self, data):
-        #"""
         debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_working_dir(%s)" % str(data))
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
@@ -539,7 +537,6 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         except OSError, e:
             self.send_reply(self.HSC_ERR_INV_PARAM, 1,
                             "chdir: %s" % e.strerror)
-        #"""
 
     def do_vboxwrapper_reset(self, data):
         debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_reset(%s)" % str(data))
@@ -559,7 +556,45 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
 
     def do_vbox_version(self, data):
         debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_version(%s)" % str(data))
-        self.send_reply(self.HSC_INFO_OK, 1, VBOXVER)
+
+        global g_vboxManager, VBOXVER, VBOXVER_REQUIRED
+        if g_vboxManager:
+            vboxver_maj = VBOXVER.split('.')[0]
+            vboxver_min = VBOXVER.split('.')[1]
+            vboxver = float(str(vboxver_maj)+'.'+str(vboxver_min))
+            if vboxver < VBOXVER_REQUIRED:
+                msg = "Detected VirtualBox version %s, which is too old." % VBOXVER + os.linesep + "Minimum required is: %s" % str(VBOXVER_REQUIRED)
+                self.send_reply(self.HSC_ERR_BAD_OBJ, 1, msg)
+            else:
+                self.send_reply(self.HSC_INFO_OK, 1, VBOXVER)
+        else:
+            if sys.platform == 'win32' and not os.environ.has_key('VBOX_INSTALL_PATH'):
+                self.send_reply(self.HSC_ERR_BAD_OBJ, 1, "VirtualBox is not installed.")
+            else:
+                self.send_reply(self.HSC_ERR_BAD_OBJ, 1, "Failed to load vboxapi, please check your VirtualBox installation.")
+
+    def do_vbox_vm_list(self, data):
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_vm_list(%s)" % str(data))
+        if g_vboxManager:
+            try:
+                machines = g_vboxManager.getArray(g_vboxManager.vbox, 'machines')
+                for ni in range(len(machines)):
+                    self.send_reply(self.HSC_INFO_MSG, 0, machines[ni].name)
+            except Exception, e:
+                pass
+        self.send_reply(self.HSC_INFO_OK, 1, "OK")
+
+    def do_vbox_find_vm(self, data):
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_find_vm(%s)" % str(data))
+        vm_name, = data
+
+        try:
+            mach = g_vboxManager.vbox.findMachine(vm_name)
+        except Exception, e:
+            self.send_reply(self.HSC_ERR_UNK_OBJ, 1, "unable to find vm %s" % vm_name)
+            return
+
+        self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def __vbox_create(self, dev_type, name):
         debugmsg(2, "VBoxWrapperRequestHandler::__vbox_create(dev_type=%s, name=%s)" % (str(dev_type), str(name)))
@@ -795,40 +830,6 @@ class VBoxWrapperServer(DaemonThreadingMixIn, SocketServer.TCPServer):
             sys.exit(1)
         self.stopping = threading.Event()
         self.pause = 0.1
-        self.VBoxInit()
-
-    def VBoxInit(self):
-        global g_vboxManager, VBOXVER, __version__, debuglevel
-        # This part is generic init for all versions of VBox
-        try:
-            g_vboxManager = VirtualBoxManager(None, None)
-        except Exception, e:
-            # This can happen, if your VBoxPython module is broken, or incorrectly installed
-            debugmsg(1, "ERROR: Cannot start vboxapi module !")
-            print >> sys.stderr, e
-            sys.exit(1)
-
-        VBOXVER = g_vboxManager.vbox.version
-        RUNNING_VBOX_STRING = "Running VirtualBox %s r%d" % (VBOXVER, g_vboxManager.vbox.revision)
-        if debuglevel > 0:
-            debugmsg(1, RUNNING_VBOX_STRING)
-        else:
-            print RUNNING_VBOX_STRING
-        __version__ += " (%s)" % RUNNING_VBOX_STRING
-
-        vboxver_maj = VBOXVER.split('.')[0]
-        vboxver_min = VBOXVER.split('.')[1]
-        vboxver = float(str(vboxver_maj)+'.'+str(vboxver_min))
-        vboxver_required = 4.1
-        if vboxver < vboxver_required:
-            print "ERROR: Detected VirtualBox version %s, which is too old." % VBOXVER + os.linesep + "Minimum required is: %s" % str(vboxver_required)
-            print ""
-            exit()
-
-        if sys.platform == 'win32':
-            debugmsg(3, "VBoxWrapperServer::VBoxInit(), CoMarshal..()")
-            global VBOX_STREAM
-            VBOX_STREAM = pythoncom.CoMarshalInterThreadInterfaceInStream(pythoncom.IID_IDispatch, g_vboxManager.vbox)
 
     def serve_forever(self):
         while not self.stopping.isSet():
@@ -858,11 +859,33 @@ def main():
     parser.add_option("-p", "--port", type="int", dest="port", help="Port number (default is 11525)")
     parser.add_option("-w", "--workdir", dest="wd", help="Working directory (default is current directory)")
     parser.add_option("-6", "--forceipv6", dest="force_ipv6", help="Force IPv6 usage (default is false; i.e. IPv4)")
+    parser.add_option("-n", "--no-vbox-checks", action="store_true", dest="no_vbox_checks", default=False, help="Do not check for vboxapi loadin and VirtualBox version")
 
     try:
         (options, args) = parser.parse_args()
     except SystemExit:
         sys.exit(1)
+
+    global g_vboxManager, VBOXVER, VBOXVER_REQUIRED, VBOX_STREAM
+    if not options.no_vbox_checks and not g_vboxManager:
+        print >> sys.stderr, "ERROR: vboxapi module cannot be loaded" + os.linesep + "Please check your VirtualBox installation."
+        sys.exit(1)
+
+    if g_vboxManager:
+        VBOXVER = g_vboxManager.vbox.version
+        print "Using VirtualBox %s r%d" % (VBOXVER, g_vboxManager.vbox.revision)
+
+        if not options.no_vbox_checks:
+            vboxver_maj = VBOXVER.split('.')[0]
+            vboxver_min = VBOXVER.split('.')[1]
+            vboxver = float(str(vboxver_maj)+'.'+str(vboxver_min))
+            if vboxver < VBOXVER_REQUIRED:
+                print >> sys.stderr, "ERROR: Detected VirtualBox version %s, which is too old." % VBOXVER + os.linesep + "Minimum required is: %s" % str(VBOXVER_REQUIRED)
+                sys.exit(1)
+
+        if sys.platform == 'win32':
+            debugmsg(3, "VBoxWrapperServer::VBoxInit(), CoMarshal..()")
+            VBOX_STREAM = pythoncom.CoMarshalInterThreadInterfaceInStream(pythoncom.IID_IDispatch, g_vboxManager.vbox)
 
     if options.host:
         host = options.host
@@ -909,8 +932,8 @@ def main():
 
 if __name__ == '__main__':
     print "VirtualBox Wrapper (version %s)" % __version__
-    print 'Copyright (c) 2007-2011'
-    print 'Thomas Pani, Jeremy Grossmann and Alexey Eromenko "Technologov"'
+    print 'Copyright (c) 2007-2012'
+    print 'Jeremy Grossmann and Alexey Eromenko "Technologov"'
     print
 
     if sys.platform == 'win32':

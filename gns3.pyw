@@ -44,25 +44,6 @@ if QtCore.PYQT_VERSION < 0x040500:
 if sys.version_info < (2, 5):
     raise RuntimeError, "Need Python 2.5 or higher"
 
-VBOXVER_REQUIRED = 4.1
-VBOXVER_STR = ""
-VBOXVER_FLOAT = 0.0
-VBOXVER_REQUIRED1_MAJOR = 4
-VBOXVER_REQUIRED1_MINOR = 1
-
-try:
-    from vboxapi import VirtualBoxManager
-    g_VBoxmgr = VirtualBoxManager(None, None)
-    VBOXVER_MAJOR = int(g_VBoxmgr.vbox.version.split('.')[0])
-    VBOXVER_MINOR = int(g_VBoxmgr.vbox.version.split('.')[1])
-    VBOXVER_STR = g_VBoxmgr.vbox.version
-    VBOXVER_FLOAT = float(str(VBOXVER_MAJOR)+'.'+str(VBOXVER_MINOR))
-except:
-    print "WARNING: vboxapi module cannot be loaded ! You can proceed, but VirtualBox functionality will not be locally available."
-    g_VBoxmgr = 0
-    VBOXVER_MAJOR = 0
-    VBOXVER_MINOR = 0
-
 def exceptionHook(type, value, tb):
 
     lines = traceback.format_exception(type, value, tb)

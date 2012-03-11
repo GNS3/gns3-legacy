@@ -157,6 +157,15 @@ class VBox(object):
             raise DynamipsVerError, 'This version of Dynagen requires at least version %s of vboxwrapper. \n Server %s is runnning version %s.' % (STRVER, self.host, version)
         self._version = version
 
+        #vbox version checking
+        try:
+            version = send(self, 'vbox version')[0]
+        except IndexError:
+            # Probably because NOSEND is set
+            version = 'N/A'
+
+        self._vbox_version = version[4:]
+
         #all other needed variables
         self.name = name
         self.devices = []
@@ -169,8 +178,6 @@ class VBox(object):
 
     def close(self):
         """ Close the connection to the VBoxwrapper (but leave it running)"""
-        debugmsg(2, "VBox::close(%s, %s)" % (str(name), str(port)))
-
         self.s.close()
 
     def reset(self):
@@ -178,6 +185,21 @@ class VBox(object):
         debugmsg(2, "VBox::reset()")
 
         send(self, 'vboxwrapper reset')
+
+    def vm_list(self):
+        """ Get VM list from VirtualBox"""
+
+        vbox_vms = send(self, 'vbox vm_list')
+        vm_list = []
+        for vm in vbox_vms:
+            if vm.startswith('101 '):
+                vm_list.append(vm[4:])
+        return vm_list
+
+    def find_vm(self, vm_name):
+        """ Get VM list from VirtualBox"""
+
+        send(self, 'vbox find_vm %s' % '"' + vm_name + '"')
 
     def _setbaseconsole(self, baseconsole):
         """ Set the baseconsole
@@ -252,6 +274,12 @@ class VBox(object):
 
     version = property(_getversion, doc='The vboxwrapper version')
 
+    def _getvboxversion(self):
+        """ Return the version of VirtualBox"""
+        
+        return self._vbox_version
+
+    vbox_version = property(_getvboxversion, doc='Detected VirtualBox version')
 
 class AnyVBoxEmuDevice(object):
 

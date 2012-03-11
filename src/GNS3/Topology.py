@@ -336,8 +336,6 @@ class Topology(QtGui.QGraphicsScene):
 
             host = qemuwrapper
             if ':' in host:
-                #(host, port) = host.split(':')
-                #port = int(port)
                 port = int(host.split(':')[-1])
                 host = self.getHost(host)
             else:
@@ -380,7 +378,7 @@ class Topology(QtGui.QGraphicsScene):
 
         return True
 
-    def vboxDeviceSetup(self, node):
+    def vboxDeviceSetup(self, node, vmname):
         """ Start a connection to a virtualized device & set defaults
         """
 
@@ -390,7 +388,6 @@ class Topology(QtGui.QGraphicsScene):
             if globals.GApp.VBoxManager.startVBox(port) == False:
                 return False
         else:
-        #if True:
             external_hosts = globals.GApp.systconf['vbox'].external_hosts
 
             if len(external_hosts) == 0:
@@ -410,8 +407,6 @@ class Topology(QtGui.QGraphicsScene):
 
             host = vboxwrapper
             if ':' in host:
-                #(host, port) = host.split(':')
-                #port = int(port)
                 port = int(host.split(':')[-1])
                 host = self.getHost(host)
             else:
@@ -421,9 +416,16 @@ class Topology(QtGui.QGraphicsScene):
         debug('VBoxwrapper: ' + vbox_name)
         if not self.dynagen.dynamips.has_key(vbox_name):
             #create the VBox instance and add it to global dictionary
-            self.dynagen.dynamips[vbox_name] = vboxlib.VBox(host, port)
-            self.dynagen.dynamips[vbox_name].reset()
+            vbox = vboxlib.VBox(host, port)
+            try:
+                vbox.find_vm(vmname)
+            except:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox VMname/UUID"),
+                                          translate("Topology", "VirtualBox Machine '%s' seems to not exist, please check") % vmname)
+                return False
 
+            self.dynagen.dynamips[vbox_name] = vbox
+            self.dynagen.dynamips[vbox_name].reset()
             self.dynagen.dynamips[vbox_name].baseconsole = globals.GApp.systconf['vbox'].vboxwrapper_baseConsole
             self.dynagen.dynamips[vbox_name].baseudp = globals.GApp.systconf['vbox'].vboxwrapper_baseUDP
             self.dynagen.get_defaults_config()
@@ -448,7 +450,6 @@ class Topology(QtGui.QGraphicsScene):
         node.set_hypervisor(self.dynagen.dynamips[vbox_name])
 
         return True
-        #"""
 
     def addNodeFromScene(self, node):
         """ Add node in the topology, called from Scene
@@ -612,38 +613,9 @@ class Topology(QtGui.QGraphicsScene):
                     conf = globals.GApp.vboximages[devices[0]]
                     node.image_reference = devices[0]
 
-                # give a warning if the VBox VMname/UUID is not accessible
-                if globals.GApp.systconf['vbox'].enable_VBoxManager:
-                    try:
-                        from vboxapi import VirtualBoxManager
-                    except:
-                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox API"),
-                                                   translate("Topology", "ERROR: VirtualBox API module cannot be loaded !"))
-                        return False
-                    #mgr = VirtualBoxManager(None, None)
-                    #vbox = mgr.vbox
+                vmname = conf.filename  #Qemu's Disk Image equals to VMname/UUID in this release.
 
-                    from __main__ import g_VBoxmgr, VBOXVER_REQUIRED, VBOXVER_FLOAT
-                    if not g_VBoxmgr:
-                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox API"),
-                                                   translate("Topology", "ERROR: VirtualBox API module cannot start !"))
-                        return False
-
-                    vbox = g_VBoxmgr.vbox
-
-                    if VBOXVER_FLOAT < VBOXVER_REQUIRED:
-                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox API"),
-                                                   translate("Topology", "ERROR: Detected VirtualBox version %s, which is too old.\nMinimum required is: %s" % (g_VBoxmgr.vbox.version, str(VBOXVER_REQUIRED))))
-                        return False
-
-                    vmname = conf.filename  #Qemu's Disk Image equals to VMname/UUID in this release.
-                    try:
-                        mach = vbox.findMachine(vmname)
-                    except Exception, e:
-                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "VirtualBox VMname/UUID"),
-                                                  translate("Topology", "VirtualBox Machine '%s' seems to not exist, please check") % conf.filename)
-
-                if self.vboxDeviceSetup(node) == False:
+                if self.vboxDeviceSetup(node, vmname) == False:
                     init_vbox_emu_id(node.id)
                     return False
 
