@@ -134,7 +134,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         else:
             self.checkBoxCheckForUpdate.setCheckState(QtCore.Qt.Unchecked)
             
-        self.labelConfigurationPath.setText(os.path.normpath(unicode(ConfDB().fileName(), 'utf-8', errors='replace')))
+        self.labelConfigurationPath.setText(os.path.normpath(unicode(ConfDB().fileName())))
 
         # Delay between console starts
         self.doubleSpinBoxConsoleDelay.setValue(self.conf.console_delay)

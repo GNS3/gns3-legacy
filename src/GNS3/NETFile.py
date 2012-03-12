@@ -184,7 +184,7 @@ class NETFile(object):
     def create_node(self, device, default_symbol_name, running_config_name):
         """ Create a new node
         """
-        debugmsg(2, "****    NETFile::create_node(%s, %s, %s)" % (str(device), str(default_symbol_name), str(running_config_name)))
+        debugmsg(2, "****    NETFile::create_node(%s, %s, %s)" % (unicode(device), unicode(default_symbol_name), unicode(running_config_name)))
 
         symbol_name = x = y = z = hx = hy = None
         config = None
@@ -229,7 +229,7 @@ class NETFile(object):
                             node.default_symbol = False
                             break
                     break
-        debugmsg(3, "NETFile.py, node = %s" % str(node))
+        debugmsg(3, "NETFile.py, node = %s" % unicode(node))
 
         if not node:
             # symbol name not found, use default one
@@ -238,7 +238,7 @@ class NETFile(object):
                 symbol_name = default_symbol_name
                 default_symbol = True
 
-            debugmsg(3, "NETFile.py, symbol_name = %s" % str(symbol_name))
+            debugmsg(3, "NETFile.py, symbol_name = %s" % unicode(symbol_name))
             for item in SYMBOLS:
                 if item['name'] == symbol_name:
                     renders = globals.GApp.scene.renders[symbol_name]
@@ -247,7 +247,7 @@ class NETFile(object):
                     if not default_symbol:
                         node.default_symbol = False
                     break
-        debugmsg(3, "NETFile.py, node = %s" % str(node))
+        debugmsg(3, "NETFile.py, node = %s" % unicode(node))
         if not node:
             return None
 
@@ -596,7 +596,7 @@ class NETFile(object):
     def import_net_file(self, path):
         """ Import a .net file
         """
-        debugmsg(2, "NETFile::import_net_file(%s)" % str(path))
+        debugmsg(2, "NETFile::import_net_file(%s)" % unicode(path))
 
         if globals.GApp.systconf['dynamips'].import_use_HypervisorManager and globals.GApp.systconf['dynamips'].path == '':
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("NETFile", "Save"), translate("NETFile", "Please configure the path to Dynamips"))
@@ -605,10 +605,10 @@ class NETFile(object):
         globals.GApp.workspace.clear()
         dynagen_namespace.CONFIGSPECPATH = []
         dir = os.path.dirname(dynagen_namespace.__file__)
-        debugmsg(3, "NETFile::import_net_file(),    os.path.dirname(dynagen_namespace.__file__) = %s" % str(dir))
+        debugmsg(3, "NETFile::import_net_file(),    os.path.dirname(dynagen_namespace.__file__) = %s" % unicode(dir))
         dynagen_namespace.CONFIGSPECPATH.append(dir)
         try:
-            debugmsg(3, "NETFile.py: import_config, try: path = %s" % str(path))
+            debugmsg(3, "NETFile.py: import_config, try: path = %s" % unicode(path))
             dynagen_namespace.FILENAME = path
             debugmsg(3, "NETFile.py: import_config, try: dynagen.import_config")
             self.dynagen.import_config(path)
@@ -1174,7 +1174,7 @@ class NETFile(object):
     def convert_to_relpath(self, path, config_path):
         """ Returns a relative path when the config path and another path share a common base directory
         """
-        debugmsg(3, "NETFile.py: convert_to_relpath(%s, %s)" % (str(path), str(config_path)))
+        debugmsg(3, "NETFile.py: convert_to_relpath(%s, %s)" % (unicode(path), unicode(config_path)))
         # Workaround, if remote hypervisor doesn't have workdir set:
         if path == None:
             return None

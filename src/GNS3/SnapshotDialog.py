@@ -65,7 +65,7 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
                                     translate("AbstractNode", "Snapshot name:"), QtGui.QLineEdit.Normal, "Unnamed")
 
         if ok and text:
-            snapshot_name = unicode(text, 'utf-8', errors='replace')
+            snapshot_name = unicode(text)
         else:
             snapshot_name = "Unnamed"
 
@@ -80,7 +80,7 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
         items = self.SnapshotList.selectedItems()
         if len(items):
             item = items[0]
-            snapshot_path = os.path.dirname(unicode(item.data(QtCore.Qt.UserRole).toString(), 'utf-8', errors='replace'))
+            snapshot_path = os.path.dirname(unicode(item.data(QtCore.Qt.UserRole).toString()))
             shutil.rmtree(snapshot_path, ignore_errors=True)
             self.listSnaphosts()
 

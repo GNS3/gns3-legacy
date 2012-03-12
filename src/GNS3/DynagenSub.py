@@ -47,7 +47,7 @@ class DynagenSub(Dynagen):
     def check_replace_GUID_NIO(self, filename):
         """ Check and replace non-existing GUID (network interface ID) on Windows
         """
-        debugmsg(2, "DynagenSub::check_replace_GUID_NIO(%s)" % str(filename))
+        debugmsg(2, "DynagenSub::check_replace_GUID_NIO(%s)" % unicode(filename))
 
         file = open(filename,'r')
         lines = file.readlines()
@@ -116,7 +116,7 @@ class DynagenSub(Dynagen):
     def open_config(self, FILENAME):
         """ Open the config file
         """
-        debugmsg(2, "DynagenSub::open_config(%s)" % str(FILENAME))
+        debugmsg(2, "DynagenSub::open_config(%s)" % unicode(FILENAME))
 
         if sys.platform.startswith('win'):
             self.check_replace_GUID_NIO(FILENAME)
@@ -159,7 +159,7 @@ class DynagenSub(Dynagen):
             #debugmsg(3, ("DynagenSub::open_config(), server = ", server))  # Returns long config of hypervisor
             if ' ' in server.name:
                 (emulator, host) = server.name.split(' ')
-                debugmsg(2, "DynagenSub::open_config(), emulator = %s, host = %s" % (str(emulator), str(host)))
+                debugmsg(2, "DynagenSub::open_config(), emulator = %s, host = %s" % (unicode(emulator), unicode(host)))
                 if ':' in host:
                     # unpack the server and port
                     # controlPort is ignored
@@ -292,12 +292,12 @@ class DynagenSub(Dynagen):
                     #"""
                     if server['workingdir']:
                         abspath = os.path.join(os.path.dirname(FILENAME), unicode(server['workingdir']))
-                        debugmsg(3, "DynagenSub::open_config(), 'vbox', abspath = %s" % str(abspath))
+                        debugmsg(3, "DynagenSub::open_config(), 'vbox', abspath = %s" % unicode(abspath))
                         if os.path.exists(abspath):
                             server['workingdir'] = abspath
                             debug(unicode("Converting relative working directory path to absolute path: %s") % server['workingdir'])
 
-                    debugmsg(3, "DynagenSub::open_config(), 'vbox', os.path.dirname(FILENAME) = %s" % str(os.path.dirname(FILENAME)))
+                    debugmsg(3, "DynagenSub::open_config(), 'vbox', os.path.dirname(FILENAME) = %s" % unicode(os.path.dirname(FILENAME)))
                     if server['workingdir'] == '.':
                         server['workingdir'] = os.path.dirname(FILENAME)
 
@@ -322,7 +322,7 @@ class DynagenSub(Dynagen):
                     #"""
             else:
                 server.host = server.name
-                debugmsg(3, "DynagenSub::open_config(), server.host = %s, server.name = %s" % (str(server.host), str(server.name)))
+                debugmsg(3, "DynagenSub::open_config(), server.host = %s, server.name = %s" % (unicode(server.host), unicode(server.name)))
                 controlPort = None
                 if ':' in server.host:
                     #(server.host, controlPort) = server.host.split(':')
@@ -461,7 +461,7 @@ class DynagenSub(Dynagen):
     def getGNS3Data(self):
         """ Returns GNS3 specific data from NET file
         """
-        debugmsg(2, "DynagenSub::getGNS3Data(), returns: %s" % str(self.gns3_data))
+        debugmsg(2, "DynagenSub::getGNS3Data(), returns: %s" % unicode(self.gns3_data))
 
         return self.gns3_data
 

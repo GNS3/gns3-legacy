@@ -312,7 +312,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         path = QtGui.QFileDialog.getSaveFileName(filedialog, 'Screenshot', directory, exports, selected)
         if not path:
             return
-        path = unicode(path, 'utf-8', errors='replace')
+        path = unicode(path)
         #FIXME: bug with Qt 4.5, selected always empty! Temporary work-around, users have to specify the extension:
         if selected == '':
             format = path[-3:]

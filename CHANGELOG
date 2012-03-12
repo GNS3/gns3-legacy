@@ -16,7 +16,9 @@ GNS3 0.8.2 - 12.03.1012
  * An issue when trying to choose the file in the Startup-Config dialog has been fixed.
  * Additional check to avoid false positives when detecting compressed IOS.
  * Symbol import/export issue for 'Cloud' nodes has been fixed.
+ * Windows interface names with non-ascii characters are now supported.
  * Unicode support improvements.
+
 
 GNS3 0.8.2 BETA2 - 31.01.2012
 

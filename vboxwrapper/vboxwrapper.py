@@ -122,7 +122,7 @@ class UDPConnection:
 class xVBOXInstance(object):
 
     def __init__(self, name):
-        debugmsg(2, "class xVBOXInstance::__init__(%s)" % str(name))
+        debugmsg(2, "class xVBOXInstance::__init__(%s)" % unicode(name))
         self.name = name
         self.console = ''
         self.image = ''
@@ -214,7 +214,7 @@ class xVBOXInstance(object):
 
     def vboxexec(self, command):
         # This function executes arbitary commands on VMs, and gets STDOUT results.
-        debugmsg(3, "xVBOXInstance::vboxexec(%s)" % str(command))
+        debugmsg(3, "xVBOXInstance::vboxexec(%s)" % unicode(command))
         global g_result
         if self.vbc.vboxexec(command, self.guestcontrol_user, self.guestcontrol_password):
             g_result = self.vbc.result
@@ -239,7 +239,7 @@ class xVBOXInstance(object):
 class VBOXInstance(xVBOXInstance):
 
     def __init__(self, name):
-        debugmsg(2, "class VBOXInstance::__init__(%s)" % str(name))
+        debugmsg(2, "class VBOXInstance::__init__(%s)" % unicode(name))
         super(VBOXInstance, self).__init__(name)
 
 class VBoxDeviceInstance(VBOXInstance):
@@ -318,7 +318,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
     close_connection = 0
 
     def do_vbox_display_window_focus(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_display_window_focus(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_display_window_focus(%s)" % unicode(data))
         name, = data
         if not VBOX_INSTANCES[name].displayWindowFocus():
             self.send_reply(self.HSC_ERR_STOP, 1,
@@ -327,7 +327,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_INFO_OK, 1, "%s %s" % ("hwnd", str(g_result)))
 
     def do_vbox_get_nio_stats(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_get_nio_stats(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_get_nio_stats(%s)" % unicode(data))
         name, vnic = data
         if not name in VBOX_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -340,11 +340,11 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_INFO_OK, 1, "%s %s" % ("nio_stat", str(g_stats)))
 
     def do_vbox_exec(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_exec(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_exec(%s)" % unicode(data))
         #name, command = data
         name = data[0]
         raw_command = data[1:]
-        debugmsg(3, "raw_command = %s" % str(raw_command))
+        debugmsg(3, "raw_command = %s" % unicode(raw_command))
         processed_command = ""
         for x in range(len(raw_command)):
             # First-and-the-only command, we strip [' and '] or for First-command, we strip [' and ',
@@ -353,7 +353,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             # Last command, we strip ' and '], and for the middle of the pack command, we strip ' and ',
             else:
                 processed_command += " " + raw_command[x][1:-2]
-        debugmsg(3, "processed_command = %s" % str(processed_command))
+        debugmsg(3, "processed_command = %s" % unicode(processed_command))
         if not name in VBOX_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
                             "unable to find VBox '%s'" % name)
@@ -365,7 +365,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_INFO_OK, 1, "%s %s" % ("result", str(g_result)))
 
     def send_reply(self, code, done, msg):
-        debugmsg(2, "VBoxWrapperRequestHandler::send_reply(code=%s, done=%s, msg=%s)" % (str(code), str(done), str(msg)))
+        debugmsg(2, "VBoxWrapperRequestHandler::send_reply(code=%s, done=%s, msg=%s)" % (str(code), str(done), unicode(msg)))
         sep = '-'
         if not done:
             sep = ' '
@@ -461,7 +461,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         method(data)
 
     def check_cache(self, request):
-        debugmsg(3, "VBoxWrapperRequestHandler::check_cache(%s)" % str(request.replace("\n", "")))
+        debugmsg(3, "VBoxWrapperRequestHandler::check_cache(%s)" % unicode(request.replace("\n", "")))
         # TCP Server cache is needed due to async nature of the server;
         # Often TCP client (dynagen) received a reply from previous request.
         # This workaround allows us to send two requests and get two replies per query.
@@ -487,11 +487,11 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         return True
 
     def do_vboxwrapper_version(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_version(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_version(%s)" % unicode(data))
         self.send_reply(self.HSC_INFO_OK, 1, __version__)
 
     def do_vboxwrapper_parser_test(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_parser_test(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_parser_test(%s)" % unicode(data))
         for i in range(len(data)):
             self.send_reply(self.HSC_INFO_MSG, 0,
                             "arg %d (len %u): \"%s\"" % \
@@ -500,13 +500,13 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_vboxwrapper_module_list(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_module_list(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_module_list(%s)" % unicode(data))
         for module in self.modules.keys():
             self.send_reply(self.HSC_INFO_MSG, 0, module)
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_vboxwrapper_cmd_list(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_cmd_list(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_cmd_list(%s)" % unicode(data))
         module, = data
 
         if not module in self.modules.keys():
@@ -525,7 +525,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_vboxwrapper_working_dir(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_working_dir(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_working_dir(%s)" % unicode(data))
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
         working_dir, = data
@@ -539,23 +539,23 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             "chdir: %s" % e.strerror)
 
     def do_vboxwrapper_reset(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_reset(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_reset(%s)" % unicode(data))
         cleanup()
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_vboxwrapper_close(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_close(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_close(%s)" % unicode(data))
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
         self.close_connection = 1
 
     def do_vboxwrapper_stop(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_stop(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vboxwrapper_stop(%s)" % unicode(data))
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
         self.close_connection = 1
         self.server.stop()
 
     def do_vbox_version(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_version(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_version(%s)" % unicode(data))
 
         global g_vboxManager, VBOXVER, VBOXVER_REQUIRED
         if g_vboxManager:
@@ -574,7 +574,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
                 self.send_reply(self.HSC_ERR_BAD_OBJ, 1, "Failed to load vboxapi, please check your VirtualBox installation.")
 
     def do_vbox_vm_list(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_vm_list(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_vm_list(%s)" % unicode(data))
         if g_vboxManager:
             try:
                 machines = g_vboxManager.getArray(g_vboxManager.vbox, 'machines')
@@ -585,7 +585,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_vbox_find_vm(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_find_vm(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_find_vm(%s)" % unicode(data))
         vm_name, = data
 
         try:
@@ -597,7 +597,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def __vbox_create(self, dev_type, name):
-        debugmsg(2, "VBoxWrapperRequestHandler::__vbox_create(dev_type=%s, name=%s)" % (str(dev_type), str(name)))
+        debugmsg(2, "VBoxWrapperRequestHandler::__vbox_create(dev_type=%s, name=%s)" % (str(dev_type), unicode(name)))
 
         try:
             devclass = self.vbox_classes[dev_type]
@@ -626,7 +626,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         return 0
 
     def do_vbox_create(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_create(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_create(%s)" % unicode(data))
         dev_type, name = data
         if self.__vbox_create(dev_type, name) == 0:
             self.send_reply(self.HSC_INFO_OK, 1, "VBox '%s' created" % name)
@@ -635,7 +635,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             "unable to create VBox instance '%s'" % name)
 
     def __vbox_delete(self, name):
-        debugmsg(2, "VBoxWrapperRequestHandler::__vbox_delete(%s)" % str(name))
+        debugmsg(2, "VBoxWrapperRequestHandler::__vbox_delete(%s)" % unicode(name))
         if not name in VBOX_INSTANCES.keys():
             return 1
         if VBOX_INSTANCES[name].process and not VBOX_INSTANCES[name].stop():
@@ -644,7 +644,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         return 0
 
     def do_vbox_delete(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_delete(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_delete(%s)" % unicode(data))
         name, = data
         if self.__vbox_delete(name) == 0:
             self.send_reply(self.HSC_INFO_OK, 1, "VBox '%s' deleted" % name)
@@ -653,7 +653,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             "unable to delete VBox instance '%s'" % name)
 
     def do_vbox_setattr(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_setattr(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_setattr(%s)" % unicode(data))
         name, attr, value = data
         try:
             instance = VBOX_INSTANCES[name]
@@ -670,7 +670,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "%s set for '%s'" % (attr, name))
 
     def do_vbox_create_nic(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_create_nic(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_create_nic(%s)" % unicode(data))
         #name, vnic, mac = data
         name, vnic = data
         if not name in VBOX_INSTANCES.keys():
@@ -681,7 +681,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_vbox_create_udp(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_create_udp(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_create_udp(%s)" % unicode(data))
         name, vnic, sport, daddr, dport = data
         if not name in VBOX_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -699,7 +699,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_vbox_delete_udp(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_delete_udp(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_delete_udp(%s)" % unicode(data))
         name, vnic = data
         if not name in VBOX_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -717,7 +717,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_vbox_create_capture(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_create_capture(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_create_capture(%s)" % unicode(data))
         name, vnic, path = data
         if not name in VBOX_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -728,7 +728,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_vbox_delete_capture(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_delete_capture(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_delete_capture(%s)" % unicode(data))
         name, vnic = data
         if not name in VBOX_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -739,7 +739,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_vbox_start(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_start(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_start(%s)" % unicode(data))
         name, = data
         if not name in VBOX_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -752,7 +752,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_INFO_OK, 1, "VBox '%s' started" % name)
 
     def do_vbox_stop(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_stop(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_stop(%s)" % unicode(data))
         name, = data
         if not VBOX_INSTANCES[name].stop():
             self.send_reply(self.HSC_ERR_STOP, 1,
@@ -761,7 +761,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_INFO_OK, 1, "VBox '%s' stopped" % name)
 
     def do_vbox_reset(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_reset(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_reset(%s)" % unicode(data))
         name, = data
         if not VBOX_INSTANCES[name].reset():
             self.send_reply(self.HSC_ERR_STOP, 1,
@@ -770,7 +770,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_INFO_OK, 1, "VBox '%s' rebooted" % name)
 
     def do_vbox_suspend(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_suspend(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_suspend(%s)" % unicode(data))
         name, = data
         if not VBOX_INSTANCES[name].suspend():
             self.send_reply(self.HSC_ERR_STOP, 1,
@@ -779,7 +779,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_INFO_OK, 1, "VBox '%s' suspended" % name)
 
     def do_vbox_resume(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_resume(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_resume(%s)" % unicode(data))
         name, = data
         if not VBOX_INSTANCES[name].resume():
             self.send_reply(self.HSC_ERR_STOP, 1,
@@ -788,7 +788,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_INFO_OK, 1, "VBox '%s' resumed" % name)
 
     def do_vbox_clean(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_clean(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_clean(%s)" % unicode(data))
         name, = data
         if not name in VBOX_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -798,7 +798,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_vbox_unbase(self, data):
-        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_unbase(%s)" % str(data))
+        debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_unbase(%s)" % unicode(data))
         name, = data
         if not name in VBOX_INSTANCES.keys():
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
@@ -909,7 +909,7 @@ def main():
         global FORCE_IPV6
         FORCE_IPV6 = options.force_ipv6
 
-    debugmsg(3, "starting server on host %s (port %s)" % (str(host), str(port)))
+    debugmsg(3, "starting server on host %s (port %s)" % (unicode(host), str(port)))
     server = VBoxWrapperServer((host, port), VBoxWrapperRequestHandler)
 
     print "VBoxWrapper TCP control server started (port %d)." % port
