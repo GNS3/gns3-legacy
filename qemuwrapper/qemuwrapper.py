@@ -46,6 +46,13 @@ import random
 import ctypes
 import hashlib
 
+try:
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+except:
+    sys.stderr.write("Can't set default encoding to utf-8\n")
+    pass
+
 if debuglevel > 0:
     if platform.system() == 'Windows':
         debugfilename = "C:\TEMP\gns3-qemuwrapper-log.txt"

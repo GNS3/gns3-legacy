@@ -40,6 +40,13 @@ import threading
 import SocketServer
 import time
 
+try:
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+except:
+    sys.stderr.write("Can't set default encoding to utf-8\n")
+    pass
+
 import vboxcontroller_4_1
 
 if debuglevel > 0:
