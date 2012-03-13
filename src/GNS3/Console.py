@@ -173,7 +173,7 @@ class Console(PyCutExt, Dynagen_Console):
         print 'PyQt version is ' + QtCore.PYQT_VERSION_STR
         print 'SIP version is ' + sip.SIP_VERSION_STR
         print "Python version is %s (%d-bit)" % (pythonver, bitness)
-
+        print "Python default encoding is " + sys.getdefaultencoding()
         print unicode("\nGNS3 run path is %s\n" % GNS3_RUN_PATH)
 
         try:

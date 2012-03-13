@@ -193,7 +193,7 @@ class VBox(object):
         vm_list = []
         for vm in vbox_vms:
             if vm.startswith('101 '):
-                vm_list.append(vm[4:])
+                vm_list.append(unicode(vm[4:]))
         return vm_list
 
     def find_vm(self, vm_name):

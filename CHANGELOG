@@ -19,7 +19,6 @@ GNS3 0.8.2 - 12.03.1012
  * Windows interface names with non-ascii characters are now supported.
  * Unicode support improvements.
 
-
 GNS3 0.8.2 BETA2 - 31.01.2012
 
  * IOS images can be directly uncompressed by GNS3.

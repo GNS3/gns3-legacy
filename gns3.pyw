@@ -22,6 +22,13 @@
 
 import sys, os, traceback
 
+try:
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+except:
+    sys.stderr.write("Can't set default encoding to utf-8\n")
+    pass
+
 # current version of GNS3
 VERSION = "0.8.2"
 VERSION_INTEGER = 0x000802
