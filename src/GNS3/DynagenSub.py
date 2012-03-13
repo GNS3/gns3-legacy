@@ -69,7 +69,7 @@ class DynagenSub(Dynagen):
             for rpcap in rpcaps:
                 match = re.search(r"""^rpcap://(\\Device\\NPF_{[a-fA-F0-9\-]*})\ :\ (.*)""", rpcap)
                 interface_guid = str(match.group(1)).lower()
-                interfaces[interface_guid] = unicode(match.group(2), 'utf-8', errors='replace').strip()
+                interfaces[interface_guid] = unicode(match.group(2)).strip()
                 name_match = re.search(r"""^(.*)\ on local host:.*""", match.group(2))
                 self.rpcap_mapping['nio_gen_eth:' + interface_guid] = name_match.group(1)
 
@@ -391,7 +391,7 @@ class DynagenSub(Dynagen):
                                         selected_images.append(image)
 
                                 if len(selected_images):
-                                    message = unicode("Local IOS image %s\ncannot be found for hypervisor %s:%s\n\nPlease choose an alternative image:", 'utf-8', errors='replace') % (device['image'], server.host, controlPort)
+                                    message = unicode("Local IOS image %s\ncannot be found for hypervisor %s:%s\n\nPlease choose an alternative image:") % (device['image'], server.host, controlPort)
                                     selected_images.sort()
                                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("DynagenSub", "IOS image"),
                                                                                       translate("DynagenSub", message), selected_images, 0, False)

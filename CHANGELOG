@@ -1,6 +1,6 @@
 CHANGELOG
 
-GNS3 0.8.2 - 12.03.1012
+GNS3 0.8.2 - 13.03.1012
 
  * The issue with Qemu VMs that were stuck on “Booting from Hard Disk” message when using Qemu Manager on Linux has been fixed.
  * Vboxwrapper can be started on a remote host and VirtualBox VMs locally controlled in GNS3.
