@@ -470,6 +470,10 @@ class NETFile(object):
                     note_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     if gns3data[section].has_key('z'):
                         note_object.setZValue(float(gns3data[section]['z']))
+                        if note_object.zValue() < 0:
+                            # object on background layer, user cannot select it and move it.
+                            note_object.setFlag(note_object.ItemIsSelectable, False)
+                            note_object.setFlag(note_object.ItemIsMovable, False)
                     if gns3data[section].has_key('font'):
                         font = QtGui.QFont()
                         if font.fromString(gns3data[section]['font'][1:-1]):
@@ -500,6 +504,10 @@ class NETFile(object):
 
                     if gns3data[section].has_key('z'):
                         shape_object.setZValue(float(gns3data[section]['z']))
+                        if shape_object.zValue() < 0:
+                            # object on background layer, user cannot select it and move it.
+                            shape_object.setFlag(shape_object.ItemIsSelectable, False)
+                            shape_object.setFlag(shape_object.ItemIsMovable, False)
                     if gns3data[section].has_key('rotate'):
                         shape_object.rotation = int(gns3data[section]['rotate'])
                         shape_object.rotate(shape_object.rotation)
@@ -534,6 +542,10 @@ class NETFile(object):
                     pixmap_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     if gns3data[section].has_key('z'):
                         pixmap_object.setZValue(float(gns3data[section]['z']))
+                        if pixmap_object.zValue() < 0:
+                            # object on background layer, user cannot select it and move it.
+                            pixmap_object.setFlag(pixmap_object.ItemIsSelectable, False)
+                            pixmap_object.setFlag(pixmap_object.ItemIsMovable, False)
                     globals.GApp.topology.addItem(pixmap_object)
 
                 if devtype.lower() == 'node':
@@ -994,7 +1006,7 @@ class NETFile(object):
                     config['color'] = '"' + str(item.defaultTextColor().name()) + '"'
 
                 zvalue = item.zValue()
-                if zvalue != 1:
+                if zvalue != 2:
                     config['z'] = zvalue
                 note_nb += 1
 
@@ -1045,7 +1057,7 @@ class NETFile(object):
                 config['x'] = item.x()
                 config['y'] = item.y()
                 zvalue = item.zValue()
-                if zvalue > 0:
+                if zvalue != 0:
                     config['z'] = zvalue
                 pix_nb += 1
             elif isinstance(item, DecorativeNode):
