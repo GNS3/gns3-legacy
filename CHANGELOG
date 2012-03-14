@@ -4,13 +4,13 @@ GNS3 0.8.2 - 13.03.1012
 
  * The issue with Qemu VMs that were stuck on “Booting from Hard Disk” message when using Qemu Manager on Linux has been fixed.
  * Vboxwrapper can be started on a remote host and VirtualBox VMs locally controlled in GNS3.
- * Loopback Manager included in Windows all-in-one now work on Win7.
+ * Loopback Manager included in Windows all-in-one now work on Win7/Vista.
  * Start/pause/stop icons are colored as before BETA2.
  * Checks for the correct version of Qemuwrapper and VBoxwrapper.
  * New SecureCRT command line for OSX in terminal settings preferences.
  * New option to set a delay between console when consoling to all devices.
  * Qemu <-> VBox linking has been fixed.
- * FlexiNetwork VirtualBox feature had been patched.
+ * FlexiNetwork VirtualBox feature has been patched.
  * Italian translation has been updated.
  * Give a chance to hypervisor/wrapper processes to stop before they get killed.
  * An issue when trying to choose the file in the Startup-Config dialog has been fixed.
