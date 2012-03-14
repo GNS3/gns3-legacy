@@ -139,7 +139,6 @@ class Cloud(AbstractNode):
         """
 
         self.create_config()
-
         # Add all network interface when using Cloud with computer symbol
         if not self.default_symbol:
             if sys.platform.startswith('win'):

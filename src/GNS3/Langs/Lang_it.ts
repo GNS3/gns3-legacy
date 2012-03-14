@@ -334,7 +334,7 @@ p, li { white-space: pre-wrap; }
         <translation>Avvia Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="492"/>
+        <location filename="../Link/AbstractEdge.py" line="487"/>
         <source>Capture</source>
         <translation>Cattura traffico</translation>
     </message>
@@ -354,12 +354,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nessun analizzatore disponibile</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="447"/>
+        <location filename="../Link/AbstractEdge.py" line="443"/>
         <source>Dynamips error</source>
         <translation>Errore di Dynamips</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="463"/>
+        <location filename="../Link/AbstractEdge.py" line="459"/>
         <source>Please configure capture options</source>
         <translation>Configura le opzioni di cattura</translation>
     </message>
@@ -374,7 +374,7 @@ p, li { white-space: pre-wrap; }
         <translation>Il dispositivo %s non è in funzione</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="492"/>
+        <location filename="../Link/AbstractEdge.py" line="487"/>
         <source>Cannot start %s : %s</source>
         <translation>Impossibile avviare %s : %s</translation>
     </message>
@@ -389,7 +389,7 @@ p, li { white-space: pre-wrap; }
         <translation>Il dispositivo %s deve essere riavviato per iniziare la cattura del traffico</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="433"/>
+        <location filename="../Link/AbstractEdge.py" line="429"/>
         <source>Device %s must be stopped to stop capturing traffic</source>
         <translation>Il dispositivo %s deve essere fermato per terminare la catturare del traffico</translation>
     </message>
@@ -399,17 +399,17 @@ p, li { white-space: pre-wrap; }
         <translation>Avvia la cattura</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="472"/>
+        <location filename="../Link/AbstractEdge.py" line="468"/>
         <source>%s is empty, no traffic has been captured on the link yet. Please try again later</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="476"/>
+        <location filename="../Link/AbstractEdge.py" line="471"/>
         <source>Cannot find %s : %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="476"/>
+        <location filename="../Link/AbstractEdge.py" line="471"/>
         <source>NOTE: This feature is only available for local hypervisors.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -422,12 +422,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nome host:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="385"/>
+        <location filename="../Node/AbstractNode.py" line="386"/>
         <source>Connection</source>
         <translation>Connessione</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="340"/>
+        <location filename="../Node/AbstractNode.py" line="341"/>
         <source>Already connected interface</source>
         <translation>Interfaccia già connessa</translation>
     </message>
@@ -442,12 +442,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nome (host) già in uso</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="311"/>
+        <location filename="../Node/AbstractNode.py" line="312"/>
         <source>Hostname: %s</source>
         <translation>Nome dell&apos;host: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="385"/>
+        <location filename="../Node/AbstractNode.py" line="386"/>
         <source>No interface available, please configure this device</source>
         <translation>Nessuna interfaccia disponibile, configura il dispositivo</translation>
     </message>
@@ -512,12 +512,12 @@ p, li { white-space: pre-wrap; }
         <translation>Cambia la porta della console</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="214"/>
+        <location filename="../Node/AbstractNode.py" line="215"/>
         <source>Change the aux port</source>
         <translation>Cambia la porta aux</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="214"/>
+        <location filename="../Node/AbstractNode.py" line="215"/>
         <source>AUX port for %s:</source>
         <translation>Porta AUX per %s:</translation>
     </message>
@@ -734,16 +734,6 @@ p, li { white-space: pre-wrap; }
     <name>Console</name>
     <message>
         <location filename="../Console.py" line="285"/>
-        <source>Dynamips error</source>
-        <translation>Errore di Dynamips</translation>
-    </message>
-    <message>
-        <location filename="../Console.py" line="283"/>
-        <source>Dynamips warning</source>
-        <translation>Avviso di Dynamips</translation>
-    </message>
-    <message>
-        <location filename="../Console.py" line="285"/>
         <source>Connection lost</source>
         <translation>Connessione perduta</translation>
     </message>
@@ -828,6 +818,26 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
         <source>Cannot start %s: %s</source>
         <translation>Impossibile avviare %s: %s</translation>
     </message>
+    <message>
+        <location filename="../Console.py" line="285"/>
+        <source>%s: Dynamips error</source>
+        <translation type="unfinished">%s: Errore Dynamips</translation>
+    </message>
+    <message>
+        <location filename="../Console.py" line="283"/>
+        <source>%s: Dynamips warning</source>
+        <translation type="unfinished">%s: Avviso Dynamips</translation>
+    </message>
+    <message>
+        <location filename="../Console.py" line="231"/>
+        <source>%s Dynamips warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Console.py" line="233"/>
+        <source>%s Dynamips error</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DecorativeNode</name>
@@ -901,42 +911,32 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="284"/>
+        <location filename="../DynagenSub.py" line="285"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
         <translation>Non è stata trovata l&apos;immagine PIX richiesta %s, verrà usata al suo posto l&apos;immagine %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="417"/>
-        <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
-        <translation>Non è stata trovata l&apos;immagine IOS richiesta %s per l&apos;hypervisor %s, verrà usata al suo posto l&apos;immagine %s</translation>
-    </message>
-    <message>
-        <location filename="../DynagenSub.py" line="448"/>
+        <location filename="../DynagenSub.py" line="449"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>Non è stata trovata la configurazione richiesta %s per il router %s, verrà usata al suo posto la configurazione %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="369"/>
-        <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation>Non è stata trovata la cartella di lavoro richiesta %s per l&apos;hypervisor %s, verrà usata al suo posto la cartella di lavoro %s</translation>
-    </message>
-    <message>
-        <location filename="../DynagenSub.py" line="196"/>
+        <location filename="../DynagenSub.py" line="197"/>
         <source>Local ASA initrd %s cannot be found, use initrd %s instead</source>
         <translation>Non è stato trovato un initrd locale per l&apos;ASA, verrà usato al suo posto l&apos;initrd %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="207"/>
+        <location filename="../DynagenSub.py" line="208"/>
         <source>Local ASA kernel %s cannot be found, use kernel %s instead</source>
         <translation>Non è stato trovato un kernel locale per l&apos;ASA, verrà usato al suo posto il kernel %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="234"/>
+        <location filename="../DynagenSub.py" line="235"/>
         <source>Local IDS image %s cannot be found, use image %s instead</source>
         <translation>Non è stata trovata un&apos;immagine locale per l&apos;IDS, verrà usata al suo posto l&apos;immagine %s</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="257"/>
+        <location filename="../DynagenSub.py" line="258"/>
         <source>Local JunOS image %s cannot be found, use image %s instead</source>
         <translation>Non è stata trovata un&apos;immagine locale JunOS, verrà usata al suo posto l&apos;immagine %s</translation>
     </message>
@@ -946,7 +946,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
         <translation>Immagine IOS</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="270"/>
+        <location filename="../DynagenSub.py" line="271"/>
         <source>Local Qemu guest image %s cannot be found, use image %s instead</source>
         <translation>L&apos;&apos;immagine guest locale %s di Qemu non è disponibile, usa invece l&apos;immagine %s</translation>
     </message>
@@ -961,6 +961,16 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
 Please choose an alternate network interface:</source>
         <translation>L&apos;ID %s della NIC non esiste su questo host
 Scegli un&apos;interfaccia di rete alternativa:</translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="370"/>
+        <source>Local working directory %s cannot be found for hypervisor %s:%s, use working directory %s instead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="418"/>
+        <source>Local IOS image %s cannot be found for hypervisor %s:s, use image %s instead</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1110,32 +1120,32 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="133"/>
+        <location filename="../HypervisorManager.py" line="134"/>
         <source>Abort</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="107"/>
+        <location filename="../HypervisorManager.py" line="108"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Impossibile avviare Dynamips sulla porta %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="133"/>
+        <location filename="../HypervisorManager.py" line="134"/>
         <source>Connecting to a hypervisor on port %i ...</source>
         <translation>Connessione all&apos;hypervisor sulla porta %i in corso...</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="209"/>
+        <location filename="../HypervisorManager.py" line="210"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>La cartella di lavoro %s sembra non presente o non scrivibile, controlla</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="217"/>
+        <location filename="../HypervisorManager.py" line="218"/>
         <source>Can&apos;t set up hypervisor on port %i, please check the settings (writable working directory ...)</source>
         <translation>Impossibile avviare l&apos;hypervisor sulla porta %i, verifica le impostazioni (cartella di lavoro scrivibile, ...)</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="95"/>
+        <location filename="../HypervisorManager.py" line="96"/>
         <source>Hypervisor Manager</source>
         <translation>Gestore hypervisor</translation>
     </message>
@@ -1145,12 +1155,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <translation>Apparentemente un altro hypervisor è in funzione sulla porta %i, vuoi fermare tuti i processi Dynamips?</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="162"/>
+        <location filename="../HypervisorManager.py" line="163"/>
         <source>Can&apos;t connect to the hypervisor on port %i: %s</source>
         <translation>Impossibile connettersi all&apos;hypervisor sulla porta %i: %s</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="95"/>
+        <location filename="../HypervisorManager.py" line="96"/>
         <source>A program is still running on port %i, you will have to stop it manually or change port settings</source>
         <translation>Un programma è ancora in funzione sulla porta %i, occorre bloccarlo manualmente o cambiare le impostazioni della porta</translation>
     </message>
@@ -1296,24 +1306,24 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <name>IOS image</name>
     <message>
         <location filename="../DynagenSub.py" line="402"/>
-        <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
-        <translation>L&apos;immagine IOS %s non è presente per l&apos;hypervisor %s e non è possibile trovare un&apos;immagine alternativa %s</translation>
+        <source>IOS image %s cannot be found for hypervisor %s:%s and cannot find an alternative %s image</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>IOSDialog</name>
     <message>
-        <location filename="../IOSDialog.py" line="277"/>
+        <location filename="../IOSDialog.py" line="278"/>
         <source>IDLE PC not valid (format required: 0xhhhhhhhh)</source>
         <translation>IDLE PC non valido (formato richiesto: 0xhhhhhhhh)</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="290"/>
+        <location filename="../IOSDialog.py" line="291"/>
         <source>No hypervisor selected, use the local hypervisor</source>
         <translation>Nessun hypervisor selezionato, verrà usato l&apos;hypervisor locale</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="438"/>
+        <location filename="../IOSDialog.py" line="439"/>
         <source>Select a working directory</source>
         <translation>Seleziona una cartella di lavoro</translation>
     </message>
@@ -1438,12 +1448,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <translation>Immagine predefinita per questa piattaforma</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="348"/>
+        <location filename="../IOSDialog.py" line="349"/>
         <source>There is already a default image for this platform</source>
         <translation>È già stata configurata un&apos;immagine predefinita per questa piattaforma</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="254"/>
+        <location filename="../IOSDialog.py" line="255"/>
         <source>Can&apos;t open file: %s</source>
         <translation>Impossibile aprire il file: %s</translation>
     </message>
@@ -1458,12 +1468,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <translation>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Verifica dei requisiti minimi di RAM&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="447"/>
+        <location filename="../IOSDialog.py" line="448"/>
         <source>IOS Configuration</source>
         <translation>Configurazione IOS</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="413"/>
+        <location filename="../IOSDialog.py" line="414"/>
         <source>Image file box is empty</source>
         <translation>Il box del file immagine è vuoto</translation>
     </message>
@@ -1488,12 +1498,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <translation>baseconfig.txt</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="447"/>
+        <location filename="../IOSDialog.py" line="448"/>
         <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
         <translation>Il percorso selezionato dovrebbe contenere solo caratteri ASCII (Inglese). Dynamips (DLL di Cygwin) non supporta l&apos;unicode su Windows!</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="248"/>
+        <location filename="../IOSDialog.py" line="249"/>
         <source>Select a Base configuration file</source>
         <translation>Seleziona un file di configurazione base</translation>
     </message>
@@ -1508,12 +1518,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <translation> MiB</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="281"/>
+        <location filename="../IOSDialog.py" line="282"/>
         <source>Warning: IDLE PC will have to be configured! &lt;a href=&apos;http://www.gns3.net/gns3-simplest-topology&apos; &gt;Find out why and how&lt;/a&gt;</source>
         <translation>Avviso: IDLE PC deve essere configurato! &lt;a href=&apos;http://www.gns3.net/gns3-simplest-topology&apos; &gt;Scopri perché e come&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="204"/>
+        <location filename="../IOSDialog.py" line="205"/>
         <source>IOS Image</source>
         <translation>Immagine IOS</translation>
     </message>
@@ -1523,12 +1533,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <translation>L&apos;immagine di IOS è compressa. Vuoi decomprimerla? La scelta di Sì creerà %s</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="197"/>
+        <location filename="../IOSDialog.py" line="198"/>
         <source>%s already exists, let&apos;s use it</source>
         <translation>%s esiste già, sarà utilizzata</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="204"/>
+        <location filename="../IOSDialog.py" line="205"/>
         <source>Sorry, impossible to extract the IOS image</source>
         <translation>Impossibile estrarre l&apos;immagine di IOS</translation>
     </message>
@@ -1536,12 +1546,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="696"/>
+        <location filename="../Node/IOSRouter.py" line="697"/>
         <source>Connection</source>
         <translation>Connessione</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="696"/>
+        <location filename="../Node/IOSRouter.py" line="697"/>
         <source>No interface available</source>
         <translation>Nessuna interfaccia disponibile</translation>
     </message>
@@ -2467,90 +2477,100 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="602"/>
+        <location filename="../NETFile.py" line="614"/>
         <source>Save</source>
         <translation>Salva</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="602"/>
+        <location filename="../NETFile.py" line="614"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Configurare il percorso di Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="898"/>
+        <location filename="../NETFile.py" line="639"/>
         <source>Dynamips error</source>
         <translation>Errore di Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="902"/>
+        <location filename="../NETFile.py" line="645"/>
         <source>Dynamips warning</source>
         <translation>Avviso di Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="643"/>
+        <location filename="../NETFile.py" line="655"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Si è verificato un errore in fase di importazione, il processo sarà fermato...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="895"/>
+        <location filename="../NETFile.py" line="907"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Esportazione della configurazione %s a %s in corso</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1172"/>
+        <location filename="../NETFile.py" line="1183"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Errore IO: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="643"/>
+        <location filename="../NETFile.py" line="655"/>
         <source>Importation</source>
         <translation>Importazione</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="618"/>
+        <location filename="../NETFile.py" line="630"/>
         <source>Please wait while importing the topology</source>
         <translation>Attendi che l&apos;importazione della topologia sia terminata</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1172"/>
-        <source>IOError</source>
-        <translation>Errore IO</translation>
-    </message>
-    <message>
-        <location filename="../NETFile.py" line="667"/>
+        <location filename="../NETFile.py" line="679"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>Attenzione: GNS3 non supporta ancora i &apos;lan statements&apos;, ignorare</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="532"/>
+        <location filename="../NETFile.py" line="540"/>
         <source>Cannot load image: %s</source>
         <translation>Impossibile caricare l&apos;immagine: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="478"/>
+        <location filename="../NETFile.py" line="482"/>
         <source>Cannot load font: %s</source>
         <translation>Impossibile caricare il carattere: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="543"/>
+        <location filename="../NETFile.py" line="555"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
         <translation>%s: impossibile trovare il simbolo %s, verifica che si trovi nella lista nodi, e riavvia il file .net</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1077"/>
-        <source>must be connected or have a hypervisor set in order to be registered</source>
-        <translation>occorre essere connessi o aver configurato un hypervisor per essere registrati</translation>
+        <location filename="../NETFile.py" line="910"/>
+        <source>%s: Dynamips error: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="914"/>
+        <source>%s: Dynamips warning: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="1183"/>
+        <source>%s: IOError</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="1088"/>
+        <source>%s must be connected or have a hypervisor set in order to be registered</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>New Hypervisor</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="280"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="316"/>
         <source>New Hypervisor</source>
         <translation>Nuovo hypervisor</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="280"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="316"/>
         <source>WARNING: When doing multi-host setup, never use loopback addresses, such as &apos;localhost&apos; or &apos;127.0.0.1&apos;. Use actual IP addresses instead.</source>
         <translation>AVVISO: in caso di configurazione multi-host, non utilizzare mai gli indirizzi di loopback, come &apos;localhost&apos; o &apos;127.0.0.1&apos;. Utilizza invece l&apos;indirizzo IP corrente.</translation>
     </message>
@@ -2621,7 +2641,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <translation>Nuvole</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="252"/>
+        <location filename="../NodeConfigurator.py" line="251"/>
         <source>%s node</source>
         <translation>%s nodo</translation>
     </message>
@@ -2658,7 +2678,7 @@ to display the configuration page.</source>
 per visualizzare la pagina di configurazione.</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="304"/>
+        <location filename="../NodeConfigurator.py" line="303"/>
         <source>Node configuration</source>
         <translation>Configurazione del nodo</translation>
     </message>
@@ -3125,17 +3145,17 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX e PA-GE probabilmente non funzioneranno.<
 <context>
     <name>Page_PreferencesVirtualBox</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="323"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="359"/>
         <source>VirtualBox guest</source>
         <translation>Guest VirtualBox</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="323"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="359"/>
         <source>Identifier and binary image must be set!</source>
         <translation>Identificatore e immagine binaria devono essere impostati!</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="161"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="197"/>
         <source>WARNING ! GuestControl is insecure. Passwords are both stored and sent in clear-text. Use at your own risk.</source>
         <translation>AVVISO! GuestControl non è sicuro. Le password sono memorizzate e inviate in chiaro. Usalo a tuo rischio.</translation>
     </message>
@@ -3400,7 +3420,7 @@ o sul collegamento stesso.</translation>
         <translation>Comando da terminale:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="382"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="405"/>
         <source>Always use manual mode when adding links</source>
         <translation>Usa sempre la modalità manuale per nuovi collegamenti</translation>
     </message>
@@ -3425,22 +3445,22 @@ o sul collegamento stesso.</translation>
         <translation>&amp;Cancella</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="392"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="415"/>
         <source>Show link status points on the workspace</source>
         <translation>Mostra lo stato dei collegamenti nella finestra principale</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="308"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="331"/>
         <source>Workspace width:</source>
         <translation>Larghezza della finestra principale:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="353"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="376"/>
         <source> px</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="340"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="363"/>
         <source>Workspace height:</source>
         <translation>Altezza della finestra principale:</translation>
     </message>
@@ -3455,22 +3475,17 @@ o sul collegamento stesso.</translation>
         <translation>Impostazioni generali</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="302"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="325"/>
         <source>GUI Settings</source>
         <translation>Impostazioni GUI</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="372"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="395"/>
         <source>Draw a rectangle when an item is selected</source>
         <translation>Disegna un rettangolo quando un oggetto è selezionato</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="73"/>
-        <source>Waiting time between each start when starting every devices:</source>
-        <translation>Tempo di attesa tra l&apos;accensione di ciascun dispositivo:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="97"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="285"/>
         <source> seconds</source>
         <translation> secondi</translation>
     </message>
@@ -3490,7 +3505,7 @@ o sul collegamento stesso.</translation>
         <translation>&amp;Usa</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="268"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="301"/>
         <source>Terminal command magic strings:
 %h = device server 
 %p = device port
@@ -3511,12 +3526,12 @@ o sul collegamento stesso.</translation>
         <translation>Salvataggio automatico:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="291"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="268"/>
         <source>&lt;html&gt;This option will attempt to bring existing opened console window to front, instead of opening a new window.&lt;br&gt;If no existing opened console window exists, it will start a new  console window.&lt;/html&gt;</source>
         <translation>&lt;html&gt;Questa opzione tenterà di portare in primo piano le console aperte, invece che aprire una nuova finestra.&lt;br&gt;Se non ci sono console aperte, aprirà la finestra di una nuova console.&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="294"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="271"/>
         <source>Bring console window to front (experimental feature)</source>
         <translation>Porta in primo piano la finestra della console (funzionalità sperimentale)</translation>
     </message>
@@ -3529,6 +3544,16 @@ o sul collegamento stesso.</translation>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="136"/>
         <source>OS image (IOS, Qemu, PIX etc.) directory:</source>
         <translation>Cartella immagini OS (IOS, Qemu, PIX ecc.):</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="73"/>
+        <source>Delay between each device start when starting all devices:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="278"/>
+        <source>Delay between each console when consoling to all devices:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3992,11 +4017,6 @@ o sul collegamento stesso.</translation>
         <translation>Impostazioni guest VirtualBox</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="314"/>
-        <source>Identifier name:</source>
-        <translation>Nome identificatore:</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="324"/>
         <source>VM Name / UUID:</source>
         <translation>Nome VM /UUID:</translation>
@@ -4032,7 +4052,7 @@ o sul collegamento stesso.</translation>
         <translation>virtio</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="392"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="373"/>
         <source>Number of NICs:</source>
         <translation>Numero di NIC:</translation>
     </message>
@@ -4047,17 +4067,17 @@ o sul collegamento stesso.</translation>
         <translation>&amp;Elimina</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="477"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="484"/>
         <source>VirtualBox Virtual Machines</source>
         <translation>Macchine virtuali di VirtualBox</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="485"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="492"/>
         <source>GNS3 Name</source>
         <translation>Nome GNS3</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="490"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="497"/>
         <source>Virtual Machine Name or Unique Identifier</source>
         <translation>Nome macchina virtuale o identificatore univoco</translation>
     </message>
@@ -4067,22 +4087,22 @@ o sul collegamento stesso.</translation>
         <translation>Aggiungi diversi wrapper, per distribuire GNS3 su diversi host.</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="408"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="389"/>
         <source>GuestControl User</source>
         <translation>Utente GuestControl</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="415"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="396"/>
         <source>GuestControl Password</source>
         <translation>Password GuestControl</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="422"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="403"/>
         <source>Enable GuestControl</source>
         <translation>Abilita GuestControl</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="429"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="410"/>
         <source>(experimental feature)</source>
         <translation>(funzionalità sperimentale)</translation>
     </message>
@@ -4100,6 +4120,16 @@ o sul collegamento stesso.</translation>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="248"/>
         <source>&amp;Test Settings</source>
         <translation>Prova impos&amp;tazioni</translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="314"/>
+        <source>VM List / unique ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="462"/>
+        <source>Refresh VM List</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4136,17 +4166,17 @@ o sul collegamento stesso.</translation>
         <translation>Impossibile connettersi a Qemu sulla porta %i</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="189"/>
+        <location filename="../QemuManager.py" line="188"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>La cartella di lavoro %s sembra non presente o non scrivibile, controlla</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="136"/>
+        <location filename="../QemuManager.py" line="135"/>
         <source>Qemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
         <translation>Qemu è già avviato sulla porta %i, non sarà possibile bloccarlo se non chiudendo l&apos;applicazione GNS3</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="154"/>
+        <location filename="../QemuManager.py" line="153"/>
         <source>Can&apos;t start Qemu on port %i</source>
         <translation>Impossibile avviare Qemu sulla porta %i</translation>
     </message>
@@ -4780,32 +4810,32 @@ ALT + SINISTRA o DESTRA</translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="529"/>
+        <location filename="../Topology.py" line="530"/>
         <source>IOS image</source>
         <translation>Immagine IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="521"/>
+        <location filename="../Topology.py" line="522"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="517"/>
+        <location filename="../Topology.py" line="518"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Configurare il percorso di Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1208"/>
+        <location filename="../Topology.py" line="1192"/>
         <source>Dynamips error</source>
         <translation>Errore di Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1208"/>
+        <location filename="../Topology.py" line="1192"/>
         <source>Connection lost</source>
         <translation>Connessione perduta</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1088"/>
+        <location filename="../Topology.py" line="1072"/>
         <source>Connection</source>
         <translation>Connessione</translation>
     </message>
@@ -4815,62 +4845,62 @@ ALT + SINISTRA o DESTRA</translation>
         <translation>Impossibile collegarsi all&apos;hypervisor esterno su %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="481"/>
+        <location filename="../Topology.py" line="482"/>
         <source>No image for platform %s</source>
         <translation>Nessuna immagine per la piattaforma %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1088"/>
+        <location filename="../Topology.py" line="1072"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Devi connettere almeno un router allo switch</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="834"/>
+        <location filename="../Topology.py" line="817"/>
         <source>PIX image</source>
         <translation>Immagine PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="521"/>
+        <location filename="../Topology.py" line="522"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>Prova il percorso di Dynamips nelle preferenze</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="471"/>
+        <location filename="../Topology.py" line="472"/>
         <source>Please register at least one IOS image</source>
         <translation>Registrare almeno un&apos;immagine IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="375"/>
+        <location filename="../Topology.py" line="373"/>
         <source>Qemuwrapper error</source>
         <translation>Errore Qemuwrapper</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="834"/>
+        <location filename="../Topology.py" line="817"/>
         <source>%s seems to not exist, please check</source>
         <translation>%s sembra non presente, controlla</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="682"/>
+        <location filename="../Topology.py" line="660"/>
         <source>JunOS image</source>
         <translation>Immagine JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="569"/>
+        <location filename="../Topology.py" line="571"/>
         <source>Qemu image</source>
         <translation>Immagine Qemu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="783"/>
+        <location filename="../Topology.py" line="765"/>
         <source>ASA kernel</source>
         <translation>kernel ASA</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="779"/>
+        <location filename="../Topology.py" line="760"/>
         <source>ASA initrd</source>
         <translation>initrd ASA</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="730"/>
+        <location filename="../Topology.py" line="710"/>
         <source>IDS images</source>
         <translation>Immagini IDS</translation>
     </message>
@@ -4890,7 +4920,7 @@ ALT + SINISTRA o DESTRA</translation>
         <translation>Scegli il Qemuwrapper esterno</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1064"/>
+        <location filename="../Topology.py" line="1048"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Impossibile collegare gli apparati</translation>
     </message>
@@ -4905,149 +4935,134 @@ ALT + SINISTRA o DESTRA</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="654"/>
+        <location filename="../Topology.py" line="632"/>
         <source>JunOS</source>
         <translation>JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="654"/>
+        <location filename="../Topology.py" line="632"/>
         <source>Please configure a JunOS</source>
         <translation>Configura un JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="667"/>
+        <location filename="../Topology.py" line="645"/>
         <source>Please choose a JunOS</source>
         <translation>Scegli un JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="712"/>
+        <location filename="../Topology.py" line="691"/>
         <source>IDS</source>
         <translation>IDS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="699"/>
+        <location filename="../Topology.py" line="678"/>
         <source>Please configure an IDS</source>
         <translation>Configura un IDS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="712"/>
+        <location filename="../Topology.py" line="691"/>
         <source>Please choose an IDS</source>
         <translation>Scegli un IDS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="764"/>
+        <location filename="../Topology.py" line="745"/>
         <source>ASA</source>
         <translation>ASA</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="751"/>
+        <location filename="../Topology.py" line="732"/>
         <source>Please configure an ASA</source>
         <translation>Configura un ASA</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="764"/>
+        <location filename="../Topology.py" line="745"/>
         <source>Please choose an ASA</source>
         <translation>Scegli un ASA</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="819"/>
+        <location filename="../Topology.py" line="802"/>
         <source>PIX</source>
         <translation>PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="806"/>
+        <location filename="../Topology.py" line="789"/>
         <source>Please configure a PIX</source>
         <translation>Configura un PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="819"/>
+        <location filename="../Topology.py" line="802"/>
         <source>Please choose a PIX</source>
         <translation>Scegli un PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="496"/>
+        <location filename="../Topology.py" line="497"/>
         <source>Please choose an image:</source>
         <translation>Scegli un&apos;immagine:</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="402"/>
+        <location filename="../Topology.py" line="399"/>
         <source>External VBoxwrapper</source>
         <translation>VBoxwrapper esterno</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="397"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="473"/>
         <source>Please register at least one external VBoxwrapper</source>
         <translation>Registra almeno un VBoxwrapper esterno</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="402"/>
+        <location filename="../Topology.py" line="399"/>
         <source>Please choose your external VBoxwrapper</source>
         <translation>Scegli il Qemuwrapper esterno</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="444"/>
+        <location filename="../Topology.py" line="446"/>
         <source>VBoxwrapper error</source>
         <translation>Errore VBoxwrapper</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="540"/>
+        <location filename="../Topology.py" line="542"/>
         <source>Please configure a Qemu guest:</source>
         <translation>Configura un guest Qemu:</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="553"/>
+        <location filename="../Topology.py" line="555"/>
         <source>Qemu guest</source>
         <translation>Guest Qemu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="553"/>
+        <location filename="../Topology.py" line="555"/>
         <source>Please choose a Qemu guest</source>
         <translation>Scegli un guest Qemu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="586"/>
+        <location filename="../Topology.py" line="589"/>
         <source>VBox image</source>
         <translation>Immagine VBox</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="586"/>
+        <location filename="../Topology.py" line="589"/>
         <source>Please configure a VirtualBox guest:</source>
         <translation>Configura un guest VirtualBox:</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="599"/>
+        <location filename="../Topology.py" line="602"/>
         <source>VirtualBox guest</source>
         <translation>Guest VirtualBox</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="599"/>
+        <location filename="../Topology.py" line="602"/>
         <source>Please choose a VirtualBox guest</source>
         <translation>Scegli un guest VirtualBox</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="631"/>
-        <source>VirtualBox API</source>
-        <translation>VirtualBox API</translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="618"/>
-        <source>ERROR: VirtualBox API module cannot be loaded !</source>
-        <translation>ERRORE: il modulo VirtualBox API non può essere caricato!</translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="638"/>
+        <location filename="../Topology.py" line="423"/>
         <source>VirtualBox VMname/UUID</source>
         <translation>Nome VM di VirtualBox/UUID</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="638"/>
+        <location filename="../Topology.py" line="423"/>
         <source>VirtualBox Machine &apos;%s&apos; seems to not exist, please check</source>
         <translation>La macchina &apos;%s&apos; di VirtualBox sembra non esistere, controlla</translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="625"/>
-        <source>ERROR: VirtualBox API module cannot start !</source>
-        <translation>ERRORE: il modulo VirtualBox API non può essere avviato!</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="246"/>
@@ -5134,42 +5149,42 @@ ALT + SINISTRA o DESTRA</translation>
 <context>
     <name>UiConfig_PreferencesGeneral</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="228"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="232"/>
         <source>Project Directory</source>
         <translation>Cartella del progetto</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="255"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="259"/>
         <source>Configuration file</source>
         <translation>File di configurazione</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="255"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="259"/>
         <source>Configuration file cleared, default settings will be applied after a restart</source>
         <translation>File di configurazione cancellato, le impostazioni predefinite saranno applicate al riavvio</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="204"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="208"/>
         <source>Project directory</source>
         <translation>Cartella del progetto</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="204"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="208"/>
         <source>Cannot create project directory: %s</source>
         <translation>Impossibile creare la cartella del progetto: %s</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="211"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="215"/>
         <source>Image directory</source>
         <translation>Cartella delle immagini</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="211"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="215"/>
         <source>Cannot create image directory: %s</source>
         <translation>Impossibile creare la cartella delle immagini: %s</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="236"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="240"/>
         <source>Image Directory</source>
         <translation>Cartella delle immagini</translation>
     </message>
@@ -5207,22 +5222,22 @@ ALT + SINISTRA o DESTRA</translation>
         <translation>Avvio di qemu non riuscito</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="934"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="933"/>
         <source>Failed to start qemu-img</source>
         <translation>Avvio di qemu-img non riuscito</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="940"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="941"/>
         <source>Qemuwrapper, qemu and qemu-img have successfully started</source>
         <translation>Qemuwrapper, qemu e qemu-img sono stati avviati correttamente</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="938"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="939"/>
         <source>Qemuwrapper, qemu, qemu-img and pemu have successfully started</source>
         <translation>Qemuwrapper, qemu, qemu-img e pemu sono stati avviati correttamente</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="940"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="941"/>
         <source> (except pemu)</source>
         <translation> (eccetto pemu)</translation>
     </message>
@@ -5236,68 +5251,58 @@ ALT + SINISTRA o DESTRA</translation>
         <source>You&apos;re running an old AND unpatched version of qemu, which won&apos;t work</source>
         <translation>Stai eseguendo una versione di qemu vecchia E senza patch, che non funzionerà</translation>
     </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="937"/>
+        <source> (except pemu that is not supported on Mac OS X)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UiConfig_PreferencesVirtualBox</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="308"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="344"/>
         <source>Local VirtualBox working directory</source>
         <translation>Cartella di lavoro di VirtualBox locale</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="402"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="448"/>
         <source>Message</source>
         <translation>Messaggio</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="402"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="448"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
         <translation>Questa azione eliminerà la topologia corrente, desideri continuare?</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="412"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="458"/>
         <source>VBoxwrapper path doesn&apos;t exist</source>
         <translation>Il percorso di VBoxwrapper non esiste</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="451"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="467"/>
         <source>Failed to start VBoxwrapper</source>
         <translation>Avvio di VBoxwrapper non riuscito</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="454"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="513"/>
         <source>VBoxwrapper and VirtualBox API %s have successfully started</source>
         <translation>VBoxwrapper e VirtualBox API %s sono stati avviati correttamente</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="426"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="510"/>
         <source>Failed to start xdotool</source>
         <translation>Avvio di xdotool non riuscito</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="418"/>
-        <source>Failed to load vboxapi module. Please check VirtualBox installation.</source>
-        <translation>Caricamento del modulo vboxapi non riuscito. Controlla l&apos;installazione di VirtualBox.</translation>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="478"/>
+        <source>External VBoxwrapper</source>
+        <translation type="unfinished">VBoxwrapper esterno</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="441"/>
-        <source>ERROR: Found VirtualBox v%s. Required: v%s</source>
-        <translation>ERRORE: trovato VirtualBox v%s. Richiesto: v%s</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="449"/>
-        <source>Failed to start VBoxwrapper (python.exe path must be in your PATH environment variable)</source>
-        <translation>Avvio di VBoxwrapper non riuscito (il percorso a python.exe deve essere presente nella variabile d&apos;ambiente PATH)</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="433"/>
-        <source>VirtualBox is not installed. &lt;a href=&apos;http://www.virtualbox.org/wiki/Downloads&apos;&gt;Download it&lt;/a&gt;</source>
-        <translation>VirtualBox non è installato. &lt;a href=&apos;http://www.virtualbox.org/wiki/Downloads&apos;&gt;Scaricalo&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="435"/>
-        <source>Failed to start vboxapi module. Please check that VirtualBox is installed.</source>
-        <translation>Avvio del modulo vboxapi non riuscito. Controlla che VirtualBox sia installato.</translation>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="478"/>
+        <source>Please choose your external VBoxwrapper</source>
+        <translation type="unfinished">Scegli il Qemuwrapper esterno</translation>
     </message>
 </context>
 <context>
@@ -5406,7 +5411,7 @@ ALT + SINISTRA o DESTRA</translation>
         <translation>Impossibile connettersi a VBox sulla porta %i</translation>
     </message>
     <message>
-        <location filename="../VBoxManager.py" line="191"/>
+        <location filename="../VBoxManager.py" line="120"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>La cartella di lavoro %s sembra non esistere o non scrivibile, controlla</translation>
     </message>
@@ -5472,27 +5477,27 @@ ALT + SINISTRA o DESTRA</translation>
 <context>
     <name>Widget_capturesDock</name>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="119"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="122"/>
         <source>Stop capturing</source>
         <translation>Ferma la cattura</translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="123"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="126"/>
         <source>Start Wireshark</source>
         <translation>Avvia Wireshark</translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="98"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="101"/>
         <source>Start all captures</source>
         <translation>Avvia tutte le catture</translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="101"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="104"/>
         <source>Stop all captures</source>
         <translation>Ferma tutte le catture</translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="114"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="117"/>
         <source>Start capturing</source>
         <translation>Avvia la cattura</translation>
     </message>
@@ -5906,6 +5911,11 @@ p, li { white-space: pre-wrap; }
         <source>VirtualBox is not installed!</source>
         <translation>VirtualBox non è installato!</translation>
     </message>
+    <message>
+        <location filename="../Workspace.py" line="1098"/>
+        <source>Dynamips error %s: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>nodesDock</name>
@@ -6018,7 +6028,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>topologySummaryDock</name>
     <message>
-        <location filename="../Ui/Widget_topologySummaryDock.py" line="103"/>
+        <location filename="../Ui/Widget_topologySummaryDock.py" line="104"/>
         <source>%s is connected to %s %s</source>
         <translation>%s è connesso a %s %s</translation>
     </message>

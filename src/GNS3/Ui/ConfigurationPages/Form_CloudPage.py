@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_CloudPage.ui'
 #
-# Created: Sun Mar  4 22:04:17 2012
+# Created: Tue Mar 13 20:07:46 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_CloudPage(object):
     def setupUi(self, CloudPage):
         CloudPage.setObjectName(_fromUtf8("CloudPage"))
-        CloudPage.resize(551, 482)
+        CloudPage.resize(470, 482)
         CloudPage.setWindowTitle(QtGui.QApplication.translate("CloudPage", "Cloud", None, QtGui.QApplication.UnicodeUTF8))
         self.vboxlayout = QtGui.QVBoxLayout(CloudPage)
         self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))

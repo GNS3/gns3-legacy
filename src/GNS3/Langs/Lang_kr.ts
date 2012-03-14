@@ -316,7 +316,7 @@ p, li { white-space: pre-wrap; }
         <translation>Wireshark를 실행</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="492"/>
+        <location filename="../Link/AbstractEdge.py" line="487"/>
         <source>Capture</source>
         <translation>캡쳐</translation>
     </message>
@@ -336,12 +336,12 @@ p, li { white-space: pre-wrap; }
         <translation>트래픽 캡쳐를 할 장치가 없습니다</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="447"/>
+        <location filename="../Link/AbstractEdge.py" line="443"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="463"/>
+        <location filename="../Link/AbstractEdge.py" line="459"/>
         <source>Please configure capture options</source>
         <translation>캡쳐 옵션을 설정해주세요</translation>
     </message>
@@ -356,7 +356,7 @@ p, li { white-space: pre-wrap; }
         <translation>장치 %s 가 실행중이지 않습니다</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="492"/>
+        <location filename="../Link/AbstractEdge.py" line="487"/>
         <source>Cannot start %s : %s</source>
         <translation>%s 를 시작할 수 없습니다 : %s</translation>
     </message>
@@ -371,7 +371,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="433"/>
+        <location filename="../Link/AbstractEdge.py" line="429"/>
         <source>Device %s must be stopped to stop capturing traffic</source>
         <translation type="unfinished"></translation>
     </message>
@@ -381,17 +381,17 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="472"/>
+        <location filename="../Link/AbstractEdge.py" line="468"/>
         <source>%s is empty, no traffic has been captured on the link yet. Please try again later</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="476"/>
+        <location filename="../Link/AbstractEdge.py" line="471"/>
         <source>Cannot find %s : %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="476"/>
+        <location filename="../Link/AbstractEdge.py" line="471"/>
         <source>NOTE: This feature is only available for local hypervisors.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -404,12 +404,12 @@ p, li { white-space: pre-wrap; }
         <translation>호스트 이름:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="385"/>
+        <location filename="../Node/AbstractNode.py" line="386"/>
         <source>Connection</source>
         <translation>연결</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="340"/>
+        <location filename="../Node/AbstractNode.py" line="341"/>
         <source>Already connected interface</source>
         <translation>이미 인터페이스에 연결되어 있습니다</translation>
     </message>
@@ -424,12 +424,12 @@ p, li { white-space: pre-wrap; }
         <translation>호스트 이름이 이미 사용되고 있습니다</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="311"/>
+        <location filename="../Node/AbstractNode.py" line="312"/>
         <source>Hostname: %s</source>
         <translation>호스트 이름: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="385"/>
+        <location filename="../Node/AbstractNode.py" line="386"/>
         <source>No interface available, please configure this device</source>
         <translation>사용가능한 인터페이스가 존재하지 않습니다, 장비를 설정해주세요</translation>
     </message>
@@ -494,12 +494,12 @@ p, li { white-space: pre-wrap; }
         <translation>콘솔 포트를 변경</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="214"/>
+        <location filename="../Node/AbstractNode.py" line="215"/>
         <source>Change the aux port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="214"/>
+        <location filename="../Node/AbstractNode.py" line="215"/>
         <source>AUX port for %s:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -716,16 +716,6 @@ p, li { white-space: pre-wrap; }
     <name>Console</name>
     <message>
         <location filename="../Console.py" line="285"/>
-        <source>Dynamips error</source>
-        <translation>Dynamips 에러</translation>
-    </message>
-    <message>
-        <location filename="../Console.py" line="283"/>
-        <source>Dynamips warning</source>
-        <translation>Dynamips 경고</translation>
-    </message>
-    <message>
-        <location filename="../Console.py" line="285"/>
         <source>Connection lost</source>
         <translation>연결 종료</translation>
     </message>
@@ -809,6 +799,26 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
         <source>Cannot start %s: %s</source>
         <translation>%s 를 시작할 수 없습니다 : %s</translation>
     </message>
+    <message>
+        <location filename="../Console.py" line="285"/>
+        <source>%s: Dynamips error</source>
+        <translation type="unfinished">%s: Dynamips 에러</translation>
+    </message>
+    <message>
+        <location filename="../Console.py" line="283"/>
+        <source>%s: Dynamips warning</source>
+        <translation type="unfinished">%s: Dynamips 경고</translation>
+    </message>
+    <message>
+        <location filename="../Console.py" line="231"/>
+        <source>%s Dynamips warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Console.py" line="233"/>
+        <source>%s Dynamips error</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DecorativeNode</name>
@@ -882,37 +892,27 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
         <translation>중지</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="417"/>
-        <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
-        <translation>%s IOS 이미지에서 하이퍼바이저 %s 를 찾을 수 없기 때문에 %s 이미지를 대신 사용합니다</translation>
-    </message>
-    <message>
-        <location filename="../DynagenSub.py" line="448"/>
+        <location filename="../DynagenSub.py" line="449"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>%s 설정에서 라우터 %s 를 찾을 수 없기 때문에 %s 설정을 대신 사용합니다</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="369"/>
-        <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation>%s 작업 디렉터리에서 하이퍼바이저 %s 를 찾을 수 없기 때문에 %s 작업 디렉터리를 대신 사용합니다</translation>
-    </message>
-    <message>
-        <location filename="../DynagenSub.py" line="196"/>
+        <location filename="../DynagenSub.py" line="197"/>
         <source>Local ASA initrd %s cannot be found, use initrd %s instead</source>
         <translation>ASA initrd %s를 찾을 수 없기 때문에 ASA initrd %s를 대신 사용합니다</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="207"/>
+        <location filename="../DynagenSub.py" line="208"/>
         <source>Local ASA kernel %s cannot be found, use kernel %s instead</source>
         <translation>ASA 커널 %s를 찾을 수 없기 때문에 ASA 커널 %s를 대신 사용합니다</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="234"/>
+        <location filename="../DynagenSub.py" line="235"/>
         <source>Local IDS image %s cannot be found, use image %s instead</source>
         <translation>IDS 이미지 %s를 찾을 수 없기 때문에 IDS 이미지 %s를 대신 사용합니다</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="257"/>
+        <location filename="../DynagenSub.py" line="258"/>
         <source>Local JunOS image %s cannot be found, use image %s instead</source>
         <translation>JunOS 이미지 %s를 찾을 수 없기 때문에 JunOS 이미지 %s를 대신 사용합니다</translation>
     </message>
@@ -922,12 +922,12 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
         <translation type="unfinished">IOS 이미지</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="270"/>
+        <location filename="../DynagenSub.py" line="271"/>
         <source>Local Qemu guest image %s cannot be found, use image %s instead</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="284"/>
+        <location filename="../DynagenSub.py" line="285"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
         <translation type="unfinished"></translation>
     </message>
@@ -940,6 +940,16 @@ idlepc 값 앞에 있는 숫자를 입력하면 그 값이 적용됩니다 [1-%i
         <location filename="../DynagenSub.py" line="78"/>
         <source>NIC ID %s cannot be found on this host
 Please choose an alternate network interface:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="370"/>
+        <source>Local working directory %s cannot be found for hypervisor %s:%s, use working directory %s instead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="418"/>
+        <source>Local IOS image %s cannot be found for hypervisor %s:s, use image %s instead</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1090,32 +1100,32 @@ Please choose an alternate network interface:</source>
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="133"/>
+        <location filename="../HypervisorManager.py" line="134"/>
         <source>Abort</source>
         <translation>중지</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="107"/>
+        <location filename="../HypervisorManager.py" line="108"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Dynamips를 포트 %i에서 시작할 수 없음</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="133"/>
+        <location filename="../HypervisorManager.py" line="134"/>
         <source>Connecting to a hypervisor on port %i ...</source>
         <translation>하이퍼바이저 포트 %i에서 연결중...</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="209"/>
+        <location filename="../HypervisorManager.py" line="210"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>%s 작업 디렉터리가 존재하지 않거나 사용할 수 없습니다. 다시한번 확인을 부탁드립니다</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="217"/>
+        <location filename="../HypervisorManager.py" line="218"/>
         <source>Can&apos;t set up hypervisor on port %i, please check the settings (writable working directory ...)</source>
         <translation>%i 포트로 하이퍼바이저를 설정할 수 없습니다 설정 부분을 확인 부탁드립니다 (작업 디렉터리같은 설정 등등)</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="95"/>
+        <location filename="../HypervisorManager.py" line="96"/>
         <source>Hypervisor Manager</source>
         <translation>하이퍼바이저 관리자</translation>
     </message>
@@ -1125,12 +1135,12 @@ Please choose an alternate network interface:</source>
         <translation>하이퍼바이저가 이미 %i 에서 실행되고 있는데, 모든 다이나밉스 프로세스를 죽였나요?</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="162"/>
+        <location filename="../HypervisorManager.py" line="163"/>
         <source>Can&apos;t connect to the hypervisor on port %i: %s</source>
         <translation>하이퍼바이저를 %i 포트에 연결할 수 없습니다 - %s</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="95"/>
+        <location filename="../HypervisorManager.py" line="96"/>
         <source>A program is still running on port %i, you will have to stop it manually or change port settings</source>
         <translation>프로그램이 %i 포트에서 여전히~ 실행되고 있습니다. 프로그램을 수동으로 죽이시거나 포트 설정을 변경해주세요</translation>
     </message>
@@ -1276,24 +1286,24 @@ Please choose an alternate network interface:</source>
     <name>IOS image</name>
     <message>
         <location filename="../DynagenSub.py" line="402"/>
-        <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
-        <translation>%s IOS 이미지가 %s 의 하이퍼바이저 및 대체할 수 있는 %s 이미지를 찾지 못했습니다</translation>
+        <source>IOS image %s cannot be found for hypervisor %s:%s and cannot find an alternative %s image</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>IOSDialog</name>
     <message>
-        <location filename="../IOSDialog.py" line="277"/>
+        <location filename="../IOSDialog.py" line="278"/>
         <source>IDLE PC not valid (format required: 0xhhhhhhhh)</source>
         <translation>IDLE PC 값이 유효하지 않습니다 (형식: 0xhhhhhhhh)</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="290"/>
+        <location filename="../IOSDialog.py" line="291"/>
         <source>No hypervisor selected, use the local hypervisor</source>
         <translation>하이퍼바이저가 선택되어있지 않아, 로컬 하이퍼바이저를 사용합니다</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="438"/>
+        <location filename="../IOSDialog.py" line="439"/>
         <source>Select a working directory</source>
         <translation>작업 디렉터리를 선택</translation>
     </message>
@@ -1418,12 +1428,12 @@ Please choose an alternate network interface:</source>
         <translation>이 플랫폼에 대한 기본 이미지를 설정</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="348"/>
+        <location filename="../IOSDialog.py" line="349"/>
         <source>There is already a default image for this platform</source>
         <translation>이 플랫폼에는 기본 이미지가 설정되어 있습니다</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="254"/>
+        <location filename="../IOSDialog.py" line="255"/>
         <source>Can&apos;t open file: %s</source>
         <translation>%s 파일을 열 수 없습니다</translation>
     </message>
@@ -1438,12 +1448,12 @@ Please choose an alternate network interface:</source>
         <translation>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Check for minimum RAM requirement&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="447"/>
+        <location filename="../IOSDialog.py" line="448"/>
         <source>IOS Configuration</source>
         <translation>IOS 구성</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="413"/>
+        <location filename="../IOSDialog.py" line="414"/>
         <source>Image file box is empty</source>
         <translation>이미지 파일 대화상자가 비어 있습니다</translation>
     </message>
@@ -1468,12 +1478,12 @@ Please choose an alternate network interface:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="447"/>
+        <location filename="../IOSDialog.py" line="448"/>
         <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="248"/>
+        <location filename="../IOSDialog.py" line="249"/>
         <source>Select a Base configuration file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1488,12 +1498,12 @@ Please choose an alternate network interface:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="281"/>
+        <location filename="../IOSDialog.py" line="282"/>
         <source>Warning: IDLE PC will have to be configured! &lt;a href=&apos;http://www.gns3.net/gns3-simplest-topology&apos; &gt;Find out why and how&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="204"/>
+        <location filename="../IOSDialog.py" line="205"/>
         <source>IOS Image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1503,12 +1513,12 @@ Please choose an alternate network interface:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="197"/>
+        <location filename="../IOSDialog.py" line="198"/>
         <source>%s already exists, let&apos;s use it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="204"/>
+        <location filename="../IOSDialog.py" line="205"/>
         <source>Sorry, impossible to extract the IOS image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1516,12 +1526,12 @@ Please choose an alternate network interface:</source>
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="696"/>
+        <location filename="../Node/IOSRouter.py" line="697"/>
         <source>Connection</source>
         <translation>연결</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="696"/>
+        <location filename="../Node/IOSRouter.py" line="697"/>
         <source>No interface available</source>
         <translation>사용가능한 인터페이스가 없습니다</translation>
     </message>
@@ -2447,90 +2457,100 @@ Please choose an alternate network interface:</source>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="602"/>
+        <location filename="../NETFile.py" line="614"/>
         <source>Save</source>
         <translation>저장</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="602"/>
+        <location filename="../NETFile.py" line="614"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamips의 경로를 설정해주세요</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="898"/>
+        <location filename="../NETFile.py" line="639"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="902"/>
+        <location filename="../NETFile.py" line="645"/>
         <source>Dynamips warning</source>
         <translation>Dynamips 경고</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="643"/>
+        <location filename="../NETFile.py" line="655"/>
         <source>Exception detected, stopping importation...</source>
         <translation>에러가 발생하여 불러오기를 중단합니다...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="895"/>
+        <location filename="../NETFile.py" line="907"/>
         <source>Exporting %s configuration to %s</source>
         <translation>%s 의 설정을 %s 로 내보내는 중</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1172"/>
+        <location filename="../NETFile.py" line="1183"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO 에러: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="643"/>
+        <location filename="../NETFile.py" line="655"/>
         <source>Importation</source>
         <translation>불러오기</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="618"/>
+        <location filename="../NETFile.py" line="630"/>
         <source>Please wait while importing the topology</source>
         <translation>토폴로지를 불러오는 중입니다. 잠시만 기다려 주세요</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1172"/>
-        <source>IOError</source>
-        <translation>입출력 관련 에러</translation>
-    </message>
-    <message>
-        <location filename="../NETFile.py" line="667"/>
+        <location filename="../NETFile.py" line="679"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>경고: GNS3 doesn&apos;t yet support lan statements, ignore it</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="532"/>
+        <location filename="../NETFile.py" line="540"/>
         <source>Cannot load image: %s</source>
         <translation>%s 이미지를 불러오지 못했습니다</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="478"/>
+        <location filename="../NETFile.py" line="482"/>
         <source>Cannot load font: %s</source>
         <translation>%s 폰트를 불러오지 못했습니다</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="543"/>
+        <location filename="../NETFile.py" line="555"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
         <translation>%s 장비에 대한 %s 심벌을 찾을 수 없습니다. 해당 심벌이 사용가능한 심벌인지 노드 리스트에서 확인 후 .Net 파일을 다시 불러와서 확인을 해주세요</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1077"/>
-        <source>must be connected or have a hypervisor set in order to be registered</source>
-        <translation>등록을 하기 위해서는 연결이 되어 있어야 하거나 하이퍼바이저가 설정되어 있어야 합니다</translation>
+        <location filename="../NETFile.py" line="910"/>
+        <source>%s: Dynamips error: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="914"/>
+        <source>%s: Dynamips warning: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="1183"/>
+        <source>%s: IOError</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="1088"/>
+        <source>%s must be connected or have a hypervisor set in order to be registered</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>New Hypervisor</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="280"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="316"/>
         <source>New Hypervisor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="280"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="316"/>
         <source>WARNING: When doing multi-host setup, never use loopback addresses, such as &apos;localhost&apos; or &apos;127.0.0.1&apos;. Use actual IP addresses instead.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2601,7 +2621,7 @@ Please choose an alternate network interface:</source>
         <translation>네트워크 망</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="252"/>
+        <location filename="../NodeConfigurator.py" line="251"/>
         <source>%s node</source>
         <translation>%s 노드</translation>
     </message>
@@ -2638,7 +2658,7 @@ to display the configuration page.</source>
 노드를 선택 해주세요.</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="304"/>
+        <location filename="../NodeConfigurator.py" line="303"/>
         <source>Node configuration</source>
         <translation>노드 설정</translation>
     </message>
@@ -3104,17 +3124,17 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
 <context>
     <name>Page_PreferencesVirtualBox</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="323"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="359"/>
         <source>VirtualBox guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="161"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="197"/>
         <source>WARNING ! GuestControl is insecure. Passwords are both stored and sent in clear-text. Use at your own risk.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="323"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="359"/>
         <source>Identifier and binary image must be set!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3378,7 +3398,7 @@ or the link itself.</source>
         <translation>터미널 커맨드:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="382"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="405"/>
         <source>Always use manual mode when adding links</source>
         <translation>링크 추가시 언제나 수동으로 설정</translation>
     </message>
@@ -3403,22 +3423,22 @@ or the link itself.</source>
         <translation>삭제(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="392"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="415"/>
         <source>Show link status points on the workspace</source>
         <translation>링크 상태를 작업 공간에 보여주기</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="308"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="331"/>
         <source>Workspace width:</source>
         <translation>작업 공간의 폭:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="353"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="376"/>
         <source> px</source>
         <translation>픽셀</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="340"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="363"/>
         <source>Workspace height:</source>
         <translation>작업 공간의 높이:</translation>
     </message>
@@ -3433,22 +3453,17 @@ or the link itself.</source>
         <translation>일반 설정</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="302"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="325"/>
         <source>GUI Settings</source>
         <translation>GUI 설정</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="372"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="395"/>
         <source>Draw a rectangle when an item is selected</source>
         <translation>아이콘 등.. 아이템이 선택되게 되면 네모칸으로 표시</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="73"/>
-        <source>Waiting time between each start when starting every devices:</source>
-        <translation>모든 장비를 시작할 때 각 장비간의 시작전 대기시간:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="97"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="285"/>
         <source> seconds</source>
         <translation> 초</translation>
     </message>
@@ -3468,7 +3483,7 @@ or the link itself.</source>
         <translation>사용(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="268"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="301"/>
         <source>Terminal command magic strings:
 %h = device server 
 %p = device port
@@ -3486,12 +3501,12 @@ or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="291"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="268"/>
         <source>&lt;html&gt;This option will attempt to bring existing opened console window to front, instead of opening a new window.&lt;br&gt;If no existing opened console window exists, it will start a new  console window.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="294"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="271"/>
         <source>Bring console window to front (experimental feature)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3503,6 +3518,16 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="136"/>
         <source>OS image (IOS, Qemu, PIX etc.) directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="73"/>
+        <source>Delay between each device start when starting all devices:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="278"/>
+        <source>Delay between each console when consoling to all devices:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3982,11 +4007,6 @@ or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="314"/>
-        <source>Identifier name:</source>
-        <translation type="unfinished">식별자 이름:</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="324"/>
         <source>VM Name / UUID:</source>
         <translation type="unfinished"></translation>
@@ -4022,27 +4042,27 @@ or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="392"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="373"/>
         <source>Number of NICs:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="408"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="389"/>
         <source>GuestControl User</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="415"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="396"/>
         <source>GuestControl Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="422"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="403"/>
         <source>Enable GuestControl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="429"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="410"/>
         <source>(experimental feature)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4057,23 +4077,33 @@ or the link itself.</source>
         <translation type="unfinished">삭제(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="477"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="484"/>
         <source>VirtualBox Virtual Machines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="485"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="492"/>
         <source>GNS3 Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="490"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="497"/>
         <source>Virtual Machine Name or Unique Identifier</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="248"/>
         <source>&amp;Test Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="314"/>
+        <source>VM List / unique ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="462"/>
+        <source>Refresh VM List</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4111,17 +4141,17 @@ or the link itself.</source>
         <translation>Qemu 포트 %i에 연결할 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="189"/>
+        <location filename="../QemuManager.py" line="188"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>%s 작업 디렉터리가 존재하지 않거나 사용할 수 없습니다. 다시한번 확인을 부탁드립니다</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="136"/>
+        <location filename="../QemuManager.py" line="135"/>
         <source>Qemu is already running on port %i, it will not be shutdown after you quit GNS3</source>
         <translation>Qemu가 이미 %i 포트에서 실행되고 있습니다. GNS3를 종료하기 전에는 Qemu가 종료되지 않습니다</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="154"/>
+        <location filename="../QemuManager.py" line="153"/>
         <source>Can&apos;t start Qemu on port %i</source>
         <translation>Qemu 포트 %i에서 시작할 수 없습니다</translation>
     </message>
@@ -4753,37 +4783,37 @@ ALT + LEFT or RIGHT</source>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="529"/>
+        <location filename="../Topology.py" line="530"/>
         <source>IOS image</source>
         <translation>IOS 이미지</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="471"/>
+        <location filename="../Topology.py" line="472"/>
         <source>Please register at least one IOS image</source>
         <translation>적어도 하나의 IOS를 등록시켜 주세요</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="521"/>
+        <location filename="../Topology.py" line="522"/>
         <source>Hypervisor</source>
         <translation>하이퍼바이저</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="517"/>
+        <location filename="../Topology.py" line="518"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamips의 경로를 설정해주세요</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1208"/>
+        <location filename="../Topology.py" line="1192"/>
         <source>Dynamips error</source>
         <translation>Dynamips 에러</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1208"/>
+        <location filename="../Topology.py" line="1192"/>
         <source>Connection lost</source>
         <translation>연결 종료</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1088"/>
+        <location filename="../Topology.py" line="1072"/>
         <source>Connection</source>
         <translation>연결</translation>
     </message>
@@ -4793,52 +4823,52 @@ ALT + LEFT or RIGHT</source>
         <translation>외부 하이퍼바이저 %s 에서 연결할 수 없습니다</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="481"/>
+        <location filename="../Topology.py" line="482"/>
         <source>No image for platform %s</source>
         <translation>%s 플랫폼에 IOS 이미지가 설정되어 있지 않습니다</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1088"/>
+        <location filename="../Topology.py" line="1072"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>적어도 하나의 라우터에서 스위치로 연결이 되어야 합니다</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="521"/>
+        <location filename="../Topology.py" line="522"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>Dynamips 경로에 대해 테스트를 부탁 드립니다 (환경 설정 -&gt; Dynamips -&gt; 테스트)</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="375"/>
+        <location filename="../Topology.py" line="373"/>
         <source>Qemuwrapper error</source>
         <translation>Qemuwrapper 에러</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="834"/>
+        <location filename="../Topology.py" line="817"/>
         <source>%s seems to not exist, please check</source>
         <translation>%s가 존재하지 않는 것 같습니다. 다시한번 확인을 부탁 드립니다</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="682"/>
+        <location filename="../Topology.py" line="660"/>
         <source>JunOS image</source>
         <translation>JunOS 이미지</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="569"/>
+        <location filename="../Topology.py" line="571"/>
         <source>Qemu image</source>
         <translation>Qemu 이미지</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="783"/>
+        <location filename="../Topology.py" line="765"/>
         <source>ASA kernel</source>
         <translation>ASA 커널</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="779"/>
+        <location filename="../Topology.py" line="760"/>
         <source>ASA initrd</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="730"/>
+        <location filename="../Topology.py" line="710"/>
         <source>IDS images</source>
         <translation>IOS 이미지</translation>
     </message>
@@ -4858,7 +4888,7 @@ ALT + LEFT or RIGHT</source>
         <translation>외부 Qemuwrapper 를 선택 해주세요</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1064"/>
+        <location filename="../Topology.py" line="1048"/>
         <source>Can&apos;t connect these devices</source>
         <translation>그 장치들에 연결할 수 없습니다</translation>
     </message>
@@ -4873,152 +4903,137 @@ ALT + LEFT or RIGHT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="654"/>
+        <location filename="../Topology.py" line="632"/>
         <source>JunOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="654"/>
+        <location filename="../Topology.py" line="632"/>
         <source>Please configure a JunOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="667"/>
+        <location filename="../Topology.py" line="645"/>
         <source>Please choose a JunOS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="712"/>
+        <location filename="../Topology.py" line="691"/>
         <source>IDS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="699"/>
+        <location filename="../Topology.py" line="678"/>
         <source>Please configure an IDS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="712"/>
+        <location filename="../Topology.py" line="691"/>
         <source>Please choose an IDS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="764"/>
+        <location filename="../Topology.py" line="745"/>
         <source>ASA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="751"/>
+        <location filename="../Topology.py" line="732"/>
         <source>Please configure an ASA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="764"/>
+        <location filename="../Topology.py" line="745"/>
         <source>Please choose an ASA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="496"/>
+        <location filename="../Topology.py" line="497"/>
         <source>Please choose an image:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="402"/>
+        <location filename="../Topology.py" line="399"/>
         <source>External VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="397"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="473"/>
         <source>Please register at least one external VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="402"/>
+        <location filename="../Topology.py" line="399"/>
         <source>Please choose your external VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="444"/>
+        <location filename="../Topology.py" line="446"/>
         <source>VBoxwrapper error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="540"/>
+        <location filename="../Topology.py" line="542"/>
         <source>Please configure a Qemu guest:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="553"/>
+        <location filename="../Topology.py" line="555"/>
         <source>Qemu guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="553"/>
+        <location filename="../Topology.py" line="555"/>
         <source>Please choose a Qemu guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="586"/>
+        <location filename="../Topology.py" line="589"/>
         <source>VBox image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="586"/>
+        <location filename="../Topology.py" line="589"/>
         <source>Please configure a VirtualBox guest:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="599"/>
+        <location filename="../Topology.py" line="602"/>
         <source>VirtualBox guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="599"/>
+        <location filename="../Topology.py" line="602"/>
         <source>Please choose a VirtualBox guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="631"/>
-        <source>VirtualBox API</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="618"/>
-        <source>ERROR: VirtualBox API module cannot be loaded !</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="625"/>
-        <source>ERROR: VirtualBox API module cannot start !</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="638"/>
+        <location filename="../Topology.py" line="423"/>
         <source>VirtualBox VMname/UUID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="638"/>
+        <location filename="../Topology.py" line="423"/>
         <source>VirtualBox Machine &apos;%s&apos; seems to not exist, please check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="819"/>
+        <location filename="../Topology.py" line="802"/>
         <source>PIX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="806"/>
+        <location filename="../Topology.py" line="789"/>
         <source>Please configure a PIX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="819"/>
+        <location filename="../Topology.py" line="802"/>
         <source>Please choose a PIX</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="834"/>
+        <location filename="../Topology.py" line="817"/>
         <source>PIX image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5107,42 +5122,42 @@ ALT + LEFT or RIGHT</source>
 <context>
     <name>UiConfig_PreferencesGeneral</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="228"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="232"/>
         <source>Project Directory</source>
         <translation type="unfinished">프로젝트 디렉터리</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="255"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="259"/>
         <source>Configuration file</source>
         <translation type="unfinished">Configuration 파일</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="255"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="259"/>
         <source>Configuration file cleared, default settings will be applied after a restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="204"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="208"/>
         <source>Project directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="204"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="208"/>
         <source>Cannot create project directory: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="211"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="215"/>
         <source>Image directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="211"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="215"/>
         <source>Cannot create image directory: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="236"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="240"/>
         <source>Image Directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5180,22 +5195,22 @@ ALT + LEFT or RIGHT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="934"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="933"/>
         <source>Failed to start qemu-img</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="940"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="941"/>
         <source>Qemuwrapper, qemu and qemu-img have successfully started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="938"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="939"/>
         <source>Qemuwrapper, qemu, qemu-img and pemu have successfully started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="940"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="941"/>
         <source> (except pemu)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5209,67 +5224,57 @@ ALT + LEFT or RIGHT</source>
         <source>You&apos;re running an old AND unpatched version of qemu, which won&apos;t work</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="937"/>
+        <source> (except pemu that is not supported on Mac OS X)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UiConfig_PreferencesVirtualBox</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="308"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="344"/>
         <source>Local VirtualBox working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="402"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="448"/>
         <source>Message</source>
         <translation type="unfinished">메시지</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="402"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="448"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="412"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="458"/>
         <source>VBoxwrapper path doesn&apos;t exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="426"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="510"/>
         <source>Failed to start xdotool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="451"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="467"/>
         <source>Failed to start VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="454"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="513"/>
         <source>VBoxwrapper and VirtualBox API %s have successfully started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="418"/>
-        <source>Failed to load vboxapi module. Please check VirtualBox installation.</source>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="478"/>
+        <source>External VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="441"/>
-        <source>ERROR: Found VirtualBox v%s. Required: v%s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="449"/>
-        <source>Failed to start VBoxwrapper (python.exe path must be in your PATH environment variable)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="433"/>
-        <source>VirtualBox is not installed. &lt;a href=&apos;http://www.virtualbox.org/wiki/Downloads&apos;&gt;Download it&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="435"/>
-        <source>Failed to start vboxapi module. Please check that VirtualBox is installed.</source>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="478"/>
+        <source>Please choose your external VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5379,7 +5384,7 @@ ALT + LEFT or RIGHT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../VBoxManager.py" line="191"/>
+        <location filename="../VBoxManager.py" line="120"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation type="unfinished">%s 작업 디렉터리가 존재하지 않거나 사용할 수 없습니다. 다시한번 확인을 부탁드립니다</translation>
     </message>
@@ -5445,27 +5450,27 @@ ALT + LEFT or RIGHT</source>
 <context>
     <name>Widget_capturesDock</name>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="119"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="122"/>
         <source>Stop capturing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="123"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="126"/>
         <source>Start Wireshark</source>
         <translation type="unfinished">Wireshark를 실행</translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="98"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="101"/>
         <source>Start all captures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="101"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="104"/>
         <source>Stop all captures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="114"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="117"/>
         <source>Start capturing</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5857,6 +5862,11 @@ p, li { white-space: pre-wrap; }
         <source>VirtualBox is not installed!</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Workspace.py" line="1098"/>
+        <source>Dynamips error %s: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>nodesDock</name>
@@ -5969,7 +5979,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>topologySummaryDock</name>
     <message>
-        <location filename="../Ui/Widget_topologySummaryDock.py" line="103"/>
+        <location filename="../Ui/Widget_topologySummaryDock.py" line="104"/>
         <source>%s is connected to %s %s</source>
         <translation>%s 가 %s %s 에 연결되었습니다</translation>
     </message>
