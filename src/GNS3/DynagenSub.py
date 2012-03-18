@@ -414,7 +414,7 @@ class DynagenSub(Dynagen):
                                 image_name = globals.GApp.iosimages[image_to_use].filename
                                 ram = globals.GApp.iosimages[image_to_use].default_ram
                                 idlepc = globals.GApp.iosimages[image_to_use].idlepc
-                                print translate("DynagenSub", "Local IOS image %s cannot be found for hypervisor %s:s, use image %s instead") \
+                                print translate("DynagenSub", "Local IOS image %s cannot be found for hypervisor %s:%s, use image %s instead") \
                                 % (device['image'], server.host, controlPort, image_name)
                                 device['image'] = image_name
                                 device['ram'] = ram
