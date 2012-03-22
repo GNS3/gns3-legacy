@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Mon Jan 30 23:30:21 2012
+# Created: Tue Mar 13 20:07:45 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -267,10 +267,10 @@ class Ui_MainWindow(object):
         self.action_StartAll = QtGui.QAction(MainWindow)
         self.action_StartAll.setEnabled(True)
         icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/play2-test.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/play2-test.svg")), QtGui.QIcon.Normal, QtGui.QIcon.On)
-        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/play7-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.Off)
-        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/play7-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.On)
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/play7-test.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/play7-test.svg")), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/play2-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        icon8.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/play2-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.On)
         self.action_StartAll.setIcon(icon8)
         self.action_StartAll.setText(QtGui.QApplication.translate("MainWindow", "Start/Resume all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StartAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Start/Resume all devices", None, QtGui.QApplication.UnicodeUTF8))
@@ -279,9 +279,9 @@ class Ui_MainWindow(object):
         self.action_StopAll = QtGui.QAction(MainWindow)
         self.action_StopAll.setEnabled(True)
         icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/stop2-test.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        icon9.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/stop3-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.Off)
-        icon9.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/stop3-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.On)
+        icon9.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/stop3-test.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon9.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/stop2-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        icon9.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/stop2-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.On)
         self.action_StopAll.setIcon(icon9)
         self.action_StopAll.setText(QtGui.QApplication.translate("MainWindow", "Stop all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_StopAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Stop all devices", None, QtGui.QApplication.UnicodeUTF8))
@@ -372,9 +372,9 @@ class Ui_MainWindow(object):
         self.action_Redo.setObjectName(_fromUtf8("action_Redo"))
         self.action_SuspendAll = QtGui.QAction(MainWindow)
         icon16 = QtGui.QIcon()
-        icon16.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/pause2-test.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        icon16.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/pause3-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.Off)
-        icon16.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/pause3-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.On)
+        icon16.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/pause3-test.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon16.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/pause2-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.Off)
+        icon16.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/pause2-test.svg")), QtGui.QIcon.Active, QtGui.QIcon.On)
         self.action_SuspendAll.setIcon(icon16)
         self.action_SuspendAll.setText(QtGui.QApplication.translate("MainWindow", "Suspend all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SuspendAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Suspend all devices", None, QtGui.QApplication.UnicodeUTF8))

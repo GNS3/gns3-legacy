@@ -111,7 +111,8 @@ class Page_ATMBR(QtGui.QWidget, Ui_ATMBRPage):
             connected_ports = self.node.getConnectedInterfaceList()
             port = source
             if port in connected_ports:
-                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMBR", "ATM bridge"), unicode(translate("Page_ATMBR", "A link is connected in port %i")) % int(port))
+                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, translate("Page_ATMBR", "ATM bridge"), 
+                                           translate("Page_ATMBR", "A link is connected in port %i") % int(port))
                 return
             del self.mapping[source]
             self.treeWidgetMapping.takeTopLevelItem(self.treeWidgetMapping.indexOfTopLevelItem(item))

@@ -31,7 +31,6 @@ class AnyVBoxEmuDefaults(AbstractDefaults):
         self.default_image = 'None'
         self.default_netcard = 'automatic'
         self.default_nics = 6
-        #self.default_ram = 128
         self.default_guestcontrol_user = ''
         self.default_guestcontrol_password = ''
         self.vbox = None

@@ -87,7 +87,7 @@ class Page_JunOS(QtGui.QWidget, Ui_JunOSPage):
         else:
             junos_config = node.duplicate_config()
 
-        image = unicode(self.lineEditImage.text())
+        image = unicode(self.lineEditImage.text(), 'utf-8', errors='replace')
         if image:
             junos_config['image'] = image
 

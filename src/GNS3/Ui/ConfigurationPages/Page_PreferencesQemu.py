@@ -253,12 +253,12 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
     def saveConf(self):
 
         # Qemuwrapper
-        self.conf.qemuwrapper_path = unicode(self.lineEditQemuwrapperPath.text())
-        self.conf.qemuwrapper_workdir = unicode(self.lineEditQemuwrapperWorkdir.text())
-        self.conf.qemu_path = unicode(self.lineEditQemuPath.text())
-        self.conf.qemu_img_path = unicode(self.lineEditQemuImgPath.text())
+        self.conf.qemuwrapper_path = unicode(self.lineEditQemuwrapperPath.text(), 'utf-8', errors='replace')
+        self.conf.qemuwrapper_workdir = unicode(self.lineEditQemuwrapperWorkdir.text(), 'utf-8', errors='replace')
+        self.conf.qemu_path = unicode(self.lineEditQemuPath.text(), 'utf-8', errors='replace')
+        self.conf.qemu_img_path = unicode(self.lineEditQemuImgPath.text(), 'utf-8', errors='replace')
         self.conf.external_hosts = self.external_hosts
-        self.conf.QemuManager_binding = unicode(self.comboBoxBinding.currentText())
+        self.conf.QemuManager_binding = unicode(self.comboBoxBinding.currentText(), 'utf-8', errors='replace')
 
         if self.checkBoxEnableQemuManager.checkState() == QtCore.Qt.Checked:
             self.conf.enable_QemuManager = True
@@ -289,12 +289,12 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
     def slotAddExternalQemuwrapper(self):
         part1 = self.lineEditHostExternalQemu.text().split(':')[0]
         if part1 == '127.0.0.1' or part1 == 'localhost':
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("New Hypervisor", "New Hypervisor"), unicode(translate("New Hypervisor", "WARNING: When doing multi-host setup, never use loopback addresses, such as 'localhost' or '127.0.0.1'. Use actual IP addresses instead.")))
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("New Hypervisor", "New Hypervisor"), translate("New Hypervisor", "WARNING: When doing multi-host setup, never use loopback addresses, such as 'localhost' or '127.0.0.1'. Use actual IP addresses instead."))
 
         external_qemuwrapper = self.lineEditHostExternalQemu.text()
         if external_qemuwrapper and external_qemuwrapper not in self.external_hosts:
             self.comboBoxExternalQemuwrappers.addItem(self.lineEditHostExternalQemu.text())
-            self.external_hosts.append(unicode(external_qemuwrapper))
+            self.external_hosts.append(unicode(external_qemuwrapper, 'utf-8', errors='replace'))
 
     def slotDeleteExternalQemuwrapper(self):
 
@@ -302,7 +302,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         index = self.comboBoxExternalQemuwrappers.findText(external_qemuwrapper)
         if index != -1 and external_qemuwrapper in self.external_hosts:
             self.comboBoxExternalQemuwrappers.removeItem(index)
-            self.external_hosts.remove(unicode(external_qemuwrapper))
+            self.external_hosts.remove(unicode(external_qemuwrapper, 'utf-8', errors='replace'))
 
 
     def slotSelectQemuWrapperPath(self):
@@ -352,8 +352,8 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         """ Add/Save Qemu Image in the list of Qemu images
         """
 
-        name = unicode(self.NameQemuImage.text())
-        image = unicode(self.QemuImage.text())
+        name = unicode(self.NameQemuImage.text(), 'utf-8', errors='replace')
+        image = unicode(self.QemuImage.text(), 'utf-8', errors='replace')
 
         if not name or not image:
             QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "Qemu guest"),
@@ -402,7 +402,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         item = self.treeWidgetQemuImages.currentItem()
         if (item != None):
             self.treeWidgetQemuImages.takeTopLevelItem(self.treeWidgetQemuImages.indexOfTopLevelItem(item))
-            name = unicode(item.text(0))
+            name = unicode(item.text(0), 'utf-8', errors='replace')
             del globals.GApp.qemuimages[name]
             globals.GApp.syncConf()
 
@@ -414,7 +414,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         items = self.treeWidgetQemuImages.selectedItems()
         if len(items):
             item = items[0]
-            name = unicode(item.text(0))
+            name = unicode(item.text(0), 'utf-8', errors='replace')
 
             conf = globals.GApp.qemuimages[name]
 
@@ -446,8 +446,8 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         """ Add/Save PIX Image in the list of PIX images
         """
 
-        name = unicode(self.NamePIXImage.text())
-        image = unicode(self.PIXImage.text())
+        name = unicode(self.NamePIXImage.text(), 'utf-8', errors='replace')
+        image = unicode(self.PIXImage.text(), 'utf-8', errors='replace')
 
         if not name or not image:
             QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "PIX firewall"),
@@ -508,7 +508,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         item = self.treeWidgetPIXImages.currentItem()
         if (item != None):
             self.treeWidgetPIXImages.takeTopLevelItem(self.treeWidgetPIXImages.indexOfTopLevelItem(item))
-            name = unicode(item.text(0))
+            name = unicode(item.text(0), 'utf-8', errors='replace')
             del globals.GApp.piximages[name]
             globals.GApp.syncConf()
 
@@ -520,7 +520,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         items = self.treeWidgetPIXImages.selectedItems()
         if len(items):
             item = items[0]
-            name = unicode(item.text(0))
+            name = unicode(item.text(0), 'utf-8', errors='replace')
 
             conf = globals.GApp.piximages[name]
 
@@ -550,8 +550,8 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         """ Add/Save JunOS Image in the list of JunOS images
         """
 
-        name = unicode(self.NameJunOSImage.text())
-        image = unicode(self.JunOSImage.text())
+        name = unicode(self.NameJunOSImage.text(), 'utf-8', errors='replace')
+        image = unicode(self.JunOSImage.text(), 'utf-8', errors='replace')
 
         if not name or not image:
             QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "JunOS router"),
@@ -601,7 +601,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         item = self.treeWidgetJunOSImages.currentItem()
         if (item != None):
             self.treeWidgetJunOSImages.takeTopLevelItem(self.treeWidgetJunOSImages.indexOfTopLevelItem(item))
-            name = unicode(item.text(0))
+            name = unicode(item.text(0), 'utf-8', errors='replace')
             del globals.GApp.junosimages[name]
             globals.GApp.syncConf()
 
@@ -613,7 +613,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         items = self.treeWidgetJunOSImages.selectedItems()
         if len(items):
             item = items[0]
-            name = unicode(item.text(0))
+            name = unicode(item.text(0), 'utf-8', errors='replace')
 
             conf = globals.GApp.junosimages[name]
 
@@ -654,9 +654,9 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         """ Add/Save ASA Image in the list of ASA images
         """
 
-        name = unicode(self.NameASAImage.text())
-        initrd = unicode(self.ASAInitrd.text())
-        kernel = unicode(self.ASAKernel.text())
+        name = unicode(self.NameASAImage.text(), 'utf-8', errors='replace')
+        initrd = unicode(self.ASAInitrd.text(), 'utf-8', errors='replace')
+        kernel = unicode(self.ASAKernel.text(), 'utf-8', errors='replace')
 
         if not name or not initrd or not kernel:
             QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "ASA firewall"),
@@ -689,7 +689,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.name = name
         conf.initrd = initrd
         conf.kernel = kernel
-        conf.kernel_cmdline = unicode(self.ASAKernelCmdLine.text())
+        conf.kernel_cmdline = unicode(self.ASAKernelCmdLine.text(), 'utf-8', errors='replace')
         conf.memory = self.ASAMemory.value()
         conf.nic_nb = self.ASANICNb.value()
         conf.nic = str(self.ASANIC.currentText())
@@ -711,7 +711,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         item = self.treeWidgetASAImages.currentItem()
         if (item != None):
             self.treeWidgetASAImages.takeTopLevelItem(self.treeWidgetASAImages.indexOfTopLevelItem(item))
-            name = unicode(item.text(0))
+            name = unicode(item.text(0), 'utf-8', errors='replace')
             del globals.GApp.asaimages[name]
             globals.GApp.syncConf()
 
@@ -723,7 +723,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         items = self.treeWidgetASAImages.selectedItems()
         if len(items):
             item = items[0]
-            name = unicode(item.text(0))
+            name = unicode(item.text(0), 'utf-8', errors='replace')
 
             conf = globals.GApp.asaimages[name]
 
@@ -766,9 +766,9 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         """ Add/Save IDS Image in the list of IDS images
         """
 
-        name = unicode(self.NameIDSImage.text())
-        image1 = unicode(self.IDSImage1.text())
-        image2 = unicode(self.IDSImage2.text())
+        name = unicode(self.NameIDSImage.text(), 'utf-8', errors='replace')
+        image1 = unicode(self.IDSImage1.text(), 'utf-8', errors='replace')
+        image2 = unicode(self.IDSImage2.text(), 'utf-8', errors='replace')
 
         if not name or not image1 or not image2:
             QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "IDS"),
@@ -822,7 +822,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         item = self.treeWidgetIDSImages.currentItem()
         if (item != None):
             self.treeWidgetIDSImages.takeTopLevelItem(self.treeWidgetIDSImages.indexOfTopLevelItem(item))
-            name = unicode(item.text(0))
+            name = unicode(item.text(0), 'utf-8', errors='replace')
             del globals.GApp.idsimages[name]
             globals.GApp.syncConf()
 
@@ -834,7 +834,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         items = self.treeWidgetIDSImages.selectedItems()
         if len(items):
             item = items[0]
-            name = unicode(item.text(0))
+            name = unicode(item.text(0), 'utf-8', errors='replace')
 
             conf = globals.GApp.idsimages[name]
 
@@ -911,14 +911,13 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                     self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "You're running an old AND unpatched version of qemu, which won't work")  + '</font>')
                     return
 
-            PEMU_BIN = "pemu"
-
+            # PEMU must be located in the same folder as Qemuwrapper
             if platform.system() == 'Windows':
+                PEMU_BIN = "pemu.exe"
+            else:
+                PEMU_BIN = "pemu"
 
-                if hasattr(sys, "frozen"):
-                    PEMU_BIN = os.path.dirname(os.path.abspath(sys.executable)) + os.sep + 'pemu.exe'
-                else:
-                    PEMU_BIN = os.path.dirname(os.path.abspath(__file__)) + os.sep + 'pemu.exe'
+            PEMU_BIN = os.path.dirname(os.path.abspath(globals.GApp.systconf['qemu'].qemuwrapper_path)) + os.sep + PEMU_BIN
 
             bPEMUfound = True
             try:
@@ -934,7 +933,9 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start qemu-img")  + '</font>')
                 return
 
-            if bPEMUfound:
+            if platform.system() == 'Darwin':
+                self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "Qemuwrapper, qemu and qemu-img have successfully started")  + '</font><br><font color="red">' + translate("UiConfig_PreferencesQemu", " (except pemu that is not supported on Mac OS X)")  + '</font></a>')
+            elif bPEMUfound:
                 self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "Qemuwrapper, qemu, qemu-img and pemu have successfully started")  + '</font>')
             else:
                 self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "Qemuwrapper, qemu and qemu-img have successfully started")  + '</font><br>'+'<a href="http://www.gns3.net/gns3-pix-firewall-emulation/"><font color="red">' + translate("UiConfig_PreferencesQemu", " (except pemu)")  + '</font></a>')

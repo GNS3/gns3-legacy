@@ -107,7 +107,7 @@ class VBoxController_4_1():
         self.netcard = netcard
         debugmsg(3, "vmname = %s, nics = %s, capture = %s, netcard = %s" % (vmname, nics, capture, netcard))
 
-        debugmsg(2, "findMachine() is starting vmname = %s" % str(self.vmname))
+        debugmsg(2, "findMachine() is starting vmname = %s" % unicode(self.vmname))
         try:
             self.mach = self.vbox.findMachine(self.vmname)
         except Exception, e:
@@ -484,7 +484,7 @@ class VBoxController_4_1():
     def vboxexec(self, command, guestcontrol_user, guestcontrol_password):
         # This function executes arbitary commands on VMs, and gets STDOUT results.
         # Technologov: to improve upon my work, please look at vboxshell's gexec command.
-        debugmsg(3, "VBoxController_4_1::vboxexec(%s, %s, %s)" % (str(command), str(guestcontrol_user), str(guestcontrol_password)))
+        debugmsg(3, "VBoxController_4_1::vboxexec(%s, %s, %s)" % (unicode(command), unicode(guestcontrol_user), unicode(guestcontrol_password)))
         self.result = ""
         self.guestcontrol_user = guestcontrol_user
         self.guestcontrol_password = guestcontrol_password
@@ -549,7 +549,7 @@ class VBoxController_4_1():
             rebuilt_stream += self.result.splitlines()[x]+"\n"
             #debugmsg(3, "self.result.splitlines()[%d] = %s" % (x, str(self.result.splitlines()[x])))
         self.result = rebuilt_stream
-        debugmsg(3, "self.result = %s" % str(self.result))
+        debugmsg(3, "self.result = %s" % unicode(self.result))
         return True
 
     def _safeGetMACaddr(self, i_vnic):

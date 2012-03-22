@@ -65,7 +65,7 @@ class IDLEPCDialog(QtGui.QDialog, Ui_IDLEPCDialog):
 
             if message:
                 QtGui.QMessageBox.information(self, translate("IDLEPCDialog", "IDLE PC"),
-                                              unicode(translate("IDLEPCDialog", "IDLE PC value %s has been applied on %s")) % (self.idles[index], self.router.hostname))
+                                              translate("IDLEPCDialog", "IDLE PC value %s has been applied on %s") % (self.idles[index], self.router.hostname))
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("IDLEPCDialog", "Dynamips error"),  unicode(msg))
             return

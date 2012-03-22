@@ -238,22 +238,22 @@
         <translation>Despre</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="408"/>
+        <location filename="../Ui/Form_About.py" line="412"/>
         <source>&amp;About</source>
         <translation>&amp;Despre</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="409"/>
+        <location filename="../Ui/Form_About.py" line="413"/>
         <source>&amp;Thanks to</source>
         <translation>&amp;Mulțumiri pentru</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="410"/>
+        <location filename="../Ui/Form_About.py" line="414"/>
         <source>&amp;License Agreement</source>
         <translation>&amp;Acordul de licenţă</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="../Ui/Form_About.py" line="76"/>
+        <location filename="../Ui/Form_About.py" line="80"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -276,7 +276,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="43"/>
+        <location filename="../Ui/Form_About.py" line="45"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -296,9 +296,10 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Aurelien Levesque&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;David Ruiz&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;mailto:code@gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;code@gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.gns3.net&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Visit our website&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net/contact&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Contact us&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -315,7 +316,7 @@ p, li { white-space: pre-wrap; }
         <translation>Deschide Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="489"/>
+        <location filename="../Link/AbstractEdge.py" line="487"/>
         <source>Capture</source>
         <translation>Captură</translation>
     </message>
@@ -335,12 +336,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nici un dispozitiv disponibil pentru captură trafic</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="447"/>
+        <location filename="../Link/AbstractEdge.py" line="443"/>
         <source>Dynamips error</source>
         <translation>Eroare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="463"/>
+        <location filename="../Link/AbstractEdge.py" line="459"/>
         <source>Please configure capture options</source>
         <translation>Vă rog să configuraţi opţiunile pentru captură (sniffer)</translation>
     </message>
@@ -355,7 +356,7 @@ p, li { white-space: pre-wrap; }
         <translation>Echipamentul %s nu este pornit</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="489"/>
+        <location filename="../Link/AbstractEdge.py" line="487"/>
         <source>Cannot start %s : %s</source>
         <translation>Nu pot porni %s : %s</translation>
     </message>
@@ -370,13 +371,28 @@ p, li { white-space: pre-wrap; }
         <translation>Echipamentul %s trebuie să fie repornit pentru a începe înregistrarea traficului</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="433"/>
+        <location filename="../Link/AbstractEdge.py" line="429"/>
         <source>Device %s must be stopped to stop capturing traffic</source>
         <translation>Echipamentul %s trebuie să fie inchis pentru a opri înregistrarea traficului</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="206"/>
         <source>Start capturing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="468"/>
+        <source>%s is empty, no traffic has been captured on the link yet. Please try again later</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="471"/>
+        <source>Cannot find %s : %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Link/AbstractEdge.py" line="471"/>
+        <source>NOTE: This feature is only available for local hypervisors.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -388,12 +404,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nume de host:</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="385"/>
+        <location filename="../Node/AbstractNode.py" line="386"/>
         <source>Connection</source>
         <translation>Conexiune</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="340"/>
+        <location filename="../Node/AbstractNode.py" line="341"/>
         <source>Already connected interface</source>
         <translation>Interfaţă este deja conectată</translation>
     </message>
@@ -408,12 +424,12 @@ p, li { white-space: pre-wrap; }
         <translation>Numele de host este deja folosit</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="311"/>
+        <location filename="../Node/AbstractNode.py" line="312"/>
         <source>Hostname: %s</source>
         <translation>Nume de host: %s</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="385"/>
+        <location filename="../Node/AbstractNode.py" line="386"/>
         <source>No interface available, please configure this device</source>
         <translation>Nu există nici o interfaţă disponibilă, vă rog să configuraţi acest echipament</translation>
     </message>
@@ -478,12 +494,12 @@ p, li { white-space: pre-wrap; }
         <translation>Schimbă portul de consolă</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="214"/>
+        <location filename="../Node/AbstractNode.py" line="215"/>
         <source>Change the aux port</source>
         <translation>Schimbă portul auxiliar</translation>
     </message>
     <message>
-        <location filename="../Node/AbstractNode.py" line="214"/>
+        <location filename="../Node/AbstractNode.py" line="215"/>
         <source>AUX port for %s:</source>
         <translation>Portul AUX pentru %s:</translation>
     </message>
@@ -508,7 +524,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="918"/>
+        <location filename="../Workspace.py" line="920"/>
         <source>GNS3 is up-to-date!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -700,16 +716,6 @@ p, li { white-space: pre-wrap; }
     <name>Console</name>
     <message>
         <location filename="../Console.py" line="285"/>
-        <source>Dynamips error</source>
-        <translation>Eroare Dynamips</translation>
-    </message>
-    <message>
-        <location filename="../Console.py" line="283"/>
-        <source>Dynamips warning</source>
-        <translation>Avertizare Dynamips</translation>
-    </message>
-    <message>
-        <location filename="../Console.py" line="285"/>
         <source>Connection lost</source>
         <translation>Conexiune pierdută</translation>
     </message>
@@ -794,6 +800,26 @@ Introduceţi numărul IdlePC care va fi aplicat pe echipalent [1 - %i] sau ENTER
         <source>Cannot start %s: %s</source>
         <translation>Nu pot porni %s: %s</translation>
     </message>
+    <message>
+        <location filename="../Console.py" line="285"/>
+        <source>%s: Dynamips error</source>
+        <translation type="unfinished">%s: Eroare Dynamips</translation>
+    </message>
+    <message>
+        <location filename="../Console.py" line="283"/>
+        <source>%s: Dynamips warning</source>
+        <translation type="unfinished">%s: Avertizare Dynamips</translation>
+    </message>
+    <message>
+        <location filename="../Console.py" line="231"/>
+        <source>%s Dynamips warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Console.py" line="233"/>
+        <source>%s Dynamips error</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>DecorativeNode</name>
@@ -867,42 +893,32 @@ Introduceţi numărul IdlePC care va fi aplicat pe echipalent [1 - %i] sau ENTER
         <translation>Întrerupe</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="284"/>
+        <location filename="../DynagenSub.py" line="285"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
         <translation>Imaginea locală PIX %s nu poate fi găsită, folosesc imaginea %s în schimb</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="417"/>
-        <source>Local IOS image %s cannot be found for hypervisor %s, use image %s instead</source>
-        <translation>Imaginea locală IOS %s nu poate fi găsită pentru hypervisor-ul %s, folosesc imaginea %s în schimb</translation>
-    </message>
-    <message>
-        <location filename="../DynagenSub.py" line="448"/>
+        <location filename="../DynagenSub.py" line="449"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>Configuraţia locală %s nu poate fi găsită pentru Routerul %s, folosesc %s în schimb</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="369"/>
-        <source>Local working directory %s cannot be found for hypervisor %s, use working directory %s instead</source>
-        <translation>Directorul local de lucru %s nu poate fi găsit pentru hypervisor-ul %, folosesc directorul %s în schimb</translation>
-    </message>
-    <message>
-        <location filename="../DynagenSub.py" line="196"/>
+        <location filename="../DynagenSub.py" line="197"/>
         <source>Local ASA initrd %s cannot be found, use initrd %s instead</source>
         <translation>Fişierul local ASA initrd %s nu poate fi găsit, folosesc initrd %s în schimb</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="207"/>
+        <location filename="../DynagenSub.py" line="208"/>
         <source>Local ASA kernel %s cannot be found, use kernel %s instead</source>
         <translation>Fişierul local ASA kernel %s nu poate fi găsit, folosesc kernel %s în schimb</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="234"/>
+        <location filename="../DynagenSub.py" line="235"/>
         <source>Local IDS image %s cannot be found, use image %s instead</source>
         <translation>Imaginea locală IDS/IPS %s nu poate fi găsită, folosesc imaginea %s în schimb</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="257"/>
+        <location filename="../DynagenSub.py" line="258"/>
         <source>Local JunOS image %s cannot be found, use image %s instead</source>
         <translation>Imaginea locală JunOS %s nu poate fi găsită, folosesc imaginea %s în schimb</translation>
     </message>
@@ -912,7 +928,7 @@ Introduceţi numărul IdlePC care va fi aplicat pe echipalent [1 - %i] sau ENTER
         <translation type="unfinished">Imagine IOS</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="270"/>
+        <location filename="../DynagenSub.py" line="271"/>
         <source>Local Qemu guest image %s cannot be found, use image %s instead</source>
         <translation type="unfinished"></translation>
     </message>
@@ -925,6 +941,16 @@ Introduceţi numărul IdlePC care va fi aplicat pe echipalent [1 - %i] sau ENTER
         <location filename="../DynagenSub.py" line="78"/>
         <source>NIC ID %s cannot be found on this host
 Please choose an alternate network interface:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="370"/>
+        <source>Local working directory %s cannot be found for hypervisor %s:%s, use working directory %s instead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../DynagenSub.py" line="418"/>
+        <source>Local IOS image %s cannot be found for hypervisor %s:s, use image %s instead</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1075,32 +1101,32 @@ Please choose an alternate network interface:</source>
 <context>
     <name>HypervisorManager</name>
     <message>
-        <location filename="../HypervisorManager.py" line="133"/>
+        <location filename="../HypervisorManager.py" line="134"/>
         <source>Abort</source>
         <translation>Întrerupe</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="107"/>
+        <location filename="../HypervisorManager.py" line="108"/>
         <source>Can&apos;t start Dynamips on port %i</source>
         <translation>Nu pot porni Dynamips pe portul %i</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="133"/>
+        <location filename="../HypervisorManager.py" line="134"/>
         <source>Connecting to a hypervisor on port %i ...</source>
         <translation>Conectare la un hypervisor pe portul %i ...</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="209"/>
+        <location filename="../HypervisorManager.py" line="210"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>Directorul de lucru %s nu pare să existe sau nu permite scrierea, vă rog să verificaţi</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="217"/>
+        <location filename="../HypervisorManager.py" line="218"/>
         <source>Can&apos;t set up hypervisor on port %i, please check the settings (writable working directory ...)</source>
         <translation>Nu se poate porni hypervisor-ul pe portul %i, vă rog să verificaţi setările (dacă directorul de lucru permite scrierea ...)</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="95"/>
+        <location filename="../HypervisorManager.py" line="96"/>
         <source>Hypervisor Manager</source>
         <translation>Manager Hypervisor</translation>
     </message>
@@ -1110,12 +1136,12 @@ Please choose an alternate network interface:</source>
         <translation>Aparent un hypervisor deja rulează pe portul %i, aţi dori ca GNS3 să închidă toate procesele dynamips?</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="162"/>
+        <location filename="../HypervisorManager.py" line="163"/>
         <source>Can&apos;t connect to the hypervisor on port %i: %s</source>
         <translation>Nu mă pot conecta la hypervisor pe portul %i: %s</translation>
     </message>
     <message>
-        <location filename="../HypervisorManager.py" line="95"/>
+        <location filename="../HypervisorManager.py" line="96"/>
         <source>A program is still running on port %i, you will have to stop it manually or change port settings</source>
         <translation>Un program rulează deja pe portul %i, va trebui să-l opriţi manual sau să modificaţi setările de port</translation>
     </message>
@@ -1261,24 +1287,24 @@ Please choose an alternate network interface:</source>
     <name>IOS image</name>
     <message>
         <location filename="../DynagenSub.py" line="402"/>
-        <source>IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image</source>
-        <translation>Imaginea locală IOS %s nu poate fi găsită pentru hypervisor-ul %s şi nu pot găsi o alternativă la imaginea %s</translation>
+        <source>IOS image %s cannot be found for hypervisor %s:%s and cannot find an alternative %s image</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>IOSDialog</name>
     <message>
-        <location filename="../IOSDialog.py" line="277"/>
+        <location filename="../IOSDialog.py" line="278"/>
         <source>IDLE PC not valid (format required: 0xhhhhhhhh)</source>
         <translation>Valoare IDLE PC invalidă (format cerut: 0xhhhhhhhh)</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="290"/>
+        <location filename="../IOSDialog.py" line="291"/>
         <source>No hypervisor selected, use the local hypervisor</source>
         <translation>Nici un hypervisor selectat, foloseşte hypervisor-ul local</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="438"/>
+        <location filename="../IOSDialog.py" line="439"/>
         <source>Select a working directory</source>
         <translation>Selectează un director de lucru</translation>
     </message>
@@ -1403,12 +1429,12 @@ Please choose an alternate network interface:</source>
         <translation>Imaginea implicită pentru această platformă</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="348"/>
+        <location filename="../IOSDialog.py" line="349"/>
         <source>There is already a default image for this platform</source>
         <translation>Există deja o imagine implicită pentru această platformă</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="254"/>
+        <location filename="../IOSDialog.py" line="255"/>
         <source>Can&apos;t open file: %s</source>
         <translation>Nu pot deschide fişierul:%s</translation>
     </message>
@@ -1423,12 +1449,12 @@ Please choose an alternate network interface:</source>
         <translation>&lt;a href=&quot;http://www.gns3.net/&quot;&gt;Verifică capacitatea minimă de RAM cerută&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="447"/>
+        <location filename="../IOSDialog.py" line="448"/>
         <source>IOS Configuration</source>
         <translation>Configuraţia IOS</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="413"/>
+        <location filename="../IOSDialog.py" line="414"/>
         <source>Image file box is empty</source>
         <translation>Caseta cu fişierul imagine este golală</translation>
     </message>
@@ -1453,12 +1479,12 @@ Please choose an alternate network interface:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="447"/>
+        <location filename="../IOSDialog.py" line="448"/>
         <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
         <translation>Calea pe care aţi selectat-o ar trebui să conţine numai caractere ASCII (fără diacritice) Dynamips (Cygwin.DLL) nu are suport pentru Unicode pe Windows!</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="248"/>
+        <location filename="../IOSDialog.py" line="249"/>
         <source>Select a Base configuration file</source>
         <translation>Selectaţi fişierul cu configuraţia de bază</translation>
     </message>
@@ -1473,12 +1499,12 @@ Please choose an alternate network interface:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="281"/>
+        <location filename="../IOSDialog.py" line="282"/>
         <source>Warning: IDLE PC will have to be configured! &lt;a href=&apos;http://www.gns3.net/gns3-simplest-topology&apos; &gt;Find out why and how&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="204"/>
+        <location filename="../IOSDialog.py" line="205"/>
         <source>IOS Image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1488,12 +1514,12 @@ Please choose an alternate network interface:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="197"/>
+        <location filename="../IOSDialog.py" line="198"/>
         <source>%s already exists, let&apos;s use it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="204"/>
+        <location filename="../IOSDialog.py" line="205"/>
         <source>Sorry, impossible to extract the IOS image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1501,12 +1527,12 @@ Please choose an alternate network interface:</source>
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="696"/>
+        <location filename="../Node/IOSRouter.py" line="697"/>
         <source>Connection</source>
         <translation>Conexiune</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="696"/>
+        <location filename="../Node/IOSRouter.py" line="697"/>
         <source>No interface available</source>
         <translation>Nici o interfaţă disponibilă</translation>
     </message>
@@ -2432,90 +2458,100 @@ Please choose an alternate network interface:</source>
 <context>
     <name>NETFile</name>
     <message>
-        <location filename="../NETFile.py" line="600"/>
+        <location filename="../NETFile.py" line="614"/>
         <source>Save</source>
         <translation>Salvează</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="600"/>
+        <location filename="../NETFile.py" line="614"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Vă rog să configuraţi calea pentru Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="896"/>
+        <location filename="../NETFile.py" line="639"/>
         <source>Dynamips error</source>
         <translation>Eroare Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="900"/>
+        <location filename="../NETFile.py" line="645"/>
         <source>Dynamips warning</source>
         <translation>Avertizare Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="641"/>
+        <location filename="../NETFile.py" line="655"/>
         <source>Exception detected, stopping importation...</source>
         <translation>Excepţie detectată, opresc importului...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="893"/>
+        <location filename="../NETFile.py" line="907"/>
         <source>Exporting %s configuration to %s</source>
         <translation>Export configuraţia %s în %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1170"/>
+        <location filename="../NETFile.py" line="1183"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Eroare IO: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="641"/>
+        <location filename="../NETFile.py" line="655"/>
         <source>Importation</source>
         <translation>Import</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="616"/>
+        <location filename="../NETFile.py" line="630"/>
         <source>Please wait while importing the topology</source>
         <translation>Vă rog să aşteptaţi până se încarcă topologia</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1170"/>
-        <source>IOError</source>
-        <translation>Eroare IO</translation>
-    </message>
-    <message>
-        <location filename="../NETFile.py" line="665"/>
+        <location filename="../NETFile.py" line="679"/>
         <source>Warning: GNS3 doesn&apos;t yet support lan statements, ignore it</source>
         <translation>Atenţie: GNS3 nu acceptă încă declaraţii lan, ignora-l</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="530"/>
+        <location filename="../NETFile.py" line="540"/>
         <source>Cannot load image: %s</source>
         <translation>Nu pot încărca imaginea: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="476"/>
+        <location filename="../NETFile.py" line="482"/>
         <source>Cannot load font: %s</source>
         <translation>Nu pot încărca fontul: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="541"/>
+        <location filename="../NETFile.py" line="555"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
         <translation>%s: nu pot găsi simbolul %s, vă rog să verificaţi acest simbol în lista de noduri şi reîncărcaţi fişierul .net</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1075"/>
-        <source>must be connected or have a hypervisor set in order to be registered</source>
-        <translation>trebuie să fie conectat sau are un hypervisor setat pentru a fi înregistrat</translation>
+        <location filename="../NETFile.py" line="910"/>
+        <source>%s: Dynamips error: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="914"/>
+        <source>%s: Dynamips warning: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="1183"/>
+        <source>%s: IOError</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="1088"/>
+        <source>%s must be connected or have a hypervisor set in order to be registered</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>New Hypervisor</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="280"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="316"/>
         <source>New Hypervisor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="280"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="316"/>
         <source>WARNING: When doing multi-host setup, never use loopback addresses, such as &apos;localhost&apos; or &apos;127.0.0.1&apos;. Use actual IP addresses instead.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2586,7 +2622,7 @@ Please choose an alternate network interface:</source>
         <translation>Nori de Reţea</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="252"/>
+        <location filename="../NodeConfigurator.py" line="251"/>
         <source>%s node</source>
         <translation>nod %s</translation>
     </message>
@@ -2623,7 +2659,7 @@ to display the configuration page.</source>
 pentru a afişa pagina de configurare.</translation>
     </message>
     <message>
-        <location filename="../NodeConfigurator.py" line="304"/>
+        <location filename="../NodeConfigurator.py" line="303"/>
         <source>Node configuration</source>
         <translation>Configurare nod</translation>
     </message>
@@ -3089,17 +3125,17 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX and PA-GE are unlikely to work.</source>
 <context>
     <name>Page_PreferencesVirtualBox</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="323"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="359"/>
         <source>VirtualBox guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="323"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="359"/>
         <source>Identifier and binary image must be set!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="161"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="197"/>
         <source>WARNING ! GuestControl is insecure. Passwords are both stored and sent in clear-text. Use at your own risk.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3363,7 +3399,7 @@ or the link itself.</source>
         <translation>Commandă terminal:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="382"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="405"/>
         <source>Always use manual mode when adding links</source>
         <translation>Întotdeauna foloseşte modul manual la adăugarea de noi link-uri</translation>
     </message>
@@ -3388,22 +3424,22 @@ or the link itself.</source>
         <translation>&amp;Resetează-l la implicit</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="392"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="415"/>
         <source>Show link status points on the workspace</source>
         <translation>Afişează puncte care indică starea legăturii între echipamente pe spaţiul de lucru</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="308"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="331"/>
         <source>Workspace width:</source>
         <translation>Lăţime suprafaţă de lucru:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="353"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="376"/>
         <source> px</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="340"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="363"/>
         <source>Workspace height:</source>
         <translation>Înălţime suprafaţă de lucru:</translation>
     </message>
@@ -3418,22 +3454,17 @@ or the link itself.</source>
         <translation>Setări Globale</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="302"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="325"/>
         <source>GUI Settings</source>
         <translation>Setări GUI</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="372"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="395"/>
         <source>Draw a rectangle when an item is selected</source>
         <translation>Desenează un chenar atunci când un element este selectat</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="73"/>
-        <source>Waiting time between each start when starting every devices:</source>
-        <translation>Timpul de aşteptare între pornirile de echipamente atunci când vor porni mai multe:</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="97"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="285"/>
         <source> seconds</source>
         <translation> secunde</translation>
     </message>
@@ -3453,7 +3484,7 @@ or the link itself.</source>
         <translation>&amp;Utilizează</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="268"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="301"/>
         <source>Terminal command magic strings:
 %h = device server 
 %p = device port
@@ -3474,12 +3505,12 @@ or the link itself.</source>
         <translation>Salvează automat:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="291"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="268"/>
         <source>&lt;html&gt;This option will attempt to bring existing opened console window to front, instead of opening a new window.&lt;br&gt;If no existing opened console window exists, it will start a new  console window.&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="294"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="271"/>
         <source>Bring console window to front (experimental feature)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3491,6 +3522,16 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="136"/>
         <source>OS image (IOS, Qemu, PIX etc.) directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="73"/>
+        <source>Delay between each device start when starting all devices:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="278"/>
+        <source>Delay between each console when consoling to all devices:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3955,11 +3996,6 @@ or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="314"/>
-        <source>Identifier name:</source>
-        <translation type="unfinished">Nume identificator:</translation>
-    </message>
-    <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="324"/>
         <source>VM Name / UUID:</source>
         <translation type="unfinished"></translation>
@@ -3995,7 +4031,7 @@ or the link itself.</source>
         <translation type="unfinished">virtio</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="392"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="373"/>
         <source>Number of NICs:</source>
         <translation type="unfinished">Numărul de plăci de reţea:</translation>
     </message>
@@ -4010,17 +4046,17 @@ or the link itself.</source>
         <translation type="unfinished">Ş&amp;terge</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="477"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="484"/>
         <source>VirtualBox Virtual Machines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="485"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="492"/>
         <source>GNS3 Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="490"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="497"/>
         <source>Virtual Machine Name or Unique Identifier</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4030,22 +4066,22 @@ or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="408"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="389"/>
         <source>GuestControl User</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="415"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="396"/>
         <source>GuestControl Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="422"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="403"/>
         <source>Enable GuestControl</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="429"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="410"/>
         <source>(experimental feature)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4062,6 +4098,16 @@ or the link itself.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="248"/>
         <source>&amp;Test Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="314"/>
+        <source>VM List / unique ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="462"/>
+        <source>Refresh VM List</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4084,22 +4130,22 @@ or the link itself.</source>
 <context>
     <name>QemuManager</name>
     <message>
-        <location filename="../QemuManager.py" line="72"/>
+        <location filename="../QemuManager.py" line="73"/>
         <source>Connecting to Qemu on port %i ...</source>
         <translation>Conectare la Qemu pe portul %i ...</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="72"/>
+        <location filename="../QemuManager.py" line="73"/>
         <source>Abort</source>
         <translation>Întrerupe</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="96"/>
+        <location filename="../QemuManager.py" line="97"/>
         <source>Can&apos;t connect to Qemu on port %i</source>
         <translation>Nu mă pot conecta la Qemu pe portul %i</translation>
     </message>
     <message>
-        <location filename="../QemuManager.py" line="186"/>
+        <location filename="../QemuManager.py" line="188"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation>Directorul de lucru %s nu pare să existe sau nu permită scrierea, vă rog să verificaţi</translation>
     </message>
@@ -4300,17 +4346,17 @@ or the link itself.</source>
         <translation>Setează un hypervisor</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="987"/>
+        <location filename="../Scene.py" line="989"/>
         <source>annotation</source>
         <translation>adnotare</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="996"/>
+        <location filename="../Scene.py" line="998"/>
         <source>rectangle</source>
         <translation>dreptunghi</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1004"/>
+        <location filename="../Scene.py" line="1006"/>
         <source>ellipse</source>
         <translation>elipsă</translation>
     </message>
@@ -4340,17 +4386,17 @@ or the link itself.</source>
         <translation>Aliniaţi vertical</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="735"/>
+        <location filename="../Scene.py" line="737"/>
         <source>Message</source>
         <translation type="unfinished">Mesaj</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="707"/>
+        <location filename="../Scene.py" line="709"/>
         <source>Do you really want to stop these devices?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="735"/>
+        <location filename="../Scene.py" line="737"/>
         <source>Do you really want to reload these devices?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4375,37 +4421,37 @@ or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="815"/>
+        <location filename="../Scene.py" line="817"/>
         <source>AddLink</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="793"/>
+        <location filename="../Scene.py" line="795"/>
         <source>Qemu machines support only Ethernet links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="795"/>
+        <location filename="../Scene.py" line="797"/>
         <source>VirtualBox machines support only Ethernet links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="797"/>
+        <location filename="../Scene.py" line="799"/>
         <source>Ethernet switch supports only Ethernet links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="803"/>
+        <location filename="../Scene.py" line="805"/>
         <source>ATM switch supports only ATM links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="809"/>
+        <location filename="../Scene.py" line="811"/>
         <source>Frame-Relay switch supports only serial links.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="815"/>
+        <location filename="../Scene.py" line="817"/>
         <source>ATM bridge supports only ATM and Ethernet links.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4430,7 +4476,7 @@ or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="635"/>
+        <location filename="../Scene.py" line="636"/>
         <source>Capture</source>
         <translation type="unfinished">Captură</translation>
     </message>
@@ -4445,7 +4491,7 @@ or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="635"/>
+        <location filename="../Scene.py" line="636"/>
         <source>Please choose a link</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4743,32 +4789,32 @@ ALT + STÂNGA sau DREAPTA</translation>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="529"/>
+        <location filename="../Topology.py" line="530"/>
         <source>IOS image</source>
         <translation>Imagine IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="521"/>
+        <location filename="../Topology.py" line="522"/>
         <source>Hypervisor</source>
         <translation>Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="517"/>
+        <location filename="../Topology.py" line="518"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Vă rog să configuraţi calea pentru Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1208"/>
+        <location filename="../Topology.py" line="1192"/>
         <source>Dynamips error</source>
         <translation>Eroare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1208"/>
+        <location filename="../Topology.py" line="1192"/>
         <source>Connection lost</source>
         <translation>Conexiune pierdută</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1088"/>
+        <location filename="../Topology.py" line="1072"/>
         <source>Connection</source>
         <translation>Conexiune</translation>
     </message>
@@ -4778,62 +4824,62 @@ ALT + STÂNGA sau DREAPTA</translation>
         <translation>Nu mă pot conecta la hypervisor-ul extern pe %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="481"/>
+        <location filename="../Topology.py" line="482"/>
         <source>No image for platform %s</source>
         <translation>Nici o imagine pentru platforma %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1088"/>
+        <location filename="../Topology.py" line="1072"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Trebuie să conectaţi cel puţin un Router la Switch</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="834"/>
+        <location filename="../Topology.py" line="817"/>
         <source>PIX image</source>
         <translation>Imagine PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="521"/>
+        <location filename="../Topology.py" line="522"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>Vă rog să testaţi calea spre dynamips din opţiuni</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="471"/>
+        <location filename="../Topology.py" line="472"/>
         <source>Please register at least one IOS image</source>
         <translation>Vă rog să înregistraţi cel puţin o imagine IOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="375"/>
+        <location filename="../Topology.py" line="373"/>
         <source>Qemuwrapper error</source>
         <translation>Eroare Qemuwrapper</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="834"/>
+        <location filename="../Topology.py" line="817"/>
         <source>%s seems to not exist, please check</source>
         <translation>%s nu pare să existe, vă rog să verificaţi</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="682"/>
+        <location filename="../Topology.py" line="660"/>
         <source>JunOS image</source>
         <translation>Imagine JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="569"/>
+        <location filename="../Topology.py" line="571"/>
         <source>Qemu image</source>
         <translation>Imagine Qemu</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="783"/>
+        <location filename="../Topology.py" line="765"/>
         <source>ASA kernel</source>
         <translation>Fişierul ASA kernel</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="779"/>
+        <location filename="../Topology.py" line="760"/>
         <source>ASA initrd</source>
         <translation>Fişierul ASA initrd</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="730"/>
+        <location filename="../Topology.py" line="710"/>
         <source>IDS images</source>
         <translation>Imagini IDS</translation>
     </message>
@@ -4853,7 +4899,7 @@ ALT + STÂNGA sau DREAPTA</translation>
         <translation>Vă rog să alegeţi Qemuwrapper-ul extern</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1064"/>
+        <location filename="../Topology.py" line="1048"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Nu pot conecta aceste echipamente</translation>
     </message>
@@ -4868,148 +4914,133 @@ ALT + STÂNGA sau DREAPTA</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="654"/>
+        <location filename="../Topology.py" line="632"/>
         <source>JunOS</source>
         <translation>JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="654"/>
+        <location filename="../Topology.py" line="632"/>
         <source>Please configure a JunOS</source>
         <translation>Vă rog să configuraţi un JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="667"/>
+        <location filename="../Topology.py" line="645"/>
         <source>Please choose a JunOS</source>
         <translation>Vă rog să alegeţi un JunOS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="712"/>
+        <location filename="../Topology.py" line="691"/>
         <source>IDS</source>
         <translation>IDS/IPS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="699"/>
+        <location filename="../Topology.py" line="678"/>
         <source>Please configure an IDS</source>
         <translation>Vă rog să configuraţi un IDS/IPS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="712"/>
+        <location filename="../Topology.py" line="691"/>
         <source>Please choose an IDS</source>
         <translation>Vă rog să alegeţi un IDS/IPS</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="764"/>
+        <location filename="../Topology.py" line="745"/>
         <source>ASA</source>
         <translation>ASA</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="751"/>
+        <location filename="../Topology.py" line="732"/>
         <source>Please configure an ASA</source>
         <translation>Vă rog să configuraţi un ASA</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="764"/>
+        <location filename="../Topology.py" line="745"/>
         <source>Please choose an ASA</source>
         <translation>Vă rog să alegeţi un ASA</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="819"/>
+        <location filename="../Topology.py" line="802"/>
         <source>PIX</source>
         <translation>PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="806"/>
+        <location filename="../Topology.py" line="789"/>
         <source>Please configure a PIX</source>
         <translation>Vă rog să configuraţi un PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="819"/>
+        <location filename="../Topology.py" line="802"/>
         <source>Please choose a PIX</source>
         <translation>Vă rog să alegeţi un PIX</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="496"/>
+        <location filename="../Topology.py" line="497"/>
         <source>Please choose an image:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="402"/>
+        <location filename="../Topology.py" line="399"/>
         <source>External VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="397"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="473"/>
         <source>Please register at least one external VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="402"/>
+        <location filename="../Topology.py" line="399"/>
         <source>Please choose your external VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="444"/>
+        <location filename="../Topology.py" line="446"/>
         <source>VBoxwrapper error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="540"/>
+        <location filename="../Topology.py" line="542"/>
         <source>Please configure a Qemu guest:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="553"/>
+        <location filename="../Topology.py" line="555"/>
         <source>Qemu guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="553"/>
+        <location filename="../Topology.py" line="555"/>
         <source>Please choose a Qemu guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="586"/>
+        <location filename="../Topology.py" line="589"/>
         <source>VBox image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="586"/>
+        <location filename="../Topology.py" line="589"/>
         <source>Please configure a VirtualBox guest:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="599"/>
+        <location filename="../Topology.py" line="602"/>
         <source>VirtualBox guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="599"/>
+        <location filename="../Topology.py" line="602"/>
         <source>Please choose a VirtualBox guest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="631"/>
-        <source>VirtualBox API</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="618"/>
-        <source>ERROR: VirtualBox API module cannot be loaded !</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="638"/>
+        <location filename="../Topology.py" line="423"/>
         <source>VirtualBox VMname/UUID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="638"/>
+        <location filename="../Topology.py" line="423"/>
         <source>VirtualBox Machine &apos;%s&apos; seems to not exist, please check</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Topology.py" line="625"/>
-        <source>ERROR: VirtualBox API module cannot start !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5097,42 +5128,42 @@ ALT + STÂNGA sau DREAPTA</translation>
 <context>
     <name>UiConfig_PreferencesGeneral</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="228"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="232"/>
         <source>Project Directory</source>
         <translation type="unfinished">Directorul pentru proiect</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="255"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="259"/>
         <source>Configuration file</source>
         <translation type="unfinished">Fişierul de configurare</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="255"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="259"/>
         <source>Configuration file cleared, default settings will be applied after a restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="204"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="208"/>
         <source>Project directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="204"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="208"/>
         <source>Cannot create project directory: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="211"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="215"/>
         <source>Image directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="211"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="215"/>
         <source>Cannot create image directory: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="236"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="240"/>
         <source>Image Directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5170,22 +5201,22 @@ ALT + STÂNGA sau DREAPTA</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="934"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="933"/>
         <source>Failed to start qemu-img</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="940"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="941"/>
         <source>Qemuwrapper, qemu and qemu-img have successfully started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="938"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="939"/>
         <source>Qemuwrapper, qemu, qemu-img and pemu have successfully started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="940"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="941"/>
         <source> (except pemu)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5199,67 +5230,57 @@ ALT + STÂNGA sau DREAPTA</translation>
         <source>You&apos;re running an old AND unpatched version of qemu, which won&apos;t work</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="937"/>
+        <source> (except pemu that is not supported on Mac OS X)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UiConfig_PreferencesVirtualBox</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="308"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="344"/>
         <source>Local VirtualBox working directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="402"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="448"/>
         <source>Message</source>
         <translation type="unfinished">Mesaj</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="402"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="448"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="412"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="458"/>
         <source>VBoxwrapper path doesn&apos;t exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="451"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="467"/>
         <source>Failed to start VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="454"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="513"/>
         <source>VBoxwrapper and VirtualBox API %s have successfully started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="426"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="510"/>
         <source>Failed to start xdotool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="418"/>
-        <source>Failed to load vboxapi module. Please check VirtualBox installation.</source>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="478"/>
+        <source>External VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="441"/>
-        <source>ERROR: Found VirtualBox v%s. Required: v%s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="449"/>
-        <source>Failed to start VBoxwrapper (python.exe path must be in your PATH environment variable)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="433"/>
-        <source>VirtualBox is not installed. &lt;a href=&apos;http://www.virtualbox.org/wiki/Downloads&apos;&gt;Download it&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="435"/>
-        <source>Failed to start vboxapi module. Please check that VirtualBox is installed.</source>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="478"/>
+        <source>Please choose your external VBoxwrapper</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5369,7 +5390,7 @@ ALT + STÂNGA sau DREAPTA</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../VBoxManager.py" line="189"/>
+        <location filename="../VBoxManager.py" line="120"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5435,27 +5456,27 @@ ALT + STÂNGA sau DREAPTA</translation>
 <context>
     <name>Widget_capturesDock</name>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="119"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="122"/>
         <source>Stop capturing</source>
         <translation>Opreşte captura</translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="123"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="126"/>
         <source>Start Wireshark</source>
         <translation>Deschide Wireshark</translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="98"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="101"/>
         <source>Start all captures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="101"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="104"/>
         <source>Stop all captures</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Widget_capturesDock.py" line="114"/>
+        <location filename="../Ui/Widget_capturesDock.py" line="117"/>
         <source>Start capturing</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5538,37 +5559,37 @@ p, li { white-space: pre-wrap; }
         <translation>Docuri</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1269"/>
+        <location filename="../Workspace.py" line="1271"/>
         <source>Dynamips error</source>
         <translation>Eroare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="765"/>
+        <location filename="../Workspace.py" line="767"/>
         <source>Connection lost</source>
         <translation>Conexiune pierdută</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="734"/>
+        <location filename="../Workspace.py" line="736"/>
         <source>Abort</source>
         <translation>Întrerupe</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="946"/>
+        <location filename="../Workspace.py" line="948"/>
         <source>Starting nodes ...</source>
         <translation>Pornire noduri ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="811"/>
+        <location filename="../Workspace.py" line="813"/>
         <source>Stopping nodes ...</source>
         <translation>Oprire noduri ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="817"/>
+        <location filename="../Workspace.py" line="819"/>
         <source>Suspending nodes ...</source>
         <translation>Suspendare noduri ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="939"/>
+        <location filename="../Workspace.py" line="941"/>
         <source>Loading</source>
         <translation>Incărcare</translation>
     </message>
@@ -5583,22 +5604,22 @@ p, li { white-space: pre-wrap; }
         <translation>Afişează numele de host</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1226"/>
+        <location filename="../Workspace.py" line="1228"/>
         <source>Open a file</source>
         <translation>Deschide un fişier</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1222"/>
+        <location filename="../Workspace.py" line="1224"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Calea către Dynamips trebuie să fie configurată</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1005"/>
+        <location filename="../Workspace.py" line="1007"/>
         <source>New Project</source>
         <translation>Proiect nou</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1335"/>
+        <location filename="../Workspace.py" line="1337"/>
         <source>Message</source>
         <translation>Mesaj</translation>
     </message>
@@ -5613,17 +5634,17 @@ p, li { white-space: pre-wrap; }
         <translation>Anulează</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1005"/>
+        <location filename="../Workspace.py" line="1007"/>
         <source>Can&apos;t create a project</source>
         <translation>Nu pot creea un proiect</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="939"/>
+        <location filename="../Workspace.py" line="941"/>
         <source>Invalid file %s</source>
         <translation>Fişier invalid %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1326"/>
+        <location filename="../Workspace.py" line="1328"/>
         <source>Would you like to save the current topology?</source>
         <translation>Doriţi să salvaţi topologia curentă?</translation>
     </message>
@@ -5643,7 +5664,7 @@ p, li { white-space: pre-wrap; }
         <translation>Afişează numele interfeţelor</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1131"/>
+        <location filename="../Workspace.py" line="1133"/>
         <source>Snapshot</source>
         <translation>Instantaneu (Snapshot)</translation>
     </message>
@@ -5653,17 +5674,17 @@ p, li { white-space: pre-wrap; }
         <translation>Nu pot crea directorul %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1136"/>
+        <location filename="../Workspace.py" line="1138"/>
         <source>Please wait while creating a snapshot</source>
         <translation>Vă rog să aşteptaţi până se va crea instantaneul (Snapshot)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="765"/>
+        <location filename="../Workspace.py" line="767"/>
         <source>%s: Dynamips error</source>
         <translation>%s: Eroare Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="762"/>
+        <location filename="../Workspace.py" line="764"/>
         <source>%s: Dynamips warning</source>
         <translation>%s: Avertizare Dynamips</translation>
     </message>
@@ -5738,7 +5759,7 @@ p, li { white-space: pre-wrap; }
         <translation>Ctrl+Y</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="823"/>
+        <location filename="../Workspace.py" line="825"/>
         <source>Reloading nodes ...</source>
         <translation>Reîncărcare noduri ...</translation>
     </message>
@@ -5748,7 +5769,7 @@ p, li { white-space: pre-wrap; }
         <translation>fotografie</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1175"/>
+        <location filename="../Workspace.py" line="1177"/>
         <source>Dynamips error: %s</source>
         <translation>Eroare Dynamips: %s</translation>
     </message>
@@ -5758,32 +5779,32 @@ p, li { white-space: pre-wrap; }
         <translation>Resetez etichetele salvate ale interfeţelor?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1131"/>
+        <location filename="../Workspace.py" line="1133"/>
         <source>Cannot create directories in %s: %s</source>
         <translation>Nu pot crea directoare în %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1203"/>
+        <location filename="../Workspace.py" line="1205"/>
         <source>Dynamips error!!: %s</source>
         <translation>Eroare Dynamips!!: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1269"/>
+        <location filename="../Workspace.py" line="1271"/>
         <source>Connection lost with Dynamips hypervisor (crashed?)</source>
         <translation>Conexiune pierdută cu hypervisor-ul dynamips (prăbuşit?)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1301"/>
+        <location filename="../Workspace.py" line="1303"/>
         <source>Save As...</source>
         <translation>Salvează ca...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="977"/>
+        <location filename="../Workspace.py" line="979"/>
         <source>This action is going to stop all your devices and captures, would you like to continue anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1038"/>
+        <location filename="../Workspace.py" line="1040"/>
         <source>Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5803,32 +5824,32 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1335"/>
+        <location filename="../Workspace.py" line="1337"/>
         <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="918"/>
+        <location filename="../Workspace.py" line="920"/>
         <source>Check For Update</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="906"/>
+        <location filename="../Workspace.py" line="908"/>
         <source>Cannot check for update ... Try again later</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="911"/>
+        <location filename="../Workspace.py" line="913"/>
         <source>Newer GNS3 version %s is available, do you want to visit our website to download it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="953"/>
+        <location filename="../Workspace.py" line="955"/>
         <source>This will clear your current topology. Continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1254"/>
+        <location filename="../Workspace.py" line="1256"/>
         <source>Clear Menu</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5838,13 +5859,18 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="780"/>
+        <location filename="../Workspace.py" line="782"/>
         <source>VirtualBox Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="780"/>
+        <location filename="../Workspace.py" line="782"/>
         <source>VirtualBox is not installed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="1098"/>
+        <source>Dynamips error %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5959,7 +5985,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>topologySummaryDock</name>
     <message>
-        <location filename="../Ui/Widget_topologySummaryDock.py" line="103"/>
+        <location filename="../Ui/Widget_topologySummaryDock.py" line="104"/>
         <source>%s is connected to %s %s</source>
         <translation>%s este conectat la %s %s</translation>
     </message>

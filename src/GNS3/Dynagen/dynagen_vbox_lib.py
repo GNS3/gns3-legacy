@@ -114,7 +114,7 @@ class UDPConnection:
 class VBox(object):
 
     def __init__(self, name, port=11525):
-        debugmsg(2, "VBox::__init__(%s, %s)" % (str(name), str(port)))
+        debugmsg(2, "VBox::__init__(%s, %s)" % (unicode(name), str(port)))
 
         self.port = port
         self.host = name
@@ -132,7 +132,7 @@ class VBox(object):
             try:
                 self.s.connect((self.host, self.port))
             except:
-                raise DynamipsError, 'Could not connect to vboxwrapper at %s:%i' % (self.host, self.port)
+                raise DynamipsError, '101-Could not connect to vboxwrapper at %s:%i' % (self.host, self.port)
         #version checking
         try:
             version = send(self, 'vboxwrapper version')[0][4:]
@@ -154,8 +154,17 @@ class VBox(object):
             intver = 999999
 
         if intver < INTVER:
-            raise DynamipsVerError, 'This version of Dynagen requires at least version %s of vboxwrapper. \n Server %s is runnning version %s.' % (STRVER, self.host, version)
+            raise DynamipsVerError, '101-This version of Dynagen requires at least version %s of vboxwrapper. \n Server %s is runnning version %s.' % (STRVER, self.host, version)
         self._version = version
+
+        #vbox version checking
+        try:
+            version = send(self, 'vbox version')[0]
+        except IndexError:
+            # Probably because NOSEND is set
+            version = 'N/A'
+
+        self._vbox_version = version[4:]
 
         #all other needed variables
         self.name = name
@@ -169,8 +178,6 @@ class VBox(object):
 
     def close(self):
         """ Close the connection to the VBoxwrapper (but leave it running)"""
-        debugmsg(2, "VBox::close(%s, %s)" % (str(name), str(port)))
-
         self.s.close()
 
     def reset(self):
@@ -178,6 +185,21 @@ class VBox(object):
         debugmsg(2, "VBox::reset()")
 
         send(self, 'vboxwrapper reset')
+
+    def vm_list(self):
+        """ Get VM list from VirtualBox"""
+
+        vbox_vms = send(self, 'vbox vm_list')
+        vm_list = []
+        for vm in vbox_vms:
+            if vm.startswith('101 '):
+                vm_list.append(unicode(vm[4:]))
+        return vm_list
+
+    def find_vm(self, vm_name):
+        """ Get VM list from VirtualBox"""
+
+        send(self, 'vbox find_vm %s' % '"' + vm_name + '"')
 
     def _setbaseconsole(self, baseconsole):
         """ Set the baseconsole
@@ -219,7 +241,7 @@ class VBox(object):
         """ Set the working directory for this network
         directory: (string) the directory
         """
-        debugmsg(2, "VBox::_setworkingdir(%s)" % str(directory))
+        debugmsg(2, "VBox::_setworkingdir(%s)" % unicode(directory))
         if directory == 'None':
             #skip broken topology ini files,
             return
@@ -233,7 +255,7 @@ class VBox(object):
     def _getworkingdir(self):
         """ Returns working directory
         """
-        debugmsg(2, "VBox::_getworkingdir(), returns %s" % str(self._workingdir))
+        debugmsg(2, "VBox::_getworkingdir(), returns %s" % unicode(self._workingdir))
 
         return self._workingdir
 
@@ -252,6 +274,12 @@ class VBox(object):
 
     version = property(_getversion, doc='The vboxwrapper version')
 
+    def _getvboxversion(self):
+        """ Return the version of VirtualBox"""
+        
+        return self._vbox_version
+
+    vbox_version = property(_getvboxversion, doc='Detected VirtualBox version')
 
 class AnyVBoxEmuDevice(object):
 
@@ -259,7 +287,7 @@ class AnyVBoxEmuDevice(object):
     isrouter = 1
 
     def __init__(self, vbox, name):
-        debugmsg(2, "AnyVBoxEmuDevice::__init__(%s, %s)" % (str(vbox), str(name)))
+        debugmsg(2, "AnyVBoxEmuDevice::__init__(%s, %s)" % (unicode(vbox), unicode(name)))
         self.p = vbox
         #create a twin variable to self.p but with name self.dynamips to keep things working elsewhere
         self.dynamips = vbox
@@ -404,7 +432,7 @@ class AnyVBoxEmuDevice(object):
 
     def vboxexec(self, command):
         """sends GuestControl execute commands to the virtualized device instance in VBox"""
-        debugmsg(2, "AnyVBoxEmuDevice::vboxexec(%s)" % str(command))
+        debugmsg(2, "AnyVBoxEmuDevice::vboxexec(%s)" % unicode(command))
         if self.state != 'running':
             raise DynamipsError, 'virtualized device %s is not running' % self.name
             return
@@ -488,7 +516,7 @@ class AnyVBoxEmuDevice(object):
         """ Set the IOS image for this virtualized device
         image: path to IOS image file
         """
-        debugmsg(2, "AnyVBoxEmuDevice::_setimage(%s)" % str(image))
+        debugmsg(2, "AnyVBoxEmuDevice::_setimage(%s)" % unicode(image))
 
         if type(image) not in [str, unicode]:
             raise DynamipsError, 'invalid image'
@@ -501,7 +529,7 @@ class AnyVBoxEmuDevice(object):
     def _getimage(self):
         """ Returns path of the image being used by this virtualized device
         """
-        debugmsg(3, "AnyVBoxEmuDevice::_getimage(), returns %s" % str(self._image))
+        debugmsg(3, "AnyVBoxEmuDevice::_getimage(), returns %s" % unicode(self._image))
 
         return self._image
 
@@ -511,7 +539,7 @@ class AnyVBoxEmuDevice(object):
         """ Set the VBox guestcontrol_user for this virtualized device
         guestcontrol_user: user name inside the VM
         """
-        debugmsg(2, "AnyVBoxEmuDevice::_setguestcontrol_user(%s)" % str(guestcontrol_user))
+        debugmsg(2, "AnyVBoxEmuDevice::_setguestcontrol_user(%s)" % unicode(guestcontrol_user))
 
         if type(guestcontrol_user) not in [str, unicode]:
             raise DynamipsError, 'invalid guestcontrol_user'
@@ -523,7 +551,7 @@ class AnyVBoxEmuDevice(object):
     def _getguestcontrol_user(self):
         """ Returns the VBox guestcontrol_user being used by this virtualized device
         """
-        debugmsg(2, "AnyVBoxEmuDevice::_getguestcontrol_user(), returns %s" % str(self._guestcontrol_user))
+        debugmsg(2, "AnyVBoxEmuDevice::_getguestcontrol_user(), returns %s" % unicode(self._guestcontrol_user))
 
         return self._guestcontrol_user
 
@@ -533,7 +561,7 @@ class AnyVBoxEmuDevice(object):
         """ Set the VBox guestcontrol_password for this virtualized device
         guestcontrol_user: user name inside the VM
         """
-        debugmsg(2, "AnyVBoxEmuDevice::_setguestcontrol_password(%s)" % str(guestcontrol_password))
+        debugmsg(2, "AnyVBoxEmuDevice::_setguestcontrol_password(%s)" % unicode(guestcontrol_password))
 
         if type(guestcontrol_password) not in [str, unicode]:
             raise DynamipsError, 'invalid guestcontrol_password'
@@ -545,7 +573,7 @@ class AnyVBoxEmuDevice(object):
     def _getguestcontrol_password(self):
         """ Returns the VBox guestcontrol_password being used by this virtualized device
         """
-        debugmsg(2, "AnyVBoxEmuDevice::_getguestcontrol_password(), returns %s" % str(self._guestcontrol_password))
+        debugmsg(2, "AnyVBoxEmuDevice::_getguestcontrol_password(), returns %s" % unicode(self._guestcontrol_password))
 
         return self._guestcontrol_password
 
@@ -678,7 +706,7 @@ class AnyVBoxEmuDevice(object):
             return False
 
     def connect_to_emulated_device(self, local_port, remote_emulated_device, remote_port):
-        debugmsg(2, "AnyVBoxEmuDevice::connect_to_emulated_device(%s, %s, %s)" % (str(local_port), str(remote_emulated_device), str(remote_port)))
+        debugmsg(2, "AnyVBoxEmuDevice::connect_to_emulated_device(%s, %s, %s)" % (str(local_port), unicode(remote_emulated_device), str(remote_port)))
         from qemu_lib import Qemu, QemuDevice, AnyEmuDevice
         (src_udp, dst_udp) = self.__allocate_udp_port(remote_emulated_device.p)
 
@@ -813,7 +841,7 @@ class AnyVBoxEmuDevice(object):
                 slot_info = self.slot_info_niostat(slot_info, port)
             else:  #no NIO on this port, so it must be empty
                 slot_info = slot_info + ' is empty\n'
-        debugmsg(3, "AnyVBoxEmuDevice::slot_info(), returns %s" % str(slot_info))
+        debugmsg(3, "AnyVBoxEmuDevice::slot_info(), returns %s" % unicode(slot_info))
         return slot_info
 
     def info(self):
@@ -834,7 +862,7 @@ class AnyVBoxEmuDevice(object):
 
         info += '\n' + self.slot_info()
 
-        debugmsg(3, "AnyVBoxEmuDevice::info(), returns %s" % str(info))
+        debugmsg(3, "AnyVBoxEmuDevice::info(), returns %s" % unicode(info))
         return info
 
     def gen_cfg_name(self, name=None):

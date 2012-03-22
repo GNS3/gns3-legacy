@@ -173,7 +173,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             path = os.path.normpath(path[0])
             # test if we can open it
             if not testOpenFile(path):
-                QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), unicode(translate("IOSDialog", "Can't open file: %s")) % path)
+                QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "Can't open file: %s") % path)
                 return
 
             if sys.platform.startswith('win'):
@@ -190,11 +190,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                         extracted_ios = path.rsplit(".bin")[0] + '.image'
                     else:
                         extracted_ios = path + '.image'
-                    reply = QtGui.QMessageBox.question(self, translate("IOSDialog", "IOS Image"), unicode(translate("IOSDialog", "The IOS image is compressed. Would you like to uncompress it? Yes will create %s")) % os.path.basename(extracted_ios),
+                    reply = QtGui.QMessageBox.question(self, translate("IOSDialog", "IOS Image"),
+                                                       translate("IOSDialog", "The IOS image is compressed. Would you like to uncompress it? Yes will create %s") % os.path.basename(extracted_ios),
                                                        QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                     if reply == QtGui.QMessageBox.Yes:
                         if os.path.exists(extracted_ios):
-                            QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Image"), unicode(translate("IOSDialog", "%s already exists, let's use it")) % extracted_ios)
+                            QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Image"), translate("IOSDialog", "%s already exists, let's use it") % extracted_ios)
                             path = extracted_ios
                         else:
                             try:
@@ -251,7 +252,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             path = os.path.normpath(path[0])
             # test if we can open it
             if not testOpenFile(path):
-                QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), unicode(translate("IOSDialog", "Can't open file: %s")) % path)
+                QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "Can't open file: %s") % path)
                 return
 
             if sys.platform.startswith('win'):
@@ -267,7 +268,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """ Save an IOS image and all his settings
         """
 
-        imagename = unicode(self.lineEditIOSImage.text())
+        imagename = unicode(self.lineEditIOSImage.text(), 'utf-8', errors='replace')
 
         if not imagename:
             return
@@ -294,12 +295,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 # get the selected hypervisor
                 if len(items) > 1:
                     for item in items:
-                        selected_hypervisor = unicode(item.text())
+                        selected_hypervisor = unicode(item.text(), 'utf-8', errors='replace')
                         hypervisor = globals.GApp.hypervisors[selected_hypervisor]
                         hypervisors.append(hypervisor.host + ':' + str(hypervisor.port))
                     imagekey = 'load-balanced-on-external-hypervisors:' + imagename
                 else:
-                    selected_hypervisor = unicode(items[0].text())
+                    selected_hypervisor = unicode(items[0].text(), 'utf-8', errors='replace')
                     hypervisor = globals.GApp.hypervisors[selected_hypervisor]
                     hypervisors.append(hypervisor.host + ':' + str(hypervisor.port))
                     imagekey = hypervisor.host + ':' + imagename
@@ -329,7 +330,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         conf.id = globals.GApp.iosimages_ids
         globals.GApp.iosimages_ids += 1
         conf.filename = imagename
-        conf.baseconfig = unicode(self.lineEditBaseConfig.text())
+        conf.baseconfig = unicode(self.lineEditBaseConfig.text(), 'utf-8', errors='replace')
         conf.platform = str(self.comboBoxPlatform.currentText())
         conf.chassis = str(self.comboBoxChassis.currentText())
         conf.idlepc = idlepc
@@ -365,7 +366,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         item = self.treeWidgetIOSimages.currentItem()
         if (item != None):
             self.treeWidgetIOSimages.takeTopLevelItem(self.treeWidgetIOSimages.indexOfTopLevelItem(item))
-            image = unicode(item.text(0))
+            image = unicode(item.text(0), 'utf-8', errors='replace')
             del globals.GApp.iosimages[image]
 
     def slotIOSSelectionChanged(self):
@@ -375,7 +376,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         item = self.treeWidgetIOSimages.currentItem()
         if item != None:
             self.pushButtonDeleteIOS.setEnabled(True)
-            imagekey = unicode(item.text(0))
+            imagekey = unicode(item.text(0), 'utf-8', errors='replace')
             self.selectionChanged = False
             if globals.GApp.iosimages.has_key(imagekey):
                 conf = globals.GApp.iosimages[imagekey]
@@ -408,7 +409,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """ Check for minimum RAM requirement
         """
 
-        image_file = unicode(self.lineEditIOSImage.text())
+        image_file = unicode(self.lineEditIOSImage.text(), 'utf-8', errors='replace')
         if not image_file:
             QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "Image file box is empty"))
             return
@@ -450,9 +451,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """ Save a hypervisor to the hypervisors list
         """
 
-        hypervisor_host = unicode(self.lineEditHost.text())
+        hypervisor_host = unicode(self.lineEditHost.text(), 'utf-8', errors='replace')
         hypervisor_port = str(self.spinBoxHypervisorPort.value())
-        working_dir = unicode(self.lineEditWorkingDir.text())
+        working_dir = unicode(self.lineEditWorkingDir.text(), 'utf-8', errors='replace')
         baseudp = self.spinBoxBaseUDP.value()
 
         if (hypervisor_host != '' and hypervisor_port != ''):
@@ -510,7 +511,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         item = self.treeWidgetHypervisor.currentItem()
         if item != None:
             self.pushButtonDeleteHypervisor.setEnabled(True)
-            hypervisor_key = unicode(item.text(0))
+            hypervisor_key = unicode(item.text(0), 'utf-8', errors='replace')
             if globals.GApp.hypervisors.has_key(hypervisor_key):
                 conf = globals.GApp.hypervisors[hypervisor_key]
                 self.lineEditHost.setText(conf.host)

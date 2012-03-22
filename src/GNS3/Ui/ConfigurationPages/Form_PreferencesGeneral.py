@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Mon Jan 30 23:30:24 2012
+# Created: Tue Mar 13 20:07:48 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -52,7 +52,7 @@ class Ui_PreferencesGeneral(object):
         self.checkBoxRelativePaths.setObjectName(_fromUtf8("checkBoxRelativePaths"))
         self.gridLayout_2.addWidget(self.checkBoxRelativePaths, 3, 0, 1, 1)
         self.label_7 = QtGui.QLabel(self.tab)
-        self.label_7.setText(QtGui.QApplication.translate("PreferencesGeneral", "Waiting time between each start when starting every devices:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_7.setText(QtGui.QApplication.translate("PreferencesGeneral", "Delay between each device start when starting all devices:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_7.setObjectName(_fromUtf8("label_7"))
         self.gridLayout_2.addWidget(self.label_7, 5, 0, 1, 1)
         self.slowStartAll = QtGui.QSpinBox(self.tab)
@@ -150,26 +150,37 @@ class Ui_PreferencesGeneral(object):
         self.gridLayout.addWidget(self.label_4, 2, 0, 1, 1)
         self.lineEditTermCommand = QtGui.QLineEdit(self.tab_3)
         self.lineEditTermCommand.setObjectName(_fromUtf8("lineEditTermCommand"))
-        self.gridLayout.addWidget(self.lineEditTermCommand, 3, 0, 1, 2)
+        self.gridLayout.addWidget(self.lineEditTermCommand, 3, 0, 1, 1)
         self.checkBoxUseShell = QtGui.QCheckBox(self.tab_3)
         self.checkBoxUseShell.setText(QtGui.QApplication.translate("PreferencesGeneral", "Launch this command using the system default shell", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxUseShell.setChecked(True)
         self.checkBoxUseShell.setObjectName(_fromUtf8("checkBoxUseShell"))
-        self.gridLayout.addWidget(self.checkBoxUseShell, 5, 0, 1, 1)
+        self.gridLayout.addWidget(self.checkBoxUseShell, 4, 0, 1, 1)
+        self.checkBoxBringConsoleToFront = QtGui.QCheckBox(self.tab_3)
+        self.checkBoxBringConsoleToFront.setToolTip(QtGui.QApplication.translate("PreferencesGeneral", "<html>This option will attempt to bring existing opened console window to front, instead of opening a new window.<br>If no existing opened console window exists, it will start a new  console window.</html>", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxBringConsoleToFront.setText(QtGui.QApplication.translate("PreferencesGeneral", "Bring console window to front (experimental feature)", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxBringConsoleToFront.setObjectName(_fromUtf8("checkBoxBringConsoleToFront"))
+        self.gridLayout.addWidget(self.checkBoxBringConsoleToFront, 5, 0, 1, 1)
+        self.label_11 = QtGui.QLabel(self.tab_3)
+        self.label_11.setText(QtGui.QApplication.translate("PreferencesGeneral", "Delay between each console when consoling to all devices:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_11.setObjectName(_fromUtf8("label_11"))
+        self.gridLayout.addWidget(self.label_11, 6, 0, 1, 2)
+        self.doubleSpinBoxConsoleDelay = QtGui.QDoubleSpinBox(self.tab_3)
+        self.doubleSpinBoxConsoleDelay.setSuffix(QtGui.QApplication.translate("PreferencesGeneral", " seconds", None, QtGui.QApplication.UnicodeUTF8))
+        self.doubleSpinBoxConsoleDelay.setDecimals(1)
+        self.doubleSpinBoxConsoleDelay.setMinimum(0.0)
+        self.doubleSpinBoxConsoleDelay.setSingleStep(0.5)
+        self.doubleSpinBoxConsoleDelay.setObjectName(_fromUtf8("doubleSpinBoxConsoleDelay"))
+        self.gridLayout.addWidget(self.doubleSpinBoxConsoleDelay, 7, 0, 1, 2)
         self.label_9 = QtGui.QLabel(self.tab_3)
         self.label_9.setText(QtGui.QApplication.translate("PreferencesGeneral", "Terminal command magic strings:\n"
 "%h = device server \n"
 "%p = device port\n"
 "%d = device hostname", None, QtGui.QApplication.UnicodeUTF8))
         self.label_9.setObjectName(_fromUtf8("label_9"))
-        self.gridLayout.addWidget(self.label_9, 7, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_9, 8, 0, 1, 1)
         spacerItem2 = QtGui.QSpacerItem(20, 315, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem2, 8, 0, 1, 2)
-        self.checkBoxBringConsoleToFront = QtGui.QCheckBox(self.tab_3)
-        self.checkBoxBringConsoleToFront.setToolTip(QtGui.QApplication.translate("PreferencesGeneral", "<html>This option will attempt to bring existing opened console window to front, instead of opening a new window.<br>If no existing opened console window exists, it will start a new  console window.</html>", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxBringConsoleToFront.setText(QtGui.QApplication.translate("PreferencesGeneral", "Bring console window to front (experimental feature)", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxBringConsoleToFront.setObjectName(_fromUtf8("checkBoxBringConsoleToFront"))
-        self.gridLayout.addWidget(self.checkBoxBringConsoleToFront, 6, 0, 1, 1)
+        self.gridLayout.addItem(spacerItem2, 9, 0, 1, 2)
         self.tabWidget.addTab(self.tab_3, _fromUtf8(""))
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName(_fromUtf8("tab_2"))

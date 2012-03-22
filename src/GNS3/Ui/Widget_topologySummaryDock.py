@@ -63,7 +63,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
                 list.append(neighbor[1])
                 list.append(hostname)
                 item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(list))
-                newText = unicode(translate('topologySummaryDock', '%s is connected to %s %s')) \
+                newText = translate('topologySummaryDock', '%s is connected to %s %s') \
                             % (interface, neighbor[0].hostname, neighbor[1])
                 item.setText(0, newText)
                 items.append(item)
@@ -100,7 +100,7 @@ class topologySummaryDock(QtGui.QTreeWidget):
         data = item.data(0, QtCore.Qt.UserRole).toStringList()
 
         if data.count() == 4:
-            newText = unicode(translate('topologySummaryDock', '%s is connected to %s %s')) \
+            newText = translate('topologySummaryDock', '%s is connected to %s %s') \
                         % (unicode(data[0]), unicode(data[1]), unicode(data[2]))
             item.setText(0, newText)
 

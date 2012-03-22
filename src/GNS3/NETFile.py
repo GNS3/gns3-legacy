@@ -184,7 +184,7 @@ class NETFile(object):
     def create_node(self, device, default_symbol_name, running_config_name):
         """ Create a new node
         """
-        debugmsg(2, "****    NETFile::create_node(%s, %s, %s)" % (str(device), str(default_symbol_name), str(running_config_name)))
+        debugmsg(2, "****    NETFile::create_node(%s, %s, %s)" % (unicode(device), unicode(default_symbol_name), unicode(running_config_name)))
 
         symbol_name = x = y = z = hx = hy = None
         config = None
@@ -229,7 +229,7 @@ class NETFile(object):
                             node.default_symbol = False
                             break
                     break
-        debugmsg(3, "NETFile.py, node = %s" % str(node))
+        debugmsg(3, "NETFile.py, node = %s" % unicode(node))
 
         if not node:
             # symbol name not found, use default one
@@ -238,7 +238,7 @@ class NETFile(object):
                 symbol_name = default_symbol_name
                 default_symbol = True
 
-            debugmsg(3, "NETFile.py, symbol_name = %s" % str(symbol_name))
+            debugmsg(3, "NETFile.py, symbol_name = %s" % unicode(symbol_name))
             for item in SYMBOLS:
                 if item['name'] == symbol_name:
                     renders = globals.GApp.scene.renders[symbol_name]
@@ -247,7 +247,7 @@ class NETFile(object):
                     if not default_symbol:
                         node.default_symbol = False
                     break
-        debugmsg(3, "NETFile.py, node = %s" % str(node))
+        debugmsg(3, "NETFile.py, node = %s" % unicode(node))
         if not node:
             return None
 
@@ -420,8 +420,10 @@ class NETFile(object):
                                 break
 
                     if default_symbol:
-                        if not symbol_name:
+                        if not symbol_name or not globals.GApp.scene.renders.has_key(symbol_name):
                             symbol_name = 'Cloud'
+                        else:
+                            default_symbol = False
                         normal_renderer = globals.GApp.scene.renders[symbol_name]['normal']
                         select_renderer = globals.GApp.scene.renders[symbol_name]['selected']
 
@@ -468,12 +470,16 @@ class NETFile(object):
                     note_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     if gns3data[section].has_key('z'):
                         note_object.setZValue(float(gns3data[section]['z']))
+                        if note_object.zValue() < 0:
+                            # object on background layer, user cannot select it and move it.
+                            note_object.setFlag(note_object.ItemIsSelectable, False)
+                            note_object.setFlag(note_object.ItemIsMovable, False)
                     if gns3data[section].has_key('font'):
                         font = QtGui.QFont()
                         if font.fromString(gns3data[section]['font'][1:-1]):
                             note_object.setFont(font)
                         else:
-                            print unicode(translate("NETFile", "Cannot load font: %s")) % gns3data[section]['font']
+                            print translate("NETFile", "Cannot load font: %s") % gns3data[section]['font']
                     if gns3data[section].has_key('rotate'):
                         note_object.rotation = int(gns3data[section]['rotate'])
                         note_object.rotate(note_object.rotation)
@@ -498,6 +504,10 @@ class NETFile(object):
 
                     if gns3data[section].has_key('z'):
                         shape_object.setZValue(float(gns3data[section]['z']))
+                        if shape_object.zValue() < 0:
+                            # object on background layer, user cannot select it and move it.
+                            shape_object.setFlag(shape_object.ItemIsSelectable, False)
+                            shape_object.setFlag(shape_object.ItemIsMovable, False)
                     if gns3data[section].has_key('rotate'):
                         shape_object.rotation = int(gns3data[section]['rotate'])
                         shape_object.rotate(shape_object.rotation)
@@ -527,18 +537,22 @@ class NETFile(object):
                     if not pixmap_image.isNull():
                         pixmap_object= Pixmap(pixmap_image, pixmap_path)
                     else:
-                        print unicode(translate("NETFile", "Cannot load image: %s")) % pixmap_path
+                        print translate("NETFile", "Cannot load image: %s") % pixmap_path
                         continue
                     pixmap_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     if gns3data[section].has_key('z'):
                         pixmap_object.setZValue(float(gns3data[section]['z']))
+                        if pixmap_object.zValue() < 0:
+                            # object on background layer, user cannot select it and move it.
+                            pixmap_object.setFlag(pixmap_object.ItemIsSelectable, False)
+                            pixmap_object.setFlag(pixmap_object.ItemIsMovable, False)
                     globals.GApp.topology.addItem(pixmap_object)
 
                 if devtype.lower() == 'node':
                     hostname = unicode(hostname)
                     symbol = unicode(gns3data[section]['symbol'])
                     if not globals.GApp.scene.renders.has_key(symbol):
-                        print unicode(translate("NETFile", "%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file")) % (hostname, symbol)
+                        print translate("NETFile", "%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file") % (hostname, symbol)
                         continue
                     renders = globals.GApp.scene.renders[symbol]
                     decorative_node = DecorativeNode(renders['normal'], renders['selected'])
@@ -594,7 +608,7 @@ class NETFile(object):
     def import_net_file(self, path):
         """ Import a .net file
         """
-        debugmsg(2, "NETFile::import_net_file(%s)" % str(path))
+        debugmsg(2, "NETFile::import_net_file(%s)" % unicode(path))
 
         if globals.GApp.systconf['dynamips'].import_use_HypervisorManager and globals.GApp.systconf['dynamips'].path == '':
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("NETFile", "Save"), translate("NETFile", "Please configure the path to Dynamips"))
@@ -603,10 +617,10 @@ class NETFile(object):
         globals.GApp.workspace.clear()
         dynagen_namespace.CONFIGSPECPATH = []
         dir = os.path.dirname(dynagen_namespace.__file__)
-        debugmsg(3, "NETFile::import_net_file(),    os.path.dirname(dynagen_namespace.__file__) = %s" % str(dir))
+        debugmsg(3, "NETFile::import_net_file(),    os.path.dirname(dynagen_namespace.__file__) = %s" % unicode(dir))
         dynagen_namespace.CONFIGSPECPATH.append(dir)
         try:
-            debugmsg(3, "NETFile.py: import_config, try: path = %s" % str(path))
+            debugmsg(3, "NETFile.py: import_config, try: path = %s" % unicode(path))
             dynagen_namespace.FILENAME = path
             debugmsg(3, "NETFile.py: import_config, try: dynagen.import_config")
             self.dynagen.import_config(path)
@@ -890,14 +904,14 @@ class NETFile(object):
             # Write out the config to a file
             file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.cfg'
             if auto == False:
-                print unicode(translate("NETFile", "Exporting %s configuration to %s")) % (device.name, file_path)
+                print translate("NETFile", "Exporting %s configuration to %s") % (device.name, file_path)
         except lib.DynamipsError, msg:
             if auto == False:
-                print unicode(device.name + ': ' + translate("NETFile", "Dynamips error") + ': ') + unicode(msg)
+                print translate("NETFile", "%s: Dynamips error: %s") % (device.name, msg)
             return
         except lib.DynamipsWarning, msg:
             if auto == False:
-                print unicode(device.name + ': ' + translate("NETFile", "Dynamips warning") + ': ') + unicode(msg)
+                print translate("NETFile", "%s: Dynamips warning: %s") % (device.name, msg)
             return
         except:
             error('Unknown error exporting config for ' + device.name)
@@ -909,8 +923,7 @@ class NETFile(object):
             device.cnfg = file_path
             self.dynagen.running_config[device.dynamips.host + ':' + str(device.dynamips.port)]['ROUTER ' + device.name]['cnfg'] = file_path
         except IOError, e:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow,
-                                      unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (file_path, unicode(e)))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "%s: IOError") % device.name, translate("NETFile", "%s: IO Error: %s") % (file_path, e))
             return
 
     def export_net_file(self, path, auto=False):
@@ -978,7 +991,7 @@ class NETFile(object):
                 self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
                 config = self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)]
 
-                config['text'] = unicode(item.toPlainText()).replace("\n", "\\n")
+                config['text'] = unicode(item.toPlainText(), 'utf-8', errors='replace').replace("\n", "\\n")
                 config['x'] = item.x()
                 config['y'] = item.y()
 
@@ -993,7 +1006,7 @@ class NETFile(object):
                     config['color'] = '"' + str(item.defaultTextColor().name()) + '"'
 
                 zvalue = item.zValue()
-                if zvalue != 1:
+                if zvalue != 2:
                     config['z'] = zvalue
                 note_nb += 1
 
@@ -1044,7 +1057,7 @@ class NETFile(object):
                 config['x'] = item.x()
                 config['y'] = item.y()
                 zvalue = item.zValue()
-                if zvalue > 0:
+                if zvalue != 0:
                     config['z'] = zvalue
                 pix_nb += 1
             elif isinstance(item, DecorativeNode):
@@ -1072,7 +1085,7 @@ class NETFile(object):
                     item.showHostname()
                 # record node x & y positions
                 if not item.d:
-                    print item.hostname + unicode(' ' + translate("NETFile", "must be connected or have a hypervisor set in order to be registered"))
+                    print translate("NETFile", "%s must be connected or have a hypervisor set in order to be registered") % item.hostname
                     continue
                 if not item.default_symbol:
                     self.dynagen.running_config[item.d][item.get_running_config_name()]['symbol'] = item.type
@@ -1167,14 +1180,13 @@ class NETFile(object):
             debugmsg(3, ("NETFile.py: writing... dynagen.running_config = ", self.dynagen.running_config))
             self.dynagen.running_config.write()
         except IOError, e:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow,
-                                      unicode(device.name) + ': ' + translate("NETFile", "IOError"), unicode(translate("NETFile", "%s: IO Error: %s")) % (path, unicode(e)))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "%s: IOError") % device.name, translate("NETFile", "%s: IO Error: %s") % (path, e))
         self.dynagen.running_config.filename = None
 
     def convert_to_relpath(self, path, config_path):
         """ Returns a relative path when the config path and another path share a common base directory
         """
-        debugmsg(3, "NETFile.py: convert_to_relpath(%s, %s)" % (str(path), str(config_path)))
+        debugmsg(3, "NETFile.py: convert_to_relpath(%s, %s)" % (unicode(path), unicode(config_path)))
         # Workaround, if remote hypervisor doesn't have workdir set:
         if path == None:
             return None

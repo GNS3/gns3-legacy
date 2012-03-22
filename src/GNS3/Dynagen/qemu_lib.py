@@ -116,7 +116,7 @@ class UDPConnection:
 class Qemu(object):
 
     def __init__(self, name, port=10525):
-        debugmsg(2, "Qemu::__init__(%s, %s)" % (str(name), str(port)))
+        debugmsg(2, "Qemu::__init__(%s, %s)" % (unicode(name), str(port)))
 
         self.port = port
         self.host = name
@@ -173,7 +173,7 @@ class Qemu(object):
 
     def close(self):
         """ Close the connection to the Qemuwrapper (but leave it running)"""
-        debugmsg(2, "Qemu::close(%s, %s)" % (str(name), str(port)))
+        debugmsg(2, "Qemu::close(%s, %s)" % (unicode(name), str(port)))
 
         self.s.close()
 
@@ -223,7 +223,7 @@ class Qemu(object):
         """ Set the path to Qemu for this network
         qemupath: (string) path
         """
-        debugmsg(2, "Qemu::_setqemupath(%s)" % str(qemupath))
+        debugmsg(2, "Qemu::_setqemupath(%s)" % unicode(qemupath))
 
         if type(qemupath) not in [str, unicode]:
             raise DynamipsError, 'invalid Qemu path'
@@ -234,7 +234,7 @@ class Qemu(object):
     def _getqemupath(self):
         """ Returns the Qemu path
         """
-        debugmsg(2, "Qemu::_getqemupath(), returns %s" % str(self._qemupath))
+        debugmsg(2, "Qemu::_getqemupath(), returns %s" % unicode(self._qemupath))
 
         return self._qemupath
 
@@ -244,7 +244,7 @@ class Qemu(object):
         """ Set the path to Qemu-img for this network
         qemuimgpath: (string) path
         """
-        debugmsg(2, "Qemu::_setqemuimgpath(%s)" % str(qemuimgpath))
+        debugmsg(2, "Qemu::_setqemuimgpath(%s)" % unicode(qemuimgpath))
 
         if type(qemuimgpath) not in [str, unicode]:
             raise DynamipsError, 'invalid Qemu-img path'
@@ -255,7 +255,7 @@ class Qemu(object):
     def _getqemuimgpath(self):
         """ Returns the Qemu-img path
         """
-        debugmsg(2, "Qemu::_getqemuimgpath(), returns %s" % str(self._qemuimgpath))
+        debugmsg(2, "Qemu::_getqemuimgpath(), returns %s" % unicode(self._qemuimgpath))
 
         return self._qemuimgpath
 
@@ -265,7 +265,7 @@ class Qemu(object):
         """ Set the working directory for this network
         directory: (string) the directory
         """
-        debugmsg(2, "Qemu::_setworkingdir(%s)" % str(directory))
+        debugmsg(2, "Qemu::_setworkingdir(%s)" % unicode(directory))
         if directory == 'None':
             #skip broken topology ini files,
             return
@@ -279,7 +279,7 @@ class Qemu(object):
     def _getworkingdir(self):
         """ Returns working directory
         """
-        debugmsg(2, "Qemu::_getworkingdir(), returns %s" % str(self._workingdir))
+        debugmsg(2, "Qemu::_getworkingdir(), returns %s" % unicode(self._workingdir))
 
         return self._workingdir
 
@@ -308,7 +308,7 @@ class AnyEmuDevice(object):
     isrouter = 1
 
     def __init__(self, qemu, name):
-        debugmsg(2, "AnyEmuDevice::__init__(%s, %s)" % (str(qemu), str(name)))
+        debugmsg(2, "AnyEmuDevice::__init__(%s, %s)" % (unicode(qemu), unicode(name)))
         self.p = qemu
         #create a twin variable to self.p but with name self.dynamips to keep things working elsewhere
         self.dynamips = qemu
@@ -324,7 +324,7 @@ class AnyEmuDevice(object):
         self.state = 'stopped'
         self.defaults = {
             'image': None,
-            'ram': 128,
+            'ram': 256,
             'nics': 6,
             'netcard': 'rtl8139',
             'kvm': False,
@@ -580,7 +580,7 @@ class AnyEmuDevice(object):
         """ Set the IOS image for this emulated device
         image: path to IOS image file
         """
-        debugmsg(2, "AnyEmuDevice::_setimage(%s)" % str(image))
+        debugmsg(2, "AnyEmuDevice::_setimage(%s)" % unicode(image))
 
         if type(image) not in [str, unicode]:
             raise DynamipsError, 'invalid image'
@@ -593,7 +593,7 @@ class AnyEmuDevice(object):
     def _getimage(self):
         """ Returns path of the image being used by this emulated device
         """
-        debugmsg(3, "AnyEmuDevice::_getimage(), returns %s" % str(self._image))
+        debugmsg(3, "AnyEmuDevice::_getimage(), returns %s" % unicode(self._image))
 
         return self._image
 
@@ -833,7 +833,7 @@ class AnyEmuDevice(object):
 
         info += '\n' + self.slot_info()
 
-        debugmsg(3, "AnyEmuDevice::info(), returns %s" % str(info))
+        debugmsg(3, "AnyEmuDevice::info(), returns %s" % unicode(info))
         return info
 
     def gen_cfg_name(self, name=None):

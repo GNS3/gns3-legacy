@@ -36,7 +36,7 @@ class MACTableDialog(QtGui.QDialog, Ui_MACTableDialog):
 
         self.connect(self.pushButtonRefresh, QtCore.SIGNAL('clicked()'), self.__refreshTable)
         self.connect(self.pushButtonClear, QtCore.SIGNAL('clicked()'), self.__clearTable)
-        self.setWindowTitle(unicode(translate('MACTableDialog', "%s MAC Address Table")) % node.hostname)
+        self.setWindowTitle(translate('MACTableDialog', "%s MAC Address Table") % node.hostname)
         self.node = node
         self.__refreshTable()
 

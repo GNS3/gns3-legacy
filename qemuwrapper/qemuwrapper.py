@@ -47,6 +47,12 @@ import ctypes
 import hashlib
 import Queue
 
+try:
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+except:
+    sys.stderr.write("Can't set default encoding to utf-8\n")
+
 if debuglevel > 0:
     if platform.system() == 'Windows':
         debugfilename = "C:\TEMP\gns3-qemuwrapper-log.txt"
@@ -76,7 +82,7 @@ msg = "WELCOME to qemuwrapper.py"
 debugmsg(2, msg)
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.8.2-BETA2'
+__version__ = '0.8.2'
 
 QEMU_PATH = "qemu"
 QEMU_IMG_PATH = "qemu-img"
@@ -88,9 +94,9 @@ FORCE_IPV6 = False
 # set correctly the working directory for qemuwrapper
 WORKDIR = os.getcwdu()
 if os.environ.has_key("TEMP"):
-    WORKDIR = unicode(os.environ["TEMP"], errors='replace')
+    WORKDIR = unicode(os.environ["TEMP"], 'utf-8', errors='replace')
 elif os.environ.has_key("TMP"):
-    WORKDIR = unicode(os.environ["TMP"], errors='replace')
+    WORKDIR = unicode(os.environ["TMP"], 'utf-8', errors='replace')
 
 # __file__ is not supported by py2exe and py2app
 if hasattr(sys, "frozen"):
@@ -134,7 +140,7 @@ class xEMUInstance(object):
         self.options = ''
         self.process = None
         self.processq = None
-        self.workdir = WORKDIR + '/' + name
+        self.workdir = WORKDIR + os.sep + name
         self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options']
 
     def create(self):

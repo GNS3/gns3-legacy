@@ -329,7 +329,7 @@ class IOSRouter(AbstractNode):
         """
 
         startupConfigDlg = StartupConfigDialog(self.router)
-        startupConfigDlg.setWindowTitle(unicode(translate("IOSRouter", "Startup-Config for %s")) % self.hostname)
+        startupConfigDlg.setWindowTitle(translate("IOSRouter", "Startup-Config for %s") % self.hostname)
         startupConfigDlg.show()
         startupConfigDlg.exec_()
 
@@ -668,7 +668,8 @@ class IOSRouter(AbstractNode):
         """ Start a telnet console and connect it to this router's AUX port
         """
         if not self.router.aux:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "AUX port"), unicode(translate("AbstractNode", "AUX port not available for this router model or base AUX port is set to 0 in preferences")))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "AUX port"),
+                                       translate("AbstractNode", "AUX port not available for this router model or base AUX port is set to 0 in preferences"))
             return False
 
         if self.router and self.router.state == 'running':

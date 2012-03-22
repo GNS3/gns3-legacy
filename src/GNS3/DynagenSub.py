@@ -47,7 +47,7 @@ class DynagenSub(Dynagen):
     def check_replace_GUID_NIO(self, filename):
         """ Check and replace non-existing GUID (network interface ID) on Windows
         """
-        debugmsg(2, "DynagenSub::check_replace_GUID_NIO(%s)" % str(filename))
+        debugmsg(2, "DynagenSub::check_replace_GUID_NIO(%s)" % unicode(filename))
 
         file = open(filename,'r')
         lines = file.readlines()
@@ -76,7 +76,7 @@ class DynagenSub(Dynagen):
             for nio in niolist:
                 if not interfaces.has_key(nio):
                     (selection, ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("DynagenSub", "NIC binding"),
-                                                        unicode(translate("DynagenSub", "NIC ID %s cannot be found on this host\nPlease choose an alternate network interface:")) % nio, interfaces.values(), 0, False)
+                                                                 translate("DynagenSub", "NIC ID %s cannot be found on this host\nPlease choose an alternate network interface:") % nio, interfaces.values(), 0, False)
                     if ok:
                         interface = ""
                         for (key, name) in interfaces.iteritems():
@@ -116,7 +116,7 @@ class DynagenSub(Dynagen):
     def open_config(self, FILENAME):
         """ Open the config file
         """
-        debugmsg(2, "DynagenSub::open_config(%s)" % str(FILENAME))
+        debugmsg(2, "DynagenSub::open_config(%s)" % unicode(FILENAME))
 
         if sys.platform.startswith('win'):
             self.check_replace_GUID_NIO(FILENAME)
@@ -159,7 +159,7 @@ class DynagenSub(Dynagen):
             #debugmsg(3, ("DynagenSub::open_config(), server = ", server))  # Returns long config of hypervisor
             if ' ' in server.name:
                 (emulator, host) = server.name.split(' ')
-                debugmsg(2, "DynagenSub::open_config(), emulator = %s, host = %s" % (str(emulator), str(host)))
+                debugmsg(2, "DynagenSub::open_config(), emulator = %s, host = %s" % (unicode(emulator), unicode(host)))
                 if ':' in host:
                     # unpack the server and port
                     # controlPort is ignored
@@ -191,10 +191,10 @@ class DynagenSub(Dynagen):
                                     initrd_name = globals.GApp.asaimages.values()[0].initrd
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
-                                        unicode(translate("ASA initrd", "ASA initrd %s cannot be found and cannot find an alternative initrd")) % device['initrd'])
+                                                               translate("ASA initrd", "ASA initrd %s cannot be found and cannot find an alternative initrd") % device['initrd'])
                                     continue
-                                print unicode(translate("DynagenSub", "Local ASA initrd %s cannot be found, use initrd %s instead")) \
-                                % (unicode(device['initrd']), initrd_name)
+                                print translate("DynagenSub", "Local ASA initrd %s cannot be found, use initrd %s instead") \
+                                                % (unicode(device['initrd']), initrd_name)
                                 device['initrd'] = initrd_name
 
                             if not os.access(device['kernel'], os.F_OK):
@@ -202,10 +202,10 @@ class DynagenSub(Dynagen):
                                     kernel_name = globals.GApp.asaimages.values()[0].kernel
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
-                                        unicode(translate("ASA kernel", "ASA kernel %s cannot be found and cannot find an alternative kernel")) % device['kernel'])
+                                                               translate("ASA kernel", "ASA kernel %s cannot be found and cannot find an alternative kernel") % device['kernel'])
                                     continue
-                                print unicode(translate("DynagenSub", "Local ASA kernel %s cannot be found, use kernel %s instead")) \
-                                % (unicode(device['kernel']), kernel_name)
+                                print translate("DynagenSub", "Local ASA kernel %s cannot be found, use kernel %s instead") \
+                                                % (unicode(device['kernel']), kernel_name)
                                 device['kernel'] = kernel_name
                             continue
 
@@ -218,9 +218,9 @@ class DynagenSub(Dynagen):
                                     image1_name = globals.GApp.idsimages.values()[0].image1
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
-                                        unicode(translate("IDS image (hda)", "IDS image %s cannot be found and cannot find an alternative image")) % device['image1'])
+                                                               translate("IDS image (hda)", "IDS image %s cannot be found and cannot find an alternative image") % device['image1'])
                                     continue
-                                print unicode(translate("DynagenSub", "Local IDS image %s cannot be found, use image %s instead")) \
+                                print translate("DynagenSub", "Local IDS image %s cannot be found, use image %s instead") \
                                 % (unicode(device['image1']), image1_name)
                                 device['image1'] = image1_name
 
@@ -229,9 +229,9 @@ class DynagenSub(Dynagen):
                                     image2_name = globals.GApp.idsimages.values()[0].image2
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
-                                        unicode(translate("IDS image (hdb)", "IDS image %s cannot be found and cannot find an alternative image")) % device['image2'])
+                                                               translate("IDS image (hdb)", "IDS image %s cannot be found and cannot find an alternative image") % device['image2'])
                                     continue
-                                print unicode(translate("DynagenSub", "Local IDS image %s cannot be found, use image %s instead")) \
+                                print translate("DynagenSub", "Local IDS image %s cannot be found, use image %s instead") \
                                 % (unicode(device['image2']), image2_name)
                                 device['image2'] = image2_name
 
@@ -252,10 +252,10 @@ class DynagenSub(Dynagen):
                                     image_name = globals.GApp.junosimages.values()[0].filename
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
-                                        unicode(translate("JunOS image", "JunOS image %s cannot be found and cannot find an alternative image")) % device['image'])
+                                                               translate("JunOS image", "JunOS image %s cannot be found and cannot find an alternative image") % device['image'])
                                     continue
-                                print unicode(translate("DynagenSub", "Local JunOS image %s cannot be found, use image %s instead")) \
-                                % (unicode(device['image']), image_name)
+                                print translate("DynagenSub", "Local JunOS image %s cannot be found, use image %s instead") \
+                                                % (unicode(device['image']), image_name)
                                 device['image'] = image_name
 
                         if device.name == 'QemuDevice' and device['image']:
@@ -265,9 +265,9 @@ class DynagenSub(Dynagen):
                                     image_name = globals.GApp.qemuimages.values()[0].filename
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
-                                        unicode(translate("Qemu image", "Qemu guest image %s cannot be found and cannot find an alternative image")) % device['image'])
+                                                               translate("Qemu image", "Qemu guest image %s cannot be found and cannot find an alternative image") % device['image'])
                                     continue
-                                print unicode(translate("DynagenSub", "Local Qemu guest image %s cannot be found, use image %s instead")) \
+                                print translate("DynagenSub", "Local Qemu guest image %s cannot be found, use image %s instead") \
                                 % (unicode(device['image']), image_name)
                                 device['image'] = image_name
                         elif device['image']:
@@ -279,9 +279,9 @@ class DynagenSub(Dynagen):
                                     image_name = globals.GApp.piximages.values()[0].filename
                                 else:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
-                                        unicode(translate("PIX image", "PIX image %s cannot be found and cannot find an alternative image")) % device['image'])
+                                                               translate("PIX image", "PIX image %s cannot be found and cannot find an alternative image") % device['image'])
                                     continue
-                                print unicode(translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead")) \
+                                print translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead") \
                                 % (unicode(device['image']), image_name)
                                 device['image'] = image_name
                 elif emulator == 'vbox' and (host == globals.GApp.systconf['vbox'].VBoxManager_binding or host == 'localhost') and globals.GApp.systconf['vbox'].enable_VBoxManager:
@@ -292,12 +292,12 @@ class DynagenSub(Dynagen):
                     #"""
                     if server['workingdir']:
                         abspath = os.path.join(os.path.dirname(FILENAME), unicode(server['workingdir']))
-                        debugmsg(3, "DynagenSub::open_config(), 'vbox', abspath = %s" % str(abspath))
+                        debugmsg(3, "DynagenSub::open_config(), 'vbox', abspath = %s" % unicode(abspath))
                         if os.path.exists(abspath):
                             server['workingdir'] = abspath
                             debug(unicode("Converting relative working directory path to absolute path: %s") % server['workingdir'])
 
-                    debugmsg(3, "DynagenSub::open_config(), 'vbox', os.path.dirname(FILENAME) = %s" % str(os.path.dirname(FILENAME)))
+                    debugmsg(3, "DynagenSub::open_config(), 'vbox', os.path.dirname(FILENAME) = %s" % unicode(os.path.dirname(FILENAME)))
                     if server['workingdir'] == '.':
                         server['workingdir'] = os.path.dirname(FILENAME)
 
@@ -322,7 +322,7 @@ class DynagenSub(Dynagen):
                     #"""
             else:
                 server.host = server.name
-                debugmsg(3, "DynagenSub::open_config(), server.host = %s, server.name = %s" % (str(server.host), str(server.name)))
+                debugmsg(3, "DynagenSub::open_config(), server.host = %s, server.name = %s" % (unicode(server.host), unicode(server.name)))
                 controlPort = None
                 if ':' in server.host:
                     #(server.host, controlPort) = server.host.split(':')
@@ -366,8 +366,8 @@ class DynagenSub(Dynagen):
                             workdir = globals.GApp.workspace.projectWorkdir
                         else:
                             workdir = globals.GApp.systconf['dynamips'].workdir
-                        print unicode(translate("DynagenSub", "Local working directory %s cannot be found for hypervisor %s, use working directory %s instead")) \
-                        % (unicode(server['workingdir']), unicode(server.host) + ':' + controlPort, workdir)
+                        print translate("DynagenSub", "Local working directory %s cannot be found for hypervisor %s:%s, use working directory %s instead") \
+                        % (server['workingdir'], server.host, controlPort, workdir)
                         server['workingdir'] = workdir
 
                     debugmsg(3, ("DynagenSub::open_config(), server.sections = ", server.sections))
@@ -391,7 +391,7 @@ class DynagenSub(Dynagen):
                                         selected_images.append(image)
 
                                 if len(selected_images):
-                                    message = "Local IOS image %s\ncannot be found for hypervisor %s\n\nPlease choose an alternative image:" % (unicode(device['image']), unicode(server.host) + ':' + controlPort)
+                                    message = unicode("Local IOS image %s\ncannot be found for hypervisor %s:%s\n\nPlease choose an alternative image:") % (device['image'], server.host, controlPort)
                                     selected_images.sort()
                                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("DynagenSub", "IOS image"),
                                                                                       translate("DynagenSub", message), selected_images, 0, False)
@@ -400,8 +400,8 @@ class DynagenSub(Dynagen):
 
                                 if image_to_use == None and len(selected_images) == 0:
                                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
-                                                               unicode(translate("IOS image", "IOS image %s cannot be found for hypervisor %s and cannot find an alternative %s image"))
-                                                                % (device['image'], unicode(server.host) + ':' + controlPort, device.name))
+                                                               translate("IOS image", "IOS image %s cannot be found for hypervisor %s:%s and cannot find an alternative %s image")
+                                                                % (device['image'], server.host, controlPort, device.name))
                                     continue
                                 if image_to_use == None and len(selected_images) > 1:
                                     for image in selected_images:
@@ -414,8 +414,8 @@ class DynagenSub(Dynagen):
                                 image_name = globals.GApp.iosimages[image_to_use].filename
                                 ram = globals.GApp.iosimages[image_to_use].default_ram
                                 idlepc = globals.GApp.iosimages[image_to_use].idlepc
-                                print unicode(translate("DynagenSub", "Local IOS image %s cannot be found for hypervisor %s, use image %s instead")) \
-                                % (unicode(device['image']), unicode(server.host) + ':' + controlPort, image_name)
+                                print translate("DynagenSub", "Local IOS image %s cannot be found for hypervisor %s:s, use image %s instead") \
+                                % (device['image'], server.host, controlPort, image_name)
                                 device['image'] = image_name
                                 device['ram'] = ram
                                 device['idlepc'] = idlepc
@@ -445,8 +445,8 @@ class DynagenSub(Dynagen):
 
                                     new_config_path = globals.GApp.workspace.projectConfigs + os.sep + basename
 
-                                    print unicode(translate("DynagenSub", "Local configuration %s cannot be found for router %s, use configuration %s instead")) \
-                                    % (unicode(device['cnfg']), unicode(device.name), new_config_path)
+                                    print translate("DynagenSub", "Local configuration %s cannot be found for router %s, use configuration %s instead") \
+                                    % (device['cnfg'], device.name, new_config_path)
                                     device['cnfg'] = new_config_path
 
                 current += 1
@@ -461,7 +461,7 @@ class DynagenSub(Dynagen):
     def getGNS3Data(self):
         """ Returns GNS3 specific data from NET file
         """
-        debugmsg(2, "DynagenSub::getGNS3Data(), returns: %s" % str(self.gns3_data))
+        debugmsg(2, "DynagenSub::getGNS3Data(), returns: %s" % unicode(self.gns3_data))
 
         return self.gns3_data
 

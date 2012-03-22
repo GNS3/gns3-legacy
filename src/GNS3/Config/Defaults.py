@@ -36,11 +36,11 @@ else:
 
 # Default path to Dynamips working directory
 if os.environ.has_key("TEMP"):
-    DYNAMIPS_DEFAULT_WORKDIR = unicode(os.environ["TEMP"], errors='replace')
+    DYNAMIPS_DEFAULT_WORKDIR = unicode(os.environ["TEMP"], 'utf-8', errors='replace')
 elif os.environ.has_key("TMP"):
-    DYNAMIPS_DEFAULT_WORKDIR = unicode(os.environ["TMP"], errors='replace')
+    DYNAMIPS_DEFAULT_WORKDIR = unicode(os.environ["TMP"], 'utf-8', errors='replace')
 else:
-    DYNAMIPS_DEFAULT_WORKDIR = unicode('/tmp', errors='replace')
+    DYNAMIPS_DEFAULT_WORKDIR = unicode('/tmp')
 
 # Default path to qemuwrapper
 if sys.platform.startswith('win'):
@@ -57,11 +57,11 @@ else:
 
 # Default path to qemuwrapper working directory
 if os.environ.has_key("TEMP"):
-    QEMUWRAPPER_DEFAULT_WORKDIR = unicode(os.environ["TEMP"], errors='replace')
+    QEMUWRAPPER_DEFAULT_WORKDIR = unicode(os.environ["TEMP"], 'utf-8', errors='replace')
 elif os.environ.has_key("TMP"):
-    QEMUWRAPPER_DEFAULT_WORKDIR = unicode(os.environ["TMP"], errors='replace')
+    QEMUWRAPPER_DEFAULT_WORKDIR = unicode(os.environ["TMP"], 'utf-8', errors='replace')
 else:
-    QEMUWRAPPER_DEFAULT_WORKDIR = unicode('/tmp', errors='replace')
+    QEMUWRAPPER_DEFAULT_WORKDIR = unicode('/tmp')
 
 # Default path to vboxwrapper
 if sys.platform.startswith('win'):
@@ -78,11 +78,11 @@ else:
 
 # Default path to vboxwrapper working directory
 if os.environ.has_key("TEMP"):
-    VBOXWRAPPER_DEFAULT_WORKDIR = unicode(os.environ["TEMP"], errors='replace')
+    VBOXWRAPPER_DEFAULT_WORKDIR = unicode(os.environ["TEMP"], 'utf-8', errors='replace')
 elif os.environ.has_key("TMP"):
-    VBOXWRAPPER_DEFAULT_WORKDIR = unicode(os.environ["TMP"], errors='replace')
+    VBOXWRAPPER_DEFAULT_WORKDIR = unicode(os.environ["TMP"], 'utf-8', errors='replace')
 else:
-    VBOXWRAPPER_DEFAULT_WORKDIR = unicode('/tmp', errors='replace')
+    VBOXWRAPPER_DEFAULT_WORKDIR = unicode('/tmp')
 
 Traditional_Capture_String = translate("Defaults", 'Wireshark Traditional Capture')
 Live_Traffic_Capture_String = translate("Defaults", 'Wireshark Live Traffic Capture')
@@ -143,11 +143,11 @@ else:
 
 # Default path to capture working directory
 if os.environ.has_key("TEMP"):
-    CAPTURE_DEFAULT_WORKDIR = unicode(os.environ["TEMP"], errors='replace')
+    CAPTURE_DEFAULT_WORKDIR = unicode(os.environ["TEMP"], 'utf-8', errors='replace')
 elif os.environ.has_key("TMP"):
-    CAPTURE_DEFAULT_WORKDIR = unicode(os.environ["TMP"], errors='replace')
+    CAPTURE_DEFAULT_WORKDIR = unicode(os.environ["TMP"], 'utf-8', errors='replace')
 else:
-    CAPTURE_DEFAULT_WORKDIR = unicode('/tmp', errors='replace')
+    CAPTURE_DEFAULT_WORKDIR = unicode('/tmp')
 
 # Default predefined sets of Terminal commands on various OSes:
 if platform.system() == 'Linux' or platform.system().__contains__("BSD"):
@@ -211,25 +211,25 @@ else:
 
 # Default project directory
 if sys.platform.startswith('win') and os.environ.has_key("HOMEDRIVE") and os.environ.has_key("HOMEPATH"):
-    PROJECT_DEFAULT_DIR = unicode(os.environ["HOMEDRIVE"] + os.environ["HOMEPATH"] + os.sep + 'GNS3' + os.sep + 'Projects', errors='replace')
+    PROJECT_DEFAULT_DIR = unicode(os.environ["HOMEDRIVE"] + os.environ["HOMEPATH"] + os.sep + 'GNS3' + os.sep + 'Projects', 'utf-8', errors='replace')
 elif os.environ.has_key("HOME"):
-    PROJECT_DEFAULT_DIR = unicode(os.environ["HOME"] + os.sep + 'GNS3' + os.sep + 'Projects', errors='replace')
+    PROJECT_DEFAULT_DIR = unicode(os.environ["HOME"] + os.sep + 'GNS3' + os.sep + 'Projects', 'utf-8', errors='replace')
 elif os.environ.has_key("TEMP"):
-    PROJECT_DEFAULT_DIR = unicode(os.environ["TEMP"], errors='replace')
+    PROJECT_DEFAULT_DIR = unicode(os.environ["TEMP"], 'utf-8', errors='replace')
 elif os.environ.has_key("TMP"):
-    PROJECT_DEFAULT_DIR = unicode(os.environ["TMP"], errors='replace')
+    PROJECT_DEFAULT_DIR = unicode(os.environ["TMP"], 'utf-8', errors='replace')
 else:
     PROJECT_DEFAULT_DIR = unicode('/tmp')
 
 # Default IOS image directory
 if sys.platform.startswith('win') and os.environ.has_key("HOMEDRIVE") and os.environ.has_key("HOMEPATH"):
-    IOS_DEFAULT_DIR = unicode(os.environ["HOMEDRIVE"] + os.environ["HOMEPATH"] + os.sep + 'GNS3' + os.sep + 'Images', errors='replace')
+    IOS_DEFAULT_DIR = unicode(os.environ["HOMEDRIVE"] + os.environ["HOMEPATH"] + os.sep + 'GNS3' + os.sep + 'Images', 'utf-8', errors='replace')
 elif os.environ.has_key("HOME"):
-    IOS_DEFAULT_DIR = unicode(os.environ["HOME"] + os.sep + 'GNS3' + os.sep + 'Images', errors='replace')
+    IOS_DEFAULT_DIR = unicode(os.environ["HOME"] + os.sep + 'GNS3' + os.sep + 'Images', 'utf-8', errors='replace')
 elif os.environ.has_key("TEMP"):
-    IOS_DEFAULT_DIR = unicode(os.environ["TEMP"], errors='replace')
+    IOS_DEFAULT_DIR = unicode(os.environ["TEMP"], 'utf-8', errors='replace')
 elif os.environ.has_key("TMP"):
-    IOS_DEFAULT_DIR = unicode(os.environ["TMP"], errors='replace')
+    IOS_DEFAULT_DIR = unicode(os.environ["TMP"], 'utf-8', errors='replace')
 else:
     IOS_DEFAULT_DIR = unicode('/tmp')
 
@@ -491,6 +491,7 @@ conf_systemGeneral_defaults = {
     'scene_height': 1000,
     'auto_check_for_update': True,
     'last_check_for_update': 0,
+    'console_delay': 0.5,
 }
 
 conf_systemGeneral_types = {
@@ -510,6 +511,7 @@ conf_systemGeneral_types = {
     'scene_height': int,
     'auto_check_for_update': bool,
     'last_check_for_update': int,
+    'console_delay': float,
 }
 
 conf_systemCapture_defaults = {

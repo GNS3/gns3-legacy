@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_PreferencesDialog.ui'
 #
-# Created: Mon Jan 30 23:30:21 2012
+# Created: Tue Mar 13 20:07:45 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!

@@ -29,15 +29,24 @@ def isIOScompressed(ios_image):
     """
 
     fd = open(ios_image, 'r+b')
-    map = mmap.mmap(fd.fileno(), 0)
+    mapped_file = mmap.mmap(fd.fileno(), 0)
 
     # look for ZIP 'end of central directory' signature
-    pos = map.rfind('\x50\x4b\x05\x06')
-    map.close()
+    pos = mapped_file.rfind('\x50\x4b\x05\x06')
+
+    # look for another ZIP 'end of central directory' signature
+    # if we find one it means the IOS image itself contains zipped files
+    multiple_zipped_files = mapped_file.find('\x50\x4b\x05\x06', 0, pos)
+
+    # let's find the 'CISCO SYSTEMS' string between our last signature and the end of our file
+    # so we can know the IOS image is compressed even if there are other ZIP signatures in our file
+    cisco_string = mapped_file.find('\x43\x49\x53\x43\x4F\x20\x53\x59\x53\x54\x45\x4D\x53', pos + 4)
+
+    mapped_file.close()
     fd.close()
 
     # finding the signature and not recognized as a regular zip file means IOS is compressed
-    if pos > 0 and not zipfile.is_zipfile(ios_image):
+    if (pos > 0 and not zipfile.is_zipfile(ios_image)) and not (multiple_zipped_files > 0 and not cisco_string > 0):
         return True
     return False
 
@@ -76,8 +85,8 @@ def uncompressIOS(ios_image, dest_file):
 if __name__ == '__main__':
 
     # for testing
-    image = '/Users/grossmj/Documents/IOS/c7200.test'
-    extracted_image = '/Users/grossmj/Documents/IOS/c7200.test.extracted'
+    image = '/Users/grossmj/Public/GNS3 Test Kit/c2600-i-mz.122-5d.bin'
+    extracted_image = '/tmp/c2600.image'
     print isIOScompressed(image)
     uncompressIOS(image, extracted_image)
     print isIOScompressed(extracted_image)

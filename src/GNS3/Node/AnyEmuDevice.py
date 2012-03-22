@@ -422,7 +422,7 @@ class ASA(AnyEmuDevice, ASADefaults):
         """
 
         if not self.emudev.initrd or not self.emudev.kernel:
-            print unicode(translate(self.basehostname, "%s: no device initrd or kernel")) % self.hostname
+            print translate(self.basehostname, "%s: no device initrd or kernel") % self.hostname
             return
         try:
             if self.emudev.state == 'stopped':

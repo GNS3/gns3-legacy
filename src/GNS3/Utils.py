@@ -39,7 +39,7 @@ def translate(context, text):
         context: string (classname)
         text: string (original text)
     """
-    return QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8)
+    return unicode(QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8))
 
 def testOpenFile(path,  flags='r'):
     """ returns True if the file can be openned
@@ -102,17 +102,17 @@ def getWindowsInterfaces():
         for line in outputlines:
             match = re.search(r"""^rpcap://\\Device\\NPF_({[a-fA-F0-9\-]*}).*""",  line.strip())
             if match:
-                interface_name = ': '
+                interface_name = u": "
                 try:
                     reg_key = "SYSTEM\\CurrentControlSet\\Control\\Network\\{4D36E972-E325-11CE-BFC1-08002BE10318}\\%s\\Connection" % match.group(1)
                     key = _winreg.OpenKey(_winreg.HKEY_LOCAL_MACHINE, reg_key, _winreg.KEY_READ)
                     (value, typevalue) = _winreg.QueryValueEx(key, 'Name')
                     _winreg.CloseKey(key)
-                    interface_name += value
+                    interface_name += unicode(value)
                 except:
-                    interface_name += "unknown name"
+                    interface_name += u"unknown name"
                     pass
-                interfaces.append(match.group(0) + interface_name)
+                interfaces.append(unicode(match.group(0)) + interface_name)
     except:
         return []
     return interfaces

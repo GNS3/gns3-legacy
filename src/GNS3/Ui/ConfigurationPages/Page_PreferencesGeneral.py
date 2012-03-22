@@ -136,6 +136,9 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             
         self.labelConfigurationPath.setText(os.path.normpath(unicode(ConfDB().fileName())))
 
+        # Delay between console starts
+        self.doubleSpinBoxConsoleDelay.setValue(self.conf.console_delay)
+
     def saveConf(self):
 
         new_idx = self.langsBox.currentIndex()
@@ -188,13 +191,14 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf.auto_check_for_update = False
             self.conf.last_check_for_update = 0
 
-        self.conf.project_path = unicode(self.ProjectPath.text())
-        self.conf.ios_path = unicode(self.IOSPath.text())
-        self.conf.term_cmd = unicode(self.lineEditTermCommand.text())
+        self.conf.project_path = unicode(self.ProjectPath.text(), 'utf-8', errors='replace')
+        self.conf.ios_path = unicode(self.IOSPath.text(), 'utf-8', errors='replace')
+        self.conf.term_cmd = unicode(self.lineEditTermCommand.text(), 'utf-8', errors='replace')
         self.conf.scene_width = self.workspaceWidth.value()
         self.conf.scene_height = self.workspaceHeight.value()
         self.conf.slow_start = self.slowStartAll.value()
         self.conf.autosave = self.autoSave.value()
+        self.conf.console_delay = self.doubleSpinBoxConsoleDelay.value()
 
         # Create project and image directories if they don't exist
         if self.conf.project_path and not os.path.exists(self.conf.project_path):
@@ -202,14 +206,14 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
                 os.makedirs(self.conf.project_path)
             except (OSError, IOError), e:
                 QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Project directory"),
-                                           unicode(translate("UiConfig_PreferencesGeneral", "Cannot create project directory: %s")) % e.strerror)
+                                           translate("UiConfig_PreferencesGeneral", "Cannot create project directory: %s") % e.strerror)
 
         if self.conf.ios_path and not os.path.exists(self.conf.ios_path):
             try:
                 os.makedirs(self.conf.ios_path)
             except (OSError, IOError), e:
                 QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Image directory"),
-                                           unicode(translate("UiConfig_PreferencesGeneral", "Cannot create image directory: %s")) % e.strerror)
+                                           translate("UiConfig_PreferencesGeneral", "Cannot create image directory: %s") % e.strerror)
                 
         if not os.path.exists(self.conf.ios_path + os.sep + 'baseconfig.txt'):
             try:

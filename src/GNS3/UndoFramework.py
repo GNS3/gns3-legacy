@@ -36,7 +36,7 @@ class AddNode(QtGui.QUndoCommand):
     def __init__(self, topology, node):
 
         QtGui.QUndoCommand.__init__(self)
-        self.setText(unicode(translate("UndoFramework", "New node %s")) % node.hostname)
+        self.setText(translate("UndoFramework", "New node %s") % node.hostname)
         self.topology = topology
         self.node = node
         self.config = None
@@ -64,7 +64,7 @@ class DeleteNode(QtGui.QUndoCommand):
     def __init__(self, topology, node):
 
         QtGui.QUndoCommand.__init__(self)
-        self.setText(unicode(translate("UndoFramework", "Delete node %s")) % node.hostname)
+        self.setText(translate("UndoFramework", "Delete node %s") % node.hostname)
         self.topology = topology
         self.node = node
 
@@ -84,7 +84,7 @@ class AddItem(QtGui.QUndoCommand):
     def __init__(self, topology, item, type):
 
         QtGui.QUndoCommand.__init__(self)
-        self.setText(unicode(translate("UndoFramework", "New item %s")) % type)
+        self.setText(translate("UndoFramework", "New item %s") % type)
         self.topology = topology
         self.item = item
 
@@ -120,7 +120,7 @@ class AddLink(QtGui.QUndoCommand):
         QtGui.QUndoCommand.__init__(self)
         source = topology.getNode(srcid)
         dest = topology.getNode(dstid)
-        self.setText(unicode(translate("UndoFramework", "New link: %s (%s) -> %s (%s)")) % (source.hostname, srcif, dest.hostname, dstif))
+        self.setText(translate("UndoFramework", "New link: %s (%s) -> %s (%s)") % (source.hostname, srcif, dest.hostname, dstif))
         self.topology = topology
         self.status = None
         self.srcid = srcid
@@ -154,7 +154,7 @@ class DeleteLink(QtGui.QUndoCommand):
     def __init__(self, topology, link):
 
         QtGui.QUndoCommand.__init__(self)
-        self.setText(unicode(translate("UndoFramework", "Delete link: %s (%s) -> %s (%s)")) % (link.source.hostname, link.srcIf, link.dest.hostname, link.destIf))
+        self.setText(translate("UndoFramework", "Delete link: %s (%s) -> %s (%s)") % (link.source.hostname, link.srcIf, link.dest.hostname, link.destIf))
         self.topology = topology
         self.link = link
         self.srcid = link.source.id
@@ -190,7 +190,7 @@ class AddConfig(QtGui.QUndoCommand):
     def __init__(self, node, config, prevConfig):
 
         QtGui.QUndoCommand.__init__(self)
-        self.setText(unicode(translate("UndoFramework", "New configuration applied on %s")) % node.hostname)
+        self.setText(translate("UndoFramework", "New configuration applied on %s") % node.hostname)
         self.node = node
         self.config = config
         self.previousConfig = prevConfig
@@ -208,7 +208,7 @@ class NewHostname(QtGui.QUndoCommand):
     def __init__(self, node, hostname):
 
         QtGui.QUndoCommand.__init__(self)
-        self.setText(unicode(translate("UndoFramework", "New hostname %s -> %s")) % (node.hostname, hostname))
+        self.setText(translate("UndoFramework", "New hostname %s -> %s") % (node.hostname, hostname))
         self.hostname = hostname
         self.node = node
         self.prevHostname = node.hostname
@@ -236,7 +236,7 @@ class NewZValue(QtGui.QUndoCommand):
     def __init__(self, item, zval):
 
         QtGui.QUndoCommand.__init__(self)
-        self.setText(unicode(translate("UndoFramework", "New layer position %d")) % zval)
+        self.setText(translate("UndoFramework", "New layer position %d") % zval)
         self.zval = zval
         self.item = item
         self.prevZval = item.zValue()
@@ -282,7 +282,7 @@ class NewConsolePort(QtGui.QUndoCommand):
     def __init__(self, node, port):
 
         QtGui.QUndoCommand.__init__(self)
-        self.setText(unicode(translate("UndoFramework", "New console port %d for %s")) % (port, node.hostname))
+        self.setText(translate("UndoFramework", "New console port %d for %s") % (port, node.hostname))
         self.port = port
         self.node = node
         self.prevPort = node.get_dynagen_device().console
@@ -316,7 +316,7 @@ class NewAUXPort(QtGui.QUndoCommand):
     def __init__(self, node, port):
 
         QtGui.QUndoCommand.__init__(self)
-        self.setText(unicode(translate("UndoFramework", "New aux port %d for %s")) % (port, node.hostname))
+        self.setText(translate("UndoFramework", "New aux port %d for %s") % (port, node.hostname))
         self.port = port
         self.node = node
         self.prevPort = node.get_dynagen_device().aux
@@ -350,7 +350,7 @@ class NewStartupConfigPath(QtGui.QUndoCommand):
     def __init__(self, router, path):
 
         QtGui.QUndoCommand.__init__(self)
-        self.setText(unicode(translate("UndoFramework", "New startup-config %s for %s")) % (path, router.name))
+        self.setText(translate("UndoFramework", "New startup-config %s for %s") % (path, router.name))
         self.path = path
         self.router = router
         self.prevPath = router.cnfg
@@ -392,7 +392,7 @@ class NewStartupConfigNvram(QtGui.QUndoCommand):
     def __init__(self, router, encoded):
 
         QtGui.QUndoCommand.__init__(self)
-        self.setText(unicode(translate("UndoFramework", "New startup-config in nvram for %s")) % router.name)
+        self.setText(translate("UndoFramework", "New startup-config in nvram for %s") % router.name)
         self.encoded = encoded
         self.router = router
         self.prevEncoded = None

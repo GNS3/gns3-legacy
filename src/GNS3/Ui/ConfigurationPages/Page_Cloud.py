@@ -103,7 +103,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         """ Add a new generic Ethernet NIO
         """
 
-        interface = unicode(self.lineEditGenEth.text())
+        interface = unicode(self.lineEditGenEth.text(), 'utf-8', errors='replace')
         if interface:
             if sys.platform.startswith('win'):
                 match = re.search(r"""^rpcap://(\\Device\\NPF_{[a-fA-F0-9\-]*})(.*)""", interface)
@@ -125,7 +125,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             nio = unicode(item.text())
             connected_ports = self.node.getConnectedInterfaceList()
             if nio in connected_ports:
-                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'NIOs', unicode(translate("Page_Cloud", "A link is connected with NIO %s")) % nio)
+                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'NIOs', translate("Page_Cloud", "A link is connected with NIO %s") % nio)
                 return
             self.nios.remove(nio)
             self.listWidgetGenericEth.takeItem(self.listWidgetGenericEth.currentRow())
@@ -159,7 +159,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             nio = unicode(item.text())
             connected_ports = self.node.getConnectedInterfaceList()
             if nio in connected_ports:
-                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'NIOs', unicode(translate("Page_Cloud", "A link is connected with NIO %s")) % nio)
+                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'NIOs', translate("Page_Cloud", "A link is connected with NIO %s") % nio)
                 return
             self.nios.remove(nio)
             self.listWidgetLinuxEth.takeItem(self.listWidgetLinuxEth.currentRow())
@@ -188,7 +188,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             nio = unicode(item.text())
             connected_ports = self.node.getConnectedInterfaceList()
             if nio in connected_ports:
-                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'NIOs', unicode(translate("Page_Cloud", "A link is connected with NIO %s")) % nio)
+                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'NIOs', translate("Page_Cloud", "A link is connected with NIO %s") % nio)
                 return
             self.nios.remove(nio)
             self.listWidgetUDP.takeItem(self.listWidgetUDP.currentRow())
@@ -236,7 +236,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             nio = unicode(item.text())
             connected_ports = self.node.getConnectedInterfaceList()
             if nio in connected_ports:
-                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'NIOs', unicode(translate("Page_Cloud", "A link is connected with NIO %s")) % nio)
+                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'NIOs', translate("Page_Cloud", "A link is connected with NIO %s") % nio)
                 return
             self.nios.remove(nio)
             self.listWidgetTAP.takeItem(self.listWidgetTAP.currentRow())
@@ -272,7 +272,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             nio = unicode(item.text())
             connected_ports = self.node.getConnectedInterfaceList()
             if nio in connected_ports:
-                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'NIOs', unicode(translate("Page_Cloud", "A link is connected with NIO %s")) % nio)
+                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'NIOs', translate("Page_Cloud", "A link is connected with NIO %s") % nio)
                 return
             self.nios.remove(nio)
             self.listWidgetUNIX.takeItem(self.listWidgetUNIX.currentRow())
@@ -320,7 +320,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             nio = unicode(item.text())
             connected_ports = self.node.getConnectedInterfaceList()
             if nio in connected_ports:
-                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'NIOs', unicode(translate("Page_Cloud", "A link is connected with NIO %s")) % nio)
+                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'NIOs', translate("Page_Cloud", "A link is connected with NIO %s") % nio)
                 return
             self.nios.remove(nio)
             self.listWidgetVDE.takeItem(self.listWidgetVDE.currentRow())
@@ -367,7 +367,7 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
             nio = unicode(item.text())  
             connected_ports = self.node.getConnectedInterfaceList()
             if nio in connected_ports:
-                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'NIOs', unicode(translate("Page_Cloud", "A link is connected with NIO %s")) % nio)
+                QtGui.QMessageBox.critical(globals.nodeConfiguratorWindow, 'NIOs', translate("Page_Cloud", "A link is connected with NIO %s") % nio)
                 return
             self.nios.remove(nio)
             self.listWidgetNull.takeItem(self.listWidgetNull.currentRow())

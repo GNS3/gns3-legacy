@@ -97,7 +97,7 @@ class Cloud(AbstractNode):
         """
 
         if self.config:
-            info = unicode(translate("Cloud", "Cloud name: %s")) % self.hostname
+            info = translate("Cloud", "Cloud name: %s") % self.hostname
             for nio in self.config['nios']:
                 info += "\n\n" + nio
                 if sys.platform.startswith('win') and self.config['rpcap_mapping'].has_key(nio):
@@ -118,7 +118,7 @@ class Cloud(AbstractNode):
 
         if sys.platform.startswith('win') and self.config:
             # tooltip is by default interface name
-            tip = unicode(action.toolTip(), errors='replace')
+            tip = unicode(action.toolTip(), 'utf-8', errors='replace')
             if self.config['rpcap_mapping'].has_key(tip):
                 QtGui.QToolTip.showText(QtGui.QCursor.pos(), self.config['rpcap_mapping'][tip])
 
@@ -139,7 +139,6 @@ class Cloud(AbstractNode):
         """
 
         self.create_config()
-
         # Add all network interface when using Cloud with computer symbol
         if not self.default_symbol:
             if sys.platform.startswith('win'):

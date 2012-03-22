@@ -445,7 +445,7 @@ class GNS_Conf(object):
 
             library_name = os.path.basename(unicode(path))
             if not QtCore.QResource.registerResource(path, ":/" + library_name):
-                print unicode(translate("Config", "Can't open library: %s")) % path
+                print translate("Config", "Can't open library: %s") % path
                 continue
 
             conf = libraryConf()

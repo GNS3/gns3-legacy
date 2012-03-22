@@ -461,7 +461,7 @@ class Scene(QtGui.QGraphicsView):
         try:
             if globals.GApp.dynagen.devices[router.hostname].idlepc != None:
                 reply = QtGui.QMessageBox.question(globals.GApp.mainWindow,translate("Scene", "IDLE PC"),
-                                                   unicode(translate("Scene", "%s already has an idlepc value applied, do you want to calculate a new one?")) % router.hostname,
+                                                   translate("Scene", "%s already has an idlepc value applied, do you want to calculate a new one?") % router.hostname,
                                                    QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
                     # reset idlepc
@@ -619,7 +619,7 @@ class Scene(QtGui.QGraphicsView):
 
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
-                time.sleep(0.5)
+                time.sleep(globals.GApp.systconf['general'].console_delay)
                 item.console()
 
     def slotCapture(self):
@@ -661,7 +661,7 @@ class Scene(QtGui.QGraphicsView):
 
         for item in self.__topology.selectedItems():
             if isinstance(item, IOSRouter):
-                time.sleep(0.5)
+                time.sleep(globals.GApp.systconf['general'].console_delay)
                 item.aux()
 
     def slotChangeConsolePort(self):

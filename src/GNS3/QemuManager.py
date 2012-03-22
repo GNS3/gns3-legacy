@@ -70,7 +70,7 @@ class QemuManager(object):
             s.setblocking(0)
             s.settimeout(300)
             if nb == 3:
-                progress = QtGui.QProgressDialog(unicode(translate("QemuManager", "Connecting to Qemu on port %i ...")) % self.port,
+                progress = QtGui.QProgressDialog(translate("QemuManager", "Connecting to Qemu on port %i ...") % self.port,
                                                  translate("QemuManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
@@ -95,7 +95,7 @@ class QemuManager(object):
             time.sleep(0.2)
         else:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Qemu Manager',
-                                       unicode(translate("QemuManager", "Can't connect to Qemu on port %i")) % self.port)
+                                       translate("QemuManager", "Can't connect to Qemu on port %i") % self.port)
             self.stopQemu()
             return False
         if progress:
@@ -118,9 +118,8 @@ class QemuManager(object):
         if globals.GApp.systconf['qemu'].qemuwrapper_workdir:
             if not os.access(globals.GApp.systconf['qemu'].qemuwrapper_workdir, os.F_OK | os.W_OK):
                 QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Qemu Manager',
-                                          unicode(translate("QemuManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.systconf['qemu'].qemuwrapper_workdir)
+                                          translate("QemuManager", "Working directory %s seems to not exist or be writable, please check") % globals.GApp.systconf['qemu'].qemuwrapper_workdir)
 
-            # set the working directory to be the same as qemuwrapper, important to use relative paths with qemu and qemu-img
             self.proc.setWorkingDirectory(globals.GApp.systconf['qemu'].qemuwrapper_workdir)
 
         # test if Qemu is already running on this port
@@ -134,7 +133,7 @@ class QemuManager(object):
         try:
             s.connect((binding, self.port))
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Qemu Manager',
-                                       unicode(translate("QemuManager", "Qemu is already running on port %i, it will not be shutdown after you quit GNS3")) % self.port)
+                                      translate("QemuManager", "Qemu is already running on port %i, it will not be shutdown after you quit GNS3") % self.port)
             s.close()
             return True
         except:
@@ -151,7 +150,7 @@ class QemuManager(object):
             self.proc.start(sys.executable,  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding, '--port', str(self.port), '--no-path-check'])
 
         if self.proc.waitForStarted() == False:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Qemu Manager',  unicode(translate("QemuManager", "Can't start Qemu on port %i")) % self.port)
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Qemu Manager', translate("QemuManager", "Can't start Qemu on port %i") % self.port)
             return False
 
         self.waitQemu()
@@ -187,10 +186,9 @@ class QemuManager(object):
         if globals.GApp.systconf['qemu'].qemuwrapper_workdir:
             if not os.access(globals.GApp.systconf['qemu'].qemuwrapper_workdir, os.F_OK | os.W_OK):
                 QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Qemu Manager',
-                                          unicode(translate("QemuManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.systconf['qemu'].qemuwrapper_workdir)
+                                          translate("QemuManager", "Working directory %s seems to not exist or be writable, please check") % globals.GApp.systconf['qemu'].qemuwrapper_workdir)
                 return False
 
-            # set the working directory to be the same as qemuwrapper, important to use relative paths with qemu and qemu-img
             proc.setWorkingDirectory(globals.GApp.systconf['qemu'].qemuwrapper_workdir)
 
         # start Qemuwrapper, use python on all platform but Windows (in release mode)
@@ -230,14 +228,14 @@ class QemuManager(object):
             proc.waitForReadyRead(5000)
             output = proc.readAllStandardOutput()
             ver = QtCore.QByteArray('(version ')
-            ver_offset = output.indexOf(ver) + len('(version ')
-            if ver_offset != -1:
-                ver = QtCore.QByteArray(")\n")
-                endver_offset = output.indexOf(ver, ver_offset) - ver_offset
-                wrapper_ver = output.mid(ver_offset, endver_offset)
-                if wrapper_ver != VERSION:
-                    print "QemuManager: qemuwrapper version check failed"
-                    print "QemuManager: please update your qemuwrapper and check its path in the settings"
+            verOffset = output.indexOf(ver) + len('(version ')
+            if verOffset != -1:
+                ver = QtCore.QByteArray(")" + os.linesep)
+                endVerOffset = output.indexOf(ver, verOffset) - verOffset
+                wrapperVer = output.mid(verOffset, endVerOffset)
+                if wrapperVer != VERSION:
+                    print 'QemuManager: qemuwrapper version check failed: (' + wrapperVer  + '|' + VERSION + ')'
+                    print 'QemuManager: please update your qemuwrapper and check its path in the settings'
                     proc.close()
                     return False
 

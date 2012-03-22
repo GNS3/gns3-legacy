@@ -114,8 +114,8 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         """ Save widget settings to syst. config
         """
         
-        self.conf.workdir = unicode(self.dynamips_workdir.text())
-        self.conf.path = unicode(self.dynamips_path.text())
+        self.conf.workdir = unicode(self.dynamips_workdir.text(), 'utf-8', errors='replace')
+        self.conf.path = unicode(self.dynamips_path.text(), 'utf-8', errors='replace')
         self.conf.port = self.dynamips_port.value()
         self.conf.baseUDP = self.dynamips_baseUDP.value()
         self.conf.baseConsole = self.dynamips_baseConsole.value()
@@ -152,7 +152,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.conf.mmap = False
         
         # update IOS images used by the hypervisor manager
-        binding = unicode(self.comboBoxBinding.currentText())
+        binding = unicode(self.comboBoxBinding.currentText(), 'utf-8', errors='replace')
         if self.conf.HypervisorManager_binding != binding:
             self.conf.HypervisorManager_binding = binding
             for name in globals.GApp.iosimages.keys():
@@ -173,7 +173,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         if path is not None and path != '':
             # test if we can open it
             if not testOpenFile(path):
-                QtGui.QMessageBox.critical(globals.preferencesWindow, 'Dynamips path', unicode(translate("UiConfig_PreferencesDynamips", "Can't open file: %s")) % path)
+                QtGui.QMessageBox.critical(globals.preferencesWindow, 'Dynamips path', translate("UiConfig_PreferencesDynamips", "Can't open file: %s") % path)
                 return
 
             self.dynamips_path.clear()
@@ -236,7 +236,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             return            
         
         if version_2nd < 2 or version_3rd < 8:
-            self.labelDynamipsStatus.setText('<font color="red">' + unicode(translate("UiConfig_PreferencesDynamips", "Found Dynamips %s, which is not supported. Use 0.2.8+ instead.")) % dynamips_ver + '</font>')
+            self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Found Dynamips %s, which is not supported. Use 0.2.8+ instead.") % dynamips_ver + '</font>')
             return
 
         self.saveConf()
@@ -244,6 +244,6 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             globals.GApp.workspace.clear()
             globals.GApp.HypervisorManager = HypervisorManager()
             if globals.GApp.HypervisorManager.preloadDynamips():
-                self.labelDynamipsStatus.setText('<font color="green">' + unicode(translate("UiConfig_PreferencesDynamips", "Dynamips %s successfully started")) % dynamips_ver + '</font>')
+                self.labelDynamipsStatus.setText('<font color="green">' + translate("UiConfig_PreferencesDynamips", "Dynamips %s successfully started") % dynamips_ver + '</font>')
             else:
                 self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to start Dynamips")  + '</font>')

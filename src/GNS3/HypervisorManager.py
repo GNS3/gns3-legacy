@@ -75,7 +75,8 @@ class HypervisorManager(object):
                 s.connect(('localhost', port))
                 s.close()
 
-                reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"), unicode(translate("HypervisorManager", "Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?")) % port,
+                reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"),
+                                                   translate("HypervisorManager", "Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?") % port,
                                                    QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
                     killAll(os.path.basename(self.hypervisor_path))
@@ -93,7 +94,7 @@ class HypervisorManager(object):
                 s.close()
 
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"),
-                                           unicode(translate("HypervisorManager", "A program is still running on port %i, you will have to stop it manually or change port settings")) % port)
+                                           translate("HypervisorManager", "A program is still running on port %i, you will have to stop it manually or change port settings") % port)
 
                 globals.hypervisor_baseport += 1
                 return None
@@ -104,7 +105,7 @@ class HypervisorManager(object):
         proc.start(self.hypervisor_path,  ['-H', str(port)])
 
         if proc.waitForStarted() == False:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',  unicode(translate("HypervisorManager", "Can't start Dynamips on port %i")) % port)
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager', translate("HypervisorManager", "Can't start Dynamips on port %i") % port)
             return None
 
         hypervisor = {'port': port,
@@ -130,8 +131,8 @@ class HypervisorManager(object):
             s.setblocking(0)
             s.settimeout(300)
             if nb == 3:
-                progress = QtGui.QProgressDialog(unicode(translate("HypervisorManager", "Connecting to a hypervisor on port %i ...")) % hypervisor['port'],
-                                                                                                                                        translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
+                progress = QtGui.QProgressDialog(translate("HypervisorManager", "Connecting to a hypervisor on port %i ...") % hypervisor['port'],
+                                                 translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 2000)
@@ -160,7 +161,7 @@ class HypervisorManager(object):
             if not last_exception:
                 last_exception = 'Unknown problem'
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
-                                       unicode(translate("HypervisorManager", "Can't connect to the hypervisor on port %i: %s")) % (hypervisor['port'], last_exception))
+                                       translate("HypervisorManager", "Can't connect to the hypervisor on port %i: %s") % (hypervisor['port'], last_exception))
             hypervisor['proc_instance'].close()
             self.hypervisors.remove(hypervisor)
             return False
@@ -202,12 +203,12 @@ class HypervisorManager(object):
         if globals.GApp.workspace.projectWorkdir:
             if not os.access(globals.GApp.workspace.projectWorkdir, os.F_OK | os.W_OK):
                 QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'HypervisorManager',
-                                          unicode(translate("HypervisorManager", "Working directory %s seems to not exist or be writable, please check")) % globals.GApp.workspace.projectWorkdir)
+                                          translate("HypervisorManager", "Working directory %s seems to not exist or be writable, please check") % globals.GApp.workspace.projectWorkdir)
             globals.GApp.dynagen.defaults_config['workingdir'] = globals.GApp.workspace.projectWorkdir
         elif self.hypervisor_wd:
             if not os.access(self.hypervisor_wd, os.F_OK | os.W_OK):
                 QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'HypervisorManager',
-                                          unicode(translate("HypervisorManager", "Working directory %s seems to not exist or be writable, please check")) % self.hypervisor_wd)
+                                          translate("HypervisorManager", "Working directory %s seems to not exist or be writable, please check") % self.hypervisor_wd)
             globals.GApp.dynagen.defaults_config['workingdir'] = self.hypervisor_wd
         try:
             dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor(globals.GApp.systconf['dynamips'].HypervisorManager_binding, hypervisor['port'])
@@ -215,7 +216,7 @@ class HypervisorManager(object):
             dynamips_hypervisor = None
         if not dynamips_hypervisor:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
-                                        unicode(translate("HypervisorManager", "Can't set up hypervisor on port %i, please check the settings (writable working directory ...)")) % hypervisor['port'])
+                                       translate("HypervisorManager", "Can't set up hypervisor on port %i, please check the settings (writable working directory ...)") % hypervisor['port'])
             if globals.GApp.dynagen.dynamips.has_key(globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + str(hypervisor['port'])):
                 del globals.GApp.dynagen.dynamips[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + str(hypervisor['port'])]
             hypervisor['proc_instance'].close()

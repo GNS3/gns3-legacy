@@ -156,7 +156,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """ Set a custom tool tip
         """
 
-        self.setToolTip(unicode(translate("AbstractEdge", "Link: %s (%s) -> %s (%s)")) % (self.source.hostname, self.srcIf, self.dest.hostname, self.destIf))
+        self.setToolTip(translate("AbstractEdge", "Link: %s (%s) -> %s (%s)") % (self.source.hostname, self.srcIf, self.dest.hostname, self.destIf))
 
 
     def keyReleaseEvent(self, event):
@@ -261,15 +261,15 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             (device, interface, encapsulation) = unicode(selection).split(' ')
             if isinstance(globals.GApp.dynagen.devices[device], qemu.AnyEmuDevice):
                 if globals.GApp.dynagen.devices[device].state != 'stopped':
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s must be restarted to start capturing traffic")) % device)
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Device %s must be restarted to start capturing traffic") % device)
                 self.__captureQemuDevice(device, interface)
             elif isinstance(globals.GApp.dynagen.devices[device], vboxlib.AnyVBoxEmuDevice):
                 if globals.GApp.dynagen.devices[device].state != 'stopped':
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s must be restarted to start capturing traffic")) % device)
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Device %s must be restarted to start capturing traffic") % device)
                 self.__captureVBoxDevice(device, interface)
             else:
                 if globals.GApp.dynagen.devices[device].state != 'running':
-                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s is not running")) % device)
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Device %s is not running") % device)
                     return
                 self.__captureDynamipsDevice(device, interface, encapsulation)
 
@@ -280,21 +280,21 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             return True
         else:
             return False
-        
+
     def startCapturing(self, device, interface, encapsulation):
 
         if not self.capturing:
             if isinstance(globals.GApp.dynagen.devices[device], qemu.AnyEmuDevice):
                 if globals.GApp.dynagen.devices[device].state != 'stopped':
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s must be restarted to start capturing traffic")) % device)
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Device %s must be restarted to start capturing traffic") % device)
                 self.__captureQemuDevice(device, interface)
             elif isinstance(globals.GApp.dynagen.devices[device], vboxlib.AnyVBoxEmuDevice):
                 if globals.GApp.dynagen.devices[device].state != 'stopped':
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s must be restarted to start capturing traffic")) % device)
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Device %s must be restarted to start capturing traffic") % device)
                 self.__captureVBoxDevice(device, interface)
             else:
                 if globals.GApp.dynagen.devices[device].state != 'running':
-                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s is not running")) % device)
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Device %s is not running") % device)
                     return
                 self.__captureDynamipsDevice(device, interface, encapsulation)
 
@@ -324,7 +324,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """
         if capture_conf.workdir and (host == globals.GApp.systconf['qemu'].QemuManager_binding or self.isLocalhost(host)):
             # We only provide capture directory to locally running wrappers.
-            self.capfile = unicode(capture_conf.workdir + '/' + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+            self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
         else:
             # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
             self.capfile = unicode(self.source.hostname + '_to_' + self.dest.hostname + '.cap')
@@ -360,7 +360,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """
         if capture_conf.workdir and (host == globals.GApp.systconf['vbox'].VBoxManager_binding or self.isLocalhost(host)):
             # We only provide capture directory to locally running wrappers.
-            self.capfile = unicode(capture_conf.workdir + '/' + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+            self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
         else:
             # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
             self.capfile = unicode(self.source.hostname + '_to_' + self.dest.hostname + '.cap')
@@ -399,11 +399,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 workdir = capture_conf.workdir
             else:
                 workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
-            if '/' in workdir:
-                sep = '/'
-            else:
-                sep = '\\'
-            self.capfile = unicode(workdir + sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+            self.capfile = unicode(workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
             debug("Start capture to " + self.capfile)
             globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + '"' + self.capfile + '"')
             self.captureInfo = (device, slot, inttype, port, original_encapsulation)
@@ -430,7 +426,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 (device, port) = self.captureInfo
 
                 if showMessage and globals.GApp.dynagen.devices[device].state != 'stopped':
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  unicode(translate("AbstractEdge", "Device %s must be stopped to stop capturing traffic")) % device)
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Device %s must be stopped to stop capturing traffic") % device)
 
                 # empty string means stop capturing traffic
                 globals.GApp.dynagen.devices[device].capture(int(port), '')
@@ -463,15 +459,17 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),  translate("AbstractEdge", "Please configure capture options"))
             return
 
-#        try:
-#            statinfo = os.stat(self.capfile)
-#            if not statinfo.st_size:
-#                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),
-#                                            unicode(translate("AbstractEdge",  "%s is empty, no traffic captured on the link. Try again later")) % self.capfile)
-#                return
-#        except (OSError, IOError), e:
-#            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot find %s : %s")) % (self.capfile, e.strerror)+os.linesep+unicode(translate("AbstractEdge", "NOTE: This feature is only available for local hypervisors.")))
-#            return
+        try:
+            if not capture_conf.cap_cmd.__contains__('tail'):
+                # leave some time for packets to have a chance to be recorded into the capture file
+                time.sleep(2)
+                statinfo = os.stat(self.capfile)
+                if not statinfo.st_size:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge",  "%s is empty, no traffic has been captured on the link yet. Please try again later") % self.capfile)
+                    return
+        except (OSError, IOError), e:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Cannot find %s : %s") % (self.capfile, e.strerror) + os.linesep + translate("AbstractEdge", "NOTE: This feature is only available for local hypervisors."))
+            return
 
         try:
             path = unicode(capture_conf.cap_cmd.replace("%c", '"%s"')) % self.capfile
@@ -486,7 +484,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             else:
                 sub.Popen(path, shell=True)
         except (OSError, IOError), e:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), unicode(translate("AbstractEdge", "Cannot start %s : %s")) % (path, e.strerror))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Cannot start %s : %s") % (path, e.strerror))
 
     def __deleteAction(self):
         """ Delete the link

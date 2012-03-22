@@ -46,7 +46,7 @@ if options.config_dir == True:
         if sys.platform.startswith('win'):
             QtCore.QSettings.setPath(QtCore.QSettings.IniFormat, QtCore.QSettings.UserScope, config_dir)
         else:
-            print unicode(translate("Main", "On Unix you can choose the config directory by setting the XDG_CONFIG_HOME environment variable"))
+            print translate("Main", "On Unix you can choose the config directory by setting the XDG_CONFIG_HOME environment variable")
             sys.exit(1)
     else:
         print usage

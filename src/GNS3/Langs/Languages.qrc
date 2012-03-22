@@ -22,6 +22,5 @@
       <file alias="fa">Lang_fa.qm</file>
       <file alias="cz">Lang_cz.qm</file>
       <file alias="uk">Lang_uk.qm</file>
-      <file alias="sl">Lang_sl.qm</file>
    </qresource>
 </RCC>
