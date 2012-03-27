@@ -138,7 +138,7 @@ class fileBrowser(object):
 
         if path is not None:
             path = unicode(path)
-        return ([path, str(self.selected)])
+        return ([path, unicode(self.selected)])
 
     def getSaveFile(self):
         """ Save a file in the file system
@@ -149,7 +149,7 @@ class fileBrowser(object):
 
         if path is not None:
             path = unicode(path)
-        return ([path, str(self.selected)])
+        return ([path, unicode(self.selected)])
 
     def getDir(self):
         """ Get a directory from the file system
