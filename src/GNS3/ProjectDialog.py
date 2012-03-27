@@ -41,8 +41,6 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
 
             if projectFile:
                 projectPath = os.path.dirname(projectFile)
-                projectName = os.path.basename(projectPath)
-                self.ProjectName.setText(projectName)
                 self.ProjectPath.setText(projectPath)
 
             if projectWorkdir:
