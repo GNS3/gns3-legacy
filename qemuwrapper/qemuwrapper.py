@@ -454,7 +454,9 @@ class JunOSInstance(QEMUInstance):
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):
             try:
-                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image, '-f', 'qcow2', flash])
+                retcode = subprocess.call([self.img_bin, 'create', '-o',
+                                          'backing_file=' + self.image,
+                                          '-f', 'qcow2', flash])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
@@ -528,7 +530,9 @@ class IDSInstance(QEMUInstance):
         img1 = os.path.join(self.workdir, self.img1_name)
         if not os.path.exists(img1):
             try:
-                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image1, '-f', 'qcow2', img1])
+                retcode = subprocess.call([self.img_bin, 'create', '-o',
+                                          'backing_file=' + self.image1,
+                                          '-f', 'qcow2', img1])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
@@ -536,7 +540,9 @@ class IDSInstance(QEMUInstance):
         img2 = os.path.join(self.workdir, self.img2_name)
         if not os.path.exists(img2):
             try:
-                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image2, '-f', 'qcow2', img2])
+                retcode = subprocess.call([self.img_bin, 'create', '-o',
+                                          'backing_file=' + self.image2,
+                                          '-f', 'qcow2', img2])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
@@ -589,7 +595,9 @@ class QemuDeviceInstance(QEMUInstance):
         flash = os.path.join(self.workdir, self.flash_name)
         if not os.path.exists(flash):
             try:
-                retcode = subprocess.call([self.img_bin, 'create', '-b', self.image, '-f', 'qcow2', flash])
+                retcode = subprocess.call([self.img_bin, 'create', '-o',
+                                          'backing_file=' + self.image,
+                                          '-f', 'qcow2', flash])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
