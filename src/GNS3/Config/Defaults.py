@@ -529,7 +529,7 @@ conf_systemCapture_types = {
 conf_systemQemu_defaults = {
     'qemuwrapper_path':'',
     'qemuwrapper_workdir':'',
-    'qemu_path':'qemu',
+    'qemu_path':'qemu-system-i386',
     'qemu_img_path':'qemu-img',
     'external_hosts':[],
     'enable_QemuWrapperAdvOptions' : False,
