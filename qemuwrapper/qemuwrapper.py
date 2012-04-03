@@ -83,7 +83,7 @@ debugmsg(2, msg)
 __author__ = 'Thomas Pani and Jeremy Grossmann'
 __version__ = '0.8.2'
 
-QEMU_PATH = "qemu"
+QEMU_PATH = "qemu-system-i386"
 QEMU_IMG_PATH = "qemu-img"
 PORT = 10525
 IP = ""
