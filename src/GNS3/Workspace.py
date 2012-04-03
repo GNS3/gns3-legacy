@@ -1301,7 +1301,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         (path, selected) = fileBrowser(translate("Workspace", "Save As..."),
-                                filter='NET file (*.net);;All files (*.*)', directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getSaveFile()
+                                filter='NET file (*.net);;All files (*)', directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getSaveFile()
 
         if path != None and path != '':
             if str(selected) == 'NET file (*.net)' or selected == '':
