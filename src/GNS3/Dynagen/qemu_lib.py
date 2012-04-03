@@ -435,6 +435,7 @@ class AnyEmuDevice(object):
 
             returns the filtered output of Qemu monitor CLI
         """
+        command = '"' + command + '"'
         debugmsg(2, "AnyEmuDevice::qmonitor(%s)" % str(command))
         r = send(self.p, 'qemu monitor %s %s' % (self.name, str(command)))
         r = str(r)
