@@ -144,6 +144,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_HighContrastStyle, QtCore.SIGNAL('triggered()'), self.__action_HighContrastStyle)
         self.connect(self.action_SelectAll, QtCore.SIGNAL('triggered()'), self.__action_SelectAll)
         self.connect(self.action_SelectNone, QtCore.SIGNAL('triggered()'), self.__action_SelectNone)
+        self.connect(self.action_Console, QtCore.SIGNAL('triggered()'), self.__action_Console)
         self.connect(self.action_TelnetAll, QtCore.SIGNAL('triggered()'), self.__action_TelnetAll)
         self.connect(self.action_ConsoleAuxAll, QtCore.SIGNAL('triggered()'), self.__action_ConsoleAuxAll)
         self.connect(self.action_StartAll, QtCore.SIGNAL('triggered()'), self.__action_StartAll)
@@ -807,6 +808,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         QtGui.QMessageBox.information(self, translate("Workspace", "Interface labels"), translate("Workspace", "Interface labels have been reset"))
 
+    def __action_Console(self):
+    
+        menu = QtGui.QMenu()
+        menu.addAction(self.action_TelnetAll)
+        menu.addAction(self.action_ConsoleAuxAll)
+        menu.exec_(QtGui.QCursor.pos())
+        
     def __action_TelnetAll(self):
         """ Telnet to all started IOS routers
         """

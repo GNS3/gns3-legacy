@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Apr 07 22:28:51 2012
+# Created: Sat Apr 07 23:34:51 2012
 #      by: PyQt4 UI code generator 4.9
 #
 # WARNING! All changes made in this file will be lost!
@@ -451,6 +451,9 @@ class Ui_MainWindow(object):
         icon39.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/connection-new-hover.svg")), QtGui.QIcon.Active, QtGui.QIcon.Off)
         self.action_AddLink.setIcon(icon39)
         self.action_AddLink.setObjectName(_fromUtf8("action_AddLink"))
+        self.action_Console = QtGui.QAction(MainWindow)
+        self.action_Console.setIcon(icon10)
+        self.action_Console.setObjectName(_fromUtf8("action_Console"))
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -525,8 +528,7 @@ class Ui_MainWindow(object):
         self.toolBar_Emulation.addAction(self.action_Snapshot)
         self.toolBar_Emulation.addAction(self.action_config)
         self.toolBar_Emulation.addAction(self.action_ShowinterfaceNames)
-        self.toolBar_Emulation.addAction(self.action_ConsoleAuxAll)
-        self.toolBar_Emulation.addAction(self.action_TelnetAll)
+        self.toolBar_Emulation.addAction(self.action_Console)
         self.toolBar_Emulation.addSeparator()
         self.toolBar_Emulation.addAction(self.action_StartAll)
         self.toolBar_Emulation.addAction(self.action_SuspendAll)
@@ -604,8 +606,8 @@ class Ui_MainWindow(object):
         self.action_ShowHostnames.setText(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowHostnames.setToolTip(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ShowHostnames.setStatusTip(QtGui.QApplication.translate("MainWindow", "Show hostnames", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_TelnetAll.setText(QtGui.QApplication.translate("MainWindow", "Console to all devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_TelnetAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Console to all devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_TelnetAll.setText(QtGui.QApplication.translate("MainWindow", "Console Telnet to all devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_TelnetAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Console Telnet to all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_TelnetAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Console to all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveAs.setText(QtGui.QApplication.translate("MainWindow", "Save topology &as…", None, QtGui.QApplication.UnicodeUTF8))
         self.action_SaveAs.setIconText(QtGui.QApplication.translate("MainWindow", "Save As", None, QtGui.QApplication.UnicodeUTF8))
@@ -721,6 +723,9 @@ class Ui_MainWindow(object):
         self.action_AddLink.setText(QtGui.QApplication.translate("MainWindow", "Add link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_AddLink.setToolTip(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
         self.action_AddLink.setStatusTip(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Console.setText(QtGui.QApplication.translate("MainWindow", "Console", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Console.setToolTip(QtGui.QApplication.translate("MainWindow", "Start Console...", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Console.setStatusTip(QtGui.QApplication.translate("MainWindow", "Start Console...", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.UndoFramework import UndoView
 from GNS3.Ui.Widget_nodesDock import nodesDock

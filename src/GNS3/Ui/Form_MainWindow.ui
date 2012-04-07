@@ -307,8 +307,7 @@ background-none;
    <addaction name="action_Snapshot"/>
    <addaction name="action_config"/>
    <addaction name="action_ShowinterfaceNames"/>
-   <addaction name="action_ConsoleAuxAll"/>
-   <addaction name="action_TelnetAll"/>
+   <addaction name="action_Console"/>
    <addaction name="separator"/>
    <addaction name="action_StartAll"/>
    <addaction name="action_SuspendAll"/>
@@ -680,10 +679,10 @@ background-none;
      <normaloff>:/icons/console.svg</normaloff>:/icons/console.svg</iconset>
    </property>
    <property name="text">
-    <string>Console to all devices</string>
+    <string>Console Telnet to all devices</string>
    </property>
    <property name="toolTip">
-    <string>Console to all devices</string>
+    <string>Console Telnet to all devices</string>
    </property>
    <property name="statusTip">
     <string>Console to all devices</string>
@@ -1269,6 +1268,21 @@ background-none;
    </property>
    <property name="statusTip">
     <string>Add a link</string>
+   </property>
+  </action>
+  <action name="action_Console">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/console.svg</normaloff>:/icons/console.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Console</string>
+   </property>
+   <property name="toolTip">
+    <string>Start Console...</string>
+   </property>
+   <property name="statusTip">
+    <string>Start Console...</string>
    </property>
   </action>
  </widget>
