@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Apr 07 18:32:21 2012
+# Created: Sat Apr 07 22:28:51 2012
 #      by: PyQt4 UI code generator 4.9
 #
 # WARNING! All changes made in this file will be lost!
@@ -506,8 +506,6 @@ class Ui_MainWindow(object):
         self.toolBar_General.addAction(self.action_Open)
         self.toolBar_General.addAction(self.action_Save)
         self.toolBar_General.addSeparator()
-        self.toolBar_Devices.addAction(self.action_BrowseAllDevices)
-        self.toolBar_Devices.addSeparator()
         self.toolBar_Devices.addAction(self.action_Router)
         self.toolBar_Devices.addSeparator()
         self.toolBar_Devices.addAction(self.action_Switch)
@@ -519,6 +517,8 @@ class Ui_MainWindow(object):
         self.toolBar_Devices.addAction(self.action_IDS)
         self.toolBar_Devices.addSeparator()
         self.toolBar_Devices.addAction(self.action_OtherDevices)
+        self.toolBar_Devices.addSeparator()
+        self.toolBar_Devices.addAction(self.action_BrowseAllDevices)
         self.toolBar_Devices.addSeparator()
         self.toolBar_Devices.addAction(self.action_AddLink)
         self.toolBar_Devices.addSeparator()

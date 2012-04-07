@@ -27,6 +27,7 @@ from GNS3.Globals.Symbols import SYMBOLS
 import GNS3.Dynagen.dynamips_lib as lib
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import QemuDevice, PIX, ASA, AnyEmuDevice, JunOS, IDS
+from GNS3.Node.AnyVBoxEmuDevice import VBoxDevice, AnyVBoxEmuDevice
 
 class nodesDock(QtGui.QTreeWidget):
     """ Class for managing the node types list
@@ -83,29 +84,49 @@ class nodesDock(QtGui.QTreeWidget):
             else:
                 item.setText(0, symbol['name'])
             item.setIcon(0, QtGui.QIcon(symbol['normal_svg_file']))
-            count += 1 
+            count += 1
             
-            node = symbol['object']
+            self.checkImageAvailability(item, symbol)
+
+    def checkImageAvailability(self, item, symbol):
+        """ Checks if the image of the associated device is registered/configured,
+             and if not disable it graphically so it can't be drag & drop'ed """
+
+        node = symbol['object']
+        # By default, all items are disabled
+        item.setDisabled(True)
+
+        # If the device is a bridge, switch or cloud, no need to register an image so enable it
+        if symbol['type'] == 'Other Device' or symbol['type'] == 'Switch':
+            item.setDisabled(False)
+            return
+        # Check if an IOS image is registered
+        if issubclass(node, IOSRouter):
+            if len(globals.GApp.iosimages.keys()) == 0:
+                return
+            # Check availability of each Cisco platform's image individually
+            for (image, conf) in globals.GApp.iosimages.iteritems():
+                if conf.platform in symbol['name']:
+                    item.setDisabled(False)
+                    return
+        # Check if a JunOS image is registered
+        elif issubclass(node, JunOS) and len(globals.GApp.junosimages) != 0:
+            item.setDisabled(False)
+        # Check availability for firewall and IDS images
+        elif issubclass(node, ASA) and len(globals.GApp.asaimages) == 0:
             item.setDisabled(True)
-            try:
-                if symbol['type'] == 'Other Device' or symbol['type'] == 'Switch':
-                    item.setDisabled(False)
-                    continue
-                if issubclass(node, IOSRouter):
-                    if len(globals.GApp.iosimages.keys()) == 0:
-                        continue
-                    for (image, conf) in globals.GApp.iosimages.iteritems():
-                        if conf.platform in symbol['name']:
-                            item.setDisabled(False)
-                            continue
-                elif issubclass(node, JunOS) and len(globals.GApp.junosimages) != 0:
-                    item.setDisabled(False)
-                elif issubclass(node, ASA) and len(globals.GApp.asaimages) == 0:
-                    item.setDisabled(True)
-                elif issubclass(node, PIX) and len(globals.GApp.piximages) == 0:
-                    item.setDisabled(True)
-            except lib.DynamipsError:
-                pass
+        elif issubclass(node, PIX) and len(globals.GApp.piximages) == 0:
+            item.setDisabled(True)
+        elif issubclass(node, IDS) and len(globals.GApp.idsimages) == 0:
+            item.setDisabled(True)
+        # Check if an image for Qemu or VirtualBox is registered
+        elif isinstance(node, QemuDevice) and len(globals.GApp.qemuimages) == 0:
+            item.setDisabled(True)
+        elif isinstance(node, VBoxDevice) and len(globals.GApp.vboximages) == 0:
+            item.setDisabled(True)
+        # No need to register an image for a "Host" so enable it
+        elif symbol['name'] == 'Host':
+            item.setDisabled(False)
 
     def mouseMoveEvent(self, event):
         """ Drag event

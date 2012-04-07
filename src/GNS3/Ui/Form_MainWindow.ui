@@ -268,8 +268,6 @@ background-none;
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_BrowseAllDevices"/>
-   <addaction name="separator"/>
    <addaction name="action_Router"/>
    <addaction name="separator"/>
    <addaction name="action_Switch"/>
@@ -281,6 +279,8 @@ background-none;
    <addaction name="action_IDS"/>
    <addaction name="separator"/>
    <addaction name="action_OtherDevices"/>
+   <addaction name="separator"/>
+   <addaction name="action_BrowseAllDevices"/>
    <addaction name="separator"/>
    <addaction name="action_AddLink"/>
    <addaction name="separator"/>
