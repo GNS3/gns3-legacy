@@ -84,44 +84,21 @@ class nodesDock(QtGui.QTreeWidget):
                 item.setText(0, symbol['name'])
             item.setIcon(0, QtGui.QIcon(symbol['normal_svg_file']))
             count += 1 
-            '''
+            
             node = symbol['object']
-            
-            from pprint import pprint;
-            print '================================Node================================'
-            pprint(node)
-            print '================================Symbol name================================'
-            pprint(symbol['name'])
-            print '================================Globals.GApp================================'
-            pprint(globals.GApp)
-            print '\n\n\n\n'
-            
+            item.setDisabled(True)
             try:
-                iosConfig = None
-                if issubclass(node, IOSRouter) and len(globals.GApp.iosimages.keys()) == 0:
-                    print "IOS image not here"
-                    item.setDisabled(True)
-                    
-                    image_to_use = None
-                    selected_images = []
+                if issubclass(node, IOSRouter):
+                    if len(globals.GApp.iosimages.keys()) == 0:
+                        continue
                     for (image, conf) in globals.GApp.iosimages.iteritems():
-                        if conf.platform == node.platform:
-                            selected_images.append(image)
-
-                    if len(selected_images) == 0:
-                        init_router_id(node.id)
-                        print "IOS platform image not here"
-                        item.setDisabled(True)
-
-                elif issubclass(node, JunOS) and len(globals.GApp.junosimages) == 0:
-                    print "JunOS image not here"
-                    item.setDisabled(True)
-                else:
-                    print "Image is here"
-            except lib.DynamipsError, msg:
-                print "Except: ", msg
+                        if conf.platform in symbol['name']:
+                            item.setDisabled(False)
+                            continue
+                elif issubclass(node, JunOS) and len(globals.GApp.junosimages) != 0:
+                    item.setDisabled(False)
+            except lib.DynamipsError:
                 pass
-            '''
 
     def mouseMoveEvent(self, event):
         """ Drag event
