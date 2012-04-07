@@ -661,6 +661,16 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.nodesDock.clear()
             self.nodesDock.populateNodeDock(type)
 
+#    def disableUnconfiguredDevices(self):
+    
+#        try:
+#               iosConfig = None
+#                if isinstance(node, IOSRouter):
+ #                   if len(globals.GApp.iosimages.keys()) == 0:
+ #                       # no IOS images configured, users have to register an IOS
+  #                      QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), translate("Topology", "Please register at least one IOS image"))
+  #                      return False
+            
     def __action_BrowseAllDevices(self):
         """ Display all devices from all categories.
         """

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Wed Mar 07 10:51:56 2012
+# Created: Sat Apr 07 18:32:21 2012
 #      by: PyQt4 UI code generator 4.9
 #
 # WARNING! All changes made in this file will be lost!
@@ -25,6 +25,13 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet(_fromUtf8("#toolBar_Devices QToolButton {\n"
 "width: 50px;\n"
 "height: 50px;\n"
+"border:solid 1px black opacity 0.4;\n"
+"background-none;\n"
+"}\n"
+"\n"
+"#toolBar_General QToolButton {\n"
+"width: 36px;\n"
+"height: 36px;\n"
 "border:solid 1px black opacity 0.4;\n"
 "background-none;\n"
 "}\n"
@@ -72,6 +79,7 @@ class Ui_MainWindow(object):
         self.toolBar_General.setToolTip(_fromUtf8(""))
         self.toolBar_General.setStatusTip(_fromUtf8(""))
         self.toolBar_General.setOrientation(QtCore.Qt.Horizontal)
+        self.toolBar_General.setIconSize(QtCore.QSize(32, 32))
         self.toolBar_General.setObjectName(_fromUtf8("toolBar_General"))
         MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar_General)
         self.dockWidget_NodeTypes = QtGui.QDockWidget(MainWindow)
@@ -104,6 +112,7 @@ class Ui_MainWindow(object):
         self.toolBar_Devices.setObjectName(_fromUtf8("toolBar_Devices"))
         MainWindow.addToolBar(QtCore.Qt.LeftToolBarArea, self.toolBar_Devices)
         self.toolBar_Emulation = QtGui.QToolBar(MainWindow)
+        self.toolBar_Emulation.setIconSize(QtCore.QSize(32, 32))
         self.toolBar_Emulation.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
         self.toolBar_Emulation.setObjectName(_fromUtf8("toolBar_Emulation"))
         MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar_Emulation)
@@ -153,6 +162,7 @@ class Ui_MainWindow(object):
         self.dockWidget_Console.setWidget(self.dockWidgetContents_5)
         MainWindow.addDockWidget(QtCore.Qt.DockWidgetArea(8), self.dockWidget_Console)
         self.toolBar_drawing = QtGui.QToolBar(MainWindow)
+        self.toolBar_drawing.setIconSize(QtCore.QSize(32, 32))
         self.toolBar_drawing.setObjectName(_fromUtf8("toolBar_drawing"))
         MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar_drawing)
         self.dockWidget_UndoView = QtGui.QDockWidget(MainWindow)
@@ -493,15 +503,9 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuDevice.menuAction())
         self.menubar.addAction(self.menuAnnotate.menuAction())
         self.menubar.addAction(self.menu_About.menuAction())
-        self.toolBar_General.addAction(self.action_Clear)
         self.toolBar_General.addAction(self.action_Open)
         self.toolBar_General.addAction(self.action_Save)
-        self.toolBar_General.addAction(self.action_SaveAs)
-        self.toolBar_General.addAction(self.action_New)
-        self.toolBar_General.addAction(self.action_SaveProjectAs)
         self.toolBar_General.addSeparator()
-        self.toolBar_General.addAction(self.action_ShowinterfaceNames)
-        self.toolBar_General.addAction(self.action_ShowHostnames)
         self.toolBar_Devices.addAction(self.action_BrowseAllDevices)
         self.toolBar_Devices.addSeparator()
         self.toolBar_Devices.addAction(self.action_Router)
@@ -520,6 +524,7 @@ class Ui_MainWindow(object):
         self.toolBar_Devices.addSeparator()
         self.toolBar_Emulation.addAction(self.action_Snapshot)
         self.toolBar_Emulation.addAction(self.action_config)
+        self.toolBar_Emulation.addAction(self.action_ShowinterfaceNames)
         self.toolBar_Emulation.addAction(self.action_ConsoleAuxAll)
         self.toolBar_Emulation.addAction(self.action_TelnetAll)
         self.toolBar_Emulation.addSeparator()

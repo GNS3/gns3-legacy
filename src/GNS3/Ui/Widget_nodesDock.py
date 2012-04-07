@@ -20,9 +20,13 @@
 #
 
 from PyQt4 import QtCore, QtGui
+import GNS3.Globals as globals
 from GNS3.Utils import translate
 from GNS3.Node.DecorativeNode import DecorativeNode
 from GNS3.Globals.Symbols import SYMBOLS
+import GNS3.Dynagen.dynamips_lib as lib
+from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.AnyEmuDevice import QemuDevice, PIX, ASA, AnyEmuDevice, JunOS, IDS
 
 class nodesDock(QtGui.QTreeWidget):
     """ Class for managing the node types list
@@ -79,7 +83,45 @@ class nodesDock(QtGui.QTreeWidget):
             else:
                 item.setText(0, symbol['name'])
             item.setIcon(0, QtGui.QIcon(symbol['normal_svg_file']))
-            count += 1
+            count += 1 
+            '''
+            node = symbol['object']
+            
+            from pprint import pprint;
+            print '================================Node================================'
+            pprint(node)
+            print '================================Symbol name================================'
+            pprint(symbol['name'])
+            print '================================Globals.GApp================================'
+            pprint(globals.GApp)
+            print '\n\n\n\n'
+            
+            try:
+                iosConfig = None
+                if issubclass(node, IOSRouter) and len(globals.GApp.iosimages.keys()) == 0:
+                    print "IOS image not here"
+                    item.setDisabled(True)
+                    
+                    image_to_use = None
+                    selected_images = []
+                    for (image, conf) in globals.GApp.iosimages.iteritems():
+                        if conf.platform == node.platform:
+                            selected_images.append(image)
+
+                    if len(selected_images) == 0:
+                        init_router_id(node.id)
+                        print "IOS platform image not here"
+                        item.setDisabled(True)
+
+                elif issubclass(node, JunOS) and len(globals.GApp.junosimages) == 0:
+                    print "JunOS image not here"
+                    item.setDisabled(True)
+                else:
+                    print "Image is here"
+            except lib.DynamipsError, msg:
+                print "Except: ", msg
+                pass
+            '''
 
     def mouseMoveEvent(self, event):
         """ Drag event

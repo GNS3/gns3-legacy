@@ -28,6 +28,13 @@ border:solid 1px black opacity 0.4;
 background-none;
 }
 
+#toolBar_General QToolButton {
+width: 36px;
+height: 36px;
+border:solid 1px black opacity 0.4;
+background-none;
+}
+
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -169,21 +176,21 @@ background-none;
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_Clear"/>
    <addaction name="action_Open"/>
    <addaction name="action_Save"/>
-   <addaction name="action_SaveAs"/>
-   <addaction name="action_New"/>
-   <addaction name="action_SaveProjectAs"/>
    <addaction name="separator"/>
-   <addaction name="action_ShowinterfaceNames"/>
-   <addaction name="action_ShowHostnames"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget_NodeTypes">
    <property name="enabled">
@@ -282,6 +289,12 @@ background-none;
    <property name="windowTitle">
     <string>Emulation</string>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
    <property name="toolButtonStyle">
     <enum>Qt::ToolButtonIconOnly</enum>
    </property>
@@ -293,6 +306,7 @@ background-none;
    </attribute>
    <addaction name="action_Snapshot"/>
    <addaction name="action_config"/>
+   <addaction name="action_ShowinterfaceNames"/>
    <addaction name="action_ConsoleAuxAll"/>
    <addaction name="action_TelnetAll"/>
    <addaction name="separator"/>
@@ -396,6 +410,12 @@ background-none;
   <widget class="QToolBar" name="toolBar_drawing">
    <property name="windowTitle">
     <string>Drawing</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
