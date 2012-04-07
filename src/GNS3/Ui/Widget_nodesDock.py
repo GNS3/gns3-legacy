@@ -88,6 +88,9 @@ class nodesDock(QtGui.QTreeWidget):
             node = symbol['object']
             item.setDisabled(True)
             try:
+                if symbol['type'] == 'Other Device' or symbol['type'] == 'Switch':
+                    item.setDisabled(False)
+                    continue
                 if issubclass(node, IOSRouter):
                     if len(globals.GApp.iosimages.keys()) == 0:
                         continue
@@ -97,6 +100,10 @@ class nodesDock(QtGui.QTreeWidget):
                             continue
                 elif issubclass(node, JunOS) and len(globals.GApp.junosimages) != 0:
                     item.setDisabled(False)
+                elif issubclass(node, ASA) and len(globals.GApp.asaimages) == 0:
+                    item.setDisabled(True)
+                elif issubclass(node, PIX) and len(globals.GApp.piximages) == 0:
+                    item.setDisabled(True)
             except lib.DynamipsError:
                 pass
 
