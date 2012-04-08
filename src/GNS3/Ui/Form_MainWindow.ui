@@ -23,7 +23,7 @@
   <property name="styleSheet">
    <string notr="true">#toolBar_Devices QToolButton {
 width: 50px;
-height: 50px;
+height: 55px;
 border:solid 1px black opacity 0.4;
 background-none;
 }
@@ -209,7 +209,7 @@ background-none;
     <string>Nodes Types</string>
    </property>
    <attribute name="dockWidgetArea">
-    <number>1</number>
+    <number>2</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_NodeTypes">
     <layout class="QVBoxLayout">
@@ -263,7 +263,7 @@ background-none;
     <enum>Qt::ToolButtonIconOnly</enum>
    </property>
    <attribute name="toolBarArea">
-    <enum>LeftToolBarArea</enum>
+    <enum>RightToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
     <bool>false</bool>
@@ -335,7 +335,7 @@ background-none;
     <string>Topology Summary</string>
    </property>
    <attribute name="dockWidgetArea">
-    <number>2</number>
+    <number>1</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_7">
     <layout class="QGridLayout">
@@ -437,7 +437,7 @@ background-none;
     <string>Undo Stack</string>
    </property>
    <attribute name="dockWidgetArea">
-    <number>1</number>
+    <number>2</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents">
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -462,7 +462,7 @@ background-none;
     <string>Captures</string>
    </property>
    <attribute name="dockWidgetArea">
-    <number>2</number>
+    <number>1</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_2">
     <layout class="QVBoxLayout" name="verticalLayout_2">
