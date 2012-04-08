@@ -20,9 +20,14 @@
 #
 
 from PyQt4 import QtCore, QtGui
+import GNS3.Globals as globals
 from GNS3.Utils import translate
 from GNS3.Node.DecorativeNode import DecorativeNode
 from GNS3.Globals.Symbols import SYMBOLS
+import GNS3.Dynagen.dynamips_lib as lib
+from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.AnyEmuDevice import QemuDevice, PIX, ASA, AnyEmuDevice, JunOS, IDS
+from GNS3.Node.AnyVBoxEmuDevice import VBoxDevice, AnyVBoxEmuDevice
 
 class nodesDock(QtGui.QTreeWidget):
     """ Class for managing the node types list
@@ -34,7 +39,7 @@ class nodesDock(QtGui.QTreeWidget):
         QtGui.QTreeWidget.__init__(self, parent)
         self.header().hide()
 
-    def populateNodeDock(self):
+    def populateNodeDock(self, nodeType):
         """ Fill the node dock
         """
 
@@ -66,9 +71,12 @@ class nodesDock(QtGui.QTreeWidget):
         
         count = 0
         for symbol in SYMBOLS:
+            if nodeType != 'All' and 'type' in symbol and symbol['type'] != nodeType:
+                count += 1
+                continue
             if symbol['object'] == DecorativeNode:
                 item = QtGui.QTreeWidgetItem(parent_decorative_nodes, 1000 + count)
-            else:
+            else:    
                 item = QtGui.QTreeWidgetItem(parent_emulated_devices, 1000 + count)
             if symbol['translated']:
                 item.setText(0, translate("nodesDock", symbol['name']))
@@ -77,6 +85,48 @@ class nodesDock(QtGui.QTreeWidget):
                 item.setText(0, symbol['name'])
             item.setIcon(0, QtGui.QIcon(symbol['normal_svg_file']))
             count += 1
+            
+            self.checkImageAvailability(item, symbol)
+
+    def checkImageAvailability(self, item, symbol):
+        """ Checks if the image of the associated device is registered/configured,
+             and if not disable it graphically so it can't be drag & drop'ed """
+
+        node = symbol['object']
+        # By default, all items are disabled
+        item.setDisabled(True)
+
+        # If the device is a bridge, switch or cloud, no need to register an image so enable it
+        if symbol['type'] == 'Other Device' or symbol['type'] == 'Switch':
+            item.setDisabled(False)
+            return
+        # Check if an IOS image is registered
+        if issubclass(node, IOSRouter):
+            if len(globals.GApp.iosimages.keys()) == 0:
+                return
+            # Check availability of each Cisco platform's image individually
+            for (image, conf) in globals.GApp.iosimages.iteritems():
+                if conf.platform in symbol['name']:
+                    item.setDisabled(False)
+                    return
+        # Check if a JunOS image is registered
+        elif issubclass(node, JunOS) and len(globals.GApp.junosimages) != 0:
+            item.setDisabled(False)
+        # Check availability for firewall and IDS images
+        elif issubclass(node, ASA) and len(globals.GApp.asaimages) == 0:
+            item.setDisabled(True)
+        elif issubclass(node, PIX) and len(globals.GApp.piximages) == 0:
+            item.setDisabled(True)
+        elif issubclass(node, IDS) and len(globals.GApp.idsimages) == 0:
+            item.setDisabled(True)
+        # Check if an image for Qemu or VirtualBox is registered
+        elif isinstance(node, QemuDevice) and len(globals.GApp.qemuimages) == 0:
+            item.setDisabled(True)
+        elif isinstance(node, VBoxDevice) and len(globals.GApp.vboximages) == 0:
+            item.setDisabled(True)
+        # No need to register an image for a "Host" so enable it
+        elif symbol['name'] == 'Host':
+            item.setDisabled(False)
 
     def mouseMoveEvent(self, event):
         """ Drag event
@@ -101,6 +151,8 @@ class nodesDock(QtGui.QTreeWidget):
         drag.setHotSpot(QtCore.QPoint(iconeSize.width(), iconeSize.height()))
         drag.setPixmap(icone.pixmap(iconeSize))
         drag.start(QtCore.Qt.MoveAction)
+        self.parent().parent().setVisible(False)
+        self.parent().parent().setWindowTitle('')
 
     def retranslateItem(self, item):
 
@@ -120,4 +172,4 @@ class nodesDock(QtGui.QTreeWidget):
     def retranslateUi(self, MainWindow):
 
         self.populateNodeDock()
-
+        return

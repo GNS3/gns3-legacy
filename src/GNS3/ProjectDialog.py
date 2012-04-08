@@ -109,6 +109,10 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
             projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
         else:
             projectConfigs = None
+            
+         #if self.checkBox_DoNotShowWindowAgain.checkState() == QtCore.Qt.Checked:
+           # ConfDB.set('ShowNewProjectWindowAgain', 'False')
+            
         return (projectFile, projectWorkdir, projectConfigs)
 
     def accept(self):

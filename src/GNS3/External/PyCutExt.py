@@ -362,6 +362,8 @@ class PyCutExt(QTextEdit):
 
         else:
             e.ignore()
+        
+        #QTextEdit.keyPressEvent(self, e)   # Causes some trouble
 
     def onKeyPress_Tab(self):
         pass
@@ -399,6 +401,7 @@ class PyCutExt(QTextEdit):
         if e.button() == Qt.LeftButton:
             self.moveCursor(QTextCursor.End)
 
+        QTextEdit.mousePressEvent(self, e)
 
     def contentsContextMenuEvent(self,ev):
         """

@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -18,7 +21,21 @@
     <normaloff>:/images/logo_icon.png</normaloff>:/images/logo_icon.png</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">#toolBar_Devices QToolButton {
+width: 50px;
+height: 50px;
+border:solid 1px black opacity 0.4;
+background-none;
+}
+
+#toolBar_General QToolButton {
+width: 36px;
+height: 36px;
+border:solid 1px black opacity 0.4;
+background-none;
+}
+
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout">
@@ -49,7 +66,7 @@
      <x>0</x>
      <y>0</y>
      <width>944</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -99,6 +116,7 @@
      </property>
      <addaction name="action_DefaultStyle"/>
      <addaction name="action_EnergySavingStyle"/>
+     <addaction name="action_HighContrastStyle"/>
     </widget>
     <addaction name="action_ZoomIn"/>
     <addaction name="action_ZoomOut"/>
@@ -158,24 +176,32 @@
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_Clear"/>
    <addaction name="action_Open"/>
    <addaction name="action_Save"/>
-   <addaction name="action_SaveAs"/>
-   <addaction name="action_New"/>
-   <addaction name="action_SaveProjectAs"/>
    <addaction name="separator"/>
-   <addaction name="action_ShowinterfaceNames"/>
-   <addaction name="action_ShowHostnames"/>
-   <addaction name="action_Add_link"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget_NodeTypes">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
    <property name="allowedAreas">
     <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
    </property>
@@ -223,9 +249,51 @@
     </layout>
    </widget>
   </widget>
+  <widget class="QToolBar" name="toolBar_Devices">
+   <property name="windowTitle">
+    <string>Devices</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>64</width>
+     <height>64</height>
+    </size>
+   </property>
+   <property name="toolButtonStyle">
+    <enum>Qt::ToolButtonIconOnly</enum>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_Router"/>
+   <addaction name="separator"/>
+   <addaction name="action_Switch"/>
+   <addaction name="separator"/>
+   <addaction name="action_EndDevices"/>
+   <addaction name="separator"/>
+   <addaction name="action_Firewall"/>
+   <addaction name="separator"/>
+   <addaction name="action_IDS"/>
+   <addaction name="separator"/>
+   <addaction name="action_OtherDevices"/>
+   <addaction name="separator"/>
+   <addaction name="action_BrowseAllDevices"/>
+   <addaction name="separator"/>
+   <addaction name="action_AddLink"/>
+   <addaction name="separator"/>
+  </widget>
   <widget class="QToolBar" name="toolBar_Emulation">
    <property name="windowTitle">
     <string>Emulation</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
    </property>
    <property name="toolButtonStyle">
     <enum>Qt::ToolButtonIconOnly</enum>
@@ -238,8 +306,8 @@
    </attribute>
    <addaction name="action_Snapshot"/>
    <addaction name="action_config"/>
-   <addaction name="action_ConsoleAuxAll"/>
-   <addaction name="action_TelnetAll"/>
+   <addaction name="action_ShowinterfaceNames"/>
+   <addaction name="action_Console"/>
    <addaction name="separator"/>
    <addaction name="action_StartAll"/>
    <addaction name="action_SuspendAll"/>
@@ -342,6 +410,12 @@
    <property name="windowTitle">
     <string>Drawing</string>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>
    </attribute>
@@ -352,6 +426,8 @@
    <addaction name="action_InsertImage"/>
    <addaction name="action_DrawRectangle"/>
    <addaction name="action_DrawEllipse"/>
+   <addaction name="action_ZoomIn"/>
+   <addaction name="action_ZoomOut"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget_UndoView">
    <property name="enabled">
@@ -490,27 +566,6 @@
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="action_Add_link">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/connection.svg</normaloff>:/icons/connection.svg</iconset>
-   </property>
-   <property name="text">
-    <string>Add a link</string>
-   </property>
-   <property name="iconText">
-    <string>Add a link</string>
-   </property>
-   <property name="toolTip">
-    <string>Add a link</string>
-   </property>
-   <property name="statusTip">
-    <string>Add a link</string>
-   </property>
-  </action>
   <action name="action_IOS_images">
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
@@ -624,10 +679,10 @@
      <normaloff>:/icons/console.svg</normaloff>:/icons/console.svg</iconset>
    </property>
    <property name="text">
-    <string>Console to all devices</string>
+    <string>Console Telnet to all devices</string>
    </property>
    <property name="toolTip">
-    <string>Console to all devices</string>
+    <string>Console Telnet to all devices</string>
    </property>
    <property name="statusTip">
     <string>Console to all devices</string>
@@ -663,28 +718,38 @@
    </property>
   </action>
   <action name="action_ZoomIn">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/zoom-in.png</normaloff>
+     <activeoff>:/icons/zoom-in-hover.png</activeoff>:/icons/zoom-in.png</iconset>
+   </property>
    <property name="text">
-    <string>Zoom &amp;in</string>
+    <string>Zoom in</string>
    </property>
    <property name="toolTip">
     <string>Zoom in</string>
    </property>
    <property name="statusTip">
-    <string>Zoom In</string>
+    <string>Zoom in</string>
    </property>
    <property name="shortcut">
     <string>Ctrl++</string>
    </property>
   </action>
   <action name="action_ZoomOut">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/zoom-out.png</normaloff>
+     <activeoff>:/icons/zoom-out-hover.png</activeoff>:/icons/zoom-out.png</iconset>
+   </property>
    <property name="text">
-    <string>Zoom &amp;out</string>
+    <string>Zoom out</string>
    </property>
    <property name="toolTip">
     <string>Zoom out</string>
    </property>
    <property name="statusTip">
-    <string>Zoom Out</string>
+    <string>Zoom out</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+-</string>
@@ -692,7 +757,7 @@
   </action>
   <action name="action_ZoomReset">
    <property name="text">
-    <string>Zoom &amp;1:1</string>
+    <string>Zoom 1:1</string>
    </property>
    <property name="statusTip">
     <string>Zoom Reset (1:1)</string>
@@ -1057,10 +1122,167 @@
    <property name="text">
     <string>Energy Saving</string>
    </property>
+   <property name="statusTip">
+    <string>Energy Saving Mode</string>
+   </property>
   </action>
   <action name="action_DefaultStyle">
    <property name="text">
     <string>Default</string>
+   </property>
+  </action>
+  <action name="action_Router">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/router.png</normaloff>
+     <activeoff>:/icons/router-hover.png</activeoff>:/icons/router.png</iconset>
+   </property>
+   <property name="text">
+    <string>Router</string>
+   </property>
+   <property name="toolTip">
+    <string>Router</string>
+   </property>
+   <property name="statusTip">
+    <string>Select Router</string>
+   </property>
+  </action>
+  <action name="action_Switch">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/switch.png</normaloff>
+     <activeoff>:/icons/switch-hover.png</activeoff>:/icons/switch.png</iconset>
+   </property>
+   <property name="text">
+    <string>Switch</string>
+   </property>
+   <property name="toolTip">
+    <string>Switch</string>
+   </property>
+   <property name="statusTip">
+    <string>Select Switch</string>
+   </property>
+  </action>
+  <action name="action_EndDevices">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/PC.png</normaloff>
+     <activeoff>:/icons/PC-hover.png</activeoff>:/icons/PC.png</iconset>
+   </property>
+   <property name="text">
+    <string>End devices</string>
+   </property>
+   <property name="toolTip">
+    <string>End devices</string>
+   </property>
+   <property name="statusTip">
+    <string>Select End device</string>
+   </property>
+  </action>
+  <action name="action_OtherDevices">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/other-devices.png</normaloff>
+     <activeoff>:/icons/other-devices-hover.png</activeoff>:/icons/other-devices.png</iconset>
+   </property>
+   <property name="text">
+    <string>Other devices</string>
+   </property>
+   <property name="toolTip">
+    <string>Other devices</string>
+   </property>
+   <property name="statusTip">
+    <string>Select Other devices</string>
+   </property>
+  </action>
+  <action name="action_Firewall">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/firewall.png</normaloff>
+     <activeoff>:/icons/firewall-hover.png</activeoff>:/icons/firewall.png</iconset>
+   </property>
+   <property name="text">
+    <string>Firewall</string>
+   </property>
+   <property name="toolTip">
+    <string>Firewall</string>
+   </property>
+   <property name="statusTip">
+    <string>Select Firewall</string>
+   </property>
+  </action>
+  <action name="action_IDS">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/ids.png</normaloff>
+     <activeoff>:/icons/ids-hover.png</activeoff>:/icons/ids.png</iconset>
+   </property>
+   <property name="text">
+    <string>IDS</string>
+   </property>
+   <property name="toolTip">
+    <string>IDS</string>
+   </property>
+   <property name="statusTip">
+    <string>Select Intrusion Detection System</string>
+   </property>
+  </action>
+  <action name="action_HighContrastStyle">
+   <property name="text">
+    <string>High Contrast</string>
+   </property>
+   <property name="statusTip">
+    <string>High Contrast Mode</string>
+   </property>
+  </action>
+  <action name="action_BrowseAllDevices">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/browse-all-icons.png</normaloff>
+     <activeoff>:/icons/browse-all-icons-hover.png</activeoff>:/icons/browse-all-icons.png</iconset>
+   </property>
+   <property name="text">
+    <string>Browse all devices</string>
+   </property>
+   <property name="toolTip">
+    <string>Browse all devices</string>
+   </property>
+   <property name="statusTip">
+    <string>Browse all devices</string>
+   </property>
+  </action>
+  <action name="action_AddLink">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/connection-new.svg</normaloff>
+     <activeoff>:/icons/connection-new-hover.svg</activeoff>:/icons/connection-new.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Add link</string>
+   </property>
+   <property name="toolTip">
+    <string>Add a link</string>
+   </property>
+   <property name="statusTip">
+    <string>Add a link</string>
+   </property>
+  </action>
+  <action name="action_Console">
+   <property name="icon">
+    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+     <normaloff>:/icons/console.svg</normaloff>:/icons/console.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Console</string>
+   </property>
+   <property name="toolTip">
+    <string>Start Console...</string>
+   </property>
+   <property name="statusTip">
+    <string>Start Console...</string>
    </property>
   </action>
  </widget>

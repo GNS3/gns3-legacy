@@ -117,13 +117,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 # let's check for an update
                 self.__action_CheckForUpdate(silent=True)
                 globals.GApp.systconf['general'].last_check_for_update = currentEpoch
+    
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
         """
 
         self.connect(self.action_Export, QtCore.SIGNAL('triggered()'), self.__action_Export)
-        self.connect(self.action_Add_link, QtCore.SIGNAL('triggered()'), self.__action_addLink)
+        self.connect(self.action_AddLink, QtCore.SIGNAL('triggered()'), self.__action_AddLink)
         self.connect(self.action_IOS_images, QtCore.SIGNAL('triggered()'), self.__action_IOSImages)
         self.connect(self.action_Symbol_Manager, QtCore.SIGNAL('triggered()'), self.__action_Symbol_Manager)
         self.connect(self.action_ShowHostnames, QtCore.SIGNAL('triggered()'), self.__action_ShowHostnames)
@@ -131,10 +132,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_ZoomIn, QtCore.SIGNAL('triggered()'), self.__action_ZoomIn)
         self.connect(self.action_ZoomOut, QtCore.SIGNAL('triggered()'), self.__action_ZoomOut)
         self.connect(self.action_ZoomReset, QtCore.SIGNAL('triggered()'), self.__action_ZoomReset)
+        self.connect(self.action_BrowseAllDevices, QtCore.SIGNAL('triggered()'), self.__action_BrowseAllDevices)
+        self.connect(self.action_Router, QtCore.SIGNAL('triggered()'), self.__action_Router)
+        self.connect(self.action_Switch, QtCore.SIGNAL('triggered()'), self.__action_Switch)
+        self.connect(self.action_EndDevices, QtCore.SIGNAL('triggered()'), self.__action_EndDevices)
+        self.connect(self.action_Firewall, QtCore.SIGNAL('triggered()'), self.__action_Firewall)
+        self.connect(self.action_IDS, QtCore.SIGNAL('triggered()'), self.__action_IDS)
+        self.connect(self.action_OtherDevices, QtCore.SIGNAL('triggered()'), self.__action_OtherDevices)
         self.connect(self.action_DefaultStyle, QtCore.SIGNAL('triggered()'), self.__action_DefaultStyle)
         self.connect(self.action_EnergySavingStyle, QtCore.SIGNAL('triggered()'), self.__action_EnergySavingStyle)
+        self.connect(self.action_HighContrastStyle, QtCore.SIGNAL('triggered()'), self.__action_HighContrastStyle)
         self.connect(self.action_SelectAll, QtCore.SIGNAL('triggered()'), self.__action_SelectAll)
         self.connect(self.action_SelectNone, QtCore.SIGNAL('triggered()'), self.__action_SelectNone)
+        self.connect(self.action_Console, QtCore.SIGNAL('triggered()'), self.__action_Console)
         self.connect(self.action_TelnetAll, QtCore.SIGNAL('triggered()'), self.__action_TelnetAll)
         self.connect(self.action_ConsoleAuxAll, QtCore.SIGNAL('triggered()'), self.__action_ConsoleAuxAll)
         self.connect(self.action_StartAll, QtCore.SIGNAL('triggered()'), self.__action_StartAll)
@@ -166,6 +176,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # Device menu is contextual and is build on-the-fly
         self.connect(self.menuDevice, QtCore.SIGNAL('aboutToShow()'), self.__action_ShowDeviceMenu)
+        
+        # By default, don't show the NodeTypes dock                 # A bit dirty but doesn't work if put before
+        self.dockWidget_NodeTypes.setVisible(False)
 
     def __action_ShowDeviceMenu(self):
 
@@ -509,15 +522,18 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 # add the image to the scene
                 command = undo.AddItem(globals.GApp.topology, item, translate('Workspace', 'picture'))
                 globals.GApp.topology.undoStack.push(command)
-
-    def __action_addLink(self):
+            
+    def __action_AddLink(self):
         """ Implement the QAction `addLink'
         - This function manage the creation of a connection between two nodes.
         """
 
-        if not self.action_Add_link.isChecked():
-            self.action_Add_link.setText(translate('Workspace', 'Add a link'))
-            self.action_Add_link.setIcon(QIcon(':/icons/connection.svg'))
+        if not self.action_AddLink.isChecked():
+            self.action_AddLink.setText(translate('Workspace', 'Add a link'))
+            newLinkIcon = QtGui.QIcon()
+            newLinkIcon.addPixmap(QtGui.QPixmap(":/icons/connection-new.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+            newLinkIcon.addPixmap(QtGui.QPixmap(":/icons/connection-new-hover.svg"), QtGui.QIcon.Active, QtGui.QIcon.On)
+            self.action_AddLink.setIcon(newLinkIcon)
             globals.addingLinkFlag = False
             globals.GApp.scene.resetAddingLink()
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
@@ -531,10 +547,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
             else:
                 globals.currentLinkType =  globals.Enum.LinkType.Manual
 
-            self.action_Add_link.setText(translate('Workspace', 'Cancel'))
-            self.action_Add_link.setIcon(QIcon(':/icons/cancel.svg'))
+            self.action_AddLink.setText(translate('Workspace', 'Cancel'))
+            self.action_AddLink.setIcon(QIcon(':/icons/cancel-connection.svg'))
             globals.addingLinkFlag = True
             globals.GApp.scene.setCursor(QtCore.Qt.CrossCursor)
+        
 
     def __setLinkType(self,  action):
         """ Set the link type to use
@@ -630,17 +647,113 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         globals.GApp.scene.resetMatrix()
 
+    def __doSlidingWindow(self, type):
+        """ Make the NodeDock appear (sliding effect is in progress)
+               with the appropriate title and the devices concerned listed.
+               Make window disappear if click on same category.
+        """
+
+        if self.dockWidget_NodeTypes.windowTitle() == type:
+            self.dockWidget_NodeTypes.setVisible(False)
+            self.dockWidget_NodeTypes.setWindowTitle('')
+        else:
+            self.dockWidget_NodeTypes.setWindowTitle(type)
+            self.dockWidget_NodeTypes.setVisible(True)
+            self.nodesDock.clear()
+            self.nodesDock.populateNodeDock(type)
+
+#    def disableUnconfiguredDevices(self):
+    
+#        try:
+#               iosConfig = None
+#                if isinstance(node, IOSRouter):
+ #                   if len(globals.GApp.iosimages.keys()) == 0:
+ #                       # no IOS images configured, users have to register an IOS
+  #                      QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), translate("Topology", "Please register at least one IOS image"))
+  #                      return False
+            
+    def __action_BrowseAllDevices(self):
+        """ Display all devices from all categories.
+        """
+
+        self.__doSlidingWindow('All')
+            
+    def __action_Router(self):
+        """ Display all devices in the "router" category.
+        """
+
+        self.__doSlidingWindow('Router')
+		
+    def __action_Switch(self):
+        """ Display all devices in the "switch" category.
+        """
+        
+        self.__doSlidingWindow('Switch')
+		
+    def __action_EndDevices(self):
+        """ Display all devices in the "end device" category.
+        """
+        
+        self.__doSlidingWindow('End Device')
+		
+    def __action_Firewall(self):
+        """ Display all devices in the "firewall" category.
+        """
+        
+        self.__doSlidingWindow('Firewall')
+		
+    def __action_IDS(self):
+        """ Display all devices in the "IDS" category.
+        """
+        
+        self.__doSlidingWindow('IDS')
+		
+    def __action_OtherDevices(self):
+        """ Display all devices in the "other devices" category.
+        """
+        
+        self.__doSlidingWindow('Other Device')
+
     def __action_DefaultStyle(self):
         """ Restore/Put stylesheet back to normal (and destroy the planet)
         """
 
         self.setStyleSheet('')
+        self.__restoreIcons()
 
     def __action_EnergySavingStyle(self):
         """ Put stylesheet meant to save energy, very popular these days
         """
 
         self.setStyleSheet(' QMainWindow {} QMenuBar { background: black; } QDockWidget { background: black; color: white; } QToolBar { background: black; } QFrame { background: gray; } QToolButton { width: 30px; height: 30px; /*border:solid 1px black opacity 0.4;*/ /*background-none;*/ } QStatusBar { /*	background-image: url(:/pictures/pictures/texture_blackgrid.png);*/ 	background: black; color: rgb(255,255,255); } ')
+
+    def __action_HighContrastStyle(self):
+        """ Put stylesheet meant to display high contrast icons, useful for low vision people
+        """
+
+        self.action_StartAll.setIcon(QtGui.QIcon(':/icons/play7-test.svg'))
+        self.action_SuspendAll.setIcon(QtGui.QIcon(':/icons/pause3-test.svg'))
+        self.action_StopAll.setIcon(QtGui.QIcon(':/icons/stop3-test.svg'))
+
+    def __restoreIcons(self):
+        """ Put normal icons back if the High Contrast Mode has been activated
+            and the user wants to go back to default style
+        """
+
+        startAllIcon = QtGui.QIcon()
+        startAllIcon.addPixmap(QtGui.QPixmap(":/icons/play2-test.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        startAllIcon.addPixmap(QtGui.QPixmap(":/icons/play7-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.On)
+        self.action_StartAll.setIcon(startAllIcon)
+        
+        pauseAllIcon = QtGui.QIcon()
+        pauseAllIcon.addPixmap(QtGui.QPixmap(":/icons/pause2-test.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        pauseAllIcon.addPixmap(QtGui.QPixmap(":/icons/pause3-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.On)
+        self.action_SuspendAll.setIcon(pauseAllIcon)
+        
+        stopAllIcon = QtGui.QIcon()
+        stopAllIcon.addPixmap(QtGui.QPixmap(":/icons/stop2-test.svg"), QtGui.QIcon.Normal, QtGui.QIcon.On)
+        stopAllIcon.addPixmap(QtGui.QPixmap(":/icons/stop3-test.svg"), QtGui.QIcon.Active, QtGui.QIcon.On)
+        self.action_StopAll.setIcon(stopAllIcon)
 
     def __action_ShowHostnames(self):
         """ Display/Hide hostnames for all the nodes on the scene
@@ -695,6 +808,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         QtGui.QMessageBox.information(self, translate("Workspace", "Interface labels"), translate("Workspace", "Interface labels have been reset"))
 
+    def __action_Console(self):
+    
+        menu = QtGui.QMenu()
+        menu.addAction(self.action_TelnetAll)
+        menu.addAction(self.action_ConsoleAuxAll)
+        menu.exec_(QtGui.QCursor.pos())
+        
     def __action_TelnetAll(self):
         """ Telnet to all started IOS routers
         """

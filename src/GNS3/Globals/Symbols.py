@@ -61,114 +61,114 @@ SYMBOLS = [
     {'name': "Router c1700", 'object': IOSRouter1700,
     'normal_svg_file': ":/symbols/router.normal.svg",
     'select_svg_file': ":/symbols/router.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Router'
     },
 
     {'name': "Router c2600", 'object': IOSRouter2600,
     'normal_svg_file': ":/symbols/router.normal.svg",
     'select_svg_file': ":/symbols/router.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Router'
     },
 
     {'name': "Router c2691", 'object': IOSRouter2691,
     'normal_svg_file': ":/symbols/router.normal.svg",
     'select_svg_file': ":/symbols/router.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Router'
     },
 
     {'name': "Router c3600", 'object': IOSRouter3600,
     'normal_svg_file': ":/symbols/router.normal.svg",
     'select_svg_file': ":/symbols/router.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Router'
     },
 
     {'name': "Router c3700", 'object': IOSRouter3700,
     'normal_svg_file': ":/symbols/router.normal.svg",
     'select_svg_file': ":/symbols/router.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Router'
     },
 
     {'name': "Router c7200", 'object': IOSRouter7200,
     'normal_svg_file': ":/symbols/router.normal.svg",
     'select_svg_file': ":/symbols/router.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Router'
     },
 
     {'name': "PIX firewall", 'object': PIX,
     'normal_svg_file': ":/symbols/PIX_firewall.normal.svg",
     'select_svg_file': ":/symbols/PIX_firewall.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Firewall'
     },
 
     {'name': "ASA firewall", 'object': ASA,
     'normal_svg_file': ":/symbols/PIX_firewall.normal.svg",
     'select_svg_file': ":/symbols/PIX_firewall.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Firewall'
     },
 
     {'name': "Juniper router", 'object': JunOS,
     'normal_svg_file': ":/symbols/router.normal.svg",
     'select_svg_file': ":/symbols/router.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Router'
     },
 
     {'name': "Ethernet switch", 'object': ETHSW,
     'normal_svg_file': ":/symbols/ethernet_switch.normal.svg",
     'select_svg_file': ":/symbols/ethernet_switch.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Switch'
     },
 
     {'name': "ATM bridge", 'object': ATMBR,
     'normal_svg_file': ":/symbols/atm_bridge.normal.svg",
     'select_svg_file': ":/symbols/atm_bridge.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Other Device'
     },
 
     {'name': "ATM switch", 'object': ATMSW,
     'normal_svg_file': ":/symbols/atm_switch.normal.svg",
     'select_svg_file': ":/symbols/atm_switch.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Switch'
     },
 
     {'name': "Frame Relay switch", 'object': FRSW,
     'normal_svg_file': ":/symbols/frame_relay_switch.normal.svg",
     'select_svg_file': ":/symbols/frame_relay_switch.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Switch'
     },
 
     {'name': "EtherSwitch router", 'object': IOSRouter3700,
     'normal_svg_file': ":/symbols/multilayer_switch.normal.svg",
     'select_svg_file': ":/symbols/multilayer_switch.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Switch'
     },
 
     {'name': "IDS", 'object': IDS,
     'normal_svg_file': ":/symbols/ids.normal.svg",
     'select_svg_file': ":/symbols/ids.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'IDS'
     },
 
     {'name': "Qemu guest", 'object': QemuDevice,
     'normal_svg_file': ":/symbols/computer.normal.svg",
     'select_svg_file': ":/symbols/computer.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'End Device'
     },
 
     {'name': "VirtualBox guest", 'object': VBoxDevice,
     'normal_svg_file': ":/symbols/computer.normal.svg",
     'select_svg_file': ":/symbols/computer.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'End Device'
     },
 
     {'name': "Host", 'object': Cloud,
     'normal_svg_file': ":/symbols/computer.normal.svg",
     'select_svg_file': ":/symbols/computer.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'End Device'
     },
 
     {'name': "Cloud", 'object': Cloud,
     'normal_svg_file': ":/symbols/cloud.normal.svg",
     'select_svg_file': ":/symbols/cloud.selected.svg",
-    'translated': True,
+    'translated': True, 'type': 'Other Device'
     },
 ]
