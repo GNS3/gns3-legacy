@@ -310,6 +310,8 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         try:
             if self.emudev.state == 'stopped':
                 self.emudev.start()
+            elif self.emudev.state == 'suspended':
+                self.emudev.resume()
         except:
             if progress:
                 raise
@@ -339,6 +341,10 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         """ Suspend this node
         """
 
+        self.emudev.suspend()
+        self.state = self.emudev.state
+        self.updateToolTips()
+        globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.emudev.state)
         pass
 
     def reloadNode(self, progress=False):
