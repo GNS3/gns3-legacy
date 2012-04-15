@@ -257,6 +257,23 @@ class Console(AbstractConsole):
             except DynamipsWarning, e:
                 print "Note: " + str(e)
 
+    def do_qmonitor(self, args):
+        """ Send the command to qemu monitor mode
+        and prints its output
+        """
+        devices = args.split(" ")
+        devname =  devices[0]
+        if not devname in self.dynagen.devices:
+            error("No such dynagen device: " + devname)
+            return
+        device = self.dynagen.devices[devname]
+        if not isinstance(device, self.namespace.AnyEmuDevice):
+            error("Device is not a Qemu device: " + devname)
+            return
+        result = device.qmonitor(" ".join(args.split(" ")[1:]))
+        # remove the enclosing '[100-' and ']'
+        result = result[6:-2]
+        print result
 
     def do_vboxexec(self, args):
         """vboxexec <VBOX device> <command>\nVirtualBox GuestControl execute sends a command to VirtualBox guest and prints it's output (experimental feature).

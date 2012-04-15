@@ -45,6 +45,7 @@ import time
 import random
 import ctypes
 import hashlib
+import Queue
 
 try:
     reload(sys)
@@ -138,6 +139,7 @@ class xEMUInstance(object):
         self.kvm = False
         self.options = ''
         self.process = None
+        self.processq = None
         self.workdir = WORKDIR + os.sep + name
         self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options']
 
@@ -160,6 +162,7 @@ class xEMUInstance(object):
         try:
             self.process = subprocess.Popen(command,
                                             stdin=subprocess.PIPE,
+                                            stdout=subprocess.PIPE,
                                             cwd=self.workdir)
         except e:
             print >> sys.stderr, "Unable to start instance", self.name, "of", self.__class__
@@ -169,7 +172,24 @@ class xEMUInstance(object):
         # give us some time to wait for Qemu to start
         time.sleep(1)
 
-        print "    pid:", self.process.pid
+        # set Qemu's stdout to be non blocking in order to parse monitor mode's output
+        self.processq = Queue.Queue()
+        t = threading.Thread(target=self._enqueue_output, args=(self.process.stdout, self.processq))
+        t.daemon = True
+        t.start()
+        # consume the first lines of output of qemu monitor mode
+        output = ''
+        while 1:
+            try:
+                output += self.processq.get_nowait()
+            except Queue.Empty:
+                if len(output) == 0 or 'monitor -'not in output:
+                    time.sleep(1)
+                    continue
+                else:
+                    break
+
+        print "PID:", self.process.pid
 
         if platform.system() == 'Windows':
             print "Setting priority class to BELOW_NORMAL"
@@ -214,6 +234,11 @@ class xEMUInstance(object):
         self.process = None
 
         return True
+
+    def _enqueue_output(self, out, queue):
+        for line in iter(out.readline, b''):
+            queue.put(line)
+        out.close()
 
     def _net_options(self):
         global qemuprotocol
@@ -339,6 +364,7 @@ class QEMUInstance(xEMUInstance):
         debugmsg(3, "QEMUInstance::_build_command()")
         "Builds the command as a list of shell arguments."
         command = [self.bin]
+        command.extend(['-monitor', 'stdio'])
         command.extend(['-name', self.name])
         command.extend(['-m', str(self.ram)])
         command.extend(self._disk_options())
@@ -645,6 +671,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             'stop' : (1, 1),
             'clean': (1, 1),
             'unbase': (1, 1),
+            'monitor': (2, 2),
             }
         }
 
@@ -1016,6 +1043,43 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             return
         QEMU_INSTANCES[name].unbase_disk()
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
+
+    # QEMU MONITOR MODE
+    def do_qemu_monitor(self, data):
+        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_monitor(%s)" % (str(data)))
+        name, command = data
+        command += "\n"
+        if not QEMU_INSTANCES[name].process:
+            self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
+                            "unable to find Qemu '%s', is it started?" % name)
+            return
+
+        # send the command to qemu monitor mode
+        QEMU_INSTANCES[name].process.stdin.write(command)
+        QEMU_INSTANCES[name].process.stdin.write("\n")
+
+        output = ''
+        while 1:
+            try:
+                output += QEMU_INSTANCES[name].processq.get_nowait()
+            except Queue.Empty:
+                if len(output) == 0 or output.rfind('(qemu) ') == len(output) - 6:
+                    time.sleep(1)
+                    continue
+                else:
+                    break
+        output = output.replace("\r", "")
+        # remove the first line (trash input and ESC sequence)
+        output = output[output.find("\n") + 1:]
+        # remove the qemu prompt
+        output = output[:-9]
+        # Serialize newlines: can only send a single line
+        output = output.replace("\n", '\n')
+        # Some commands don't generate any output, means it's OK
+        if len(output) == 0:
+            output = 'OK'
+        self.send_reply(self.HSC_INFO_OK, 1, output)
+
 
 class DaemonThreadingMixIn(SocketServer.ThreadingMixIn):
     daemon_threads = True
