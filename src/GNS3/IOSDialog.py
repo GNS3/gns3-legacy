@@ -523,3 +523,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         else:
             self.pushButtonDeleteHypervisor.setEnabled(False)
 
+    def reject(self):
+        """ Refresh devices list when closing the window
+        """
+        
+        globals.GApp.mainWindow.nodesDock.populateNodeDock("Router")
+        QtGui.QDialog.reject(self)

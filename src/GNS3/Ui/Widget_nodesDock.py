@@ -113,17 +113,17 @@ class nodesDock(QtGui.QTreeWidget):
         elif issubclass(node, JunOS) and len(globals.GApp.junosimages) != 0:
             item.setDisabled(False)
         # Check availability for firewall and IDS images
-        elif issubclass(node, ASA) and len(globals.GApp.asaimages) == 0:
-            item.setDisabled(True)
-        elif issubclass(node, PIX) and len(globals.GApp.piximages) == 0:
-            item.setDisabled(True)
-        elif issubclass(node, IDS) and len(globals.GApp.idsimages) == 0:
-            item.setDisabled(True)
+        elif issubclass(node, ASA) and len(globals.GApp.asaimages) != 0:
+            item.setDisabled(False)
+        elif issubclass(node, PIX) and len(globals.GApp.piximages) != 0:
+            item.setDisabled(False)
+        elif issubclass(node, IDS) and len(globals.GApp.idsimages) != 0:
+            item.setDisabled(False)
         # Check if an image for Qemu or VirtualBox is registered
-        elif isinstance(node, QemuDevice) and len(globals.GApp.qemuimages) == 0:
-            item.setDisabled(True)
-        elif isinstance(node, VBoxDevice) and len(globals.GApp.vboximages) == 0:
-            item.setDisabled(True)
+        elif issubclass(node, QemuDevice) and len(globals.GApp.qemuimages) != 0:
+            item.setDisabled(False)
+        elif issubclass(node, VBoxDevice) and len(globals.GApp.vboximages) != 0:
+            item.setDisabled(False)
         # No need to register an image for a "Host" so enable it
         elif symbol['name'] == 'Host':
             item.setDisabled(False)

@@ -24,6 +24,7 @@
 from PyQt4 import QtGui, QtCore
 from GNS3.Ui.Form_PreferencesDialog import Ui_PreferencesDialog
 from GNS3.Utils import translate
+import GNS3.Globals as globals
 
 class PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
 
@@ -133,3 +134,17 @@ class PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         if widget_curr is None:
             widget_curr = widget_prev
         self.__raiseWidgetByNum(self.listWidget.row(widget_curr))
+
+    def reject(self):
+        """ Refresh devices list when closing the window
+        """
+
+        globals.GApp.mainWindow.nodesDock.populateNodeDock(globals.GApp.workspace.dockWidget_NodeTypes.windowTitle())
+        QtGui.QDialog.reject(self)
+
+    def accept(self):
+        """ Refresh devices list when closing the window
+        """
+
+        globals.GApp.mainWindow.nodesDock.populateNodeDock(globals.GApp.workspace.dockWidget_NodeTypes.windowTitle())
+        QtGui.QDialog.accept(self)
