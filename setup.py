@@ -31,7 +31,7 @@ if sys.platform.startswith('win'):
         PYQT4_DIR = r'C:\Python26-32bit\Lib\site-packages\PyQt4'
     elif bitness == 64:
         # for 64-bit python
-        PYQT4_DIR = r'C:\Python26-64bit\Lib\site-packages\PyQt4'
+        PYQT4_DIR = r'C:\Python27\Lib\site-packages\PyQt4'
     else:
         # should seriously not happen ...
         print "Fatal error: bitness cannot be detected!"
@@ -52,7 +52,8 @@ if sys.platform.startswith('win'):
 
     # Settings for py2exe, packages values are to tell to py2exe about hidden imports
     setup(windows=[{"script":"gns3.pyw",
-                "icon_resources": [(1, r'..\gns3_icon.ico')]}],
+                "icon_resources": [(1, r'.\gns3_icon.ico')]}],
+#                "icon_resources": [(1, r'..\gns3-artwork\image\gns3_icon.ico')]}],
                 zipfile=None,
                 data_files=data_files,
                 options={"py2exe":

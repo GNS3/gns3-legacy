@@ -20,6 +20,7 @@
 #
 
 import os
+import sys
 import platform
 import shutil
 import GNS3.Globals as globals
@@ -50,6 +51,8 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.connect(self.ProjectPath_browser, QtCore.SIGNAL('clicked()'), self.__setProjectPath)
         self.connect(self.IOSPath_browser, QtCore.SIGNAL('clicked()'), self.__setIOSPath)
         self.connect(self.pushButtonUseTerminalCommand, QtCore.SIGNAL('clicked()'), self.__setTerminalCmd)
+        self.connect(self.Button_export_configuration, QtCore.SIGNAL('clicked()'), self.__ExportConfiguration)
+        self.connect(self.Button_import_configuration, QtCore.SIGNAL('clicked()'), self.__ImportConfiguration)
 
         for (name, cmd) in sorted(TERMINAL_PRESET_CMDS.iteritems()):
             self.comboBoxPreconfigTerminalCommands.addItem(name, cmd)
@@ -262,3 +265,42 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         globals.preferencesWindow.close()
 
 
+    def __ExportConfiguration(self):
+        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'export configuration'), parent=globals.preferencesWindow)
+        (path, selected) = fb.getSaveFile()
+        try:
+            shutil.copy2(unicode(ConfDB().fileName(), 'utf-8', errors='replace'), path);
+        except IOError:
+            QtGui.QMessageBox.warning(self, 'warning', 'error while copying backup')          
+            return
+        QtGui.QMessageBox.warning(self, 'confirm', 'export succefully done')
+
+
+    def __ImportConfiguration(self):
+        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'import configuration'), parent=globals.preferencesWindow)
+        (path, selected) = fb.getFile()
+        if  not os.path.exists(path):
+                QtGui.QMessageBox.warning(self, 'warning', (path + ' does not exist'))
+                return
+        '''
+        if  not os.path.isfile(path):
+                QtGui.QMessageBox.warning(self, 'warning', (path + ' is a directory'))
+                return
+        if  not os.access(path, R_OK):
+                QtGui.QMessageBox.warning(self, 'warning', (path + ' : no permission to read'))
+                return
+        '''
+        try:
+            shutil.copy2(unicode(ConfDB().fileName(), 'utf-8', errors='replace'),unicode(ConfDB().fileName(), 'utf-8', errors='replace')+ '.backup');
+        except IOError:
+            QtGui.QMessageBox.warning(self, 'warning', 'error while copying backup')
+            return
+
+        try:
+            shutil.copy2(path, unicode(ConfDB().fileName(), 'utf-8', errors='replace'));
+        except IOError:
+            QtGui.QMessageBox.warning(self, 'warning', 'error while copying')
+            return
+
+        python = sys.executable
+        os.execl(python, python, * sys.argv)
