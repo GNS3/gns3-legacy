@@ -259,6 +259,7 @@ conf_iosImage_defaults = {
     'platform': '',
     'chassis': '',
     'idlepc': '',
+    'idlemax': 100,
     'default_ram': 0,
     'hypervisors': [],
     'default': False
@@ -271,6 +272,7 @@ conf_iosImage_types = {
     'platform': str,
     'chassis': str,
     'idlepc': str,
+    'idlemax': int,
     'default_ram': int,
     'hypervisors': list,
     'default': bool

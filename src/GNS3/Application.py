@@ -746,6 +746,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/hypervisors", hypervisors.strip())
             c.set(basekey + "/default_ram", o.default_ram)
             c.set(basekey + "/idlepc", o.idlepc)
+            c.set(basekey + "/idlemax", o.idlemax)
             c.set(basekey + "/default",  o.default)
 
         # Hypervisors
