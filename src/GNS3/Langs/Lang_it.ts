@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="it_IT" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.0" language="it_IT">
 <context>
     <name>ASA initrd</name>
     <message>
         <location filename="../DynagenSub.py" line="193"/>
         <source>ASA initrd %s cannot be found and cannot find an alternative initrd</source>
-        <translation>L&apos; initrd dell&apos;ASA non è stato trovato e non è presente un initrd alternativo</translation>
+        <translation>L&apos;initrd dell&apos;ASA non è stato trovato e non è presente un initrd alternativo</translation>
     </message>
 </context>
 <context>
@@ -252,7 +253,7 @@
         <source>&amp;License Agreement</source>
         <translation>&amp;Licenza d&apos;uso</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_About.py" line="80"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -318,7 +319,29 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net/contact&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Contact us&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;GNS3 %VERSION%&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Sotto licenza GPL v2&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt; font-weight:600;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Sviluppatori:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Jeremy Grossmann&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Benjamin Marsili&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Claire Goudjil&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Alexey Eromenko &amp;quot;Technologov&amp;quot;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt; font-weight:600;&quot;&gt;Sviluppatori originari:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Xavier Alt&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Romain Lamaison&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;Aurelien Levesque&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;David Ruiz&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:12pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Visita il nostro sito web&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Effettua una donazione&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net/contact&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Contattaci&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -401,17 +424,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="468"/>
         <source>%s is empty, no traffic has been captured on the link yet. Please try again later</source>
-        <translation type="unfinished"></translation>
+        <translation>%s è vuoto, non è stato catturato ancora alcun traffico sul collegamento. Riprova più tardi</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="471"/>
         <source>Cannot find %s : %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile trovare %s : %s</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="471"/>
         <source>NOTE: This feature is only available for local hypervisors.</source>
-        <translation type="unfinished"></translation>
+        <translation>NOTA: questa funzionalità è disponibile solo per hypervisor locali.</translation>
     </message>
 </context>
 <context>
@@ -821,22 +844,22 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Console.py" line="285"/>
         <source>%s: Dynamips error</source>
-        <translation type="unfinished">%s: Errore Dynamips</translation>
+        <translation>%s: errore Dynamips</translation>
     </message>
     <message>
         <location filename="../Console.py" line="283"/>
         <source>%s: Dynamips warning</source>
-        <translation type="unfinished">%s: Avviso Dynamips</translation>
+        <translation>%s: avviso Dynamips</translation>
     </message>
     <message>
         <location filename="../Console.py" line="231"/>
         <source>%s Dynamips warning</source>
-        <translation type="unfinished"></translation>
+        <translation>%s avviso Dynamips</translation>
     </message>
     <message>
         <location filename="../Console.py" line="233"/>
         <source>%s Dynamips error</source>
-        <translation type="unfinished"></translation>
+        <translation>%s errore Dynamips</translation>
     </message>
 </context>
 <context>
@@ -965,12 +988,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../DynagenSub.py" line="370"/>
         <source>Local working directory %s cannot be found for hypervisor %s:%s, use working directory %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>La cartella di lavoro locale %s non può essere trovato per l&apos;hypervisor %s:%s, usa invece la cartella %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="418"/>
         <source>Local IOS image %s cannot be found for hypervisor %s:s, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;immagine IOS locale %s non può essere trovata per l&apos;hypervisor %s:%s, usa invece l&apos;immagine %s</translation>
     </message>
 </context>
 <context>
@@ -1307,7 +1330,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../DynagenSub.py" line="402"/>
         <source>IOS image %s cannot be found for hypervisor %s:%s and cannot find an alternative %s image</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;immagine di IOS %s non può essere trovata per l&apos;hypervisor %s:%s e non esiste alcuna immagine %s alternativa</translation>
     </message>
 </context>
 <context>
@@ -1475,7 +1498,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../IOSDialog.py" line="414"/>
         <source>Image file box is empty</source>
-        <translation>Il box del file immagine è vuoto</translation>
+        <translation>Il campo del file immagine è vuoto</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="202"/>
@@ -1671,7 +1694,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="528"/>
         <source>Base MAC :</source>
-        <translation>MAC di partenza :</translation>
+        <translation>MAC di partenza:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="548"/>
@@ -1681,7 +1704,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="577"/>
         <source>iomem :</source>
-        <translation>iomem :</translation>
+        <translation>iomem:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IOSRouterPage.ui" line="593"/>
@@ -2228,7 +2251,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <source>Console to all devices</source>
         <translation>Console per tutti i dispositivi</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="312"/>
         <source>Save topology &amp;as…</source>
         <translation>Salva topologi&amp;a come...</translation>
@@ -2273,7 +2296,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <source>Show interface labels</source>
         <translation>Mostra le etichette delle interfacce</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="483"/>
         <source>&amp;Save project as…</source>
         <translation>&amp;Salva progetto come…</translation>
@@ -2544,22 +2567,22 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../NETFile.py" line="910"/>
         <source>%s: Dynamips error: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: errore Dynamips: %s</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="914"/>
         <source>%s: Dynamips warning: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: avviso Dynamips: %s</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="1183"/>
         <source>%s: IOError</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: errore IO</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="1088"/>
         <source>%s must be connected or have a hypervisor set in order to be registered</source>
-        <translation type="unfinished"></translation>
+        <translation>%s deve essere connesso o avere un hypervisor configurato per essere registrato</translation>
     </message>
 </context>
 <context>
@@ -3548,12 +3571,12 @@ o sul collegamento stesso.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="73"/>
         <source>Delay between each device start when starting all devices:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ritardo di accensione di ogni dispositivo quando si avviano tutti i dispositivi:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="278"/>
         <source>Delay between each console when consoling to all devices:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ritardo di apertura di ogni console quando si aprono le console di tutti i dispositivi:</translation>
     </message>
 </context>
 <context>
@@ -4124,12 +4147,12 @@ o sul collegamento stesso.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="314"/>
         <source>VM List / unique ID:</source>
-        <translation type="unfinished"></translation>
+        <translation>Elenco VM / ID univoco:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="462"/>
         <source>Refresh VM List</source>
-        <translation type="unfinished"></translation>
+        <translation>Aggiorna l&apos;elenco delle VM</translation>
     </message>
 </context>
 <context>
@@ -4645,7 +4668,7 @@ es: #copy start run</translation>
         <source>Rotation:</source>
         <translation>Rotazione:</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_StyleDialog.py" line="66"/>
         <source>°</source>
         <translation></translation>
@@ -5254,7 +5277,7 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="937"/>
         <source> (except pemu that is not supported on Mac OS X)</source>
-        <translation type="unfinished"></translation>
+        <translation> (eccetto pemu che non è supportato su Mac OS X)</translation>
     </message>
 </context>
 <context>
@@ -5297,12 +5320,12 @@ ALT + SINISTRA o DESTRA</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="478"/>
         <source>External VBoxwrapper</source>
-        <translation type="unfinished">VBoxwrapper esterno</translation>
+        <translation>VBoxwrapper esterno</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="478"/>
         <source>Please choose your external VBoxwrapper</source>
-        <translation type="unfinished">Scegli il Qemuwrapper esterno</translation>
+        <translation>Scegli il VBoxwrapper esterno</translation>
     </message>
 </context>
 <context>
@@ -5914,7 +5937,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="1098"/>
         <source>Dynamips error %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore Dynamips %s: %s</translation>
     </message>
 </context>
 <context>
