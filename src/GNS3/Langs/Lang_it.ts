@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="it_IT">
+<!DOCTYPE TS><TS version="2.0" language="it_IT" sourcelanguage="">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -239,21 +238,21 @@
         <translation>Informazioni</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="412"/>
+        <location filename="../Ui/Form_About.py" line="411"/>
         <source>&amp;About</source>
         <translation>&amp;Informazioni</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="413"/>
+        <location filename="../Ui/Form_About.py" line="412"/>
         <source>&amp;Thanks to</source>
         <translation>&amp;Ringraziamenti</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="414"/>
+        <location filename="../Ui/Form_About.py" line="413"/>
         <source>&amp;License Agreement</source>
         <translation>&amp;Licenza d&apos;uso</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="../Ui/Form_About.py" line="80"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -992,8 +991,8 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="418"/>
-        <source>Local IOS image %s cannot be found for hypervisor %s:s, use image %s instead</source>
-        <translation>L&apos;immagine IOS locale %s non può essere trovata per l&apos;hypervisor %s:%s, usa invece l&apos;immagine %s</translation>
+        <source>Local IOS image %s cannot be found for hypervisor %s:%s, use image %s instead</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2251,7 +2250,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <source>Console to all devices</source>
         <translation>Console per tutti i dispositivi</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="../Ui/Form_MainWindow.py" line="312"/>
         <source>Save topology &amp;as…</source>
         <translation>Salva topologi&amp;a come...</translation>
@@ -2296,7 +2295,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <source>Show interface labels</source>
         <translation>Mostra le etichette delle interfacce</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="../Ui/Form_MainWindow.py" line="483"/>
         <source>&amp;Save project as…</source>
         <translation>&amp;Salva progetto come…</translation>
@@ -4668,7 +4667,7 @@ es: #copy start run</translation>
         <source>Rotation:</source>
         <translation>Rotazione:</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="../Ui/Form_StyleDialog.py" line="66"/>
         <source>°</source>
         <translation></translation>

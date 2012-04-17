@@ -238,17 +238,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="412"/>
+        <location filename="../Ui/Form_About.py" line="411"/>
         <source>&amp;About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="413"/>
+        <location filename="../Ui/Form_About.py" line="412"/>
         <source>&amp;Thanks to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="414"/>
+        <location filename="../Ui/Form_About.py" line="413"/>
         <source>&amp;License Agreement</source>
         <translation type="unfinished"></translation>
     </message>
@@ -947,7 +947,7 @@ Please choose an alternate network interface:</source>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="418"/>
-        <source>Local IOS image %s cannot be found for hypervisor %s:s, use image %s instead</source>
+        <source>Local IOS image %s cannot be found for hypervisor %s:%s, use image %s instead</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

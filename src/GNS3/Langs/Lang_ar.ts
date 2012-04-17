@@ -238,17 +238,17 @@
         <translation>حول</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="412"/>
+        <location filename="../Ui/Form_About.py" line="411"/>
         <source>&amp;About</source>
         <translation>&amp;حول</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="413"/>
+        <location filename="../Ui/Form_About.py" line="412"/>
         <source>&amp;Thanks to</source>
         <translation>&amp;شكرا ل</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="414"/>
+        <location filename="../Ui/Form_About.py" line="413"/>
         <source>&amp;License Agreement</source>
         <translation>&amp;أتفاقية الترخيص</translation>
     </message>
@@ -948,7 +948,7 @@ Please choose an alternate network interface:</source>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="418"/>
-        <source>Local IOS image %s cannot be found for hypervisor %s:s, use image %s instead</source>
+        <source>Local IOS image %s cannot be found for hypervisor %s:%s, use image %s instead</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4568,7 +4568,7 @@ or the link itself.</source>
     <message>
         <location filename="../StartupConfigDialog.py" line="101"/>
         <source>Dynamips warning</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dynamips تحذير</translation>
     </message>
     <message>
         <location filename="../StartupConfigDialog.py" line="145"/>

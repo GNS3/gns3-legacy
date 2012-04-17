@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="zh_CN">
-<defaultcodec></defaultcodec>
+<!DOCTYPE TS><TS version="2.0" language="zh_CN" sourcelanguage="">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -239,17 +238,17 @@
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="412"/>
+        <location filename="../Ui/Form_About.py" line="411"/>
         <source>&amp;About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="413"/>
+        <location filename="../Ui/Form_About.py" line="412"/>
         <source>&amp;Thanks to</source>
         <translation>致谢</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="414"/>
+        <location filename="../Ui/Form_About.py" line="413"/>
         <source>&amp;License Agreement</source>
         <translation>许可协议</translation>
     </message>
@@ -949,8 +948,8 @@ Please choose an alternate network interface:</source>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="418"/>
-        <source>Local IOS image %s cannot be found for hypervisor %s:s, use image %s instead</source>
-        <translation>本地IOS镜像 %s 不适用于管理程序 %s:s，使用 %s 代替</translation>
+        <source>Local IOS image %s cannot be found for hypervisor %s:%s, use image %s instead</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
