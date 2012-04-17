@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_NodeConfigurator.ui'
 #
-# Created: Tue Mar 13 20:07:45 2012
-#      by: PyQt4 UI code generator 4.8.6
+# Created: Wed Apr 18 01:58:39 2012
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -18,7 +18,6 @@ class Ui_NodeConfigurator(object):
     def setupUi(self, NodeConfigurator):
         NodeConfigurator.setObjectName(_fromUtf8("NodeConfigurator"))
         NodeConfigurator.resize(689, 475)
-        NodeConfigurator.setWindowTitle(QtGui.QApplication.translate("NodeConfigurator", "Node configurator", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         NodeConfigurator.setWindowIcon(icon)
@@ -35,7 +34,6 @@ class Ui_NodeConfigurator(object):
         self.treeViewNodes.setSizePolicy(sizePolicy)
         self.treeViewNodes.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
         self.treeViewNodes.setObjectName(_fromUtf8("treeViewNodes"))
-        self.treeViewNodes.headerItem().setText(0, QtGui.QApplication.translate("NodeConfigurator", "Nodes", None, QtGui.QApplication.UnicodeUTF8))
         self.verticalLayout = QtGui.QWidget(self.splitter)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.vboxlayout = QtGui.QVBoxLayout(self.verticalLayout)
@@ -49,7 +47,6 @@ class Ui_NodeConfigurator(object):
         self.titleLabel.setFont(font)
         self.titleLabel.setFrameShape(QtGui.QFrame.Box)
         self.titleLabel.setFrameShadow(QtGui.QFrame.Sunken)
-        self.titleLabel.setText(QtGui.QApplication.translate("NodeConfigurator", "Node Configuration", None, QtGui.QApplication.UnicodeUTF8))
         self.titleLabel.setTextFormat(QtCore.Qt.PlainText)
         self.titleLabel.setObjectName(_fromUtf8("titleLabel"))
         self.vboxlayout.addWidget(self.titleLabel)
@@ -71,8 +68,6 @@ class Ui_NodeConfigurator(object):
         spacerItem = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.vboxlayout1.addItem(spacerItem)
         self.textLabel1 = QtGui.QLabel(self.emptyPage)
-        self.textLabel1.setText(QtGui.QApplication.translate("NodeConfigurator", "Please select a node in the list \n"
-"to display the configuration page.", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel1.setAlignment(QtCore.Qt.AlignCenter)
         self.textLabel1.setObjectName(_fromUtf8("textLabel1"))
         self.vboxlayout1.addWidget(self.textLabel1)
@@ -92,6 +87,10 @@ class Ui_NodeConfigurator(object):
         QtCore.QMetaObject.connectSlotsByName(NodeConfigurator)
 
     def retranslateUi(self, NodeConfigurator):
-        pass
+        NodeConfigurator.setWindowTitle(QtGui.QApplication.translate("NodeConfigurator", "Node configurator", None, QtGui.QApplication.UnicodeUTF8))
+        self.treeViewNodes.headerItem().setText(0, QtGui.QApplication.translate("NodeConfigurator", "Nodes", None, QtGui.QApplication.UnicodeUTF8))
+        self.titleLabel.setText(QtGui.QApplication.translate("NodeConfigurator", "Node Configuration", None, QtGui.QApplication.UnicodeUTF8))
+        self.textLabel1.setText(QtGui.QApplication.translate("NodeConfigurator", "Please select a node in the list \n"
+"to display the configuration page.", None, QtGui.QApplication.UnicodeUTF8))
 
 import svg_resources_rc
