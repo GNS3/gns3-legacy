@@ -26,7 +26,7 @@ import GNS3.Globals as globals
 import GNS3.UndoFramework as undo
 import GNS3.WindowManipulator as winm
 from PyQt4 import QtGui, QtCore, QtNetwork
-from PyQt4.QtGui import QMainWindow, QIcon
+from PyQt4.QtGui import QMainWindow, QIcon, QWizard
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
 from GNS3.Ui.Form_About import Ui_AboutDialog
 from GNS3.IOSDialog import IOSDialog
@@ -40,6 +40,7 @@ from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice, JunOS, IDS, QemuDevice
 from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice, VBoxDevice
 from GNS3.Pixmap import Pixmap
+from GNS3.Wizzard import Ui_Wizard
 
 class Workspace(QMainWindow, Ui_MainWindow):
     """ This class is for managing the whole GUI `Workspace'.
@@ -173,12 +174,20 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_Redo, QtCore.SIGNAL('triggered()'), self.__action_Redo)
         self.connect(self.action_ShowLayers, QtCore.SIGNAL('triggered()'), self.__action_ShowLayers)
         self.connect(self.action_ResetInterfaceLabels, QtCore.SIGNAL('triggered()'), self.__action_ResetInterfaceLabels)
+        self.connect(self.action_Export_in_a_PDF, QtCore.SIGNAL('triggered()'), self.__action_DisplayWizard)
 
         # Device menu is contextual and is build on-the-fly
         self.connect(self.menuDevice, QtCore.SIGNAL('aboutToShow()'), self.__action_ShowDeviceMenu)
         
         # By default, don't show the NodeTypes dock                 # A bit dirty but doesn't work if put before
         self.dockWidget_NodeTypes.setVisible(False)
+
+    def __action_DisplayWizard(self):
+        self.wizard = QWizard()
+        self.uiWizard = Ui_Wizard()
+        self.uiWizard.setupUi(self.wizard)
+        self.wizard.show()
+        self.wizard.exec_()
 
     def __action_ShowDeviceMenu(self):
 

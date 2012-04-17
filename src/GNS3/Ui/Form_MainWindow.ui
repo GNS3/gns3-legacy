@@ -17,7 +17,7 @@
    <string>GNS3</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+   <iconset>
     <normaloff>:/images/logo_icon.png</normaloff>:/images/logo_icon.png</iconset>
   </property>
   <property name="styleSheet">
@@ -154,12 +154,19 @@ background-none;
      <string>Device</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuExport_as_PDF">
+    <property name="title">
+     <string>Export</string>
+    </property>
+    <addaction name="action_Export_in_a_PDF"/>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
    <addaction name="menu_View"/>
    <addaction name="menuControl"/>
    <addaction name="menuDevice"/>
    <addaction name="menuAnnotate"/>
+   <addaction name="menuExport_as_PDF"/>
    <addaction name="menu_About"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -517,7 +524,7 @@ background-none;
   </action>
   <action name="action_Quit">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/quit.svg</normaloff>:/icons/quit.svg</iconset>
    </property>
    <property name="text">
@@ -532,7 +539,7 @@ background-none;
   </action>
   <action name="action_Open">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/open.svg</normaloff>:/icons/open.svg</iconset>
    </property>
    <property name="text">
@@ -550,7 +557,7 @@ background-none;
   </action>
   <action name="action_Save">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/save.svg</normaloff>:/icons/save.svg</iconset>
    </property>
    <property name="text">
@@ -568,7 +575,7 @@ background-none;
   </action>
   <action name="action_IOS_images">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/binary.svg</normaloff>:/icons/binary.svg</iconset>
    </property>
    <property name="text">
@@ -583,7 +590,7 @@ background-none;
   </action>
   <action name="action_OnlineHelp">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/help.svg</normaloff>:/icons/help.svg</iconset>
    </property>
    <property name="text">
@@ -598,7 +605,7 @@ background-none;
   </action>
   <action name="action_Export">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/export.svg</normaloff>:/icons/export.svg</iconset>
    </property>
    <property name="text">
@@ -616,7 +623,7 @@ background-none;
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/play7-test.svg</normaloff>
      <normalon>:/icons/play7-test.svg</normalon>
      <activeoff>:/icons/play2-test.svg</activeoff>
@@ -637,7 +644,7 @@ background-none;
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/stop3-test.svg</normaloff>
      <activeoff>:/icons/stop2-test.svg</activeoff>
      <activeon>:/icons/stop2-test.svg</activeon>:/icons/stop3-test.svg</iconset>
@@ -657,7 +664,7 @@ background-none;
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/show-hostname.svg</normaloff>:/icons/show-hostname.svg</iconset>
    </property>
    <property name="text">
@@ -675,7 +682,7 @@ background-none;
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/console.svg</normaloff>:/icons/console.svg</iconset>
    </property>
    <property name="text">
@@ -690,7 +697,7 @@ background-none;
   </action>
   <action name="action_SaveAs">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/save-as.svg</normaloff>:/icons/save-as.svg</iconset>
    </property>
    <property name="text">
@@ -719,7 +726,7 @@ background-none;
   </action>
   <action name="action_ZoomIn">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/zoom-in.png</normaloff>
      <activeoff>:/icons/zoom-in-hover.png</activeoff>:/icons/zoom-in.png</iconset>
    </property>
@@ -738,7 +745,7 @@ background-none;
   </action>
   <action name="action_ZoomOut">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/zoom-out.png</normaloff>
      <activeoff>:/icons/zoom-out-hover.png</activeoff>:/icons/zoom-out.png</iconset>
    </property>
@@ -790,7 +797,7 @@ background-none;
   </action>
   <action name="action_Preferences">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/applications.svg</normaloff>:/icons/applications.svg</iconset>
    </property>
    <property name="text">
@@ -808,7 +815,7 @@ background-none;
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/edit-undo.svg</normaloff>:/icons/edit-undo.svg</iconset>
    </property>
    <property name="text">
@@ -823,7 +830,7 @@ background-none;
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/edit-redo.svg</normaloff>:/icons/edit-redo.svg</iconset>
    </property>
    <property name="text">
@@ -835,7 +842,7 @@ background-none;
   </action>
   <action name="action_SuspendAll">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/pause3-test.svg</normaloff>
      <activeoff>:/icons/pause2-test.svg</activeoff>
      <activeon>:/icons/pause2-test.svg</activeon>:/icons/pause3-test.svg</iconset>
@@ -852,7 +859,7 @@ background-none;
   </action>
   <action name="action_Clear">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/new.svg</normaloff>:/icons/new.svg</iconset>
    </property>
    <property name="text">
@@ -870,7 +877,7 @@ background-none;
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/add-note.svg</normaloff>:/icons/add-note.svg</iconset>
    </property>
    <property name="text">
@@ -885,7 +892,7 @@ background-none;
   </action>
   <action name="action_New">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/new-project.svg</normaloff>:/icons/new-project.svg</iconset>
    </property>
    <property name="text">
@@ -906,7 +913,7 @@ background-none;
   </action>
   <action name="action_config">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/import_export_configs.svg</normaloff>:/icons/import_export_configs.svg</iconset>
    </property>
    <property name="text">
@@ -921,7 +928,7 @@ background-none;
   </action>
   <action name="action_InsertImage">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/image.svg</normaloff>:/icons/image.svg</iconset>
    </property>
    <property name="text">
@@ -936,7 +943,7 @@ background-none;
   </action>
   <action name="action_Symbol_Manager">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/node_conception.svg</normaloff>:/icons/node_conception.svg</iconset>
    </property>
    <property name="text">
@@ -957,7 +964,7 @@ background-none;
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/rectangle3-test.svg</normaloff>
      <activeoff>:/icons/rectangle2-test.svg</activeoff>
      <activeon>:/icons/rectangle2-test.svg</activeon>:/icons/rectangle3-test.svg</iconset>
@@ -977,7 +984,7 @@ background-none;
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/ellipse3-test.svg</normaloff>
      <activeoff>:/icons/ellipse2-test.svg</activeoff>
      <activeon>:/icons/ellipse2-test.svg</activeon>:/icons/ellipse3-test.svg</iconset>
@@ -997,7 +1004,7 @@ background-none;
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/show-interface-names.svg</normaloff>:/icons/show-interface-names.svg</iconset>
    </property>
    <property name="text">
@@ -1012,7 +1019,7 @@ background-none;
   </action>
   <action name="action_Snapshot">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/snapshot.svg</normaloff>:/icons/snapshot.svg</iconset>
    </property>
    <property name="text">
@@ -1038,7 +1045,7 @@ background-none;
   </action>
   <action name="action_SaveProjectAs">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/save-as-project.svg</normaloff>:/icons/save-as-project.svg</iconset>
    </property>
    <property name="text">
@@ -1053,7 +1060,7 @@ background-none;
   </action>
   <action name="action_ReloadAll">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/reload.svg</normaloff>:/icons/reload.svg</iconset>
    </property>
    <property name="text">
@@ -1071,7 +1078,7 @@ background-none;
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/aux-console.svg</normaloff>:/icons/aux-console.svg</iconset>
    </property>
    <property name="text">
@@ -1105,7 +1112,7 @@ background-none;
   </action>
   <action name="action_ShowVirtualBoxManager">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/virtualbox.png</normaloff>:/icons/virtualbox.png</iconset>
    </property>
    <property name="text">
@@ -1133,7 +1140,7 @@ background-none;
   </action>
   <action name="action_Router">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/router.png</normaloff>
      <activeoff>:/icons/router-hover.png</activeoff>:/icons/router.png</iconset>
    </property>
@@ -1149,7 +1156,7 @@ background-none;
   </action>
   <action name="action_Switch">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/switch.png</normaloff>
      <activeoff>:/icons/switch-hover.png</activeoff>:/icons/switch.png</iconset>
    </property>
@@ -1165,7 +1172,7 @@ background-none;
   </action>
   <action name="action_EndDevices">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/PC.png</normaloff>
      <activeoff>:/icons/PC-hover.png</activeoff>:/icons/PC.png</iconset>
    </property>
@@ -1181,7 +1188,7 @@ background-none;
   </action>
   <action name="action_OtherDevices">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/other-devices.png</normaloff>
      <activeoff>:/icons/other-devices-hover.png</activeoff>:/icons/other-devices.png</iconset>
    </property>
@@ -1197,7 +1204,7 @@ background-none;
   </action>
   <action name="action_Firewall">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/firewall.png</normaloff>
      <activeoff>:/icons/firewall-hover.png</activeoff>:/icons/firewall.png</iconset>
    </property>
@@ -1213,7 +1220,7 @@ background-none;
   </action>
   <action name="action_IDS">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/ids.png</normaloff>
      <activeoff>:/icons/ids-hover.png</activeoff>:/icons/ids.png</iconset>
    </property>
@@ -1237,7 +1244,7 @@ background-none;
   </action>
   <action name="action_BrowseAllDevices">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/browse-all-icons.png</normaloff>
      <activeoff>:/icons/browse-all-icons-hover.png</activeoff>:/icons/browse-all-icons.png</iconset>
    </property>
@@ -1256,7 +1263,7 @@ background-none;
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/connection-new.svg</normaloff>
      <activeoff>:/icons/connection-new-hover.svg</activeoff>:/icons/connection-new.svg</iconset>
    </property>
@@ -1272,7 +1279,7 @@ background-none;
   </action>
   <action name="action_Console">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/console.svg</normaloff>:/icons/console.svg</iconset>
    </property>
    <property name="text">
@@ -1283,6 +1290,11 @@ background-none;
    </property>
    <property name="statusTip">
     <string>Start Console...</string>
+   </property>
+  </action>
+  <action name="action_Export_in_a_PDF">
+   <property name="text">
+    <string>Export in a PDF</string>
    </property>
   </action>
  </widget>
