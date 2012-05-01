@@ -124,7 +124,7 @@ def getWindowsInterfaces():
                     _winreg.CloseKey(key)
                     interface_name += unicode(value)
                 except:
-                    interface_name += u"unknown name"
+                    interface_name = u""
                     pass
                 interfaces.append(unicode(match.group(0)) + interface_name)
     except:
