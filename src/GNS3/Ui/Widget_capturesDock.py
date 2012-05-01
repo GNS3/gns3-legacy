@@ -103,9 +103,13 @@ class capturesDock(QtGui.QTreeWidget):
         self.connect(startAllCaptures, QtCore.SIGNAL('triggered()'), self.startAllCaptures)
         stopAllCaptures = QtGui.QAction(translate('Widget_capturesDock', 'Stop all captures'), menu)
         stopAllCaptures.setIcon(QtGui.QIcon(":/icons/capture-stop.svg"))
-        self.connect(stopAllCaptures, QtCore.SIGNAL('triggered()'), self.stopAllCaptures)  
+        self.connect(stopAllCaptures, QtCore.SIGNAL('triggered()'), self.stopAllCaptures)
+        clearStoppedCaptures = QtGui.QAction(translate('Widget_capturesDock', 'Clear stopped captures'), menu)
+        clearStoppedCaptures.setIcon(QtGui.QIcon(":/icons/edit-clear.svg"))
+        self.connect(clearStoppedCaptures, QtCore.SIGNAL('triggered()'), self.clearStoppedCaptures)
         menu.addAction(startAllCaptures)
         menu.addAction(stopAllCaptures)
+        menu.addAction(clearStoppedCaptures)
 
         curitem = self.currentItem()
         if curitem:
@@ -142,6 +146,11 @@ class capturesDock(QtGui.QTreeWidget):
             elif link.dest.hostname == hostname and link.destIf == interface:
                 return link
         return None
+
+    def clearStoppedCaptures(self):
+
+        self.stoppedLinks = {}
+        self.refresh()
 
     def stopAllCaptures(self):
 
