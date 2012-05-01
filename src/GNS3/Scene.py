@@ -474,6 +474,9 @@ class Scene(QtGui.QGraphicsView):
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("Scene", "Dynamips error"),  unicode(msg))
             return
+        except lib.DynamipsErrorHandled:
+            QtGui.QMessageBox.critical(self, translate("Scene", "Dynamips error"), translate("Scene", "Connection lost"))
+            return
 
         # remove the '100-OK' line
         result.pop()
