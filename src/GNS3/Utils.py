@@ -23,6 +23,7 @@ import os, sys, re
 import subprocess as sub
 import GNS3.Globals as globals
 import subprocess
+import tempfile
 from PyQt4 import QtCore, QtGui
 
 class  Singleton(object):
@@ -42,7 +43,7 @@ def translate(context, text):
     return unicode(QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8))
 
 def testOpenFile(path,  flags='r'):
-    """ returns True if the file can be openned
+    """ returns True if the file can be opened
         path: string
     """
 
@@ -50,6 +51,19 @@ def testOpenFile(path,  flags='r'):
         fd = open(path, flags)
         fd.close()
     except IOError:
+        return False
+    return True
+
+def testIfWritableDir(dirpath):
+    """ returns True if the directory is writable
+        path: string
+    """
+
+    try:
+        fd = tempfile.TemporaryFile(dir=dirpath)
+        fd.write('42')
+        fd.close()
+    except OSError:
         return False
     return True
 

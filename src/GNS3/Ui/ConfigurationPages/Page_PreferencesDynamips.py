@@ -25,7 +25,7 @@ from GNS3.Ui.ConfigurationPages.Form_PreferencesDynamips import Ui_PreferencesDy
 from GNS3.Config.Objects import systemDynamipsConf
 from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Config import ConfDB
-from GNS3.Utils import fileBrowser, translate, testOpenFile
+from GNS3.Utils import fileBrowser, translate, testOpenFile, testIfWritableDir
 from GNS3.Config.Defaults import DYNAMIPS_DEFAULT_PATH, DYNAMIPS_DEFAULT_WORKDIR
 import GNS3.Globals as globals
 import subprocess as sub
@@ -193,13 +193,17 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         path = fb.getDir()
 
         if path:
-            self.dynamips_workdir.setText(os.path.normpath(path))
-            
+            path = os.path.normpath(path)
+            self.dynamips_workdir.setText(path)
+
             if sys.platform.startswith('win'):
                 try:
                     path.encode('ascii')
                 except:
                     QtGui.QMessageBox.warning(globals.preferencesWindow, translate("UiConfig_PreferencesDynamips", "Working directory"), translate("UiConfig_PreferencesDynamips", "The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn't support unicode on Windows!"))
+
+            if not testIfWritableDir(path):
+                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesDynamips", "Working directory"), translate("UiConfig_PreferencesDynamips", "Dynamips working directory must be writable!"))
 
     def __testDynamips(self):
         
@@ -237,6 +241,10 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         
         if version_2nd < 2 or version_3rd < 8:
             self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Found Dynamips %s, which is not supported. Use 0.2.8+ instead.") % dynamips_ver + '</font>')
+            return
+
+        if not testIfWritableDir(globals.GApp.systconf['dynamips'].workdir):
+            self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Dynamips working directory does not exist or is not writable")  + '</font>')
             return
 
         self.saveConf()

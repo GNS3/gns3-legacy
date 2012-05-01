@@ -29,7 +29,7 @@ from PyQt4 import QtGui, QtCore, QtNetwork
 from GNS3.VBoxManager import VBoxManager
 from GNS3.Ui.ConfigurationPages.Form_PreferencesVirtualBox import Ui_PreferencesVirtualBox
 from GNS3.Config.Objects import systemVBoxConf, vboxImageConf
-from GNS3.Utils import fileBrowser, translate
+from GNS3.Utils import fileBrowser, translate, testIfWritableDir
 from GNS3.Config.Defaults import VBOXWRAPPER_DEFAULT_PATH, VBOXWRAPPER_DEFAULT_WORKDIR
 from GNS3.Config.Config import ConfDB
 
@@ -345,7 +345,11 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         path = fb.getDir()
 
         if path:
-            self.lineEditVBoxwrapperWorkdir.setText(os.path.normpath(path))
+            path = os.path.normpath(path)
+            self.lineEditVBoxwrapperWorkdir.setText(path)
+
+            if not testIfWritableDir(path):
+                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesVirtualBox", "Working directory"), translate("UiConfig_PreferencesVirtualBox", "Vbox working directory must be writable!"))
                         
     def slotSaveVBoxImage(self):
         """ Add/Save VBox Image in the list of VBox images
