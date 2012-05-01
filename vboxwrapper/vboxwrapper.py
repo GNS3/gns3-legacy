@@ -77,7 +77,7 @@ debugmsg(2, 'Starting vboxwrapper')
 debugmsg(1, "debuglevel =  %s" % debuglevel + os.linesep)
 
 __author__ = 'Thomas Pani, Jeremy Grossmann and Alexey Eromenko "Technologov"'
-__version__ = '0.8.2'
+__version__ = '0.8.2.1'
 
 PORT = 11525
 IP = ""
@@ -564,6 +564,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_version(%s)" % unicode(data))
 
         global g_vboxManager, VBOXVER, VBOXVER_REQUIRED
+
         if g_vboxManager:
             vboxver_maj = VBOXVER.split('.')[0]
             vboxver_min = VBOXVER.split('.')[1]
