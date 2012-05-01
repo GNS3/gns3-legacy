@@ -148,8 +148,17 @@ class Cloud(AbstractNode):
                     nio = 'nio_gen_eth:' + str(interface).lower()
                     if not nio in self.config['nios']:
                         self.config['nios'].append(nio)
-                        name_match = re.search(r"""^\ :\ (.*)\ on local host:.*""", match.group(2))
-                        self.config['rpcap_mapping'][nio] = name_match.group(1)
+                        name_match = re.search(r"""^\ :.*:\ (.+)""", match.group(2))
+                        if name_match:
+                            interface_name = name_match.group(1)
+                        else:
+                            # The interface name could not be found, let's use the interface model instead
+                            model_match = re.search(r"""^\ :\ (.*)\ on local host:.*""", match.group(2))
+                            if model_match:
+                                interface_name = model_match.group(1)
+                            else:
+                                interface_name = translate("Cloud", "Unknown name")
+                        self.config['rpcap_mapping'][nio] = interface_name
             else:
                 interfaces = map(lambda interface: interface.name(), QtNetwork.QNetworkInterface.allInterfaces())
                 for interface in interfaces:

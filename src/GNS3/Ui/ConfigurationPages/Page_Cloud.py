@@ -113,8 +113,17 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
                 self.listWidgetGenericEth.addItem(nio)
                 self.nios.append(nio)
                 if sys.platform.startswith('win'):
-                    name_match = re.search(r"""^\ :\ (.*)\ on local host:.*""", match.group(2))
-                    self.rpcap_mapping[nio] = name_match.group(1)
+                    name_match = re.search(r"""^\ :.*:\ (.+)""", match.group(2))
+                    if name_match:
+                        interface_name = name_match.group(1)
+                    else:
+                        # The interface name could not be found, let's use the interface model instead
+                        model_match = re.search(r"""^\ :\ (.*)\ on local host:.*""", match.group(2))
+                        if model_match:
+                            interface_name = model_match.group(1)
+                        else:
+                            interface_name = translate("Page_Cloud", "Unknown name")
+                    self.rpcap_mapping[nio] = interface_name
 
     def slotDeleteGenEth(self):
         """ Delete the selected generic Ethernet NIO

@@ -66,11 +66,21 @@ class DynagenSub(Dynagen):
             rpcaps = getWindowsInterfaces()
             interfaces = {}
             for rpcap in rpcaps:
-                match = re.search(r"""^rpcap://(\\Device\\NPF_{[a-fA-F0-9\-]*})\ :\ (.*)""", rpcap)
+                match = re.search(r"""^rpcap://(\\Device\\NPF_{[a-fA-F0-9\-]*})(.*)""", rpcap)
                 interface_guid = str(match.group(1)).lower()
                 interfaces[interface_guid] = unicode(match.group(2)).strip()
-                name_match = re.search(r"""^(.*)\ on local host:.*""", match.group(2))
-                self.rpcap_mapping['nio_gen_eth:' + interface_guid] = name_match.group(1)
+
+                name_match = re.search(r"""^\ :.*:\ (.+)""", match.group(2))
+                if name_match:
+                    interface_name = name_match.group(1)
+                else:
+                    # The interface name could not be found, let's use the interface model instead
+                    model_match = re.search(r"""^\ :\ (.*)\ on local host:.*""", match.group(2))
+                    if model_match:
+                        interface_name = model_match.group(1)
+                    else:
+                        interface_name = translate("DynagenSub", "Unknown name")
+                self.rpcap_mapping['nio_gen_eth:' + interface_guid] = interface_name
 
             for nio in niolist:
                 if not interfaces.has_key(nio):
