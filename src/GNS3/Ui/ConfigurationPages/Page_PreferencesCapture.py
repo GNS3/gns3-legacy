@@ -24,7 +24,7 @@ import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
 from GNS3.Ui.ConfigurationPages.Form_PreferencesCapture import Ui_PreferencesCapture
 from GNS3.Config.Objects import systemCaptureConf
-from GNS3.Utils import fileBrowser, translate
+from GNS3.Utils import fileBrowser, translate, testIfWritableDir
 from GNS3.Config.Defaults import CAPTURE_PRESET_CMDS, CAPTURE_DEFAULT_CMD, CAPTURE_DEFAULT_WORKDIR
 from GNS3.Config.Config import ConfDB
 
@@ -93,10 +93,14 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
         path = fb.getDir()
 
         if path:
-            self.CaptureWorkingDirectory.setText(os.path.normpath(path))
+            path = os.path.normpath(path)
+            self.CaptureWorkingDirectory.setText(path)
             
             if sys.platform.startswith('win'):
                 try:
                     path.encode('ascii')
                 except:
                     QtGui.QMessageBox.warning(globals.preferencesWindow, translate("Page_PreferencesCapture", "Capture directory"), translate("Page_PreferencesCapture", "The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn't support unicode on Windows!"))
+
+            if not testIfWritableDir(path):
+                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesCapture", "Capture directory"), translate("Page_PreferencesCapture", "Capture directory must be writable!"))

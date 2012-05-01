@@ -26,7 +26,7 @@ from PyQt4 import QtGui, QtCore, QtNetwork
 from GNS3.QemuManager import QemuManager
 from GNS3.Ui.ConfigurationPages.Form_PreferencesQemu import Ui_PreferencesQemu
 from GNS3.Config.Objects import systemQemuConf, qemuImageConf, pixImageConf, junosImageConf, asaImageConf, idsImageConf
-from GNS3.Utils import fileBrowser, translate
+from GNS3.Utils import fileBrowser, translate, testIfWritableDir
 from GNS3.Config.Defaults import QEMUWRAPPER_DEFAULT_PATH, QEMUWRAPPER_DEFAULT_WORKDIR
 from GNS3.Config.Config import ConfDB
 
@@ -317,11 +317,15 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         """ Get a working directory for Qemuwrapper from the file system
         """
 
-        fb = fileBrowser(translate('UiConfig_PreferencesQemu', 'Local Qemu working directory'), parent=globals.preferencesWindow)
+        fb = fileBrowser(translate('Page_PreferencesQemu', 'Local Qemu working directory'), parent=globals.preferencesWindow)
         path = fb.getDir()
 
         if path:
-            self.lineEditQemuwrapperWorkdir.setText(os.path.normpath(path))
+            path = os.path.normpath(path)
+            self.lineEditQemuwrapperWorkdir.setText(path)
+
+            if not testIfWritableDir(path):
+                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "Capture directory"), translate("Page_PreferencesQemu", "Qemu working directory must be writable!"))
 
     def slotSelectQemuPath(self):
         """ Get a path to Qemu from the file system
@@ -868,6 +872,10 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
             if os.path.exists(globals.GApp.systconf['qemu'].qemuwrapper_path) == False:
                 self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Qemuwrapper path doesn't exist")  + '</font>')
+                return
+
+            if globals.GApp.systconf['qemu'].enable_QemuManager and not testIfWritableDir(globals.GApp.systconf['qemu'].qemuwrapper_workdir):
+                self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Qemu working directory does not exist or is not writable")  + '</font>')
                 return
 
             globals.GApp.workspace.clear()
