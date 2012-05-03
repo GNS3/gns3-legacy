@@ -1,6 +1,5 @@
 #!/usr/bin/python
-# vim: expandtab ts=4 sw=4 sts=4:
-# -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
 
 """
 dynagen_vbox_lib.py
@@ -276,7 +275,7 @@ class VBox(object):
 
     def _getvboxversion(self):
         """ Return the version of VirtualBox"""
-        
+
         return self._vbox_version
 
     vbox_version = property(_getvboxversion, doc='Detected VirtualBox version')

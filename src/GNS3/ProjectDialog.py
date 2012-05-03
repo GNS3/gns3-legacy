@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# vim: expandtab ts=4 sw=4 sts=4:
+# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
 #
 # Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
@@ -109,10 +108,10 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
             projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
         else:
             projectConfigs = None
-            
+
          #if self.checkBox_DoNotShowWindowAgain.checkState() == QtCore.Qt.Checked:
            # ConfDB.set('ShowNewProjectWindowAgain', 'False')
-            
+
         return (projectFile, projectWorkdir, projectConfigs)
 
     def accept(self):

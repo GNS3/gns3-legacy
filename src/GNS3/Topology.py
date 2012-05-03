@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# vim: expandtab ts=4 sw=4 sts=4:
+# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
 #
 # Copyright (C) 2007-2011 GNS3 Development Team (http://www.gns3.net/team).
 #
@@ -527,7 +526,7 @@ class Topology(QtGui.QGraphicsScene):
                         return False
                     # give a warning if the IOS path is not accessible
                     if not os.access(image_conf.filename, os.F_OK):
-                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), 
+                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"),
                                                   translate("Topology", "%s seems to not exist, please check") % image_conf.filename)
                 else:
                     # use an external hypervisor

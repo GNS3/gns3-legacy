@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
 
 # Form implementation generated from reading ui file 'wizzard.ui'
 #
@@ -126,7 +126,7 @@ class Ui_Wizard(object):
             self.pushButton_4.setEnabled(True)
         else :
             self.pushButton_4.setEnabled(False)
-        
+
     def display(self):
         """method called when the wizard is finished. Instanciate the ExportedPDF class with his methods."""
         from GNS3.ExportPDF import ExportedPDF

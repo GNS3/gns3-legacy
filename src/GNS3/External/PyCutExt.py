@@ -1,5 +1,4 @@
-# vim: expandtab ts=4 sw=4 sts=4:
-# -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
 #
 #       OpenAlea.Visualea: OpenAlea graphical user interface
 #
@@ -362,7 +361,7 @@ class PyCutExt(QTextEdit):
 
         else:
             e.ignore()
-        
+
         #QTextEdit.keyPressEvent(self, e)   # Causes some trouble
 
     def onKeyPress_Tab(self):

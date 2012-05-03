@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
 
 # server
 
@@ -91,7 +92,7 @@ class DynamipsNegociator:
 					self._socket.close()
 					self._socket = None
 					continue
-			
+
 				break
 
 		if self._socket is None:
@@ -182,14 +183,14 @@ class Server:
 
 		for res in socket.getaddrinfo(host, port, socket.AF_UNSPEC, socket.SOCK_STREAM, 0, socket.AI_PASSIVE):
 			af, socktype, proto, canonname, sa = res
-	
+
 			try:
 				self._socket = socket.socket(af, socktype, proto)
 				self._socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 			except socket.error, msg:
 				self._socket = None
 				continue
-	
+
 			try:
 				self._socket.bind(sa)
 				self._socket.listen(5)
@@ -251,7 +252,7 @@ class Server:
 			for s in writeable:
 				#print s
 				client = self._clients[s]
-				
+
 				if len(client.getWriteData()) > 0:
 					#print "Sending :", client.getWriteData()
 					length = s.send(client.getWriteData())

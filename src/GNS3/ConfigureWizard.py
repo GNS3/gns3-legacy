@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-# vim: expandtab ts=4 sw=4 sts=4:
-# -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
 
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtGui import QDialog, QCheckBox, QPushButton, QLabel
@@ -84,7 +83,7 @@ class Ui_Window():
         QtCore.QObject.connect(self.comboBox, QtCore.SIGNAL(_fromUtf8("activated(int)")), self.selectedIPType)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("accepted()")), Dialog.accept)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("rejected()")), Dialog.reject)
-        
+
     def getWindowInputs(self):
         """method used to return the inputs in the wizard. WATCH OUT, there is still and unknown bug, if you open the same network configure item, inputs will be NULL, i have no fucking idea why."""
         self.a = [self.routerName]
