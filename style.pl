@@ -24,10 +24,11 @@
 use strict;
 use warnings;
 
-#my $style_utf8 = '# -*- coding: utf-8 -*-' . "\n";
-#my $style_tabs = '# vim: expandtab ts=4 sw=4 sts=4:' . "\n";
+my $style_utf8 = '# -*- coding: utf-8 -*-' . "\n";
+my $style_tabs = '# vim: expandtab ts=4 sw=4 sts=4:' . "\n";
 my $style_modeline = '# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:' . "\n";
 
+my @toremove = ($style_utf8, $style_tabs);
 my @header = ($style_modeline);
 
 if (scalar(@ARGV) < 1)
@@ -50,20 +51,30 @@ foreach (@ARGV)
         {
                 $idx = 1;
         }
+        my $i = 0;
         foreach (@clean_data)
         {
                 $_ =~ s/\s+\n$/\n/;
                 my $line = $_;
-                my $i = 0;
+                foreach (@toremove)
+                {
+                        if ("$_" eq "$line")
+                        {
+                                splice @clean_data, $i, 1;
+                        }
+                }
+                $i = $i + 1;
+
+                my $j = 0;
                 foreach (@header)
                 {
                         if ("$_" eq "$line")
                         {
-                                splice @header, $i, 1;
+                                splice @header, $j, 1;
                         }
                         else
                         {
-                                $i = $i + 1;
+                                $j = $j + 1;
                         }
                 }
         }
