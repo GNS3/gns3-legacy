@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
 
 from reportlab.pdfgen import canvas
