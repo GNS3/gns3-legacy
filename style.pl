@@ -57,9 +57,10 @@ foreach (@ARGV)
         open IFILE, $filename or die "open $filename: $!.\n";
         open OFILE, ">", $_ or die "open $_: $!.\n";
         my @data = <IFILE>;
-        my @stripped_data = map { strip_data($_) } @data;
-        my @clean_data = map { s/\r\n/\n/g; $_; } @stripped_data;
         close IFILE;
+
+        my @clean_data = map { s/\r\n/\n/g; $_; } @data;
+        @clean_data = map { strip_data($_) } @clean_data;
         my $idx = 0;
         if (scalar(@clean_data) > 1 && $data[0] =~ m/^\#\!/)
         {
