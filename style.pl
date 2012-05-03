@@ -37,6 +37,19 @@ if (scalar(@ARGV) < 1)
         exit 1;
 }
 
+sub strip_data
+{
+        my $data = shift;
+        foreach (@toremove)
+        {
+                if ("$_" eq "$data")
+                {
+                        return "";
+                }
+        }
+        return $data;
+}
+
 foreach (@ARGV)
 {
         my $filename = $_ . ".style";
@@ -44,37 +57,28 @@ foreach (@ARGV)
         open IFILE, $filename or die "open $filename: $!.\n";
         open OFILE, ">", $_ or die "open $_: $!.\n";
         my @data = <IFILE>;
-        my @clean_data = map { s/\r\n/\n/g; $_; } @data;
+        my @stripped_data = map { strip_data($_) } @data;
+        my @clean_data = map { s/\r\n/\n/g; $_; } @stripped_data;
         close IFILE;
         my $idx = 0;
         if (scalar(@clean_data) > 1 && $data[0] =~ m/^\#\!/)
         {
                 $idx = 1;
         }
-        my $i = 0;
         foreach (@clean_data)
         {
                 $_ =~ s/\s+\n$/\n/;
                 my $line = $_;
-                foreach (@toremove)
-                {
-                        if ("$_" eq "$line")
-                        {
-                                splice @clean_data, $i, 1;
-                        }
-                }
-                $i = $i + 1;
-
-                my $j = 0;
+                my $i = 0;
                 foreach (@header)
                 {
                         if ("$_" eq "$line")
                         {
-                                splice @header, $j, 1;
+                                splice @header, $i, 1;
                         }
                         else
                         {
-                                $j = $j + 1;
+                                $i = $i + 1;
                         }
                 }
         }
