@@ -24,10 +24,11 @@
 use strict;
 use warnings;
 
-my $style_utf8 = '# -*- coding: utf-8 -*-' . "\n";
-my $style_tabs = '# vim: expandtab ts=4 sw=4 sts=4:' . "\n";
+#my $style_utf8 = '# -*- coding: utf-8 -*-' . "\n";
+#my $style_tabs = '# vim: expandtab ts=4 sw=4 sts=4:' . "\n";
+my $style_modeline = '# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:' . "\n";
 
-my @header = ($style_utf8, $style_tabs);
+my @header = ($style_modeline);
 
 if (scalar(@ARGV) < 1)
 {
