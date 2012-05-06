@@ -105,7 +105,7 @@ else:
 
 class UDPConnection:
     def __init__(self, saddr, sport, daddr, dport):
-        self.shost = saddr
+        self.saddr = saddr
         self.sport = sport
         self.daddr = daddr
         self.dport = dport
@@ -279,7 +279,7 @@ class xEMUInstance(object):
                     options.extend(['-device', '%s,mac=00:00:ab:%02x:%02x:%02d' % (self.netcard, random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan)])
                 if vlan in self.udp:
                     options.append('-netdev')
-                    options.append('socket,id=gns3-%s,udp=%s:%s,localaddr=%s:%s' % (vlan, self.udp[vlan].shost, self.udp[vlan].sport, self.udp[vlan].daddr, self.udp[vlan].dport))
+                    options.append('socket,id=gns3-%s,udp=%s:%s,localaddr=%s:%s' % (vlan, self.udp[vlan].daddr, self.udp[vlan].dport, self.udp[vlan].saddr, self.udp[vlan].sport))
                 # FIXME: dump relies on vlans, incompatible with the new syntax: patch it.
                 #if vlan in self.capture:
                     #options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
