@@ -171,7 +171,7 @@ elif platform.system() == 'Windows'  and os.path.exists("C:\Program Files (x86)\
 elif platform.system() == 'Windows':
     TERMINAL_PRESET_CMDS = {
                             'Putty (Windows)': '"C:\Program Files\\Putty\\putty.exe" -telnet %h %p',
-                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p',
+                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt %d',
                             'SecureCRT (Windows)': '"C:\Program Files\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
                             'TeraTerm (Windows)': '"C:\Program Files\\teraterm\\ttermpro.exe" -telnet %h:%p',
                             'Telnet (Windows)': 'start telnet %h %p'
