@@ -76,7 +76,7 @@ debugmsg(2, 'Starting vboxwrapper')
 debugmsg(1, "debuglevel =  %s" % debuglevel + os.linesep)
 
 __author__ = 'Thomas Pani, Jeremy Grossmann and Alexey Eromenko "Technologov"'
-__version__ = '0.8.2'
+__version__ = '0.8.2.1'
 
 PORT = 11525
 IP = ""
@@ -414,6 +414,11 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
     def handle_one_request(self):
         debugmsg(3, "VBoxWrapperRequestHandler::handle_one_request()")
         request = self.rfile.readline()
+
+        # Don't process empty strings (this creates Broken Pipe exceptions)
+        if request == "":
+            return
+
         debugmsg(3, "handle_one_request(), request = %s" % request)
         # If command exists in cache (=cache hit), we skip further processing
         if self.check_cache(request):
@@ -536,8 +541,11 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         working_dir, = data
         try:
             os.chdir(working_dir)
+            global WORKDIR
+            WORKDIR = working_dir
+            print "Working directory is now %s" % WORKDIR
             for vbox_name in VBOX_INSTANCES.keys():
-                VBOX_INSTANCES[vbox_name].workdir = os.path.join(os.getcwdu(), VBOX_INSTANCES[vbox_name].name)
+                VBOX_INSTANCES[vbox_name].workdir = os.path.join(working_dir, VBOX_INSTANCES[vbox_name].name)
             self.send_reply(self.HSC_INFO_OK, 1, "OK")
         except OSError, e:
             self.send_reply(self.HSC_ERR_INV_PARAM, 1,

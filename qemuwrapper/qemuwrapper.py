@@ -81,7 +81,7 @@ msg = "WELCOME to qemuwrapper.py"
 debugmsg(2, msg)
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.8.2'
+__version__ = '0.8.2.1'
 
 QEMU_PATH = "qemu-system-i386"
 QEMU_IMG_PATH = "qemu-img"
@@ -163,7 +163,7 @@ class xEMUInstance(object):
                                             stdin=subprocess.PIPE,
                                             stdout=subprocess.PIPE,
                                             cwd=self.workdir)
-        except e:
+        except OSError, e:
             print >> sys.stderr, "Unable to start instance", self.name, "of", self.__class__
             print >> sys.stderr, e
             return False
@@ -716,8 +716,10 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.handle_one_request()
             while not self.close_connection:
                 self.handle_one_request()
-        except socket.error:
-            pass
+        except socket.error, e:
+            print >> sys.stderr, e
+            self.request.close()
+            return
 
     def __get_tokens(self, request):
         debugmsg(3, "QemuWrapperRequestHandler::__get_tokens(%s)" % str(request))
@@ -733,6 +735,10 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         debugmsg(3, "QemuWrapperRequestHandler::handle_one_request()")
         request = self.rfile.readline()
         request = request.rstrip()      # Strip package delimiter.
+
+        # Don't process empty strings (this creates Broken Pipe exceptions)
+        if request == "":
+            return
 
         # Parse request.
         tokens = self.__get_tokens(request)
@@ -848,8 +854,11 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         working_dir, = data
         try:
             os.chdir(working_dir)
+            global WORKDIR
+            WORKDIR = working_dir
+            print "Working directory is now %s" % WORKDIR
             for qemu_name in QEMU_INSTANCES.keys():
-                QEMU_INSTANCES[qemu_name].workdir = os.path.join(os.getcwdu(), QEMU_INSTANCES[qemu_name].name)
+                QEMU_INSTANCES[qemu_name].workdir = os.path.join(working_dir, QEMU_INSTANCES[qemu_name].name)
             self.send_reply(self.HSC_INFO_OK, 1, "OK")
         except OSError, e:
             self.send_reply(self.HSC_ERR_INV_PARAM, 1,
