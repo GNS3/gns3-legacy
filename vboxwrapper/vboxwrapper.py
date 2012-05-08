@@ -867,6 +867,10 @@ def main():
     parser.add_option("-n", "--no-vbox-checks", action="store_true", dest="no_vbox_checks", default=False, help="Do not check for vboxapi loadin and VirtualBox version")
 
     try:
+        # trick to ignore an option automatically given by Py2App
+        #if sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
+        #    (options, args) = parser.parse_args(sys.argv[2:])
+        #else:
         (options, args) = parser.parse_args()
     except SystemExit:
         sys.exit(1)

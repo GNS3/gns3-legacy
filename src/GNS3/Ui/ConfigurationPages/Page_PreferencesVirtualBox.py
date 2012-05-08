@@ -467,6 +467,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             if globals.GApp.systconf['vbox'].enable_VBoxManager:
                 host = globals.GApp.systconf['vbox'].VBoxManager_binding
                 port = globals.GApp.systconf['vbox'].vboxwrapper_port
+
                 if globals.GApp.VBoxManager.startVBox(port) == False:
                     self.labelVBoxStatus.setText('<font color="red">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start VBoxwrapper")  + '</font>')
                     return

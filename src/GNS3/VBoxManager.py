@@ -144,9 +144,9 @@ class VBoxManager(object):
             # On Windows hosts, we remove python dependency by pre-compiling VBoxwrapper. (release mode)
             self.proc.start('"' + globals.GApp.systconf['vbox'].vboxwrapper_path + '"', ['--listen', binding, '--port', str(self.port), '--no-vbox-checks'])
         elif hasattr(sys, "frozen"):
-            self.proc.start('python',  [globals.GApp.systconf['vbox'].vboxwrapper_path, '--listen', binding, '--port', str(self.port), '--no-vbox-checks'])
+            self.proc.start(globals.GApp.systconf['vbox'].vboxwrapper_path, ['--listen', binding, '--port', str(self.port), '--no-vbox-checks'])
         else:
-            self.proc.start(sys.executable,  [globals.GApp.systconf['vbox'].vboxwrapper_path, '--listen', binding, '--port', str(self.port), '--no-vbox-checks'])
+            self.proc.start(sys.executable, [globals.GApp.systconf['vbox'].vboxwrapper_path, '--listen', binding, '--port', str(self.port), '--no-vbox-checks'])
 
         if self.proc.waitForStarted() == False:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'VBox Manager', translate("VBoxManager", "Can't start VBox on port %i") % self.port)
