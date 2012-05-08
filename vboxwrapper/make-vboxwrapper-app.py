@@ -4,17 +4,4 @@
 from distutils.core import setup, Extension
 import setuptools
 
-APP = ['vboxwrapper.py']
-VERSION = '0.8.2.1'
-
-OPTIONS = {'argv_emulation': False,
-           'semi_standalone': True,
-           'site_packages': True,
-           'optimize':  1}
-
-setuptools.setup(
-    name='VBoxWrapper',
-    app=APP,
-    options={'py2app': OPTIONS},
-    setup_requires=['py2app'],
-)
+setuptools.setup(name='VBoxWrapper', app=['vboxwrapper.py'], options={'py2app': {'semi_standalone': True, 'site_packages': True, 'optimize':  1}}, setup_requires=['py2app'])

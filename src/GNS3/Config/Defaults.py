@@ -1,4 +1,5 @@
-# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
+# -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 #
 # Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
@@ -66,7 +67,7 @@ else:
 if sys.platform.startswith('win'):
     VBOXWRAPPER_DEFAULT_PATH = unicode('vboxwrapper.exe')
 elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
-    VBOXWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/vboxwrapper.py'
+    VBOXWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/VBoxWrapper/Contents/MacOS/VBoxWrapper'
 else:
     # look for vboxwrapper in the current working directory
     vboxwrapper_path = os.getcwdu() + os.sep + 'vboxwrapper/vboxwrapper.py'
@@ -258,7 +259,6 @@ conf_iosImage_defaults = {
     'platform': '',
     'chassis': '',
     'idlepc': '',
-    'idlemax': 100,
     'default_ram': 0,
     'hypervisors': [],
     'default': False
@@ -271,7 +271,6 @@ conf_iosImage_types = {
     'platform': str,
     'chassis': str,
     'idlepc': str,
-    'idlemax': int,
     'default_ram': int,
     'hypervisors': list,
     'default': bool

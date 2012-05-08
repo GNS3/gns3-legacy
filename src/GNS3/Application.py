@@ -443,7 +443,6 @@ class Application(QApplication, Singleton):
         confo.qemuwrapper_workdir = os.path.expanduser(confo.qemuwrapper_workdir)
 
         # VBox config
-
         self.systconf['vbox'] = systemVBoxConf()
         confo = self.systconf['vbox']
         confo.vboxwrapper_path = ConfDB().get('VBox/vboxwrapper_path', Defaults.VBOXWRAPPER_DEFAULT_PATH)
