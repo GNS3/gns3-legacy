@@ -874,11 +874,11 @@ def main():
     parser.add_option("-6", "--forceipv6", dest="force_ipv6", help="Force IPv6 usage (default is false; i.e. IPv4)")
     parser.add_option("-n", "--no-vbox-checks", action="store_true", dest="no_vbox_checks", default=False, help="Do not check for vboxapi loadin and VirtualBox version")
 
+    # ignore an option automatically given by Py2App
+    if sys.platform.startswith('darwin') and len(sys.argv) > 1 and sys.argv[1].startswith("-psn"):
+        del sys.argv[1]
+
     try:
-        # trick to ignore an option automatically given by Py2App
-        #if sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
-        #    (options, args) = parser.parse_args(sys.argv[2:])
-        #else:
         (options, args) = parser.parse_args()
     except SystemExit:
         sys.exit(1)

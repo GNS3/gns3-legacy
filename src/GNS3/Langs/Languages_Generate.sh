@@ -4,7 +4,7 @@
 # add a new language
 
 # internal
-PATH=$PATH":/Library/Frameworks/Python.framework/Versions/2.7/bin/:/usr/local/Trolltech/Qt-4.7.1/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/local/bin/"
+PATH=$PATH":/Library/Frameworks/Python.framework/Versions/2.7/bin/:/usr/local/Trolltech/Qt-4.7.4/bin/:/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:/opt/local/bin/"
 
 # create/update .ts files (for Qt Linguist)
 pylupdate4 -noobsolete -verbose Languages.pro
