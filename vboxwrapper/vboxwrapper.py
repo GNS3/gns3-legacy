@@ -415,6 +415,11 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
     def handle_one_request(self):
         debugmsg(3, "VBoxWrapperRequestHandler::handle_one_request()")
         request = self.rfile.readline()
+
+        # Don't process empty strings (this creates Broken Pipe exceptions)
+        if request == "":
+            return
+
         debugmsg(3, "handle_one_request(), request = %s" % request)
         # If command exists in cache (=cache hit), we skip further processing
         if self.check_cache(request):
@@ -537,8 +542,11 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         working_dir, = data
         try:
             os.chdir(working_dir)
+            global WORKDIR
+            WORKDIR = working_dir
+            print "Working directory is now %s" % WORKDIR
             for vbox_name in VBOX_INSTANCES.keys():
-                VBOX_INSTANCES[vbox_name].workdir = os.path.join(os.getcwdu(), VBOX_INSTANCES[vbox_name].name)
+                VBOX_INSTANCES[vbox_name].workdir = os.path.join(working_dir, VBOX_INSTANCES[vbox_name].name)
             self.send_reply(self.HSC_INFO_OK, 1, "OK")
         except OSError, e:
             self.send_reply(self.HSC_ERR_INV_PARAM, 1,
@@ -867,6 +875,10 @@ def main():
     parser.add_option("-w", "--workdir", dest="wd", help="Working directory (default is current directory)")
     parser.add_option("-6", "--forceipv6", dest="force_ipv6", help="Force IPv6 usage (default is false; i.e. IPv4)")
     parser.add_option("-n", "--no-vbox-checks", action="store_true", dest="no_vbox_checks", default=False, help="Do not check for vboxapi loadin and VirtualBox version")
+
+    # ignore an option automatically given by Py2App
+    if sys.platform.startswith('darwin') and len(sys.argv) > 1 and sys.argv[1].startswith("-psn"):
+        del sys.argv[1]
 
     try:
         # trick to ignore an option automatically given by Py2App

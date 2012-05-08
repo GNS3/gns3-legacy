@@ -191,6 +191,10 @@ elif sys.platform.startswith('darwin'):
 #    print '*** Installing Patched Qemu ***'
 #    os.system('cp -R ../qemu-0.15.0/* ./GNS3.app/Contents/Resources/')
 
+    print '*** Compiling & installing VBoxWrapper ***'
+    setuptools.setup(name='VBoxWrapper', app=['../vboxwrapper/vboxwrapper.py'], options={'py2app': {'semi_standalone': True, 'site_packages': True, 'optimize':  1}}, setup_requires=['py2app'])
+    os.system('cp -R ./dist/VBoxWrapper.app/ ./GNS3.app/Contents/Resources/VBoxWrapper')
+
     print '*** Making DMG ***'
     os.system("/usr/bin/macdeployqt GNS3.app -dmg -no-plugins")
 

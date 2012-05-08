@@ -67,7 +67,7 @@ else:
 if sys.platform.startswith('win'):
     VBOXWRAPPER_DEFAULT_PATH = unicode('vboxwrapper.exe')
 elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
-    VBOXWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/vboxwrapper.py'
+    VBOXWRAPPER_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/VBoxWrapper/Contents/MacOS/VBoxWrapper'
 else:
     # look for vboxwrapper in the current working directory
     vboxwrapper_path = os.getcwdu() + os.sep + 'vboxwrapper/vboxwrapper.py'
@@ -171,7 +171,7 @@ elif platform.system() == 'Windows'  and os.path.exists("C:\Program Files (x86)\
 elif platform.system() == 'Windows':
     TERMINAL_PRESET_CMDS = {
                             'Putty (Windows)': '"C:\Program Files\\Putty\\putty.exe" -telnet %h %p',
-                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p',
+                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt %d',
                             'SecureCRT (Windows)': '"C:\Program Files\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
                             'TeraTerm (Windows)': '"C:\Program Files\\teraterm\\ttermpro.exe" -telnet %h:%p',
                             'Telnet (Windows)': 'start telnet %h %p'
