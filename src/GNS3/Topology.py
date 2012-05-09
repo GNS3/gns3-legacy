@@ -132,8 +132,9 @@ class Topology(QtGui.QGraphicsScene):
             self.deleteNode(n_key)
         self.__nodes = {}
         while len(self.__links) > 0:
-            o = self.__links.pop()
-            self.removeItem(o)
+            link = self.__links.pop()
+            link.stopCapturing(showMessage=False, refresh=False)
+            self.removeItem(link)
         self.__links = set()
         self.node_baseid = 0
         self.link_baseid = 0
