@@ -21,7 +21,6 @@
 
 import os, sys, platform
 from GNS3.Utils import translate
-from __main__ import GNS3_RUN_PATH
 
 # Default path to Dynamips executable
 if sys.platform.startswith('win'):
@@ -161,36 +160,36 @@ elif platform.system() == 'Windows'  and os.path.exists("C:\Program Files (x86)\
     TERMINAL_PRESET_CMDS = {
                             'Putty (Windows 64-bit)': '"C:\Program Files (x86)\\Putty\\putty.exe" -telnet %h %p',
                             'Putty (Windows 32-bit)': '"C:\Program Files\\Putty\\putty.exe" -telnet %h %p',
-                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p',
-                            'SecureCRT (Windows 64-bit)': '"C:\Program Files (x86)\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
-                            'SecureCRT (Windows 32-bit)': '"C:\Program Files\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
-                            'TeraTerm (Windows 64-bit)': '"C:\Program Files (x86)\\teraterm\\ttermpro.exe" -telnet %h:%p',
-                            'TeraTerm (Windows 32-bit)': '"C:\Program Files\\teraterm\\ttermpro.exe" -telnet %h:%p',
+                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt %d -sr',
+                            'SecureCRT (Windows 64-bit)': '"C:\Program Files (x86)\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
+                            'SecureCRT (Windows 32-bit)': '"C:\Program Files\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
+                            'TeraTerm (Windows 64-bit)': '"C:\Program Files (x86)\\teraterm\\ttermpro.exe" /W=%d /T=1 %h %p',
+                            'TeraTerm (Windows 32-bit)': '"C:\Program Files\\teraterm\\ttermpro.exe" /W=%d /T=1 %h %p',
                             'Telnet (Windows)': 'start telnet %h %p',
                             }
 elif platform.system() == 'Windows':
     TERMINAL_PRESET_CMDS = {
                             'Putty (Windows)': '"C:\Program Files\\Putty\\putty.exe" -telnet %h %p',
-                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt %d',
-                            'SecureCRT (Windows)': '"C:\Program Files\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
-                            'TeraTerm (Windows)': '"C:\Program Files\\teraterm\\ttermpro.exe" -telnet %h:%p',
+                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt %d -sr',
+                            'SecureCRT (Windows)': '"C:\Program Files\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
+                            'TeraTerm (Windows)': '"C:\Program Files\\teraterm\\ttermpro.exe" /W=%d /T=1 %h %p',
                             'Telnet (Windows)': 'start telnet %h %p'
                             }
 elif platform.system() == 'Darwin':
     TERMINAL_PRESET_CMDS = {
                             'Terminal (Mac OS X)': "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",
                             'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'",
-                            'SecureCRT (Mac OS X)': '/Applications/SecureCRT.app/Contents/MacOS/SecureCRT /arg %d /T /telnet %h %p'
+                            'SecureCRT (Mac OS X)': '/Applications/SecureCRT.app/Contents/MacOS/SecureCRT /ARG %d /T /TELNET %h %p'
                             }
 else:  # For unknown platforms, or if detection failed, we list all options.
     TERMINAL_PRESET_CMDS = {
                             'Putty (Windows 64-bit)': '"C:\Program Files (x86)\\Putty\\putty.exe" -telnet %h %p',
                             'Putty (Windows 32-bit)': '"C:\Program Files\\Putty\\putty.exe" -telnet %h %p',
-                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p',
-                            'SecureCRT (Windows 64-bit)': '"C:\Program Files (x86)\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
-                            'SecureCRT (Windows 32-bit)': '"C:\Program Files\\VanDyke Software\SecureCRT\SecureCRT.EXE" /script "%s\securecrt.vbs"' % GNS3_RUN_PATH + ' /arg %d /T /telnet %h %p',
-                            'TeraTerm (Windows 32-bit)': '"C:\Program Files\\teraterm\\ttermpro.exe" -telnet %h:%p',
-                            'TeraTerm (Windows 64-bit)': '"C:\Program Files (x86)\\teraterm\\ttermpro.exe" -telnet %h:%p',
+                            'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt %d -sr',
+                            'SecureCRT (Windows 64-bit)': '"C:\Program Files (x86)\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
+                            'SecureCRT (Windows 32-bit)': '"C:\Program Files\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
+                            'TeraTerm (Windows 32-bit)': '"C:\Program Files\\teraterm\\ttermpro.exe" /W=%d /T=1 %h %p',
+                            'TeraTerm (Windows 64-bit)': '"C:\Program Files (x86)\\teraterm\\ttermpro.exe" /W=%d /T=1 %h %p',
                             'Telnet (Windows)': 'start telnet %h %p',
                             'xterm (Linux/BSD)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
                             'Putty (Linux/BSD)': 'putty -telnet %h %p',
@@ -198,7 +197,7 @@ else:  # For unknown platforms, or if detection failed, we list all options.
                             'KDE Konsole (Linux/BSD)': '/usr/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &',
                             'Terminal (Mac OS X)': "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",
                             'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'",
-                            'SecureCRT (Mac OS X)': '/Applications/SecureCRT.app/Contents/MacOS/SecureCRT /arg %d /T /telnet %h %p'
+                            'SecureCRT (Mac OS X)': '/Applications/SecureCRT.app/Contents/MacOS/SecureCRT /ARG %d /T /TELNET %h %p'
                             }
 
 # Default terminal command
