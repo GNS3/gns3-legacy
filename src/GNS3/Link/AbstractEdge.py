@@ -75,6 +75,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.capturing = False
             self.capfile = None
             self.captureInfo = None
+            self.tailProcess = None
 
             # create a unique ID
             self.id = globals.GApp.topology.link_baseid
@@ -438,6 +439,11 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.capturing = False
             self.captureInfo = None
             self.capfile = None
+
+            if self.tailProcess:
+                self.tailProcess.kill()
+                self.tailProcess = None
+
         except lib.DynamipsError, msg:
             if showMessage:
                 QtGui.QMessageBox.critical(self, translate("AbstractEdge", "Dynamips error"),  unicode(msg))
@@ -474,15 +480,17 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         try:
             path = unicode(capture_conf.cap_cmd.replace("%c", '"%s"')) % self.capfile
             debug("Start Wireshark-like application: " + path)
-            if sys.platform.startswith('win'):
-                if path.__contains__('|'):
-                    # Live Traffic Capture on Windows
-                    sub.Popen(path, shell=True)
-                else:
-                    # Traditional Capture on Windows
-                    sub.Popen(path)
+
+            if path.__contains__('|'):
+                # Live Traffic Capture
+                commands = path.split('|', 1)
+                self.tailProcess = sub.Popen(commands[0], stdout=sub.PIPE, shell=True)
+                sub.Popen(commands[1], stdin=self.tailProcess.stdout, stdout=sub.PIPE, shell=True)
+                self.tailProcess.stdout.close()
             else:
+                # Traditional Traffic Capture
                 sub.Popen(path, shell=True)
+
         except (OSError, IOError), e:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Cannot start %s : %s") % (path, e.strerror))
 
@@ -490,6 +498,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """ Delete the link
         """
 
+        self.stopCapturing(showMessage=False, refresh=True)
         # delete one of the interface mean the edge is deleted
         self.source.deleteInterface(self.srcIf)
 
