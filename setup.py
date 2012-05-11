@@ -27,10 +27,10 @@ if sys.platform.startswith('win'):
     # Set the path to Qt plugins directory
     if bitness == 32:
         # for 32-bit python
-        PYQT4_DIR = r'C:\Python26-32bit\Lib\site-packages\PyQt4'
+        PYQT4_DIR = r'C:\Python27-32bit\Lib\site-packages\PyQt4'
     elif bitness == 64:
         # for 64-bit python
-        PYQT4_DIR = r'C:\Python26-64bit\Lib\site-packages\PyQt4'
+        PYQT4_DIR = r'C:\Python27-64bit\Lib\site-packages\PyQt4'
     else:
         # should seriously not happen ...
         print "Fatal error: bitness cannot be detected!"
