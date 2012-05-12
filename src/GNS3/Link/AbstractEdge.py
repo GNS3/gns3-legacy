@@ -31,6 +31,7 @@ from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice
 from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
 from GNS3.Node.FRSW import FRSW
+from __main__ import GNS3_RUN_PATH
 
 class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
     """ AbstractEdge class
@@ -440,7 +441,11 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.capfile = None
 
             if self.tailProcess:
-                self.tailProcess.kill()
+                try:
+                    debug("Killing tail %i" % self.tailProcess.pid)
+                    self.tailProcess.kill()
+                except:
+                    pass
                 self.tailProcess = None
 
         except lib.DynamipsError, msg:
@@ -478,17 +483,30 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
 
         try:
             path = unicode(capture_conf.cap_cmd.replace("%c", '"%s"')) % self.capfile
-            debug("Start Wireshark-like application: " + path)
+            debug("Start Wireshark-like application: %s" % path)
+
+            shell = False
+            if not sys.platform.startswith('win'):
+                # start commands using the shell on all platforms but Windows
+                shell = True
 
             if path.__contains__('|'):
                 # Live Traffic Capture
                 commands = path.split('|', 1)
-                self.tailProcess = sub.Popen(commands[0], stdout=sub.PIPE, shell=True)
-                sub.Popen(commands[1], stdin=self.tailProcess.stdout, stdout=sub.PIPE, shell=True)
+                env = None
+                info = None
+                if sys.platform.startswith('win') and sys.version_info < (2, 7):
+                    # hide tail.exe window (requires python 2.7)
+                    info = sub.STARTUPINFO()
+                    info.dwFlags |= sub.STARTF_USESHOWWINDOW
+                    info.wShowWindow = sub.SW_HIDE
+                    env = {"PATH": GNS3_RUN_PATH} # for Popen to find tail.exe
+                self.tailProcess = sub.Popen(commands[0].strip(), startupinfo=info, stdout=sub.PIPE, env=env, shell=shell)
+                sub.Popen(commands[1].strip(), stdin=self.tailProcess.stdout, stdout=sub.PIPE, shell=shell)
                 self.tailProcess.stdout.close()
             else:
                 # Traditional Traffic Capture
-                sub.Popen(path, shell=True)
+                sub.Popen(path, shell=shell)
 
         except (OSError, IOError), e:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Cannot start %s : %s") % (path, e.strerror))

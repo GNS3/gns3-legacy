@@ -737,8 +737,9 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         request = request.rstrip()      # Strip package delimiter.
 
         # Don't process empty strings (this creates Broken Pipe exceptions)
-        if request == "":
-            return
+        #FIXME: this causes 100% cpu usage on Windows.
+        #if request == "":
+        #    return
 
         # Parse request.
         tokens = self.__get_tokens(request)

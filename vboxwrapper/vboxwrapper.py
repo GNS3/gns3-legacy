@@ -416,8 +416,9 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         request = self.rfile.readline()
 
         # Don't process empty strings (this creates Broken Pipe exceptions)
-        if request == "":
-            return
+        #FIXME: this causes 100% cpu usage on Windows.
+        #if request == "":
+        #    return
 
         debugmsg(3, "handle_one_request(), request = %s" % request)
         # If command exists in cache (=cache hit), we skip further processing

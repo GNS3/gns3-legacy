@@ -109,7 +109,13 @@ def getWindowsInterfaces():
     if dynamips == '':
         return []
     try:
-        p = sub.Popen(dynamips.path + ' -e', stdout=sub.PIPE, stderr=sub.STDOUT)
+        info = None
+        if sys.version_info < (2, 7):
+            # hide the window (requires python 2.7)
+            info = sub.STARTUPINFO()
+            info.dwFlags |= sub.STARTF_USESHOWWINDOW
+            info.wShowWindow = sub.SW_HIDE
+        p = sub.Popen(dynamips.path + ' -e', startupinfo=info, stdout=sub.PIPE, stderr=sub.STDOUT)
         outputlines = p.stdout.readlines()
         p.wait()
         for line in outputlines:
