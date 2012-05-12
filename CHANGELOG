@@ -1,5 +1,23 @@
 CHANGELOG
 
+GNS3 0.8.2.1
+
+ * Fixed issue when saving as a project.
+ * Prevent tail processes staying in memory after stopping captures.
+ * Fixed/improved some console command lines (SecureCRT, TeraTerm, Putty)
+ * New command line option for patched Putty on Windows (-wt => window title option, -sr => "press" a enter into the device console to show the prompt)
+ * Improved securecrt.vbs to "press" a enter into the device console to show the prompt.
+ * Fixed issue when connecting recent Qemu (new -net syntax) to other non-Qemu devices.
+ * Fixed vboxwrapper loading issue for DMG version on OSX.
+ * Fixed rpcap interface name parsing on Windows.
+ * Modified default IOS startup-config (baseconfig.txt).
+ * Handle connection lost during Idle pc calculation.
+ * Warn users if their working directories are not accessible and/or writable.
+ * Allow dash in device hostnames.
+ * Option to clean stopped captures from the captures dock.
+ * Italian and Chinese translations updated.
+ * Fixed bug that prevented loading topologies with non-existing IOS paths.
+
 GNS3 0.8.2 - 13.03.1012
 
  * The issue with Qemu VMs that were stuck on “Booting from Hard Disk” message when using Qemu Manager on Linux has been fixed.
