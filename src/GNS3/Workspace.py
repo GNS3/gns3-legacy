@@ -1059,7 +1059,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_slot*')
                         dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_rom')
                         dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_*flash*')
-                        dynamips_files += [os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_dynagen_device().formatted_ghost_file()]
+                        #dynamips_files += [os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_dynagen_device().formatted_ghost_file()]
 
                         for file in dynamips_files:
                             try:
@@ -1071,7 +1071,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                 continue
 
                         # clean the original working directory
-                        self.clear_workdir(os.path.normpath(node.hypervisor.workingdir))
+                        #self.clear_workdir(os.path.normpath(node.hypervisor.workingdir))
 
                     if (isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS)) and unbase:
                         node.get_dynagen_device().unbase()
