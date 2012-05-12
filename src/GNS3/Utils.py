@@ -18,7 +18,7 @@
 # http://www.gns3.net/contact
 #
 
-import os, sys, re
+import os, sys, re, socket
 import subprocess as sub
 import GNS3.Globals as globals
 import subprocess
@@ -94,6 +94,20 @@ def killAll(process_name):
         return True
     except:
         return False
+    
+def checkForAvailablePortRange(host, start, end):
+    """ Returns a list of non available ports
+    """
+
+    ports = []
+    for port in range(start, end):
+        s = socket.socket()
+        s.settimeout(0.3)
+        result = s.connect_ex((host, port))
+        if result != 0:
+            ports.append(str(port))
+        s.close()
+    return ports
 
 def getWindowsInterfaces():
     """ Try to detect all available interfaces on Windows
