@@ -423,8 +423,8 @@ class Application(QApplication, Singleton):
         confo = self.systconf['qemu']
         confo.qemuwrapper_path = ConfDB().get('Qemu/qemuwrapper_path', Defaults.QEMUWRAPPER_DEFAULT_PATH)
         confo.qemuwrapper_workdir = ConfDB().get('Qemu/qemuwrapper_working_directory', Defaults.QEMUWRAPPER_DEFAULT_WORKDIR)
-        confo.qemu_path = ConfDB().get('Qemu/qemu_path', unicode('qemu'))
-        confo.qemu_img_path = ConfDB().get('Qemu/qemu_img_path', unicode('qemu-img'))
+        confo.qemu_path = ConfDB().get('Qemu/qemu_path', Defaults.QEMU_DEFAULT_PATH)
+        confo.qemu_img_path = ConfDB().get('Qemu/qemu_img_path', Defaults.QEMU_IMG_DEFAULT_PATH)
         confo.external_hosts = ConfDB().get('Qemu/external_hosts', unicode('localhost:10525')).split(',')
         confo.enable_QemuWrapperAdvOptions = ConfDB().value("Qemu/enable_QemuWrapperAdvOptions", QVariant(False)).toBool()
         confo.enable_QemuManager = ConfDB().value("Qemu/enable_QemuManager", QVariant(True)).toBool()

@@ -62,6 +62,14 @@ elif os.environ.has_key("TMP"):
 else:
     QEMUWRAPPER_DEFAULT_WORKDIR = unicode('/tmp')
 
+# Default paths to Qemu and qemu-img
+if sys.platform.startswith('win'):
+    QEMU_DEFAULT_PATH = unicode('qemu')
+    QEMU_IMG_DEFAULT_PATH = unicode('qemu-img')
+else:
+    QEMU_DEFAULT_PATH = unicode('qemu-system-i386')
+    QEMU_IMG_DEFAULT_PATH = unicode('qemu-img')
+
 # Default path to vboxwrapper
 if sys.platform.startswith('win'):
     VBOXWRAPPER_DEFAULT_PATH = unicode('vboxwrapper.exe')
