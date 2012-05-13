@@ -238,42 +238,19 @@
         <translation>GNS3 について</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="411"/>
+        <location filename="../Ui/Form_About.py" line="428"/>
         <source>&amp;About</source>
         <translation>GNS3 について(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="412"/>
+        <location filename="../Ui/Form_About.py" line="429"/>
         <source>&amp;Thanks to</source>
         <translation>謝辞(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_About.py" line="413"/>
+        <location filename="../Ui/Form_About.py" line="430"/>
         <source>&amp;License Agreement</source>
         <translation>ライセンス契約(&amp;L)</translation>
-    </message>
-    <message encoding="UTF-8">
-        <location filename="../Ui/Form_About.py" line="80"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg from Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;a name=&quot;:vm&quot;&gt;&lt;/a&gt;Leonard Bernstein from USA&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;br /&gt;&lt;br /&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;br /&gt;&lt;br /&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;br /&gt;&lt;br /&gt;Alexander H. Hackenberg from Vienna, Austria&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;a name=&quot;:vm&quot;&gt;&lt;/a&gt;Leonard Bernstein from USA&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Erik Wenzel: German translation (code: de)&lt;br /&gt;&lt;br /&gt;Huan Ji from Wuhan: Chinese translation (code: cn)&lt;br /&gt;&lt;br /&gt;Jose Sen: Spanish translation (code: es)&lt;br /&gt;&lt;br /&gt;Mark Soe Min: Japanese translation (code: jp)&lt;br /&gt;&lt;br /&gt;Aboulgasem Albusaifi from Tarabulus: Arabic translation (code: ar)&lt;br /&gt;&lt;br /&gt;Marcio de Freitas Minicz: Brazilian-Portuguese translation (code: pt_br)&lt;br /&gt;&lt;br /&gt;Hasan Agirol Aksoy: Turkish translation (code: tr)&lt;br /&gt;&lt;br /&gt;Ivakin Dmitriy: Russian translation (code: ru)&lt;br /&gt;&lt;br /&gt;Hyeonjin Kim: Korean translation (code: kr)&lt;br /&gt;&lt;br /&gt;Pavel Skovajsa: Slovak translation (code: sk)&lt;br /&gt;&lt;br /&gt;Michał Zieliński: Polish translation (code: pl)&lt;br /&gt;&lt;br /&gt;Veljko Dzodic: Serbian translation (code: sr)&lt;br /&gt;&lt;br /&gt;Abalfazl Meshki: Farsi translation (code: fa)&lt;br /&gt;&lt;br /&gt;Ondřej Filip: Czech translation (code: cz)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lyubomir Tsekov: Bulgarian translation (code: bg)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela &amp;amp; Vincenzo Reale: Italian translation (code: it)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kyryl Tumanov: Ukrainian translation (code: uk)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Tranzitwww: Romanian translation (code: ro)&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#000000;&quot;&gt;Dionissys Anyfantis: Greek translation (code: gr)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../Ui/Form_About.py" line="45"/>
@@ -300,6 +277,46 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://sourceforge.net/donate/index.php?group_id=198152&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Make a donation&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net/contact&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Contact us&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="../Ui/Form_About.py" line="80"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ninel Piroi from Bucharest, Romania&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Xavier Alt, Thamini, Luxembourg&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Fabien Le-mentec from EPITECH Paris, France&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jaakko Rautanen from Finland&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Leonard Bernstein from USA&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Randy Gallardo from Adamson University&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Thomas Pani&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Brent Endres&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Erik Wenzel from Germany: German translation (code: de)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Huan Ji from Wuhan, China: Chinese translation (code: cn)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jose Sen from Buenos Aires, Argentina: Spanish translation (code: es)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mark Soe Min from Tokyo, Japan: Japanese translation (code: jp)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation (code: ar)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation (code: pt_br)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation (code: tr)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ivakin Dmitriy from Moscow, Russia: Russian translation (code: ru)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hyeonjin Kim from Seoul, Korea: Korean translation (code: kr)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia: Slovak translation (code: sk)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Michał Zieliński from Plock, Poland: Polish translation (code: pl)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Veljko Dzodic: Serbian translation (code: sr)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Abalfazl Meshki from Iran: Farsi translation (code: fa)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ondřej Filip: Czech translation (code: cz)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lyubomir Tsekov: Bulgarian translation (code: bg)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela &amp;amp; Vincenzo Reale: Italian translation (code: it)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kyryl Tumanov from Kyiv, Ukraine: Ukrainian translation (code: uk)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ninel Piroi from Bucharest, Romanian translation (code: ro)&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Dionissys Anyfantis: Greek translation (code: gr)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -524,7 +541,7 @@ p, li { white-space: pre-wrap; }
         <translation>このルータモデルにAUXポート使用不可かベースAUXポートを０に設定されております</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="920"/>
+        <location filename="../Workspace.py" line="922"/>
         <source>GNS3 is up-to-date!</source>
         <translation>ご使用のGNS3は最新版です！</translation>
     </message>
@@ -3434,7 +3451,7 @@ or the link itself.</source>
         <translation>ターミナルコマンド:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="405"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="408"/>
         <source>Always use manual mode when adding links</source>
         <translation>リンクを追加するときは必ず手動モードにする</translation>
     </message>
@@ -3459,22 +3476,22 @@ or the link itself.</source>
         <translation>クリア(&amp;C)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="415"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="418"/>
         <source>Show link status points on the workspace</source>
         <translation>リンクの状態をワークスペースに表示する</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="331"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="334"/>
         <source>Workspace width:</source>
         <translation>ワークスペースの幅:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="376"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="379"/>
         <source> px</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="363"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="366"/>
         <source>Workspace height:</source>
         <translation>ワークスペースの高さ:</translation>
     </message>
@@ -3489,12 +3506,12 @@ or the link itself.</source>
         <translation>一般設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="325"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="328"/>
         <source>GUI Settings</source>
         <translation>GUI 設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="395"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="398"/>
         <source>Draw a rectangle when an item is selected</source>
         <translation>項目が選択された時に四角形を描画する</translation>
     </message>
@@ -3519,7 +3536,7 @@ or the link itself.</source>
         <translation>使用する(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="301"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="304"/>
         <source>Terminal command magic strings:
 %h = device server 
 %p = device port
@@ -4286,252 +4303,252 @@ or the link itself.</source>
 <context>
     <name>Scene</name>
     <message>
-        <location filename="../Scene.py" line="296"/>
+        <location filename="../Scene.py" line="298"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="122"/>
+        <location filename="../Scene.py" line="124"/>
         <source>Configure</source>
         <translation>設定</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="178"/>
+        <location filename="../Scene.py" line="180"/>
         <source>Console</source>
         <translation>コンソール</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="218"/>
+        <location filename="../Scene.py" line="220"/>
         <source>Start</source>
         <translation>スタート</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="238"/>
+        <location filename="../Scene.py" line="240"/>
         <source>Stop</source>
         <translation>ストップ</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="228"/>
+        <location filename="../Scene.py" line="230"/>
         <source>Suspend</source>
         <translation>一時停止</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="264"/>
+        <location filename="../Scene.py" line="266"/>
         <source>Idle PC</source>
         <translation>Idle PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="502"/>
+        <location filename="../Scene.py" line="504"/>
         <source>IDLE PC</source>
         <translation>IDLE PC</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="456"/>
+        <location filename="../Scene.py" line="458"/>
         <source>Please select only one router</source>
         <translation>ルータを一台だけ選択してください</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="502"/>
+        <location filename="../Scene.py" line="504"/>
         <source>No idlepc values found</source>
         <translation>idlepc 値が見つかりませんでした</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="478"/>
+        <location filename="../Scene.py" line="480"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="463"/>
+        <location filename="../Scene.py" line="465"/>
         <source>%s already has an idlepc value applied, do you want to calculate a new one?</source>
         <translation>%s には idlepc 値が既に指定されています。新しい値を計算しますか?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="127"/>
+        <location filename="../Scene.py" line="129"/>
         <source>Change the hostname</source>
         <translation>ホスト名を変更</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="132"/>
+        <location filename="../Scene.py" line="134"/>
         <source>Show/Hide the hostname</source>
         <translation>ホスト名を表示/非表示する</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="173"/>
+        <location filename="../Scene.py" line="175"/>
         <source>Change console port</source>
         <translation>コンソールポートを変更</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="269"/>
+        <location filename="../Scene.py" line="271"/>
         <source>Startup-config</source>
         <translation>スタートアップコンフィグ</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="282"/>
+        <location filename="../Scene.py" line="284"/>
         <source>Style</source>
         <translation>スタイル</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="243"/>
+        <location filename="../Scene.py" line="245"/>
         <source>Reload</source>
         <translation>リロード</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="144"/>
+        <location filename="../Scene.py" line="146"/>
         <source>Set an hypervisor</source>
         <translation>ハイパーバイザを設定</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="992"/>
+        <location filename="../Scene.py" line="994"/>
         <source>annotation</source>
         <translation>注釈</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1001"/>
+        <location filename="../Scene.py" line="1003"/>
         <source>rectangle</source>
         <translation>四角形</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1009"/>
+        <location filename="../Scene.py" line="1011"/>
         <source>ellipse</source>
         <translation>円</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="154"/>
+        <location filename="../Scene.py" line="156"/>
         <source>MAC Address Table</source>
         <translation>MAC アドレステーブル</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="164"/>
+        <location filename="../Scene.py" line="166"/>
         <source>Change Symbol</source>
         <translation>シンボルの変更</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="289"/>
+        <location filename="../Scene.py" line="291"/>
         <source>Duplicate</source>
         <translation>重複</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="318"/>
+        <location filename="../Scene.py" line="320"/>
         <source>Align horizontally</source>
         <translation>水平に並べる</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="324"/>
+        <location filename="../Scene.py" line="326"/>
         <source>Align vertically</source>
         <translation>垂直に並べる</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="740"/>
+        <location filename="../Scene.py" line="742"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="712"/>
+        <location filename="../Scene.py" line="714"/>
         <source>Do you really want to stop these devices?</source>
         <translation>本当にこれらのデバイスを停止しますか?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="740"/>
+        <location filename="../Scene.py" line="742"/>
         <source>Do you really want to reload these devices?</source>
         <translation>本当にこれらのデバイスを再起動しますか?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="254"/>
+        <location filename="../Scene.py" line="256"/>
         <source>Change AUX port</source>
         <translation>AUX ポートを変更</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="259"/>
+        <location filename="../Scene.py" line="261"/>
         <source>Console to AUX port</source>
         <translation>AUX ポートにログイン</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="559"/>
+        <location filename="../Scene.py" line="561"/>
         <source>Do you really want to delete these nodes?</source>
         <translation>本当にこれらのノードを削除しますか?</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="354"/>
+        <location filename="../Scene.py" line="356"/>
         <source>Please wait while calculating an IDLE PC</source>
         <translation>アイドル PC 値を計算中のため少々おまちください</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="820"/>
+        <location filename="../Scene.py" line="822"/>
         <source>AddLink</source>
         <translation>リンクを追加</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="798"/>
+        <location filename="../Scene.py" line="800"/>
         <source>Qemu machines support only Ethernet links.</source>
         <translation>Qemu 端末はイーサのリンクしか対応していません。</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="800"/>
+        <location filename="../Scene.py" line="802"/>
         <source>VirtualBox machines support only Ethernet links.</source>
         <translation>VirtualBox 端末はイーサのリンクしか対応していません。</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="802"/>
+        <location filename="../Scene.py" line="804"/>
         <source>Ethernet switch supports only Ethernet links.</source>
         <translation>イーサネットスウィッチはイーサのリンクしか対応していません。</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="808"/>
+        <location filename="../Scene.py" line="810"/>
         <source>ATM switch supports only ATM links.</source>
         <translation>ATM スウィッチは ATM のリンクしか対応していません。</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="814"/>
+        <location filename="../Scene.py" line="816"/>
         <source>Frame-Relay switch supports only serial links.</source>
         <translation>フレームリレースウィッチはシリアルのリンクしか対応していません。</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="820"/>
+        <location filename="../Scene.py" line="822"/>
         <source>ATM bridge supports only ATM and Ethernet links.</source>
         <translation>ATM ブリッジは ATM と イーサのリンクしか対応していません。</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="195"/>
+        <location filename="../Scene.py" line="197"/>
         <source>Bring display to front</source>
         <translation>最前面へ移動</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="203"/>
+        <location filename="../Scene.py" line="205"/>
         <source>Hide display window</source>
         <translation>非表示にする</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="302"/>
+        <location filename="../Scene.py" line="304"/>
         <source>Lower one layer</source>
         <translation>背面へ移動</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="307"/>
+        <location filename="../Scene.py" line="309"/>
         <source>Raise one layer</source>
         <translation>前面へ移動</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="639"/>
+        <location filename="../Scene.py" line="641"/>
         <source>Capture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="594"/>
+        <location filename="../Scene.py" line="595"/>
         <source>Layer position</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="594"/>
+        <location filename="../Scene.py" line="595"/>
         <source>Object moved to a background layer. You will now have to use the right-click action to select this object in the future and raise it to layer 0 to be able to move it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="639"/>
+        <location filename="../Scene.py" line="641"/>
         <source>Please choose a link</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="478"/>
+        <location filename="../Scene.py" line="480"/>
         <source>Connection lost</source>
         <translation type="unfinished">接続に失敗しました</translation>
     </message>
@@ -4670,12 +4687,6 @@ i.e. #copy start run</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/Form_StyleDialog.py" line="72"/>
-        <source>Rotation can be ajusted on the scene for a selected item with
-ALT + LEFT or RIGHT</source>
-        <translation>選択された項目は ALT + LEFT、RIGHT などを使用して回転を調整することができます</translation>
-    </message>
-    <message>
         <location filename="../StyleDialog.py" line="47"/>
         <source>Solid</source>
         <translation>固体</translation>
@@ -4704,6 +4715,12 @@ ALT + LEFT or RIGHT</source>
         <location filename="../StyleDialog.py" line="52"/>
         <source>No border</source>
         <translation>枠線なし</translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_StyleDialog.py" line="72"/>
+        <source>Rotation can be ajusted on the scene for a selected item with
+ALT + P or M (while editing)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5633,7 +5650,7 @@ p, li { white-space: pre-wrap; }
         <translation>ドッキング</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1271"/>
+        <location filename="../Workspace.py" line="1277"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
@@ -5648,7 +5665,7 @@ p, li { white-space: pre-wrap; }
         <translation>中止</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="948"/>
+        <location filename="../Workspace.py" line="950"/>
         <source>Starting nodes ...</source>
         <translation>ノードを開始中 ...</translation>
     </message>
@@ -5663,7 +5680,7 @@ p, li { white-space: pre-wrap; }
         <translation>ノードを一時停止中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="941"/>
+        <location filename="../Workspace.py" line="943"/>
         <source>Loading</source>
         <translation>読み込み中</translation>
     </message>
@@ -5678,22 +5695,22 @@ p, li { white-space: pre-wrap; }
         <translation>ホスト名を表示する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1228"/>
+        <location filename="../Workspace.py" line="1258"/>
         <source>Open a file</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1224"/>
+        <location filename="../Workspace.py" line="1254"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Dynamips のプログラムパスを設定しておく必要があります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1007"/>
+        <location filename="../Workspace.py" line="1009"/>
         <source>New Project</source>
         <translation>新規プロジェクト</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1337"/>
+        <location filename="../Workspace.py" line="1344"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
@@ -5708,17 +5725,17 @@ p, li { white-space: pre-wrap; }
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1007"/>
+        <location filename="../Workspace.py" line="1009"/>
         <source>Can&apos;t create a project</source>
         <translation>プロジェクトを作成できませんでした</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="941"/>
+        <location filename="../Workspace.py" line="943"/>
         <source>Invalid file %s</source>
         <translation>ファイル %s に誤りがあります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1328"/>
+        <location filename="../Workspace.py" line="1335"/>
         <source>Would you like to save the current topology?</source>
         <translation>現在のトポロジーを保存しますか?</translation>
     </message>
@@ -5738,7 +5755,7 @@ p, li { white-space: pre-wrap; }
         <translation>インターフェイス名を表示する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1133"/>
+        <location filename="../Workspace.py" line="1136"/>
         <source>Snapshot</source>
         <translation>スナップショット</translation>
     </message>
@@ -5748,7 +5765,7 @@ p, li { white-space: pre-wrap; }
         <translation>ディレクトリを作成できません %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1138"/>
+        <location filename="../Workspace.py" line="1141"/>
         <source>Please wait while creating a snapshot</source>
         <translation>スナップショットを作成する間、しばらくお待ちください</translation>
     </message>
@@ -5843,7 +5860,7 @@ p, li { white-space: pre-wrap; }
         <translation>画像</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1177"/>
+        <location filename="../Workspace.py" line="1180"/>
         <source>Dynamips error: %s</source>
         <translation>Dynamips エラー: %s</translation>
     </message>
@@ -5853,32 +5870,32 @@ p, li { white-space: pre-wrap; }
         <translation>保存したインターフェイスラベルをリセットしますか?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1133"/>
+        <location filename="../Workspace.py" line="1136"/>
         <source>Cannot create directories in %s: %s</source>
         <translation>%s %s にディレクトリを作成できません</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1205"/>
+        <location filename="../Workspace.py" line="1208"/>
         <source>Dynamips error!!: %s</source>
         <translation>Dynamips エラー!! %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1271"/>
+        <location filename="../Workspace.py" line="1277"/>
         <source>Connection lost with Dynamips hypervisor (crashed?)</source>
         <translation>Dynamips ハイパーバイザとの接続に失敗しました (クラッシュ?)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1303"/>
+        <location filename="../Workspace.py" line="1309"/>
         <source>Save As...</source>
         <translation>名前を付けて保存...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1040"/>
+        <location filename="../Workspace.py" line="1042"/>
         <source>Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)</source>
         <translation>Qemu ディスクの関連付けを外しますか？ (ラボファイル等を配布するとき便利ですが、ファイルのサイズが拡大されます)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="979"/>
+        <location filename="../Workspace.py" line="981"/>
         <source>This action is going to stop all your devices and captures, would you like to continue anyway?</source>
         <translation>この動作は現在実行中のデバイスとキャプチャを中止することになります、このまま続けますか？</translation>
     </message>
@@ -5898,32 +5915,32 @@ p, li { white-space: pre-wrap; }
         <translation>インターフェースのラベルをリセットしました</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1337"/>
+        <location filename="../Workspace.py" line="1344"/>
         <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
         <translation>この動作は現在実行中のノードのコンフィグが廃棄される可能性があります、このまま続けますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="920"/>
+        <location filename="../Workspace.py" line="922"/>
         <source>Check For Update</source>
         <translation>アップデートを確認</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="908"/>
+        <location filename="../Workspace.py" line="910"/>
         <source>Cannot check for update ... Try again later</source>
         <translation>アップデートの確認できませんでした ... また試してください</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="913"/>
+        <location filename="../Workspace.py" line="915"/>
         <source>Newer GNS3 version %s is available, do you want to visit our website to download it?</source>
         <translation>新しいバージョンの GNS3 %s が入手できます、ダウンロードページを開きますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="955"/>
+        <location filename="../Workspace.py" line="957"/>
         <source>This will clear your current topology. Continue?</source>
         <translation>現在のトポロジーをクリアします、続けますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1256"/>
+        <location filename="../Workspace.py" line="1248"/>
         <source>Clear Menu</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5943,7 +5960,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1098"/>
+        <location filename="../Workspace.py" line="1100"/>
         <source>Dynamips error %s: %s</source>
         <translation type="unfinished"></translation>
     </message>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Tue Mar 13 20:07:48 2012
+# Created: Sun May 13 14:51:00 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -153,7 +153,7 @@ class Ui_PreferencesGeneral(object):
         self.gridLayout.addWidget(self.lineEditTermCommand, 3, 0, 1, 1)
         self.checkBoxUseShell = QtGui.QCheckBox(self.tab_3)
         self.checkBoxUseShell.setText(QtGui.QApplication.translate("PreferencesGeneral", "Launch this command using the system default shell", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxUseShell.setChecked(True)
+        self.checkBoxUseShell.setChecked(False)
         self.checkBoxUseShell.setObjectName(_fromUtf8("checkBoxUseShell"))
         self.gridLayout.addWidget(self.checkBoxUseShell, 4, 0, 1, 1)
         self.checkBoxBringConsoleToFront = QtGui.QCheckBox(self.tab_3)
@@ -170,6 +170,7 @@ class Ui_PreferencesGeneral(object):
         self.doubleSpinBoxConsoleDelay.setDecimals(1)
         self.doubleSpinBoxConsoleDelay.setMinimum(0.0)
         self.doubleSpinBoxConsoleDelay.setSingleStep(0.5)
+        self.doubleSpinBoxConsoleDelay.setProperty("value", 1.0)
         self.doubleSpinBoxConsoleDelay.setObjectName(_fromUtf8("doubleSpinBoxConsoleDelay"))
         self.gridLayout.addWidget(self.doubleSpinBoxConsoleDelay, 7, 0, 1, 2)
         self.label_9 = QtGui.QLabel(self.tab_3)

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_StyleDialog.ui'
 #
-# Created: Tue Mar 13 20:07:46 2012
+# Created: Sun May 13 14:50:58 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,10 +17,10 @@ except AttributeError:
 class Ui_StyleDialog(object):
     def setupUi(self, StyleDialog):
         StyleDialog.setObjectName(_fromUtf8("StyleDialog"))
-        StyleDialog.resize(369, 332)
+        StyleDialog.resize(440, 332)
         StyleDialog.setWindowTitle(QtGui.QApplication.translate("StyleDialog", "Style", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
-        icon.addFile(_fromUtf8(":/images/logo_icon.png"))
+        icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         StyleDialog.setWindowIcon(icon)
         self.vboxlayout = QtGui.QVBoxLayout(StyleDialog)
         self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))
@@ -70,13 +70,13 @@ class Ui_StyleDialog(object):
         self.gridlayout.addWidget(self.spinBox_Rotation, 5, 1, 1, 1)
         self.label_4 = QtGui.QLabel(self.groupBox)
         self.label_4.setText(QtGui.QApplication.translate("StyleDialog", "Rotation can be ajusted on the scene for a selected item with\n"
-"ALT + LEFT or RIGHT", None, QtGui.QApplication.UnicodeUTF8))
+"ALT + P or M (while editing)", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setObjectName(_fromUtf8("label_4"))
         self.gridlayout.addWidget(self.label_4, 6, 0, 1, 2)
         self.vboxlayout.addWidget(self.groupBox)
         self.buttonBox = QtGui.QDialogButtonBox(StyleDialog)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.NoButton|QtGui.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName(_fromUtf8("buttonBox"))
         self.vboxlayout.addWidget(self.buttonBox)
 
