@@ -495,7 +495,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 commands = path.split('|', 1)
                 env = None
                 info = None
-                if sys.platform.startswith('win') and sys.version_info < (2, 7):
+                if sys.platform.startswith('win') and sys.version_info >= (2, 7):
                     # hide tail.exe window (requires python 2.7)
                     info = sub.STARTUPINFO()
                     info.dwFlags |= sub.STARTF_USESHOWWINDOW

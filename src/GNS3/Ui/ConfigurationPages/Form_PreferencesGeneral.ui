@@ -222,7 +222,7 @@
           <string>Launch this command using the system default shell</string>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -256,6 +256,9 @@
          </property>
          <property name="singleStep">
           <double>0.500000000000000</double>
+         </property>
+         <property name="value">
+          <double>1.000000000000000</double>
          </property>
         </widget>
        </item>

@@ -83,6 +83,8 @@ class Scene(QtGui.QGraphicsView):
 
         self.sceneDragging = False
         self.lastMousePos = None
+        
+        self.showWarningMessageBackgroundLayer = True
 
     def reloadRenderers(self):
         """ Load all needed renderers
@@ -580,7 +582,6 @@ class Scene(QtGui.QGraphicsView):
         """ Lower Z value
         """
 
-        show_message = True
         for item in self.__topology.selectedItems():
             zvalue = item.zValue()
             if zvalue > 0:
@@ -590,9 +591,9 @@ class Scene(QtGui.QGraphicsView):
                 # shape items, annotations and pictures can have a z value lower than 0
                 command = undo.NewZValue(item, zvalue - 1)
                 self.__topology.undoStack.push(command)
-                if zvalue == 0 and show_message:
+                if zvalue == 0 and self.showWarningMessageBackgroundLayer:
                     QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("Scene", "Layer position"),  translate("Scene", "Object moved to a background layer. You will now have to use the right-click action to select this object in the future and raise it to layer 0 to be able to move it"))
-                    show_message = False
+                    self.showWarningMessageBackgroundLayer = False
 
     def slotraiseZValue(self):
         """ Raise Z value
@@ -636,11 +637,12 @@ class Scene(QtGui.QGraphicsView):
                     linkobj = item.getConnectedLinkByName(localif)
                     (neighbor, neighborif) = linkobj.getConnectedNeighbor(item)
                     links.append("%s connected to %s %s" % (localif, neighbor.hostname, neighborif))
-                (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Scene", "Capture"), translate("Scene", "Please choose a link"), links, 0, False)
-                if ok:
-                    interface = unicode(selection).split(' ')[0]
-                    linkobj = item.getConnectedLinkByName(interface)
-                    linkobj.startCapture()
+                if len(links):
+                    (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Scene", "Capture"), translate("Scene", "Please choose a link"), links, 0, False)
+                    if ok:
+                        interface = unicode(selection).split(' ')[0]
+                        linkobj = item.getConnectedLinkByName(interface)
+                        linkobj.startCapture()
 
     def slotDisplayWindowFocus(self):
         """ Slot called to bring VM's display as foreground window and focus on it

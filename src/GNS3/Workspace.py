@@ -994,6 +994,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         text.replace("%VERSION%", VERSION)
         ui.aboutText.setText(text)
 
+        dialog.setModal(True)
         dialog.show()
         self.centerDialog(dialog)
         dialog.exec_()
@@ -1022,6 +1023,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         from __main__ import VERSION
+        from distutils.version import LooseVersion
 
         network_reply = self.sender()
         isSilent = network_reply.request().attribute(QtNetwork.QNetworkRequest.User).toBool()
@@ -1037,7 +1039,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         else:
             latest_release = str(network_reply.readAll()).rstrip()
 
-            if VERSION < latest_release:
+            if LooseVersion(VERSION) < latest_release:
                 reply = QtGui.QMessageBox.question(self, translate("Workspace", "Check For Update"),
                                                translate("Workspace", "Newer GNS3 version %s is available, do you want to visit our website to download it?") % latest_release, QtGui.QMessageBox.Yes, \
                                                QtGui.QMessageBox.No)
@@ -1233,6 +1235,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         snapDialog = SnapshotDialog()
+        snapDialog.setModal(True)
         snapDialog.show()
         self.centerDialog(snapDialog)
         snapDialog.exec_()
@@ -1346,6 +1349,33 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         self.openFile()
 
+    def __addToRecentFiles(self, path):
+        """ Add path to recent files menu
+        """
+
+        # Check is the file is not already in list
+        for recent_file_conf in globals.GApp.recentfiles:
+            if recent_file_conf.path == path:
+                return
+
+        # Limit number of recent file paths to 10
+        if len(globals.GApp.recentfiles) == 10:
+            globals.GApp.recentfiles.pop(0)
+        recent_file_conf = recentFilesConf()
+        recent_file_conf.path = path
+        globals.GApp.recentfiles.append(recent_file_conf)
+
+        # Redraw recent files submenu
+        self.submenu_RecentFiles.clear()
+        for recent_file_conf in globals.GApp.recentfiles:
+            action = QtGui.QAction(recent_file_conf.path, self.submenu_RecentFiles)
+            self.submenu_RecentFiles.addAction(action)
+
+        # Need to put back the clear menu action
+        self.submenu_RecentFiles.addSeparator()
+        clear_action = QtGui.QAction(translate("Workspace", "Clear Menu"), self.submenu_RecentFiles)
+        self.submenu_RecentFiles.addAction(clear_action)
+
     def openFile(self):
 
         if globals.GApp.systconf['dynamips'].path == '':
@@ -1358,31 +1388,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if path and (selected == 'NET file (*.net)' or selected == ''):
             self.loadNetfile(path)
-
-            # Open recent files code
-
-            # Check is the file is not already in list
-            for recent_file_conf in globals.GApp.recentfiles:
-                if recent_file_conf.path == path:
-                    return
-
-            # Limit number of recent file paths to 10
-            if len(globals.GApp.recentfiles) == 10:
-                globals.GApp.recentfiles.pop(0)
-            recent_file_conf = recentFilesConf()
-            recent_file_conf.path = path
-            globals.GApp.recentfiles.append(recent_file_conf)
-
-            # Redraw recent files submenu
-            self.submenu_RecentFiles.clear()
-            for recent_file_conf in globals.GApp.recentfiles:
-                action = QtGui.QAction(recent_file_conf.path, self.submenu_RecentFiles)
-                self.submenu_RecentFiles.addAction(action)
-
-            # Need to put back the clear menu action
-            self.submenu_RecentFiles.addSeparator()
-            clear_action = QtGui.QAction(translate("Workspace", "Clear Menu"), self.submenu_RecentFiles)
-            self.submenu_RecentFiles.addAction(clear_action)
+            self.__addToRecentFiles(path)
 
     def loadNetfile(self, path):
 
@@ -1439,6 +1445,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 self.setWindowTitle("GNS3 - " + self.projectFile)
                 net = netfile.NETFile()
                 net.export_net_file(path)
+                self.__addToRecentFiles(path)
                 globals.GApp.topology.changed = False
                 return True
         return False

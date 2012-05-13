@@ -124,7 +124,7 @@ def getWindowsInterfaces():
         return []
     try:
         info = None
-        if sys.version_info < (2, 7):
+        if sys.version_info >= (2, 7):
             # hide the window (requires python 2.7)
             info = sub.STARTUPINFO()
             info.dwFlags |= sub.STARTF_USESHOWWINDOW

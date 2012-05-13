@@ -158,22 +158,19 @@ if platform.system() == 'Linux' or platform.system().__contains__("BSD"):
                             }
 elif platform.system() == 'Windows'  and os.path.exists("C:\Program Files (x86)\\"):
     TERMINAL_PRESET_CMDS = {
-                            'Putty (Windows 64-bit)': '"C:\Program Files (x86)\\Putty\\putty.exe" -telnet %h %p',
-                            'Putty (Windows 32-bit)': '"C:\Program Files\\Putty\\putty.exe" -telnet %h %p',
                             'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt %d -sr',
                             'SecureCRT (Windows 64-bit)': '"C:\Program Files (x86)\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
                             'SecureCRT (Windows 32-bit)': '"C:\Program Files\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
                             'TeraTerm (Windows 64-bit)': '"C:\Program Files (x86)\\teraterm\\ttermpro.exe" /W=%d /T=1 %h %p',
                             'TeraTerm (Windows 32-bit)': '"C:\Program Files\\teraterm\\ttermpro.exe" /W=%d /T=1 %h %p',
-                            'Telnet (Windows)': 'start telnet %h %p',
+                            'Telnet (Windows)': 'telnet %h %p',
                             }
 elif platform.system() == 'Windows':
     TERMINAL_PRESET_CMDS = {
-                            'Putty (Windows)': '"C:\Program Files\\Putty\\putty.exe" -telnet %h %p',
                             'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt %d -sr',
                             'SecureCRT (Windows)': '"C:\Program Files\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
                             'TeraTerm (Windows)': '"C:\Program Files\\teraterm\\ttermpro.exe" /W=%d /T=1 %h %p',
-                            'Telnet (Windows)': 'start telnet %h %p'
+                            'Telnet (Windows)': 'telnet %h %p'
                             }
 elif platform.system() == 'Darwin':
     TERMINAL_PRESET_CMDS = {
@@ -183,14 +180,12 @@ elif platform.system() == 'Darwin':
                             }
 else:  # For unknown platforms, or if detection failed, we list all options.
     TERMINAL_PRESET_CMDS = {
-                            'Putty (Windows 64-bit)': '"C:\Program Files (x86)\\Putty\\putty.exe" -telnet %h %p',
-                            'Putty (Windows 32-bit)': '"C:\Program Files\\Putty\\putty.exe" -telnet %h %p',
                             'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt %d -sr',
                             'SecureCRT (Windows 64-bit)': '"C:\Program Files (x86)\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
                             'SecureCRT (Windows 32-bit)': '"C:\Program Files\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
                             'TeraTerm (Windows 32-bit)': '"C:\Program Files\\teraterm\\ttermpro.exe" /W=%d /T=1 %h %p',
                             'TeraTerm (Windows 64-bit)': '"C:\Program Files (x86)\\teraterm\\ttermpro.exe" /W=%d /T=1 %h %p',
-                            'Telnet (Windows)': 'start telnet %h %p',
+                            'Telnet (Windows)': 'telnet %h %p',
                             'xterm (Linux/BSD)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
                             'Putty (Linux/BSD)': 'putty -telnet %h %p',
                             'Gnome Terminal (Linux/BSD)': 'gnome-terminal -t %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
@@ -477,10 +472,10 @@ conf_systemGeneral_defaults = {
     'lang': 'en',
     'project_startup': True,
     'relative_paths': True,
-    'slow_start': 0,
+    'slow_start': 1,
     'autosave': 60,
     'term_cmd': '',
-    'use_shell': True,
+    'use_shell': False,
     'bring_console_to_front': False,
     'project_path': '.',
     'ios_path': '.',
