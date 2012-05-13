@@ -254,10 +254,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
     def __clearConfiguration(self):
     
-        from __main__ import VERSION_INTEGER
+        from __main__ import VERSION
         ConfDB().clear()
         c = ConfDB()
-        c.set('GNS3/version', VERSION_INTEGER)
+        c.set('GNS3/version', VERSION)
         c.sync()
         QtGui.QMessageBox.information(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Configuration file"),  
                                       translate("UiConfig_PreferencesGeneral", "Configuration file cleared, default settings will be applied after a restart"))

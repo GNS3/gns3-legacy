@@ -30,7 +30,6 @@ except:
 
 # current version of GNS3
 VERSION = "0.8.2.1"
-VERSION_INTEGER = 0x000802
 
 try:
     from PyQt4 import QtCore, QtGui

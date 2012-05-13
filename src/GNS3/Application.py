@@ -37,7 +37,7 @@ from GNS3.Translations import Translator
 from GNS3.DynagenSub import DynagenSub
 from GNS3.ProjectDialog import ProjectDialog
 from GNS3.Wizard import Wizard
-from __main__ import VERSION_INTEGER
+from __main__ import VERSION
 
 class Application(QApplication, Singleton):
     """ GNS3 Application instance
@@ -485,11 +485,11 @@ class Application(QApplication, Singleton):
         self.systconf['general'] = systemGeneralConf()
         confo = self.systconf['general']
         confo.lang = ConfDB().get('GNS3/lang', unicode('en'))
-        confo.slow_start = int(ConfDB().get('GNS3/slow_start', 0))
+        confo.slow_start = int(ConfDB().get('GNS3/slow_start', 1))
         confo.autosave = int(ConfDB().get('GNS3/autosave', 0))
         confo.project_startup = ConfDB().value("GNS3/project_startup", QVariant(True)).toBool()
         confo.relative_paths = ConfDB().value("GNS3/relative_paths", QVariant(True)).toBool()
-        confo.use_shell = ConfDB().value("GNS3/use_shell", QVariant(True)).toBool()
+        confo.use_shell = ConfDB().value("GNS3/use_shell", QVariant(False)).toBool()
         confo.bring_console_to_front = ConfDB().value("GNS3/bring_console_to_front", QVariant(False)).toBool()
         confo.term_cmd = ConfDB().get('GNS3/console', Defaults.TERMINAL_DEFAULT_CMD)
         confo.project_path = ConfDB().get('GNS3/project_directory', Defaults.PROJECT_DEFAULT_DIR)
@@ -603,7 +603,7 @@ class Application(QApplication, Singleton):
         """
 
         c = ConfDB()
-        c.set('GNS3/version', VERSION_INTEGER)
+        c.set('GNS3/version', VERSION)
 
         # Apply general settings
         confo = self.systconf['general']

@@ -487,7 +487,8 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             conf.baseConsole = self.spinBoxBaseConsole.value()
             conf.baseAUX = self.spinBoxBaseAUX.value()
             self.spinBoxBaseUDP.setValue(conf.baseUDP + 100)
-            self.spinBoxBaseConsole.setValue(conf.baseConsole + 10)
+            self.spinBoxBaseConsole.setValue(conf.baseConsole + 20)
+            self.spinBoxBaseAUX.setValue(conf.baseAUX + 20)
             globals.GApp.hypervisors[hypervisorkey] = conf
             self.treeWidgetHypervisor.resizeColumnToContents(0)
             self.treeWidgetHypervisor.resizeColumnToContents(1)
