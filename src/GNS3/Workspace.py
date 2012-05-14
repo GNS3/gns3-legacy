@@ -186,7 +186,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.menu_View.addMenu(self.submenu_Docks)
 
         # Create and populate recent files submenu
-        for recent_file_conf in globals.GApp.recentfiles:
+        recent_files = list(globals.GApp.recentfiles)
+        recent_files.reverse()
+        for recent_file_conf in recent_files:
             action = QtGui.QAction(recent_file_conf.path, self.submenu_RecentFiles)
             self.submenu_RecentFiles.addAction(action)
 
@@ -1221,6 +1223,24 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         self.openFile()
 
+    def openFromDroppedFile(self, path):
+        """ Open a .net file from a dropped action
+        """
+
+        if not path.endswith(".net"):
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Message"), translate("Workspace", "The file '%s' has not the right extension (.net)") % os.path.basename(path))
+            return
+
+        if len(globals.GApp.topology.nodes) and globals.GApp.topology.changed == True:
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
+                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No, QtGui.QMessageBox.Cancel)
+            if reply == QtGui.QMessageBox.Yes:
+                self.__action_Save()
+            elif reply == QtGui.QMessageBox.Cancel:
+                return
+
+        self.loadNetfile(path)
+
     def __addToRecentFiles(self, path):
         """ Add path to recent files menu
         """
@@ -1239,7 +1259,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # Redraw recent files submenu
         self.submenu_RecentFiles.clear()
-        for recent_file_conf in globals.GApp.recentfiles:
+        recent_files = list(globals.GApp.recentfiles)
+        recent_files.reverse()
+        for recent_file_conf in recent_files:
             action = QtGui.QAction(recent_file_conf.path, self.submenu_RecentFiles)
             self.submenu_RecentFiles.addAction(action)
 
@@ -1260,7 +1282,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if path and (selected == 'NET file (*.net)' or selected == ''):
             self.loadNetfile(path)
-            self.__addToRecentFiles(path)
 
     def loadNetfile(self, path):
 
@@ -1270,6 +1291,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.projectConfigs = None
             self.projectFile = None
             self.load_netfile(path)
+            self.__addToRecentFiles(path)
             globals.GApp.topology.changed = False
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)

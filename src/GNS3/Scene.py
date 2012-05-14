@@ -30,7 +30,7 @@ def debugmsg(level, message):
     if debuglevel >= level:
         print message
 
-import sys, time
+import os, sys, time
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.UndoFramework as undo
@@ -899,14 +899,28 @@ class Scene(QtGui.QGraphicsView):
         """ Drag move event
         """
 
-        event.accept()
+        #debug("Drop event %s" % str(list(event.mimeData().formats())))
+        if event.mimeData().hasFormat("text/uri-list") or event.mimeData().hasFormat("application/x-qt-mime-type-name") :
+            event.accept()
+        else:
+            event.ignore()
 
     def dropEvent(self, event):
         """ Drop event
         """
 
-        if event.mimeData().hasText():
-
+        if event.mimeData().hasFormat("text/uri-list") and event.mimeData().hasUrls():
+            if len(event.mimeData().urls()) > 1:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "Topology file"),  translate("Scene", "Please select only one file!"))
+                event.ignore()
+                return
+            for url in event.mimeData().urls():
+                path = unicode(url.toLocalFile(), 'utf-8', errors='replace')
+                if os.path.isfile(path):
+                    debug("Load file from drop event %s" % path)
+                    globals.GApp.workspace.openFromDroppedFile(path)
+                    break
+        elif event.mimeData().hasText():
             symbolname = str(event.mimeData().text())
             # Get resource corresponding to node type
             object = None
