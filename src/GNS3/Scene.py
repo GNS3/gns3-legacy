@@ -901,9 +901,7 @@ class Scene(QtGui.QGraphicsView):
 
         #debug("Drop event %s" % str(list(event.mimeData().formats())))
         if event.mimeData().hasFormat("text/uri-list") or event.mimeData().hasFormat("application/x-qt-mime-type-name") :
-            event.accept()
-        else:
-            event.ignore()
+            event.acceptProposedAction()
 
     def dropEvent(self, event):
         """ Drop event
@@ -912,7 +910,6 @@ class Scene(QtGui.QGraphicsView):
         if event.mimeData().hasFormat("text/uri-list") and event.mimeData().hasUrls():
             if len(event.mimeData().urls()) > 1:
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "Topology file"),  translate("Scene", "Please select only one file!"))
-                event.ignore()
                 return
             for url in event.mimeData().urls():
                 path = unicode(url.toLocalFile(), 'utf-8', errors='replace')
@@ -920,6 +917,7 @@ class Scene(QtGui.QGraphicsView):
                     debug("Load file from drop event %s" % path)
                     globals.GApp.workspace.openFromDroppedFile(path)
                     break
+            event.accept()
         elif event.mimeData().hasText():
             symbolname = str(event.mimeData().text())
             # Get resource corresponding to node type
@@ -949,7 +947,7 @@ class Scene(QtGui.QGraphicsView):
             pos_y = node.pos().y() - (node.boundingRect().height() / 2)
             node.setPos(pos_x, pos_y)
 
-            event.setDropAction(QtCore.Qt.MoveAction)
+            #event.setDropAction(QtCore.Qt.MoveAction)
             event.accept()
         else:
             event.ignore()
