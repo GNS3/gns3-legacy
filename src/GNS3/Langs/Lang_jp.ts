@@ -285,38 +285,38 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ninel Piroi from Bucharest, Romania&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Xavier Alt, Thamini, Luxembourg&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Fabien Le-mentec from EPITECH Paris, France&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jaakko Rautanen from Finland&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Leonard Bernstein from USA&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Randy Gallardo from Adamson University&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Thomas Pani&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Brent Endres&lt;br /&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;br /&gt;Erik Wenzel from Germany: German translation (code: de)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Huan Ji from Wuhan, China: Chinese translation (code: cn)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jose Sen from Buenos Aires, Argentina: Spanish translation (code: es)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Mark Soe Min from Tokyo, Japan: Japanese translation (code: jp)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation (code: ar)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation (code: pt_br)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation (code: tr)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ivakin Dmitriy from Moscow, Russia: Russian translation (code: ru)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Hyeonjin Kim from Seoul, Korea: Korean translation (code: kr)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Pavel Skovajsa from Slovakia: Slovak translation (code: sk)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Michał Zieliński from Plock, Poland: Polish translation (code: pl)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Veljko Dzodic: Serbian translation (code: sr)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Abalfazl Meshki from Iran: Farsi translation (code: fa)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ondřej Filip: Czech translation (code: cz)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Lyubomir Tsekov: Bulgarian translation (code: bg)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Andrea Riela &amp;amp; Vincenzo Reale: Italian translation (code: it)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Kyryl Tumanov from Kyiv, Ukraine: Ukrainian translation (code: uk)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ninel Piroi from Bucharest, Romanian translation (code: ro)&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Dionissys Anyfantis: Greek translation (code: gr)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Contributors:&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Ninel Piroi from Bucharest, Romania&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Xavier Alt, Thamini, Luxembourg&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Fabien Le-mentec from EPITECH Paris, France&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Mike Fuszner from St. Charles Community College, Cottleville, Missouri, USA&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Greg Anuzelli from Philadelphia, Pennsylvania, USA&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Pavel Skovajsa from Slovakia&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Christophe Fillot from the University of Technology of Compiegne, France&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Jaakko Rautanen from Finland&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Leonard Bernstein from USA&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Randy Gallardo from Adamson University&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Thomas Pani&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Brent Endres&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Translators:&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;&lt;br /&gt;Erik Wenzel from Germany: German translation (code: de)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Huan Ji from Wuhan, China: Chinese translation (code: cn)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Jose Sen from Buenos Aires, Argentina: Spanish translation (code: es)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Mark Soe Min from Tokyo, Japan: Japanese translation (code: jp)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Aboulgasem Albusaifi from Tarabulus, Libya: Arabic translation (code: ar)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Marcio de Freitas Minicz from Sao Jose dos Campos, SP, Brazil: Brazilian-Portuguese translation (code: pt_br)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Hasan Agirol Aksoy from Antalya, Turkey: Turkish translation (code: tr)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Ivakin Dmitriy from Moscow, Russia: Russian translation (code: ru)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Hyeonjin Kim from Seoul, Korea: Korean translation (code: kr)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Pavel Skovajsa from Slovakia: Slovak translation (code: sk)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Michał Zieliński from Plock, Poland: Polish translation (code: pl)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Veljko Dzodic: Serbian translation (code: sr)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Abalfazl Meshki from Iran: Farsi translation (code: fa)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Ondřej Filip: Czech translation (code: cz)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Lyubomir Tsekov: Bulgarian translation (code: bg)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Andrea Riela &amp;amp; Vincenzo Reale: Italian translation (code: it)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Kyryl Tumanov from Kyiv, Ukraine: Ukrainian translation (code: uk)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Ninel Piroi from Bucharest, Romanian translation (code: ro)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Dionissys Anyfantis: Greek translation (code: gr)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -541,7 +541,7 @@ p, li { white-space: pre-wrap; }
         <translation>このルータモデルにAUXポート使用不可かベースAUXポートを０に設定されております</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="922"/>
+        <location filename="../Workspace.py" line="924"/>
         <source>GNS3 is up-to-date!</source>
         <translation>ご使用のGNS3は最新版です！</translation>
     </message>
@@ -4398,17 +4398,17 @@ or the link itself.</source>
         <translation>ハイパーバイザを設定</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="994"/>
+        <location filename="../Scene.py" line="1008"/>
         <source>annotation</source>
         <translation>注釈</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1003"/>
+        <location filename="../Scene.py" line="1017"/>
         <source>rectangle</source>
         <translation>四角形</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1011"/>
+        <location filename="../Scene.py" line="1025"/>
         <source>ellipse</source>
         <translation>円</translation>
     </message>
@@ -4551,6 +4551,16 @@ or the link itself.</source>
         <location filename="../Scene.py" line="480"/>
         <source>Connection lost</source>
         <translation type="unfinished">接続に失敗しました</translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="914"/>
+        <source>Topology file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="914"/>
+        <source>Please select only one file!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5645,117 +5655,117 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="223"/>
+        <location filename="../Workspace.py" line="225"/>
         <source>Docks</source>
         <translation>ドッキング</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1277"/>
+        <location filename="../Workspace.py" line="1299"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="767"/>
+        <location filename="../Workspace.py" line="769"/>
         <source>Connection lost</source>
         <translation>接続に失敗しました</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="736"/>
+        <location filename="../Workspace.py" line="738"/>
         <source>Abort</source>
         <translation>中止</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="950"/>
+        <location filename="../Workspace.py" line="952"/>
         <source>Starting nodes ...</source>
         <translation>ノードを開始中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="813"/>
+        <location filename="../Workspace.py" line="815"/>
         <source>Stopping nodes ...</source>
         <translation>ノードを停止中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="819"/>
+        <location filename="../Workspace.py" line="821"/>
         <source>Suspending nodes ...</source>
         <translation>ノードを一時停止中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="943"/>
+        <location filename="../Workspace.py" line="945"/>
         <source>Loading</source>
         <translation>読み込み中</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="651"/>
+        <location filename="../Workspace.py" line="653"/>
         <source>Hide hostnames</source>
         <translation>ホスト名を表示しない</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="656"/>
+        <location filename="../Workspace.py" line="658"/>
         <source>Show hostnames</source>
         <translation>ホスト名を表示する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1258"/>
+        <location filename="../Workspace.py" line="1280"/>
         <source>Open a file</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1254"/>
+        <location filename="../Workspace.py" line="1276"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Dynamips のプログラムパスを設定しておく必要があります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1009"/>
+        <location filename="../Workspace.py" line="1011"/>
         <source>New Project</source>
         <translation>新規プロジェクト</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1344"/>
+        <location filename="../Workspace.py" line="1366"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="519"/>
+        <location filename="../Workspace.py" line="521"/>
         <source>Add a link</source>
         <translation>リンクを追加する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="534"/>
+        <location filename="../Workspace.py" line="536"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1009"/>
+        <location filename="../Workspace.py" line="1011"/>
         <source>Can&apos;t create a project</source>
         <translation>プロジェクトを作成できませんでした</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="943"/>
+        <location filename="../Workspace.py" line="945"/>
         <source>Invalid file %s</source>
         <translation>ファイル %s に誤りがあります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1335"/>
+        <location filename="../Workspace.py" line="1357"/>
         <source>Would you like to save the current topology?</source>
         <translation>現在のトポロジーを保存しますか?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="422"/>
+        <location filename="../Workspace.py" line="424"/>
         <source>Directory to write startup-configs</source>
         <translation>スタートコンフィグを書き込みするディレクトリ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="673"/>
+        <location filename="../Workspace.py" line="675"/>
         <source>Hide interface names</source>
         <translation>インターフェイス名を隠す</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="678"/>
+        <location filename="../Workspace.py" line="680"/>
         <source>Show interface names</source>
         <translation>インターフェイス名を表示する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1136"/>
+        <location filename="../Workspace.py" line="1138"/>
         <source>Snapshot</source>
         <translation>スナップショット</translation>
     </message>
@@ -5765,77 +5775,77 @@ p, li { white-space: pre-wrap; }
         <translation>ディレクトリを作成できません %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1141"/>
+        <location filename="../Workspace.py" line="1143"/>
         <source>Please wait while creating a snapshot</source>
         <translation>スナップショットを作成する間、しばらくお待ちください</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="767"/>
+        <location filename="../Workspace.py" line="769"/>
         <source>%s: Dynamips error</source>
         <translation>%s: Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="764"/>
+        <location filename="../Workspace.py" line="766"/>
         <source>%s: Dynamips warning</source>
         <translation>%s: Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="413"/>
+        <location filename="../Workspace.py" line="415"/>
         <source>Extracting to a directory</source>
         <translation>ディレクトリに抽出</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="415"/>
+        <location filename="../Workspace.py" line="417"/>
         <source>Importing from a directory</source>
         <translation>ディレクトリからインポート</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="409"/>
+        <location filename="../Workspace.py" line="411"/>
         <source>Configs</source>
         <translation>コンフィグ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="409"/>
+        <location filename="../Workspace.py" line="411"/>
         <source>Please choose an option</source>
         <translation>オプションを選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="435"/>
+        <location filename="../Workspace.py" line="437"/>
         <source>Directory to read startup-configs</source>
         <translation>スタートアップコンフィグを読み込むフォルダ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="456"/>
+        <location filename="../Workspace.py" line="458"/>
         <source>IO Error</source>
         <translation>IO エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="446"/>
+        <location filename="../Workspace.py" line="448"/>
         <source>Importing %s from %s</source>
         <translation>%s を %s からインポートする</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="459"/>
+        <location filename="../Workspace.py" line="461"/>
         <source>Ignoring unknown device %s</source>
         <translation>不明なデバイス %s を無視する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="461"/>
+        <location filename="../Workspace.py" line="463"/>
         <source>Dynamips Error: %s</source>
         <translation>Dynamips エラー: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="463"/>
+        <location filename="../Workspace.py" line="465"/>
         <source>Dynamips Warning: %s</source>
         <translation>Dynamips 警告: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="335"/>
+        <location filename="../Workspace.py" line="337"/>
         <source>I/O Error</source>
         <translation>I/O エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="335"/>
+        <location filename="../Workspace.py" line="337"/>
         <source>I/O Error: %s</source>
         <translation>I/O エラー: %s</translation>
     </message>
@@ -5850,118 +5860,123 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="825"/>
+        <location filename="../Workspace.py" line="827"/>
         <source>Reloading nodes ...</source>
         <translation>ノードを再起動中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="510"/>
+        <location filename="../Workspace.py" line="512"/>
         <source>picture</source>
         <translation>画像</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1180"/>
+        <location filename="../Workspace.py" line="1182"/>
         <source>Dynamips error: %s</source>
         <translation>Dynamips エラー: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="667"/>
+        <location filename="../Workspace.py" line="669"/>
         <source>Reset saved interface labels?</source>
         <translation>保存したインターフェイスラベルをリセットしますか?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1136"/>
+        <location filename="../Workspace.py" line="1138"/>
         <source>Cannot create directories in %s: %s</source>
         <translation>%s %s にディレクトリを作成できません</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1208"/>
+        <location filename="../Workspace.py" line="1210"/>
         <source>Dynamips error!!: %s</source>
         <translation>Dynamips エラー!! %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1277"/>
+        <location filename="../Workspace.py" line="1299"/>
         <source>Connection lost with Dynamips hypervisor (crashed?)</source>
         <translation>Dynamips ハイパーバイザとの接続に失敗しました (クラッシュ?)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1309"/>
+        <location filename="../Workspace.py" line="1331"/>
         <source>Save As...</source>
         <translation>名前を付けて保存...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1042"/>
+        <location filename="../Workspace.py" line="1044"/>
         <source>Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)</source>
         <translation>Qemu ディスクの関連付けを外しますか？ (ラボファイル等を配布するとき便利ですが、ファイルのサイズが拡大されます)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="981"/>
+        <location filename="../Workspace.py" line="983"/>
         <source>This action is going to stop all your devices and captures, would you like to continue anyway?</source>
         <translation>この動作は現在実行中のデバイスとキャプチャを中止することになります、このまま続けますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="696"/>
+        <location filename="../Workspace.py" line="698"/>
         <source>Interface labels</source>
         <translation>インターフェイスのラベル</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="687"/>
+        <location filename="../Workspace.py" line="689"/>
         <source>Please hide the interface names before using this option</source>
         <translation>この機能を使うためにはインターフェースの名前を非表示にする必要があります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="696"/>
+        <location filename="../Workspace.py" line="698"/>
         <source>Interface labels have been reset</source>
         <translation>インターフェースのラベルをリセットしました</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1344"/>
+        <location filename="../Workspace.py" line="1366"/>
         <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
         <translation>この動作は現在実行中のノードのコンフィグが廃棄される可能性があります、このまま続けますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="922"/>
+        <location filename="../Workspace.py" line="924"/>
         <source>Check For Update</source>
         <translation>アップデートを確認</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="910"/>
+        <location filename="../Workspace.py" line="912"/>
         <source>Cannot check for update ... Try again later</source>
         <translation>アップデートの確認できませんでした ... また試してください</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="915"/>
+        <location filename="../Workspace.py" line="917"/>
         <source>Newer GNS3 version %s is available, do you want to visit our website to download it?</source>
         <translation>新しいバージョンの GNS3 %s が入手できます、ダウンロードページを開きますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="957"/>
+        <location filename="../Workspace.py" line="959"/>
         <source>This will clear your current topology. Continue?</source>
         <translation>現在のトポロジーをクリアします、続けますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1248"/>
+        <location filename="../Workspace.py" line="1270"/>
         <source>Clear Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="200"/>
+        <location filename="../Workspace.py" line="202"/>
         <source>Recent Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="782"/>
+        <location filename="../Workspace.py" line="784"/>
         <source>VirtualBox Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="782"/>
+        <location filename="../Workspace.py" line="784"/>
         <source>VirtualBox is not installed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1100"/>
+        <location filename="../Workspace.py" line="1102"/>
         <source>Dynamips error %s: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="1231"/>
+        <source>The file &apos;%s&apos; has not the right extension (.net)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
