@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_StyleDialog.ui'
 #
-# Created: Sun May 13 22:38:33 2012
+# Created: Mon May 14 23:43:52 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -70,7 +70,7 @@ class Ui_StyleDialog(object):
         self.gridlayout.addWidget(self.spinBox_Rotation, 5, 1, 1, 1)
         self.label_4 = QtGui.QLabel(self.groupBox)
         self.label_4.setText(QtGui.QApplication.translate("StyleDialog", "Rotation can be ajusted on the scene for a selected item with\n"
-"ALT + P or M (while editing)", None, QtGui.QApplication.UnicodeUTF8))
+"ALT and + (or P) / ALT and - (or M)", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setObjectName(_fromUtf8("label_4"))
         self.gridlayout.addWidget(self.label_4, 6, 0, 1, 2)
         self.vboxlayout.addWidget(self.groupBox)

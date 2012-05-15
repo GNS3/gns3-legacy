@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Sun May 13 22:38:32 2012
+# Created: Mon May 14 23:43:51 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -236,7 +236,7 @@ class Ui_IOSDialog(object):
         self.spinBoxBaseConsole.setSuffix(_fromUtf8(" TCP"))
         self.spinBoxBaseConsole.setMinimum(1)
         self.spinBoxBaseConsole.setMaximum(65535)
-        self.spinBoxBaseConsole.setProperty("value", 2000)
+        self.spinBoxBaseConsole.setProperty("value", 2001)
         self.spinBoxBaseConsole.setObjectName(_fromUtf8("spinBoxBaseConsole"))
         self.gridlayout3.addWidget(self.spinBoxBaseConsole, 3, 3, 1, 2)
         self.label_5 = QtGui.QLabel(self.groupBox_4)
@@ -256,6 +256,7 @@ class Ui_IOSDialog(object):
         self.spinBoxBaseAUX = QtGui.QSpinBox(self.groupBox_4)
         self.spinBoxBaseAUX.setSuffix(_fromUtf8(" TCP"))
         self.spinBoxBaseAUX.setMaximum(65535)
+        self.spinBoxBaseAUX.setProperty("value", 2501)
         self.spinBoxBaseAUX.setObjectName(_fromUtf8("spinBoxBaseAUX"))
         self.gridlayout3.addWidget(self.spinBoxBaseAUX, 4, 3, 1, 2)
         self.label_11 = QtGui.QLabel(self.groupBox_4)

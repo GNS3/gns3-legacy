@@ -563,7 +563,7 @@ p, li { white-space: pre-wrap; }
         <translation>La porta AUX non è disponibile per questo modello di router o la porta base AUX è impostata a 0 nelle preferenze</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="924"/>
+        <location filename="../Workspace.py" line="934"/>
         <source>GNS3 is up-to-date!</source>
         <translation>GNS3 è aggiornato!</translation>
     </message>
@@ -617,9 +617,26 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Application</name>
     <message>
-        <location filename="../Application.py" line="369"/>
+        <location filename="../Application.py" line="370"/>
         <source>Starting Graphical Network Simulator...</source>
         <translation>Avvio simulatore grafico di rete in corso...</translation>
+    </message>
+    <message>
+        <location filename="../Application.py" line="585"/>
+        <source>GNS3 configuration file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Application.py" line="577"/>
+        <source>You have installed a new GNS3 version.
+It is recommended to clear your old configuration, do you want to proceed?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Application.py" line="585"/>
+        <source>Configuration cleared!
+Please restart GNS3</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2619,11 +2636,6 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_NewProject.py" line="66"/>
-        <source>&amp;Open a project</source>
-        <translation>&amp;Apri un progetto</translation>
-    </message>
-    <message>
         <location filename="../Ui/Form_NewProject.py" line="33"/>
         <source>Project name:</source>
         <translation>Nome del progetto:</translation>
@@ -2647,6 +2659,16 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <location filename="../Ui/Form_NewProject.py" line="58"/>
         <source>Save IOS startup configurations</source>
         <translation>Salva le configurazioni d&apos;avvio di IOS</translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_NewProject.py" line="66"/>
+        <source>&amp;Open a Project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_NewProject.py" line="70"/>
+        <source>&amp;Recent Files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4191,7 +4213,7 @@ o sul collegamento stesso.</translation>
 <context>
     <name>ProjectDialog</name>
     <message>
-        <location filename="../ProjectDialog.py" line="95"/>
+        <location filename="../ProjectDialog.py" line="96"/>
         <source>Project Directory</source>
         <translation>Cartella del progetto</translation>
     </message>
@@ -4423,17 +4445,17 @@ o sul collegamento stesso.</translation>
         <translation>Imposta hypervisor</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1008"/>
+        <location filename="../Scene.py" line="1010"/>
         <source>annotation</source>
         <translation>Annotazione</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1017"/>
+        <location filename="../Scene.py" line="1019"/>
         <source>rectangle</source>
         <translation>rettangolo</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1025"/>
+        <location filename="../Scene.py" line="1027"/>
         <source>ellipse</source>
         <translation>ellissi</translation>
     </message>
@@ -4578,12 +4600,12 @@ o sul collegamento stesso.</translation>
         <translation type="unfinished">Connessione perduta</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="914"/>
+        <location filename="../Scene.py" line="915"/>
         <source>Topology file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="914"/>
+        <location filename="../Scene.py" line="915"/>
         <source>Please select only one file!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4755,6 +4777,12 @@ es: #copy start run</translation>
         <location filename="../Ui/Form_StyleDialog.py" line="72"/>
         <source>Rotation can be ajusted on the scene for a selected item with
 ALT + P or M (while editing)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_StyleDialog.ui" line="101"/>
+        <source>Rotation can be ajusted on the scene for a selected item with
+ALT and + (or P) / ALT and - (or M)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5707,92 +5735,87 @@ p, li { white-space: pre-wrap; }
         <translation>Aggancia</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1299"/>
+        <location filename="../Workspace.py" line="1318"/>
         <source>Dynamips error</source>
         <translation>Errore di Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="769"/>
+        <location filename="../Workspace.py" line="779"/>
         <source>Connection lost</source>
         <translation>Connessione perduta</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="738"/>
+        <location filename="../Workspace.py" line="748"/>
         <source>Abort</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="952"/>
+        <location filename="../Workspace.py" line="964"/>
         <source>Starting nodes ...</source>
         <translation>Avvio dei nodi in corso...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="815"/>
+        <location filename="../Workspace.py" line="825"/>
         <source>Stopping nodes ...</source>
         <translation>Arresto dei nodi in corso...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="821"/>
+        <location filename="../Workspace.py" line="831"/>
         <source>Suspending nodes ...</source>
         <translation>Sospensione dei nodi in corso...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="945"/>
+        <location filename="../Workspace.py" line="957"/>
         <source>Loading</source>
         <translation>In caricamento</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="653"/>
+        <location filename="../Workspace.py" line="663"/>
         <source>Hide hostnames</source>
         <translation>Nascondi i nomi degli host</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="658"/>
+        <location filename="../Workspace.py" line="668"/>
         <source>Show hostnames</source>
         <translation>Mostra il nome host</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1280"/>
+        <location filename="../Workspace.py" line="1299"/>
         <source>Open a file</source>
         <translation>Apri un file</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1276"/>
+        <location filename="../Workspace.py" line="1295"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Il percorso per Dynamips deve essere configurato</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1011"/>
+        <location filename="../Workspace.py" line="1024"/>
         <source>New Project</source>
         <translation>Nuovo progetto</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1366"/>
+        <location filename="../Workspace.py" line="1385"/>
         <source>Message</source>
         <translation>Messaggio</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="521"/>
+        <location filename="../Workspace.py" line="531"/>
         <source>Add a link</source>
         <translation>Aggiungi un collegamento</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="536"/>
+        <location filename="../Workspace.py" line="546"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1011"/>
+        <location filename="../Workspace.py" line="1024"/>
         <source>Can&apos;t create a project</source>
         <translation>Impossibile creare un progetto</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="945"/>
-        <source>Invalid file %s</source>
-        <translation>File %s invalido</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="1357"/>
+        <location filename="../Workspace.py" line="1376"/>
         <source>Would you like to save the current topology?</source>
         <translation>Vuoi salvare la topologia in uso?</translation>
     </message>
@@ -5802,37 +5825,37 @@ p, li { white-space: pre-wrap; }
         <translation>Cartella in cui scrivere le startup-config</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="675"/>
+        <location filename="../Workspace.py" line="685"/>
         <source>Hide interface names</source>
         <translation>Nascondi i nomi delle interfacce</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="680"/>
+        <location filename="../Workspace.py" line="690"/>
         <source>Show interface names</source>
         <translation>Mostra nomi delle interfacce</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1138"/>
+        <location filename="../Workspace.py" line="1151"/>
         <source>Snapshot</source>
         <translation>Istantanea</translation>
     </message>
     <message>
-        <location filename="../ProjectDialog.py" line="95"/>
+        <location filename="../ProjectDialog.py" line="96"/>
         <source>Cannot create directory %s: %s</source>
         <translation>Impossibile creare la cartella %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1143"/>
+        <location filename="../Workspace.py" line="1156"/>
         <source>Please wait while creating a snapshot</source>
         <translation>Creazione istantanea in corso</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="769"/>
+        <location filename="../Workspace.py" line="779"/>
         <source>%s: Dynamips error</source>
         <translation>%s: Errore Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="766"/>
+        <location filename="../Workspace.py" line="776"/>
         <source>%s: Dynamips warning</source>
         <translation>%s: Avviso Dynamips</translation>
     </message>
@@ -5907,7 +5930,7 @@ p, li { white-space: pre-wrap; }
         <translation>Ctrl+Y</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="827"/>
+        <location filename="../Workspace.py" line="837"/>
         <source>Reloading nodes ...</source>
         <translation>Riavvio dei nodi in corso...</translation>
     </message>
@@ -5917,87 +5940,87 @@ p, li { white-space: pre-wrap; }
         <translation>immagine</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1182"/>
+        <location filename="../Workspace.py" line="1195"/>
         <source>Dynamips error: %s</source>
         <translation>Errore di Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="669"/>
+        <location filename="../Workspace.py" line="679"/>
         <source>Reset saved interface labels?</source>
         <translation>Azzerare le etichette delle interfacce salvate?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1138"/>
+        <location filename="../Workspace.py" line="1151"/>
         <source>Cannot create directories in %s: %s</source>
         <translation>Impossibile creare cartelle in %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1210"/>
+        <location filename="../Workspace.py" line="1223"/>
         <source>Dynamips error!!: %s</source>
         <translation>Errore di Dynamips!!: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1299"/>
+        <location filename="../Workspace.py" line="1318"/>
         <source>Connection lost with Dynamips hypervisor (crashed?)</source>
         <translation>Connessione interrotta con l&apos;hypervisor di Dynamips (chiusura inattesa?)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1331"/>
+        <location filename="../Workspace.py" line="1350"/>
         <source>Save As...</source>
         <translation>Salva come...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1044"/>
+        <location filename="../Workspace.py" line="1057"/>
         <source>Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)</source>
         <translation>Vuoi rendere indipendenti i dischi di Qemu? (utile se intendi distribuire il laboratorio, ma incrementerà la dimensione totale)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="983"/>
+        <location filename="../Workspace.py" line="995"/>
         <source>This action is going to stop all your devices and captures, would you like to continue anyway?</source>
         <translation>Questa azione fermerà tutti i dispositivi e le catture, desideri continuare comunque?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="698"/>
+        <location filename="../Workspace.py" line="708"/>
         <source>Interface labels</source>
         <translation>Etichette delle interfacce</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="689"/>
+        <location filename="../Workspace.py" line="699"/>
         <source>Please hide the interface names before using this option</source>
         <translation>Nascondi i nomi delle interfacce prima di utilizzare questa opzione</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="698"/>
+        <location filename="../Workspace.py" line="708"/>
         <source>Interface labels have been reset</source>
         <translation>Le etichette delle interfacce sono state ripristinate</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1366"/>
+        <location filename="../Workspace.py" line="1385"/>
         <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
         <translation>Ci sono nodi in esecuzione e potresti perdere la loro configurazione, desideri continuare comunque?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="924"/>
+        <location filename="../Workspace.py" line="934"/>
         <source>Check For Update</source>
         <translation>Controllo aggiornamenti</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="912"/>
+        <location filename="../Workspace.py" line="922"/>
         <source>Cannot check for update ... Try again later</source>
         <translation>Impossibile verificare la presenza di aggiornamenti. Prova più tardi</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="917"/>
+        <location filename="../Workspace.py" line="927"/>
         <source>Newer GNS3 version %s is available, do you want to visit our website to download it?</source>
         <translation>La nuova versione %s di GNS3 è disponibile, vuoi visitare il sito web per scaricarla?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="959"/>
+        <location filename="../Workspace.py" line="971"/>
         <source>This will clear your current topology. Continue?</source>
         <translation>Questa azione cancellerà la topologia corrente. Vuoi continuare?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1270"/>
+        <location filename="../Workspace.py" line="1289"/>
         <source>Clear Menu</source>
         <translation>Pulisci il menu</translation>
     </message>
@@ -6007,23 +6030,33 @@ p, li { white-space: pre-wrap; }
         <translation>File recenti</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="784"/>
+        <location filename="../Workspace.py" line="794"/>
         <source>VirtualBox Manager</source>
         <translation>Gestore di VirtualBox</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="784"/>
+        <location filename="../Workspace.py" line="794"/>
         <source>VirtualBox is not installed!</source>
         <translation>VirtualBox non è installato!</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1102"/>
+        <location filename="../Workspace.py" line="1115"/>
         <source>Dynamips error %s: %s</source>
         <translation>Errore Dynamips %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1231"/>
+        <location filename="../Workspace.py" line="1244"/>
         <source>The file &apos;%s&apos; has not the right extension (.net)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="954"/>
+        <source>No such file: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Workspace.py" line="957"/>
+        <source>Not a regular file: %s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
