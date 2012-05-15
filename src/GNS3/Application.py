@@ -23,7 +23,8 @@
 import sys, os, time
 import GNS3.Globals as globals
 import GNS3.Config.Defaults as Defaults
-from PyQt4.QtGui import QApplication, QSplashScreen, QPixmap
+from distutils.version import LooseVersion
+from PyQt4.QtGui import QApplication, QSplashScreen, QPixmap, QMessageBox
 from PyQt4.QtCore import Qt, QVariant, QSettings, QEventLoop
 from GNS3.Utils import Singleton, translate
 from GNS3.Workspace import Workspace
@@ -560,21 +561,33 @@ class Application(QApplication, Singleton):
         self.mainWindow.restoreState(ConfDB().value("GUIState/State").toByteArray())
         self.mainWindow.show()
 
-        configFile = unicode(ConfDB().fileName(), 'utf-8', errors='replace')
-        # if we cannot find our config file, we start the Wizard dialog
-        if not os.access(configFile, os.F_OK):
-            dialog = Wizard(parent=self.mainWindow)
-            dialog.show()
-            self.mainWindow.centerDialog(dialog)
-            dialog.raise_()
-            dialog.activateWindow()
+        force_clear_configuration = True
+        version = ConfDB().get('GNS3/version', VERSION)
+        try:
+            # trick to test old version format (integer), before 0.8.2.1 release
+            int(version)
+        except:
+            force_clear_configuration = False
+            # for future releases
+            #if LooseVersion(VERSION) > version:
+            #    pass
+
+        if force_clear_configuration:
             self.mainWindow.raise_()
-            dialog.raise_()
+            reply = QMessageBox.question(self.mainWindow, translate("Application", "GNS3 configuration file"),
+                                        translate("Application", "You have installed a new GNS3 version.\nIt is recommended to clear your old configuration, do you want to proceed?"), QMessageBox.Yes, QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                ConfDB().clear()
+                c = ConfDB()
+                c.set('GNS3/version', VERSION)
+                c.sync()
+                globals.recordConfiguration = False
+                QMessageBox.information(self.mainWindow, translate("Application", "GNS3 configuration file"), translate("Application", "Configuration cleared!\nPlease restart GNS3"))
         else:
-            if file:
-                self.mainWindow.load_netfile(file)
-            elif confo.project_startup and os.access(configFile, os.F_OK):
-                dialog = ProjectDialog(parent=self.mainWindow, newProject=True)
+            # if we cannot find our config file, we start the Wizard dialog
+            configFile = unicode(ConfDB().fileName(), 'utf-8', errors='replace')
+            if not os.access(configFile, os.F_OK):
+                dialog = Wizard(parent=self.mainWindow)
                 dialog.show()
                 self.mainWindow.centerDialog(dialog)
                 dialog.raise_()
@@ -582,7 +595,18 @@ class Application(QApplication, Singleton):
                 self.mainWindow.raise_()
                 dialog.raise_()
             else:
-                self.mainWindow.raise_()
+                if file:
+                    self.mainWindow.load_netfile(file)
+                elif confo.project_startup and os.access(configFile, os.F_OK):
+                    dialog = ProjectDialog(parent=self.mainWindow, newProject=True)
+                    dialog.show()
+                    self.mainWindow.centerDialog(dialog)
+                    dialog.raise_()
+                    dialog.activateWindow()
+                    self.mainWindow.raise_()
+                    dialog.raise_()
+                else:
+                    self.mainWindow.raise_()
 
         retcode = QApplication.exec_()
 

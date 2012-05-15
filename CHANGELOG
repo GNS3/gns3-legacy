@@ -17,6 +17,19 @@ GNS3 0.8.2.1
  * Option to clean stopped captures from the captures dock.
  * Italian and Chinese translations updated.
  * Fixed bug that prevented loading topologies with non-existing IOS paths.
+ * New support for drag&drop of topology files inside GNS3.
+ * Some minor fixes for recent files menu (add saved file paths, order, non existing path entries are removed etc.)
+ * New key shortcuts for object rotation (notes, ellipses, rectangles). ALT and + (or P) / ALT and - (or M).
+ * Removed default shell execution for console programs.
+ * Default delay between each device start when starting all devices is now 1 second.
+ * Auto-increment base AUX port for external hypervisors.
+ * MessageBox "Object moved to a background layer ..." is now displayed only once by execution.
+ * Fixed issue when starting a capture on a node without any links (!)
+ * Fixed problem with version comparison in "Check for Update" feature.
+ * Fixed multi-window opening issue with snapshot dialog.
+ * Added recent files button for the project window.
+ * Press escape to stop adding a link.
+ * Detect old GNS3 configuration and ask user to clear it.
 
 GNS3 0.8.2 - 13.03.1012
 

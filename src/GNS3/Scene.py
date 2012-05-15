@@ -891,6 +891,9 @@ class Scene(QtGui.QGraphicsView):
                     return
             self.slotDeleteNode()
         elif globals.addingLinkFlag and key == QtCore.Qt.Key_Escape:
+            if self.__isFirstClick:
+                # Escape has been pressed while we were not drawing a link
+                globals.GApp.workspace.stopAction_addLink()
             self.resetAddingLink()
         else:
             QtGui.QGraphicsView.keyPressEvent(self, event)
@@ -917,7 +920,7 @@ class Scene(QtGui.QGraphicsView):
                     debug("Load file from drop event %s" % path)
                     globals.GApp.workspace.openFromDroppedFile(path)
                     break
-            event.accept()
+            event.acceptProposedAction()
         elif event.mimeData().hasText():
             symbolname = str(event.mimeData().text())
             # Get resource corresponding to node type
@@ -947,8 +950,9 @@ class Scene(QtGui.QGraphicsView):
             pos_y = node.pos().y() - (node.boundingRect().height() / 2)
             node.setPos(pos_x, pos_y)
 
+            event.acceptProposedAction()
             #event.setDropAction(QtCore.Qt.MoveAction)
-            event.accept()
+            #event.accept()
         else:
             event.ignore()
 

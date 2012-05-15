@@ -99,7 +99,7 @@
        <widget class="QLabel" name="label_4">
         <property name="text">
          <string>Rotation can be ajusted on the scene for a selected item with
-ALT + P or M (while editing)</string>
+ALT and + (or P) / ALT and - (or M)</string>
         </property>
        </widget>
       </item>

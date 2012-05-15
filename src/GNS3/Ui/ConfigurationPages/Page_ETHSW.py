@@ -110,7 +110,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
     def slotDeletePort(self):
         """ Delete a port
         """
-        
+
         item = self.treeWidgetPorts.currentItem()
         if (item != None):
             port = int(item.text(0))
@@ -125,8 +125,11 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
                 del self.vlans[vlan]
             self.treeWidgetPorts.takeTopLevelItem(self.treeWidgetPorts.indexOfTopLevelItem(item))
 
-        self.spinBoxPort.setValue(max(self.ports) + 1)
-        
+        if len(self.ports):
+            self.spinBoxPort.setValue(max(self.ports) + 1)
+        else:
+            self.spinBoxPort.setValue(1)
+
     def loadConfig(self, id, config = None):
         """ Load the config
         """

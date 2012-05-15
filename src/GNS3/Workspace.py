@@ -512,6 +512,16 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 command = undo.AddItem(globals.GApp.topology, item, translate('Workspace', 'picture'))
                 globals.GApp.topology.undoStack.push(command)
 
+    def stopAction_addLink(self):
+        """ Stop the add link action (called from the Scene)
+        """
+
+        self.action_Add_link.setChecked(False)
+        self.action_Add_link.setText(translate('Workspace', 'Add a link'))
+        self.action_Add_link.setIcon(QIcon(':/icons/connection.svg'))
+        globals.addingLinkFlag = False
+        globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
+
     def __action_addLink(self):
         """ Implement the QAction `addLink'
         - This function manage the creation of a connection between two nodes.
@@ -939,10 +949,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if file == None:
             return
-
         path = os.path.abspath(file)
+        if not os.path.exists(path):
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"), translate("Workspace", "No such file: %s") % file)
+            return
         if not os.path.isfile(path):
-            QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"), translate("Workspace", "Invalid file %s") % file)
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"), translate("Workspace", "Not a regular file: %s") % file)
             return
         self.projectFile = path
         self.setWindowTitle("GNS3 - " + self.projectFile)
@@ -991,6 +1003,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             new_project = False
         projectDialog = ProjectDialog(self, self.projectFile, self.projectWorkdir, self.projectConfigs, new_project)
         projectDialog.pushButtonOpenProject.setEnabled(False)
+        projectDialog.pushButtonRecentFiles.setEnabled(False)
         if self.projectFile:
             projectDialog.setWindowTitle("Save Project As...")
         #self.projectWorkdir = None
@@ -1246,16 +1259,22 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         # Check is the file is not already in list
+        index = 0
         for recent_file_conf in globals.GApp.recentfiles:
             if recent_file_conf.path == path:
-                return
+                globals.GApp.recentfiles.pop(index)
+                break
+            index += 1
+
+        # Add to the list
+        if os.path.exists(path):
+            recent_file_conf = recentFilesConf()
+            recent_file_conf.path = path
+            globals.GApp.recentfiles.append(recent_file_conf)
 
         # Limit number of recent file paths to 10
         if len(globals.GApp.recentfiles) == 10:
             globals.GApp.recentfiles.pop(0)
-        recent_file_conf = recentFilesConf()
-        recent_file_conf.path = path
-        globals.GApp.recentfiles.append(recent_file_conf)
 
         # Redraw recent files submenu
         self.submenu_RecentFiles.clear()

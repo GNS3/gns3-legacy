@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_NewProject.ui'
 #
-# Created: Sun May 13 22:38:32 2012
+# Created: Mon May 14 21:02:15 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_NewProject(object):
     def setupUi(self, NewProject):
         NewProject.setObjectName(_fromUtf8("NewProject"))
-        NewProject.resize(481, 211)
+        NewProject.resize(482, 210)
         NewProject.setWindowTitle(QtGui.QApplication.translate("NewProject", "New Project", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -63,9 +63,13 @@ class Ui_NewProject(object):
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.pushButtonOpenProject = QtGui.QPushButton(NewProject)
-        self.pushButtonOpenProject.setText(QtGui.QApplication.translate("NewProject", "&Open a project", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonOpenProject.setText(QtGui.QApplication.translate("NewProject", "&Open a Project", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonOpenProject.setObjectName(_fromUtf8("pushButtonOpenProject"))
         self.horizontalLayout.addWidget(self.pushButtonOpenProject)
+        self.pushButtonRecentFiles = QtGui.QPushButton(NewProject)
+        self.pushButtonRecentFiles.setText(QtGui.QApplication.translate("NewProject", "&Recent Files", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonRecentFiles.setObjectName(_fromUtf8("pushButtonRecentFiles"))
+        self.horizontalLayout.addWidget(self.pushButtonRecentFiles)
         spacerItem = QtGui.QSpacerItem(168, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.buttonBox = QtGui.QDialogButtonBox(NewProject)
