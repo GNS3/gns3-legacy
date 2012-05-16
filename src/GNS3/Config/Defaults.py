@@ -51,6 +51,8 @@ else:
     qemuwrapper_path = os.getcwdu() + os.sep + 'qemuwrapper/qemuwrapper.py'
     if os.path.exists(qemuwrapper_path):
         QEMUWRAPPER_DEFAULT_PATH = qemuwrapper_path
+    elif platform.system() == 'Linux':
+        QEMUWRAPPER_DEFAULT_PATH = unicode("/usr/lib/gns3/qemuwrapper.py")
     else:
         QEMUWRAPPER_DEFAULT_PATH = unicode("/usr/local/libexec/gns3/qemuwrapper.py")
 
@@ -72,6 +74,8 @@ else:
     vboxwrapper_path = os.getcwdu() + os.sep + 'vboxwrapper/vboxwrapper.py'
     if os.path.exists(qemuwrapper_path):
         VBOXWRAPPER_DEFAULT_PATH = vboxwrapper_path
+    elif platform.system() == 'Linux':
+        QEMUWRAPPER_DEFAULT_PATH = unicode("/usr/lib/gns3/vboxwrapper.py")
     else:
         VBOXWRAPPER_DEFAULT_PATH = unicode("/usr/local/libexec/gns3/vboxwrapper.py")
 

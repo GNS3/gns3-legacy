@@ -2,7 +2,7 @@
 # vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
 """Setup script for the GNS3 packages."""
 
-import sys, os, shutil
+import sys, os, shutil, platform
 sys.path.append('./src')
 from distutils.core import setup, Extension
 from glob import glob
@@ -199,6 +199,10 @@ elif sys.platform.startswith('darwin'):
 
 else:
 
+    if platform.system() == 'Linux':
+      wrapper_dir = '/usr/lib/gns3/'
+    else:
+      wrapper_dir = '/usr/local/libexec/gns3/'
     setup( # Distribution meta-data
             name = 'GNS3',
             version = VERSION,
@@ -223,7 +227,7 @@ else:
                 'GNS3.Ui.ConfigurationPages',
                 'GNS3.Langs'],
           package_data = { 'GNS3': ['Langs/*.qm', 'Dynagen/configspec'] },
-          data_files = [ ('/usr/local/libexec/gns3/', ['qemuwrapper/qemuwrapper.py', 'vboxwrapper/vboxcontroller_4_1.py', 'vboxwrapper/vboxwrapper.py']),
+          data_files = [ (wrapper_dir, ['qemuwrapper/qemuwrapper.py', 'vboxwrapper/vboxcontroller_4_1.py', 'vboxwrapper/vboxwrapper.py']),
                         ('/usr/local/share/examples/gns3/', ['baseconfig.txt'])]
     )
 
