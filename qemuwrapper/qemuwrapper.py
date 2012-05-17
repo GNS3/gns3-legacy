@@ -81,7 +81,7 @@ msg = "WELCOME to qemuwrapper.py"
 debugmsg(2, msg)
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.8.2.1'
+__version__ = '0.8.3'
 
 QEMU_PATH = "qemu"
 QEMU_IMG_PATH = "qemu-img"
@@ -692,7 +692,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         input_ = cStringIO.StringIO(request)
         tokens = []
         try:
-            tokens = csv.reader(input_, delimiter=' ').next()
+            tokens = csv.reader(input_, delimiter=' ', escapechar='\\').next()
         except StopIteration:
             pass
         return tokens

@@ -48,7 +48,7 @@ from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Node.IOSRouter import IOSRouter
-from GNS3.Node.AnyEmuDevice import AnyEmuDevice
+from GNS3.Node.AnyEmuDevice import AnyEmuDevice, PIX
 from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ATMSW import ATMSW
@@ -631,7 +631,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
+            if isinstance(item, IOSRouter) or (isinstance(item, AnyEmuDevice) and not isinstance(self.source, PIX)) or isinstance(item, AnyVBoxEmuDevice):
                 links = []
                 for localif in item.getConnectedInterfaceList():
                     linkobj = item.getConnectedLinkByName(localif)

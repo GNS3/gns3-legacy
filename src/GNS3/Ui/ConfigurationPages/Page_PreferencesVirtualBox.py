@@ -79,6 +79,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         self.baseConsole.setVisible(False)
 
         self.loadConf()
+        self.comboBoxNameVBoxImage.addItem("")
 
     def slotRefreshVMlist(self):
 
@@ -88,7 +89,6 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
 
         self.comboBoxNameVBoxImage.clear()
         self.comboBoxNameVBoxImage.addItem("")
-
 
         if not vbox:
             if globals.GApp.systconf['vbox'].enable_VBoxManager:

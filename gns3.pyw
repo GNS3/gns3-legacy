@@ -29,7 +29,7 @@ except:
     sys.stderr.write("Can't set default encoding to utf-8\n")
 
 # current version of GNS3
-VERSION = "0.8.2.1"
+VERSION = "0.8.3"
 
 try:
     from PyQt4 import QtCore, QtGui

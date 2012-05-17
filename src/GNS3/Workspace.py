@@ -1334,6 +1334,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         try:
             net = netfile.NETFile()
             net.export_net_file(self.projectFile, auto)
+            self.__addToRecentFiles(self.projectFile)
             globals.GApp.topology.changed = False
             autosave = globals.GApp.systconf['general'].autosave
             if autosave > 0:

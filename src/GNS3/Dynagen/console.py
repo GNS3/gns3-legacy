@@ -492,7 +492,10 @@ This requires VirtualBox Guest Additions to be installed inside the guest VM."""
         print 'Dynagen version ' + self.namespace.VERSION
         print 'hypervisor version(s):'
         for d in self.dynagen.dynamips.values():
-            print ' %s at %s:%i has version %s' % (d.type, d.host, d.port, d.version)
+            if d.type == "vboxwrapper":
+                print ' %s at %s:%i has version %s (running VirtualBox %s)' % (d.type, d.host, d.port, d.version, d.vbox_version)
+            else:
+                print ' %s at %s:%i has version %s' % (d.type, d.host, d.port, d.version)
         print """
 Credits:
 Dynagen is written by Greg Anuzelli

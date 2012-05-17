@@ -220,7 +220,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
                 return
 
         try:
-            p = sub.Popen([globals.GApp.systconf['dynamips'].path, '--help'], stdout = sub.PIPE)
+            p = sub.Popen([globals.GApp.systconf['dynamips'].path, '--help'], stdout=sub.PIPE)
             dynamips_stdout = p.communicate()
         except OSError:
             self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to start Dynamips")  + '</font>')

@@ -155,7 +155,10 @@ class ETHSW(AbstractNode):
         """
 
         if len(self.config['ports']) == len(self.getConnectedInterfaceList()):
-            port = max(self.config['ports']) + 1
+            if len(self.config['ports']) == 0:
+                port = 1
+            else:
+                port = max(self.config['ports']) + 1
             self.config['ports'][port] = 'access'
             self.config['vlans'][1].append(port)
 
