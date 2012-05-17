@@ -323,92 +323,92 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="206"/>
+        <location filename="../Link/AbstractEdge.py" line="207"/>
         <source>Delete</source>
         <translation>Odstranit</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="212"/>
+        <location filename="../Link/AbstractEdge.py" line="213"/>
         <source>Start Wireshark</source>
         <translation>Spustit Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="513"/>
+        <location filename="../Link/AbstractEdge.py" line="498"/>
         <source>Capture</source>
         <translation>Zachytávát pakety</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="227"/>
+        <location filename="../Link/AbstractEdge.py" line="228"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>Toto spojení nepodporuje zachytávání paketů</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="255"/>
+        <location filename="../Link/AbstractEdge.py" line="260"/>
         <source>Please choose a source</source>
         <translation>Vyberte zdroj</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="258"/>
+        <location filename="../Link/AbstractEdge.py" line="263"/>
         <source>No device available for traffic capture</source>
         <translation>Pro zachytávání paketů není k dispozici žádné zařízení </translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="454"/>
+        <location filename="../Link/AbstractEdge.py" line="439"/>
         <source>Dynamips error</source>
         <translation>Chyba v Dynamips</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="470"/>
+        <location filename="../Link/AbstractEdge.py" line="455"/>
         <source>Please configure capture options</source>
         <translation>Nastavte zachytávání paketů</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="161"/>
+        <location filename="../Link/AbstractEdge.py" line="162"/>
         <source>Link: %s (%s) -&gt; %s (%s)</source>
         <translation>Spojení: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="299"/>
+        <location filename="../Link/AbstractEdge.py" line="304"/>
         <source>Device %s is not running</source>
         <translation>Zařízení %s neběží</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="513"/>
+        <location filename="../Link/AbstractEdge.py" line="498"/>
         <source>Cannot start %s : %s</source>
         <translation>Nemůžu spustit %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="210"/>
+        <location filename="../Link/AbstractEdge.py" line="211"/>
         <source>Stop capturing</source>
         <translation>Zastavit zachytávání</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="295"/>
+        <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Device %s must be restarted to start capturing traffic</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="431"/>
+        <location filename="../Link/AbstractEdge.py" line="416"/>
         <source>Device %s must be stopped to stop capturing traffic</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="208"/>
+        <location filename="../Link/AbstractEdge.py" line="209"/>
         <source>Start capturing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="479"/>
+        <location filename="../Link/AbstractEdge.py" line="464"/>
         <source>%s is empty, no traffic has been captured on the link yet. Please try again later</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="482"/>
+        <location filename="../Link/AbstractEdge.py" line="467"/>
         <source>Cannot find %s : %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="482"/>
+        <location filename="../Link/AbstractEdge.py" line="467"/>
         <source>NOTE: This feature is only available for local hypervisors.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -909,12 +909,12 @@ Zadajte číslo idlepc hodnoty, kterou chcete nastaviť [1-%i], nebo stiskněte 
 <context>
     <name>Defaults</name>
     <message>
-        <location filename="../Config/Defaults.py" line="94"/>
+        <location filename="../Config/Defaults.py" line="98"/>
         <source>Wireshark Traditional Capture</source>
         <translation>Wireshark zachytávání</translation>
     </message>
     <message>
-        <location filename="../Config/Defaults.py" line="95"/>
+        <location filename="../Config/Defaults.py" line="99"/>
         <source>Wireshark Live Traffic Capture</source>
         <translation>Wireshark live zachytávání</translation>
     </message>
@@ -1001,22 +1001,22 @@ Please choose an alternate network interface:</source>
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="261"/>
+        <location filename="../Node/ETHSW.py" line="264"/>
         <source>Connection</source>
         <translation>Spojení</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="261"/>
+        <location filename="../Node/ETHSW.py" line="264"/>
         <source>No port available</source>
         <translation>Žádný port k dispozici</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="222"/>
+        <location filename="../Node/ETHSW.py" line="225"/>
         <source>Port type</source>
         <translation>Typ portu</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="222"/>
+        <location filename="../Node/ETHSW.py" line="225"/>
         <source>QinQ is only supported with Dynamips &gt; 0.2.8 RC2</source>
         <translation>QinQ je podporován pouze s Dynamips vyšší verze než 0.2.8 RC2</translation>
     </message>
@@ -1358,7 +1358,7 @@ Please choose an alternate network interface:</source>
         <translation>IOS obrazy a hypervisory</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="307"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="308"/>
         <source>IOS Images</source>
         <translation>IOS obrazy</translation>
     </message>
@@ -1393,7 +1393,7 @@ Please choose an alternate network interface:</source>
         <translation>IOS obraz</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="267"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="268"/>
         <source>Hypervisors</source>
         <translation>Hypervisory</translation>
     </message>
@@ -1403,12 +1403,12 @@ Please choose an alternate network interface:</source>
         <translation>Použij automatického správce hypervisorů</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="281"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="282"/>
         <source>&amp;Save</source>
         <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="286"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="287"/>
         <source>&amp;Delete</source>
         <translation>&amp;Odstranit</translation>
     </message>
@@ -1433,12 +1433,12 @@ Please choose an alternate network interface:</source>
         <translation>Pracovní adresář:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="274"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="275"/>
         <source>Host:Port</source>
         <translation>Hostitel:Port</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="275"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="276"/>
         <source>Base UDP</source>
         <translation>Počáteční UDP port</translation>
     </message>
@@ -1448,7 +1448,7 @@ Please choose an alternate network interface:</source>
         <translation>Počáteční port konzoly:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="308"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="309"/>
         <source>External hypervisors</source>
         <translation>Externí hypervisory</translation>
     </message>
@@ -1533,7 +1533,7 @@ Please choose an alternate network interface:</source>
         <translation>Vybrat základní konfigurační soubor</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="262"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="263"/>
         <source>Base AUX:</source>
         <translation>Základní AUX:</translation>
     </message>
@@ -4753,12 +4753,6 @@ Např. #copy start run</translation>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="72"/>
         <source>Rotation can be ajusted on the scene for a selected item with
-ALT + P or M (while editing)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_StyleDialog.ui" line="101"/>
-        <source>Rotation can be ajusted on the scene for a selected item with
 ALT and + (or P) / ALT and - (or M)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5750,7 +5744,7 @@ p, li { white-space: pre-wrap; }
         <translation>Nový projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1385"/>
+        <location filename="../Workspace.py" line="1386"/>
         <source>Message</source>
         <translation>Zpráva</translation>
     </message>
@@ -5770,7 +5764,7 @@ p, li { white-space: pre-wrap; }
         <translation>Nelze vytvořit projekt</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1376"/>
+        <location filename="../Workspace.py" line="1377"/>
         <source>Would you like to save the current topology?</source>
         <translation>Chcete uložit aktuální topologii?</translation>
     </message>
@@ -5920,7 +5914,7 @@ p, li { white-space: pre-wrap; }
         <translation>Spojení s Dynamips bylo ztraceno (program havaroval?)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1350"/>
+        <location filename="../Workspace.py" line="1351"/>
         <source>Save As...</source>
         <translation>Uložit jako…</translation>
     </message>
@@ -5950,7 +5944,7 @@ p, li { white-space: pre-wrap; }
         <translation>Názvy rozhraní byly obnoveny</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1385"/>
+        <location filename="../Workspace.py" line="1386"/>
         <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
         <translation>Vaše zařízení stále běží, můžete přijít o jejich konfigurace, chcete přesto pokračovat?</translation>
     </message>

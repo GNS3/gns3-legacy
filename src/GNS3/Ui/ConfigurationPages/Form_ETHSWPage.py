@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_ETHSWPage.ui'
 #
-# Created: Mon May 14 23:43:53 2012
+# Created: Wed May 16 22:17:23 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -41,7 +41,7 @@ class Ui_ETHSWPage(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.spinBoxPort.sizePolicy().hasHeightForWidth())
         self.spinBoxPort.setSizePolicy(sizePolicy)
-        self.spinBoxPort.setMinimum(0)
+        self.spinBoxPort.setMinimum(1)
         self.spinBoxPort.setMaximum(65535)
         self.spinBoxPort.setProperty("value", 1)
         self.spinBoxPort.setObjectName(_fromUtf8("spinBoxPort"))
@@ -56,8 +56,8 @@ class Ui_ETHSWPage(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.spinBoxVLAN.sizePolicy().hasHeightForWidth())
         self.spinBoxVLAN.setSizePolicy(sizePolicy)
-        self.spinBoxVLAN.setMinimum(0)
-        self.spinBoxVLAN.setMaximum(65535)
+        self.spinBoxVLAN.setMinimum(1)
+        self.spinBoxVLAN.setMaximum(4096)
         self.spinBoxVLAN.setProperty("value", 1)
         self.spinBoxVLAN.setObjectName(_fromUtf8("spinBoxVLAN"))
         self.gridlayout1.addWidget(self.spinBoxVLAN, 1, 1, 1, 1)

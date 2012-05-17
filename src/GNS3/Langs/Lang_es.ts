@@ -323,92 +323,92 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="206"/>
+        <location filename="../Link/AbstractEdge.py" line="207"/>
         <source>Delete</source>
         <translation>Eliminar</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="212"/>
+        <location filename="../Link/AbstractEdge.py" line="213"/>
         <source>Start Wireshark</source>
         <translation>Iniciar Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="513"/>
+        <location filename="../Link/AbstractEdge.py" line="498"/>
         <source>Capture</source>
         <translation>Capturar</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="227"/>
+        <location filename="../Link/AbstractEdge.py" line="228"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>La captura de paquetes no es soportada en este tipo de vinculo</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="255"/>
+        <location filename="../Link/AbstractEdge.py" line="260"/>
         <source>Please choose a source</source>
         <translation>Por favor seleccione un origen</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="258"/>
+        <location filename="../Link/AbstractEdge.py" line="263"/>
         <source>No device available for traffic capture</source>
         <translation>No hay dispositivo disponible para la captura de trafico</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="454"/>
+        <location filename="../Link/AbstractEdge.py" line="439"/>
         <source>Dynamips error</source>
         <translation>Error Dynamips</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="470"/>
+        <location filename="../Link/AbstractEdge.py" line="455"/>
         <source>Please configure capture options</source>
         <translation>Por favor configure las opciones de captura</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="161"/>
+        <location filename="../Link/AbstractEdge.py" line="162"/>
         <source>Link: %s (%s) -&gt; %s (%s)</source>
         <translation>Vinculo: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="299"/>
+        <location filename="../Link/AbstractEdge.py" line="304"/>
         <source>Device %s is not running</source>
         <translation>El dispositivo %s no esta en funcionamiento</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="513"/>
+        <location filename="../Link/AbstractEdge.py" line="498"/>
         <source>Cannot start %s : %s</source>
         <translation>No se puede iniciar %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="210"/>
+        <location filename="../Link/AbstractEdge.py" line="211"/>
         <source>Stop capturing</source>
         <translation>Deteniendo captura</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="295"/>
+        <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Device %s must be restarted to start capturing traffic</source>
         <translation>El dispositivo %s debe ser reiniciado para comenzar con la captura de trafico</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="431"/>
+        <location filename="../Link/AbstractEdge.py" line="416"/>
         <source>Device %s must be stopped to stop capturing traffic</source>
         <translation>El dispositivo %s debe ser detenido para finalizar con la captura de trafico</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="208"/>
+        <location filename="../Link/AbstractEdge.py" line="209"/>
         <source>Start capturing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="479"/>
+        <location filename="../Link/AbstractEdge.py" line="464"/>
         <source>%s is empty, no traffic has been captured on the link yet. Please try again later</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="482"/>
+        <location filename="../Link/AbstractEdge.py" line="467"/>
         <source>Cannot find %s : %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="482"/>
+        <location filename="../Link/AbstractEdge.py" line="467"/>
         <source>NOTE: This feature is only available for local hypervisors.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -909,12 +909,12 @@ Ingrese en numero del valor de idlepc que desea aplicar [1-%i] o oprima ENTER pa
 <context>
     <name>Defaults</name>
     <message>
-        <location filename="../Config/Defaults.py" line="94"/>
+        <location filename="../Config/Defaults.py" line="98"/>
         <source>Wireshark Traditional Capture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Config/Defaults.py" line="95"/>
+        <location filename="../Config/Defaults.py" line="99"/>
         <source>Wireshark Live Traffic Capture</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1001,22 +1001,22 @@ Please choose an alternate network interface:</source>
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="261"/>
+        <location filename="../Node/ETHSW.py" line="264"/>
         <source>Connection</source>
         <translation>Conexion</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="261"/>
+        <location filename="../Node/ETHSW.py" line="264"/>
         <source>No port available</source>
         <translation>Puerto no disponible</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="222"/>
+        <location filename="../Node/ETHSW.py" line="225"/>
         <source>Port type</source>
         <translation>Tipo de puerto</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="222"/>
+        <location filename="../Node/ETHSW.py" line="225"/>
         <source>QinQ is only supported with Dynamips &gt; 0.2.8 RC2</source>
         <translation>QinQ no es soportado con Dynamips &gt; 0.2.8.RC2</translation>
     </message>
@@ -1358,7 +1358,7 @@ Please choose an alternate network interface:</source>
         <translation>Imagenes IOS y Hypervisors</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="307"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="308"/>
         <source>IOS Images</source>
         <translation>Imagenes IOS</translation>
     </message>
@@ -1393,7 +1393,7 @@ Please choose an alternate network interface:</source>
         <translation>Imagen IOS</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="267"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="268"/>
         <source>Hypervisors</source>
         <translation>Hypervisor</translation>
     </message>
@@ -1403,12 +1403,12 @@ Please choose an alternate network interface:</source>
         <translation>Utilice el administrador de Hypervisor</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="281"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="282"/>
         <source>&amp;Save</source>
         <translation>&amp;Guardar</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="286"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="287"/>
         <source>&amp;Delete</source>
         <translation>&amp;Eliminar</translation>
     </message>
@@ -1433,12 +1433,12 @@ Please choose an alternate network interface:</source>
         <translation>Directorio de trabajo:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="274"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="275"/>
         <source>Host:Port</source>
         <translation>Host:Puerto</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="275"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="276"/>
         <source>Base UDP</source>
         <translation>Base UDP</translation>
     </message>
@@ -1448,7 +1448,7 @@ Please choose an alternate network interface:</source>
         <translation>Base consola:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="308"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="309"/>
         <source>External hypervisors</source>
         <translation>Hypervisors externos</translation>
     </message>
@@ -1533,7 +1533,7 @@ Please choose an alternate network interface:</source>
         <translation>Seleccione un archivo de configuracion Base</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="262"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="263"/>
         <source>Base AUX:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4751,12 +4751,6 @@ p.e. #copy start run</translation>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="72"/>
         <source>Rotation can be ajusted on the scene for a selected item with
-ALT + P or M (while editing)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_StyleDialog.ui" line="101"/>
-        <source>Rotation can be ajusted on the scene for a selected item with
 ALT and + (or P) / ALT and - (or M)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5748,7 +5742,7 @@ p, li { white-space: pre-wrap; }
         <translation>Proyecto nuevo</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1385"/>
+        <location filename="../Workspace.py" line="1386"/>
         <source>Message</source>
         <translation>Mensaje</translation>
     </message>
@@ -5768,7 +5762,7 @@ p, li { white-space: pre-wrap; }
         <translation>No se puede crear el proyecto</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1376"/>
+        <location filename="../Workspace.py" line="1377"/>
         <source>Would you like to save the current topology?</source>
         <translation>Desea guardar la topologia actual?</translation>
     </message>
@@ -5918,7 +5912,7 @@ p, li { white-space: pre-wrap; }
         <translation>Conexion perdida con el hypervisor de Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1350"/>
+        <location filename="../Workspace.py" line="1351"/>
         <source>Save As...</source>
         <translation>Guardar como...</translation>
     </message>
@@ -5948,7 +5942,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1385"/>
+        <location filename="../Workspace.py" line="1386"/>
         <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
         <translation type="unfinished"></translation>
     </message>

@@ -323,92 +323,92 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="206"/>
+        <location filename="../Link/AbstractEdge.py" line="207"/>
         <source>Delete</source>
         <translation>削除</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="212"/>
+        <location filename="../Link/AbstractEdge.py" line="213"/>
         <source>Start Wireshark</source>
         <translation>Wiresharkを起動</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="513"/>
+        <location filename="../Link/AbstractEdge.py" line="498"/>
         <source>Capture</source>
         <translation>キャプチャする</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="227"/>
+        <location filename="../Link/AbstractEdge.py" line="228"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>このリンクでのキャプチャはサポートされていません</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="255"/>
+        <location filename="../Link/AbstractEdge.py" line="260"/>
         <source>Please choose a source</source>
         <translation>送信元を選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="258"/>
+        <location filename="../Link/AbstractEdge.py" line="263"/>
         <source>No device available for traffic capture</source>
         <translation>キャプチャできるデバイスはありません</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="454"/>
+        <location filename="../Link/AbstractEdge.py" line="439"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="470"/>
+        <location filename="../Link/AbstractEdge.py" line="455"/>
         <source>Please configure capture options</source>
         <translation>キャプチャオプションを設定してください</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="161"/>
+        <location filename="../Link/AbstractEdge.py" line="162"/>
         <source>Link: %s (%s) -&gt; %s (%s)</source>
         <translation>リンク: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="299"/>
+        <location filename="../Link/AbstractEdge.py" line="304"/>
         <source>Device %s is not running</source>
         <translation>デバイス %s は起動していません</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="513"/>
+        <location filename="../Link/AbstractEdge.py" line="498"/>
         <source>Cannot start %s : %s</source>
         <translation>スタートできません %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="210"/>
+        <location filename="../Link/AbstractEdge.py" line="211"/>
         <source>Stop capturing</source>
         <translation>キャプチャを停止しています</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="295"/>
+        <location filename="../Link/AbstractEdge.py" line="300"/>
         <source>Device %s must be restarted to start capturing traffic</source>
         <translation>デバイス %s はトラフィックキャプチャを再開しなければなりません</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="431"/>
+        <location filename="../Link/AbstractEdge.py" line="416"/>
         <source>Device %s must be stopped to stop capturing traffic</source>
         <translation>デバイス %s はトラフィックキャプチャを停止しなければなりません</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="208"/>
+        <location filename="../Link/AbstractEdge.py" line="209"/>
         <source>Start capturing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="479"/>
+        <location filename="../Link/AbstractEdge.py" line="464"/>
         <source>%s is empty, no traffic has been captured on the link yet. Please try again later</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="482"/>
+        <location filename="../Link/AbstractEdge.py" line="467"/>
         <source>Cannot find %s : %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="482"/>
+        <location filename="../Link/AbstractEdge.py" line="467"/>
         <source>NOTE: This feature is only available for local hypervisors.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -908,12 +908,12 @@ idlepc 値の前にある番号を入力してください [1-%i]　または EN
 <context>
     <name>Defaults</name>
     <message>
-        <location filename="../Config/Defaults.py" line="94"/>
+        <location filename="../Config/Defaults.py" line="98"/>
         <source>Wireshark Traditional Capture</source>
         <translation>従来的なWiresharkキャプチャ</translation>
     </message>
     <message>
-        <location filename="../Config/Defaults.py" line="95"/>
+        <location filename="../Config/Defaults.py" line="99"/>
         <source>Wireshark Live Traffic Capture</source>
         <translation>ライブWiresharkトラフィックキャプチャー</translation>
     </message>
@@ -1000,22 +1000,22 @@ Please choose an alternate network interface:</source>
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="261"/>
+        <location filename="../Node/ETHSW.py" line="264"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="261"/>
+        <location filename="../Node/ETHSW.py" line="264"/>
         <source>No port available</source>
         <translation>使用できるポートはありません</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="222"/>
+        <location filename="../Node/ETHSW.py" line="225"/>
         <source>Port type</source>
         <translation>ポートタイプ</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="222"/>
+        <location filename="../Node/ETHSW.py" line="225"/>
         <source>QinQ is only supported with Dynamips &gt; 0.2.8 RC2</source>
         <translation>QinQ は Dynamips バージョン 0.2.8 RC2 以上が必要です</translation>
     </message>
@@ -1357,7 +1357,7 @@ Please choose an alternate network interface:</source>
         <translation>IOS イメージとハイパーバイザ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="307"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="308"/>
         <source>IOS Images</source>
         <translation>IOS イメージ</translation>
     </message>
@@ -1392,7 +1392,7 @@ Please choose an alternate network interface:</source>
         <translation>IOS イメージ</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="267"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="268"/>
         <source>Hypervisors</source>
         <translation>ハイパーバイザ</translation>
     </message>
@@ -1402,12 +1402,12 @@ Please choose an alternate network interface:</source>
         <translation>ハイパーバイザマネージャを使用する</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="281"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="282"/>
         <source>&amp;Save</source>
         <translation>保存(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="286"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="287"/>
         <source>&amp;Delete</source>
         <translation>削除(&amp;D)</translation>
     </message>
@@ -1432,12 +1432,12 @@ Please choose an alternate network interface:</source>
         <translation>作業ディレクトリ:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="274"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="275"/>
         <source>Host:Port</source>
         <translation>ホスト:ポート</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="275"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="276"/>
         <source>Base UDP</source>
         <translation>ベース UDP</translation>
     </message>
@@ -1447,7 +1447,7 @@ Please choose an alternate network interface:</source>
         <translation>ベースコンソール:</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="308"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="309"/>
         <source>External hypervisors</source>
         <translation>外部ハイパーバイザ</translation>
     </message>
@@ -1532,7 +1532,7 @@ Please choose an alternate network interface:</source>
         <translation>ベース設定ファイルを選択してください</translation>
     </message>
     <message>
-        <location filename="../Ui/Form_IOSDialog.py" line="262"/>
+        <location filename="../Ui/Form_IOSDialog.py" line="263"/>
         <source>Base AUX:</source>
         <translation>ベース AUX:</translation>
     </message>
@@ -4751,12 +4751,6 @@ i.e. #copy start run</source>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="72"/>
         <source>Rotation can be ajusted on the scene for a selected item with
-ALT + P or M (while editing)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Ui/Form_StyleDialog.ui" line="101"/>
-        <source>Rotation can be ajusted on the scene for a selected item with
 ALT and + (or P) / ALT and - (or M)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5748,7 +5742,7 @@ p, li { white-space: pre-wrap; }
         <translation>新規プロジェクト</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1385"/>
+        <location filename="../Workspace.py" line="1386"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
@@ -5768,7 +5762,7 @@ p, li { white-space: pre-wrap; }
         <translation>プロジェクトを作成できませんでした</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1376"/>
+        <location filename="../Workspace.py" line="1377"/>
         <source>Would you like to save the current topology?</source>
         <translation>現在のトポロジーを保存しますか?</translation>
     </message>
@@ -5918,7 +5912,7 @@ p, li { white-space: pre-wrap; }
         <translation>Dynamips ハイパーバイザとの接続に失敗しました (クラッシュ?)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1350"/>
+        <location filename="../Workspace.py" line="1351"/>
         <source>Save As...</source>
         <translation>名前を付けて保存...</translation>
     </message>
@@ -5948,7 +5942,7 @@ p, li { white-space: pre-wrap; }
         <translation>インターフェースのラベルをリセットしました</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1385"/>
+        <location filename="../Workspace.py" line="1386"/>
         <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
         <translation>この動作は現在実行中のノードのコンフィグが廃棄される可能性があります、このまま続けますか？</translation>
     </message>
