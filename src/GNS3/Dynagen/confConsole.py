@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 import os
 import cmd
 import re
+import time
 from dynamips_lib import DynamipsError, DynamipsWarning, GENERIC_7200_PAS, GENERIC_3600_NMS, GENERIC_1700_NMS, GENERIC_2600_NMS, GENERIC_3700_NMS
 
 # Regex matching slot definitions. Used in pre_cmd() function in confRouterConsole
@@ -58,7 +59,8 @@ def debug(string):
     import __main__
     # Debug level 2, console debugs
     if __main__.dynagen.debuglevel >= 2:
-        print '  DEBUG: ' + unicode(string)
+        curtime = time.strftime("%H:%M:%S")
+        print "%s: DEBUG (2): %s" % (curtime, unicode(string))
 
 
 ##############end of some functions from console.py##################

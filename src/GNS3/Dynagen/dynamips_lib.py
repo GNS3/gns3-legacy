@@ -25,11 +25,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #This file is a client, that connects to 'dynamips' server.
 #This is part of Dynagen-GNS3.
 
-from socket import socket, timeout, AF_INET, AF_INET6, SOCK_STREAM
+from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
 import sys
 import os
 import re
 import copy
+import time
 
 #version = "0.11.0.101003"
 # Minimum version of dynamips required. Currently 0.2.8-RC1 (due to change to
@@ -5114,8 +5115,8 @@ def debug(string):
     global DEBUG
 
     if DEBUG:
-        print '  DEBUG: ' + unicode(string)
-
+        curtime = time.strftime("%H:%M:%S")
+        print "%s: DEBUG (1): %s" % (curtime, unicode(string))
 
 if __name__ == '__main__':
     import sys
