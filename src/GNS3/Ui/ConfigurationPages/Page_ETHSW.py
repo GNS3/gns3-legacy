@@ -158,7 +158,8 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
                     self.vlans[vlan].append(port)
         self.treeWidgetPorts.resizeColumnToContents(0)
         self.treeWidgetPorts.resizeColumnToContents(1)
-        self.spinBoxPort.setValue(max(self.ports) + 1)
+        if len(self.ports) > 0:
+            self.spinBoxPort.setValue(max(self.ports) + 1)
 
     def saveConfig(self, id, config = None):
         """ Save the config

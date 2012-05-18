@@ -193,8 +193,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         path = fb.getDir()
 
         if path:
-            path = os.path.normpath(path)
-            self.dynamips_workdir.setText(path)
+            self.dynamips_workdir.setText(os.path.normpath(path))
 
             if sys.platform.startswith('win'):
                 try:

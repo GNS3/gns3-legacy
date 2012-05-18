@@ -424,6 +424,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         fb = fileBrowser(translate('Workspace', 'Directory to write startup-configs'), directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self)
         path = fb.getDir()
         if path:
+            path = os.path.normpath(path)
             globals.GApp.workspace.projectConfigs = path
             net = netfile.NETFile()
             for device in globals.GApp.dynagen.devices.values():
@@ -437,6 +438,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         fb = fileBrowser(translate('Workspace', 'Directory to read startup-configs'), directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self)
         path = fb.getDir()
         if path:
+            path = os.path.normpath(path)
             try:
                 contents = os.listdir(path)
             except OSError, e:
@@ -492,6 +494,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                         filter = 'PNG File (*.png);;GIF File (*.gif);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PBM File (*.pbm);;PGM File (*.pgm);;PPM File (*.ppm);;All files (*.*)',
                                         directory=directory, parent=self).getFile()
         if path != None and path != '':
+            path = os.path.normpath(path)
             pixmap_image = QtGui.QPixmap(path)
             if not pixmap_image.isNull():
 
@@ -1300,7 +1303,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                        directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getFile()
 
         if path and (selected == 'NET file (*.net)' or selected == ''):
-            self.loadNetfile(path)
+            self.loadNetfile(os.path.normpath(path))
 
     def loadNetfile(self, path):
 
@@ -1353,6 +1356,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if path != None and path != '':
             if str(selected) == 'NET file (*.net)' or selected == '':
+                path = os.path.normpath(path)
                 if not path.endswith('.net'):
                     path = path + '.net'
                 self.projectFile = path

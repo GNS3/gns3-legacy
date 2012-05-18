@@ -157,11 +157,11 @@ class ETHSW(AbstractNode):
         if len(self.config['ports']) == len(self.getConnectedInterfaceList()):
             if len(self.config['ports']) == 0:
                 port = 1
+                self.config['vlans'][1] = []
             else:
                 port = max(self.config['ports']) + 1
             self.config['ports'][port] = 'access'
             self.config['vlans'][1].append(port)
-
 
     def getInterfaces(self):
         """ Returns all interfaces

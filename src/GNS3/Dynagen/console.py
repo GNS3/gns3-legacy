@@ -1505,7 +1505,8 @@ Examples:
 
         # Debug level 2, console debugs
         if self.dynagen.debuglevel >= 2:
-            print '  DEBUG: ' + str(string)
+            curtime = time.strftime("%H:%M:%S")
+            print "%s: DEBUG (2): %s" % (curtime, unicode(string))
 
 def con_cmp(row1, row2):
     return cmp(row1[4], row2[4])

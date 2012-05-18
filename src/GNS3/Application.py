@@ -412,12 +412,9 @@ class Application(QApplication, Singleton):
         confo.HypervisorManager_binding = ConfDB().get('Dynamips/hypervisor_manager_binding', unicode('127.0.0.1'))
         confo.allocateHypervisorPerIOS = ConfDB().value("Dynamips/allocate_hypervisor_per_IOS", QVariant(True)).toBool()
 
-        # replace ~user and $HOME by home directory
-        if os.environ.has_key("HOME"):
-            confo.path = confo.path.replace('$HOME', os.environ["HOME"])
-            confo.workdir =  confo.workdir.replace('$HOME', os.environ["HOME"])
-        confo.path = os.path.expanduser(confo.path)
-        confo.workdir = os.path.expanduser(confo.workdir)
+        # Expand user home dir and environment variables
+        confo.path = os.path.expandvars(os.path.expanduser(confo.path))
+        confo.workdir = os.path.expandvars(os.path.expanduser(confo.workdir))
 
         # Qemu config
         self.systconf['qemu'] = systemQemuConf()
@@ -436,13 +433,9 @@ class Application(QApplication, Singleton):
         confo.qemuwrapper_baseUDP = int(ConfDB().get('Qemu/qemuwrapper_baseUDP', 20000))
         confo.qemuwrapper_baseConsole = int(ConfDB().get('Qemu/qemuwrapper_baseConsole', 3000))
 
-        # Qemu replace ~user and $HOME by home directory
-        if os.environ.has_key("HOME"):
-            confo.qemuwrapper_path = confo.qemuwrapper_path.replace('$HOME', os.environ["HOME"])
-            confo.qemuwrapper_workdir =  confo.qemuwrapper_workdir.replace('$HOME', os.environ["HOME"])
-
-        confo.qemuwrapper_path = os.path.expanduser(confo.qemuwrapper_path)
-        confo.qemuwrapper_workdir = os.path.expanduser(confo.qemuwrapper_workdir)
+        # Expand user home dir and environment variables
+        confo.qemuwrapper_path = os.path.expandvars(os.path.expanduser(confo.qemuwrapper_path))
+        confo.qemuwrapper_workdir = os.path.expandvars(os.path.expanduser(confo.qemuwrapper_workdir))
 
         # VBox config
         self.systconf['vbox'] = systemVBoxConf()
@@ -460,13 +453,9 @@ class Application(QApplication, Singleton):
         confo.vboxwrapper_baseUDP = int(ConfDB().get('VBox/vboxwrapper_baseUDP', 20900))
         confo.vboxwrapper_baseConsole = int(ConfDB().get('VBox/vboxwrapper_baseConsole', 3900))
 
-        # VBox replace ~user and $HOME by home directory
-        if os.environ.has_key("HOME"):
-            confo.vboxwrapper_path = confo.vboxwrapper_path.replace('$HOME', os.environ["HOME"])
-            confo.vboxwrapper_workdir =  confo.vboxwrapper_workdir.replace('$HOME', os.environ["HOME"])
-
-        confo.vboxwrapper_path = os.path.expanduser(confo.vboxwrapper_path)
-        confo.vboxwrapper_workdir = os.path.expanduser(confo.vboxwrapper_workdir)
+        # Expand user home dir and environment variables
+        confo.vboxwrapper_path = os.path.expandvars(os.path.expanduser(confo.vboxwrapper_path))
+        confo.vboxwrapper_workdir = os.path.expandvars(os.path.expanduser(confo.vboxwrapper_workdir))
 
         # Capture config
         self.systconf['capture'] = systemCaptureConf()
@@ -475,12 +464,9 @@ class Application(QApplication, Singleton):
         confo.cap_cmd = ConfDB().get('Capture/capture_reader_cmd', Defaults.CAPTURE_DEFAULT_CMD)
         confo.auto_start = ConfDB().value('Capture/auto_start_cmd', QVariant(False)).toBool()
 
-        # replace ~user and $HOME by home directory
-        if os.environ.has_key("HOME"):
-            confo.cap_cmd = confo.cap_cmd.replace('$HOME', os.environ["HOME"])
-            confo.workdir =  confo.workdir.replace('$HOME', os.environ["HOME"])
-        confo.cap_cmd = os.path.expanduser(confo.cap_cmd)
-        confo.workdir = os.path.expanduser(confo.workdir)
+        # Expand user home dir and environment variables
+        confo.cap_cmd = os.path.expandvars(os.path.expanduser(confo.cap_cmd))
+        confo.workdir = os.path.expandvars(os.path.expanduser(confo.workdir))
 
         # System general config
         self.systconf['general'] = systemGeneralConf()
@@ -508,14 +494,10 @@ class Application(QApplication, Singleton):
             confo.auto_check_for_update = ConfDB().value("GNS3/auto_check_for_update", QVariant(False)).toBool()
         confo.last_check_for_update = int(ConfDB().get('GNS3/last_check_for_update', 0))
 
-        # replace ~user and $HOME by home directory
-        if os.environ.has_key("HOME"):
-            confo.term_cmd = confo.term_cmd.replace('$HOME', os.environ["HOME"])
-            confo.project_path = confo.project_path.replace('$HOME', os.environ["HOME"])
-            confo.ios_path =  confo.ios_path.replace('$HOME', os.environ["HOME"])
-        confo.term_cmd = os.path.expanduser(confo.term_cmd)
-        confo.project_path = os.path.expanduser(confo.project_path)
-        confo.ios_path = os.path.expanduser(confo.ios_path)
+        # Expand user home dir and environment variables
+        confo.term_cmd = os.path.expandvars(os.path.expanduser(confo.term_cmd))
+        confo.project_path = os.path.expandvars(os.path.expanduser(confo.project_path))
+        confo.ios_path = os.path.expandvars(os.path.expanduser(confo.ios_path))
 
         # Now systGeneral settings are loaded, load the translator
         self.translator = Translator()
@@ -562,7 +544,7 @@ class Application(QApplication, Singleton):
         self.mainWindow.show()
 
         force_clear_configuration = True
-        version = ConfDB().get('GNS3/version', VERSION)
+        version = ConfDB().get('GNS3/version', '0.0.1')
         try:
             # trick to test old version format (integer), before 0.8.2.1 release
             int(version)

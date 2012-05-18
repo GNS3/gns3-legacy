@@ -98,9 +98,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
                 return (None, None, None)
 
         projectFile = projectDir + os.sep + 'topology.net'
-
-        if os.environ.has_key("HOME"):
-            projectFile = projectFile.replace('$HOME', os.environ["HOME"])
+        projectFile = os.path.expandvars(os.path.expanduser(projectFile))
 
         if self.checkBox_WorkdirFiles.checkState() == QtCore.Qt.Checked:
             projectWorkdir = os.path.normpath(projectDir + os.sep + 'working')

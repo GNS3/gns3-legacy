@@ -19,7 +19,7 @@
 # http://www.gns3.net/contact
 #
 
-import os, sys, re
+import os, sys, re, time
 import subprocess as sub
 import GNS3.Globals as globals
 import subprocess
@@ -73,8 +73,8 @@ def debug(string):
 
         # Level 2, GNS3 debugs
         if globals.debugLevel >= 2:
-            print '* DEBUG: ' + unicode(string)
-            #globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+            curtime = time.strftime("%H:%M:%S")
+            print "%s: DEBUG (2): %s" % (curtime, unicode(string))
 
 def error(msg):
     """ Print out an error message

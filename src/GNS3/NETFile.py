@@ -28,7 +28,7 @@ def debugmsg(level, message):
     if debuglevel >= level:
         print message
 
-import os, re, random, base64, traceback
+import os, re, random, base64, traceback, time
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Dynagen.dynamips_lib as lib
@@ -904,7 +904,8 @@ class NETFile(object):
             # Write out the config to a file
             file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.cfg'
             if auto == False:
-                print translate("NETFile", "Exporting %s configuration to %s") % (device.name, file_path)
+                curtime = time.strftime("%H:%M:%S")
+                print translate("NETFile", "%s: Exporting %s configuration to %s") % (curtime, device.name, file_path)
         except lib.DynamipsError, msg:
             if auto == False:
                 print translate("NETFile", "%s: Dynamips error: %s") % (device.name, msg)
@@ -952,6 +953,7 @@ class NETFile(object):
             # record router configs
             if isinstance(device, lib.Router) and globals.GApp.workspace.projectConfigs:
                 self.export_router_config(device, auto)
+        print ""
 
         note_nb = 1
         shape_nb = 1
