@@ -156,9 +156,10 @@ class xEMUInstance(object):
         debugmsg(2, "xEMUInstance::start()")
         command = self._build_command()
 
-        print "command:", " ".join(command)
+        qemu_cmd = " ".join(command)
+        print "Command =>", qemu_cmd
         try:
-            self.process = subprocess.Popen(command,
+            self.process = subprocess.Popen(qemu_cmd.strip(),
                                             stdin=subprocess.PIPE,
                                             cwd=self.workdir)
         except OSError, e:
@@ -349,7 +350,7 @@ class QEMUInstance(xEMUInstance):
         command.extend(self._net_options())
         command.extend(self._ser_options())
         if self.options:
-            command.extend(self.options.split())
+            command.extend([self.options])
         return command
 
     def _disk_options(self):
