@@ -23,6 +23,8 @@
 import sys, os, time
 import GNS3.Globals as globals
 import GNS3.Config.Defaults as Defaults
+import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.Dynagen.portTracker_lib as tracker
 from distutils.version import LooseVersion
 from PyQt4.QtGui import QApplication, QSplashScreen, QPixmap, QMessageBox
 from PyQt4.QtCore import Qt, QVariant, QSettings, QEventLoop
@@ -499,6 +501,12 @@ class Application(QApplication, Singleton):
         confo.project_path = os.path.expandvars(os.path.expanduser(confo.project_path))
         confo.ios_path = os.path.expandvars(os.path.expanduser(confo.ios_path))
 
+        # Restore debug level
+        globals.debugLevel = int(ConfDB().get('GNS3/debug_level', 0))
+        if globals.debugLevel == 1 or globals.debugLevel == 3:
+            lib.setdebug(True)
+            tracker.setdebug(True)
+
         # Now systGeneral settings are loaded, load the translator
         self.translator = Translator()
         self.translator.switchLangTo(self.systconf['general'].lang)
@@ -631,6 +639,7 @@ class Application(QApplication, Singleton):
         c.set('GNS3/auto_check_for_update', confo.auto_check_for_update)
         c.set('GNS3/last_check_for_update', confo.last_check_for_update)
         c.set('GNS3/console_delay', confo.console_delay)
+        c.set('GNS3/debug_level', globals.debugLevel)
 
         # Dynamips settings
         confo = self.systconf['dynamips']
@@ -781,6 +790,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/filename", o.filename)
             c.set(basekey + "/nic_nb", o.nic_nb)
             c.set(basekey + "/nic", o.nic)
+            c.set(basekey + "/first_nic_managed", o.first_nic_managed)
             c.set(basekey + "/guestcontrol_user", o.guestcontrol_user)
             c.set(basekey + "/guestcontrol_password", o.guestcontrol_password)
 

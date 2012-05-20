@@ -455,6 +455,9 @@ class DynagenSub(Dynagen):
 
                                     new_config_path = globals.GApp.workspace.projectConfigs + os.sep + basename
 
+                                    if not os.path.exists(new_config_path):
+                                        new_config_path = globals.GApp.systconf['general'].ios_path + os.sep + 'baseconfig.txt'
+
                                     print translate("DynagenSub", "Local configuration %s cannot be found for router %s, use configuration %s instead") \
                                     % (device['cnfg'], device.name, new_config_path)
                                     device['cnfg'] = new_config_path

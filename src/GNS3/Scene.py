@@ -631,7 +631,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or (isinstance(item, AnyEmuDevice) and not isinstance(self.source, PIX)) or isinstance(item, AnyVBoxEmuDevice):
+            if isinstance(item, IOSRouter) or (isinstance(item, AnyEmuDevice) and not isinstance(item, PIX)) or isinstance(item, AnyVBoxEmuDevice):
                 links = []
                 for localif in item.getConnectedInterfaceList():
                     linkobj = item.getConnectedLinkByName(localif)
@@ -917,6 +917,7 @@ class Scene(QtGui.QGraphicsView):
             for url in event.mimeData().urls():
                 path = unicode(url.toLocalFile(), 'utf-8', errors='replace')
                 if os.path.isfile(path):
+                    path = os.path.normpath(path)
                     debug("Load file from drop event %s" % path)
                     globals.GApp.workspace.openFromDroppedFile(path)
                     break

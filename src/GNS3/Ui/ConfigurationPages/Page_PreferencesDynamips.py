@@ -20,6 +20,9 @@
 #
 
 import sys, os
+import subprocess as sub
+import GNS3.Globals as globals
+import GNS3.Dynagen.portTracker_lib as tracker
 from PyQt4 import QtGui, QtCore, QtNetwork
 from GNS3.Ui.ConfigurationPages.Form_PreferencesDynamips import Ui_PreferencesDynamips
 from GNS3.Config.Objects import systemDynamipsConf
@@ -27,8 +30,6 @@ from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Config import ConfDB
 from GNS3.Utils import fileBrowser, translate, testOpenFile, testIfWritableDir
 from GNS3.Config.Defaults import DYNAMIPS_DEFAULT_PATH, DYNAMIPS_DEFAULT_WORKDIR
-import GNS3.Globals as globals
-import subprocess as sub
 
 class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
 
@@ -246,7 +247,13 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Dynamips working directory does not exist or is not writable")  + '</font>')
             return
 
-        self.saveConf()
+        # Check if any of the first 10 ports are free to use
+        track = tracker.portTracker()
+        not_free_ports = track.getNotAvailableTcpPortRange('localhost', globals.hypervisor_baseport, 10)
+        if len(not_free_ports):
+            self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Ports already in use %s<br>Please choose another base port value<br>or close these ports" % str(not_free_ports))  + '</font>')
+            return
+
         if globals.GApp.systconf['dynamips'].path:
             globals.GApp.workspace.clear()
             globals.GApp.HypervisorManager = HypervisorManager()

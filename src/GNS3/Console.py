@@ -23,6 +23,7 @@ import os, sys, cmd, socket
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as Dynagen_Namespace
 import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.Dynagen.portTracker_lib as tracker
 import GNS3.NETFile as netfile
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate
@@ -299,6 +300,8 @@ show run <device_name>
 \tshow running configuration of a router
 show hypervisors
 \tshow allocated memory for hypervisors by Hypervisor Manager
+show ports
+\tshow all TCP ports allocated by GNS3
         """
 
         if '?' in args or args.strip() == '':
@@ -309,6 +312,10 @@ show hypervisors
 
         if command == 'hypervisors' and globals.GApp.HypervisorManager:
             globals.GApp.HypervisorManager.showHypervisors()
+            return
+        elif command == 'ports':
+            track = tracker.portTracker()
+            track.showTcpPortAllocation()
             return
         else:
             Dynagen_Console.do_show(self, args)
@@ -560,10 +567,13 @@ Examples:
                 if level == 1 or level == 3:
                     globals.debugLevel = level
                     lib.setdebug(True)
+                    tracker.setdebug(True)
                 if level == 0 or level == 2:
                     globals.debugLevel = level
                     lib.setdebug(False)
+                    tracker.setdebug(False)
             except:
                 print self.do_debug.__doc__
         else:
             print self.do_debug.__doc__
+            print "Current debug level is %i" % globals.debugLevel

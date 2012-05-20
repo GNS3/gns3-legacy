@@ -333,7 +333,8 @@ conf_vboxImage_defaults = {
     'nib_nb': 6,
     'nic': 'automatic',
     'guestcontrol_user': '',
-    'guestcontrol_password': ''
+    'guestcontrol_password': '',
+    'first_nic_managed': False,
 }
 
 conf_vboxImage_types = {
@@ -343,7 +344,8 @@ conf_vboxImage_types = {
     'nic_nb': int,
     'nic': str,
     'guestcontrol_user': str,
-    'guestcontrol_password': str
+    'guestcontrol_password': str,
+    'first_nic_managed': bool,
 }
 
 conf_pixImage_defaults = {

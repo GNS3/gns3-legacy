@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_StyleDialog.ui'
 #
-# Created: Wed May 16 22:17:22 2012
+# Created: Sat May 19 15:24:21 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_StyleDialog(object):
     def setupUi(self, StyleDialog):
         StyleDialog.setObjectName(_fromUtf8("StyleDialog"))
-        StyleDialog.resize(440, 332)
+        StyleDialog.resize(446, 328)
         StyleDialog.setWindowTitle(QtGui.QApplication.translate("StyleDialog", "Style", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -69,8 +69,8 @@ class Ui_StyleDialog(object):
         self.spinBox_Rotation.setObjectName(_fromUtf8("spinBox_Rotation"))
         self.gridlayout.addWidget(self.spinBox_Rotation, 5, 1, 1, 1)
         self.label_4 = QtGui.QLabel(self.groupBox)
-        self.label_4.setText(QtGui.QApplication.translate("StyleDialog", "Rotation can be ajusted on the scene for a selected item with\n"
-"ALT and + (or P) / ALT and - (or M)", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_4.setText(QtGui.QApplication.translate("StyleDialog", "Rotation can be ajusted on the scene for a selected item while\n"
+"editing (notes only) with ALT and \'+\' (or P) / ALT and \'-\' (or M)", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setObjectName(_fromUtf8("label_4"))
         self.gridlayout.addWidget(self.label_4, 6, 0, 1, 2)
         self.vboxlayout.addWidget(self.groupBox)

@@ -407,7 +407,7 @@ class ASAInstance(QEMUInstance):
 
     def _kernel_options(self):
         debugmsg(3, "ASAInstance::_kernel_options()")
-        return  ('-append', self.kernel_cmdline)
+        return  ('-append', '"' + self.kernel_cmdline + '"')
 
 class JunOSInstance(QEMUInstance):
 

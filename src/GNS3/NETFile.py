@@ -898,21 +898,21 @@ class NETFile(object):
 
     def export_router_config(self, device, auto=False):
 
+        curtime = time.strftime("%H:%M:%S")
         try:
             config = base64.decodestring(device.config_b64)
             config = '!\n' + config.replace('\r', "")
             # Write out the config to a file
             file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.cfg'
             if auto == False:
-                curtime = time.strftime("%H:%M:%S")
                 print translate("NETFile", "%s: Exporting %s configuration to %s") % (curtime, device.name, file_path)
         except lib.DynamipsError, msg:
             if auto == False:
-                print translate("NETFile", "%s: Dynamips error: %s") % (device.name, msg)
+                print translate("NETFile", "%s: %s: Dynamips error: %s") % (curtime, device.name, msg)
             return
         except lib.DynamipsWarning, msg:
             if auto == False:
-                print translate("NETFile", "%s: Dynamips warning: %s") % (device.name, msg)
+                print translate("NETFile", "%s: %s: Dynamips warning: %s") % (curtime, device.name, msg)
             return
         except:
             error('Unknown error exporting config for ' + device.name)

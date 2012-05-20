@@ -43,12 +43,17 @@ class Annotation(QtGui.QGraphicsTextItem):
     def keyPressEvent(self, event):
 
         key = event.key()
-        if (key == QtCore.Qt.Key_P or key == QtCore.Qt.Key_Plus or key == QtCore.Qt.Key_Equal) and event.modifiers() == QtCore.Qt.AltModifier and self.rotation > -360:
+        modifiers = event.modifiers()
+        if (key in (QtCore.Qt.Key_P, QtCore.Qt.Key_Plus, QtCore.Qt.Key_Equal) and modifiers & QtCore.Qt.AltModifier) \
+            or (key == QtCore.Qt.Key_Plus and modifiers & QtCore.Qt.AltModifier and modifiers & QtCore.Qt.KeypadModifier) \
+            and self.rotation > -360:
             if self.rotation:
                 self.rotate(-self.rotation)
             self.rotation -= 1
             self.rotate(self.rotation)
-        elif (key == QtCore.Qt.Key_M or key == QtCore.Qt.Key_Minus) and event.modifiers() == QtCore.Qt.AltModifier and self.rotation < 360:
+        elif (key in (QtCore.Qt.Key_M, QtCore.Qt.Key_Minus) and modifiers & QtCore.Qt.AltModifier) \
+            or (key == QtCore.Qt.Key_Minus and modifiers & QtCore.Qt.AltModifier and modifiers & QtCore.Qt.KeypadModifier) \
+            and self.rotation < 360:
             if self.rotation:
                 self.rotate(-self.rotation)
             self.rotation += 1

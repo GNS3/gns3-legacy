@@ -173,7 +173,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             self.label_10.setVisible(True)
             # GuestControl
             self.VBoxcheckBoxEnableGuestControl.setVisible(True)
-            self.label_8.setVisible(True)
+            #self.label_8.setVisible(True)
             self.label_4.setVisible(True)
             self.label_7.setVisible(True)
             self.VBoxGuestControl_User.setVisible(True)
@@ -184,7 +184,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             self.label_10.setVisible(False)
             # GuestControl
             self.VBoxcheckBoxEnableGuestControl.setVisible(False)
-            self.label_8.setVisible(False)
+            #self.label_8.setVisible(False)
             self.label_4.setVisible(False)
             self.label_7.setVisible(False)
             self.VBoxGuestControl_User.setVisible(False)
@@ -389,6 +389,10 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         conf.filename = image
         conf.nic_nb = self.VBoxNICNb.value()
         conf.nic = str(self.VBoxNIC.currentText())
+        if self.checkBoxVBoxFirstInterfaceManaged.checkState() == QtCore.Qt.Checked:
+            conf.first_nic_managed = True
+        else:
+            conf.first_nic_managed = False
         conf.guestcontrol_user = str(self.VBoxGuestControl_User.text())
         conf.guestcontrol_password = str(self.VBoxGuestControl_Password.text())
         
@@ -421,14 +425,19 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             self.comboBoxNameVBoxImage.setItemText(0 ,name)
             self.comboBoxNameVBoxImage.setCurrentIndex(0)
             self.VBoxImage.setText(conf.filename)
-            
+
             if self.conf.enable_GuestControl:
                 self.VBoxGuestControl_User.setEnabled(True)
                 self.VBoxGuestControl_Password.setEnabled(True)
             else:
                 self.VBoxGuestControl_User.setEnabled(False)
                 self.VBoxGuestControl_Password.setEnabled(False)
-                
+
+            if conf.first_nic_managed:
+                self.checkBoxVBoxFirstInterfaceManaged.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.checkBoxVBoxFirstInterfaceManaged.setCheckState(QtCore.Qt.Unchecked)
+
             self.VBoxGuestControl_User.setText(conf.guestcontrol_user)
             self.VBoxGuestControl_Password.setText(conf.guestcontrol_password)
             self.VBoxNICNb.setValue(conf.nic_nb)
