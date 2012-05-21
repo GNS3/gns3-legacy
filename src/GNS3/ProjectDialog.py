@@ -31,6 +31,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
     def __init__(self, parent=None, projectFile=None, projectWorkdir=None, projectConfigs=None, newProject=False):
 
         QtGui.QDialog.__init__(self, parent)
+        self.newProject = newProject
         self.setupUi(self)
         self.connect(self.NewProject_browser, QtCore.SIGNAL('clicked()'), self.__setProjectDir)
         self.connect(self.pushButtonOpenProject, QtCore.SIGNAL('clicked()'), self.__openProject)
@@ -40,8 +41,6 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
 
             if projectFile:
                 projectPath = os.path.dirname(projectFile)
-                projectName = os.path.basename(projectPath)
-                self.ProjectName.setText(projectName)
                 self.ProjectPath.setText(projectPath)
 
             if projectWorkdir:
@@ -52,6 +51,26 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
                 self.checkBox_ConfigFiles.setCheckState(QtCore.Qt.Checked)
             else:
                 self.checkBox_ConfigFiles.setCheckState(QtCore.Qt.Unchecked)
+
+    def keyPressEvent(self, e):
+        """ Reimplementing a basic event handler in order to properly handle escape
+        """
+
+        if e.key() == QtCore.Qt.Key_Escape:
+            self.close()
+
+    def reject(self):
+        """ Reimplementing a basic event handler in order to properly handle Cancel action
+        """
+
+        self.close()
+
+    def closeEvent(self, wut):
+        """ Called when the user chose to discard the dialog
+        """
+
+        if self.newProject == True:
+            globals.GApp.mainWindow.createProject((None, None, None))
 
     def __setProjectDir(self):
         """ Open a file dialog for choosing the location of the project directory
@@ -81,8 +100,8 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         """ Save project settings
         """
 
-        projectName = unicode(self.ProjectName.text(), 'utf-8', errors='replace')
-        projectDir = os.path.normpath(unicode(self.ProjectPath.text(), 'utf-8', errors='replace'))
+        projectName = unicode(self.ProjectName.text())
+        projectDir = os.path.normpath(unicode(self.ProjectPath.text()))
 
         if not projectName or not projectDir:
             return (None, None, None)
