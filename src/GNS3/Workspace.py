@@ -18,7 +18,7 @@
 # http://www.gns3.net/contact
 #
 
-import os, sys, socket, glob, shutil, time, base64, subprocess
+import os, sys, socket, glob, shutil, time, base64, subprocess, tempfile
 import GNS3.NETFile as netfile
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
@@ -1130,12 +1130,21 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         globals.GApp.workspace.setWindowTitle("GNS3")
-        self.projectWorkdir = None
-        self.projectConfigs = None
         (self.projectFile, self.projectWorkdir, self.projectConfigs) = settings
-        if not self.projectFile:
-            QtGui.QMessageBox.critical(self, translate("Workspace", "New Project"),  translate("Workspace", "Can't create a project"))
-            return
+
+        # Create a project in a temporary location
+        if not self.projectFile and not self.projectWorkdir and not self.projectConfigs:
+
+            try:
+                projectDir = tempfile.mktemp()
+                os.makedirs(projectDir)
+                self.projectWorkdir = os.path.normpath(projectDir + os.sep + 'workdir')
+                self.projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
+                self.projectFile = os.path.normpath(projectDir + os.sep + 'topology.net')
+            except (OSError, IOError), e:
+                QtGui.QMessageBox.critical(self, translate('Workspace', 'createProject'),
+                                           translate("Workspace", "Cannot create directory %s: %s") % (projectDir, e.strerror))
+
         if self.projectWorkdir and not os.access(self.projectWorkdir, os.F_OK):
             try:
                 os.mkdir(self.projectWorkdir)
@@ -1228,7 +1237,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error %s: %s") % (self.projectWorkdir, unicode(msg)))
 
         self.__action_Save(auto=True)
-        self.setWindowTitle("GNS3 Project - " + self.projectFile)
+        self.setWindowTitle("GNS3 Project - " + os.path.split(os.path.dirname(self.projectFile))[1])
 
     def __action_Snapshot(self):
         """ Open snapshot dialog
@@ -1435,7 +1444,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         (path, selected) = fileBrowser(translate("Workspace", "Save As..."),
-                                filter='NET file (*.net);;All files (*.*)', directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getSaveFile()
+                                filter='NET file (*.net);;All files (*)', directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getSaveFile()
 
         if path != None and path != '':
             if str(selected) == 'NET file (*.net)' or selected == '':
