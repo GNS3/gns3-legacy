@@ -71,8 +71,8 @@ class ETHSW(AbstractNode):
 
         if self.ethsw:
             try:
+                self.ethsw.delete()
                 if self.dynagen.devices.has_key(self.hostname):
-                    self.ethsw.delete()
                     del self.dynagen.devices[self.hostname]
                 if self.ethsw in self.hypervisor.devices:
                     self.hypervisor.devices.remove(self.ethsw)

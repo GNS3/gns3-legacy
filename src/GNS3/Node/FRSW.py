@@ -70,8 +70,8 @@ class FRSW(AbstractNode):
 
         if self.frsw:
             try:
+                self.frsw.delete()
                 if self.dynagen.devices.has_key(self.hostname):
-                    self.frsw.delete()
                     del self.dynagen.devices[self.hostname]
                 if self.frsw in self.hypervisor.devices:
                     self.hypervisor.devices.remove(self.frsw)

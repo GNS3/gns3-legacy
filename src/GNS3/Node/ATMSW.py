@@ -71,8 +71,8 @@ class ATMSW(AbstractNode):
 
         if self.atmsw:
             try:
+                self.atmsw.delete()
                 if self.dynagen.devices.has_key(self.hostname):
-                    self.atmsw.delete()
                     del self.dynagen.devices[self.hostname]
                 if self.atmsw in self.hypervisor.devices:
                     self.hypervisor.devices.remove(self.atmsw)

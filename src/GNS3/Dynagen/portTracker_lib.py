@@ -30,11 +30,17 @@ class portTracker:
     tcptrack = {}
     udptrack = {}
 
-    def __init__(self):
+    tcptrack['localhost'] = []
+    udptrack['localhost'] = []
+    local_addresses = ['0.0.0.0', '127.0.0.1', 'localhost', '::1', '0:0:0:0:0:0:0:1']
+    local_addresses.append(socket.gethostname())
+    local_addresses.append(socket.gethostbyname(socket.gethostname()))
 
-        self.localips = ['127.0.0.1', 'localhost', '::1', '0:0:0:0:0:0:0:1']
-        self.localips.append(socket.gethostname())
-        self.localips.append(socket.gethostbyname(socket.gethostname()))
+    def addLocalAddress(self, addr):
+
+        debug("registering additional local address %s" % addr)
+        if addr not in self.local_addresses:
+            self.local_addresses.append(addr)
 
     def getNotAvailableTcpPortRange(self, host, start_port, max_port=10):
 
@@ -57,7 +63,7 @@ class portTracker:
     def getAvailableTcpPort(self, host, start_port, max_port=10):
 
         # not a local host, do not try to bind it
-        if host not in self.localips:
+        if host not in self.local_addresses:
             return start_port
         end = start_port + max_port
         for port in range(start_port, end + 1):
@@ -76,7 +82,7 @@ class portTracker:
             else:
                 # Available
                 s.close()
-                if port not in self.tcptrack[host]:
+                if port not in self.tcptrack['localhost']:
                     return port
                 else:
                     debug("port %i is not in use but already in the tracker" % port)
@@ -87,12 +93,14 @@ class portTracker:
     def allocateTcpPort(self, host, port, max_tries=10):
 
         origin_port = port
+        origin_host = host
+        if host not in self.local_addresses:
+            host = 'localhost'
         if not self.tcptrack.has_key(host):
             self.tcptrack[host] = []
-
         i = 0
         while i <= max_tries:
-            allocated_port = self.getAvailableTcpPort(host, port, int(round(max_tries / 2)))
+            allocated_port = self.getAvailableTcpPort(origin_host, port, int(round(max_tries / 2)))
             if allocated_port and allocated_port not in self.tcptrack[host]:
                 self.tcptrack[host].append(allocated_port)
                 debug("allocate port %i" % allocated_port)
@@ -108,6 +116,8 @@ class portTracker:
         return origin_port
 
     def tcpPortIsFree(self, host, port):
+        if host not in self.local_addresses:
+            host = 'localhost'
         if self.tcptrack.has_key(host) and port in self.tcptrack[host]:
             return False
         if not self.getAvailableTcpPort(host, port, 0):
@@ -115,15 +125,25 @@ class portTracker:
         return True
 
     def freeTcpPort(self, host, port):
+        if host not in self.local_addresses:
+            host = 'localhost'
         if not self.tcpPortIsFree(host, port):
             debug("freeing port %i" % port)
             self.tcptrack[host].remove(port)
         else:
-            debug("could not free port %i (not in tracker), something might be wrong!!!" % port)
+            debug("could not free port %i (not in tracker)" % port)
 
     def setTcpPort(self, host, port):
+        if host not in self.local_addresses:
+            host = 'localhost'
         debug("adding port %i" % port)
         self.tcptrack[host].append(port)
+
+    def clearAllTcpPort(self):
+
+        debug("freeing all TCP ports")
+        self.tcptrack.clear()
+        self.tcptrack['localhost'] = []
 
     def showTcpPortAllocation(self):
 

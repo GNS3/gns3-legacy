@@ -19,7 +19,6 @@
 # http://www.gns3.net/contact
 #
 
-
 import os, glob, socket, sys, base64, time
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.qemu_lib as qlib

@@ -25,6 +25,7 @@ import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
 import GNS3.UndoFramework as undo
 import GNS3.WindowManipulator as winm
+import GNS3.Dynagen.portTracker_lib as tracker
 from PyQt4 import QtGui, QtCore, QtNetwork
 from PyQt4.QtGui import QMainWindow, QIcon
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
@@ -117,6 +118,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 # let's check for an update
                 self.__action_CheckForUpdate(silent=True)
                 globals.GApp.systconf['general'].last_check_for_update = currentEpoch
+
+        # Register local addresses into tracker
+        self.track = tracker.portTracker()
+        local_addresses = map(lambda addr: unicode(addr.toString()), QtNetwork.QNetworkInterface.allAddresses())
+        for addr in local_addresses:
+            self.track.addLocalAddress(addr)
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
@@ -375,9 +382,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.projectConfigs = None
 
         globals.GApp.topology.clear()
-
         self.clear_workdir(projectWorkdir)
         globals.GApp.mainWindow.capturesDock.refresh()
+        self.track.clearAllTcpPort()
 
     def __action_Clear(self):
         """ Clear the topology
