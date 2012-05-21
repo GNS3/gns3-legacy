@@ -247,11 +247,23 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Dynamips working directory does not exist or is not writable")  + '</font>')
             return
 
-        # Check if any of the first 10 ports are free to use
         track = tracker.portTracker()
-        not_free_ports = track.getNotAvailableTcpPortRange('localhost', globals.hypervisor_baseport, 10)
+        # Check if any of the first 10 ports are free to use by hypervisors
+        not_free_ports = track.getNotAvailableTcpPortRange(globals.GApp.systconf['dynamips'].HypervisorManager_binding, globals.hypervisor_baseport, 10)
         if len(not_free_ports):
             self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Ports already in use %s<br>Please choose another base port value<br>or close these ports" % str(not_free_ports))  + '</font>')
+            return
+
+        # Check if any of the first 10 ports are free to use for dynamips console ports
+        not_free_ports = track.getNotAvailableTcpPortRange(globals.GApp.systconf['dynamips'].HypervisorManager_binding, globals.GApp.systconf['dynamips'].baseConsole, 10)
+        if len(not_free_ports):
+            self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Ports already in use %s<br>Please choose another base console value<br>or close these ports" % str(not_free_ports))  + '</font>')
+            return
+
+        # Check if any of the first 10 ports are free to use for dynamips aux ports
+        not_free_ports = track.getNotAvailableTcpPortRange(globals.GApp.systconf['dynamips'].HypervisorManager_binding, globals.GApp.systconf['dynamips'].baseAUX, 10)
+        if len(not_free_ports):
+            self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Ports already in use %s<br>Please choose another base AUX value<br>or close these ports" % str(not_free_ports))  + '</font>')
             return
 
         if globals.GApp.systconf['dynamips'].path:

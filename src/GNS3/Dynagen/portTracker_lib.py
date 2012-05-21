@@ -30,19 +30,25 @@ class portTracker:
     tcptrack = {}
     udptrack = {}
 
+    def __init__(self):
+
+        self.localips = ['127.0.0.1', 'localhost', '::1', '0:0:0:0:0:0:0:1']
+        self.localips.append(socket.gethostname())
+        self.localips.append(socket.gethostbyname(socket.gethostname()))
+
     def getNotAvailableTcpPortRange(self, host, start_port, max_port=10):
 
         not_free_ports = []
         end = start_port + max_port
         for port in range(start_port, end + 1):
             try:
-                # timeout is 300 ms
-                s = socket.create_connection((host, port), 0.3)
+                # timeout is 200 ms
+                s = socket.create_connection((host, port), 0.2)
             except socket.error:
                 continue
             else:
                 # Not available
-                debug("port %i is already in use" % port)
+                debug("port %i is already in use by another program" % port)
                 not_free_ports.append(port)
                 s.shutdown(socket.SHUT_RDWR)
                 s.close()
@@ -50,23 +56,31 @@ class portTracker:
 
     def getAvailableTcpPort(self, host, start_port, max_port=10):
 
+        # not a local host, do not try to bind it
+        if host not in self.localips:
+            return start_port
         end = start_port + max_port
         for port in range(start_port, end + 1):
             try:
-                # timeout is 300 ms
-                s = socket.create_connection((host, port), 0.3)
+                if host.__contains__(':'):
+                    # IPv6 address support
+                    s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+                else:
+                    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
+                s.bind((host, port))
             except socket.error:
+                # Not available
+                debug("port %i is already in use by another program" % port)
+                continue
+            else:
                 # Available
+                s.close()
                 if port not in self.tcptrack[host]:
                     return port
                 else:
                     debug("port %i is not in use but already in the tracker" % port)
                     continue
-            else:
-                # Not available
-                debug("port %i is already in use" % port)
-                s.shutdown(socket.SHUT_RDWR)
-                s.close()
         debug("couldn't find a non-listening port in range %i to %i" % (start_port, end))
         return None
 
@@ -96,6 +110,8 @@ class portTracker:
     def tcpPortIsFree(self, host, port):
         if self.tcptrack.has_key(host) and port in self.tcptrack[host]:
             return False
+        if not self.getAvailableTcpPort(host, port, 0):
+            return False
         return True
 
     def freeTcpPort(self, host, port):
@@ -104,6 +120,10 @@ class portTracker:
             self.tcptrack[host].remove(port)
         else:
             debug("could not free port %i (not in tracker), something might be wrong!!!" % port)
+
+    def setTcpPort(self, host, port):
+        debug("adding port %i" % port)
+        self.tcptrack[host].append(port)
 
     def showTcpPortAllocation(self):
 

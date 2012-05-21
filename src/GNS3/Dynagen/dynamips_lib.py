@@ -2520,6 +2520,7 @@ class Router(Dynamips_device):
             raise DynamipsError, 'console port %i is already in use' % console
 
         send(self.__d, 'vm set_con_tcp_port %s %i' % (self.__name, console))
+        self.track.setTcpPort(self.__d.host, console)
         self.track.freeTcpPort(self.__d.host, self.__console)
         self.__console = console
 
@@ -2544,6 +2545,7 @@ class Router(Dynamips_device):
             raise DynamipsError, 'aux port %i is already in use' % aux
 
         send(self.__d, 'vm set_aux_tcp_port %s %i' % (self.__name, aux))
+        self.track.setTcpPort(self.__d.host, aux)
         self.track.freeTcpPort(self.__d.host, self.__aux)
         self.__aux = aux
 

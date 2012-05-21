@@ -22,6 +22,7 @@
 import sys, os, re, platform
 import GNS3.Globals as globals
 import subprocess
+import GNS3.Dynagen.portTracker_lib as tracker
 from PyQt4 import QtGui, QtCore, QtNetwork
 from GNS3.QemuManager import QemuManager
 from GNS3.Ui.ConfigurationPages.Form_PreferencesQemu import Ui_PreferencesQemu
@@ -933,6 +934,14 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 p.terminate()
             except OSError:
                 bPEMUfound = False
+
+            if globals.GApp.systconf['qemu'].enable_QemuManager:
+                track = tracker.portTracker()
+                # Check if any of the first 10 ports are free to use for Qemu device console ports
+                not_free_ports = track.getNotAvailableTcpPortRange(globals.GApp.systconf['qemu'].QemuManager_binding, globals.GApp.systconf['qemu'].qemuwrapper_baseConsole, 10)
+                if len(not_free_ports):
+                    self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Ports already in use %s<br>Please choose another base console value<br>or close these ports" % str(not_free_ports))  + '</font>')
+                    return
 
             try:
                 p = subprocess.Popen([globals.GApp.systconf['qemu'].qemu_img_path], cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir)

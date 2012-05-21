@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="it_IT" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.0" language="it_IT">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -301,7 +302,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net/contact&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Contattaci&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_About.py" line="80"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -339,7 +340,42 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Kyryl Tumanov from Kyiv, Ukraine: Ukrainian translation (code: uk)&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Ninel Piroi from Bucharest, Romanian translation (code: ro)&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Dionissys Anyfantis: Greek translation (code: gr)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Collaboratori:&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Ninel Piroi di Bucarest, Romania&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Xavier Alt, Thamini, Lussemburgo&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Fabien Le-mentec di EPITECH Paris, France&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Mike Fuszner del St. Charles Community College, Cottleville, Missouri, USA&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Greg Anuzelli di Philadelphia, Pennsylvania, USA&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Pavel Skovajsa della Slovacchia&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Christophe Fillot della Università della tecnologia di Compiegne, Francia&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Jaakko Rautanen della Finlandia&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Leonard Bernstein degli USA&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Randy Gallardo dell&apos;Università di Adamson&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Thomas Pani&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Brent Endres&lt;br /&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Traduttori:&lt;br /&gt;&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;&lt;br /&gt;Erik Wenzel della Germania: traduzione tedesca (codice: de)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Huan Ji di Wuhan, Cina: traduzione cinese (codice: cn)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Jose Sen di Buenos Aires, Argentina: traduzione spagnola (codice: es)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Mark Soe Min di Tokyo, Giappone: traduzione giapponese (codice: jp)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Aboulgasem Albusaifi di Tarabulus, Libia: traduzione araba (codice: ar)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Marcio de Freitas Minicz di Sao Jose dos Campos, SP, Brasile: traduzione brasiliana-portoghese (codice: pt_br)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Hasan Agirol Aksoy di Antalya, Turchia: traduzione turca (codice: tr)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Ivakin Dmitriy di Mosca, Russia: traduzione russa (codice: ru)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Hyeonjin Kim di Seul, Corea: traduzione coreana (codice: kr)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Pavel Skovajsa della Slovacchia: traduzione slovacca (codice: sk)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Michał Zieliński di Plock, Polonia: traduzione polacca (codice: pl)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Veljko Dzodic: traduzione serba (codice: sr)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Abalfazl Meshki dall&apos;Iran: traduzione farsi (codice: fa)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Ondřej Filip: traduzione ceca (codice: cz)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Lyubomir Tsekov: traduzione bulgara (codice: bg)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Andrea Riela e Vincenzo Reale: traduzione italiana (codice: it)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Kyryl Tumanov di Kyiv, Ucraina: traduzione ucraina (codice: uk)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Ninel Piroi di Bucarest, traduzione rumena (codice: ro)&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Dionissys Anyfantis: traduzione greca (codice: gr)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -624,19 +660,21 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Application.py" line="585"/>
         <source>GNS3 configuration file</source>
-        <translation type="unfinished"></translation>
+        <translation>File di configurazione di GNS3</translation>
     </message>
     <message>
         <location filename="../Application.py" line="577"/>
         <source>You have installed a new GNS3 version.
 It is recommended to clear your old configuration, do you want to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Hai installato una nuova versione di GNS3.
+Ti consigliamo di cancellare la vecchia configurazione, vuoi procedere?</translation>
     </message>
     <message>
         <location filename="../Application.py" line="585"/>
         <source>Configuration cleared!
 Please restart GNS3</source>
-        <translation type="unfinished"></translation>
+        <translation>Configurazione canellata!
+Riavvia GNS3</translation>
     </message>
 </context>
 <context>
@@ -649,7 +687,7 @@ Please restart GNS3</source>
     <message>
         <location filename="../Node/Cloud.py" line="161"/>
         <source>Unknown name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome sconosciuto</translation>
     </message>
 </context>
 <context>
@@ -1013,12 +1051,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../DynagenSub.py" line="428"/>
         <source>Local IOS image %s cannot be found for hypervisor %s:%s, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;immagine locale di IOS %s non può essere trovata per l&apos;hypervisor %s:%s, utilizza invece l&apos;immagine %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="83"/>
         <source>Unknown name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome sconosciuto</translation>
     </message>
 </context>
 <context>
@@ -2276,7 +2314,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <source>Console to all devices</source>
         <translation>Console per tutti i dispositivi</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="312"/>
         <source>Save topology &amp;as…</source>
         <translation>Salva topologi&amp;a come...</translation>
@@ -2321,7 +2359,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
         <source>Show interface labels</source>
         <translation>Mostra le etichette delle interfacce</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="483"/>
         <source>&amp;Save project as…</source>
         <translation>&amp;Salva progetto come…</translation>
@@ -2663,12 +2701,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="66"/>
         <source>&amp;Open a Project</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri un pr&amp;ogetto</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="70"/>
         <source>&amp;Recent Files</source>
-        <translation type="unfinished"></translation>
+        <translation>File &amp;recenti</translation>
     </message>
 </context>
 <context>
@@ -2976,7 +3014,7 @@ per visualizzare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_Cloud.py" line="125"/>
         <source>Unknown name</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome sconosciuto</translation>
     </message>
 </context>
 <context>
@@ -3114,7 +3152,7 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX e PA-GE probabilmente non funzioneranno.<
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesCapture.py" line="106"/>
         <source>Capture directory must be writable!</source>
-        <translation type="unfinished"></translation>
+        <translation>La cartella delle catture deve essere scrivibile!</translation>
     </message>
 </context>
 <context>
@@ -3207,17 +3245,17 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX e PA-GE probabilmente non funzioneranno.<
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="320"/>
         <source>Local Qemu working directory</source>
-        <translation type="unfinished">Cartella di lavoro di Qemu locale</translation>
+        <translation>Cartella di lavoro locale di Qemu</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="328"/>
         <source>Capture directory</source>
-        <translation type="unfinished">Cartella delle catture</translation>
+        <translation>Cartella delle catture</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="328"/>
         <source>Qemu working directory must be writable!</source>
-        <translation type="unfinished"></translation>
+        <translation>La cartella di lavoro di Qemu deve essere scrivibile!</translation>
     </message>
 </context>
 <context>
@@ -4597,17 +4635,17 @@ o sul collegamento stesso.</translation>
     <message>
         <location filename="../Scene.py" line="480"/>
         <source>Connection lost</source>
-        <translation type="unfinished">Connessione perduta</translation>
+        <translation>Connessione perduta</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="915"/>
         <source>Topology file</source>
-        <translation type="unfinished"></translation>
+        <translation>File di topologia</translation>
     </message>
     <message>
         <location filename="../Scene.py" line="915"/>
         <source>Please select only one file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Seleziona solo un file!</translation>
     </message>
 </context>
 <context>
@@ -4738,7 +4776,7 @@ es: #copy start run</translation>
         <source>Rotation:</source>
         <translation>Rotazione:</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_StyleDialog.py" line="66"/>
         <source>°</source>
         <translation></translation>
@@ -4777,7 +4815,8 @@ es: #copy start run</translation>
         <location filename="../Ui/Form_StyleDialog.py" line="72"/>
         <source>Rotation can be ajusted on the scene for a selected item with
 ALT and + (or P) / ALT and - (or M)</source>
-        <translation type="unfinished"></translation>
+        <translation>La rotazione di un elemento selezionato può essere regolata sulla scena con
+ALT e + (o P) / ALT e - (o M)</translation>
     </message>
 </context>
 <context>
@@ -5240,12 +5279,12 @@ ALT and + (or P) / ALT and - (or M)</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="206"/>
         <source>Dynamips working directory must be writable!</source>
-        <translation type="unfinished"></translation>
+        <translation>La cartella di lavoro di Dynamips deve essere scrivibile!</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="247"/>
         <source>Dynamips working directory does not exist or is not writable</source>
-        <translation type="unfinished"></translation>
+        <translation>La cartella di lavoro di Dynamips non esiste o non scrivibile</translation>
     </message>
 </context>
 <context>
@@ -5293,12 +5332,12 @@ ALT and + (or P) / ALT and - (or M)</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="206"/>
         <source>Project &amp; Image directories</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella di progetto e immagini</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="206"/>
         <source>Would you like to create the project &amp; image directories?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vuoi creare le cartelle di progetto e immagini?</translation>
     </message>
 </context>
 <context>
@@ -5366,7 +5405,7 @@ ALT and + (or P) / ALT and - (or M)</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="878"/>
         <source>Qemu working directory does not exist or is not writable</source>
-        <translation type="unfinished"></translation>
+        <translation>La cartella di lavoro di Qemu non esiste o non scrivibile</translation>
     </message>
 </context>
 <context>
@@ -5419,12 +5458,12 @@ ALT and + (or P) / ALT and - (or M)</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="353"/>
         <source>Working directory</source>
-        <translation type="unfinished">Cartella di lavoro</translation>
+        <translation>Cartella di lavoro</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="353"/>
         <source>Vbox working directory must be writable!</source>
-        <translation type="unfinished"></translation>
+        <translation>La cartella di lavoro di Vbox deve essere scrivibile!</translation>
     </message>
 </context>
 <context>
@@ -5626,7 +5665,7 @@ ALT and + (or P) / ALT and - (or M)</source>
     <message>
         <location filename="../Ui/Widget_capturesDock.py" line="107"/>
         <source>Clear stopped captures</source>
-        <translation type="unfinished"></translation>
+        <translation>Cancella le catture fermate</translation>
     </message>
 </context>
 <context>
@@ -6041,17 +6080,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="1244"/>
         <source>The file &apos;%s&apos; has not the right extension (.net)</source>
-        <translation type="unfinished"></translation>
+        <translation>Il file &apos;%s&apos; non l&apos;estensione corretta (.net)</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="954"/>
         <source>No such file: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessun file: %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="957"/>
         <source>Not a regular file: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Non è un file valido: %s</translation>
     </message>
 </context>
 <context>
