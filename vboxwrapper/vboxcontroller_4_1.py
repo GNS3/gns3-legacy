@@ -297,24 +297,21 @@ class VBoxController_4_1():
         debugmsg(3, "self.nics = %s" % str(self.nics))
         debugmsg(3, "self.maxNics = %s" % str(self.maxNics))
 
+        try:
+            netadp_mgmt = mach2.getNetworkAdapter(0)
+            adaptertype_mgmt = netadp_mgmt.adapterType
+        except:
+            #Usually due to COM Error: "The object is not ready"
+            debugmsg(1, "_net_options() -> getNetworkAdapter() FAILED !")
+            return False
+
         if self.first_nic_managed:
             # first nic is managed by GNS3
             start_nic = 1
-            adaptertype_mgmt = 3 # "Intel PRO/1000 MT Desktop"
-
         else:
             # We leave vNIC #1 (vnic = 0) for VirtualBox management purposes
             start_nic = 2
 
-            try:
-                netadp_mgmt = mach2.getNetworkAdapter(0)
-                adaptertype_mgmt = netadp_mgmt.adapterType
-            except:
-                #Usually due to COM Error: "The object is not ready"
-                debugmsg(1, "_net_options() -> getNetworkAdapter() FAILED !")
-                return False
-
-        print "Starting NIC %i" % start_nic
         for vnic in range(start_nic, int(self.nics) + 1):
             # By design, we leave vNIC #1 (vnic = 0) for VirtualBox management purposes
             try:

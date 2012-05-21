@@ -353,7 +353,8 @@ class AnyEmuDevice(object):
         self.p.devices.append(self)
         #set the console to Qemu baseconsole
         self.track = tracker.portTracker()
-        self.console = self.track.allocateTcpPort(self.p.host, self.p.baseconsole)
+        self._console = self.track.allocateTcpPort(self.p.host, self.p.baseconsole)
+        send(self.p, 'qemu setattr %s console %i' % (self.name, self._console))
         self.p.baseconsole += 1
 
     def delete(self):
