@@ -521,7 +521,7 @@ p, li { white-space: pre-wrap; }
         <translation>AUX ポート %s:</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="671"/>
+        <location filename="../Node/IOSRouter.py" line="672"/>
         <source>AUX port</source>
         <translation>AUX ポート</translation>
     </message>
@@ -536,12 +536,12 @@ p, li { white-space: pre-wrap; }
         <translation>スナップショット名:</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="671"/>
+        <location filename="../Node/IOSRouter.py" line="672"/>
         <source>AUX port not available for this router model or base AUX port is set to 0 in preferences</source>
         <translation>このルータモデルにAUXポート使用不可かベースAUXポートを０に設定されております</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="934"/>
+        <location filename="../Workspace.py" line="944"/>
         <source>GNS3 is up-to-date!</source>
         <translation>ご使用のGNS3は最新版です！</translation>
     </message>
@@ -549,22 +549,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AnyEmuDevice</name>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="238"/>
+        <location filename="../Node/AnyEmuDevice.py" line="239"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="222"/>
+        <location filename="../Node/AnyEmuDevice.py" line="223"/>
         <source>New hostname</source>
         <translation>新規のホスト名</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="222"/>
+        <location filename="../Node/AnyEmuDevice.py" line="223"/>
         <source>Cannot rename a connected emulated device</source>
         <translation>接続されているエミュレートデバイスの名前を変更できません</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="115"/>
+        <location filename="../Node/AnyEmuDevice.py" line="116"/>
         <source>Cannot change the hostname of a running device</source>
         <translation>起動中のデバイスのホスト名を変更できません</translation>
     </message>
@@ -572,22 +572,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AnyVBoxEmuDevice</name>
     <message>
-        <location filename="../Node/AnyVBoxEmuDevice.py" line="236"/>
+        <location filename="../Node/AnyVBoxEmuDevice.py" line="241"/>
         <source>New hostname</source>
         <translation>新規のホスト名</translation>
     </message>
     <message>
-        <location filename="../Node/AnyVBoxEmuDevice.py" line="118"/>
+        <location filename="../Node/AnyVBoxEmuDevice.py" line="120"/>
         <source>Cannot change the hostname of a running device</source>
         <translation>起動中のデバイスのホスト名を変更できません</translation>
     </message>
     <message>
-        <location filename="../Node/AnyVBoxEmuDevice.py" line="236"/>
+        <location filename="../Node/AnyVBoxEmuDevice.py" line="241"/>
         <source>Cannot rename a connected emulated device</source>
         <translation>接続されているエミュレートデバイスの名前を変更できません</translation>
     </message>
     <message>
-        <location filename="../Node/AnyVBoxEmuDevice.py" line="252"/>
+        <location filename="../Node/AnyVBoxEmuDevice.py" line="257"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
@@ -595,23 +595,23 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Application</name>
     <message>
-        <location filename="../Application.py" line="370"/>
+        <location filename="../Application.py" line="372"/>
         <source>Starting Graphical Network Simulator...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Application.py" line="585"/>
+        <location filename="../Application.py" line="575"/>
         <source>GNS3 configuration file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Application.py" line="577"/>
+        <location filename="../Application.py" line="567"/>
         <source>You have installed a new GNS3 version.
 It is recommended to clear your old configuration, do you want to proceed?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Application.py" line="585"/>
+        <location filename="../Application.py" line="575"/>
         <source>Configuration cleared!
 Please restart GNS3</source>
         <translation type="unfinished"></translation>
@@ -746,7 +746,7 @@ Please restart GNS3</source>
 <context>
     <name>Config</name>
     <message>
-        <location filename="../Config/Config.py" line="448"/>
+        <location filename="../Config/Config.py" line="449"/>
         <source>Can&apos;t open library: %s</source>
         <translation>ライブラリを開くことができません: %s</translation>
     </message>
@@ -754,52 +754,52 @@ Please restart GNS3</source>
 <context>
     <name>Console</name>
     <message>
-        <location filename="../Console.py" line="285"/>
+        <location filename="../Console.py" line="286"/>
         <source>Connection lost</source>
         <translation>接続に失敗しました</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="390"/>
+        <location filename="../Console.py" line="397"/>
         <source>Sorry, not implemented in GNS3</source>
         <translation>この機能は GNS3 で対応していません</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="401"/>
+        <location filename="../Console.py" line="408"/>
         <source>Please wait while gathering statistics...</source>
         <translation>統計情報を収集中...</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="426"/>
+        <location filename="../Console.py" line="433"/>
         <source>No idlepc values found</source>
         <translation>idlepc 値が見つかりませんでした</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="438"/>
+        <location filename="../Console.py" line="445"/>
         <source>No changes made</source>
         <translation>変更されていませんでした</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="451"/>
+        <location filename="../Console.py" line="458"/>
         <source>Can&apos;t apply idlepc value</source>
         <translation>この idlepc 値は適用できません</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="456"/>
+        <location filename="../Console.py" line="463"/>
         <source>Incorrect number of paramaters or invalid parameters</source>
         <translation>パラメータの数が間違っているか、またはパラメータが不正です</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="469"/>
+        <location filename="../Console.py" line="476"/>
         <source>You have to save your topology before using save</source>
         <translation>保存ボタンを使う前にトポロジーを保存してください</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="477"/>
+        <location filename="../Console.py" line="484"/>
         <source>You have to save your topology before using push</source>
         <translation>プッシュボタンを使う前にトポロジーを保存してください</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="428"/>
+        <location filename="../Console.py" line="435"/>
         <source>Potentially better idlepc values marked with &apos;*&apos;
 Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
 </source>
@@ -808,23 +808,23 @@ idlepc 値の前にある番号を入力してください [1-%i]　または EN
 </translation>
     </message>
     <message>
-        <location filename="../Console.py" line="443"/>
+        <location filename="../Console.py" line="450"/>
         <source>Applied idlepc value %s to %s
 </source>
         <translation>idlepc 値 %s を %s に設定しました</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="459"/>
+        <location filename="../Console.py" line="466"/>
         <source>Unknown device: %s</source>
         <translation>不明なデバイス: %s</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="525"/>
+        <location filename="../Console.py" line="532"/>
         <source>Cannot create %s: %s</source>
         <translation>作成できません %s : %s</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="398"/>
+        <location filename="../Console.py" line="405"/>
         <source>%s already has an idlepc value applied (%s).</source>
         <translation>%s に idlepc 値が既に指定されています (%s).</translation>
     </message>
@@ -839,22 +839,22 @@ idlepc 値の前にある番号を入力してください [1-%i]　または EN
         <translation>開始できません %s : %s</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="285"/>
+        <location filename="../Console.py" line="286"/>
         <source>%s: Dynamips error</source>
         <translation type="unfinished">%s: Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="283"/>
+        <location filename="../Console.py" line="284"/>
         <source>%s: Dynamips warning</source>
         <translation type="unfinished">%s: Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../Console.py" line="231"/>
+        <location filename="../Console.py" line="232"/>
         <source>%s Dynamips warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Console.py" line="233"/>
+        <location filename="../Console.py" line="234"/>
         <source>%s Dynamips error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -936,7 +936,7 @@ idlepc 値の前にある番号を入力してください [1-%i]　または EN
         <translation>ローカル PIX イメージ %s が見つかりませんでした、イメージ %s を使用してください</translation>
     </message>
     <message>
-        <location filename="../DynagenSub.py" line="459"/>
+        <location filename="../DynagenSub.py" line="462"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
         <translation>ローカルコンフィグ %s が見つかりませんでした (ルータ %s)。イメージ %s を使用してください</translation>
     </message>
@@ -1000,22 +1000,22 @@ Please choose an alternate network interface:</source>
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="264"/>
+        <location filename="../Node/ETHSW.py" line="265"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="264"/>
+        <location filename="../Node/ETHSW.py" line="265"/>
         <source>No port available</source>
         <translation>使用できるポートはありません</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="225"/>
+        <location filename="../Node/ETHSW.py" line="226"/>
         <source>Port type</source>
         <translation>ポートタイプ</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="225"/>
+        <location filename="../Node/ETHSW.py" line="226"/>
         <source>QinQ is only supported with Dynamips &gt; 0.2.8 RC2</source>
         <translation>QinQ は Dynamips バージョン 0.2.8 RC2 以上が必要です</translation>
     </message>
@@ -1570,42 +1570,42 @@ Please choose an alternate network interface:</source>
 <context>
     <name>IOSRouter</name>
     <message>
-        <location filename="../Node/IOSRouter.py" line="697"/>
+        <location filename="../Node/IOSRouter.py" line="698"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="697"/>
+        <location filename="../Node/IOSRouter.py" line="698"/>
         <source>No interface available</source>
         <translation>インターフェイスが見つかりません</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="582"/>
+        <location filename="../Node/IOSRouter.py" line="583"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="332"/>
+        <location filename="../Node/IOSRouter.py" line="333"/>
         <source>Startup-Config for %s</source>
         <translation>%s のスタートアップコンフィグ</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="268"/>
+        <location filename="../Node/IOSRouter.py" line="269"/>
         <source>Slots</source>
         <translation>スロット</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="268"/>
+        <location filename="../Node/IOSRouter.py" line="269"/>
         <source>You have to restart this router to use new modules</source>
         <translation>新規モジュールを使用するためにはルータを再起動する必要があります</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="160"/>
+        <location filename="../Node/IOSRouter.py" line="161"/>
         <source>New hostname</source>
         <translation>新規のホスト名</translation>
     </message>
     <message>
-        <location filename="../Node/IOSRouter.py" line="160"/>
+        <location filename="../Node/IOSRouter.py" line="161"/>
         <source>Cannot change the hostname of a running device</source>
         <translation>起動中のデバイスのホスト名を変更できません</translation>
     </message>
@@ -2526,12 +2526,7 @@ Please choose an alternate network interface:</source>
         <translation>例外エラーが検出された為、インポートを中止しています...</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="907"/>
-        <source>Exporting %s configuration to %s</source>
-        <translation>%s のコンフィグを %s にエクスポート中</translation>
-    </message>
-    <message>
-        <location filename="../NETFile.py" line="1183"/>
+        <location filename="../NETFile.py" line="1185"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO エラー: %s</translation>
     </message>
@@ -2566,23 +2561,28 @@ Please choose an alternate network interface:</source>
         <translation>%s: シンボル %s が見つかりません。シンボルがノードリストにあることを確認し、net ファイルをリロードしてください</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="910"/>
-        <source>%s: Dynamips error: %s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../NETFile.py" line="914"/>
-        <source>%s: Dynamips warning: %s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../NETFile.py" line="1183"/>
+        <location filename="../NETFile.py" line="1185"/>
         <source>%s: IOError</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1088"/>
+        <location filename="../NETFile.py" line="1090"/>
         <source>%s must be connected or have a hypervisor set in order to be registered</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="908"/>
+        <source>%s: Exporting %s configuration to %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="911"/>
+        <source>%s: %s: Dynamips error: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../NETFile.py" line="915"/>
+        <source>%s: %s: Dynamips warning: %s</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3095,102 +3095,102 @@ C7200-IO-2FE、C7200-IO-GE-E、PA-2FE-TX と PA-GE は動作しない可能性�
 <context>
     <name>Page_PreferencesQemu</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="363"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="364"/>
         <source>Qemu guest</source>
         <translation>Qemu ゲスト</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="561"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="562"/>
         <source>Identifier and binary image must be set!</source>
         <translation>識別子とバイナリイメージを指定する必要があります！</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="457"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="458"/>
         <source>PIX firewall</source>
         <translation>PIX ファイアウォール</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="490"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="491"/>
         <source>Serial</source>
         <translation>シリアル</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="490"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="491"/>
         <source>Invalid serial (format required: 0xhhhhhhhh)</source>
         <translation>無効なシリアル (正しい型式：0xhhhhhhhh)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="498"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="499"/>
         <source>Key</source>
         <translation>キー</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="498"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="499"/>
         <source>Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</source>
         <translation>無効なキー (正しい型式: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="820"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="821"/>
         <source>Save</source>
         <translation>保存</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="506"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="507"/>
         <source>PIX settings have been saved</source>
         <translation>PIX 設定を保存しました</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="561"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="562"/>
         <source>JunOS router</source>
         <translation>JunOS ルータ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="599"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="600"/>
         <source>JunOS settings have been saved</source>
         <translation>JunOS の設定を保存しました</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="666"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="667"/>
         <source>ASA firewall</source>
         <translation>ASA ファイアウォール</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="666"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="667"/>
         <source>Identifier, initrd and kernel must be set!</source>
         <translation>識別子、initrd とカーネルを指定する必要があります！</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="709"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="710"/>
         <source>ASA settings have been saved</source>
         <translation>ASA 設定を保存しました</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="778"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="779"/>
         <source>IDS</source>
         <translation>IDS</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="778"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="779"/>
         <source>Identifier, image 1 and image 2 must be set!</source>
         <translation>識別子、イメージ１とイメージ２を指定する必要があります！</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="820"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="821"/>
         <source>IDS settings have been saved</source>
         <translation>IDS の設定を保存しました</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="320"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="321"/>
         <source>Local Qemu working directory</source>
         <translation type="unfinished">ローカルの Qemu 用作業フォルダ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="328"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="329"/>
         <source>Capture directory</source>
         <translation type="unfinished">キャプチャ保存先</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="328"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="329"/>
         <source>Qemu working directory must be writable!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3453,67 +3453,62 @@ or the link itself.</source>
         <translation>言語:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="110"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="120"/>
         <source>Paths</source>
         <translation>パス</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="116"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="126"/>
         <source>Project directory:</source>
         <translation>プロジェクト保存先:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="146"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="156"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="248"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="275"/>
         <source>Terminal command:</source>
         <translation>ターミナルコマンド:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="408"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="435"/>
         <source>Always use manual mode when adding links</source>
         <translation>リンクを追加するときは必ず手動モードにする</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="258"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="285"/>
         <source>Launch this command using the system default shell</source>
         <translation>このコマンドをシステムのデフォルトシェルで起動する</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="159"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="169"/>
         <source>Configuration file</source>
         <translation>設定ファイル</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="165"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="175"/>
         <source>Unknown location</source>
         <translation>不明な場所</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="185"/>
-        <source>&amp;Clear it</source>
-        <translation>クリア(&amp;C)</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="418"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="445"/>
         <source>Show link status points on the workspace</source>
         <translation>リンクの状態をワークスペースに表示する</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="334"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="361"/>
         <source>Workspace width:</source>
         <translation>ワークスペースの幅:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="379"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="406"/>
         <source> px</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="366"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="393"/>
         <source>Workspace height:</source>
         <translation>ワークスペースの高さ:</translation>
     </message>
@@ -3528,37 +3523,37 @@ or the link itself.</source>
         <translation>一般設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="328"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="355"/>
         <source>GUI Settings</source>
         <translation>GUI 設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="398"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="425"/>
         <source>Draw a rectangle when an item is selected</source>
         <translation>項目が選択された時に四角形を描画する</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="285"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="312"/>
         <source> seconds</source>
         <translation>秒</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="219"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="246"/>
         <source>Terminal Settings</source>
         <translation>ターミナル設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="225"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="252"/>
         <source>Preconfigurated terminal commands:</source>
         <translation>事前定義済みのターミナルコマンド:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="241"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="268"/>
         <source>&amp;Use</source>
         <translation>使用する(&amp;U)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="304"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="331"/>
         <source>Terminal command magic strings:
 %h = device server 
 %p = device port
@@ -3574,38 +3569,53 @@ or the link itself.</source>
         <translation>プロジェクトに相対パスを使用する</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="90"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="100"/>
         <source>Autosave:</source>
         <translation>自動保存:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="268"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="295"/>
         <source>&lt;html&gt;This option will attempt to bring existing opened console window to front, instead of opening a new window.&lt;br&gt;If no existing opened console window exists, it will start a new  console window.&lt;/html&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="271"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="298"/>
         <source>Bring console window to front (experimental feature)</source>
         <translation>コンソールを最前面に表示（実験的な機能）</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="208"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="73"/>
         <source>Automatically check for update</source>
         <translation>アップデートを自動的に確認する</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="136"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="146"/>
         <source>OS image (IOS, Qemu, PIX etc.) directory:</source>
         <translation>OS イメージ等 (IOS, Qemu, PIXなど) の保存先:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="73"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="83"/>
         <source>Delay between each device start when starting all devices:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="278"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="305"/>
         <source>Delay between each console when consoling to all devices:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="195"/>
+        <source>&amp;Import</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="202"/>
+        <source>&amp;Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="209"/>
+        <source>&amp;Clear</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4070,67 +4080,67 @@ or the link itself.</source>
         <translation>VirtualBox ゲスト設定</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="324"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="331"/>
         <source>VM Name / UUID:</source>
         <translation>VM 名 / UUID:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="331"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="367"/>
         <source>NIC model:</source>
         <translation>NICのモデル:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="345"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="381"/>
         <source>automatic</source>
         <translation>自動</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="350"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="386"/>
         <source>e1000</source>
         <translation>e1000</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="355"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="391"/>
         <source>pcnet2</source>
         <translation>pcnet2</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="360"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="396"/>
         <source>pcnet3</source>
         <translation>pcnet3</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="365"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="401"/>
         <source>virtio</source>
         <translation>virtio</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="373"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="341"/>
         <source>Number of NICs:</source>
         <translation>NICの枚数:</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="448"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="451"/>
         <source>&amp;Save</source>
         <translation>保存(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="455"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="458"/>
         <source>&amp;Delete</source>
         <translation>削除(&amp;D)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="484"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="487"/>
         <source>VirtualBox Virtual Machines</source>
         <translation>VirtualBox の仮想マシン</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="492"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="495"/>
         <source>GNS3 Name</source>
         <translation>GNS3 の名前</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="497"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="500"/>
         <source>Virtual Machine Name or Unique Identifier</source>
         <translation>仮想マシン名かユニックな識別子</translation>
     </message>
@@ -4140,24 +4150,14 @@ or the link itself.</source>
         <translation>複数のラッパーを追加することによって GNS3 を複数のホスト上で分散することができます。</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="389"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="426"/>
         <source>GuestControl User</source>
         <translation>GuestControl ユーザー名</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="396"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="436"/>
         <source>GuestControl Password</source>
         <translation>GuestControl パスワード</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="403"/>
-        <source>Enable GuestControl</source>
-        <translation>GuestControl を有効にする</translation>
-    </message>
-    <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="410"/>
-        <source>(experimental feature)</source>
-        <translation>(実験的な機能)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="183"/>
@@ -4180,8 +4180,18 @@ or the link itself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="462"/>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="465"/>
         <source>Refresh VM List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="409"/>
+        <source>Do not use first NIC for connections with the host OS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="419"/>
+        <source>Enable GuestControl (experimental)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4420,17 +4430,17 @@ or the link itself.</source>
         <translation>ハイパーバイザを設定</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1010"/>
+        <location filename="../Scene.py" line="1011"/>
         <source>annotation</source>
         <translation>注釈</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1019"/>
+        <location filename="../Scene.py" line="1020"/>
         <source>rectangle</source>
         <translation>四角形</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1027"/>
+        <location filename="../Scene.py" line="1028"/>
         <source>ellipse</source>
         <translation>円</translation>
     </message>
@@ -4750,8 +4760,8 @@ i.e. #copy start run</source>
     </message>
     <message>
         <location filename="../Ui/Form_StyleDialog.py" line="72"/>
-        <source>Rotation can be ajusted on the scene for a selected item with
-ALT and + (or P) / ALT and - (or M)</source>
+        <source>Rotation can be ajusted on the scene for a selected item while
+editing (notes only) with ALT and &apos;+&apos; (or P) / ALT and &apos;-&apos; (or M)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4877,264 +4887,269 @@ ALT and + (or P) / ALT and - (or M)</source>
 <context>
     <name>Topology</name>
     <message>
-        <location filename="../Topology.py" line="531"/>
+        <location filename="../Topology.py" line="529"/>
         <source>IOS image</source>
         <translation>IOS イメージ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="473"/>
+        <location filename="../Topology.py" line="471"/>
         <source>Please register at least one IOS image</source>
         <translation>少なくともひとつの IOS イメージを登録して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="523"/>
+        <location filename="../Topology.py" line="521"/>
         <source>Hypervisor</source>
         <translation>ハイパーバイザ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="519"/>
+        <location filename="../Topology.py" line="517"/>
         <source>Please configure the path to Dynamips</source>
         <translation>Dynamips のプログラムパスを設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1193"/>
+        <location filename="../Topology.py" line="1197"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1193"/>
+        <location filename="../Topology.py" line="1197"/>
         <source>Connection lost</source>
         <translation>接続に失敗しました</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1073"/>
+        <location filename="../Topology.py" line="1077"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="227"/>
+        <location filename="../Topology.py" line="225"/>
         <source>Can&apos;t connect to the external hypervisor on %s</source>
         <translation>外部ハイパーバイザ %s に接続できませんでした</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="483"/>
+        <location filename="../Topology.py" line="481"/>
         <source>No image for platform %s</source>
         <translation>このプラットフォーム %s に IOS イメージは設定されていません</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1073"/>
+        <location filename="../Topology.py" line="1077"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>スイッチへ少なくとも1つのルータを接続する必要があります</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="818"/>
+        <location filename="../Topology.py" line="822"/>
         <source>PIX image</source>
         <translation>PIX イメージ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="523"/>
+        <location filename="../Topology.py" line="521"/>
         <source>Please test the path to Dynamips in preferences</source>
         <translation>設定画面で Dynamips のプログラムパスをテストしてください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="374"/>
+        <location filename="../Topology.py" line="372"/>
         <source>Qemuwrapper error</source>
         <translation>Qemuwrapper エラー</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="818"/>
+        <location filename="../Topology.py" line="822"/>
         <source>%s seems to not exist, please check</source>
         <translation>%s が存在しないようです。確認してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="661"/>
+        <location filename="../Topology.py" line="665"/>
         <source>JunOS image</source>
         <translation>JunOS イメージ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="572"/>
+        <location filename="../Topology.py" line="570"/>
         <source>Qemu image</source>
         <translation>Qemu イメージ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="766"/>
+        <location filename="../Topology.py" line="770"/>
         <source>ASA kernel</source>
         <translation>ASA カーネル</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="761"/>
+        <location filename="../Topology.py" line="765"/>
         <source>ASA initrd</source>
         <translation>ASA initrd</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="711"/>
+        <location filename="../Topology.py" line="715"/>
         <source>IDS images</source>
         <translation>IDS イメージ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="329"/>
+        <location filename="../Topology.py" line="327"/>
         <source>External Qemuwrapper</source>
         <translation>外部 Qemuwrapper</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="324"/>
+        <location filename="../Topology.py" line="322"/>
         <source>Please register at least one external Qemuwrapper</source>
         <translation>外部 Qemuwrapper を一つ以上登録して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="329"/>
+        <location filename="../Topology.py" line="327"/>
         <source>Please choose your external Qemuwrapper</source>
         <translation>外部 Qemuwrapper を選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1049"/>
+        <location filename="../Topology.py" line="1053"/>
         <source>Can&apos;t connect these devices</source>
         <translation>このデバイスは接続できませんでした</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="258"/>
+        <location filename="../Topology.py" line="256"/>
         <source>IOS Base config</source>
         <translation>IOS ベース設定</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="258"/>
+        <location filename="../Topology.py" line="256"/>
         <source>%s: %s</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="633"/>
+        <location filename="../Topology.py" line="637"/>
         <source>JunOS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="633"/>
+        <location filename="../Topology.py" line="637"/>
         <source>Please configure a JunOS</source>
         <translation>JunOS を設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="646"/>
+        <location filename="../Topology.py" line="650"/>
         <source>Please choose a JunOS</source>
         <translation>JunOS を選択してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="692"/>
+        <location filename="../Topology.py" line="696"/>
         <source>IDS</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="679"/>
+        <location filename="../Topology.py" line="683"/>
         <source>Please configure an IDS</source>
         <translation>IDS を設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="692"/>
+        <location filename="../Topology.py" line="696"/>
         <source>Please choose an IDS</source>
         <translation>IDS を選択してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="746"/>
+        <location filename="../Topology.py" line="750"/>
         <source>ASA</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="733"/>
+        <location filename="../Topology.py" line="737"/>
         <source>Please configure an ASA</source>
         <translation>ASA を設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="746"/>
+        <location filename="../Topology.py" line="750"/>
         <source>Please choose an ASA</source>
         <translation>ASA を選択してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="803"/>
+        <location filename="../Topology.py" line="807"/>
         <source>PIX</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="790"/>
+        <location filename="../Topology.py" line="794"/>
         <source>Please configure a PIX</source>
         <translation>PIX を設定してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="803"/>
+        <location filename="../Topology.py" line="807"/>
         <source>Please choose a PIX</source>
         <translation>PIX を選択してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="498"/>
+        <location filename="../Topology.py" line="496"/>
         <source>Please choose an image:</source>
         <translation>イメージを選択してください:</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="400"/>
+        <location filename="../Topology.py" line="398"/>
         <source>External VBoxwrapper</source>
         <translation>外部 VBoxwrapper</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="479"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="488"/>
         <source>Please register at least one external VBoxwrapper</source>
         <translation>外部 VBoxwrapper を一つ以上登録して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="400"/>
+        <location filename="../Topology.py" line="398"/>
         <source>Please choose your external VBoxwrapper</source>
         <translation>外部 VBoxwrapper を選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="447"/>
+        <location filename="../Topology.py" line="445"/>
         <source>VBoxwrapper error</source>
         <translation>VBoxwrapper エラー</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="543"/>
+        <location filename="../Topology.py" line="541"/>
         <source>Please configure a Qemu guest:</source>
         <translation>Qemu ゲストを設定してください：</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="556"/>
+        <location filename="../Topology.py" line="554"/>
         <source>Qemu guest</source>
         <translation>Qemu ゲスト</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="556"/>
+        <location filename="../Topology.py" line="554"/>
         <source>Please choose a Qemu guest</source>
         <translation>Qemu ゲストを選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="590"/>
+        <location filename="../Topology.py" line="588"/>
         <source>VBox image</source>
         <translation>VBox イメージ</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="590"/>
+        <location filename="../Topology.py" line="588"/>
         <source>Please configure a VirtualBox guest:</source>
         <translation>VirtualBox ゲストを設定してください：</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="603"/>
+        <location filename="../Topology.py" line="619"/>
         <source>VirtualBox guest</source>
         <translation>VirtualBox ゲスト</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="603"/>
+        <location filename="../Topology.py" line="601"/>
         <source>Please choose a VirtualBox guest</source>
         <translation>VirtualBox ゲストを選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="424"/>
+        <location filename="../Topology.py" line="422"/>
         <source>VirtualBox VMname/UUID</source>
         <translation>VirtualBox VM名/UUID</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="424"/>
+        <location filename="../Topology.py" line="422"/>
         <source>VirtualBox Machine &apos;%s&apos; seems to not exist, please check</source>
         <translation>VirtualBox マシン %s が存在しないようです。確認してください</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="247"/>
+        <location filename="../Topology.py" line="245"/>
         <source>The base config file (%s) specified for this IOS can not be found. Your router will start with a blank configuration.</source>
         <translation>この IOS 用のベースコンフィグファイル (%s) が見つかりませんでした。真っさらな状態で起動することになります。</translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="619"/>
+        <source>VM already used, please clone your VM in VirtualBox</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5148,17 +5163,17 @@ ALT and + (or P) / ALT and - (or M)</source>
 <context>
     <name>UiConfig_PreferencesDynamips</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="170"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="171"/>
         <source>Dynamips binary</source>
         <translation>Dynamips バイナリ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="176"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="177"/>
         <source>Can&apos;t open file: %s</source>
         <translation>ファイルを開けませんでした: %s</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="186"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="187"/>
         <source>Dynamips path</source>
         <translation>Dynamips パス</translation>
     </message>
@@ -5168,7 +5183,7 @@ ALT and + (or P) / ALT and - (or M)</source>
         <translation>パスは ASCII 文字のみを含んでいる必要があります: Windows 上の Dynamips (Cygwin.DLL) はユニコードをサポートしません!</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="192"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="193"/>
         <source>Local hypervisor working directory</source>
         <translation>ローカルハイパーバイザーの作業フォルダ</translation>
     </message>
@@ -5188,7 +5203,7 @@ ALT and + (or P) / ALT and - (or M)</source>
         <translation>この動作は現在ロード中のトポロジーをクリアすることになります、このまま続けますか？</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="257"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="275"/>
         <source>Failed to start Dynamips</source>
         <translation>Dynamips 起動に失敗しました</translation>
     </message>
@@ -5203,7 +5218,7 @@ ALT and + (or P) / ALT and - (or M)</source>
         <translation>Dynamips %s 見つかりましたが、対応外のため、0.2.8 以降をお使いください。</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="255"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="273"/>
         <source>Dynamips %s successfully started</source>
         <translation>Dynamips %s 正常に開始できました</translation>
     </message>
@@ -5226,17 +5241,17 @@ ALT and + (or P) / ALT and - (or M)</source>
 <context>
     <name>UiConfig_PreferencesGeneral</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="235"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="236"/>
         <source>Project Directory</source>
         <translation>プロジェクトディレクトリ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="262"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="307"/>
         <source>Configuration file</source>
         <translation>設定ファイル</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="262"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="267"/>
         <source>Configuration file cleared, default settings will be applied after a restart</source>
         <translation>設定ファイルをクリアしました、再起動するきデフォルトの設定で開始されます</translation>
     </message>
@@ -5261,7 +5276,7 @@ ALT and + (or P) / ALT and - (or M)</source>
         <translation>イメージの保存用のフォルダ %s を作成できませんでした</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="243"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="244"/>
         <source>Image Directory</source>
         <translation>イメージの保存先</translation>
     </message>
@@ -5275,71 +5290,101 @@ ALT and + (or P) / ALT and - (or M)</source>
         <source>Would you like to create the project &amp; image directories?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="258"/>
+        <source>All GNS3 configuration will be lost. Do you want to proceed?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="285"/>
+        <source>Export configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="299"/>
+        <source>Cannot export configuration file: %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="303"/>
+        <source>%s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="303"/>
+        <source>Import configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="307"/>
+        <source>Configuration file imported, default settings will be applied after a restart</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>UiConfig_PreferencesQemu</name>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="865"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="866"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="865"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="866"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
         <translation>この動作は現在ロード中のトポロジーをクリアすることになります、このまま続けますか？</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="874"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="875"/>
         <source>Qemuwrapper path doesn&apos;t exist</source>
         <translation>指定パスに Qemuwrapper を見つかりませんでした</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="887"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="888"/>
         <source>Failed to start Qemuwrapper</source>
         <translation>Qemuwrapper 起動に失敗しました</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="913"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="914"/>
         <source>Failed to start qemu</source>
         <translation>qemu 起動に失敗しました</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="941"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="950"/>
         <source>Failed to start qemu-img</source>
         <translation>qemu-img 起動に失敗しました</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="949"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="958"/>
         <source>Qemuwrapper, qemu and qemu-img have successfully started</source>
         <translation>Qemuwrapper、qemu と qemu-img を正常に動作確認しました</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="947"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="956"/>
         <source>Qemuwrapper, qemu, qemu-img and pemu have successfully started</source>
         <translation>Qemuwrapper、qemu と qemu-img を正常に動作確認しました</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="949"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="958"/>
         <source> (except pemu)</source>
         <translation> (pemu 以外)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="885"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="886"/>
         <source>Failed to start Qemuwrapper (python.exe path must be in your PATH environment variable)</source>
         <translation>Qemuwrapper 起動に失敗しました (Python の実行ファイルのパスは PATH 環境変数に設定されている必要があります)</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="919"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="920"/>
         <source>You&apos;re running an old AND unpatched version of qemu, which won&apos;t work</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="945"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="954"/>
         <source> (except pemu that is not supported on Mac OS X)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="878"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="879"/>
         <source>Qemu working directory does not exist or is not writable</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5352,42 +5397,42 @@ ALT and + (or P) / ALT and - (or M)</source>
         <translation>ローカル VirtualBox の作業フォルダ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="453"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="462"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="453"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="462"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
         <translation>この動作は現在ロード中のトポロジーをクリアすることになります、このまま続けますか？</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="463"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="472"/>
         <source>VBoxwrapper path doesn&apos;t exist</source>
         <translation>指定パスに VBoxwrapper を見つかりませんでした</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="473"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="482"/>
         <source>Failed to start VBoxwrapper</source>
         <translation>VBoxwrapper 起動に失敗しました</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="519"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="528"/>
         <source>VBoxwrapper and VirtualBox API %s have successfully started</source>
         <translation>VBoxwrapper と VirtualBox API %s を正常に動作確認しました</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="516"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="525"/>
         <source>Failed to start xdotool</source>
         <translation>xdotool 起動に失敗しました</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="484"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="493"/>
         <source>External VBoxwrapper</source>
         <translation type="unfinished">外部 VBoxwrapper</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="484"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesVirtualBox.py" line="493"/>
         <source>Please choose your external VBoxwrapper</source>
         <translation type="unfinished">外部 VBoxwrapper を選択して下さい</translation>
     </message>
@@ -5425,67 +5470,67 @@ ALT and + (or P) / ALT and - (or M)</source>
         <translation>項目を削除</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="123"/>
+        <location filename="../UndoFramework.py" line="125"/>
         <source>New link: %s (%s) -&gt; %s (%s)</source>
         <translation>新しいリンク: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="157"/>
+        <location filename="../UndoFramework.py" line="159"/>
         <source>Delete link: %s (%s) -&gt; %s (%s)</source>
         <translation>リンクを削除:%s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="193"/>
+        <location filename="../UndoFramework.py" line="195"/>
         <source>New configuration applied on %s</source>
         <translation>新しい設定が %s に適用されました</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="211"/>
+        <location filename="../UndoFramework.py" line="213"/>
         <source>New hostname %s -&gt; %s</source>
         <translation>新しいホスト名%s -&gt; %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="239"/>
+        <location filename="../UndoFramework.py" line="241"/>
         <source>New layer position %d</source>
         <translation>新しい層 %d</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="285"/>
+        <location filename="../UndoFramework.py" line="287"/>
         <source>New console port %d for %s</source>
         <translation>%s の新しいコンソールポート %d</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="353"/>
+        <location filename="../UndoFramework.py" line="355"/>
         <source>New startup-config %s for %s</source>
         <translation>%s の新しいスタートアップコンフィグ %s</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="395"/>
+        <location filename="../UndoFramework.py" line="397"/>
         <source>New startup-config in nvram for %s</source>
         <translation>%s の nvram に新しいスタートアップコンフィグ</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="414"/>
+        <location filename="../UndoFramework.py" line="416"/>
         <source>Connection lost</source>
         <translation>接続に失敗しました</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="432"/>
+        <location filename="../UndoFramework.py" line="434"/>
         <source>New style applied for annotation</source>
         <translation>新しいスタイルが適用されました</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="467"/>
+        <location filename="../UndoFramework.py" line="469"/>
         <source>New style applied for item</source>
         <translation>この項目に新しいスタイルが適用されました</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="502"/>
+        <location filename="../UndoFramework.py" line="504"/>
         <source>New text for annotation</source>
         <translation>新しいテキスト</translation>
     </message>
     <message>
-        <location filename="../UndoFramework.py" line="319"/>
+        <location filename="../UndoFramework.py" line="321"/>
         <source>New aux port %d for %s</source>
         <translation>新しい AUX ポート %d (%s 向け)</translation>
     </message>
@@ -5677,112 +5722,112 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="225"/>
+        <location filename="../Workspace.py" line="232"/>
         <source>Docks</source>
         <translation>ドッキング</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1318"/>
+        <location filename="../Workspace.py" line="1328"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="779"/>
+        <location filename="../Workspace.py" line="789"/>
         <source>Connection lost</source>
         <translation>接続に失敗しました</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="748"/>
+        <location filename="../Workspace.py" line="758"/>
         <source>Abort</source>
         <translation>中止</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="964"/>
+        <location filename="../Workspace.py" line="974"/>
         <source>Starting nodes ...</source>
         <translation>ノードを開始中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="825"/>
+        <location filename="../Workspace.py" line="835"/>
         <source>Stopping nodes ...</source>
         <translation>ノードを停止中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="831"/>
+        <location filename="../Workspace.py" line="841"/>
         <source>Suspending nodes ...</source>
         <translation>ノードを一時停止中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="957"/>
+        <location filename="../Workspace.py" line="967"/>
         <source>Loading</source>
         <translation>読み込み中</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="663"/>
+        <location filename="../Workspace.py" line="673"/>
         <source>Hide hostnames</source>
         <translation>ホスト名を表示しない</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="668"/>
+        <location filename="../Workspace.py" line="678"/>
         <source>Show hostnames</source>
         <translation>ホスト名を表示する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1299"/>
+        <location filename="../Workspace.py" line="1309"/>
         <source>Open a file</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1295"/>
+        <location filename="../Workspace.py" line="1305"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Dynamips のプログラムパスを設定しておく必要があります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1024"/>
+        <location filename="../Workspace.py" line="1034"/>
         <source>New Project</source>
         <translation>新規プロジェクト</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1386"/>
+        <location filename="../Workspace.py" line="1397"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="531"/>
+        <location filename="../Workspace.py" line="541"/>
         <source>Add a link</source>
         <translation>リンクを追加する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="546"/>
+        <location filename="../Workspace.py" line="556"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1024"/>
+        <location filename="../Workspace.py" line="1034"/>
         <source>Can&apos;t create a project</source>
         <translation>プロジェクトを作成できませんでした</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1377"/>
+        <location filename="../Workspace.py" line="1388"/>
         <source>Would you like to save the current topology?</source>
         <translation>現在のトポロジーを保存しますか?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="424"/>
+        <location filename="../Workspace.py" line="431"/>
         <source>Directory to write startup-configs</source>
         <translation>スタートコンフィグを書き込みするディレクトリ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="685"/>
+        <location filename="../Workspace.py" line="695"/>
         <source>Hide interface names</source>
         <translation>インターフェイス名を隠す</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="690"/>
+        <location filename="../Workspace.py" line="700"/>
         <source>Show interface names</source>
         <translation>インターフェイス名を表示する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1151"/>
+        <location filename="../Workspace.py" line="1161"/>
         <source>Snapshot</source>
         <translation>スナップショット</translation>
     </message>
@@ -5792,217 +5837,217 @@ p, li { white-space: pre-wrap; }
         <translation>ディレクトリを作成できません %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1156"/>
+        <location filename="../Workspace.py" line="1166"/>
         <source>Please wait while creating a snapshot</source>
         <translation>スナップショットを作成する間、しばらくお待ちください</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="779"/>
+        <location filename="../Workspace.py" line="789"/>
         <source>%s: Dynamips error</source>
         <translation>%s: Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="776"/>
+        <location filename="../Workspace.py" line="786"/>
         <source>%s: Dynamips warning</source>
         <translation>%s: Dynamips 警告</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="415"/>
+        <location filename="../Workspace.py" line="422"/>
         <source>Extracting to a directory</source>
         <translation>ディレクトリに抽出</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="417"/>
+        <location filename="../Workspace.py" line="424"/>
         <source>Importing from a directory</source>
         <translation>ディレクトリからインポート</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="411"/>
+        <location filename="../Workspace.py" line="418"/>
         <source>Configs</source>
         <translation>コンフィグ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="411"/>
+        <location filename="../Workspace.py" line="418"/>
         <source>Please choose an option</source>
         <translation>オプションを選択して下さい</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="437"/>
+        <location filename="../Workspace.py" line="445"/>
         <source>Directory to read startup-configs</source>
         <translation>スタートアップコンフィグを読み込むフォルダ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="458"/>
+        <location filename="../Workspace.py" line="467"/>
         <source>IO Error</source>
         <translation>IO エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="448"/>
+        <location filename="../Workspace.py" line="457"/>
         <source>Importing %s from %s</source>
         <translation>%s を %s からインポートする</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="461"/>
+        <location filename="../Workspace.py" line="470"/>
         <source>Ignoring unknown device %s</source>
         <translation>不明なデバイス %s を無視する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="463"/>
+        <location filename="../Workspace.py" line="472"/>
         <source>Dynamips Error: %s</source>
         <translation>Dynamips エラー: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="465"/>
+        <location filename="../Workspace.py" line="474"/>
         <source>Dynamips Warning: %s</source>
         <translation>Dynamips 警告: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="337"/>
+        <location filename="../Workspace.py" line="344"/>
         <source>I/O Error</source>
         <translation>I/O エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="337"/>
+        <location filename="../Workspace.py" line="344"/>
         <source>I/O Error: %s</source>
         <translation>I/O エラー: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="92"/>
+        <location filename="../Workspace.py" line="93"/>
         <source>Ctrl+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="97"/>
+        <location filename="../Workspace.py" line="98"/>
         <source>Ctrl+Y</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="837"/>
+        <location filename="../Workspace.py" line="847"/>
         <source>Reloading nodes ...</source>
         <translation>ノードを再起動中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="512"/>
+        <location filename="../Workspace.py" line="522"/>
         <source>picture</source>
         <translation>画像</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1195"/>
+        <location filename="../Workspace.py" line="1205"/>
         <source>Dynamips error: %s</source>
         <translation>Dynamips エラー: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="679"/>
+        <location filename="../Workspace.py" line="689"/>
         <source>Reset saved interface labels?</source>
         <translation>保存したインターフェイスラベルをリセットしますか?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1151"/>
+        <location filename="../Workspace.py" line="1161"/>
         <source>Cannot create directories in %s: %s</source>
         <translation>%s %s にディレクトリを作成できません</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1223"/>
+        <location filename="../Workspace.py" line="1233"/>
         <source>Dynamips error!!: %s</source>
         <translation>Dynamips エラー!! %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1318"/>
+        <location filename="../Workspace.py" line="1328"/>
         <source>Connection lost with Dynamips hypervisor (crashed?)</source>
         <translation>Dynamips ハイパーバイザとの接続に失敗しました (クラッシュ?)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1351"/>
+        <location filename="../Workspace.py" line="1361"/>
         <source>Save As...</source>
         <translation>名前を付けて保存...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1057"/>
+        <location filename="../Workspace.py" line="1067"/>
         <source>Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)</source>
         <translation>Qemu ディスクの関連付けを外しますか？ (ラボファイル等を配布するとき便利ですが、ファイルのサイズが拡大されます)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="995"/>
+        <location filename="../Workspace.py" line="1005"/>
         <source>This action is going to stop all your devices and captures, would you like to continue anyway?</source>
         <translation>この動作は現在実行中のデバイスとキャプチャを中止することになります、このまま続けますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="708"/>
+        <location filename="../Workspace.py" line="718"/>
         <source>Interface labels</source>
         <translation>インターフェイスのラベル</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="699"/>
+        <location filename="../Workspace.py" line="709"/>
         <source>Please hide the interface names before using this option</source>
         <translation>この機能を使うためにはインターフェースの名前を非表示にする必要があります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="708"/>
+        <location filename="../Workspace.py" line="718"/>
         <source>Interface labels have been reset</source>
         <translation>インターフェースのラベルをリセットしました</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1386"/>
+        <location filename="../Workspace.py" line="1397"/>
         <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
         <translation>この動作は現在実行中のノードのコンフィグが廃棄される可能性があります、このまま続けますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="934"/>
+        <location filename="../Workspace.py" line="944"/>
         <source>Check For Update</source>
         <translation>アップデートを確認</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="922"/>
+        <location filename="../Workspace.py" line="932"/>
         <source>Cannot check for update ... Try again later</source>
         <translation>アップデートの確認できませんでした ... また試してください</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="927"/>
+        <location filename="../Workspace.py" line="937"/>
         <source>Newer GNS3 version %s is available, do you want to visit our website to download it?</source>
         <translation>新しいバージョンの GNS3 %s が入手できます、ダウンロードページを開きますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="971"/>
+        <location filename="../Workspace.py" line="981"/>
         <source>This will clear your current topology. Continue?</source>
         <translation>現在のトポロジーをクリアします、続けますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1289"/>
+        <location filename="../Workspace.py" line="1299"/>
         <source>Clear Menu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="202"/>
+        <location filename="../Workspace.py" line="209"/>
         <source>Recent Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="794"/>
+        <location filename="../Workspace.py" line="804"/>
         <source>VirtualBox Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="794"/>
+        <location filename="../Workspace.py" line="804"/>
         <source>VirtualBox is not installed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1115"/>
+        <location filename="../Workspace.py" line="1125"/>
         <source>Dynamips error %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1244"/>
+        <location filename="../Workspace.py" line="1254"/>
         <source>The file &apos;%s&apos; has not the right extension (.net)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="954"/>
+        <location filename="../Workspace.py" line="964"/>
         <source>No such file: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="957"/>
+        <location filename="../Workspace.py" line="967"/>
         <source>Not a regular file: %s</source>
         <translation type="unfinished"></translation>
     </message>
