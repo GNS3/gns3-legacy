@@ -1959,7 +1959,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="DynamicStrings.py" line="26"/>
         <source>English</source>
-        <translation>English</translation>
+        <translation>中国的</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="21"/>

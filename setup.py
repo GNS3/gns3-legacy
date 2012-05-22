@@ -46,6 +46,7 @@ if sys.platform.startswith('win'):
                   ('src\GNS3\Dynagen\configspec'),
                   ('LICENSE'),
                   ('baseconfig.txt'),
+                  ('baseconfig_sw.txt'),
                   (PYQT4_DIR + r'\QtXml4.dll'),
                   ("iconengines", glob(PYQT4_DIR + r'\plugins\iconengines\*.dll')),
                   ("imageformats", glob(PYQT4_DIR + r'\plugins\imageformats\*.dll'))]
@@ -104,6 +105,8 @@ elif sys.platform.startswith('darwin'):
                   ('qemuwrapper/qemuwrapper.py'),
                   ('vboxwrapper/vboxwrapper.py'),
                   ('vboxwrapper/vboxcontroller_4_1.py'),
+                  ('baseconfig.txt'),
+                  ('baseconfig_sw.txt'),
                   ('LICENSE'),
                   ("../PlugIns/iconengines", [QTDIR + r'/plugins/iconengines/libqsvgicon.dylib']),
                   ("../PlugIns/imageformats", [QTDIR + r'/plugins/imageformats/libqgif.dylib',
@@ -229,6 +232,6 @@ else:
                 'GNS3.Langs'],
           package_data = { 'GNS3': ['Langs/*.qm', 'Dynagen/configspec'] },
           data_files = [ (wrapper_dir, ['qemuwrapper/qemuwrapper.py', 'vboxwrapper/vboxcontroller_4_1.py', 'vboxwrapper/vboxwrapper.py']),
-                        ('/usr/local/share/examples/gns3/', ['baseconfig.txt'])]
+                        ('/usr/local/share/examples/gns3/', ['baseconfig.txt', 'baseconfig_sw.txt'])]
     )
 

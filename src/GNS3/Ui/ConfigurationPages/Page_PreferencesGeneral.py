@@ -221,6 +221,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
         try:
             shutil.copyfile('baseconfig.txt', self.conf.ios_path + os.sep + 'baseconfig.txt')
+            shutil.copyfile('baseconfig_sw.txt', self.conf.ios_path + os.sep + 'baseconfig_sw.txt')
         except (OSError, IOError), e:
             debug("Warning: cannot copy baseconfig.txt to " + self.conf.ios_path + ": " + e.strerror)
 

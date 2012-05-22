@@ -94,7 +94,7 @@ class portTracker:
 
         origin_port = port
         origin_host = host
-        if host not in self.local_addresses:
+        if host in self.local_addresses:
             host = 'localhost'
         if not self.tcptrack.has_key(host):
             self.tcptrack[host] = []
@@ -116,7 +116,7 @@ class portTracker:
         return origin_port
 
     def tcpPortIsFree(self, host, port):
-        if host not in self.local_addresses:
+        if host in self.local_addresses:
             host = 'localhost'
         if self.tcptrack.has_key(host) and port in self.tcptrack[host]:
             return False
@@ -125,7 +125,7 @@ class portTracker:
         return True
 
     def freeTcpPort(self, host, port):
-        if host not in self.local_addresses:
+        if host in self.local_addresses:
             host = 'localhost'
         if not self.tcpPortIsFree(host, port):
             debug("freeing port %i" % port)
@@ -134,7 +134,7 @@ class portTracker:
             debug("could not free port %i (not in tracker)" % port)
 
     def setTcpPort(self, host, port):
-        if host not in self.local_addresses:
+        if host in self.local_addresses:
             host = 'localhost'
         debug("adding port %i" % port)
         self.tcptrack[host].append(port)

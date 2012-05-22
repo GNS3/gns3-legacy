@@ -1,0 +1,152 @@
+!
+no service dhcp
+!
+hostname %h-SW
+!
+no ip routing
+no ip domain lookup
+ip domain name lab.local
+!
+!
+macro name add_vlan
+end
+vlan database
+vlan $v
+exit
+@
+macro name del_vlan
+end
+vlan database
+no vlan $v
+exit
+@
+!
+interface FastEthernet0/0
+ description *** Unused for Layer2 SW ***
+ no ip address
+ shutdown
+!
+interface FastEthernet0/1
+ description *** Unused for Layer2 SW ***
+ no ip address
+ shutdown
+!
+interface FastEthernet1/0
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/1
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/2
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/3
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/4
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/5
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/6
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/7
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/8
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/9
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/10
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/11
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/12
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/13
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/14
+ no shutdown
+ duplex full
+ speed 100
+!
+interface FastEthernet1/15
+ no shutdown
+ duplex full
+ speed 100
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+!
+banner exec
+
+***************************************************************
+This is a normal Router with a SW module inside (NM-16ESW)
+It has been preconfigured with hard-code speed and duplex
+
+To create vlans use the command "vlan database" from exec mode
+After creating all desired vlans use "exit" to apply the config
+
+To view existing vlans use the command "show vlan-switch brief" 
+
+Alias(exec)     : vl       - "show vlan-switch brief" command
+Alias(configure): vlan X   - macro to create vlan X
+Alias(configure): novlan X - macro to delete vlan X
+***************************************************************
+
+!
+alias configure vlan macro global trace add_vlan $v
+alias configure novlan macro global trace del_vlan $v
+alias exec vl show vlan-switch brief
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ privilege level 15
+ no login
+line aux 0
+ exec-timeout 0 0
+ logging synchronous
+ privilege level 15
+ no login
+!
+!
+end

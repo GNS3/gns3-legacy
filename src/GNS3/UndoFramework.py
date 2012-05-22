@@ -23,7 +23,7 @@ import socket
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
 from GNS3.Utils import translate
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
 
 class UndoView(QtGui.QUndoView):
 
@@ -108,6 +108,8 @@ class DeleteItem(QtGui.QUndoCommand):
     def redo(self):
 
         self.topology.removeItem(self.item)
+        # Force cursor back to normal after deleting an item
+        globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
 
     def undo(self):
 
