@@ -424,6 +424,9 @@ class AnyEmuDevice(object):
         if type(console) != int or console < 1 or console > 65535:
             raise DynamipsError, 'invalid console port'
 
+        if console == self._console:
+            return
+
         if not self.track.tcpPortIsFree(self.p.host, console):
             raise DynamipsError, 'console port %i is already in use' % console
 

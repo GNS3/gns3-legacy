@@ -111,7 +111,7 @@ class QemuManager(object):
         binding = globals.GApp.systconf['qemu'].QemuManager_binding
         self.port = port
         if self.proc and self.proc.state():
-            debug('QemuManager: Qemu is already started with pid ' + str(self.proc.pid()))
+            debug("QemuManager: Qemu is already started with pid %i" % int(self.proc.pid()))
             return True
 
         self.proc = QtCore.QProcess(globals.GApp.mainWindow)
@@ -155,7 +155,7 @@ class QemuManager(object):
 
         self.waitQemu()
         if self.proc and self.proc.state():
-            debug('QemuManager: Qemu has been started with pid ' + str(self.proc.pid()))
+            debug("QemuManager: Qemu has been started with pid %i"  % int(self.proc.pid()))
         return True
 
     def stopQemu(self):
@@ -170,7 +170,7 @@ class QemuManager(object):
                 except:
                     continue
         if self.proc and self.proc.state():
-            debug('QemuManager: stop Qemu with pid ' + str(self.proc.pid()))
+            debug("QemuManager: stop Qemu with pid %i" % int(self.proc.pid()))
             self.proc.terminate()
             time.sleep(0.5)
             self.proc.close()

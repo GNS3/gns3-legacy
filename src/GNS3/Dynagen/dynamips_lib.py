@@ -2515,6 +2515,9 @@ class Router(Dynamips_device):
         if type(console) != int or console < 1 or console > 65535:
             raise DynamipsError, 'invalid console port'
 
+        if console == self.__console:
+            return
+
         # Check to see if the console port is already in use first
         if not self.track.tcpPortIsFree(self.__d.host, console):
             raise DynamipsError, 'console port %i is already in use' % console
@@ -2539,6 +2542,9 @@ class Router(Dynamips_device):
 
         if type(aux) != int or aux < 1 or aux > 65535:
             raise DynamipsError, 'invalid aux port'
+
+        if aux == self.__aux:
+            return
 
         # Check to see if the console port is already in use first
         if not self.track.tcpPortIsFree(self.__d.host, aux):

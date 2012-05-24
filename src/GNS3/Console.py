@@ -65,12 +65,14 @@ class Console(PyCutExt, Dynagen_Console):
         """ Initialise the Console widget
         """
 
+        from __main__ import VERSION
+
         # Set the prompt, for Dynagen.Console and PyCutExt
         self.prompt = '=> '
         sys.ps1 = '=> '
 
         # Set introduction message
-        self.intro = 'Dynagen management console for Dynamips (adapted for GNS3)\nCopyright (c) 2006-2012 GNS3 Project'
+        self.intro = "GNS3 management console. Running on GNS3 version %s\nCopyright (c) 2006-2012 GNS3 Project" % VERSION
 
         # Parent class initialisation
         try:

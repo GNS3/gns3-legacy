@@ -111,7 +111,7 @@ class VBoxManager(object):
         self.port = port
 
         if self.proc and self.proc.state():
-            debug('VBoxManager: VBox is already started with pid ' + str(self.proc.pid()))
+            debug("VBoxManager: VBox is already started with pid %i" % int(self.proc.pid()))
             return True
 
         self.proc = QtCore.QProcess(globals.GApp.mainWindow)
@@ -155,7 +155,7 @@ class VBoxManager(object):
 
         self.waitVBox()
         if self.proc and self.proc.state():
-            debug('VBoxManager: VBox has been started with pid ' + str(self.proc.pid()))
+            debug("VBoxManager: VBox has been started with pid %i" % int(self.proc.pid()))
         return True
 
 
@@ -172,7 +172,7 @@ class VBoxManager(object):
                 except:
                     continue
         if self.proc and self.proc.state():
-            debug('VBoxManager: stop VBox with pid ' + str(self.proc.pid()))
+            debug("VBoxManager: stop VBox with pid %i" % int(self.proc.pid()))
             self.proc.terminate()
             time.sleep(0.5)
             self.proc.close()
