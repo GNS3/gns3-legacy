@@ -31,9 +31,6 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QLineEdit" name="ProjectPath"/>
-      </item>
       <item row="1" column="2">
        <widget class="QToolButton" name="NewProject_browser">
         <property name="text">
@@ -70,6 +67,9 @@
          <string/>
         </property>
        </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="ProjectPath"/>
       </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label_2">

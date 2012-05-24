@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_NewProject.ui'
 #
-# Created: Wed Apr 18 01:58:39 2012
+# Created: Fri May 25 08:52:49 2012
 #      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -30,9 +30,6 @@ class Ui_NewProject(object):
         self.label = QtGui.QLabel(self.groupBox)
         self.label.setObjectName(_fromUtf8("label"))
         self.gridLayout.addWidget(self.label, 1, 0, 1, 1)
-        self.ProjectPath = QtGui.QLineEdit(self.groupBox)
-        self.ProjectPath.setObjectName(_fromUtf8("ProjectPath"))
-        self.gridLayout.addWidget(self.ProjectPath, 1, 1, 1, 1)
         self.NewProject_browser = QtGui.QToolButton(self.groupBox)
         self.NewProject_browser.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
         self.NewProject_browser.setObjectName(_fromUtf8("NewProject_browser"))
@@ -49,6 +46,9 @@ class Ui_NewProject(object):
         self.ProjectName.setText(_fromUtf8(""))
         self.ProjectName.setObjectName(_fromUtf8("ProjectName"))
         self.gridLayout.addWidget(self.ProjectName, 0, 1, 1, 2)
+        self.ProjectPath = QtGui.QLineEdit(self.groupBox)
+        self.ProjectPath.setObjectName(_fromUtf8("ProjectPath"))
+        self.gridLayout.addWidget(self.ProjectPath, 1, 1, 1, 1)
         self.label_2 = QtGui.QLabel(self.groupBox)
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
