@@ -1,5 +1,23 @@
 CHANGELOG
 
+GNS3 0.8.2.1
+
+ * Fixed issue when saving as a project.
+ * Prevent tail processes staying in memory after stopping captures.
+ * Fixed/improved some console command lines (SecureCRT, TeraTerm, Putty)
+ * New command line option for patched Putty on Windows (-wt => window title option, -sr => "press" a enter into the device console to show the prompt)
+ * Improved securecrt.vbs to "press" a enter into the device console to show the prompt.
+ * Fixed issue when connecting recent Qemu (new -net syntax) to other non-Qemu devices.
+ * Fixed vboxwrapper loading issue for DMG version on OSX.
+ * Fixed rpcap interface name parsing on Windows.
+ * Modified default IOS startup-config (baseconfig.txt).
+ * Handle connection lost during Idle pc calculation.
+ * Warn users if their working directories are not accessible and/or writable.
+ * Allow dash in device hostnames.
+ * Option to clean stopped captures from the captures dock.
+ * Italian and Chinese translations updated.
+ * Fixed bug that prevented loading topologies with non-existing IOS paths.
+
 GNS3 0.8.2 - 13.03.1012
 
  * The issue with Qemu VMs that were stuck on “Booting from Hard Disk” message when using Qemu Manager on Linux has been fixed.
@@ -85,7 +103,7 @@ GNS3 0.8.0 VirtualBox Edition
 
  * Windows Setup was rewritten from scratch
  * Changed Default Qemu Ethernet Controller from "e1000" to "Realtek 8139" for Windows XP compatibility.
- * GUI: Swapped AUX & Console icons - more convenient to have "console" button near "start" button. 
+ * GUI: Swapped AUX & Console icons - more convenient to have "console" button near "start" button.
  * Disallowed to hot-add new links to running Qemu.
  * Fixed VM states coherency between Dynagen's Console and GNS3.
  * Several fixes for using GNS3 with external qemu/vboxwrappers (multi-host distributed topologies)
@@ -164,9 +182,9 @@ GNS3 0.7.2 - 16.06.2010
  * New translations: Bulgarian, Italian and Ukrainian
  * Frame Relay capture option for all serial links
  * Dialog to display the MAC address table of a simulated Ethernet switch
- 
+
  The following features will work only with Dynamips version > 0.2.8 RC2:
- 
+
  * OIR (Online Insertion and Removal) for c3660 and c3745 (only NM-4T).
  * JIT sharing support (saves memory).
  * C7200-JC-PA Jacket Card support. Allow the use of a slot 7 for c7200 routers with NPE-G2.
@@ -218,10 +236,10 @@ Improvements:
 
  * Copy an inserted image in the project's working directory and update its path in the .net file.
  * Prevent auto-generated interface notes to be recorded in the .net file.
- * Display an error msg box if a working directory can't be used by an hypervisor. 
+ * Display an error msg box if a working directory can't be used by an hypervisor.
  * Check if a hostname has already been used when creating a new node.
  * Warn to use manual links when a user select a NM-16ESW module.
- * Check if GNS3 is running on a Windows 64 bits OS in order to choose the correct path to Putty. 
+ * Check if GNS3 is running on a Windows 64 bits OS in order to choose the correct path to Putty.
  * Check IOS and working directories paths when creating new nodes and throw a warning to the user if something is wrong.
  * Button to edit project settings.
 
@@ -230,9 +248,9 @@ Fixes:
  * Prevent notes to be deleted when typing the delete key while editing.
  * Prevent NM-16ESW modules to be removed from routers when using Ethernet/FastEthernet links.
  * Tooltips update when starting/stopping/suspending routers.
- * Bug with Qt 4.5 on selected filter when openning a project (getOpenFileName) 
- * 99MB limit for pcmcia disks. 
- * Unicode errors with TMP env variable on Windows. 
+ * Bug with Qt 4.5 on selected filter when openning a project (getOpenFileName)
+ * 99MB limit for pcmcia disks.
+ * Unicode errors with TMP env variable on Windows.
  * AttributeError: value of `chassis' must be of type string.
  * Merge correct config paths when loading a .net create on a different platform.
 
@@ -252,7 +270,7 @@ GNS3 0.6 - 15.12.2008
 GNS3 0.5: - 29.04.2008
 
  * Possibility to load .net files of other users (provided that there is a registered IOS image with the same model as the one used in the NET file).
- * New detailed tooltips for nodes. 
+ * New detailed tooltips for nodes.
  * A minimalist wizard raised when the configuration file is empty.
  * A button to insert a picture on the scene.
  * Decorative node support for creating network diagrams.
@@ -286,7 +304,7 @@ GNS3 0.3 beta:
  * Improved node configurator
  * Support of the Dynagen INI-like configuration file
  * Multi-language support (howto for translators soon)
- 
+
 
 GNS3 0.2 alpha:
 
