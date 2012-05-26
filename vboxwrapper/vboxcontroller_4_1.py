@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
+# -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 #
 # Copyright (c) 2011 Alexey Eromenko "Technologov"
 #
@@ -95,7 +96,7 @@ class VBoxController_4_1():
         self.guestIP = ""
         self.VBoxBug9239Workaround = True # VBoxSVC crash on Windows hosts.
 
-    def start(self, vmname, nics, udp, capture, netcard):
+    def start(self, vmname, nics, udp, capture, netcard, first_nic_managed=False):
         debugmsg(2, "VBoxController_4_1::start()")
         # note: If you want to improve 'vboxwrapper' code, take a look at
         #   'vboxshell', the official VirtualBox frontend writen in python.
@@ -104,6 +105,7 @@ class VBoxController_4_1():
         self.udp = udp
         self.capture = capture
         self.netcard = netcard
+        self.first_nic_managed = first_nic_managed
         debugmsg(3, "vmname = %s, nics = %s, capture = %s, netcard = %s" % (vmname, nics, capture, netcard))
 
         debugmsg(2, "findMachine() is starting vmname = %s" % unicode(self.vmname))
@@ -284,6 +286,7 @@ class VBoxController_4_1():
         #
         #To reproduce: Try to configure several VMs, and restart them all in
         #  loop on heavily loaded hosts.
+
         if not self._safeLockMachine():
             return False
         try:
@@ -302,13 +305,19 @@ class VBoxController_4_1():
             debugmsg(1, "_net_options() -> getNetworkAdapter() FAILED !")
             return False
 
+        if self.first_nic_managed:
+            # first nic is managed by GNS3
+            start_nic = 1
+        else:
+            # We leave vNIC #1 (vnic = 0) for VirtualBox management purposes
+            start_nic = 2
 
-        for vnic in range(2, int(self.nics) + 1):
-        #for vnic in range(min(int(self.nics), self.maxNics-1)):
+        for vnic in range(start_nic, int(self.nics) + 1):
             # By design, we leave vNIC #1 (vnic = 0) for VirtualBox management purposes
             try:
                 # Vbox API starts counting from 0
                 netadp = mach2.getNetworkAdapter(vnic-1)
+                #netadp = mach2.getNetworkAdapter(0)
             except:
                 #Usually due to COM Error on loaded hosts: "The object is not ready"
                 debugmsg(1, "_net_options() -> getNetworkAdapter() FAILED !")
