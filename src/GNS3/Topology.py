@@ -1,4 +1,5 @@
-# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
+# -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 #
 # Copyright (C) 2007-2011 GNS3 Development Team (http://www.gns3.net/team).
 #
@@ -17,7 +18,6 @@
 #
 # http://www.gns3.net/contact
 #
-
 
 import os, glob, socket, sys, base64, time
 import GNS3.Dynagen.dynamips_lib as lib
@@ -127,7 +127,6 @@ class Topology(QtGui.QGraphicsScene):
         # Clear Undo Stack first
         self.undoStack.clear()
         globals.interfaceLabels.clear()
-
         for n_key in self.__nodes.copy().iterkeys():
             self.deleteNode(n_key)
         self.__nodes = {}
@@ -527,7 +526,7 @@ class Topology(QtGui.QGraphicsScene):
                         return False
                     # give a warning if the IOS path is not accessible
                     if not os.access(image_conf.filename, os.F_OK):
-                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"),
+                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), 
                                                   translate("Topology", "%s seems to not exist, please check") % image_conf.filename)
                 else:
                     # use an external hypervisor
@@ -616,7 +615,7 @@ class Topology(QtGui.QGraphicsScene):
                 vmname = conf.filename  #Qemu's Disk Image equals to VMname/UUID in this release.
 
                 for device in self.__nodes.itervalues():
-                    if isinstance(device, VBoxDevice) and device.config['image'] == vmname:
+                    if isinstance(device, VBoxDevice) and device.get_config()['image'] == vmname:
                         QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox guest"), translate("Topology", "VM already used, please clone your VM in VirtualBox"))
                         return False
 
@@ -630,6 +629,7 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('guestcontrol_user', conf.guestcontrol_user)
                 node.set_string_option('guestcontrol_password', conf.guestcontrol_password)
+                node.set_string_option('first_nic_managed', conf.first_nic_managed)
 
             if isinstance(node, JunOS):
 
