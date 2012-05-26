@@ -29,7 +29,7 @@ except:
     sys.stderr.write("Can't set default encoding to utf-8\n")
 
 # current version of GNS3
-VERSION = "0.8.2"
+VERSION = "0.8.4"
 
 try:
     from PyQt4 import QtCore, QtGui
@@ -37,12 +37,10 @@ except ImportError:
     sys.stderr.write("Can't import Qt modules, PyQt is probably not installed ...\n")
     sys.exit(False)
 
-#if QtCore.QT_VERSION < 0x0400501:
-if QtCore.QT_VERSION < 0x0000001:
-    raise RuntimeError, "Need Qt v4.5.1 or higher, but got v%s" % QtCore.QT_VERSION_STR
+if QtCore.QT_VERSION < 0x040600:
+    raise RuntimeError, "Need Qt v4.6 or higher, but got v%s" % QtCore.QT_VERSION_STR
 
 if QtCore.PYQT_VERSION < 0x040500:
-#if QtCore.PYQT_VERSION < 0x040000:
     raise RuntimeError, "Need PyQt v4.5 or higher, but got v%s" % QtCore.PYQT_VERSION_STR
 
 if sys.version_info < (2, 5):
