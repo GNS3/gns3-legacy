@@ -1,4 +1,5 @@
-# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
+# -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 #
 # Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
@@ -70,7 +71,8 @@ class FRSW(AbstractNode):
         if self.frsw:
             try:
                 self.frsw.delete()
-                del self.dynagen.devices[self.hostname]
+                if self.dynagen.devices.has_key(self.hostname):
+                    del self.dynagen.devices[self.hostname]
                 if self.frsw in self.hypervisor.devices:
                     self.hypervisor.devices.remove(self.frsw)
                 self.dynagen.update_running_config()

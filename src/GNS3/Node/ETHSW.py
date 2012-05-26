@@ -1,4 +1,5 @@
-# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
+# -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 #
 # Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
@@ -71,7 +72,8 @@ class ETHSW(AbstractNode):
         if self.ethsw:
             try:
                 self.ethsw.delete()
-                del self.dynagen.devices[self.hostname]
+                if self.dynagen.devices.has_key(self.hostname):
+                    del self.dynagen.devices[self.hostname]
                 if self.ethsw in self.hypervisor.devices:
                     self.hypervisor.devices.remove(self.ethsw)
                 self.dynagen.update_running_config()
@@ -154,10 +156,13 @@ class ETHSW(AbstractNode):
         """
 
         if len(self.config['ports']) == len(self.getConnectedInterfaceList()):
-            port = max(self.config['ports']) + 1
+            if len(self.config['ports']) == 0:
+                port = 1
+                self.config['vlans'][1] = []
+            else:
+                port = max(self.config['ports']) + 1
             self.config['ports'][port] = 'access'
             self.config['vlans'][1].append(port)
-
 
     def getInterfaces(self):
         """ Returns all interfaces

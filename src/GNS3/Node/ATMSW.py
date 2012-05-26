@@ -1,4 +1,5 @@
-# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
+# -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 #
 # Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
@@ -71,7 +72,8 @@ class ATMSW(AbstractNode):
         if self.atmsw:
             try:
                 self.atmsw.delete()
-                del self.dynagen.devices[self.hostname]
+                if self.dynagen.devices.has_key(self.hostname):
+                    del self.dynagen.devices[self.hostname]
                 if self.atmsw in self.hypervisor.devices:
                     self.hypervisor.devices.remove(self.atmsw)
                 self.dynagen.update_running_config()
