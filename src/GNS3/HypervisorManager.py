@@ -81,12 +81,12 @@ class HypervisorManager(object):
                     killAll(os.path.basename(self.hypervisor_path))
                     time.sleep(1)
                 else:
-                    print "Incrementing +100 for base console port, base AUX port, base hypervisor port and base UDP port"
+                    print "Incrementing +100 for base console port, base AUX port, base hypervisor port and +200 for base UDP port"
                     self.baseConsole += 100
                     if self.baseAUX:
                         self.baseAUX += 100
                     globals.hypervisor_baseport += 100
-                    globals.GApp.dynagen.globaludp += 100
+                    globals.GApp.dynagen.globaludp += 200
                     port = globals.hypervisor_baseport
 
                 s.connect(('localhost', port))

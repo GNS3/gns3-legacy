@@ -298,7 +298,6 @@ class DynagenSub(Dynagen):
                     globals.GApp.VBoxManager.startVBox(int(controlPort))
 
                     # Check if this is a relative working directory path and convert to an absolute path if necessary
-                    #"""
                     if server['workingdir']:
                         abspath = os.path.join(os.path.dirname(FILENAME), unicode(server['workingdir']))
                         debugmsg(3, "DynagenSub::open_config(), 'vbox', abspath = %s" % unicode(abspath))
@@ -313,22 +312,6 @@ class DynagenSub(Dynagen):
                     for subsection in server.sections:
                         device = server[subsection]
                         debugmsg(3, "DynagenSub::open_config(), 'vbox', device...")
-                        #debugmsg(3, "DynagenSub::open_config(), device = %s" % str(device))
-                        """  # Disabled whole test, as it fails on multi-host systems, if VBoxManager enabled.
-
-                        # Check if the image path is a relative path
-                        if os.path.exists(device['image']) == False:
-                            abspath = os.path.join(os.path.dirname(FILENAME), unicode(device['image']))
-                            debugmsg(3, "DynagenSub::open_config(), 'vbox', abspath = %s" % str(abspath))
-                            if os.path.exists(abspath):
-                                device['image'] = abspath
-                        #"""
-                        #if device.name == 'VBoxDevice' and device['image']:
-                        #    debugmsg(2, "DynagenSub.py:  if device.name == 'VBoxDevice' and device['image']")
-                        #    #Warning about non-existend VBox Machine disabled.
-                        #    #I decided to skip check on import. Just imported VMs won't run, so user can manually fix them.
-                        #    #VirtualBox will give correct error anyway, on VM start attempt.
-                    #"""
             else:
                 server.host = server.name
                 debugmsg(3, "DynagenSub::open_config(), server.host = %s, server.name = %s" % (unicode(server.host), unicode(server.name)))
