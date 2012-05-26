@@ -564,7 +564,7 @@ class AnyEmuDevice(object):
             raise DynamipsError, 'invalid options'
 
         #send the options enclosed in quotes to protect them
-        send(self.p, 'qemu setattr %s options %s' % (self.name, '"' + options + '"'))
+        send(self.p, 'qemu setattr %s options %s' % (self.name, '"' + options.replace('"', '\\"') + '"'))
         self._options = options
 
     def _getoptions(self):
