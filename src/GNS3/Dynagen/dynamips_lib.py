@@ -1,5 +1,6 @@
 #!/usr/bin/python
-# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
+# vim: expandtab ts=4 sw=4 sts=4:
+# -*- coding: utf-8 -*-
 
 """
 dynamips_lib.py
@@ -25,6 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #This is part of Dynagen-GNS3.
 
 from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
+import portTracker_lib as tracker
 import sys
 import os
 import re
@@ -38,7 +40,7 @@ import time
 # Specify an rc version of .999 for released versions.
 (MAJOR, MINOR, SUB, RCVER) = (0, 2, 8, .1)
 INTVER = MAJOR * 10000 + MINOR * 100 + SUB + RCVER
-STRVER = '0.2.8-RC1'
+STRVER = '0.8.3'
 NOSEND = False  # Disable sending any commands to the back end for debugging
 DEBUG = False
 
@@ -2142,25 +2144,17 @@ class Router(Dynamips_device):
             # Set the default console port. We'll try to use the base console port
             # plus the instance id, unless that is already taken
             console = self.__d.baseconsole + self.__instance
-            while True:
-                conflict = checkconsole(console, self.__d)
-                if conflict == None:
-                    self.__console = console
-                    send(self.__d, 'vm set_con_tcp_port %s %i' % (self.__name, console))
-                    break
-                else:
-                    console += 1
+            self.track = tracker.portTracker()
+            self.__console = self.track.allocateTcpPort(self.__d.host, console)
+            send(self.__d, 'vm set_con_tcp_port %s %i' % (self.__name, self.__console))
 
             if self.__d.baseaux:
                 aux = self.__d.baseaux + self.__instance
-                while True:
-                    conflict = checkaux(aux, self.__d)
-                    if conflict == None:
-                        self.__aux = aux
-                        send(self.__d, 'vm set_aux_tcp_port %s %i' % (self.__name, aux))
-                        break
-                    else:
-                        aux += 1
+                self.__aux = self.track.allocateTcpPort(self.__d.host, aux)
+                send(self.__d, 'vm set_aux_tcp_port %s %i' % (self.__name, aux))
+        else:
+            self.__console = None
+            self.__aux = None
 
         # Append this router to the list of devices managed by this dynamips instance
         self.__d.devices.append(self)
@@ -2313,6 +2307,10 @@ class Router(Dynamips_device):
         """ Delete this router instance from the back-end
         """
 
+        if self.__console:
+            self.track.freeTcpPort(self.__d.host, self.__console)
+        if self.__aux:
+            self.track.freeTcpPort(self.__d.host, self.__aux)
         send(self.__d, 'vm delete %s' % self.__name)
 
     def start(self):
@@ -2521,13 +2519,12 @@ class Router(Dynamips_device):
             return
 
         # Check to see if the console port is already in use first
-        conflict = checkconsole(console, self.__d)
-        if conflict != None:
-            # Is it this device that is causing the conflict? If so ignore it
-            if conflict != self:
-                raise DynamipsError, 'console port %i is already in use by device: %s' % (console, conflict.name)
+        if not self.track.tcpPortIsFree(self.__d.host, console):
+            raise DynamipsError, 'console port %i is already in use' % console
 
         send(self.__d, 'vm set_con_tcp_port %s %i' % (self.__name, console))
+        self.track.setTcpPort(self.__d.host, console)
+        self.track.freeTcpPort(self.__d.host, self.__console)
         self.__console = console
 
     def __getconsole(self):
@@ -2549,14 +2546,13 @@ class Router(Dynamips_device):
         if aux == self.__aux:
             return
 
-        # Check to see if the aux port is already in use first
-        conflict = checkaux(aux, self.__d)
-        if conflict != None:
-            # Is it this device that is causing the conflict? If so ignore it
-            if conflict != self:
-                raise DynamipsError, 'aux port %i is already in use by device: %s' % (aux, conflict.name)
+        # Check to see if the console port is already in use first
+        if not self.track.tcpPortIsFree(self.__d.host, aux):
+            raise DynamipsError, 'aux port %i is already in use' % aux
 
         send(self.__d, 'vm set_aux_tcp_port %s %i' % (self.__name, aux))
+        self.track.setTcpPort(self.__d.host, aux)
+        self.track.freeTcpPort(self.__d.host, self.__aux)
         self.__aux = aux
 
     def __getaux(self):
@@ -5056,39 +5052,6 @@ def connected_general(obj, interface, port):
     except AttributeError:
         return False
     return True
-
-
-def checkconsole(console, dynamips):
-    """ Returns the device that uses the console port
-        Returns None if no device has that console port
-    """
-
-    # Hunt through the console ports in use to see if there is a conflict
-    for device in dynamips.devices:
-        try:
-            con2 = device.console
-        except AttributeError:
-            # This device has no console value
-            continue
-        if console == con2:
-            return device
-    return None
-
-def checkaux(aux, dynamips):
-    """ Returns the device that uses the aux port
-        Returns None if no device has that aux port
-    """
-
-    # Hunt through the console ports in use to see if there is a conflict
-    for device in dynamips.devices:
-        try:
-            aux2 = device.aux
-        except AttributeError:
-            # This device has no aux value
-            continue
-        if aux == aux2:
-            return device
-    return None
 
 def nosend(flag):
     """ If true, don't actually send any commands to the back end.
