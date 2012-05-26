@@ -615,6 +615,11 @@ class Topology(QtGui.QGraphicsScene):
 
                 vmname = conf.filename  #Qemu's Disk Image equals to VMname/UUID in this release.
 
+                for device in self.__nodes.itervalues():
+                    if isinstance(device, VBoxDevice) and device.config['image'] == vmname:
+                        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox guest"), translate("Topology", "VM already used, please clone your VM in VirtualBox"))
+                        return False
+
                 if self.vboxDeviceSetup(node, vmname) == False:
                     init_vbox_emu_id(node.id)
                     return False

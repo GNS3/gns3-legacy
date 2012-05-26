@@ -227,7 +227,7 @@ class Qemu(object):
         if type(qemupath) not in [str, unicode]:
             raise DynamipsError, 'invalid Qemu path'
         # send to qemuwrapper encased in quotes to protect spaces
-        send(self, 'qemuwrapper qemu_path %s' % '"' + qemupath + '"')
+        send(self, 'qemuwrapper qemu_path %s' % '"' + qemupath.replace('\\', '/') + '"')
         self._qemupath = qemupath
 
     def _getqemupath(self):
@@ -248,7 +248,7 @@ class Qemu(object):
         if type(qemuimgpath) not in [str, unicode]:
             raise DynamipsError, 'invalid Qemu-img path'
         # send to qemuwrapper encased in quotes to protect spaces
-        send(self, 'qemuwrapper qemu_img_path %s' % '"' + qemuimgpath + '"')
+        send(self, 'qemuwrapper qemu_img_path %s' % '"' + qemuimgpath.replace('\\', '/') + '"')
         self._qemuimgpath = qemuimgpath
 
     def _getqemuimgpath(self):
@@ -272,7 +272,7 @@ class Qemu(object):
         if type(directory) not in [str, unicode]:
             raise DynamipsError, 'invalid directory'
         # send to qemuwrapper encased in quotes to protect spaces
-        send(self, 'qemuwrapper working_dir %s' % '"' + directory + '"')
+        send(self, 'qemuwrapper working_dir %s' % '"' + directory.replace('\\', '/') + '"')
         self._workingdir = directory
 
     def _getworkingdir(self):
@@ -587,7 +587,7 @@ class AnyEmuDevice(object):
 
         # Can't verify existance of image because path is relative to backend
         #send the image filename enclosed in quotes to protect it
-        send(self.p, 'qemu setattr %s image %s' % (self.name, '"' + image + '"'))
+        send(self.p, 'qemu setattr %s image %s' % (self.name, '"' + image.replace('\\', '/') + '"'))
         self._image = image
 
     def _getimage(self):
@@ -610,7 +610,7 @@ class AnyEmuDevice(object):
             send(self.p, 'qemu delete_capture %s %i' % (self.name, interface))
             del self._capture[interface]
         else:
-            send(self.p, 'qemu create_capture %s %i %s' % (self.name, interface, path))
+            send(self.p, 'qemu create_capture %s %i %s' % (self.name, interface, '"' + path.replace('\\', '/') + '"'))
             self._capture[interface] = path
 
     def idleprop(self,prop):
@@ -877,7 +877,7 @@ class IDS(AnyEmuDevice):
 
         # Can't verify existance of image because path is relative to backend
         #send the image filename enclosed in quotes to protect it
-        send(self.p, 'qemu setattr %s image1 %s' % (self.name, '"' + image + '"'))
+        send(self.p, 'qemu setattr %s image1 %s' % (self.name, '"' + image.replace('\\', '/') + '"'))
         self._image1 = image
 
     def _getimage1(self):
@@ -898,7 +898,7 @@ class IDS(AnyEmuDevice):
 
         # Can't verify existance of image because path is relative to backend
         #send the image filename enclosed in quotes to protect it
-        send(self.p, 'qemu setattr %s image2 %s' % (self.name, '"' + image + '"'))
+        send(self.p, 'qemu setattr %s image2 %s' % (self.name, '"' + image.replace('\\', '/') + '"'))
         self._image2 = image
 
     def _getimage2(self):
@@ -950,7 +950,7 @@ class ASA(AnyEmuDevice):
 
         # Can't verify existance of image because path is relative to backend
         #send the initrd filename enclosed in quotes to protect it
-        send(self.p, 'qemu setattr %s initrd %s' % (self.name, '"' + initrd + '"'))
+        send(self.p, 'qemu setattr %s initrd %s' % (self.name, '"' + initrd.replace('\\', '/') + '"'))
         self._initrd = initrd
 
     def _getinitrd(self):
@@ -971,7 +971,7 @@ class ASA(AnyEmuDevice):
 
         # Can't verify existance of image because path is relative to backend
         #send the kernel filename enclosed in quotes to protect it
-        send(self.p, 'qemu setattr %s kernel %s' % (self.name, '"' + kernel + '"'))
+        send(self.p, 'qemu setattr %s kernel %s' % (self.name, '"' + kernel.replace('\\', '/') + '"'))
         self._kernel = kernel
 
     def _getkernel(self):

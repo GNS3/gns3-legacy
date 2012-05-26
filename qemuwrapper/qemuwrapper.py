@@ -824,6 +824,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_qemu_path(%s)" % str(data))
         qemu_path, = data
         try:
+            qemu_path = os.path.normpath(qemu_path)
             os.access(qemu_path, os.F_OK)
             global QEMU_PATH
             QEMU_PATH = qemu_path
@@ -839,6 +840,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_qemu_img_path(%s)" % str(data))
         qemu_img_path, = data
         try:
+            qemu_img_path = os.path.normpath(qemu_img_path)
             os.access(qemu_img_path, os.F_OK)
             global QEMU_IMG_PATH
             QEMU_IMG_PATH = qemu_img_path
@@ -854,6 +856,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         debugmsg(2, "QemuWrapperRequestHandler::do_qemuwrapper_working_dir(%s)" % str(data))
         working_dir, = data
         try:
+            working_dir = os.path.normpath(working_dir)
             os.chdir(working_dir)
             global WORKDIR
             WORKDIR = working_dir
@@ -948,6 +951,8 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
                             "Cannot set attribute '%s' for '%s" % (attr, name))
             return
+        if attr in ("image", "initrd", "kernel", "image1", "image2"):
+            value = os.path.normpath(value)
         print >> sys.stderr, '!! %s.%s = %s' % (name, attr, value)
         setattr(QEMU_INSTANCES[name], attr, value)
         self.send_reply(self.HSC_INFO_OK, 1, "%s set for '%s'" % (attr, name))
@@ -993,7 +998,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
                             "unable to find Qemu '%s'" % name)
             return
 
-        QEMU_INSTANCES[name].capture[int(vlan)] = path
+        QEMU_INSTANCES[name].capture[int(vlan)] = os.path.normpath(path)
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
 
     def do_qemu_delete_capture(self, data):
