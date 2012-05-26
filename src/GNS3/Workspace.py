@@ -1426,7 +1426,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         # Add to the list
         if os.path.exists(path):
             recent_file_conf = recentFilesConf()
-            recent_file_conf.path = path
+            recent_file_conf.path = unicode(path)
             globals.GApp.recentfiles.append(recent_file_conf)
 
         # Redraw recent files submenu
