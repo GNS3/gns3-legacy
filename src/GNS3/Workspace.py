@@ -24,6 +24,7 @@ import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
 import GNS3.UndoFramework as undo
 import GNS3.WindowManipulator as winm
+import GNS3.Dynagen.portTracker_lib as tracker
 from PyQt4 import QtGui, QtCore, QtNetwork
 from PyQt4.QtGui import QMainWindow, QIcon, QWizard
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
@@ -118,13 +119,18 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 self.__action_CheckForUpdate(silent=True)
                 globals.GApp.systconf['general'].last_check_for_update = currentEpoch
 
+        # Register local addresses into tracker
+        self.track = tracker.portTracker()
+        local_addresses = map(lambda addr: unicode(addr.toString()), QtNetwork.QNetworkInterface.allAddresses())
+        for addr in local_addresses:
+            self.track.addLocalAddress(addr)
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
         """
 
         self.connect(self.action_Export, QtCore.SIGNAL('triggered()'), self.__action_Export)
-        self.connect(self.action_AddLink, QtCore.SIGNAL('triggered()'), self.__action_AddLink)
+        self.connect(self.action_AddLink, QtCore.SIGNAL('triggered()'), self.__action_addLink)
         self.connect(self.action_IOS_images, QtCore.SIGNAL('triggered()'), self.__action_IOSImages)
         self.connect(self.action_Symbol_Manager, QtCore.SIGNAL('triggered()'), self.__action_Symbol_Manager)
         self.connect(self.action_ShowHostnames, QtCore.SIGNAL('triggered()'), self.__action_ShowHostnames)
@@ -207,7 +213,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.menu_View.addMenu(self.submenu_Docks)
 
         # Create and populate recent files submenu
-        for recent_file_conf in globals.GApp.recentfiles:
+        recent_files = list(globals.GApp.recentfiles)
+        recent_files.reverse()
+        for recent_file_conf in recent_files:
             action = QtGui.QAction(recent_file_conf.path, self.submenu_RecentFiles)
             self.submenu_RecentFiles.addAction(action)
 
@@ -397,6 +405,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         self.clear_workdir(projectWorkdir)
         globals.GApp.mainWindow.capturesDock.refresh()
+        self.track.clearAllTcpPort()
 
     def __action_Clear(self):
         """ Clear the topology
@@ -443,6 +452,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         fb = fileBrowser(translate('Workspace', 'Directory to write startup-configs'), directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self)
         path = fb.getDir()
         if path:
+            path = os.path.normpath(path)
             globals.GApp.workspace.projectConfigs = path
             net = netfile.NETFile()
             for device in globals.GApp.dynagen.devices.values():
@@ -457,6 +467,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         path = fb.getDir()
         if path:
             try:
+                path = os.path.normpath(path)
                 contents = os.listdir(path)
             except OSError, e:
                 QtGui.QMessageBox.critical(self, translate("Workspace", "IO Error"),  unicode(e))
@@ -511,6 +522,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                         filter = 'PNG File (*.png);;GIF File (*.gif);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PBM File (*.pbm);;PGM File (*.pgm);;PPM File (*.ppm);;All files (*.*)',
                                         directory=directory, parent=self).getFile()
         if path != None and path != '':
+            path = os.path.normpath(path)
             pixmap_image = QtGui.QPixmap(path)
             if not pixmap_image.isNull():
 
@@ -531,7 +543,17 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 command = undo.AddItem(globals.GApp.topology, item, translate('Workspace', 'picture'))
                 globals.GApp.topology.undoStack.push(command)
 
-    def __action_AddLink(self):
+    def stopAction_addLink(self):
+        """ Stop the add link action (called from the Scene)
+        """
+
+        self.action_Add_link.setChecked(False)
+        self.action_Add_link.setText(translate('Workspace', 'Add a link'))
+        self.action_Add_link.setIcon(QIcon(':/icons/connection-new.svg'))
+        globals.addingLinkFlag = False
+        globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
+
+    def __action_addLink(self):
         """ Implement the QAction `addLink'
         - This function manage the creation of a connection between two nodes.
         """
@@ -1067,8 +1089,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
             return
 
         path = os.path.abspath(file)
+        if not os.path.exists(path):
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"), translate("Workspace", "No such file: %s") % file)
+            return
         if not os.path.isfile(path):
-            QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"), translate("Workspace", "Invalid file %s") % file)
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"), translate("Workspace", "Not a regular file: %s") % file)
             return
         self.projectFile = path
         self.setWindowTitle("GNS3 - " + self.projectFile)
@@ -1117,6 +1142,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             new_project = False
         projectDialog = ProjectDialog(self, self.projectFile, self.projectWorkdir, self.projectConfigs, new_project)
         projectDialog.pushButtonOpenProject.setEnabled(False)
+        projectDialog.pushButtonRecentFiles.setEnabled(False)
         if self.projectFile:
             projectDialog.setWindowTitle("Save Project As...")
         #self.projectWorkdir = None
@@ -1130,6 +1156,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         globals.GApp.workspace.setWindowTitle("GNS3")
+        self.projectWorkdir = None
+        self.projectConfigs = None
         (self.projectFile, self.projectWorkdir, self.projectConfigs) = settings
 
         # Create a project in a temporary location
@@ -1145,6 +1173,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 QtGui.QMessageBox.critical(self, translate('Workspace', 'createProject'),
                                            translate("Workspace", "Cannot create directory %s: %s") % (projectDir, e.strerror))
 
+        if not self.projectFile:
+            QtGui.QMessageBox.critical(self, translate("Workspace", "New Project"),  translate("Workspace", "Can't create a project"))
+            return
         if self.projectWorkdir and not os.access(self.projectWorkdir, os.F_OK):
             try:
                 os.mkdir(self.projectWorkdir)
@@ -1358,25 +1389,51 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         self.openFile()
 
+    def openFromDroppedFile(self, path):
+        """ Open a .net file from a dropped action
+        """
+
+        if not path.endswith(".net"):
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Message"), translate("Workspace", "The file '%s' has not the right extension (.net)") % os.path.basename(path))
+            return
+
+        if len(globals.GApp.topology.nodes) and globals.GApp.topology.changed == True:
+            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
+                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No, QtGui.QMessageBox.Cancel)
+            if reply == QtGui.QMessageBox.Yes:
+                self.__action_Save()
+            elif reply == QtGui.QMessageBox.Cancel:
+                return
+
+        self.loadNetfile(path)
+
     def __addToRecentFiles(self, path):
         """ Add path to recent files menu
         """
 
         # Check is the file is not already in list
+        index = 0
         for recent_file_conf in globals.GApp.recentfiles:
             if recent_file_conf.path == path:
-                return
+                globals.GApp.recentfiles.pop(index)
+                break
+            index += 1
 
         # Limit number of recent file paths to 10
         if len(globals.GApp.recentfiles) == 10:
             globals.GApp.recentfiles.pop(0)
-        recent_file_conf = recentFilesConf()
-        recent_file_conf.path = path
-        globals.GApp.recentfiles.append(recent_file_conf)
+
+        # Add to the list
+        if os.path.exists(path):
+            recent_file_conf = recentFilesConf()
+            recent_file_conf.path = path
+            globals.GApp.recentfiles.append(recent_file_conf)
 
         # Redraw recent files submenu
         self.submenu_RecentFiles.clear()
-        for recent_file_conf in globals.GApp.recentfiles:
+        recent_files = list(globals.GApp.recentfiles)
+        recent_files.reverse()
+        for recent_file_conf in recent_files:
             action = QtGui.QAction(recent_file_conf.path, self.submenu_RecentFiles)
             self.submenu_RecentFiles.addAction(action)
 
@@ -1396,8 +1453,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                        directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getFile()
 
         if path and (selected == 'NET file (*.net)' or selected == ''):
-            self.loadNetfile(path)
-            self.__addToRecentFiles(path)
+            self.loadNetfile(os.path.normpath(path))
 
     def loadNetfile(self, path):
 
@@ -1407,6 +1463,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.projectConfigs = None
             self.projectFile = None
             self.load_netfile(path)
+            self.__addToRecentFiles(path)
             globals.GApp.topology.changed = False
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
@@ -1430,6 +1487,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         try:
             net = netfile.NETFile()
             net.export_net_file(self.projectFile, auto)
+            self.__addToRecentFiles(self.projectFile)
             globals.GApp.topology.changed = False
             autosave = globals.GApp.systconf['general'].autosave
             if autosave > 0:
@@ -1448,6 +1506,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if path != None and path != '':
             if str(selected) == 'NET file (*.net)' or selected == '':
+                path = os.path.normpath(path)
                 if not path.endswith('.net'):
                     path = path + '.net'
                 self.projectFile = path
