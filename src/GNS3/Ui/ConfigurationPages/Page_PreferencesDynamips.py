@@ -20,6 +20,9 @@
 #
 
 import sys, os
+import subprocess as sub
+import GNS3.Globals as globals
+import GNS3.Dynagen.portTracker_lib as tracker
 from PyQt4 import QtGui, QtCore, QtNetwork
 from GNS3.Ui.ConfigurationPages.Form_PreferencesDynamips import Ui_PreferencesDynamips
 from GNS3.Config.Objects import systemDynamipsConf
@@ -27,8 +30,6 @@ from GNS3.HypervisorManager import HypervisorManager
 from GNS3.Config.Config import ConfDB
 from GNS3.Utils import fileBrowser, translate, testOpenFile, testIfWritableDir
 from GNS3.Config.Defaults import DYNAMIPS_DEFAULT_PATH, DYNAMIPS_DEFAULT_WORKDIR
-import GNS3.Globals as globals
-import subprocess as sub
 
 class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
 
@@ -193,8 +194,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         path = fb.getDir()
 
         if path:
-            path = os.path.normpath(path)
-            self.dynamips_workdir.setText(path)
+            self.dynamips_workdir.setText(os.path.normpath(path))
 
             if sys.platform.startswith('win'):
                 try:
@@ -220,7 +220,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
                 return
 
         try:
-            p = sub.Popen([globals.GApp.systconf['dynamips'].path, '--help'], stdout = sub.PIPE)
+            p = sub.Popen([globals.GApp.systconf['dynamips'].path, '--help'], stdout=sub.PIPE)
             dynamips_stdout = p.communicate()
         except OSError:
             self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to start Dynamips")  + '</font>')
@@ -247,7 +247,25 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Dynamips working directory does not exist or is not writable")  + '</font>')
             return
 
-        self.saveConf()
+        track = tracker.portTracker()
+        # Check if any of the first 10 ports are free to use by hypervisors
+        not_free_ports = track.getNotAvailableTcpPortRange(globals.GApp.systconf['dynamips'].HypervisorManager_binding, globals.hypervisor_baseport, 10)
+        if len(not_free_ports):
+            self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Ports already in use %s<br>Please choose another base port value<br>or close these ports" % str(not_free_ports))  + '</font>')
+            return
+
+        # Check if any of the first 10 ports are free to use for dynamips console ports
+        not_free_ports = track.getNotAvailableTcpPortRange(globals.GApp.systconf['dynamips'].HypervisorManager_binding, globals.GApp.systconf['dynamips'].baseConsole, 10)
+        if len(not_free_ports):
+            self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Ports already in use %s<br>Please choose another base console value<br>or close these ports" % str(not_free_ports))  + '</font>')
+            return
+
+        # Check if any of the first 10 ports are free to use for dynamips aux ports
+        not_free_ports = track.getNotAvailableTcpPortRange(globals.GApp.systconf['dynamips'].HypervisorManager_binding, globals.GApp.systconf['dynamips'].baseAUX, 10)
+        if len(not_free_ports):
+            self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Ports already in use %s<br>Please choose another base AUX value<br>or close these ports" % str(not_free_ports))  + '</font>')
+            return
+
         if globals.GApp.systconf['dynamips'].path:
             globals.GApp.workspace.clear()
             globals.GApp.HypervisorManager = HypervisorManager()
