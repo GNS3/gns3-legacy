@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 debuglevel = 0
 
 import platform, os
+import portTracker_lib as tracker
 
 if debuglevel > 0:
     if platform.system() == 'Windows':
@@ -65,7 +66,7 @@ import hashlib
 #version = "0.11.0.091411"
 (MAJOR, MINOR, SUB, RCVER) = (0, 2, 1, .1)
 INTVER = MAJOR * 10000 + MINOR * 100 + SUB + RCVER
-STRVER = '0.2.2-RC1'
+STRVER = '0.8.4'
 NOSEND = False  # Disable sending any commands to the back end for debugging
 
 class UDPConnection:
@@ -350,12 +351,16 @@ class AnyEmuDevice(object):
         send(self.p, 'qemu create %s %s' % (self.qemu_dev_type, self.name))
         self.p.devices.append(self)
         #set the console to Qemu baseconsole
-        self.console = self.p.baseconsole
+        self.track = tracker.portTracker()
+        self._console = self.track.allocateTcpPort(self.p.host, self.p.baseconsole)
+        send(self.p, 'qemu setattr %s console %i' % (self.name, self._console))
         self.p.baseconsole += 1
 
     def delete(self):
         """delete the emulated device instance in Qemu"""
         debugmsg(2, "AnyEmuDevice::delete()")
+
+        self.track.freeTcpPort(self.p.host, self.console)
 
         try:
             send(self.p, 'qemu delete %s' % self.name)
@@ -451,7 +456,15 @@ class AnyEmuDevice(object):
         if type(console) != int or console < 1 or console > 65535:
             raise DynamipsError, 'invalid console port'
 
+        if console == self._console:
+            return
+
+        if not self.track.tcpPortIsFree(self.p.host, console):
+            raise DynamipsError, 'console port %i is already in use' %console
+
         send(self.p, 'qemu setattr %s console %i' % (self.name, console))
+        self.track.setTcpPort(self.__d.host, console)
+        self.track.freeTcpPort(self.p.host, self._console)
         self._console = console
 
     def _getconsole(self):
@@ -991,7 +1004,7 @@ class ASA(AnyEmuDevice):
             raise DynamipsError, 'invalid kernel command line'
 
         #send the kernel command line enclosed in quotes to protect it
-        send(self.p, 'qemu setattr %s kernel_cmdline %s' % (self.name, '"' + kernel_cmdline + '"'))
+        send(self.p, 'qemu setattr %s kernel_cmdline %s' % (self.name, '"' + kernel_cmdline.replace('"', '\\"') + '"'))
         self._kernel_cmdline = kernel_cmdline
 
     def _getkernel_cmdline(self):
