@@ -40,12 +40,16 @@ GNS3 0.8.3
  * Prevent to use the same VBox VM multiple times.
  * Import & export for GNS3 configuration file (gns3.ini)
  * Fixed minor issue with path normalization on Windows.
- * Time reference for debugs.
+ * Time reference for debugs and auto saving messages.
  * Global TCP port tracker to allocate ports and avoid conflicts (console + AUX ports for IOS routers and console ports for Qemu-like devices are tracked)
  * Check that the first 10 ports of every TCP base are free to use when testing the settings in preferences.
  * Command 'show ports' to display all port allocations.
  * NVRAM configuration extractor utility for Windows.
  * Scripts for using consoles with VBox VMs (Windows only).
+ * Backup nvram export when Dynamips has crashed.
+ * Smarter handling of errors when starting/stopping/suspending all nodes.
+ * Experimental live pipe capture.
+ * Do not show special cursors when a rectangle or ellipse is on the background layer.
 
 GNS3 0.8.2 - 13.03.1012
 
