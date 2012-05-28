@@ -97,6 +97,7 @@ else:
 
 Traditional_Capture_String = translate("Defaults", 'Wireshark Traditional Capture')
 Live_Traffic_Capture_String = translate("Defaults", 'Wireshark Live Traffic Capture')
+Pipe_Traffic_Capture_String = translate("Defaults", 'Wireshark Live Pipe Traffic Capture (experimental)')
 
 # Default predefined sets of Wireshark commands on various OSes:
 if platform.system() == 'Linux':
@@ -115,11 +116,14 @@ elif platform.system() == 'Windows' and os.path.exists("C:\Program Files (x86)\W
                            Traditional_Capture_String  + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe %c",
                            Live_Traffic_Capture_String + ' (Windows 64-bit)': 'tail.exe -f -c +0b %c | "C:\Program Files (x86)\Wireshark\wireshark.exe" -k -i -',
                            Live_Traffic_Capture_String + ' (Windows)': 'tail.exe -f -c +0b %c | "C:\Program Files\Wireshark\wireshark.exe" -k -i -',
+                           Pipe_Traffic_Capture_String + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe -k -i %p",
+                           Pipe_Traffic_Capture_String + ' (Windows 64-bit)': "C:\Program Files (x86)\Wireshark\wireshark.exe -k -i %p",
                            }
 elif platform.system() == 'Windows':
     CAPTURE_PRESET_CMDS = {
                            Traditional_Capture_String  + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe %c",
                            Live_Traffic_Capture_String + ' (Windows)': 'tail.exe -f -c +0b %c | "C:\Program Files\Wireshark\wireshark.exe" -k -i -',
+                           Pipe_Traffic_Capture_String + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe -k -i %p",
                            }
 elif platform.system() == 'Darwin':
     CAPTURE_PRESET_CMDS = {

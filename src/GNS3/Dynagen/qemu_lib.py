@@ -385,8 +385,9 @@ class AnyEmuDevice(object):
 
         if self.state == 'stopped':
             raise DynamipsWarning, 'emulated device %s is already stopped' % self.name
-        r = send(self.p, 'qemu stop %s' % self.name)
+
         self.state = 'stopped'
+        r = send(self.p, 'qemu stop %s' % self.name)
         return r
 
     def clean(self):

@@ -19,7 +19,7 @@
 # http://www.gns3.net/contact
 #
 
-import os, glob, socket, sys, base64, time
+import os, glob, socket, sys, base64
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.qemu_lib as qlib
 import GNS3.Dynagen.dynagen_vbox_lib as vboxlib
@@ -241,6 +241,7 @@ class Topology(QtGui.QGraphicsScene):
         """ Apply IOS base config
         """
 
+        debug("Applying IOS base config %s" % config_path)
         if not os.access(config_path, os.F_OK):
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS Base config"), translate("Topology", "The base config file (%s) specified for this IOS can not be found. Your router will start with a blank configuration.") % config_path)
             return

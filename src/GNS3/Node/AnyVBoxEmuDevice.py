@@ -351,10 +351,10 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
             except:
                 if progress:
                     raise
-
-            self.shutdownInterfaces()
-            self.state = self.emu_vboxdev.state
-            globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.emu_vboxdev.state)
+            finally:
+                self.shutdownInterfaces()
+                self.state = self.emu_vboxdev.state
+                globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.emu_vboxdev.state)
 
     def suspendNode(self, progress=False):
         """ Suspend this node
@@ -369,8 +369,6 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
             self.state = self.emu_vboxdev.state
             self.updateToolTips()
             globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.emu_vboxdev.state)
-
-        #pass
 
     def reloadNode(self, progress=False):
         """ Reload this node

@@ -33,6 +33,7 @@ from GNS3.Node.AnyEmuDevice import AnyEmuDevice, PIX
 from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
 from GNS3.Node.DecorativeNode import DecorativeNode
 from GNS3.Node.FRSW import FRSW
+from PipeCapture import PipeCapture
 from __main__ import GNS3_RUN_PATH
 
 class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
@@ -78,6 +79,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.capfile = None
             self.captureInfo = None
             self.tailProcess = None
+            self.capturePipeThread = None
 
             # create a unique ID
             self.id = globals.GApp.topology.link_baseid
@@ -325,7 +327,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         else:
             # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
             self.capfile = unicode(self.source.hostname + '_to_' + self.dest.hostname + '.cap')
-        #"""
+
         debug("Start capture to " + self.capfile)
         globals.GApp.dynagen.devices[device].capture(int(port), self.capfile)
         self.captureInfo = (device, port)
@@ -426,6 +428,10 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.captureInfo = None
             self.capfile = None
 
+            if self.capturePipeThread:
+                self.capturePipeThread.quit()
+                self.capturePipeThread = None
+
             if self.tailProcess:
                 try:
                     debug("Killing tail %i" % self.tailProcess.pid)
@@ -468,9 +474,11 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             return
 
         try:
-            path = unicode(capture_conf.cap_cmd.replace("%c", '"%s"')) % self.capfile
+            if capture_conf.cap_cmd.__contains__("%c"):
+                path = unicode(capture_conf.cap_cmd.replace("%c", '"%s"')) % self.capfile
+            else:
+                path = capture_conf.cap_cmd
             debug("Start Wireshark-like application: %s" % path)
-
             shell = False
             if not sys.platform.startswith('win'):
                 # start commands using the shell on all platforms but Windows
@@ -490,9 +498,18 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 self.tailProcess = sub.Popen(commands[0].strip(), startupinfo=info, stdout=sub.PIPE, env=env, shell=shell)
                 sub.Popen(commands[1].strip(), stdin=self.tailProcess.stdout, stdout=sub.PIPE, shell=shell)
                 self.tailProcess.stdout.close()
+            elif path.__contains__('%p'):
+                    if self.capturePipeThread and self.capturePipeThread.isRunning():
+                        print QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Please close Wireshark"))
+                        return
+                    self.capturePipeThread = None
+                    pipe = r"\\.\pipe\GNS3\%s_to_%s" % (self.source.hostname, self.dest.hostname)
+                    path = path.replace("%p", "%s") % pipe
+                    self.capturePipeThread = PipeCapture(self.capfile, path, pipe)
+                    self.capturePipeThread.start()
             else:
                 # Traditional Traffic Capture
-                sub.Popen(path, shell=shell)
+                sub.Popen(path.strip(), shell=shell)
 
         except (OSError, IOError), e:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Cannot start %s : %s") % (path, e.strerror))

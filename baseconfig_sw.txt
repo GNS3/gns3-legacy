@@ -116,7 +116,7 @@ interface Vlan1
  shutdown
 !
 !
-banner exec
+banner exec 
 
 ***************************************************************
 This is a normal Router with a SW module inside (NM-16ESW)
@@ -132,6 +132,7 @@ Alias(configure): vlan X   - macro to create vlan X
 Alias(configure): novlan X - macro to delete vlan X
 ***************************************************************
 
+
 !
 alias configure vlan macro global trace add_vlan $v
 alias configure novlan macro global trace del_vlan $v

@@ -77,7 +77,7 @@ class ETHSW(AbstractNode):
                 if self.ethsw in self.hypervisor.devices:
                     self.hypervisor.devices.remove(self.ethsw)
                 self.dynagen.update_running_config()
-            except lib.DynamipsErrorHandled:
+            except:
                 pass
             self.ethsw = None
 

@@ -19,7 +19,7 @@
 # http://www.gns3.net/contact
 #
 
-import os, sys, re, time
+import os, sys, re, time, platform
 import subprocess as sub
 import GNS3.Globals as globals
 import subprocess
@@ -82,6 +82,15 @@ def error(msg):
 
     print '*** Error:', unicode(msg)
 
+def showDetailedMsgBox(parent, title, msg, details, icon=QtGui.QMessageBox.Critical):
+
+    msgBox = QtGui.QMessageBox(parent)
+    msgBox.setWindowTitle(title)
+    msgBox.setText(msg)
+    msgBox.setIcon(icon)
+    msgBox.setDetailedText(details)
+    msgBox.exec_()
+
 def killAll(process_name):
     """ Killall
     """
@@ -95,6 +104,35 @@ def killAll(process_name):
         return True
     except:
         return False
+
+def nvram_export(input_file_path, output_file_path):
+    last  = ''
+    start = False
+    eol='\r'
+    regex = re.compile('[^-a-zA-Z0-9`~!@#$%^&*()_=+,./<>?;\':\"{}|\\\[\] \3]+')
+
+    if platform.system() == 'Windows':
+        eol='\n'
+
+    try:
+        in_file = open(input_file_path,  'rb')
+        out_file = open(output_file_path, 'w')
+    except IOError:
+        return False
+
+    for line in in_file:
+        line = regex.sub('', line)
+        if line == '!':
+            start = True
+        if start:
+            out_file.write("%s%s" % (line, eol))
+        if last == '!' and line == 'end':
+            break
+        elif start:
+            last = line
+    in_file.close()
+    out_file.close()
+    return True
 
 def getWindowsInterfaces():
     """ Try to detect all available interfaces on Windows

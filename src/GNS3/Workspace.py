@@ -34,7 +34,7 @@ from GNS3.IOSDialog import IOSDialog
 from GNS3.SymbolManager import SymbolManager
 from GNS3.ProjectDialog import ProjectDialog
 from GNS3.SnapshotDialog import SnapshotDialog
-from GNS3.Utils import debug, translate, fileBrowser
+from GNS3.Utils import debug, translate, fileBrowser, showDetailedMsgBox
 from GNS3.Config.Preferences import PreferencesDialog
 from GNS3.Config.Objects import recentFilesConf
 from GNS3.Node.IOSRouter import IOSRouter
@@ -741,6 +741,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             text: string
         """
 
+        errors = ""
+        translated_action = ""
         node_list = []
         if autostart == True:
             for (hostname,value) in globals.GApp.dynagen.autostart.iteritems():
@@ -756,43 +758,53 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if count == 0:
             return
         progress = QtGui.QProgressDialog(text, translate("Workspace", "Abort"), 0, count, globals.GApp.mainWindow)
+        progress.setWindowTitle("GNS3")
         progress.setMinimum(1)
         progress.setWindowModality(QtCore.Qt.WindowModal)
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents)
         current = 0
         for node in node_list:
+            server = node.get_dynagen_device().dynamips.host + ':' + str(node.get_dynagen_device().dynamips.port)
             progress.setValue(current)
             globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
             if progress.wasCanceled():
                 progress.reset()
                 break
             try:
-                if action == 'start':
+                if action == 'starting':
+                    translated_action = translate("Workspace", "starting")
                     node.startNode(progress=True)
                     # Slow start feature
                     seconds = globals.GApp.systconf['general'].slow_start
                     if seconds > 0:
                         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
                         time.sleep(seconds)
-                if action == 'stop':
+                if action == 'stopping':
+                    translated_action = translate("Workspace", "stopping")
                     node.stopNode(progress=True)
-                if action == 'suspend':
+                if action == 'suspending':
+                    translated_action = translate("Workspace", "suspending")
                     node.suspendNode(progress=True)
-                if action == 'reload':
+                if action == 'reloading':
+                    translated_action = translate("Workspace", "reloading")
                     node.reloadNode(progress=True)
             except lib.DynamipsError, msg:
-                QtGui.QMessageBox.critical(self, translate("Workspace", "%s: Dynamips error") % node.hostname,  unicode(msg))
-            except lib.DynamipsWarning,  msg:
-                QtGui.QMessageBox.warning(self, translate("Workspace", "%s: Dynamips warning") % node.hostname,  unicode(msg))
+                errors += translate("Workspace", "%s: error from server %s: %s") % (node.hostname, server, unicode(msg))
+                errors += "\n"
+            except lib.DynamipsWarning, msg:
+                errors += translate("Workspace", "%s: warning from server %s: %s") % (node.hostname, server, unicode(msg))
+                errors += "\n"
                 continue
             except (lib.DynamipsErrorHandled,  socket.error):
-                QtGui.QMessageBox.critical(self, translate("Workspace", "%s: Dynamips error") % node.hostname, translate("Workspace", "Connection lost"))
-                progress.reset()
-                return
+                errors += translate("Workspace", "%s: lost communication with server %s") % (node.hostname, server)
+                errors += "\n"
+                continue
             current += 1
         progress.setValue(count)
         progress.deleteLater()
         progress = None
+        if errors:
+            showDetailedMsgBox(self, translate("Workspace", "%s nodes") % translated_action, translate("Workspace", "Issues have been detected while %s nodes, please check details ...") % translated_action, errors)
 
     def __action_ShowVirtualBoxManager(self):
         """ Show VirtualBox Manager
@@ -826,25 +838,25 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Start all nodes
         """
 
-        self.__launchProgressDialog('start', translate("Workspace", "Starting nodes ..."))
+        self.__launchProgressDialog('starting', translate("Workspace", "Starting nodes ..."))
 
     def __action_StopAll(self):
         """ Stop all nodes
         """
 
-        self.__launchProgressDialog('stop', translate("Workspace", "Stopping nodes ..."))
+        self.__launchProgressDialog('stopping', translate("Workspace", "Stopping nodes ..."))
 
     def __action_SuspendAll(self):
         """ Suspend all nodes
         """
 
-        self.__launchProgressDialog('suspend', translate("Workspace", "Suspending nodes ..."))
+        self.__launchProgressDialog('suspending', translate("Workspace", "Suspending nodes ..."))
 
     def __action_ReloadAll(self):
         """ Reload all nodes
         """
 
-        self.__launchProgressDialog('reload', translate("Workspace", "Reloading nodes ..."))
+        self.__launchProgressDialog('reloading', translate("Workspace", "Reloading nodes ..."))
 
     def __action_Help(self):
         """ Launch a browser for the pointing to the documentation page
@@ -971,7 +983,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         net = netfile.NETFile()
         globals.GApp.scene.resetMatrix()
         net.import_net_file(path)
-        self.__launchProgressDialog('start', translate("Workspace", "Starting nodes ..."), autostart=True)
+        self.__launchProgressDialog('starting', translate("Workspace", "Starting nodes ..."), autostart=True)
 
     def __action_NewProject(self):
         """ Create a new project
@@ -1124,7 +1136,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 except lib.DynamipsError, msg:
                     QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error %s: %s") % (self.projectWorkdir, unicode(msg)))
 
-        self.__action_Save(auto=True)
+        self.__action_Save()
         self.setWindowTitle("GNS3 Project - " + self.projectFile)
 
     def __action_Snapshot(self):
@@ -1331,7 +1343,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Autosave feature
         """
 
-        print translate("Workspace", "Auto-saving ... Next one in %s seconds" % str(globals.GApp.systconf['general'].autosave))
+        curtime = time.strftime("%H:%M:%S")
+        print translate("Workspace", "%s: Auto-saving ... Next one in %s seconds" % (curtime, str(globals.GApp.systconf['general'].autosave)))
         self.__action_Save(auto=True)
 
     def __action_Save(self, auto=False):

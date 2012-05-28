@@ -331,10 +331,10 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
             except:
                 if progress:
                     raise
-
-            self.shutdownInterfaces()
-            self.state = self.emudev.state
-            globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.emudev.state)
+            finally:
+                self.shutdownInterfaces()
+                self.state = self.emudev.state
+                globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.emudev.state)
 
     def suspendNode(self, progress=False):
         """ Suspend this node

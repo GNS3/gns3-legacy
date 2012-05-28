@@ -2339,8 +2339,9 @@ class Router(Dynamips_device):
         if self.__state == 'stopped':
             raise DynamipsWarning, 'router %s is already stopped' % self.name
 
-        r = send(self.__d, 'vm stop %s' % self.__name)
+        # mark it stopped, even if dynamips has crashed
         self.__state = 'stopped'
+        r = send(self.__d, 'vm stop %s' % self.__name)
         return r
 
     def suspend(self):
@@ -2352,9 +2353,9 @@ class Router(Dynamips_device):
         if self.__state == 'stopped':
             raise DynamipsWarning, 'router %s is stopped and cannot be suspended' % self.name
 
-        r = send(self.__d, 'vm suspend %s' % self.__name)
-        #print "ADEBUG: dynamips_lib.py: suspend(), r = ", r
+        # mark it suspended, even if dynamips has crashed
         self.__state = 'suspended'
+        r = send(self.__d, 'vm suspend %s' % self.__name)
         return r
 
     def resume(self):
@@ -4786,9 +4787,7 @@ def send(dynamips, command):
         try:
             dynamips.s.sendall(command.strip().encode('utf-8') + '\n')
         except:
-            print 'Error: lost communication with %s server %s' % (dynamips.type, dynamips.host)
-            print 'It may have crashed. Check the %s server output.' % dynamips.type
-            print 'Exiting...'
+            #print 'Error: lost communication with %s server %s' % (dynamips.type, dynamips.host)
             raise DynamipsErrorHandled
 
         # Now retrieve the result
@@ -4801,7 +4800,6 @@ def send(dynamips, command):
                 buf += chunk
             except:
                 #print 'Error: timed out communicating with %s server %s' % (dynamips.type, dynamips.host)
-                #print 'Exiting...'
                 raise DynamipsErrorHandled
 
             # if the buffer doesn't end in '\n' then we can't be done
@@ -4810,8 +4808,6 @@ def send(dynamips, command):
                     continue
             except IndexError:
                 #print 'Error: could not communicate with %s server %s' % (dynamips.type, dynamips.host)
-                #print 'It may have crashed. Check the %s server output.' % dynamips.type
-                #print 'Exiting...'
                 raise DynamipsErrorHandled
 
             data += buf.split('\r\n')

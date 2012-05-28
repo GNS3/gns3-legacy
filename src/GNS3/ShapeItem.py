@@ -131,26 +131,24 @@ class AbstractShapeItem(object):
 
     def hoverMoveEvent(self, event):
 
-
-        if event.pos().x() > (self.rect().right() - self.border) :
-            globals.GApp.scene.setCursor(QtCore.Qt.SizeHorCursor)
-
-        elif event.pos().x() < (self.rect().left() + self.border) :
-            globals.GApp.scene.setCursor(QtCore.Qt.SizeHorCursor)
-
-        elif event.pos().y() < (self.rect().top() + self.border) :
-            globals.GApp.scene.setCursor(QtCore.Qt.SizeVerCursor)
-
-        elif event.pos().y() > (self.rect().bottom() - self.border) :
-            globals.GApp.scene.setCursor(QtCore.Qt.SizeVerCursor)
-
-        else:
-            globals.GApp.scene.setCursor(QtCore.Qt.SizeAllCursor)
+        # objects on the background layer doesn't need cursors
+        if self.zValue() >= 0:
+            if event.pos().x() > (self.rect().right() - self.border) :
+                globals.GApp.scene.setCursor(QtCore.Qt.SizeHorCursor)
+            elif event.pos().x() < (self.rect().left() + self.border) :
+                globals.GApp.scene.setCursor(QtCore.Qt.SizeHorCursor)
+            elif event.pos().y() < (self.rect().top() + self.border) :
+                globals.GApp.scene.setCursor(QtCore.Qt.SizeVerCursor)
+            elif event.pos().y() > (self.rect().bottom() - self.border) :
+                globals.GApp.scene.setCursor(QtCore.Qt.SizeVerCursor)
+            else:
+                globals.GApp.scene.setCursor(QtCore.Qt.SizeAllCursor)
 
     def hoverLeaveEvent(self, event):
 
-        globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
-
+        # objects on the background layer doesn't need cursors
+        if self.zValue() >= 0:
+            globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
 
     def drawLayerInfo(self, painter):
 

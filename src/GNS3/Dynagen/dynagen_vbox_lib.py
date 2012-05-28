@@ -354,9 +354,9 @@ class AnyVBoxEmuDevice(object):
 
         if self.state == 'stopped':
             raise DynamipsWarning, 'virtualized device %s is already stopped' % self.name
-        r = send(self.p, 'vbox stop %s' % self.name)
-        r = send(self.p, 'vbox stop %s' % self.name)
         self.state = 'stopped'
+        r = send(self.p, 'vbox stop %s' % self.name)
+        r = send(self.p, 'vbox stop %s' % self.name)
         return r
 
     def reset(self):
