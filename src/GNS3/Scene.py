@@ -47,7 +47,7 @@ from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Node.IOSRouter import IOSRouter
-from GNS3.Node.AnyEmuDevice import AnyEmuDevice
+from GNS3.Node.AnyEmuDevice import AnyEmuDevice, PIX
 from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ATMSW import ATMSW
@@ -83,7 +83,7 @@ class Scene(QtGui.QGraphicsView):
 
         self.sceneDragging = False
         self.lastMousePos = None
-        
+
         self.showWarningMessageBackgroundLayer = True
 
     def reloadRenderers(self):
@@ -631,7 +631,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
+            if isinstance(item, IOSRouter) or (isinstance(item, AnyEmuDevice) and not isinstance(item, PIX)) or isinstance(item, AnyVBoxEmuDevice):
                 links = []
                 for localif in item.getConnectedInterfaceList():
                     linkobj = item.getConnectedLinkByName(localif)
@@ -891,6 +891,9 @@ class Scene(QtGui.QGraphicsView):
                     return
             self.slotDeleteNode()
         elif globals.addingLinkFlag and key == QtCore.Qt.Key_Escape:
+            if self.__isFirstClick:
+                # Escape has been pressed while we were not drawing a link
+                globals.GApp.workspace.stopAction_addLink()
             self.resetAddingLink()
         else:
             QtGui.QGraphicsView.keyPressEvent(self, event)
@@ -899,14 +902,27 @@ class Scene(QtGui.QGraphicsView):
         """ Drag move event
         """
 
-        event.accept()
+        #debug("Drop event %s" % str(list(event.mimeData().formats())))
+        if event.mimeData().hasFormat("text/uri-list") or event.mimeData().hasFormat("application/x-qt-mime-type-name") :
+            event.acceptProposedAction()
 
     def dropEvent(self, event):
         """ Drop event
         """
 
-        if event.mimeData().hasText():
-
+        if event.mimeData().hasFormat("text/uri-list") and event.mimeData().hasUrls():
+            if len(event.mimeData().urls()) > 1:
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "Topology file"),  translate("Scene", "Please select only one file!"))
+                return
+            for url in event.mimeData().urls():
+                path = unicode(url.toLocalFile(), 'utf-8', errors='replace')
+                if os.path.isfile(path):
+                    path = os.path.normpath(path)
+                    debug("Load file from drop event %s" % path)
+                    globals.GApp.workspace.openFromDroppedFile(path)
+                    break
+            event.acceptProposedAction()
+        elif event.mimeData().hasText():
             symbolname = str(event.mimeData().text())
             # Get resource corresponding to node type
             object = None
@@ -935,8 +951,9 @@ class Scene(QtGui.QGraphicsView):
             pos_y = node.pos().y() - (node.boundingRect().height() / 2)
             node.setPos(pos_x, pos_y)
 
-            event.setDropAction(QtCore.Qt.MoveAction)
-            event.accept()
+            event.acceptProposedAction()
+            #event.setDropAction(QtCore.Qt.MoveAction)
+            #event.accept()
         else:
             event.ignore()
 

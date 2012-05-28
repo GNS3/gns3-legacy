@@ -235,6 +235,7 @@ class HypervisorManager(object):
         dynamips_hypervisor.baseconsole = self.baseConsole
         dynamips_hypervisor.baseaux = self.baseAUX
         globals.GApp.dynagen.globaludp += globals.GApp.systconf['dynamips'].udp_incrementation
+        debug("Hypervisor manager: hypervisor base UDP is %d " % dynamips_hypervisor.udp)
         node.set_hypervisor(dynamips_hypervisor)
         return hypervisor
 

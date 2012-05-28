@@ -18,7 +18,7 @@
 # http://www.gns3.net/contact
 #
 
-import os, sys, re, socket
+import os, sys, re, time, platform
 import subprocess as sub
 import GNS3.Globals as globals
 import subprocess
@@ -72,14 +72,23 @@ def debug(string):
 
         # Level 2, GNS3 debugs
         if globals.debugLevel >= 2:
-            print '* DEBUG: ' + unicode(string)
-            #globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+            curtime = time.strftime("%H:%M:%S")
+            print "%s: DEBUG (2): %s" % (curtime, unicode(string))
 
 def error(msg):
     """ Print out an error message
     """
 
     print '*** Error:', unicode(msg)
+
+def showDetailedMsgBox(parent, title, msg, details, icon=QtGui.QMessageBox.Critical):
+
+    msgBox = QtGui.QMessageBox(parent)
+    msgBox.setWindowTitle(title)
+    msgBox.setText(msg)
+    msgBox.setIcon(icon)
+    msgBox.setDetailedText(details)
+    msgBox.exec_()
 
 def killAll(process_name):
     """ Killall
@@ -94,20 +103,35 @@ def killAll(process_name):
         return True
     except:
         return False
-    
-def checkForAvailablePortRange(host, start, end):
-    """ Returns a list of non available ports
-    """
 
-    ports = []
-    for port in range(start, end):
-        s = socket.socket()
-        s.settimeout(0.3)
-        result = s.connect_ex((host, port))
-        if result != 0:
-            ports.append(str(port))
-        s.close()
-    return ports
+def nvram_export(input_file_path, output_file_path):
+    last  = ''
+    start = False
+    eol='\r'
+    regex = re.compile('[^-a-zA-Z0-9`~!@#$%^&*()_=+,./<>?;\':\"{}|\\\[\] \3]+')
+
+    if platform.system() == 'Windows':
+        eol='\n'
+
+    try:
+        in_file = open(input_file_path,  'rb')
+        out_file = open(output_file_path, 'w')
+    except IOError:
+        return False
+
+    for line in in_file:
+        line = regex.sub('', line)
+        if line == '!':
+            start = True
+        if start:
+            out_file.write("%s%s" % (line, eol))
+        if last == '!' and line == 'end':
+            break
+        elif start:
+            last = line
+    in_file.close()
+    out_file.close()
+    return True
 
 def getWindowsInterfaces():
     """ Try to detect all available interfaces on Windows
@@ -169,7 +193,9 @@ class fileBrowser(object):
         path = QtGui.QFileDialog.getOpenFileName(self.filedialog,
             self.caption, self.directory, self.filter, self.selected)
 
-        return ([unicode(path), unicode(self.selected)])
+        if path is not None:
+            path = unicode(path)
+        return ([path, str(self.selected)])
 
     def getSaveFile(self):
         """ Save a file in the file system
@@ -178,7 +204,9 @@ class fileBrowser(object):
         path = QtGui.QFileDialog.getSaveFileName(self.filedialog,
             self.caption, self.directory, self.filter, self.selected)
 
-        return ([unicode(path), unicode(self.selected)])
+        if path is not None:
+            path = unicode(path)
+        return ([path, str(self.selected)])
 
     def getDir(self):
         """ Get a directory from the file system
@@ -186,4 +214,6 @@ class fileBrowser(object):
 
         path = QtGui.QFileDialog.getExistingDirectory(self.filedialog,
             self.caption, self.directory, QtGui.QFileDialog.ShowDirsOnly)
-        return (unicode(path))
+        if path is not None:
+            path = unicode(path)
+        return (path)

@@ -42,10 +42,10 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
 
         QtGui.QWidget.__init__(self)
         Ui_PreferencesVirtualBox.setupUi(self, self)
-        
+
         # Test button
         self.connect(self.pushButtonTestVBox, QtCore.SIGNAL('clicked()'),self.__testVBox)
-        
+
         # VBoxwrapper
         self.connect(self.VBoxwrapperPath_browser, QtCore.SIGNAL('clicked()'), self.slotSelectVBoxWrapperPath)
         self.connect(self.VBoxwrapperWorkdir_browser, QtCore.SIGNAL('clicked()'), self.slotSelectVBoxWrapperWorkdir)
@@ -61,7 +61,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         #self.connect(self.checkBoxEnableVBoxManager,  QtCore.SIGNAL('clicked()'), self.slotCheckBoxEnableVBoxManager)
         self.connect(self.VBoxcheckBoxEnableGuestControl,  QtCore.SIGNAL('clicked()'), self.slotCheckBoxEnableGuestControl)
         self.connect(self.checkBoxVBoxShowAdvancedOptions,  QtCore.SIGNAL('clicked()'), self.slotCheckBoxVBoxShowAdvancedOptions)
-        self.connect(self.checkBoxVBoxWrapperShowAdvancedOptions,  QtCore.SIGNAL('clicked()'), self.slotCheckBoxVBoxWrapperShowAdvancedOptions)        
+        self.connect(self.checkBoxVBoxWrapperShowAdvancedOptions,  QtCore.SIGNAL('clicked()'), self.slotCheckBoxVBoxWrapperShowAdvancedOptions)
 
         # VirtualBox settings
         self.connect(self.SaveVBoxImage, QtCore.SIGNAL('clicked()'), self.slotSaveVBoxImage)
@@ -79,6 +79,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         self.baseConsole.setVisible(False)
 
         self.loadConf()
+        self.comboBoxNameVBoxImage.addItem("")
 
     def slotRefreshVMlist(self):
 
@@ -89,11 +90,11 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         self.comboBoxNameVBoxImage.clear()
         self.comboBoxNameVBoxImage.addItem("")
 
-
         if not vbox:
             if globals.GApp.systconf['vbox'].enable_VBoxManager:
                 host = globals.GApp.systconf['vbox'].VBoxManager_binding
                 port = globals.GApp.systconf['vbox'].vboxwrapper_port
+
                 if globals.GApp.VBoxManager.startVBox(port) == False:
                     return
             else:
@@ -163,7 +164,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             self.pushButtonAddExternalVBoxwrapper.setVisible(False)
             self.pushButtonDeleteExternalVBoxwrapper.setVisible(False)
             self.label_36.setVisible(False)
-            self.comboBoxExternalVBoxwrappers.setVisible(False)          
+            self.comboBoxExternalVBoxwrappers.setVisible(False)
 
     def slotCheckBoxVBoxShowAdvancedOptions(self):
         if self.checkBoxVBoxShowAdvancedOptions.checkState() == QtCore.Qt.Checked:
@@ -172,7 +173,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             self.label_10.setVisible(True)
             # GuestControl
             self.VBoxcheckBoxEnableGuestControl.setVisible(True)
-            self.label_8.setVisible(True)
+            #self.label_8.setVisible(True)
             self.label_4.setVisible(True)
             self.label_7.setVisible(True)
             self.VBoxGuestControl_User.setVisible(True)
@@ -183,18 +184,18 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             self.label_10.setVisible(False)
             # GuestControl
             self.VBoxcheckBoxEnableGuestControl.setVisible(False)
-            self.label_8.setVisible(False)
+            #self.label_8.setVisible(False)
             self.label_4.setVisible(False)
             self.label_7.setVisible(False)
             self.VBoxGuestControl_User.setVisible(False)
-            self.VBoxGuestControl_Password.setVisible(False)            
+            self.VBoxGuestControl_Password.setVisible(False)
 
     def slotCheckBoxEnableGuestControl(self):
         if self.VBoxcheckBoxEnableGuestControl.checkState() == QtCore.Qt.Checked:
             self.VBoxGuestControl_User.setEnabled(True)
             self.VBoxGuestControl_Password.setEnabled(True)
             self.conf.enable_GuestControl = True
-            QtGui.QMessageBox.warning(globals.preferencesWindow, translate("Page_PreferencesVirtualBox", "VirtualBox guest"), 
+            QtGui.QMessageBox.warning(globals.preferencesWindow, translate("Page_PreferencesVirtualBox", "VirtualBox guest"),
                                        translate("Page_PreferencesVirtualBox", "WARNING ! GuestControl is insecure. Passwords are both stored and sent in clear-text. Use at your own risk."))
         else:
             self.VBoxGuestControl_User.setEnabled(False)
@@ -214,13 +215,13 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         # Set default path to vboxwrapper
         if self.conf.vboxwrapper_path == '':
             self.conf.vboxwrapper_path = VBOXWRAPPER_DEFAULT_PATH
-        
+
         # Set default path to working directory
         if self.conf.vboxwrapper_workdir == '':
             self.conf.vboxwrapper_workdir = VBOXWRAPPER_DEFAULT_WORKDIR
 
         # Push default values to GUI
-        
+
         # VBoxwrapper
         self.lineEditVBoxwrapperPath.setText(os.path.normpath(self.conf.vboxwrapper_path))
         self.lineEditVBoxwrapperWorkdir.setText(os.path.normpath(self.conf.vboxwrapper_workdir))
@@ -261,11 +262,11 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         index = self.comboBoxBinding.findText(self.conf.VBoxManager_binding)
         if index != -1:
             self.comboBoxBinding.setCurrentIndex(index)
-         
+
         self.port.setValue(self.conf.vboxwrapper_port)
         self.baseUDP.setValue(self.conf.vboxwrapper_baseUDP)
         self.baseConsole.setValue(self.conf.vboxwrapper_baseConsole)
-        
+
         # VirtualBox settings
         for (name, conf) in globals.GApp.vboximages.iteritems():
 
@@ -274,7 +275,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             item.setText(0, name)
             # image path column
             item.setText(1, conf.filename)
-            
+
         self.treeWidgetVBoxImages.resizeColumnToContents(0)
         self.treeWidgetVBoxImages.sortItems(0, QtCore.Qt.AscendingOrder) # Sort accoroding to GNS3 name
 
@@ -285,7 +286,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         self.conf.vboxwrapper_workdir = unicode(self.lineEditVBoxwrapperWorkdir.text(), 'utf-8', errors='replace')
         self.conf.external_hosts = self.external_hosts
         self.conf.VBoxManager_binding = unicode(self.comboBoxBinding.currentText(), 'utf-8', errors='replace')
-        
+
         if self.checkBoxEnableVBoxManager.checkState() == QtCore.Qt.Checked:
             self.conf.enable_VBoxManager = True
         else:
@@ -298,36 +299,36 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             self.conf.enable_GuestControl = True
         else:
             self.conf.enable_GuestControl = False
-       
+
         self.conf.vboxwrapper_port = self.port.value()
         self.conf.vboxwrapper_baseUDP = self.baseUDP.value()
         self.conf.vboxwrapper_baseConsole = self.baseConsole.value()
 
         globals.GApp.systconf['vbox'] = self.conf
         ConfDB().sync()
-            
+
     def slotExternalVBoxwrapperChanged(self, text):
-        
+
         self.lineEditHostExternalVBox.setText(text)
-           
+
     def slotAddExternalVBoxwrapper(self):
         part1 = self.lineEditHostExternalVBox.text().split(':')[0]
         if part1 == '127.0.0.1' or part1 == 'localhost':
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("New Hypervisor", "New Hypervisor"), translate("New Hypervisor", "WARNING: When doing multi-host setup, never use loopback addresses, such as 'localhost' or '127.0.0.1'. Use actual IP addresses instead."))
-        
+
         external_vboxwrapper = self.lineEditHostExternalVBox.text()
         if external_vboxwrapper and external_vboxwrapper not in self.external_hosts:
             self.comboBoxExternalVBoxwrappers.addItem(self.lineEditHostExternalVBox.text())
             self.external_hosts.append(unicode(external_vboxwrapper, 'utf-8', errors='replace'))
 
     def slotDeleteExternalVBoxwrapper(self):
-        
+
         external_vboxwrapper = self.lineEditHostExternalVBox.text()
         index = self.comboBoxExternalVBoxwrappers.findText(external_vboxwrapper)
         if index != -1 and external_vboxwrapper in self.external_hosts:
             self.comboBoxExternalVBoxwrappers.removeItem(index)
             self.external_hosts.remove(unicode(external_vboxwrapper, 'utf-8', errors='replace'))
-        
+
 
     def slotSelectVBoxWrapperPath(self):
         """ Get a path to VBoxwrapper from the file system
@@ -340,7 +341,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
     def slotSelectVBoxWrapperWorkdir(self):
         """ Get a working directory for VBoxwrapper from the file system
         """
-        
+
         fb = fileBrowser(translate('UiConfig_PreferencesVirtualBox', 'Local VirtualBox working directory'), parent=globals.preferencesWindow)
         path = fb.getDir()
 
@@ -350,7 +351,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
 
             if not testIfWritableDir(path):
                 QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesVirtualBox", "Working directory"), translate("UiConfig_PreferencesVirtualBox", "Vbox working directory must be writable!"))
-                        
+
     def slotSaveVBoxImage(self):
         """ Add/Save VBox Image in the list of VBox images
         """
@@ -358,9 +359,9 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         #name = unicode(self.comboBoxNameVBoxImage.text())
         name = unicode(self.comboBoxNameVBoxImage.currentText(), 'utf-8', errors='replace')
         image = unicode(self.VBoxImage.text(), 'utf-8', errors='replace')
-        
+
         if not name or not image:
-            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesVirtualBox", "VirtualBox guest"), 
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesVirtualBox", "VirtualBox guest"),
                                        translate("Page_PreferencesVirtualBox", "Identifier and binary image must be set!"))
             return
 
@@ -375,7 +376,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             item.setText(0, name)
             # image path column
             item.setText(1, image)
-        
+
         # save settings
         if globals.GApp.vboximages.has_key(name):
             conf = globals.GApp.vboximages[name]
@@ -388,12 +389,16 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         conf.filename = image
         conf.nic_nb = self.VBoxNICNb.value()
         conf.nic = str(self.VBoxNIC.currentText())
+        if self.checkBoxVBoxFirstInterfaceManaged.checkState() == QtCore.Qt.Checked:
+            conf.first_nic_managed = True
+        else:
+            conf.first_nic_managed = False
         conf.guestcontrol_user = str(self.VBoxGuestControl_User.text())
         conf.guestcontrol_password = str(self.VBoxGuestControl_Password.text())
-        
+
         globals.GApp.vboximages[name] = conf
         self.treeWidgetVBoxImages.resizeColumnToContents(0)
-    
+
     def slotDeleteVBoxImage(self):
         """ Delete VBox Image from the list of VBox images
         """
@@ -404,7 +409,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             name = unicode(item.text(0), 'utf-8', errors='replace')
             del globals.GApp.vboximages[name]
             globals.GApp.syncConf()
-            
+
     def slotVBoxImageSelectionChanged(self):
         """ Load VBox settings into the GUI when selecting an entry in the list of VBox images
         """
@@ -416,22 +421,27 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             name = unicode(item.text(0), 'utf-8', errors='replace')
 
             conf = globals.GApp.vboximages[name]
-            
+
             self.comboBoxNameVBoxImage.setItemText(0 ,name)
             self.comboBoxNameVBoxImage.setCurrentIndex(0)
             self.VBoxImage.setText(conf.filename)
-            
+
             if self.conf.enable_GuestControl:
                 self.VBoxGuestControl_User.setEnabled(True)
                 self.VBoxGuestControl_Password.setEnabled(True)
             else:
                 self.VBoxGuestControl_User.setEnabled(False)
                 self.VBoxGuestControl_Password.setEnabled(False)
-                
+
+            if conf.first_nic_managed:
+                self.checkBoxVBoxFirstInterfaceManaged.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.checkBoxVBoxFirstInterfaceManaged.setCheckState(QtCore.Qt.Unchecked)
+
             self.VBoxGuestControl_User.setText(conf.guestcontrol_user)
             self.VBoxGuestControl_Password.setText(conf.guestcontrol_password)
             self.VBoxNICNb.setValue(conf.nic_nb)
-        
+
             index = self.VBoxNIC.findText(conf.nic)
             if index != -1:
                 self.VBoxNIC.setCurrentIndex(index)
@@ -445,9 +455,9 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             else:
                 hostname += ':' + elements[x]
         return hostname
-                
-    def __testVBox(self):    
-    
+
+    def __testVBox(self):
+
         if len(globals.GApp.topology.nodes):
             reply = QtGui.QMessageBox.question(self, translate("UiConfig_PreferencesVirtualBox", "Message"), translate("UiConfig_PreferencesVirtualBox", "This action is going to delete your current topology, would you like to continue?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)

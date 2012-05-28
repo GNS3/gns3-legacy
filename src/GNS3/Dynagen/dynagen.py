@@ -288,6 +288,7 @@ class Dynagen:
                 'image2',
                 'guestcontrol_user',
                 'guestcontrol_password',
+                'first_nic_managed',
                 ):
                 setattr(device, option, value)
                 return True
@@ -1337,6 +1338,7 @@ class Dynagen:
                                 'image',
                                 'guestcontrol_user',
                                 'guestcontrol_password',
+                                'first_nic_managed',
                                 ):
                                 setattr(dev, option, devdefaults[dev.model_string][option])
 
@@ -1354,6 +1356,7 @@ class Dynagen:
                                     'image',
                                     'guestcontrol_user',
                                     'guestcontrol_password',
+                                    'first_nic_managed',
                                     ):
                                     setattr(dev, subitem, device[subitem])
                                     continue

@@ -27,14 +27,14 @@ def debugmsg(level, message):
     if debuglevel >= level:
         print message
 
-import os, re, random, base64, traceback
+import os, re, random, base64, traceback, time, glob
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.qemu_lib as qlib
 import GNS3.Dynagen.dynagen_vbox_lib as vboxlib
 from GNS3.Globals.Symbols import SYMBOLS
-from GNS3.Utils import translate, debug, error
+from GNS3.Utils import translate, debug, error, nvram_export
 from PyQt4 import QtGui, QtCore, QtSvg
 from GNS3.Annotation import Annotation
 from GNS3.Pixmap import Pixmap
@@ -52,6 +52,7 @@ from GNS3.Node.FRSW import init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
 from GNS3.Node.AnyEmuDevice import init_emu_id, AnyEmuDevice
 from GNS3.Node.AnyVBoxEmuDevice import init_vbox_emu_id, AnyVBoxEmuDevice
+from __main__ import GNS3_RUN_PATH
 
 router_hostname_re = re.compile(r"""^R([0-9]+)""")
 ethsw_hostname_re = re.compile(r"""^SW([0-9]+)""")
@@ -690,6 +691,13 @@ class NETFile(object):
                 self.populate_connection_list_for_router(device, connection_list)
                 if not config_dir and device.cnfg:
                     config_dir = os.path.dirname(device.cnfg)
+                #FIXME: don't hardcode baseconfig.txt
+                if device.cnfg and not os.path.exists(device.cnfg):
+                    baseconfig = globals.GApp.systconf['general'].ios_path + os.sep + 'baseconfig.txt'
+                    if os.path.exists(baseconfig):
+                        globals.GApp.topology.applyIOSBaseConfig(node, baseconfig)
+                    elif os.path.exists(GNS3_RUN_PATH + os.sep + 'baseconfig.txt'):
+                        globals.GApp.topology.applyIOSBaseConfig(node, GNS3_RUN_PATH + os.sep + 'baseconfig.txt')
                 match_obj = router_hostname_re.match(node.hostname)
                 if match_obj:
                     id = int(match_obj.group(1))
@@ -897,23 +905,33 @@ class NETFile(object):
 
     def export_router_config(self, device, auto=False):
 
+        curtime = time.strftime("%H:%M:%S")
         try:
+            file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.cfg'
             config = base64.decodestring(device.config_b64)
             config = '!\n' + config.replace('\r', "")
             # Write out the config to a file
-            file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.cfg'
             if auto == False:
-                print translate("NETFile", "Exporting %s configuration to %s") % (device.name, file_path)
+                print translate("NETFile", "%s: Exporting %s configuration to %s") % (curtime, device.name, file_path)
         except lib.DynamipsError, msg:
             if auto == False:
-                print translate("NETFile", "%s: Dynamips error: %s") % (device.name, msg)
+                print translate("NETFile", "%s: %s: Dynamips error: %s") % (curtime, device.name, msg)
             return
         except lib.DynamipsWarning, msg:
             if auto == False:
-                print translate("NETFile", "%s: Dynamips warning: %s") % (device.name, msg)
+                print translate("NETFile", "%s: %s: Dynamips warning: %s") % (curtime, device.name, msg)
             return
-        except:
-            error('Unknown error exporting config for ' + device.name)
+        except lib.DynamipsErrorHandled:
+            print translate("NETFile", "%s: Dynamips process %s has crashed") % (curtime, device.dynamips)
+            file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.recovery.cfg'
+            dynamips_files = glob.glob(os.path.normpath(device.dynamips.workingdir) + os.sep + device.model + '_' + device.name + '_nvram*')
+            dynamips_files += glob.glob(os.path.normpath(device.dynamips.workingdir) + os.sep + device.model + '_' + device.name + '_rom')
+            for nvram_file in dynamips_files:
+                if nvram_export(nvram_file, file_path):
+                    print translate("NETFile", "%s: Exporting %s configuration to %s using recovery method") % (curtime, device.name, file_path)
+                    self.dynagen.running_config[device.dynamips.host + ':' + str(device.dynamips.port)]['ROUTER ' + device.name]['cnfg'] = file_path
+                else:
+                    print translate("NETFile", "%s: %s: Could not export configuration to %s") % (curtime, device.name, file_path)
             return
         try:
             f = open(file_path, 'w') #export_router_config
@@ -951,6 +969,7 @@ class NETFile(object):
             # record router configs
             if isinstance(device, lib.Router) and globals.GApp.workspace.projectConfigs:
                 self.export_router_config(device, auto)
+        print ""
 
         note_nb = 1
         shape_nb = 1

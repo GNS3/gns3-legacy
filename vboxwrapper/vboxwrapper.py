@@ -138,9 +138,10 @@ class xVBOXInstance(object):
         self.netcard = 'automatic'
         self.guestcontrol_user = ''
         self.guestcontrol_password = ''
+        self.first_nic_managed = False
         self.process = None
         self.workdir = WORKDIR + os.sep + name
-        self.valid_attr_names = ['image',  'console', 'nics', 'netcard', 'guestcontrol_user', 'guestcontrol_password']
+        self.valid_attr_names = ['image',  'console', 'nics', 'netcard', 'guestcontrol_user', 'guestcontrol_password', 'first_nic_managed']
         self.mgr = g_vboxManager
         self.vbox = self.mgr.vbox
         # Future-proof way to control several major versions of VBox:
@@ -177,7 +178,7 @@ class xVBOXInstance(object):
         debugmsg(2, "xVBOXInstance::start()")
         self.vmname = self.image
 
-        return self.vbc.start(self.vmname, self.nics, self.udp, self.capture, self.netcard)
+        return self.vbc.start(self.vmname, self.nics, self.udp, self.capture, self.netcard, self.first_nic_managed)
 
     def reset(self):
         debugmsg(2, "xVBOXInstance::reset()")
@@ -572,6 +573,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         debugmsg(2, "VBoxWrapperRequestHandler::do_vbox_version(%s)" % unicode(data))
 
         global g_vboxManager, VBOXVER, VBOXVER_REQUIRED
+
         if g_vboxManager:
             vboxver_maj = VBOXVER.split('.')[0]
             vboxver_min = VBOXVER.split('.')[1]
@@ -719,13 +721,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
                             "unable to find VBox '%s'" % name)
             return
-        # ***************
-        #Try to delete UDP:
         VBOX_INSTANCES[name].delete_udp(vnic)
-        #if not VBOX_INSTANCES[name].delete_udp(vnic):
-        #    self.send_reply(self.HSC_ERR_DELETE, 1,
-        #                    "unable to remove UDP connection '%s'" % vnic)
-        #    return
         if VBOX_INSTANCES[name].udp.has_key(int(vnic)):
             del VBOX_INSTANCES[name].udp[int(vnic)]
         self.send_reply(self.HSC_INFO_OK, 1, "OK")
@@ -873,13 +869,17 @@ def main():
     parser.add_option("-p", "--port", type="int", dest="port", help="Port number (default is 11525)")
     parser.add_option("-w", "--workdir", dest="wd", help="Working directory (default is current directory)")
     parser.add_option("-6", "--forceipv6", dest="force_ipv6", help="Force IPv6 usage (default is false; i.e. IPv4)")
-    parser.add_option("-n", "--no-vbox-checks", action="store_true", dest="no_vbox_checks", default=False, help="Do not check for vboxapi loadin and VirtualBox version")
+    parser.add_option("-n", "--no-vbox-checks", action="store_true", dest="no_vbox_checks", default=False, help="Do not check for vboxapi loading and VirtualBox version")
 
     # ignore an option automatically given by Py2App
     if sys.platform.startswith('darwin') and len(sys.argv) > 1 and sys.argv[1].startswith("-psn"):
         del sys.argv[1]
 
     try:
+        # trick to ignore an option automatically given by Py2App
+        #if sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
+        #    (options, args) = parser.parse_args(sys.argv[2:])
+        #else:
         (options, args) = parser.parse_args()
     except SystemExit:
         sys.exit(1)

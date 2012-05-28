@@ -432,7 +432,7 @@ class ASAInstance(QEMUInstance):
 
     def _kernel_options(self):
         debugmsg(3, "ASAInstance::_kernel_options()")
-        return  ('-append', self.kernel_cmdline)
+        return  ('-append', '"' + self.kernel_cmdline + '"')
 
 class JunOSInstance(QEMUInstance):
 
@@ -727,7 +727,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         input_ = cStringIO.StringIO(request)
         tokens = []
         try:
-            tokens = csv.reader(input_, delimiter=' ').next()
+            tokens = csv.reader(input_, delimiter=' ', escapechar='\\').next()
         except StopIteration:
             pass
         return tokens

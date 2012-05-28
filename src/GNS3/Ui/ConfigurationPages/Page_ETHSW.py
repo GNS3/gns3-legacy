@@ -29,11 +29,11 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
     """
 
     def __init__(self):
-    
+
         QtGui.QWidget.__init__(self)
         self.setupUi(self)
         self.setObjectName("ETHSW")
-        
+
         # connect slots
         self.connect(self.pushButtonAdd, QtCore.SIGNAL('clicked()'), self.slotAddPort)
         self.connect(self.pushButtonDelete, QtCore.SIGNAL('clicked()'), self.slotDeletePort)
@@ -43,7 +43,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         # enable sorting
         self.treeWidgetPorts.sortByColumn(0, QtCore.Qt.AscendingOrder)
         self.treeWidgetPorts.setSortingEnabled(True)
-        
+
         self.ports = {}
         self.vlans= {}
 
@@ -59,7 +59,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         index = self.comboBoxPortType.findText(type)
         if index != -1:
             self.comboBoxPortType.setCurrentIndex(index)
-        
+
     def slotPortSelectionChanged(self):
         """ Enable the use of the delete button
         """
@@ -69,15 +69,15 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
             self.pushButtonDelete.setEnabled(True)
         else:
             self.pushButtonDelete.setEnabled(False)
-        
+
     def slotAddPort(self):
         """ Add a new port
         """
-    
+
         port = self.spinBoxPort.value()
         vlan = self.spinBoxVLAN.value()
         type = str(self.comboBoxPortType.currentText())
-        
+
         if self.ports.has_key(port):
             # update vlan for a given port
 
@@ -97,20 +97,20 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
             item.setText(1, str(vlan))
             item.setText(2, type)
             self.treeWidgetPorts.addTopLevelItem(item)
-            
+
         self.ports[port] = type
         if not self.vlans.has_key(vlan):
             self.vlans[vlan] = []
         if not port in self.vlans[vlan]:
             self.vlans[vlan].append(port)
-            
+
         self.spinBoxPort.setValue(max(self.ports) + 1)
         self.treeWidgetPorts.resizeColumnToContents(0)
-        
+
     def slotDeletePort(self):
         """ Delete a port
         """
-        
+
         item = self.treeWidgetPorts.currentItem()
         if (item != None):
             port = int(item.text(0))
@@ -125,8 +125,11 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
                 del self.vlans[vlan]
             self.treeWidgetPorts.takeTopLevelItem(self.treeWidgetPorts.indexOfTopLevelItem(item))
 
-        self.spinBoxPort.setValue(max(self.ports) + 1)
-        
+        if len(self.ports):
+            self.spinBoxPort.setValue(max(self.ports) + 1)
+        else:
+            self.spinBoxPort.setValue(1)
+
     def loadConfig(self, id, config = None):
         """ Load the config
         """
@@ -140,7 +143,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         self.treeWidgetPorts.clear()
         self.vlans = {}
         self.ports = {}
-        
+
         for (vlan,  portlist) in ETHSWconfig['vlans'].iteritems():
             for port in portlist:
                 item = QtGui.QTreeWidgetItem(self.treeWidgetPorts)
@@ -155,12 +158,13 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
                     self.vlans[vlan].append(port)
         self.treeWidgetPorts.resizeColumnToContents(0)
         self.treeWidgetPorts.resizeColumnToContents(1)
-        self.spinBoxPort.setValue(max(self.ports) + 1)
+        if len(self.ports) > 0:
+            self.spinBoxPort.setValue(max(self.ports) + 1)
 
     def saveConfig(self, id, config = None):
         """ Save the config
         """
-    
+
         self.node = globals.GApp.topology.getNode(id)
         if config:
             ETHSWconfig = config

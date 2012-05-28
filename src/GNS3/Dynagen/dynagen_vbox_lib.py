@@ -306,13 +306,15 @@ class AnyVBoxEmuDevice(object):
             'netcard': 'automatic',
             'guestcontrol_user' : None,
             'guestcontrol_password': None,
+            'first_nic_managed': False,
             }
-        #self._ram = 0
+
         self._nics = self.defaults['nics']
         self._netcard = self.defaults['netcard']
         self._capture = {}
         self._guestcontrol_user = self.defaults['guestcontrol_user']
         self._guestcontrol_password = self.defaults['guestcontrol_password']
+        self._first_nic_managed = self.defaults['first_nic_managed']
 
         self.nios = {}
         for i in range(self._nics + 1):
@@ -351,9 +353,9 @@ class AnyVBoxEmuDevice(object):
 
         if self.state == 'stopped':
             raise DynamipsWarning, 'virtualized device %s is already stopped' % self.name
-        r = send(self.p, 'vbox stop %s' % self.name)
-        r = send(self.p, 'vbox stop %s' % self.name)
         self.state = 'stopped'
+        r = send(self.p, 'vbox stop %s' % self.name)
+        r = send(self.p, 'vbox stop %s' % self.name)
         return r
 
     def reset(self):
@@ -577,6 +579,27 @@ class AnyVBoxEmuDevice(object):
         return self._guestcontrol_password
 
     guestcontrol_password = property(_getguestcontrol_password, _setguestcontrol_password, doc='The VBox guestcontrol_password for this device')
+
+    def _setfirst_nic_managed(self, first_nic_managed):
+        """ Set if the first interface can be used by this virtualized device
+        first_nic_managed: (bool) first interface activation
+        """
+        debugmsg(2, "AnyVBoxEmuDevice::_setfirst_nic_managed(%s)" % str(first_nic_managed))
+
+        if type(first_nic_managed) != bool:
+            raise DynamipsError, 'invalid first nic managed option'
+
+        send(self.p, 'vbox setattr %s first_nic_managed %s' % (self.name, str(first_nic_managed)))
+        self._first_nic_managed = first_nic_managed
+
+    def _getfirst_nic_managed(self):
+        """ Returns the first_nic_managed option used by this virtualized device
+        """
+        debugmsg(3, "AnyVBoxEmuDevice::_getfirst_nic_managed(), returns %s" % str(self._first_nic_managed))
+
+        return self._first_nic_managed
+
+    first_nic_managed = property(_getfirst_nic_managed, _setfirst_nic_managed, doc='The first nic managed option by this virtualized device')
 
     def capture(self, interface, path):
         """ Set the capture file path for a specific interface
@@ -812,10 +835,12 @@ class AnyVBoxEmuDevice(object):
         from qemu_lib import AnyEmuDevice
         # hide vbox internal interface (self._nics - 1)
         slot_info = '   Slot 0 hardware is ' + self._netcard + ' with ' + str(self._nics) + ' Ethernet interfaces\n'
-        slot_info = slot_info + "      Ethernet1 is the VirtualBox management interface\n"
+        ignore_ports = [0] # port 0 doesn't exists
+        if not self._first_nic_managed:
+            slot_info = slot_info + "      Ethernet1 is the VirtualBox management interface\n"
+            ignore_ports.append(1) # port 1 is the VirtualBox management interface
         for port in self.nios:
-            if port in [0,1]:
-                # port 0 doesn't exists and port 1 is the VirtualBox management interface
+            if port in ignore_ports:
                 continue
             slot_info = slot_info + "      Ethernet" + str(port)
             if self.nios[port] != None:
@@ -877,7 +902,7 @@ class VBoxDevice(AnyVBoxEmuDevice):
     basehostname = 'VBOX'
     _ufd_machine = 'VirtualBox guest'
     _ufd_hardware = 'VirtualBox Virtualized System'
-    available_options = ['image', 'nics', 'netcard', 'guestcontrol_user', 'guestcontrol_password']
+    available_options = ['image', 'nics', 'netcard', 'guestcontrol_user', 'guestcontrol_password', 'first_nic_managed']
 
 def nosend_vbox(flag):
     """ If true, don't actually send any commands to the back end.

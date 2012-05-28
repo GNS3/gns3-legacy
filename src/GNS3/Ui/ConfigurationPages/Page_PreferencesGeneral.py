@@ -19,10 +19,7 @@
 # http://www.gns3.net/contact
 #
 
-import os
-import sys
-import platform
-import shutil
+import os, platform, shutil
 import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
 from GNS3.Config.Objects import systemGeneralConf
@@ -48,11 +45,11 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.checkBoxBringConsoleToFront.setVisible(False)
         
         self.connect(self.pushButton_ClearConfiguration, QtCore.SIGNAL('clicked()'), self.__clearConfiguration)
+        self.connect(self.pushButton_ExportConfiguration, QtCore.SIGNAL('clicked()'), self.__exportConfiguration)
+        self.connect(self.pushButton_ImportConfiguration, QtCore.SIGNAL('clicked()'), self.__importConfiguration)
         self.connect(self.ProjectPath_browser, QtCore.SIGNAL('clicked()'), self.__setProjectPath)
         self.connect(self.IOSPath_browser, QtCore.SIGNAL('clicked()'), self.__setIOSPath)
         self.connect(self.pushButtonUseTerminalCommand, QtCore.SIGNAL('clicked()'), self.__setTerminalCmd)
-        self.connect(self.Button_export_configuration, QtCore.SIGNAL('clicked()'), self.__ExportConfiguration)
-        self.connect(self.Button_import_configuration, QtCore.SIGNAL('clicked()'), self.__ImportConfiguration)
 
         for (name, cmd) in sorted(TERMINAL_PRESET_CMDS.iteritems()):
             self.comboBoxPreconfigTerminalCommands.addItem(name, cmd)
@@ -224,6 +221,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
         try:
             shutil.copyfile('baseconfig.txt', self.conf.ios_path + os.sep + 'baseconfig.txt')
+            shutil.copyfile('baseconfig_sw.txt', self.conf.ios_path + os.sep + 'baseconfig_sw.txt')
         except (OSError, IOError), e:
             debug("Warning: cannot copy baseconfig.txt to " + self.conf.ios_path + ": " + e.strerror)
 
@@ -256,53 +254,57 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.lineEditTermCommand.setText(command)
 
     def __clearConfiguration(self):
-    
-        from __main__ import VERSION
-        ConfDB().clear()
-        c = ConfDB()
-        c.set('GNS3/version', VERSION)
-        c.sync()
-        QtGui.QMessageBox.information(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Configuration file"),  
-                                      translate("UiConfig_PreferencesGeneral", "Configuration file cleared, default settings will be applied after a restart"))
-        globals.recordConfiguration = False
-        globals.preferencesWindow.close()
 
-    def __ExportConfiguration(self):
-        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'export configuration'), parent=globals.preferencesWindow)
-        (path, selected) = fb.getSaveFile()
-        try:
-            shutil.copy2(unicode(ConfDB().fileName(), 'utf-8', errors='replace'), path);
-        except IOError:
-            QtGui.QMessageBox.warning(self, 'warning', 'error while copying backup')          
-            return
-        QtGui.QMessageBox.warning(self, 'confirm', 'export succefully done')
+        reply = QtGui.QMessageBox.question(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Configuration file"), translate("UiConfig_PreferencesGeneral", "All GNS3 configuration will be lost. Do you want to proceed?"),
+                                            QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
+        if reply == QtGui.QMessageBox.Yes:
+            from __main__ import VERSION
+            ConfDB().clear()
+            c = ConfDB()
+            c.set('GNS3/version', VERSION)
+            c.sync()
+            QtGui.QMessageBox.information(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Configuration file"),
+                                          translate("UiConfig_PreferencesGeneral", "Configuration file cleared, default settings will be applied after a restart"))
+            globals.recordConfiguration = False
+            globals.preferencesWindow.close()
 
-    def __ImportConfiguration(self):
-        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'import configuration'), parent=globals.preferencesWindow)
-        (path, selected) = fb.getFile()
-        if  not os.path.exists(path):
-                QtGui.QMessageBox.warning(self, 'warning', (path + ' does not exist'))
+    def __exportConfiguration(self):
+
+        config_path = os.path.normpath(unicode(ConfDB().fileName()))
+        (path, selected) = fileBrowser(translate("UiConfig_PreferencesGeneral", "Export configuration"),
+                                       filter='INI file (*.ini);;All files (*.*)', directory=os.path.dirname(config_path), parent=globals.preferencesWindow).getSaveFile()
+        if path != None and path != '':
+            path = os.path.normpath(path)
+            try:
+                shutil.copyfile(config_path, path)
+            except (OSError, IOError), e:
+                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Export configuration"),
+                                            translate("UiConfig_PreferencesGeneral", "Cannot export configuration file: %s") % e.strerror)
+            except shutil.Error, e:
+                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Export configuration"),
+                                            translate("UiConfig_PreferencesGeneral", "%s") % e)
+
+    def __importConfiguration(self):
+
+        config_path = os.path.normpath(unicode(ConfDB().fileName()))
+        (path, selected) = fileBrowser(translate("UiConfig_PreferencesGeneral", "Import configuration"),  filter = 'INI file (*.ini);;All files (*.*)',
+                                       directory=os.path.dirname(config_path), parent=globals.preferencesWindow).getFile()
+
+        if path != None and path != '':
+            path = os.path.normpath(path)
+            try:
+                shutil.copyfile(path, config_path)
+            except (OSError, IOError), e:
+                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Import configuration"),
+                                            translate("UiConfig_PreferencesGeneral", "Cannot export configuration file: %s") % e.strerror)
                 return
-        '''
-        if  not os.path.isfile(path):
-                QtGui.QMessageBox.warning(self, 'warning', (path + ' is a directory'))
+            except shutil.Error, e:
+                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Import configuration"),
+                                            translate("UiConfig_PreferencesGeneral", "%s") % e)
                 return
-        if  not os.access(path, R_OK):
-                QtGui.QMessageBox.warning(self, 'warning', (path + ' : no permission to read'))
-                return
-        '''
-        try:
-            shutil.copy2(unicode(ConfDB().fileName(), 'utf-8', errors='replace'),unicode(ConfDB().fileName(), 'utf-8', errors='replace')+ '.backup');
-        except IOError:
-            QtGui.QMessageBox.warning(self, 'warning', 'error while copying backup')
-            return
 
-        try:
-            shutil.copy2(path, unicode(ConfDB().fileName(), 'utf-8', errors='replace'));
-        except IOError:
-            QtGui.QMessageBox.warning(self, 'warning', 'error while copying')
-            return
-
-        python = sys.executable
-        os.execl(python, python, * sys.argv)
+            QtGui.QMessageBox.information(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Configuration file"),
+                                          translate("UiConfig_PreferencesGeneral", "Configuration file imported, default settings will be applied after a restart"))
+            globals.recordConfiguration = False
+            globals.preferencesWindow.close()

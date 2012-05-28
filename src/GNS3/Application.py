@@ -22,7 +22,10 @@
 import sys, os, time
 import GNS3.Globals as globals
 import GNS3.Config.Defaults as Defaults
-from PyQt4.QtGui import QApplication, QSplashScreen, QPixmap
+import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.Dynagen.portTracker_lib as tracker
+from distutils.version import LooseVersion
+from PyQt4.QtGui import QApplication, QSplashScreen, QPixmap, QMessageBox
 from PyQt4.QtCore import Qt, QVariant, QSettings, QEventLoop
 from GNS3.Utils import Singleton, translate
 from GNS3.Workspace import Workspace
@@ -410,12 +413,9 @@ class Application(QApplication, Singleton):
         confo.HypervisorManager_binding = ConfDB().get('Dynamips/hypervisor_manager_binding', unicode('127.0.0.1'))
         confo.allocateHypervisorPerIOS = ConfDB().value("Dynamips/allocate_hypervisor_per_IOS", QVariant(True)).toBool()
 
-        # replace ~user and $HOME by home directory
-        if os.environ.has_key("HOME"):
-            confo.path = confo.path.replace('$HOME', os.environ["HOME"])
-            confo.workdir =  confo.workdir.replace('$HOME', os.environ["HOME"])
-        confo.path = os.path.expanduser(confo.path)
-        confo.workdir = os.path.expanduser(confo.workdir)
+        # Expand user home dir and environment variables
+        confo.path = os.path.expandvars(os.path.expanduser(confo.path))
+        confo.workdir = os.path.expandvars(os.path.expanduser(confo.workdir))
 
         # Qemu config
         self.systconf['qemu'] = systemQemuConf()
@@ -434,13 +434,9 @@ class Application(QApplication, Singleton):
         confo.qemuwrapper_baseUDP = int(ConfDB().get('Qemu/qemuwrapper_baseUDP', 20000))
         confo.qemuwrapper_baseConsole = int(ConfDB().get('Qemu/qemuwrapper_baseConsole', 3000))
 
-        # Qemu replace ~user and $HOME by home directory
-        if os.environ.has_key("HOME"):
-            confo.qemuwrapper_path = confo.qemuwrapper_path.replace('$HOME', os.environ["HOME"])
-            confo.qemuwrapper_workdir =  confo.qemuwrapper_workdir.replace('$HOME', os.environ["HOME"])
-
-        confo.qemuwrapper_path = os.path.expanduser(confo.qemuwrapper_path)
-        confo.qemuwrapper_workdir = os.path.expanduser(confo.qemuwrapper_workdir)
+        # Expand user home dir and environment variables
+        confo.qemuwrapper_path = os.path.expandvars(os.path.expanduser(confo.qemuwrapper_path))
+        confo.qemuwrapper_workdir = os.path.expandvars(os.path.expanduser(confo.qemuwrapper_workdir))
 
         # VBox config
         self.systconf['vbox'] = systemVBoxConf()
@@ -458,13 +454,9 @@ class Application(QApplication, Singleton):
         confo.vboxwrapper_baseUDP = int(ConfDB().get('VBox/vboxwrapper_baseUDP', 20900))
         confo.vboxwrapper_baseConsole = int(ConfDB().get('VBox/vboxwrapper_baseConsole', 3900))
 
-        # VBox replace ~user and $HOME by home directory
-        if os.environ.has_key("HOME"):
-            confo.vboxwrapper_path = confo.vboxwrapper_path.replace('$HOME', os.environ["HOME"])
-            confo.vboxwrapper_workdir =  confo.vboxwrapper_workdir.replace('$HOME', os.environ["HOME"])
-
-        confo.vboxwrapper_path = os.path.expanduser(confo.vboxwrapper_path)
-        confo.vboxwrapper_workdir = os.path.expanduser(confo.vboxwrapper_workdir)
+        # Expand user home dir and environment variables
+        confo.vboxwrapper_path = os.path.expandvars(os.path.expanduser(confo.vboxwrapper_path))
+        confo.vboxwrapper_workdir = os.path.expandvars(os.path.expanduser(confo.vboxwrapper_workdir))
 
         # Capture config
         self.systconf['capture'] = systemCaptureConf()
@@ -473,12 +465,9 @@ class Application(QApplication, Singleton):
         confo.cap_cmd = ConfDB().get('Capture/capture_reader_cmd', Defaults.CAPTURE_DEFAULT_CMD)
         confo.auto_start = ConfDB().value('Capture/auto_start_cmd', QVariant(False)).toBool()
 
-        # replace ~user and $HOME by home directory
-        if os.environ.has_key("HOME"):
-            confo.cap_cmd = confo.cap_cmd.replace('$HOME', os.environ["HOME"])
-            confo.workdir =  confo.workdir.replace('$HOME', os.environ["HOME"])
-        confo.cap_cmd = os.path.expanduser(confo.cap_cmd)
-        confo.workdir = os.path.expanduser(confo.workdir)
+        # Expand user home dir and environment variables
+        confo.cap_cmd = os.path.expandvars(os.path.expanduser(confo.cap_cmd))
+        confo.workdir = os.path.expandvars(os.path.expanduser(confo.workdir))
 
         # System general config
         self.systconf['general'] = systemGeneralConf()
@@ -506,14 +495,16 @@ class Application(QApplication, Singleton):
             confo.auto_check_for_update = ConfDB().value("GNS3/auto_check_for_update", QVariant(False)).toBool()
         confo.last_check_for_update = int(ConfDB().get('GNS3/last_check_for_update', 0))
 
-        # replace ~user and $HOME by home directory
-        if os.environ.has_key("HOME"):
-            confo.term_cmd = confo.term_cmd.replace('$HOME', os.environ["HOME"])
-            confo.project_path = confo.project_path.replace('$HOME', os.environ["HOME"])
-            confo.ios_path =  confo.ios_path.replace('$HOME', os.environ["HOME"])
-        confo.term_cmd = os.path.expanduser(confo.term_cmd)
-        confo.project_path = os.path.expanduser(confo.project_path)
-        confo.ios_path = os.path.expanduser(confo.ios_path)
+        # Expand user home dir and environment variables
+        confo.term_cmd = os.path.expandvars(os.path.expanduser(confo.term_cmd))
+        confo.project_path = os.path.expandvars(os.path.expanduser(confo.project_path))
+        confo.ios_path = os.path.expandvars(os.path.expanduser(confo.ios_path))
+
+        # Restore debug level
+        globals.debugLevel = int(ConfDB().get('GNS3/debug_level', 0))
+        if globals.debugLevel == 1 or globals.debugLevel == 3:
+            lib.setdebug(True)
+            tracker.setdebug(True)
 
         # Now systGeneral settings are loaded, load the translator
         self.translator = Translator()
@@ -559,21 +550,33 @@ class Application(QApplication, Singleton):
         self.mainWindow.restoreState(ConfDB().value("GUIState/State").toByteArray())
         self.mainWindow.show()
 
-        configFile = unicode(ConfDB().fileName(), 'utf-8', errors='replace')
-        # if we cannot find our config file, we start the Wizard dialog
-        if not os.access(configFile, os.F_OK):
-            dialog = Wizard(parent=self.mainWindow)
-            dialog.show()
-            self.mainWindow.centerDialog(dialog)
-            dialog.raise_()
-            dialog.activateWindow()
+        force_clear_configuration = True
+        version = ConfDB().get('GNS3/version', '0.0.1')
+        try:
+            # trick to test old version format (integer), before 0.8.2.1 release
+            int(version)
+        except:
+            force_clear_configuration = False
+            # for future releases
+            #if LooseVersion(VERSION) > version:
+            #    pass
+
+        if force_clear_configuration:
             self.mainWindow.raise_()
-            dialog.raise_()
+            reply = QMessageBox.question(self.mainWindow, translate("Application", "GNS3 configuration file"),
+                                        translate("Application", "You have installed a new GNS3 version.\nIt is recommended to clear your old configuration, do you want to proceed?"), QMessageBox.Yes, QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                ConfDB().clear()
+                c = ConfDB()
+                c.set('GNS3/version', VERSION)
+                c.sync()
+                globals.recordConfiguration = False
+                QMessageBox.information(self.mainWindow, translate("Application", "GNS3 configuration file"), translate("Application", "Configuration cleared!\nPlease restart GNS3"))
         else:
-            if file:
-                self.mainWindow.load_netfile(file)
-            elif confo.project_startup and os.access(configFile, os.F_OK):
-                dialog = ProjectDialog(parent=self.mainWindow, newProject=True)
+            # if we cannot find our config file, we start the Wizard dialog
+            configFile = unicode(ConfDB().fileName(), 'utf-8', errors='replace')
+            if not os.access(configFile, os.F_OK):
+                dialog = Wizard(parent=self.mainWindow)
                 dialog.show()
                 self.mainWindow.centerDialog(dialog)
                 dialog.raise_()
@@ -581,8 +584,19 @@ class Application(QApplication, Singleton):
                 self.mainWindow.raise_()
                 dialog.raise_()
             else:
-                self.GApp.mainWindow.createProject((None, None, None))
-                self.mainWindow.raise_()
+                if file:
+                    self.mainWindow.load_netfile(file)
+                elif confo.project_startup and os.access(configFile, os.F_OK):
+                    dialog = ProjectDialog(parent=self.mainWindow, newProject=True)
+                    dialog.show()
+                    self.mainWindow.centerDialog(dialog)
+                    dialog.raise_()
+                    dialog.activateWindow()
+                    self.mainWindow.raise_()
+                    dialog.raise_()
+                else:
+                    self.GApp.mainWindow.createProject((None, None, None))
+                    self.mainWindow.raise_()
 
         retcode = QApplication.exec_()
 
@@ -625,6 +639,7 @@ class Application(QApplication, Singleton):
         c.set('GNS3/auto_check_for_update', confo.auto_check_for_update)
         c.set('GNS3/last_check_for_update', confo.last_check_for_update)
         c.set('GNS3/console_delay', confo.console_delay)
+        c.set('GNS3/debug_level', globals.debugLevel)
 
         # Dynamips settings
         confo = self.systconf['dynamips']
@@ -776,6 +791,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/filename", o.filename)
             c.set(basekey + "/nic_nb", o.nic_nb)
             c.set(basekey + "/nic", o.nic)
+            c.set(basekey + "/first_nic_managed", o.first_nic_managed)
             c.set(basekey + "/guestcontrol_user", o.guestcontrol_user)
             c.set(basekey + "/guestcontrol_password", o.guestcontrol_password)
 

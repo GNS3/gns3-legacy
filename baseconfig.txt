@@ -5,15 +5,15 @@ no ip domain lookup
 ip domain-name lab.local
 !
 line con 0
-   exec-timeout 0 0
-   logging synchronous
-   privilege level 15
-   no login
+ exec-timeout 0 0
+ logging synchronous
+ privilege level 15
+ no login
 line aux 0
-   exec-timeout 0 0
-   logging synchronous
-   privilege level 15
-   no login
+ exec-timeout 0 0
+ logging synchronous
+ privilege level 15
+ no login
 !
 !
 end

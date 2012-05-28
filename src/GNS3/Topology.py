@@ -241,6 +241,7 @@ class Topology(QtGui.QGraphicsScene):
         """ Apply IOS base config
         """
 
+        debug("Applying IOS base config %s" % config_path)
         if not os.access(config_path, os.F_OK):
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS Base config"), translate("Topology", "The base config file (%s) specified for this IOS can not be found. Your router will start with a blank configuration.") % config_path)
             return
@@ -526,7 +527,7 @@ class Topology(QtGui.QGraphicsScene):
                         return False
                     # give a warning if the IOS path is not accessible
                     if not os.access(image_conf.filename, os.F_OK):
-                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), 
+                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"),
                                                   translate("Topology", "%s seems to not exist, please check") % image_conf.filename)
                 else:
                     # use an external hypervisor

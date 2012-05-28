@@ -35,12 +35,15 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         self.setupUi(self)
         self.connect(self.NewProject_browser, QtCore.SIGNAL('clicked()'), self.__setProjectDir)
         self.connect(self.pushButtonOpenProject, QtCore.SIGNAL('clicked()'), self.__openProject)
+        self.connect(self.pushButtonRecentFiles, QtCore.SIGNAL('clicked()'), self.__showRecentFiles)
         self.connect(self.ProjectName, QtCore.SIGNAL('textEdited(const QString &)'), self.__projectNameEdited)
 
         if newProject == False:
 
             if projectFile:
                 projectPath = os.path.dirname(projectFile)
+                projectName = os.path.basename(projectPath)
+                self.ProjectName.setText(projectName)
                 self.ProjectPath.setText(projectPath)
 
             if projectWorkdir:
@@ -115,9 +118,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
                 return (None, None, None)
 
         projectFile = projectDir + os.sep + 'topology.net'
-
-        if os.environ.has_key("HOME"):
-            projectFile = projectFile.replace('$HOME', os.environ["HOME"])
+        projectFile = os.path.expandvars(os.path.expanduser(projectFile))
 
         if self.checkBox_WorkdirFiles.checkState() == QtCore.Qt.Checked:
             projectWorkdir = os.path.normpath(projectDir + os.sep + 'working')
@@ -127,7 +128,6 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
             projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
         else:
             projectConfigs = None
-
         return (projectFile, projectWorkdir, projectConfigs)
 
     def accept(self):
@@ -141,3 +141,18 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         globals.GApp.mainWindow.openFile()
         QtGui.QDialog.accept(self)
 
+    def __loadRecentFile(self, action):
+
+        self.close()
+        globals.GApp.workspace.slotLoadRecentFile(action)
+
+    def __showRecentFiles(self):
+
+        menu = QtGui.QMenu()
+        self.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.__loadRecentFile)
+        recent_files = list(globals.GApp.recentfiles)
+        recent_files.reverse()
+        for recent_file_conf in recent_files:
+            action = QtGui.QAction(recent_file_conf.path, menu)
+            menu.addAction(action)
+        menu.exec_(QtGui.QCursor.pos())

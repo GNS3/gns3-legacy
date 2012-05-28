@@ -28,9 +28,11 @@ import GNS3.Dynagen.dynagen_vbox_lib as vboxlib
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug
 from GNS3.Node.IOSRouter import IOSRouter
-from GNS3.Node.AnyEmuDevice import AnyEmuDevice
+from GNS3.Node.AnyEmuDevice import AnyEmuDevice, PIX
 from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
+from GNS3.Node.DecorativeNode import DecorativeNode
 from GNS3.Node.FRSW import FRSW
+from PipeCapture import PipeCapture
 from __main__ import GNS3_RUN_PATH
 
 class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
@@ -76,6 +78,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.capfile = None
             self.captureInfo = None
             self.tailProcess = None
+            self.capturePipeThread = None
 
             # create a unique ID
             self.id = globals.GApp.topology.link_baseid
@@ -237,18 +240,22 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         """
 
         options = []
-        if isinstance(self.source, IOSRouter) or isinstance(self.source, AnyEmuDevice) or isinstance(self.source, AnyVBoxEmuDevice):
+        if isinstance(self.source, IOSRouter) or (isinstance(self.source, AnyEmuDevice) and not isinstance(self.source, PIX)) or isinstance(self.source, AnyVBoxEmuDevice):
             hostname = self.source.hostname
             if type(hostname) != unicode:
                 hostname = unicode(hostname)
             if not self.__returnCaptureOptions(options, hostname, self.dest, self.srcIf):
                 return
-        if isinstance(self.dest, IOSRouter) or isinstance(self.dest, AnyEmuDevice) or isinstance(self.dest, AnyVBoxEmuDevice):
+        if isinstance(self.dest, IOSRouter) or (isinstance(self.dest, AnyEmuDevice) and not isinstance(self.source, PIX)) or isinstance(self.dest, AnyVBoxEmuDevice):
             hostname = self.dest.hostname
             if type(hostname) != unicode:
                 hostname = unicode(hostname)
             if not self.__returnCaptureOptions(options, hostname, self.source, self.destIf):
                 return
+
+        # don't capture if there is a connection to a decorative node
+        if isinstance(self.source, DecorativeNode) or isinstance(self.dest, DecorativeNode):
+            options = []
 
         if len(options):
             (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"),
@@ -312,24 +319,14 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             return
         port = match_obj.group(2)
         capture_conf = globals.GApp.systconf['capture']
-        """ # This code can fail with multi-host hypervisor setup:
-        if capture_conf.workdir and (host == globals.GApp.systconf['qemu'].QemuManager_binding or self.isLocalhost(host)):
-            workdir = capture_conf.workdir
-        else:
-            workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
-        if '/' in workdir:
-            sep = '/'
-        else:
-            sep = '\\'
-        self.capfile = unicode(workdir + sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
-        """
+
         if capture_conf.workdir and (host == globals.GApp.systconf['qemu'].QemuManager_binding or self.isLocalhost(host)):
             # We only provide capture directory to locally running wrappers.
             self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
         else:
             # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
             self.capfile = unicode(self.source.hostname + '_to_' + self.dest.hostname + '.cap')
-        #"""
+
         debug("Start capture to " + self.capfile)
         globals.GApp.dynagen.devices[device].capture(int(port), self.capfile)
         self.captureInfo = (device, port)
@@ -348,17 +345,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         port = match_obj.group(2)
 
         capture_conf = globals.GApp.systconf['capture']
-        """ # This code can fail with multi-host hypervisor setup:
-        if capture_conf.workdir and (host == globals.GApp.systconf['vbox'].VBoxManager_binding or self.isLocalhost(host)):
-            workdir = capture_conf.workdir
-        else:
-            workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
-        if '/' in workdir:
-            sep = '/'
-        else:
-            sep = '\\'
-        self.capfile = unicode(workdir + sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
-        """
+
         if capture_conf.workdir and (host == globals.GApp.systconf['vbox'].VBoxManager_binding or self.isLocalhost(host)):
             # We only provide capture directory to locally running wrappers.
             self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
@@ -440,6 +427,10 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             self.captureInfo = None
             self.capfile = None
 
+            if self.capturePipeThread:
+                self.capturePipeThread.quit()
+                self.capturePipeThread = None
+
             if self.tailProcess:
                 try:
                     debug("Killing tail %i" % self.tailProcess.pid)
@@ -482,9 +473,11 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             return
 
         try:
-            path = unicode(capture_conf.cap_cmd.replace("%c", '"%s"')) % self.capfile
+            if capture_conf.cap_cmd.__contains__("%c"):
+                path = unicode(capture_conf.cap_cmd.replace("%c", '"%s"')) % self.capfile
+            else:
+                path = capture_conf.cap_cmd
             debug("Start Wireshark-like application: %s" % path)
-
             shell = False
             if not sys.platform.startswith('win'):
                 # start commands using the shell on all platforms but Windows
@@ -504,9 +497,18 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 self.tailProcess = sub.Popen(commands[0].strip(), startupinfo=info, stdout=sub.PIPE, env=env, shell=shell)
                 sub.Popen(commands[1].strip(), stdin=self.tailProcess.stdout, stdout=sub.PIPE, shell=shell)
                 self.tailProcess.stdout.close()
+            elif path.__contains__('%p'):
+                    if self.capturePipeThread and self.capturePipeThread.isRunning():
+                        print QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Please close Wireshark"))
+                        return
+                    self.capturePipeThread = None
+                    pipe = r"\\.\pipe\GNS3\%s_to_%s" % (self.source.hostname, self.dest.hostname)
+                    path = path.replace("%p", "%s") % pipe
+                    self.capturePipeThread = PipeCapture(self.capfile, path, pipe)
+                    self.capturePipeThread.start()
             else:
                 # Traditional Traffic Capture
-                sub.Popen(path, shell=shell)
+                sub.Popen(path.strip(), shell=shell)
 
         except (OSError, IOError), e:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Cannot start %s : %s") % (path, e.strerror))

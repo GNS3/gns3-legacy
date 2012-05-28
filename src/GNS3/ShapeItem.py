@@ -36,12 +36,17 @@ class AbstractShapeItem(object):
     def keyPressEvent(self, event):
 
         key = event.key()
-        if key == QtCore.Qt.Key_Left and event.modifiers() == QtCore.Qt.AltModifier and self.rotation > -360:
+        modifiers = event.modifiers()
+        if (key in (QtCore.Qt.Key_P, QtCore.Qt.Key_Plus, QtCore.Qt.Key_Equal) and modifiers & QtCore.Qt.AltModifier) \
+            or (key == QtCore.Qt.Key_Plus and modifiers & QtCore.Qt.AltModifier and modifiers & QtCore.Qt.KeypadModifier) \
+            and self.rotation > -360:
             if self.rotation:
                 self.rotate(-self.rotation)
             self.rotation -= 1
             self.rotate(self.rotation)
-        elif key == QtCore.Qt.Key_Right and event.modifiers() == QtCore.Qt.AltModifier and self.rotation < 360:
+        elif (key in (QtCore.Qt.Key_M, QtCore.Qt.Key_Minus) and modifiers & QtCore.Qt.AltModifier) \
+            or (key == QtCore.Qt.Key_Minus and modifiers & QtCore.Qt.AltModifier and modifiers & QtCore.Qt.KeypadModifier) \
+            and self.rotation < 360:
             if self.rotation:
                 self.rotate(-self.rotation)
             self.rotation += 1
@@ -125,26 +130,24 @@ class AbstractShapeItem(object):
 
     def hoverMoveEvent(self, event):
 
-
-        if event.pos().x() > (self.rect().right() - self.border) :
-            globals.GApp.scene.setCursor(QtCore.Qt.SizeHorCursor)
-
-        elif event.pos().x() < (self.rect().left() + self.border) :
-            globals.GApp.scene.setCursor(QtCore.Qt.SizeHorCursor)
-
-        elif event.pos().y() < (self.rect().top() + self.border) :
-            globals.GApp.scene.setCursor(QtCore.Qt.SizeVerCursor)
-
-        elif event.pos().y() > (self.rect().bottom() - self.border) :
-            globals.GApp.scene.setCursor(QtCore.Qt.SizeVerCursor)
-
-        else:
-            globals.GApp.scene.setCursor(QtCore.Qt.SizeAllCursor)
+        # objects on the background layer doesn't need cursors
+        if self.zValue() >= 0:
+            if event.pos().x() > (self.rect().right() - self.border) :
+                globals.GApp.scene.setCursor(QtCore.Qt.SizeHorCursor)
+            elif event.pos().x() < (self.rect().left() + self.border) :
+                globals.GApp.scene.setCursor(QtCore.Qt.SizeHorCursor)
+            elif event.pos().y() < (self.rect().top() + self.border) :
+                globals.GApp.scene.setCursor(QtCore.Qt.SizeVerCursor)
+            elif event.pos().y() > (self.rect().bottom() - self.border) :
+                globals.GApp.scene.setCursor(QtCore.Qt.SizeVerCursor)
+            else:
+                globals.GApp.scene.setCursor(QtCore.Qt.SizeAllCursor)
 
     def hoverLeaveEvent(self, event):
 
-        globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
-
+        # objects on the background layer doesn't need cursors
+        if self.zValue() >= 0:
+            globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
 
     def drawLayerInfo(self, painter):
 

@@ -460,7 +460,7 @@ class AnyEmuDevice(object):
             return
 
         if not self.track.tcpPortIsFree(self.p.host, console):
-            raise DynamipsError, 'console port %i is already in use' %console
+            raise DynamipsError, 'console port %i is already in use' % console
 
         send(self.p, 'qemu setattr %s console %i' % (self.name, console))
         self.track.setTcpPort(self.__d.host, console)

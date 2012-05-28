@@ -281,6 +281,7 @@ class GNS_Conf(object):
             conf.filename = c.get(cgroup + "/filename", unicode(''))
             conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
             conf.nic = str(c.get(cgroup + "/nic", 'automatic'))
+            conf.first_nic_managed = c.value(cgroup + "/first_nic_managed", QtCore.QVariant(False)).toBool()
             conf.guestcontrol_user = str(c.get(cgroup + "/guestcontrol_user", ''))
             conf.guestcontrol_password = str(c.get(cgroup + "/guestcontrol_password", ''))
             globals.GApp.vboximages[conf.name] = conf

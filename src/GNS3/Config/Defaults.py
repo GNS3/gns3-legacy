@@ -96,6 +96,7 @@ else:
 
 Traditional_Capture_String = translate("Defaults", 'Wireshark Traditional Capture')
 Live_Traffic_Capture_String = translate("Defaults", 'Wireshark Live Traffic Capture')
+Pipe_Traffic_Capture_String = translate("Defaults", 'Wireshark Live Pipe Traffic Capture (experimental)')
 
 # Default predefined sets of Wireshark commands on various OSes:
 if platform.system() == 'Linux':
@@ -114,11 +115,14 @@ elif platform.system() == 'Windows' and os.path.exists("C:\Program Files (x86)\W
                            Traditional_Capture_String  + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe %c",
                            Live_Traffic_Capture_String + ' (Windows 64-bit)': 'tail.exe -f -c +0b %c | "C:\Program Files (x86)\Wireshark\wireshark.exe" -k -i -',
                            Live_Traffic_Capture_String + ' (Windows)': 'tail.exe -f -c +0b %c | "C:\Program Files\Wireshark\wireshark.exe" -k -i -',
+                           Pipe_Traffic_Capture_String + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe -k -i %p",
+                           Pipe_Traffic_Capture_String + ' (Windows 64-bit)': "C:\Program Files (x86)\Wireshark\wireshark.exe -k -i %p",
                            }
 elif platform.system() == 'Windows':
     CAPTURE_PRESET_CMDS = {
                            Traditional_Capture_String  + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe %c",
                            Live_Traffic_Capture_String + ' (Windows)': 'tail.exe -f -c +0b %c | "C:\Program Files\Wireshark\wireshark.exe" -k -i -',
+                           Pipe_Traffic_Capture_String + ' (Windows)': "C:\Program Files\Wireshark\wireshark.exe -k -i %p",
                            }
 elif platform.system() == 'Darwin':
     CAPTURE_PRESET_CMDS = {
@@ -332,7 +336,8 @@ conf_vboxImage_defaults = {
     'nib_nb': 6,
     'nic': 'automatic',
     'guestcontrol_user': '',
-    'guestcontrol_password': ''
+    'guestcontrol_password': '',
+    'first_nic_managed': False,
 }
 
 conf_vboxImage_types = {
@@ -342,7 +347,8 @@ conf_vboxImage_types = {
     'nic_nb': int,
     'nic': str,
     'guestcontrol_user': str,
-    'guestcontrol_password': str
+    'guestcontrol_password': str,
+    'first_nic_managed': bool,
 }
 
 conf_pixImage_defaults = {
@@ -447,8 +453,8 @@ conf_systemDynamips_defaults = {
     'workdir': '',
     'clean_workdir': True,
     'baseUDP': 10000,
-    'baseConsole': 2000,
-    'baseAUX': 2100,
+    'baseConsole': 2001,
+    'baseAUX': 2501,
     'ghosting': True,
     'jitsharing': False,
     'sparsemem': True,

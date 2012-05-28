@@ -116,7 +116,7 @@ interface Vlan1
  shutdown
 !
 !
-banner exec
+banner exec 
 
 ***************************************************************
 This is a normal Router with a SW module inside (NM-16ESW)
@@ -125,13 +125,14 @@ It has been preconfigured with hard-code speed and duplex
 To create vlans use the command "vlan database" from exec mode
 After creating all desired vlans use "exit" to apply the config
 
-To view existing vlans use the command "show vlan-switch brief" 
+To view existing vlans use the command "show vlan-switch brief"
 
 Alias(exec)     : vl       - "show vlan-switch brief" command
 Alias(configure): vlan X   - macro to create vlan X
 Alias(configure): novlan X - macro to delete vlan X
 ***************************************************************
 
+
 !
 alias configure vlan macro global trace add_vlan $v
 alias configure novlan macro global trace del_vlan $v

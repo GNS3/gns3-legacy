@@ -86,7 +86,8 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         if self.emudev:
             try:
                 self.stopNode()
-                del self.dynagen.devices[self.hostname]
+                if self.dynagen.devices.has_key(self.hostname):
+                    del self.dynagen.devices[self.hostname]
                 if self.emudev in self.qemu.devices:
                     self.qemu.devices.remove(self.emudev)
                 self.dynagen.update_running_config()
@@ -331,10 +332,10 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
             except:
                 if progress:
                     raise
-
-            self.shutdownInterfaces()
-            self.state = self.emudev.state
-            globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.emudev.state)
+            finally:
+                self.shutdownInterfaces()
+                self.state = self.emudev.state
+                globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.emudev.state)
 
     def suspendNode(self, progress=False):
         """ Suspend this node

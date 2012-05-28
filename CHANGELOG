@@ -46,6 +46,10 @@ GNS3 0.8.3
  * Command 'show ports' to display all port allocations.
  * NVRAM configuration extractor utility for Windows.
  * Scripts for using consoles with VBox VMs (Windows only).
+ * Backup nvram export when Dynamips has crashed.
+ * Smarter handling of errors when starting/stopping/suspending all nodes.
+ * Experimental live pipe capture.
+ * Do not show special cursors when a rectangle or ellipse is on the background layer.
 
 GNS3 0.8.2 - 13.03.1012
 

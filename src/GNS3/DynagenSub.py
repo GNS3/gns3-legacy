@@ -436,11 +436,14 @@ class DynagenSub(Dynagen):
                                         basename = ntpath.basename(device['cnfg'])
 
                                     new_config_path = globals.GApp.workspace.projectConfigs + os.sep + basename
-
-                                    print translate("DynagenSub", "Local configuration %s cannot be found for router %s, use configuration %s instead") \
-                                    % (device['cnfg'], device.name, new_config_path)
+                                    if not os.path.exists(new_config_path):
+                                        # this case is handled in NETFile
+                                        print translate("DynagenSub", "Local configuration %s cannot be found for router %s, use default base configuration instead") \
+                                        % (device['cnfg'], device.name)
+                                    else:
+                                        print translate("DynagenSub", "Local configuration %s cannot be found for router %s, use configuration %s instead") \
+                                        % (device['cnfg'], device.name, new_config_path)
                                     device['cnfg'] = new_config_path
-
                 current += 1
 
         progress.setValue(count)

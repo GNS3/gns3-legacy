@@ -608,10 +608,11 @@ class IOSRouter(AbstractNode):
                 self.router.start()
             if self.router.state == 'suspended':
                 self.router.resume()
-        except:
+        except lib.DynamipsErrorHandled:
             if progress:
                 raise
             else:
+                print translate("IOSRouter", "Cannot start router %s: lost communication with server %s:%s") % (self.router.name, self.router.dynamips.host, str(self.router.dynamips.port))
                 return
         self.startupInterfaces()
         self.state = self.router.state
@@ -625,13 +626,16 @@ class IOSRouter(AbstractNode):
         if self.router.state != 'stopped':
             try:
                 self.router.stop()
-            except:
+            except lib.DynamipsErrorHandled:
                 if progress:
                     raise
-            self.shutdownInterfaces()
-            self.state = self.router.state
-            self.updateToolTips()
-            globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
+                else:
+                    print translate("IOSRouter", "Cannot stop router %s: lost communication with server %s:%s") % (self.router.name, self.router.dynamips.host, str(self.router.dynamips.port))
+            finally:
+                self.shutdownInterfaces()
+                self.state = self.router.state
+                self.updateToolTips()
+                globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
 
     def reloadNode(self, progress=False):
         """ Reload this node
@@ -640,7 +644,7 @@ class IOSRouter(AbstractNode):
         if self.router.state != 'running':
             return
         self.stopNode(progress)
-        time.sleep(1)
+        time.sleep(0.2)
         self.startNode(progress)
 
     def suspendNode(self, progress=False):
@@ -650,13 +654,16 @@ class IOSRouter(AbstractNode):
         if self.router.state == 'running':
             try:
                 self.router.suspend()
-            except:
+            except lib.DynamipsErrorHandled:
                 if progress:
                     raise
-            self.suspendInterfaces()
-            self.state = self.router.state
-            self.updateToolTips()
-            globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
+                else:
+                    print translate("IOSRouter", "Cannot suspend router %s: lost communication with server %s:%s") % (self.router.name, self.router.dynamips.host, str(self.router.dynamips.port))
+            finally:
+                self.suspendInterfaces()
+                self.state = self.router.state
+                self.updateToolTips()
+                globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.router.state)
 
     def console(self):
         """ Start a telnet console and connect it to this router

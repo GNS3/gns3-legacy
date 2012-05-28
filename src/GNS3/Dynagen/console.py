@@ -508,7 +508,10 @@ This requires VirtualBox Guest Additions to be installed inside the guest VM."""
         print 'Dynagen version ' + self.namespace.VERSION
         print 'hypervisor version(s):'
         for d in self.dynagen.dynamips.values():
-            print ' %s at %s:%i has version %s' % (d.type, d.host, d.port, d.version)
+            if d.type == "vboxwrapper":
+                print ' %s at %s:%i has version %s (running VirtualBox %s)' % (d.type, d.host, d.port, d.version, d.vbox_version)
+            else:
+                print ' %s at %s:%i has version %s' % (d.type, d.host, d.port, d.version)
         print """
 Credits:
 Dynagen is written by Greg Anuzelli
@@ -1518,7 +1521,8 @@ Examples:
 
         # Debug level 2, console debugs
         if self.dynagen.debuglevel >= 2:
-            print '  DEBUG: ' + str(string)
+            curtime = time.strftime("%H:%M:%S")
+            print "%s: DEBUG (2): %s" % (curtime, unicode(string))
 
 def con_cmp(row1, row2):
     return cmp(row1[4], row2[4])

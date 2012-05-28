@@ -77,6 +77,7 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
             'netcard',
             'guestcontrol_user',
             'guestcontrol_password',
+            'first_nic_managed',
             ]
 
     def __del__(self):
@@ -89,7 +90,8 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         if self.emu_vboxdev:
             try:
                 self.stopNode()
-                del self.dynagen.devices[self.hostname]
+                if self.dynagen.devices.has_key(self.hostname):
+                    del self.dynagen.devices[self.hostname]
                 if self.emu_vboxdev in self.vbox.devices:
                     self.vbox.devices.remove(self.emu_vboxdev)
                 self.dynagen.update_running_config()
@@ -203,7 +205,10 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         """ Call AbstractNode method with unavailable_interfaces argument to allow us to "gray out" interface e1 which is managed by VirtualBox GUI (NAT, Bridge, etc.)
         """
 
-        AbstractNode.showMenuInterface(self, ['e1'])
+        if self.local_config['first_nic_managed']:
+            AbstractNode.showMenuInterface(self)
+        else:
+            AbstractNode.showMenuInterface(self, ['e1'])
 
     def get_dynagen_device(self):
         """ Returns the dynagen device corresponding to this bridge
@@ -345,10 +350,10 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
             except:
                 if progress:
                     raise
-
-            self.shutdownInterfaces()
-            self.state = self.emu_vboxdev.state
-            globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.emu_vboxdev.state)
+            finally:
+                self.shutdownInterfaces()
+                self.state = self.emu_vboxdev.state
+                globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.emu_vboxdev.state)
 
     def suspendNode(self, progress=False):
         """ Suspend this node
@@ -363,8 +368,6 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
             self.state = self.emu_vboxdev.state
             self.updateToolTips()
             globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, self.emu_vboxdev.state)
-
-        #pass
 
     def reloadNode(self, progress=False):
         """ Reload this node
