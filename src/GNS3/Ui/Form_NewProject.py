@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_NewProject.ui'
 #
-# Created: Fri May 25 08:52:49 2012
+# Created: Tue May 29 03:21:48 2012
 #      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_NewProject(object):
     def setupUi(self, NewProject):
         NewProject.setObjectName(_fromUtf8("NewProject"))
-        NewProject.resize(481, 211)
+        NewProject.resize(482, 210)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         NewProject.setWindowIcon(icon)
@@ -52,15 +52,15 @@ class Ui_NewProject(object):
         self.label_2 = QtGui.QLabel(self.groupBox)
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
-        self.checkBox_2 = QtGui.QCheckBox(self.groupBox)
-        self.checkBox_2.setObjectName(_fromUtf8("checkBox_2"))
-        self.gridLayout.addWidget(self.checkBox_2, 4, 0, 1, 1)
         self.verticalLayout.addWidget(self.groupBox)
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.pushButtonOpenProject = QtGui.QPushButton(NewProject)
         self.pushButtonOpenProject.setObjectName(_fromUtf8("pushButtonOpenProject"))
         self.horizontalLayout.addWidget(self.pushButtonOpenProject)
+        self.pushButtonRecentFiles = QtGui.QPushButton(NewProject)
+        self.pushButtonRecentFiles.setObjectName(_fromUtf8("pushButtonRecentFiles"))
+        self.horizontalLayout.addWidget(self.pushButtonRecentFiles)
         spacerItem = QtGui.QSpacerItem(168, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.buttonBox = QtGui.QDialogButtonBox(NewProject)
@@ -83,7 +83,7 @@ class Ui_NewProject(object):
         self.checkBox_WorkdirFiles.setText(QtGui.QApplication.translate("NewProject", "Save nvrams and virtual hard drives", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBox_ConfigFiles.setText(QtGui.QApplication.translate("NewProject", "Save IOS startup configurations", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("NewProject", "Project name:", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBox_2.setText(QtGui.QApplication.translate("NewProject", "Do not show this window again", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonOpenProject.setText(QtGui.QApplication.translate("NewProject", "&Open a project", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonOpenProject.setText(QtGui.QApplication.translate("NewProject", "&Open a Project", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonRecentFiles.setText(QtGui.QApplication.translate("NewProject", "&Recent Files", None, QtGui.QApplication.UnicodeUTF8))
 
 import svg_resources_rc

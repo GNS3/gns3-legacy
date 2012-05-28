@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_StyleDialog.ui'
 #
-# Created: Fri May 25 08:52:50 2012
+# Created: Tue May 29 03:21:49 2012
 #      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_StyleDialog(object):
     def setupUi(self, StyleDialog):
         StyleDialog.setObjectName(_fromUtf8("StyleDialog"))
-        StyleDialog.resize(440, 332)
+        StyleDialog.resize(446, 328)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         StyleDialog.setWindowIcon(icon)
@@ -84,7 +84,7 @@ class Ui_StyleDialog(object):
         self.label.setText(QtGui.QApplication.translate("StyleDialog", "Border style:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("StyleDialog", "Rotation:", None, QtGui.QApplication.UnicodeUTF8))
         self.spinBox_Rotation.setSuffix(QtGui.QApplication.translate("StyleDialog", "°", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_4.setText(QtGui.QApplication.translate("StyleDialog", "Rotation can be ajusted on the scene for a selected item with\n"
-"ALT + P or M (while editing)", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_4.setText(QtGui.QApplication.translate("StyleDialog", "Rotation can be ajusted on the scene for a selected item while\n"
+"editing (notes only) with ALT and \'+\' (or P) / ALT and \'-\' (or M)", None, QtGui.QApplication.UnicodeUTF8))
 
 import svg_resources_rc
