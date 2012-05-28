@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>481</width>
-    <height>211</height>
+    <width>482</width>
+    <height>210</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -78,13 +78,6 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
-       <widget class="QCheckBox" name="checkBox_2">
-        <property name="text">
-         <string>Do not show this window again</string>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
@@ -93,7 +86,14 @@
      <item>
       <widget class="QPushButton" name="pushButtonOpenProject">
        <property name="text">
-        <string>&amp;Open a project</string>
+        <string>&amp;Open a Project</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButtonRecentFiles">
+       <property name="text">
+        <string>&amp;Recent Files</string>
        </property>
       </widget>
      </item>

@@ -7,14 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>539</width>
-    <height>544</height>
+    <height>581</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout">
-   <item>
+  <layout class="QGridLayout" name="gridLayout_5">
+   <item row="0" column="0">
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
       <number>0</number>
@@ -23,7 +23,7 @@
       <attribute name="title">
        <string>General Settings</string>
       </attribute>
-      <layout class="QGridLayout" name="gridLayout_2">
+      <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
         <widget class="QLabel" name="label">
          <property name="enabled">
@@ -61,6 +61,16 @@
         <widget class="QCheckBox" name="checkBoxRelativePaths">
          <property name="text">
           <string>Use relative path for projects</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QCheckBox" name="checkBoxCheckForUpdate">
+         <property name="text">
+          <string>Automatically check for update</string>
          </property>
          <property name="checked">
           <bool>true</bool>
@@ -109,7 +119,7 @@
          <property name="title">
           <string>Paths</string>
          </property>
-         <layout class="QGridLayout">
+         <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
            <widget class="QLabel" name="label_2">
             <property name="text">
@@ -154,6 +164,69 @@
         </widget>
        </item>
        <item row="10" column="0">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>Configuration file</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0" colspan="2">
+           <widget class="QLabel" name="labelConfigurationPath">
+            <property name="text">
+             <string>Unknown location</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2" colspan="3">
+           <spacer>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>16</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="pushButton_ImportConfiguration">
+            <property name="text">
+             <string>&amp;Import</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="QPushButton" name="pushButton_ExportConfiguration">
+            <property name="text">
+             <string>&amp;Export</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QPushButton" name="pushButton_ClearConfiguration">
+            <property name="text">
+             <string>&amp;Clear</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>186</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="11" column="0">
         <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -165,16 +238,6 @@
           </size>
          </property>
         </spacer>
-       </item>
-       <item row="4" column="0">
-        <widget class="QCheckBox" name="checkBoxCheckForUpdate">
-         <property name="text">
-          <string>Automatically check for update</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
        </item>
       </layout>
      </widget>
@@ -400,137 +463,6 @@
         </spacer>
        </item>
       </layout>
-     </widget>
-     <widget class="QWidget" name="tab_4">
-      <attribute name="title">
-       <string>Configuration File</string>
-      </attribute>
-      <widget class="QGroupBox" name="groupBox_3">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>499</width>
-         <height>63</height>
-        </rect>
-       </property>
-       <property name="title">
-        <string>Configuration file</string>
-       </property>
-       <layout class="QHBoxLayout" name="_2">
-        <item>
-         <widget class="QLabel" name="labelConfigurationPath">
-          <property name="text">
-           <string>Unknown location</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>16</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_ClearConfiguration">
-          <property name="text">
-           <string>&amp;Clear it</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QPushButton" name="Button_export_configuration">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>130</y>
-         <width>191</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>export configuration file</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="Button_import_configuration">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>180</y>
-         <width>191</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>import configuration file</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_12">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>170</y>
-         <width>221</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Raised</enum>
-       </property>
-       <property name="text">
-        <string>your configuration file will be backup </string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_13">
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>200</y>
-         <width>221</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>next to gns3.ini. any previous backup </string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_14">
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>220</y>
-         <width>221</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>will be overwrite</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_15">
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>240</y>
-         <width>191</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>gns3 will restart</string>
-       </property>
-      </widget>
      </widget>
     </widget>
    </item>
