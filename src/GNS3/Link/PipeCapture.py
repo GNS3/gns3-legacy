@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# vim: expandtab ts=4 sw=4 sts=4:
+# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
 #
 # Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
@@ -39,7 +38,7 @@ class PipeCapture(QtCore.QThread):
         QtCore.QThread.__init__(self)
 
     def __del__(self):
-        
+
         debug("Deleting pipe thread ...")
         if self.pipe:
             win32file.CloseHandle(self.pipe)
@@ -83,7 +82,7 @@ class PipeCapture(QtCore.QThread):
                     self.exit()
                     return
             else:
-                time.sleep(0.5) #FIXME: find a better way to wake-up the thread only when there is data to read 
+                time.sleep(0.5) #FIXME: find a better way to wake-up the thread only when there is data to read
 
 if __name__ == '__main__':
     capture_cmd = "C:\Program Files (x86)\Wireshark\wireshark.exe -k -i %p"

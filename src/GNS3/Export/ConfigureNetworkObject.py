@@ -1,3 +1,4 @@
+# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
 from GNS3.Ui.Form_ConfigureNetworkObject import Ui_Dialog
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import QString
@@ -30,4 +31,4 @@ class ConfigureNetworkObject(QDialog, Ui_Dialog):
         self.a.append(str(self.lineEdit_4.text()))
         self.a.append(str(self.lineEdit_2.text()))
         return self.a
-    
+

@@ -1,3 +1,4 @@
+# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
 from GNS3.Ui.Form_DeployementWizard import Ui_Wizard
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import QString
