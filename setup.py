@@ -224,6 +224,7 @@ else:
                 'GNS3.Dynagen',
                 'GNS3.Defaults',
                 'GNS3.External',
+                'GNS3.Export',
                 'GNS3.Link',
                 'GNS3.Node',
                 'GNS3.Ui',

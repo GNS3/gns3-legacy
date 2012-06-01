@@ -40,7 +40,7 @@ from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice, JunOS, IDS, QemuDevice
 from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice, VBoxDevice
 from GNS3.Pixmap import Pixmap
-from GNS3.Wizzard import Ui_Wizard
+from GNS3.Export.DeployementWizard import DeployementWizard
 
 class Workspace(QMainWindow, Ui_MainWindow):
     """ This class is for managing the whole GUI `Workspace'.
@@ -188,9 +188,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.dockWidget_NodeTypes.setVisible(False)
 
     def __action_DisplayWizard(self):
-        self.wizard = QWizard()
-        self.uiWizard = Ui_Wizard()
-        self.uiWizard.setupUi(self.wizard)
+        self.wizard = DeployementWizard()
         self.wizard.show()
         self.wizard.exec_()
 
