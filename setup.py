@@ -210,7 +210,7 @@ else:
     setup( # Distribution meta-data
             name = 'GNS3',
             version = VERSION,
-            description = 'GNS3 is a graphical network simulator based on Dynamips, an IOS emulator which allows users to run IOS binary images from Cisco Systems and Qemu for emulating PIX & ASA firewalls as well as Juniper routers and Cisco IDS/IPS (binary images are not part of this package).',
+            description = 'GNS3 is a graphical network simulator based on Dynamips, an IOS emulator which allows users to run IOS binary images from Cisco Systems and Qemu/VirtualBox for emulating PIX & ASA firewalls as well as Juniper routers and Cisco IDS/IPS (binary images are not part of this package).',
             license = 'GNU General Public License (GPL), see the LICENSE file for detailed info',
             author = 'Jeremy Grossmann, David Ruiz, Romain Lamaison, Aurelien Levesque, Xavier Alt and Alexey Eromenko "Technologov"',
             author_email = 'http://www.gns3.net/contact',
@@ -231,7 +231,6 @@ else:
                 'GNS3.Ui.ConfigurationPages',
                 'GNS3.Langs'],
           package_data = { 'GNS3': ['Langs/*.qm', 'Dynagen/configspec'] },
-          data_files = [ (wrapper_dir, ['qemuwrapper/qemuwrapper.py', 'vboxwrapper/vboxcontroller_4_1.py', 'vboxwrapper/vboxwrapper.py']),
+          data_files = [ (wrapper_dir, ['qemuwrapper/qemuwrapper.py', 'vboxwrapper/vboxcontroller_4_1.py', 'vboxwrapper/vboxwrapper.py', 'vboxwrapper/tcp_pipe_proxy.py']),
                         ('/usr/local/share/examples/gns3/', ['baseconfig.txt', 'baseconfig_sw.txt'])]
     )
-

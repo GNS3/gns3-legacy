@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 debuglevel = 0
 
 import platform, os, sys
+import portTracker_lib as tracker
 
 if debuglevel > 0:
     if platform.system() == 'Windows':
@@ -169,7 +170,7 @@ class VBox(object):
         #all other needed variables
         self.name = name
         self.devices = []
-        self._baseconsole = 3900
+        self._baseconsole = 3501
         self.udp = 20900
         self.default_udp = self.udp
         self.starting_udp = self.udp
@@ -308,6 +309,9 @@ class AnyVBoxEmuDevice(object):
             'guestcontrol_user' : None,
             'guestcontrol_password': None,
             'first_nic_managed': False,
+            'headless_mode': False,
+            'console_support': False,
+            'console_telnet_server': False,
             }
 
         self._nics = self.defaults['nics']
@@ -316,6 +320,9 @@ class AnyVBoxEmuDevice(object):
         self._guestcontrol_user = self.defaults['guestcontrol_user']
         self._guestcontrol_password = self.defaults['guestcontrol_password']
         self._first_nic_managed = self.defaults['first_nic_managed']
+        self._headless_mode = self.defaults['headless_mode']
+        self._console_support = self.defaults['console_support']
+        self._console_telnet_server = self.defaults['console_telnet_server']
 
         self.nios = {}
         for i in range(self._nics + 1):
@@ -323,13 +330,18 @@ class AnyVBoxEmuDevice(object):
 
         send(self.p, 'vbox create %s %s' % (self.vbox_dev_type, self.name))
         self.p.devices.append(self)
+
         #set the console to VBox baseconsole
-        self.console = self.p.baseconsole
+        self.track = tracker.portTracker()
+        self._console = self.track.allocateTcpPort(self.p.host, self.p.baseconsole)
+        send(self.p, 'vbox setattr %s console %i' % (self.name, self._console))
         self.p.baseconsole += 1
 
     def delete(self):
         """delete the virtualized device instance in VBox"""
         debugmsg(2, "AnyVBoxEmuDevice::delete()")
+
+        self.track.freeTcpPort(self.p.host, self.console)
 
         try:
             send(self.p, 'vbox delete %s' % self.name)
@@ -452,8 +464,16 @@ class AnyVBoxEmuDevice(object):
 
         if type(console) != int or console < 1 or console > 65535:
             raise DynamipsError, 'invalid console port'
+        
+        if console == self._console:
+            return
+        
+        if not self.track.tcpPortIsFree(self.p.host, console):
+            raise DynamipsError, 'console port %i is already in use' % console
 
         send(self.p, 'vbox setattr %s console %i' % (self.name, console))
+        self.track.setTcpPort(self.p.host, console)
+        self.track.freeTcpPort(self.p.host, self._console)
         self._console = console
 
     def _getconsole(self):
@@ -601,6 +621,69 @@ class AnyVBoxEmuDevice(object):
         return self._first_nic_managed
 
     first_nic_managed = property(_getfirst_nic_managed, _setfirst_nic_managed, doc='The first nic managed option by this virtualized device')
+    
+    def _setheadless_mode(self, headless_mode):
+        """ Set if the vm is to be started in headless mode
+        headless_mode: (bool) headless mode activation
+        """
+        debugmsg(2, "AnyVBoxEmuDevice::_setheadless_mode(%s)" % str(headless_mode))
+
+        if type(headless_mode) != bool:
+            raise DynamipsError, 'invalid headless mode option'
+
+        send(self.p, 'vbox setattr %s headless_mode %s' % (self.name, str(headless_mode)))
+        self._headless_mode = headless_mode
+
+    def _getheadless_mode(self):
+        """ Returns the headless mode option used by this virtualized device
+        """
+        debugmsg(3, "AnyVBoxEmuDevice::_getheadless_mode(), returns %s" % str(self._headless_mode))
+
+        return self._headless_mode
+
+    headless_mode = property(_getheadless_mode, _setheadless_mode, doc='The headless mode option by this virtualized device')
+    
+    def _setconsole_support(self, console_support):
+        """ Set if a console can be used to connect to the VM
+        console_support: (bool) console support activation
+        """
+        debugmsg(2, "AnyVBoxEmuDevice::_setconsole_support(%s)" % str(console_support))
+
+        if type(console_support) != bool:
+            raise DynamipsError, 'invalid console support option'
+
+        send(self.p, 'vbox setattr %s console_support %s' % (self.name, str(console_support)))
+        self._console_support = console_support
+
+    def _getconsole_support(self):
+        """ Returns the console support option used by this virtualized device
+        """
+        debugmsg(3, "AnyVBoxEmuDevice::_getconsole_support(), returns %s" % str(self._console_support))
+
+        return self._console_support
+
+    console_support = property(_getconsole_support, _setconsole_support, doc='The console support option by this virtualized device')
+    
+    def _setconsole_telnet_server(self, console_telnet_server):
+        """ Set if a telnet server to access console via Telnet
+        console_telnet_server: (bool) telnet server activation
+        """
+        debugmsg(2, "AnyVBoxEmuDevice::_setconsole_telnet_server(%s)" % str(console_telnet_server))
+
+        if type(console_telnet_server) != bool:
+            raise DynamipsError, 'invalid console telnet server support option'
+
+        send(self.p, 'vbox setattr %s console_telnet_server %s' % (self.name, str(console_telnet_server)))
+        self._console_telnet_server = console_telnet_server
+
+    def _getconsole_telnet_server(self):
+        """ Returns the console telnet server support option used by this virtualized device
+        """
+        debugmsg(3, "AnyVBoxEmuDevice::_getconsole_telnet_server(), returns %s" % str(self._console_telnet_server))
+
+        return self._console_telnet_server
+
+    console_telnet_server = property(_getconsole_telnet_server, _setconsole_telnet_server, doc='The console telnet server support option by this virtualized device')
 
     def capture(self, interface, path):
         """ Set the capture file path for a specific interface
@@ -875,12 +958,18 @@ class AnyVBoxEmuDevice(object):
 
         info = '\n'.join([
             '%s %s is %s' % (self._ufd_machine, self.name, self.state),
-            #'  Hardware is %s %s with %s MB RAM' % (self._ufd_hardware, self.model_string, self._ram),
             '  Hardware is %s %s' % (self._ufd_hardware, self.model_string),
             '  %s\'s wrapper runs on %s:%s' % (self._ufd_machine, self.dynamips.host, self.dynamips.port),
             '  Image is %s' % self.image
-            #'  %s KB NVRAM, %s MB flash size' % (self.nvram, self.disk0)
         ])
+        
+        if self.console_support and self.console_telnet_server:
+            info += '\n' + '  Listenning on console port %s (access via Telnet)' % self.console
+        elif self.console_support:
+            info += '\n' + '  Console support is activated (local access only)'
+
+        if self.headless_mode:
+            info += '\n' + '  Headless mode is activated'
 
         if hasattr(self, 'extended_info'):
             info += '\n' + self.extended_info()
@@ -903,7 +992,7 @@ class VBoxDevice(AnyVBoxEmuDevice):
     basehostname = 'VBOX'
     _ufd_machine = 'VirtualBox guest'
     _ufd_hardware = 'VirtualBox Virtualized System'
-    available_options = ['image', 'nics', 'netcard', 'guestcontrol_user', 'guestcontrol_password', 'first_nic_managed']
+    available_options = ['image', 'nics', 'netcard', 'guestcontrol_user', 'guestcontrol_password', 'first_nic_managed', 'headless_mode', 'console_support', 'console_telnet_server']
 
 def nosend_vbox(flag):
     """ If true, don't actually send any commands to the back end.

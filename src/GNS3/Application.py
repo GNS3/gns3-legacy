@@ -432,8 +432,8 @@ class Application(QApplication, Singleton):
         confo.send_path_external_QemuWrapper = ConfDB().value("Qemu/send_paths_external_Qemuwrapper", QVariant(False)).toBool()
         confo.QemuManager_binding = ConfDB().get('Qemu/qemu_manager_binding', unicode('127.0.0.1'))
         confo.qemuwrapper_port = int(ConfDB().get('Qemu/qemuwrapper_port', 10525))
-        confo.qemuwrapper_baseUDP = int(ConfDB().get('Qemu/qemuwrapper_baseUDP', 20000))
-        confo.qemuwrapper_baseConsole = int(ConfDB().get('Qemu/qemuwrapper_baseConsole', 3000))
+        confo.qemuwrapper_baseUDP = int(ConfDB().get('Qemu/qemuwrapper_baseUDP', 40000))
+        confo.qemuwrapper_baseConsole = int(ConfDB().get('Qemu/qemuwrapper_baseConsole', 3001))
 
         # Expand user home dir and environment variables
         confo.qemuwrapper_path = os.path.expandvars(os.path.expanduser(confo.qemuwrapper_path))
@@ -445,6 +445,7 @@ class Application(QApplication, Singleton):
         confo.vboxwrapper_path = ConfDB().get('VBox/vboxwrapper_path', Defaults.VBOXWRAPPER_DEFAULT_PATH)
         confo.vboxwrapper_workdir = ConfDB().get('VBox/vboxwrapper_working_directory', Defaults.VBOXWRAPPER_DEFAULT_WORKDIR)
         confo.external_hosts = ConfDB().get('VBox/external_hosts', unicode('localhost:11525')).split(',')
+        confo.use_VBoxVmnames = ConfDB().value("VBox/use_VBoxVmnames", QVariant(True)).toBool()
         confo.enable_VBoxWrapperAdvOptions = ConfDB().value("VBox/enable_VBoxWrapperAdvOptions", QVariant(False)).toBool()
         confo.enable_VBoxAdvOptions = ConfDB().value("VBox/enable_VBoxAdvOptions", QVariant(False)).toBool()
         confo.enable_GuestControl = ConfDB().value("VBox/enable_GuestControl", QVariant(False)).toBool()
@@ -453,7 +454,7 @@ class Application(QApplication, Singleton):
         confo.VBoxManager_binding = ConfDB().get('VBox/vbox_manager_binding', unicode('127.0.0.1'))
         confo.vboxwrapper_port = int(ConfDB().get('VBox/vboxwrapper_port', 11525))
         confo.vboxwrapper_baseUDP = int(ConfDB().get('VBox/vboxwrapper_baseUDP', 20900))
-        confo.vboxwrapper_baseConsole = int(ConfDB().get('VBox/vboxwrapper_baseConsole', 3900))
+        confo.vboxwrapper_baseConsole = int(ConfDB().get('VBox/vboxwrapper_baseConsole', 3501))
 
         # Expand user home dir and environment variables
         confo.vboxwrapper_path = os.path.expandvars(os.path.expanduser(confo.vboxwrapper_path))
@@ -683,6 +684,7 @@ class Application(QApplication, Singleton):
         c.set('VBox/vboxwrapper_working_directory', confo.vboxwrapper_workdir)
         external_hosts = ','.join(confo.external_hosts)
         c.set('VBox/external_hosts', external_hosts)
+        c.set('VBox/use_VBoxVmnames', confo.use_VBoxVmnames)
         c.set('VBox/enable_VBoxWrapperAdvOptions', confo.enable_VBoxWrapperAdvOptions)
         c.set('VBox/enable_VBoxAdvOptions', confo.enable_VBoxAdvOptions)
         c.set('VBox/enable_GuestControl', confo.enable_GuestControl)
@@ -791,6 +793,9 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/nic_nb", o.nic_nb)
             c.set(basekey + "/nic", o.nic)
             c.set(basekey + "/first_nic_managed", o.first_nic_managed)
+            c.set(basekey + "/headless_mode", o.headless_mode)
+            c.set(basekey + "/console_support", o.console_support)
+            c.set(basekey + "/console_telnet_server", o.console_telnet_server)
             c.set(basekey + "/guestcontrol_user", o.guestcontrol_user)
             c.set(basekey + "/guestcontrol_password", o.guestcontrol_password)
 

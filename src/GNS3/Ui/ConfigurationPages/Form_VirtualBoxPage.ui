@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>419</width>
-    <height>453</height>
+    <width>415</width>
+    <height>446</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -105,7 +105,38 @@
      </item>
     </widget>
    </item>
-   <item row="3" column="1">
+   <item row="3" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkBoxVBoxFirstInterfaceManaged">
+     <property name="text">
+      <string>Do not use first NIC for connections with the host OS</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkBoxVboxConsoleSupport">
+     <property name="text">
+      <string>Enable console support</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkBoxVboxConsoleServer">
+     <property name="text">
+      <string>Enable console server (optionnal on Windows)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="2">
+    <widget class="QCheckBox" name="checkBoxVBoxHeadlessMode">
+     <property name="text">
+      <string>Start in headless mode (without GUI)</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1">
     <spacer>
      <property name="orientation">
       <enum>Qt::Vertical</enum>

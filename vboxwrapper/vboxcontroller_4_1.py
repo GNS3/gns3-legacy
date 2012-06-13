@@ -96,7 +96,7 @@ class VBoxController_4_1():
         self.guestIP = ""
         self.VBoxBug9239Workaround = True # VBoxSVC crash on Windows hosts.
 
-    def start(self, vmname, nics, udp, capture, netcard, first_nic_managed=False):
+    def start(self, vmname, nics, udp, capture, netcard, first_nic_managed='False', headless_mode='False', pipe_name=None):
         debugmsg(2, "VBoxController_4_1::start()")
         # note: If you want to improve 'vboxwrapper' code, take a look at
         #   'vboxshell', the official VirtualBox frontend writen in python.
@@ -106,6 +106,8 @@ class VBoxController_4_1():
         self.capture = capture
         self.netcard = netcard
         self.first_nic_managed = first_nic_managed
+        self.headless_mode = headless_mode
+        self.pipe_name = pipe_name
         debugmsg(3, "vmname = %s, nics = %s, capture = %s, netcard = %s" % (vmname, nics, capture, netcard))
 
         debugmsg(2, "findMachine() is starting vmname = %s" % unicode(self.vmname))
@@ -119,6 +121,8 @@ class VBoxController_4_1():
         if not self._safeGetSessionObject():
             return False
         if not self._safeNetOptions():
+            return False
+        if not self._safeConsoleOptions():
             return False
         if not self._safeLaunchVMProcess():
             return False
@@ -276,6 +280,50 @@ class VBoxController_4_1():
                 time.sleep(0.75)
                 continue
         return True
+    
+    def _console_options(self):
+        debugmsg(2, "VBoxController_4_1::_console_options()")
+        #This code looks really ulgy due to constant 'try' and 'except' pairs.
+        #But this is because VirtualBox COM interfaces constantly fails
+        #  on slow or loaded hosts. (on both Windows and Linux hosts)
+        #Without 'try/except' pairs it results in vboxwrapper crashes.
+        #
+        #To reproduce: Try to configure several VMs, and restart them all in
+        #  loop on heavily loaded hosts.
+
+        if not self.pipe_name:
+            return True
+
+        if not self._safeLockMachine():
+            return False
+        try:
+            mach2=self.session.machine
+        except:
+            debugmsg(1, "_console_options() -> self.session.machine FAILED !")
+            return False
+
+        try:
+            serial_port = mach2.getSerialPort(0)
+        except:
+            #Usually due to COM Error: "The object is not ready"
+            debugmsg(1, "_console_options() -> getSerialPort() FAILED !")
+            return False
+
+        try:
+            serial_port.enabled = True
+            serial_port.hostMode = 1
+            serial_port.server = True
+            serial_port.path = self.pipe_name
+        except:
+            #Usually due to COM Error: "The object is not ready"
+            debugmsg(1, "_console_options() -> serial port settings FAILED !")
+            return False
+
+        if not self._safeSaveSettings(mach2):
+            return False
+        if not self._safeUnlockMachine():
+            return False
+        return True
 
     def _net_options(self):
         debugmsg(2, "VBoxController_4_1::_net_options()")
@@ -305,7 +353,7 @@ class VBoxController_4_1():
             debugmsg(1, "_net_options() -> getNetworkAdapter() FAILED !")
             return False
 
-        if self.first_nic_managed:
+        if self.first_nic_managed == 'True':
             # first nic is managed by GNS3
             start_nic = 1
         else:
@@ -611,7 +659,12 @@ class VBoxController_4_1():
                 debugmsg(1, "launchVMProcess() FAILED, no retries left, giving up...")
                 return False
             try:
-                self.progress = self.mach.launchVMProcess(self.session, "gui", "")
+                if self.headless_mode == 'True':
+                    mode = "headless"
+                else:
+                    mode = "gui"
+                print "Starting %s in %s mode" % (self.vmname, mode)
+                self.progress = self.mach.launchVMProcess(self.session, mode, "")
                 break
             except Exception, e:
                 #This will usually happen if you try to start the same VM twice,
@@ -704,6 +757,24 @@ class VBoxController_4_1():
             else:
                 #fails on heavily loaded hosts...
                 debugmsg(1, "_net_options() FAILED, retrying #%d" % (retry+1))
+                time.sleep(1)
+                continue
+        return True
+
+    def _safeConsoleOptions(self):
+        #_safe*() functions exist as a protection against COM failure on loaded hosts.
+        debugmsg(3, "VBoxController_4_1::_safeConsoleOptions()")
+        #This command is retried several times, because it fails more often...
+        retries=4
+        for retry in range(retries):
+            if retry == (retries-1):
+                debugmsg(1, "_console_options() FAILED, no retries left, giving up...")
+                return False
+            if self._console_options():
+                break
+            else:
+                #fails on heavily loaded hosts...
+                debugmsg(1, "_console_options() FAILED, retrying #%d" % (retry+1))
                 time.sleep(1)
                 continue
         return True

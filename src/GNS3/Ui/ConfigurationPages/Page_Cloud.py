@@ -76,7 +76,6 @@ class Page_Cloud(QtGui.QWidget, Ui_CloudPage):
         self.comboBoxGenEth.setSizeAdjustPolicy(QtGui.QComboBox.AdjustToContents)
         self.comboBoxGenEth.addItems(interfaces)
 
-
     def slotSelectedGenEth(self,  index):
         """ Load the selected generic interface in lineEdit
         """

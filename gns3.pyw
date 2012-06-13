@@ -20,7 +20,7 @@
 # code@gns3.net
 #
 
-import sys, os, traceback
+import sys, os, time, traceback
 
 try:
     reload(sys)
@@ -54,7 +54,9 @@ def exceptionHook(type, value, tb):
     print "\n" . join(lines)
     print "-----------------------------------------------------------"
     try:
+        curdate = time.strftime("%d %b %Y %H:%M:%S")
     	logfile = open('exception.log','a')
+        logfile.write("=== GNS3 " + VERSION + " traceback on " + curdate + " ===")
     	logfile.write("\n" . join(lines))
     	logfile.close()
     except:

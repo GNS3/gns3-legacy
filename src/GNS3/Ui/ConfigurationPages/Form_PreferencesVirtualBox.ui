@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>520</width>
-    <height>568</height>
+    <width>555</width>
+    <height>595</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,7 +38,7 @@
          <property name="title">
           <string>VBoxwrapper</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout_7">
+         <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
            <widget class="QLabel" name="label_3">
             <property name="text">
@@ -76,141 +76,10 @@
             </property>
            </widget>
           </item>
-          <item row="8" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>IP/host binding:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="1" colspan="6">
-           <widget class="QComboBox" name="comboBoxBinding">
-            <property name="sizeAdjustPolicy">
-             <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="0">
-           <widget class="QLabel" name="label_30">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>Base console port:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="11" column="1" colspan="6">
-           <widget class="QSpinBox" name="baseConsole">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="suffix">
-             <string notr="true"> TCP</string>
-            </property>
-            <property name="minimum">
-             <number>1</number>
-            </property>
-            <property name="maximum">
-             <number>65535</number>
-            </property>
-           </widget>
-          </item>
-          <item row="14" column="0" colspan="3">
-           <widget class="QCheckBox" name="checkBoxEnableVBoxManager">
-            <property name="text">
-             <string>Enable VBox Manager</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="15" column="0" colspan="4">
-           <widget class="QCheckBox" name="checkBoxVBoxManagerImport">
-            <property name="text">
-             <string>Use VBox Manager when importing</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="16" column="0" colspan="2">
-           <widget class="QLabel" name="label_5">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="text">
-             <string>External VBoxwrapper:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="16" column="2" colspan="2">
-           <widget class="QLineEdit" name="lineEditHostExternalVBox">
-            <property name="toolTip">
-             <string>Add several wrappers, to make your GNS3 distributed across several hosts.</string>
-            </property>
-           </widget>
-          </item>
-          <item row="16" column="4">
-           <widget class="QPushButton" name="pushButtonAddExternalVBoxwrapper">
-            <property name="text">
-             <string>Add</string>
-            </property>
-           </widget>
-          </item>
-          <item row="16" column="5" colspan="2">
-           <widget class="QPushButton" name="pushButtonDeleteExternalVBoxwrapper">
-            <property name="text">
-             <string>Delete</string>
-            </property>
-           </widget>
-          </item>
-          <item row="17" column="0" colspan="3">
-           <widget class="QLabel" name="label_36">
-            <property name="text">
-             <string>Registered external VBoxwrappers:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="17" column="3" colspan="4">
-           <widget class="QComboBox" name="comboBoxExternalVBoxwrappers"/>
-          </item>
-          <item row="4" column="0" colspan="4">
-           <widget class="QCheckBox" name="checkBoxVBoxWrapperShowAdvancedOptions">
-            <property name="text">
-             <string>Show VBoxWrapper Advanced Options</string>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0" colspan="4">
-           <widget class="QCheckBox" name="checkBoxVBoxShowAdvancedOptions">
-            <property name="text">
-             <string>Show VirtualBox Advanced Options</string>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="0">
            <widget class="QLabel" name="label_35">
             <property name="text">
              <string>VBoxwrapper port:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1" colspan="6">
-           <widget class="QSpinBox" name="port">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="suffix">
-             <string notr="true"> TCP</string>
-            </property>
-            <property name="minimum">
-             <number>1</number>
-            </property>
-            <property name="maximum">
-             <number>65535</number>
             </property>
            </widget>
           </item>
@@ -228,6 +97,147 @@
             </property>
             <property name="suffix">
              <string notr="true"> UDP</string>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0" colspan="4">
+           <widget class="QCheckBox" name="checkBoxUseVBoxVMNames">
+            <property name="text">
+             <string>Use VirtualBox VM names for hostnames</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="5">
+           <widget class="QCheckBox" name="checkBoxVBoxWrapperShowAdvancedOptions">
+            <property name="text">
+             <string>Show VBoxWrapper Advanced Options</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0" colspan="4">
+           <widget class="QCheckBox" name="checkBoxVBoxShowAdvancedOptions">
+            <property name="text">
+             <string>Show VirtualBox Advanced Options</string>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>IP/host binding:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="10" column="0" colspan="2">
+           <widget class="QCheckBox" name="checkBoxEnableVBoxManager">
+            <property name="text">
+             <string>Enable VBox Manager</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="11" column="0" colspan="4">
+           <widget class="QCheckBox" name="checkBoxVBoxManagerImport">
+            <property name="text">
+             <string>Use VBox Manager when importing</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="0">
+           <widget class="QLabel" name="label_5">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>External VBoxwrapper:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="1" colspan="3">
+           <widget class="QLineEdit" name="lineEditHostExternalVBox">
+            <property name="toolTip">
+             <string>Add several wrappers, to make your GNS3 distributed across several hosts.</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="4">
+           <widget class="QPushButton" name="pushButtonAddExternalVBoxwrapper">
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item row="12" column="5" colspan="2">
+           <widget class="QPushButton" name="pushButtonDeleteExternalVBoxwrapper">
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="0" colspan="2">
+           <widget class="QLabel" name="label_36">
+            <property name="text">
+             <string>Registered external VBoxwrappers:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="2" colspan="5">
+           <widget class="QComboBox" name="comboBoxExternalVBoxwrappers"/>
+          </item>
+          <item row="2" column="1" colspan="6">
+           <widget class="QSpinBox" name="port">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="suffix">
+             <string notr="true"> TCP</string>
+            </property>
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>65535</number>
+            </property>
+           </widget>
+          </item>
+          <item row="8" column="1" colspan="6">
+           <widget class="QComboBox" name="comboBoxBinding">
+            <property name="sizeAdjustPolicy">
+             <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_30">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="text">
+             <string>Base console port:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1" colspan="6">
+           <widget class="QSpinBox" name="baseConsole">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="suffix">
+             <string notr="true"> TCP</string>
             </property>
             <property name="minimum">
              <number>1</number>
@@ -297,8 +307,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>448</width>
-            <height>487</height>
+            <width>483</width>
+            <height>514</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -403,6 +413,33 @@
                 </item>
                </widget>
               </item>
+              <item row="8" column="0" colspan="3">
+               <widget class="QCheckBox" name="VBoxcheckBoxEnableGuestControl">
+                <property name="text">
+                 <string>Enable GuestControl (experimental)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QLabel" name="label_4">
+                <property name="text">
+                 <string>GuestControl User</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="2">
+               <widget class="QLineEdit" name="VBoxGuestControl_User"/>
+              </item>
+              <item row="10" column="0" colspan="2">
+               <widget class="QLabel" name="label_7">
+                <property name="text">
+                 <string>GuestControl Password</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="2">
+               <widget class="QLineEdit" name="VBoxGuestControl_Password"/>
+              </item>
               <item row="4" column="0" colspan="3">
                <widget class="QCheckBox" name="checkBoxVBoxFirstInterfaceManaged">
                 <property name="text">
@@ -413,32 +450,26 @@
                 </property>
                </widget>
               </item>
+              <item row="7" column="0" colspan="3">
+               <widget class="QCheckBox" name="checkBoxVBoxHeadlessMode">
+                <property name="text">
+                 <string>Start in headless mode (without GUI)</string>
+                </property>
+               </widget>
+              </item>
               <item row="5" column="0" colspan="3">
-               <widget class="QCheckBox" name="VBoxcheckBoxEnableGuestControl">
+               <widget class="QCheckBox" name="checkBoxVboxConsoleSupport">
                 <property name="text">
-                 <string>Enable GuestControl (experimental)</string>
+                 <string>Enable console support</string>
                 </property>
                </widget>
               </item>
-              <item row="6" column="0">
-               <widget class="QLabel" name="label_4">
+              <item row="6" column="0" colspan="3">
+               <widget class="QCheckBox" name="checkBoxVboxConsoleServer">
                 <property name="text">
-                 <string>GuestControl User</string>
+                 <string>Enable console server (optionnal on Windows)</string>
                 </property>
                </widget>
-              </item>
-              <item row="6" column="2">
-               <widget class="QLineEdit" name="VBoxGuestControl_User"/>
-              </item>
-              <item row="7" column="0" colspan="2">
-               <widget class="QLabel" name="label_7">
-                <property name="text">
-                 <string>GuestControl Password</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="2">
-               <widget class="QLineEdit" name="VBoxGuestControl_Password"/>
               </item>
              </layout>
             </widget>

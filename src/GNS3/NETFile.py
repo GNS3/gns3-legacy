@@ -53,7 +53,7 @@ from GNS3.Node.FRSW import init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
 from GNS3.Node.AnyEmuDevice import init_emu_id, AnyEmuDevice
 from GNS3.Node.AnyVBoxEmuDevice import init_vbox_emu_id, AnyVBoxEmuDevice
-from __main__ import GNS3_RUN_PATH
+from __main__ import GNS3_RUN_PATH, VERSION
 
 router_hostname_re = re.compile(r"""^R([0-9]+)""")
 ethsw_hostname_re = re.compile(r"""^SW([0-9]+)""")
@@ -467,7 +467,11 @@ class NETFile(object):
                 if devtype.lower() == 'note':
 
                     note_object = Annotation()
-                    note_object.setPlainText(gns3data[section]['text'].replace("\\n", "\n"))
+                    text = gns3data[section]['text'].replace("\\n", "\n")
+                    # remove protective quote if present
+                    if len(text) > 1 and text[0] == '"' and text[-1] == '"':
+                        text = text[1:-1]
+                    note_object.setPlainText(text)
                     note_object.setPos(float(gns3data[section]['x']), float(gns3data[section]['y']))
                     if gns3data[section].has_key('z'):
                         note_object.setZValue(float(gns3data[section]['z']))
@@ -636,24 +640,26 @@ class NETFile(object):
             if globals.GApp.systconf['dynamips'].jitsharing:
                 self.dynagen.jitsharing()
         except lib.DynamipsError, msg:
-            debugmsg(1, ("ADEBUG: NETFile.py: lib.DynamipsError: ", msg))
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Dynamips error"),  unicode(msg))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Dynamips error"), unicode(msg))
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
             globals.GApp.workspace.clear()
             return
         except lib.DynamipsWarning,  msg:
-            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("NETFile", "Dynamips warning"),  unicode(msg))
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("NETFile", "Dynamips warning"), unicode(msg))
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
             globals.GApp.workspace.clear()
             return
         except Exception, ex:
-            debugmsg(1, ("ADEBUG: NETFile.py: Exception detected: ", ex))
-            logfile = open('dynagen_exception.log','a')
+            curdate = time.strftime("%d %b %Y %H:%M:%S")
+            logfile = open('import_exception.log','a')
+            logfile.write("=== GNS3 " + VERSION + " traceback on " + curdate + " ===")
             traceback.print_exc(file=logfile)
             logfile.close()
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Importation"),  translate("NETFile", "Exception detected, stopping importation..."))
+            traceback.print_exc()
+            exception_file = GNS3_RUN_PATH + os.sep + 'import_exception.log'
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Importation"),  translate("NETFile", "Topology importation has failed! Exception detected, details saved in %s") % exception_file)
             globals.GApp.workspace.projectFile = None
             globals.GApp.workspace.setWindowTitle("GNS3")
             globals.GApp.workspace.clear()
@@ -923,8 +929,8 @@ class NETFile(object):
                 print translate("NETFile", "%s: %s: Dynamips warning: %s") % (curtime, device.name, msg)
             return
         except lib.DynamipsErrorHandled:
-            print translate("NETFile", "%s: Dynamips process %s has crashed") % (curtime, device.dynamips)
-            file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.recovery.cfg'
+            print translate("NETFile", "%s: Dynamips process %s:%i has crashed") % (curtime, device.dynamips.host, device.dynamips.port)
+            file_path = os.path.normpath(globals.GApp.workspace.projectConfigs) + os.sep + device.name + '.recovered.cfg'
             dynamips_files = glob.glob(os.path.normpath(device.dynamips.workingdir) + os.sep + device.model + '_' + device.name + '_nvram*')
             dynamips_files += glob.glob(os.path.normpath(device.dynamips.workingdir) + os.sep + device.model + '_' + device.name + '_rom')
             for nvram_file in dynamips_files:
@@ -933,6 +939,8 @@ class NETFile(object):
                     self.dynagen.running_config[device.dynamips.host + ':' + str(device.dynamips.port)]['ROUTER ' + device.name]['cnfg'] = file_path
                 else:
                     print translate("NETFile", "%s: %s: Could not export configuration to %s") % (curtime, device.name, file_path)
+                if device.state != 'stopped':
+                    device.stop()
             return
         try:
             f = open(file_path, 'w') #export_router_config
@@ -958,6 +966,8 @@ class NETFile(object):
                         break
                 if not has_ethsw:
                     del self.dynagen.dynamips[name]
+            if (isinstance(hypervisor, vboxlib.VBox) or isinstance(hypervisor, qlib.Qemu)) and len(hypervisor.devices) == 0:
+                del self.dynagen.dynamips[name]
 
         for hypervisor in self.dynagen.dynamips.values():
             hypervisor.configchange = True
@@ -966,10 +976,18 @@ class NETFile(object):
         debugmsg(3, ("NETFile.py: export_net_file() dynagen.running_config = ", self.dynagen.running_config))
         debug("Running config: " + str(self.dynagen.running_config))
 
-        for device in self.dynagen.devices.values():
+        for item in globals.GApp.topology.items():
             # record router configs
-            if isinstance(device, lib.Router) and globals.GApp.workspace.projectConfigs:
-                self.export_router_config(device, auto)
+            if isinstance(item, IOSRouter) and globals.GApp.workspace.projectConfigs:
+                device = item.get_dynagen_device()
+                try:
+                    self.export_router_config(device, auto)
+                except lib.DynamipsErrorHandled:
+                    item.shutdownInterfaces()
+                    item.state = device.state
+                    item.updateToolTips()
+                    globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(item.hostname, item.state)
+                    continue
         print ""
 
         note_nb = 1
@@ -1010,7 +1028,7 @@ class NETFile(object):
                 self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
                 config = self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)]
 
-                config['text'] = unicode(item.toPlainText(), 'utf-8', errors='replace').replace("\n", "\\n")
+                config['text'] = '"' + unicode(item.toPlainText(), 'utf-8', errors='replace').replace("\n", "\\n") + '"'
                 config['x'] = item.x()
                 config['y'] = item.y()
 

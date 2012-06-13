@@ -206,6 +206,18 @@ class Scene(QtGui.QGraphicsView):
                 displayWindowHideAct.setIcon(QtGui.QIcon(':/symbols/computer.normal.svg'))
                 self.connect(displayWindowHideAct, QtCore.SIGNAL('triggered()'), self.slotDisplayWindowHide)
                 menu.addAction(displayWindowHideAct)
+                
+            # Action: Change the console port
+            consolePortAct = QtGui.QAction(translate('Scene', 'Change console port'), menu)
+            consolePortAct.setIcon(QtGui.QIcon(':/icons/console_port.svg'))
+            self.connect(consolePortAct, QtCore.SIGNAL('triggered()'), self.slotChangeConsolePort)
+            menu.addAction(consolePortAct)
+
+            # Action: Console (Connect to the node console)
+            consoleAct = QtGui.QAction(translate('Scene', 'Console'), menu)
+            consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
+            self.connect(consoleAct, QtCore.SIGNAL('triggered()'), self.slotConsole)
+            menu.addAction(consoleAct)
 
             # Action: Capture traffic on an interface
             captureAct = QtGui.QAction(translate('Scene', 'Capture'), menu)
@@ -979,9 +991,6 @@ class Scene(QtGui.QGraphicsView):
             return
 
         if show and event.modifiers() & QtCore.Qt.ShiftModifier and event.button() == QtCore.Qt.LeftButton and item and not globals.addingLinkFlag:
-#            print 'HERE'
-#            if isinstance(item, AbstractShapeItem) or isinstance(item, Annotation) or isinstance(item, Pixmap):
-#                item.setFlag(item.ItemIsSelectable, True)
             item.setSelected(True)
         elif show and event.button() == QtCore.Qt.RightButton and not globals.addingLinkFlag:
             if item:
@@ -1047,13 +1056,17 @@ class Scene(QtGui.QGraphicsView):
     def mouseDoubleClickEvent(self, event):
 
         item = self.itemAt(event.pos())
-        #print "ADEBUG: Scene.py: globals.addingLinkFlag = ", globals.addingLinkFlag
         if not globals.addingLinkFlag and isinstance(item, AbstractNode):
             item.setSelected(True)
             if (isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice)) and item.isStarted():
                 self.slotConsole()
             elif isinstance(item, AnyVBoxEmuDevice) and (item.isStarted() or item.isSuspended()) and not globals.addingLinkFlag:
-                self.slotDisplayWindowFocus()
+                if item.get_config()['console_support']:
+                    self.slotConsole()
+                elif item.get_config()['headless_mode']:
+                    print translate("Scene", "Warning, you are using headless mode without console support")
+                else:
+                    self.slotDisplayWindowFocus()
             else:
                 self.slotConfigNode()
         else:

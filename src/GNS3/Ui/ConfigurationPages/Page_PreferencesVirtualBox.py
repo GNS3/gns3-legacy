@@ -74,10 +74,6 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         # Refresh VM list
         self.connect(self.pushButtonRefresh, QtCore.SIGNAL('clicked()'), self.slotRefreshVMlist)
 
-        # Hide base console port - not available in VirtualBox:
-        self.label_30.setVisible(False)
-        self.baseConsole.setVisible(False)
-
         self.loadConf()
         self.comboBoxNameVBoxImage.addItem("")
 
@@ -228,6 +224,11 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         self.comboBoxExternalVBoxwrappers.addItems(self.conf.external_hosts)
         self.external_hosts = self.conf.external_hosts
 
+        if self.conf.use_VBoxVmnames:
+            self.checkBoxUseVBoxVMNames.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxUseVBoxVMNames.setCheckState(QtCore.Qt.Unchecked)
+
         if self.conf.enable_VBoxManager:
             self.checkBoxEnableVBoxManager.setCheckState(QtCore.Qt.Checked)
         else:
@@ -286,7 +287,11 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         self.conf.vboxwrapper_workdir = unicode(self.lineEditVBoxwrapperWorkdir.text(), 'utf-8', errors='replace')
         self.conf.external_hosts = self.external_hosts
         self.conf.VBoxManager_binding = unicode(self.comboBoxBinding.currentText(), 'utf-8', errors='replace')
-        
+
+        if self.checkBoxUseVBoxVMNames.checkState() == QtCore.Qt.Checked:
+            self.conf.use_VBoxVmnames = True
+        else:
+            self.conf.use_VBoxVmnames = False
         if self.checkBoxEnableVBoxManager.checkState() == QtCore.Qt.Checked:
             self.conf.enable_VBoxManager = True
         else:
@@ -393,12 +398,28 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             conf.first_nic_managed = True
         else:
             conf.first_nic_managed = False
+
+        if self.checkBoxVboxConsoleSupport.checkState() == QtCore.Qt.Checked:
+            conf.console_support = True
+        else:
+            conf.console_support = False
+
+        if self.checkBoxVBoxHeadlessMode.checkState() == QtCore.Qt.Checked:
+            conf.headless_mode = True
+        else:
+            conf.headless_mode = False
+
+        if self.checkBoxVboxConsoleServer.checkState() == QtCore.Qt.Checked:
+            conf.console_telnet_server = True
+        else:
+            conf.console_telnet_server = False
+
         conf.guestcontrol_user = str(self.VBoxGuestControl_User.text())
         conf.guestcontrol_password = str(self.VBoxGuestControl_Password.text())
-        
+
         globals.GApp.vboximages[name] = conf
         self.treeWidgetVBoxImages.resizeColumnToContents(0)
-    
+
     def slotDeleteVBoxImage(self):
         """ Delete VBox Image from the list of VBox images
         """
@@ -409,7 +430,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             name = unicode(item.text(0), 'utf-8', errors='replace')
             del globals.GApp.vboximages[name]
             globals.GApp.syncConf()
-            
+
     def slotVBoxImageSelectionChanged(self):
         """ Load VBox settings into the GUI when selecting an entry in the list of VBox images
         """
@@ -438,10 +459,25 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             else:
                 self.checkBoxVBoxFirstInterfaceManaged.setCheckState(QtCore.Qt.Unchecked)
 
+            if conf.headless_mode:
+                self.checkBoxVBoxHeadlessMode.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.checkBoxVBoxHeadlessMode.setCheckState(QtCore.Qt.Unchecked)
+
+            if conf.console_support:
+                self.checkBoxVboxConsoleSupport.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.checkBoxVboxConsoleSupport.setCheckState(QtCore.Qt.Unchecked)
+
+            if conf.console_telnet_server:
+                self.checkBoxVboxConsoleServer.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.checkBoxVboxConsoleServer.setCheckState(QtCore.Qt.Unchecked)
+
             self.VBoxGuestControl_User.setText(conf.guestcontrol_user)
             self.VBoxGuestControl_Password.setText(conf.guestcontrol_password)
             self.VBoxNICNb.setValue(conf.nic_nb)
-        
+
             index = self.VBoxNIC.findText(conf.nic)
             if index != -1:
                 self.VBoxNIC.setCurrentIndex(index)

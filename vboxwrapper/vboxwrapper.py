@@ -39,6 +39,12 @@ import sys
 import threading
 import SocketServer
 import time
+import re
+from tcp_pipe_proxy import PipeProxy
+
+if sys.platform.startswith("win"):
+    import win32file
+    import msvcrt
 
 try:
     reload(sys)
@@ -140,9 +146,14 @@ class xVBOXInstance(object):
         self.guestcontrol_user = ''
         self.guestcontrol_password = ''
         self.first_nic_managed = False
+        self.headless_mode = False
+        self.console_support = False
+        self.console_telnet_server = False
         self.process = None
+        self.pipeThread = None
+        self.pipe = None
         self.workdir = WORKDIR + os.sep + name
-        self.valid_attr_names = ['image',  'console', 'nics', 'netcard', 'guestcontrol_user', 'guestcontrol_password', 'first_nic_managed']
+        self.valid_attr_names = ['image',  'console', 'nics', 'netcard', 'guestcontrol_user', 'guestcontrol_password', 'first_nic_managed', 'headless_mode', 'console_support', 'console_telnet_server']
         self.mgr = g_vboxManager
         self.vbox = self.mgr.vbox
         # Future-proof way to control several major versions of VBox:
@@ -166,8 +177,10 @@ class xVBOXInstance(object):
 
     def create(self):
         debugmsg(2, "xVBOXInstance::create()")
-        if not os.path.exists(self.workdir):
-            os.makedirs(self.workdir)
+
+        # VBOX doesn't need a working directory ... for now
+#        if not os.path.exists(self.workdir):
+#            os.makedirs(self.workdir)
 
     def clean(self):
         pass
@@ -179,7 +192,43 @@ class xVBOXInstance(object):
         debugmsg(2, "xVBOXInstance::start()")
         self.vmname = self.image
 
-        return self.vbc.start(self.vmname, self.nics, self.udp, self.capture, self.netcard, self.first_nic_managed)
+        if self.console_support == 'True':
+            p = re.compile('\s+', re.UNICODE)
+            pipe_name = p.sub("_", self.vmname)
+            if sys.platform.startswith('win'):
+                pipe_name = r'\\.\pipe\VBOX\%s' % pipe_name
+            elif os.path.exists(self.workdir):
+                pipe_name = self.workdir + os.sep + "vbox_pipe_to_%s" % pipe_name
+            else:
+                pipe_name = "/tmp/vbox_pipe_to_%s" % pipe_name
+        else:
+            pipe_name = None
+
+        started = self.vbc.start(self.vmname, self.nics, self.udp, self.capture, self.netcard, self.first_nic_managed, self.headless_mode, pipe_name)
+
+        if started and self.console_support == 'True' and int(self.console) and self.console_telnet_server == 'True':
+
+            if sys.platform.startswith('win'):
+                try:
+                    self.pipe = open(pipe_name, 'a+b')
+                except:
+                    return started
+                self.pipeThread = PipeProxy(self.vmname, msvcrt.get_osfhandle(self.pipe.fileno()), '127.0.0.1', int(self.console))
+                self.pipeThread.setDaemon(True)
+                self.pipeThread.start()
+            else:
+                try:
+                    self.pipe = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+                    self.pipe.connect(pipe_name)
+                except socket.error, err:
+                    print "connection to pipe %s failed -> %s" % (pipe_name, err[1])
+                    return started
+
+                self.pipeThread = PipeProxy(self.vmname, self.pipe, '127.0.0.1', int(self.console))
+                self.pipeThread.setDaemon(True)
+                self.pipeThread.start()
+
+        return started
 
     def reset(self):
         debugmsg(2, "xVBOXInstance::reset()")
@@ -187,6 +236,19 @@ class xVBOXInstance(object):
 
     def stop(self):
         debugmsg(2, "xVBOXInstance::stop()")
+
+        if self.pipeThread:
+            self.pipeThread.stop()
+            self.pipeThread.join()
+            self.pipeThread = None
+
+        if self.pipe:
+            if sys.platform.startswith('win'):
+                win32file.CloseHandle(msvcrt.get_osfhandle(self.pipe.fileno()))
+            else:
+                self.pipe.close()
+            self.pipe = None
+
         return self.vbc.stop()
 
     def suspend(self):

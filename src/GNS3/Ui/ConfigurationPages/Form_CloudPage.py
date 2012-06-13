@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ConfigurationPages/Form_CloudPage.ui'
+# Form implementation generated from reading ui file 'ConfigurationPages/Form_CloudPage.ui'
 #
-# Created: Mon May 21 21:18:27 2012
+# Created: Tue Jun  5 09:36:17 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_CloudPage(object):
     def setupUi(self, CloudPage):
         CloudPage.setObjectName(_fromUtf8("CloudPage"))
-        CloudPage.resize(470, 482)
+        CloudPage.resize(547, 486)
         CloudPage.setWindowTitle(QtGui.QApplication.translate("CloudPage", "Cloud", None, QtGui.QApplication.UnicodeUTF8))
         self.vboxlayout = QtGui.QVBoxLayout(CloudPage)
         self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))
@@ -38,6 +38,7 @@ class Ui_CloudPage(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.comboBoxGenEth.sizePolicy().hasHeightForWidth())
         self.comboBoxGenEth.setSizePolicy(sizePolicy)
+        self.comboBoxGenEth.setSizeAdjustPolicy(QtGui.QComboBox.AdjustToContents)
         self.comboBoxGenEth.setObjectName(_fromUtf8("comboBoxGenEth"))
         self.gridlayout.addWidget(self.comboBoxGenEth, 0, 0, 1, 3)
         self.lineEditGenEth = QtGui.QLineEdit(self.groupBox)

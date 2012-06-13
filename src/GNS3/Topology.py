@@ -19,7 +19,7 @@
 # http://www.gns3.net/contact
 #
 
-import os, glob, socket, sys, base64
+import os, glob, socket, sys, base64, re
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.qemu_lib as qlib
 import GNS3.Dynagen.dynagen_vbox_lib as vboxlib
@@ -100,6 +100,8 @@ class Topology(QtGui.QGraphicsScene):
         self.dynagen.ghostsizes.clear()
         self.dynagen.bridges.clear()
         self.dynagen.autostart.clear()
+        self.dynagen.running_config.clear()
+        self.dynagen.defaults_config.clear()
 
         for item in self.items():
             self.removeItem(item)
@@ -281,8 +283,13 @@ class Topology(QtGui.QGraphicsScene):
             debug("Disable mmap")
             node.set_string_option('mmap', False)
         if globals.GApp.systconf['dynamips'].sparsemem:
-            debug("Enable sparse memory")
-            node.set_string_option('sparsemem', True)
+            if sys.platform.startswith('win') and globals.GApp.HypervisorManager and image_conf.platform in ('c2600', 'c1700'):
+                # Workaround: sparse memory feature is not activated on c2600 and c1700 platforms because Dynamips freezes on console message 
+                # "Press ENTER to get the prompt" after a restart. (Bug is inside Dynamips and only on Windows).
+                debug("Do not enable sparse memory for this platform (known bug workaround)")
+            else:
+                debug("Enable sparse memory")
+                node.set_string_option('sparsemem', True)
         if globals.GApp.systconf['dynamips'].ghosting:
             debug("Enable Ghost IOS")
             node.set_ghostios(True)
@@ -591,12 +598,20 @@ class Topology(QtGui.QGraphicsScene):
                     return False
 
                 devices = []
+                current_vboximages = []
+                for device in self.__nodes.itervalues():
+                    if isinstance(device, VBoxDevice):
+                        current_vboximages.append(device.get_config()['image'])
                 for name in globals.GApp.vboximages.keys():
-                    devices.append(name)
+                    if not name in current_vboximages:
+                        devices.append(name)
+                if len(devices) == 0:
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox guest"), translate("Topology", "All configured VMs already in use. You may add or clone additional VMs in VirtualBox"))
+                    return False
 
                 if node.image_reference:
                     conf = globals.GApp.vboximages[node.image_reference]
-                elif len(globals.GApp.vboximages) > 1:
+                elif len(devices) > 1:
 
                     devices.sort()
                     (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "VirtualBox guest"),
@@ -631,6 +646,9 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('guestcontrol_user', conf.guestcontrol_user)
                 node.set_string_option('guestcontrol_password', conf.guestcontrol_password)
                 node.set_string_option('first_nic_managed', conf.first_nic_managed)
+                node.set_string_option('headless_mode', conf.headless_mode)
+                node.set_string_option('console_support', conf.console_support)
+                node.set_string_option('console_telnet_server', conf.console_telnet_server)
 
             if isinstance(node, JunOS):
 
@@ -853,6 +871,21 @@ class Topology(QtGui.QGraphicsScene):
 
             if iosConfig:
                 self.applyIOSBaseConfig(node, iosConfig)
+                
+            #FIXME: temporary workaround to have VBox VMs with same hostname as in VirtualBox names (this is not clean as params are sent twice to vboxwrapper)
+            if isinstance(node, VBoxDevice) and globals.GApp.systconf['vbox'].use_VBoxVmnames:
+                vmname = node.config['image'].strip()
+                # white spaces have to be replaced
+                p = re.compile('\s+', re.UNICODE)
+                vmname = p.sub("_", vmname)
+                if re.search(r"""^[\w,.-\[\]]*$""", vmname, re.UNICODE):
+                    node.reconfigNode(vmname)
+                    if node.hostnameDiplayed():
+                        # force to redisplay the hostname
+                        node.removeHostname()
+                        node.showHostname()
+                else:
+                    print translate("Topology", "Couldn't set the same hostname as in VirtualBox for %s because non alphanumeric characters have been detected") % node.hostname
 
         except (lib.DynamipsVerError, lib.DynamipsError), msg:
             if isinstance(node, IOSRouter):

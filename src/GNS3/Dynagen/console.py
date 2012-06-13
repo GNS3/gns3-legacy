@@ -152,7 +152,10 @@ class Console(AbstractConsole):
             except AttributeError:
                 row.append('%-20s' % 'n/a')
             try:
-                row.append('%-10s' % device.console)
+                if isinstance(device, self.namespace.AnyVBoxEmuDevice) and not device.console_support:
+                    row.append('%-10s' % 'not activated')
+                else:
+                    row.append('%-10s' % device.console)
             except AttributeError:
                 row.append('%-10s' % 'n/a')
             try:

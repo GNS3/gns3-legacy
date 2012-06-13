@@ -163,8 +163,8 @@ class Qemu(object):
         #all other needed variables
         self.name = name
         self.devices = []
-        self._baseconsole = 3000
-        self.udp = 20000
+        self._baseconsole = 3001
+        self.udp = 40000
         self.default_udp = self.udp
         self.starting_udp = self.udp
         self._workingdir = None
@@ -432,7 +432,7 @@ class AnyEmuDevice(object):
             raise DynamipsError, 'console port %i is already in use' % console
 
         send(self.p, 'qemu setattr %s console %i' % (self.name, console))
-        self.track.setTcpPort(self.__d.host, console)
+        self.track.setTcpPort(self.p.host, console)
         self.track.freeTcpPort(self.p.host, self._console)
         self._console = console
 

@@ -2,24 +2,40 @@ CHANGELOG
 
 GNS3 0.8.3
 
- * New option to freely use the first VBox interface inside VMs (i.e. eth0 on Linux).
- * New base configuration (startup-config) for devices with NM-16ESW (named baseconfig_sw.txt).
+  New features:
+ 
+  * Option to freely use the first VBox interface inside VMs (i.e. eth0 on Linux).
+  * New base configuration (startup-config) for devices with NM-16ESW (named baseconfig_sw.txt).
+  * Console and headless mode support for VirtualBox devices.
+  * Embedded console/terminal server to access VirtualBox VM consoles using Telnet.
+  * Support for drag & drop of topology files inside GNS3.
+  * Double quote support for Qemu options and ASA kernel/initrd command lines.
+  * Import & export for GNS3 configuration file (gns3.ini).
+  * Global TCP port tracker to allocate ports and avoid conflicts (console + AUX ports for IOS routers and console ports for Qemu-like/VirtualBox devices are tracked)
+  * Scripts for using consoles with VBox VMs (Windows only).
+  * Backup nvram export when Dynamips has crashed.
+  * New command line option for patched Putty on Windows (for details: http://forum.gns3.net/topic4859-20.html).   
+  * Experimental live pipe capture (Windows only).
+  * Option (activated by default) to use the VirtualBox VM names to name VirtualBox devices in GNS3.
+
+  Fixes and other improvements:
+
  * Fixed issue when saving as a project.
+ * Workaround: sparse memory feature is not activated on c2600 and c1700 platforms because Dynamips can freeze after IOS restarts (Windows only).
+ * Added Idle PC help button to gives some hints how to get good idle pc values.
  * Prevent tail processes staying in memory after stopping captures.
  * Fixed/improved some console command lines (SecureCRT, TeraTerm, Putty)
- * New command line option for patched Putty on Windows (-wt => window title option, -sr => "press" a enter into the device console to show the prompt)
- * Improved securecrt.vbs to "press" a enter into the device console to show the prompt.
  * Fixed issue when connecting recent Qemu (new -net syntax) to other non-Qemu devices.
  * Fixed vboxwrapper loading issue for DMG version on OSX.
  * Fixed rpcap interface name parsing on Windows.
+ * Improved securecrt.vbs to "press" a enter into the device console to show the prompt. 
  * Modified default IOS startup-config (baseconfig.txt).
  * Handle connection lost during Idle pc calculation.
  * Warn users if their working directories are not accessible and/or writable.
- * Allow dash for device hostnames.
+ * Allow dash and brackets for device hostnames.
  * Option to clear stopped captures from the captures dock.
  * Italian and Chinese translations updated.
  * Fixed bug that prevented loading topologies with non-existing IOS paths.
- * New support for drag & drop of topology files inside GNS3.
  * Some minor fixes for recent files menu (add saved file paths, order, non existing path entries are removed etc.)
  * New key shortcuts for object rotation (notes, ellipses, rectangles). ALT and + (or P) / ALT and - (or M).
  * Removed default shell execution for console programs.
@@ -32,24 +48,23 @@ GNS3 0.8.3
  * Added recent files button for the project window.
  * Press escape to stop adding a link.
  * Detect old GNS3 configuration and ask user to clear it.
- * Double quote support for Qemu options and ASA kernel command line.
  * Fixed minor issues with the Ethernet Switch.
  * Prevent capture for Pemu and decorative nodes.
  * Show VirtualBox version in ver command.
+ * Support for more characters (e.g. #) in annotations.
  * New wrappers installation directory on Linux.
  * Prevent to use the same VBox VM multiple times.
- * Import & export for GNS3 configuration file (gns3.ini)
- * Fixed minor issue with path normalization on Windows.
- * Time reference for debugs and auto saving messages.
- * Global TCP port tracker to allocate ports and avoid conflicts (console + AUX ports for IOS routers and console ports for Qemu-like devices are tracked)
  * Check that the first 10 ports of every TCP base are free to use when testing the settings in preferences.
+ * Fixed minor issue with path normalization on Windows.
+ * Time reference for debugs, auto saving messages and logged exceptions.
+ * Log file dynagen_exception.log has been renamed import_exception.log (date + GNS3 version is added into the file).
  * Command 'show ports' to display all port allocations.
  * NVRAM configuration extractor utility for Windows.
- * Scripts for using consoles with VBox VMs (Windows only).
- * Backup nvram export when Dynamips has crashed.
  * Smarter handling of errors when starting/stopping/suspending all nodes.
- * Experimental live pipe capture.
  * Do not show special cursors when a rectangle or ellipse is on the background layer.
+ * Qemuwrapper base UDP has been changed from 20000 to 40000.
+ * Qemuwrapper base console has been changed from 3000 to 3001.
+ * VBoxwrapper base console has been changed from 3900 to 3501.
 
 GNS3 0.8.2 - 13.03.1012
 

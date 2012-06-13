@@ -39,7 +39,7 @@ from GNS3.Config.Preferences import PreferencesDialog
 from GNS3.Config.Objects import recentFilesConf
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice, JunOS, IDS, QemuDevice
-from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice, VBoxDevice
+from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
 from GNS3.Pixmap import Pixmap
 
 class Workspace(QMainWindow, Ui_MainWindow):
@@ -434,9 +434,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
             path = os.path.normpath(path)
             globals.GApp.workspace.projectConfigs = path
             net = netfile.NETFile()
-            for device in globals.GApp.dynagen.devices.values():
-                if isinstance(device, lib.Router):
-                    net.export_router_config(device)
+
+            for node in globals.GApp.topology.items():
+                # record router configs
+                if isinstance(node, IOSRouter) and globals.GApp.workspace.projectConfigs:
+                    device = node.get_dynagen_device()
+                    try:
+                        net.export_router_config(device)
+                    except lib.DynamipsErrorHandled:
+                        node.shutdownInterfaces()
+                        node.state = device.state
+                        node.updateToolTips()
+                        globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, node.state)
+                        continue
 
     def importConfigs(self):
         """ Import all startup-config
@@ -794,12 +804,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
             except lib.DynamipsWarning, msg:
                 errors += translate("Workspace", "%s: warning from server %s: %s") % (node.hostname, server, unicode(msg))
                 errors += "\n"
-                continue
             except (lib.DynamipsErrorHandled,  socket.error):
                 errors += translate("Workspace", "%s: lost communication with server %s") % (node.hostname, server)
                 errors += "\n"
-                continue
-            current += 1
+            finally:
+                current += 1
         progress.setValue(count)
         progress.deleteLater()
         progress = None

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ConfigurationPages/Form_VirtualBoxPage.ui'
+# Form implementation generated from reading ui file 'ConfigurationPages/Form_VirtualBoxPage.ui'
 #
-# Created: Mon May 21 21:18:29 2012
+# Created: Tue Jun 12 10:51:01 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_VirtualBoxPage(object):
     def setupUi(self, VirtualBoxPage):
         VirtualBoxPage.setObjectName(_fromUtf8("VirtualBoxPage"))
-        VirtualBoxPage.resize(419, 453)
+        VirtualBoxPage.resize(415, 446)
         VirtualBoxPage.setWindowTitle(QtGui.QApplication.translate("VirtualBoxPage", "VirtualBox configuration", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout = QtGui.QGridLayout(VirtualBoxPage)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
@@ -65,8 +65,25 @@ class Ui_VirtualBoxPage(object):
         self.comboBoxNIC.addItem(_fromUtf8(""))
         self.comboBoxNIC.setItemText(4, QtGui.QApplication.translate("VirtualBoxPage", "virtio", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout.addWidget(self.comboBoxNIC, 2, 1, 1, 1)
+        self.checkBoxVBoxFirstInterfaceManaged = QtGui.QCheckBox(VirtualBoxPage)
+        self.checkBoxVBoxFirstInterfaceManaged.setText(QtGui.QApplication.translate("VirtualBoxPage", "Do not use first NIC for connections with the host OS", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxVBoxFirstInterfaceManaged.setChecked(False)
+        self.checkBoxVBoxFirstInterfaceManaged.setObjectName(_fromUtf8("checkBoxVBoxFirstInterfaceManaged"))
+        self.gridLayout.addWidget(self.checkBoxVBoxFirstInterfaceManaged, 3, 0, 1, 2)
+        self.checkBoxVboxConsoleSupport = QtGui.QCheckBox(VirtualBoxPage)
+        self.checkBoxVboxConsoleSupport.setText(QtGui.QApplication.translate("VirtualBoxPage", "Enable console support", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxVboxConsoleSupport.setObjectName(_fromUtf8("checkBoxVboxConsoleSupport"))
+        self.gridLayout.addWidget(self.checkBoxVboxConsoleSupport, 4, 0, 1, 2)
+        self.checkBoxVboxConsoleServer = QtGui.QCheckBox(VirtualBoxPage)
+        self.checkBoxVboxConsoleServer.setText(QtGui.QApplication.translate("VirtualBoxPage", "Enable console server (optionnal on Windows)", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxVboxConsoleServer.setObjectName(_fromUtf8("checkBoxVboxConsoleServer"))
+        self.gridLayout.addWidget(self.checkBoxVboxConsoleServer, 5, 0, 1, 2)
+        self.checkBoxVBoxHeadlessMode = QtGui.QCheckBox(VirtualBoxPage)
+        self.checkBoxVBoxHeadlessMode.setText(QtGui.QApplication.translate("VirtualBoxPage", "Start in headless mode (without GUI)", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxVBoxHeadlessMode.setObjectName(_fromUtf8("checkBoxVBoxHeadlessMode"))
+        self.gridLayout.addWidget(self.checkBoxVBoxHeadlessMode, 6, 0, 1, 2)
         spacerItem = QtGui.QSpacerItem(20, 281, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem, 3, 1, 1, 1)
+        self.gridLayout.addItem(spacerItem, 7, 1, 1, 1)
 
         self.retranslateUi(VirtualBoxPage)
         self.comboBoxNIC.setCurrentIndex(0)
