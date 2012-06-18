@@ -380,9 +380,9 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
     def changeConsolePort(self):
         """ Called to change the console port
         """
-        
+
         if self.emudev.state != 'stopped':
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyEmuDevice", "Cannot change the console port while the node is running"))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyEmuDevice", "Console"), translate("AnyEmuDevice", "Cannot change the console port while the node is running"))
             return
         AbstractNode.changeConsolePort(self)
 

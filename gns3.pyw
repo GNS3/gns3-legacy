@@ -56,7 +56,7 @@ def exceptionHook(type, value, tb):
     try:
         curdate = time.strftime("%d %b %Y %H:%M:%S")
     	logfile = open('exception.log','a')
-        logfile.write("=== GNS3 " + VERSION + " traceback on " + curdate + " ===")
+        logfile.write("========= GNS3 " + VERSION + " traceback on " + curdate + " =========")
     	logfile.write("\n" . join(lines))
     	logfile.close()
     except:

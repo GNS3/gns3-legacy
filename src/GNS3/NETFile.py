@@ -651,10 +651,16 @@ class NETFile(object):
             globals.GApp.workspace.setWindowTitle("GNS3")
             globals.GApp.workspace.clear()
             return
+        except lib.DynamipsErrorHandled:
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Dynamips error"), translate("NETFile", "Connection lost"))
+            globals.GApp.workspace.projectFile = None
+            globals.GApp.workspace.setWindowTitle("GNS3")
+            globals.GApp.workspace.clear()
+            return
         except Exception, ex:
             curdate = time.strftime("%d %b %Y %H:%M:%S")
             logfile = open('import_exception.log','a')
-            logfile.write("=== GNS3 " + VERSION + " traceback on " + curdate + " ===")
+            logfile.write("========= GNS3 " + VERSION + " traceback on " + curdate + " =========\n")
             traceback.print_exc(file=logfile)
             logfile.close()
             traceback.print_exc()

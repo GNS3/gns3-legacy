@@ -451,9 +451,9 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
     def changeConsolePort(self):
         """ Called to change the console port
         """
-        
+
         if self.emu_vboxdev.state != 'stopped':
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyVBoxEmuDevice", "Cannot change the console port while the node is running"))
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyVBoxEmuDevice", "Console"), translate("AnyVBoxEmuDevice", "Cannot change the console port while the node is running"))
             return
         AbstractNode.changeConsolePort(self)
 

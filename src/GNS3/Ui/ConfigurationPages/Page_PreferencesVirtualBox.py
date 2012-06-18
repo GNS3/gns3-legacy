@@ -561,6 +561,6 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
                     self.labelVBoxStatus.setText('<font color="brown">' + translate("UiConfig_PreferencesVirtualBox", "Failed to start xdotool")  + '</font>')
                     return
 
-            self.labelVBoxStatus.setText('<font color="green">' + translate("UiConfig_PreferencesVirtualBox", "VBoxwrapper and VirtualBox API %s have successfully started") % vbox_version  + '</font>')
+            self.labelVBoxStatus.setText('<font color="green">' + translate("UiConfig_PreferencesVirtualBox", "VBoxwrapper and VirtualBox API %s<br>have successfully started") % vbox_version  + '</font>')
             self.fillVMnames(vbox)
             globals.GApp.VBoxManager.stopVBox()

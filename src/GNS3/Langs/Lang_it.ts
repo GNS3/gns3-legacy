@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="it_IT" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.0" language="it_IT">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -301,7 +302,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net/contact&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Contattaci&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_About.py" line="80"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -633,7 +634,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="385"/>
         <source>Cannot change the console port while the node is running</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile cambiare la porta della console mentre il nodo è in esecuzione</translation>
     </message>
 </context>
 <context>
@@ -661,7 +662,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AnyVBoxEmuDevice.py" line="456"/>
         <source>Cannot change the console port while the node is running</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile cambiare la porta della console mentre il nodo è in esecuzione</translation>
     </message>
 </context>
 <context>
@@ -936,7 +937,7 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
     <message>
         <location filename="../Telnet.py" line="36"/>
         <source>No terminal command defined for local console/serial connections</source>
-        <translation type="unfinished"></translation>
+        <translation>Nessun comando di terminale definito per la console locale/connessioni seriali</translation>
     </message>
 </context>
 <context>
@@ -1085,17 +1086,17 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../DynagenSub.py" line="404"/>
         <source>IOS image %s cannot be found and cannot find an alternative %s image</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;immagine IOS %s non è presente e non è possibile trovare un&apos;immagine alternativa %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="418"/>
         <source>Local IOS image %s cannot be found, use image %s instead</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;immagine IOS locale %s non è presente, utilizza invece l&apos;immagine %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="424"/>
         <source>WARNING: no IDLE PC value found for %s, please apply one before using this topology!</source>
-        <translation type="unfinished"></translation>
+        <translation>AVVISO: nessun valore IDLE PC trovato per %s, applicane uno prima di utilizzare questa topologia!</translation>
     </message>
 </context>
 <context>
@@ -1118,7 +1119,7 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Node/ETHSW.py" line="226"/>
         <source>QinQ is only supported with Dynamips &gt; 0.2.8 RC2</source>
-        <translation>QinQ è supportato solo da  Dynamips &gt; 0.2.8 RC2</translation>
+        <translation>QinQ è supportato solo da Dynamips &gt; 0.2.8 RC2</translation>
     </message>
 </context>
 <context>
@@ -1315,19 +1316,21 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/Form_IDLEPCDialog.py" line="29"/>
         <source>Potentially better idlepc values are marked with &apos;*&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>I valori potenzialmente migliori di idlepc sono marcati con &apos;*&apos;</translation>
     </message>
     <message>
         <location filename="../IDLEPCDialog.py" line="83"/>
         <source>This is a trial and error process, apply different idlepc values and closely monitor the CPU usage. Choose the one that has the lowest CPU usage.
 
 Best idlepc values are usually obtained when IOS is in idle state: %s con0 is now available ... Press RETURN to get started.</source>
-        <translation type="unfinished"></translation>
+        <translation>Questo è un processo per prove ed errori, applica valori di idlepc diversi e controlla attentamente l&apos;utilizzo della CPU. Scegli quello che ne riduce al minimo l&apos;utilizzo.
+
+I valori migliori di idlepc sono ottenuti normalmente quando IOS è in uno stato di attesa: %s con0 è ora disponibile... Premi INVIO per iniziare.</translation>
     </message>
     <message>
         <location filename="../IDLEPCDialog.py" line="84"/>
         <source>Hints for IDLE PC</source>
-        <translation type="unfinished"></translation>
+        <translation>Suggerimenti per IDLE PC</translation>
     </message>
 </context>
 <context>
@@ -2367,7 +2370,7 @@ Best idlepc values are usually obtained when IOS is in idle state: %s con0 is no
         <source>Console to all devices</source>
         <translation>Console per tutti i dispositivi</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="312"/>
         <source>Save topology &amp;as…</source>
         <translation>Salva topologi&amp;a come...</translation>
@@ -2412,7 +2415,7 @@ Best idlepc values are usually obtained when IOS is in idle state: %s con0 is no
         <source>Show interface labels</source>
         <translation>Mostra le etichette delle interfacce</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="483"/>
         <source>&amp;Save project as…</source>
         <translation>&amp;Salva progetto come…</translation>
@@ -2595,27 +2598,27 @@ Best idlepc values are usually obtained when IOS is in idle state: %s con0 is no
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="323"/>
         <source>Zoom &amp;in</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingrand&amp;isci</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="325"/>
         <source>Zoom In</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingrandisci</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="329"/>
         <source>Zoom &amp;out</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimpicci&amp;olisci</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="331"/>
         <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
+        <translation>Rimpicciolisci</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="335"/>
         <source>Zoom &amp;1:1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingrandimento &amp;1:1</translation>
     </message>
 </context>
 <context>
@@ -2713,12 +2716,12 @@ Best idlepc values are usually obtained when IOS is in idle state: %s con0 is no
     <message>
         <location filename="../NETFile.py" line="662"/>
         <source>Topology importation has failed! Exception detected, details saved in %s</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;importazione della topologia non è riuscita. Rilevata un&apos;eccezione, i dettagli sono stati salvati in %s</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="932"/>
         <source>%s: Dynamips process %s:%i has crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>%s: processo Dynamips %s: %i è terminato in modo inatteso</translation>
     </message>
 </context>
 <context>
@@ -2774,7 +2777,7 @@ Best idlepc values are usually obtained when IOS is in idle state: %s con0 is no
     <message>
         <location filename="../Ui/Form_NewProject.py" line="66"/>
         <source>&amp;Open a Project</source>
-        <translation>Apri  un pr&amp;ogetto</translation>
+        <translation>Apri un pr&amp;ogetto</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="70"/>
@@ -3187,7 +3190,7 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX e PA-GE probabilmente non funzioneranno.<
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="96"/>
         <source>Invalid serial (format required: 0xhhhhhhhh)</source>
-        <translation>Seriale non valido (formato richiesto:  0xhhhhhhh)</translation>
+        <translation>Seriale non valido (formato richiesto: 0xhhhhhhh)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="102"/>
@@ -3197,7 +3200,7 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX e PA-GE probabilmente non funzioneranno.<
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="102"/>
         <source>Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</source>
-        <translation>Chiave non valida (formato richiesto:  0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</translation>
+        <translation>Chiave non valida (formato richiesto: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PIX.py" line="111"/>
@@ -3253,7 +3256,7 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX e PA-GE probabilmente non funzioneranno.<
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="491"/>
         <source>Invalid serial (format required: 0xhhhhhhhh)</source>
-        <translation>Seriale non valido (formato richiesto:  0xhhhhhhh)</translation>
+        <translation>Seriale non valido (formato richiesto: 0xhhhhhhh)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="499"/>
@@ -3263,7 +3266,7 @@ C7200-IO-2FE, C7200-IO-GE-E, PA-2FE-TX e PA-GE probabilmente non funzioneranno.<
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="499"/>
         <source>Invalid key (format required: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</source>
-        <translation>Chiave non valida (formato richiesto:  0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</translation>
+        <translation>Chiave non valida (formato richiesto: 0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh,0xhhhhhhhh)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="821"/>
@@ -3741,7 +3744,7 @@ o sul collegamento stesso.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="285"/>
         <source>Launch terminals using the system default shell</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancia i terminali utilizzando la shell predefinita di sistema</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="331"/>
@@ -3750,17 +3753,21 @@ o sul collegamento stesso.</translation>
 %p = device port
 %d = device hostname
 %s = device pipe</source>
-        <translation type="unfinished"></translation>
+        <translation>Stringhe speciale di comando per il terminale:
+%h = server del dispositivo
+%p = porta del dispositivo
+%d = nome host del dispositivo
+%s = pipe del dispositivo</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="355"/>
         <source>Terminal command for VirtualBox local console/serial connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>Comando di terminale per la console locale/connessioni seriali di VirtualBox:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="365"/>
         <source>Close associated terminal programs when deleting a node</source>
-        <translation type="unfinished"></translation>
+        <translation>Chiudi i programmi di terminale associati quando elimini un nodo</translation>
     </message>
 </context>
 <context>
@@ -4341,22 +4348,22 @@ o sul collegamento stesso.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="112"/>
         <source>Use VirtualBox VM names for hostnames</source>
-        <translation type="unfinished"></translation>
+        <translation>Usa i nomi delle MV VirtualBox come nomi degli host</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="456"/>
         <source>Start in headless mode (without GUI)</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvia in modalità trasparente (senza GUI)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="463"/>
         <source>Enable console support</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita supporto della console</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="470"/>
         <source>Enable console server (optionnal on Windows)</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita il server della console (opzionale su Windows)</translation>
     </message>
 </context>
 <context>
@@ -4761,7 +4768,7 @@ o sul collegamento stesso.</translation>
     <message>
         <location filename="../Scene.py" line="1067"/>
         <source>Warning, you are using headless mode without console support</source>
-        <translation type="unfinished"></translation>
+        <translation>Attenzione, stai utilizzando la modalità trasparente senza supporto della console</translation>
     </message>
 </context>
 <context>
@@ -4892,7 +4899,7 @@ es: #copy start run</translation>
         <source>Rotation:</source>
         <translation>Rotazione:</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_StyleDialog.py" line="66"/>
         <source>°</source>
         <translation></translation>
@@ -5324,12 +5331,12 @@ scena durante la modifica (solo le note) con ALT e &apos;+&apos; / ALT e &apos;-
     <message>
         <location filename="../Topology.py" line="609"/>
         <source>All configured VMs already in use. You may add or clone additional VMs in VirtualBox</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutte le MV configurate sono già in uso. Puoi aggiungere o clonare MV aggiuntive in VirtualBox</translation>
     </message>
     <message>
         <location filename="../Topology.py" line="888"/>
         <source>Couldn&apos;t set the same hostname as in VirtualBox for %s because non alphanumeric characters have been detected</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile impostare lo stesso nome host di VirtualBox per %s poiché sono stati rilevati caratteri non alfanumerici</translation>
     </message>
 </context>
 <context>
@@ -5798,22 +5805,22 @@ scena durante la modifica (solo le note) con ALT e &apos;+&apos; / ALT e &apos;-
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="111"/>
         <source>Do not use first NIC for connections with the host OS</source>
-        <translation type="unfinished">Non utilizzare la prima NIC per le connessioni con il SO host</translation>
+        <translation>Non utilizzare la prima NIC per le connessioni con il sistema host</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="121"/>
         <source>Enable console support</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita supporto della console</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="128"/>
         <source>Enable console server (optionnal on Windows)</source>
-        <translation type="unfinished"></translation>
+        <translation>Abilita il server della console (opzionale su Windows)</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="135"/>
         <source>Start in headless mode (without GUI)</source>
-        <translation type="unfinished"></translation>
+        <translation>Avvia in modalità trasparente (senza GUI)</translation>
     </message>
 </context>
 <context>

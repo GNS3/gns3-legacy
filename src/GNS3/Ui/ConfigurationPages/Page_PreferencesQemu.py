@@ -900,7 +900,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 # Qemu-0.11 for Windows is buggy, and fails to return 'qemu --help' results.
                 qemu_check= 0
                 try:
-                    p = subprocess.Popen([globals.GApp.systconf['qemu'].qemu_path, '--help'], cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir, stdout = subprocess.PIPE)
+                    p = subprocess.Popen([globals.GApp.systconf['qemu'].qemu_path, '-help'], cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir, stdout = subprocess.PIPE)
                     qemustdout = p.communicate()
                 except:
                     self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start qemu")  + '</font>')

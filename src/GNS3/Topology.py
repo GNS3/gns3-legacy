@@ -283,9 +283,9 @@ class Topology(QtGui.QGraphicsScene):
             debug("Disable mmap")
             node.set_string_option('mmap', False)
         if globals.GApp.systconf['dynamips'].sparsemem:
-            if sys.platform.startswith('win') and globals.GApp.HypervisorManager and image_conf.platform in ('c2600', 'c1700'):
+            if globals.GApp.HypervisorManager and image_conf.platform in ('c2600', 'c1700'):
                 # Workaround: sparse memory feature is not activated on c2600 and c1700 platforms because Dynamips freezes on console message 
-                # "Press ENTER to get the prompt" after a restart. (Bug is inside Dynamips and only on Windows).
+                # "Press ENTER to get the prompt" after a restart. (Bug is inside Dynamips).
                 debug("Do not enable sparse memory for this platform (known bug workaround)")
             else:
                 debug("Enable sparse memory")
