@@ -160,7 +160,7 @@ class xEMUInstance(object):
         qemu_cmd = " ".join(command)
         print "Command =>", qemu_cmd
         try:
-            self.process = subprocess.Popen(qemu_cmd.strip(),
+            self.process = subprocess.Popen(command,
                                             stdin=subprocess.PIPE,
                                             stdout=subprocess.PIPE,
                                             cwd=self.workdir)
