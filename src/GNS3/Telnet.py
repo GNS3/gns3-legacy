@@ -31,64 +31,70 @@ def pipe_connect(hostname, pipe_name):
     """ Start a telnet console and connect to a pipe
     """
 
-    # We use Putty shipped with GNS3
-    cmd = r'putty.exe -serial %s -wt "%s [Local Console]" -sr' % (pipe_name, hostname)
+    cmd = globals.GApp.systconf['general'].term_serial_cmd.strip()
+    if not cmd:
+        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Console", "Console"), translate("Console", "No terminal command defined for local console/serial connections"))
+        return False  
+
+    cmd = cmd.replace('%s', pipe_name)
+    cmd = cmd.replace('%d', hostname)
     try:
         sub.Popen(cmd)
     except (OSError, IOError), e:
         QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Console", "Console"), translate("Console", "Cannot start %s: %s") % (cmd, e.strerror))
-        return (False)
+        return False
 
 def connect(host, port, name):
     """ Start a telnet console and connect to it
     """
 
     try:
-        console = globals.GApp.systconf['general'].term_cmd
+        console = globals.GApp.systconf['general'].term_cmd.strip()
         if console:
-            if globals.GApp.systconf['general'].bring_console_to_front:
-                if bringConsoleToFront(console, host, port, name):
-                    # On successful attempt, we skip further processing
-                    return (True)
             console = console.replace('%h', host)
             console = console.replace('%p', str(port))
             console = console.replace('%d', name)
-            debug('Start console with: ' + console)
+            debug('Start console program %s' % console)
             if globals.GApp.systconf['general'].use_shell:
-                sub.Popen(console, shell=True)
+                proc = sub.Popen(console, shell=True)
             else:
-                sub.Popen(console)
+                proc = sub.Popen(console)
+
+            if globals.GApp.systconf['general'].bring_console_to_front:
+                if bringConsoleToFront(console, name):
+                    debug("Successful bringConsoleToFront() for %s" % name)
+                else:
+                    debug("Unsuccessful bringConsoleToFront() for %s" % name)
         else:
             if sys.platform.startswith('darwin'):
-                sub.Popen("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + host + " " + str(port) +"; exit\"'", shell=True)
+                proc = sub.Popen("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + host + " " + str(port) +"; exit\"'", shell=True)
             elif sys.platform.startswith('win'):
-                sub.Popen("start telnet " +  host + " " + str(port), shell=True)
+                proc = sub.Popen("putty.exe -telnet %s %i -wt %s -gns3 5" % (host, port, name))
             else:
-                sub.Popen("xterm -T " + name + " -e 'telnet " + host + " " + str(port) + "' > /dev/null 2>&1 &", shell=True)
+                proc = sub.Popen("xterm -T " + name + " -e 'telnet " + host + " " + str(port) + "' > /dev/null 2>&1 &", shell=True)
     except (OSError, IOError), e:
         QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Console", "Console"), translate("Console", "Cannot start %s: %s") % (console, e.strerror))
-        return (False)
-    return (True)
+        return None
+    return proc
 
-def bringConsoleToFront(console, host, port, name):
+def bringConsoleToFront(console, name):
     # Attempts to bring console terminal to front, and returns True if succeeds.
     # False means that further processing required.
     # Technologov: This code is experimental, and does not support all terminal emulators.
     # Maybe it should be based on PIDs, rather than window names?
-    if sys.platform.startswith('win'):
-        if console.__contains__("putty.exe -telnet %h %p"):
-            return winm.bringWindowToFront("Dynamips", "%s, Console port" % str(name))
-        else:
-            # unknown terminal emulator command
-            return False
-    elif sys.platform.startswith('darwin'):
-        # Not implemented.
+    if sys.platform.startswith('win'):# and console.startswith("putty.exe"):
+        return winm.bringWindowToFront("Dynamips", "%s" % name)
+    if sys.platform.startswith('darwin'):
+        # Not implemented, this is handled by OSX
         return False
-    else: # X11-based UNIX-like system
-        if console.__contains__("putty -telnet %h %p"):
-            return winm.bringWindowToFront("", "%s, Console Port" % str(name))
-        elif console.__contains__("xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &") or console.__contains__("/usr/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &"):
-            return winm.bringWindowToFront("", "%s" % str(name))
-        else:
-            # unknown terminal emulator command
-            return False
+    # X11-based UNIX-like system
+    return winm.bringWindowToFront("", "%s" % str(name))
+    # X11-based UNIX-like system
+    # FIXME: this is ugly!
+#    if console.startswith("putty"):
+#        return winm.bringWindowToFront("", "%s, Console Port" % str(name))
+#    elif console.__contains__("xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &") or console.__contains__("/usr/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &"):
+#        return winm.bringWindowToFront("", "%s" % str(name))
+#    else:
+#        # unknown terminal emulator command
+#        return False

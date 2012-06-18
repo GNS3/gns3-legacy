@@ -61,10 +61,11 @@ def bringWindowToFront(parent_window_name, child_window_name):
             # If no match found, we must do further processing in parent function...
             return False
         elif sys.platform.startswith('darwin'):
-            # Not implemented.
+            # Not implemented, this is handled by OSX
             return False
         else: # X11-based UNIX-like system
             # Hint: use "xdotool" and "xwininfo -root -tree -int" (part of Debian's "x11-utils")
+            # Alternative using wmctrl?
             p = sub.Popen('xdotool search "%s" | head -1' % str(child_window_name), shell=True, stdout=sub.PIPE, stderr=sub.PIPE)
             hwnd = int(p.communicate()[0])
             debugmsg(2, "ADEBUG: WindowManipulator.py: hwnd = %d" % hwnd)

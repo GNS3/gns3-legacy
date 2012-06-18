@@ -80,10 +80,13 @@ class portTracker:
                         s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
                     else:
                         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                    s.bind((host, port))
-                except socket.error:
+                    #FIXME: for now bind on 0.0.0.0 (default for dynamips. A bug inside Dynamips prevent us to bind it to a specific address!)
+                    #s.bind((host, port))
+                    s.bind(('0.0.0.0', port))
+                except socket.error, e:
                     # Not available
-                    debug("port %i is already in use by another program" % port)
+                    if (max_port != 0):
+                        debug("port %i is already in use by another program (bind error on 0.0.0.0 -> %s)" % (port, e))
                     continue
                 else:
                     # Available
@@ -95,7 +98,10 @@ class portTracker:
                         continue
         except:
             debug("unexpected exception with bind")
-        debug("couldn't find a non-listening port in range %i to %i" % (start_port, end))
+        if (max_port != 0):
+            debug("couldn't find a non-listening port in range %i to %i" % (start_port, end))
+        else:
+            debug("port %s is not free to use" % start_port)
         return None
 
     def allocateTcpPort(self, host, port, max_tries=10):
@@ -124,6 +130,7 @@ class portTracker:
         return origin_port
 
     def tcpPortIsFree(self, host, port):
+
         if host in self.local_addresses:
             host = 'localhost'
         if self.tcptrack.has_key(host) and port in self.tcptrack[host]:
@@ -133,15 +140,17 @@ class portTracker:
         return True
 
     def freeTcpPort(self, host, port):
+
         if host in self.local_addresses:
             host = 'localhost'
-        if not self.tcpPortIsFree(host, port) and self.tcptrack.has_key(host) and port in self.tcptrack[host]:
+        if self.tcptrack.has_key(host) and port in self.tcptrack[host] and not self.tcpPortIsFree(host, port):
             debug("freeing port %i" % port)
             self.tcptrack[host].remove(port)
         else:
             debug("could not free port %i (not in tracker)" % port)
 
     def setTcpPort(self, host, port):
+
         if host in self.local_addresses:
             host = 'localhost'
         debug("adding port %i" % port)

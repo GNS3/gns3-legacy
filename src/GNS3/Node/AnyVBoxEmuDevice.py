@@ -87,6 +87,7 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
     def __del__(self):
 
         self.delete_emudev()
+        AbstractNode.__del__(self)
 
     def delete_emudev(self, delete_persistent=False):
         """ Delete this emulated device
@@ -391,15 +392,20 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         """
 
         if self.emu_vboxdev and self.emu_vboxdev.state == 'running' and self.emu_vboxdev.console and self.emu_vboxdev.console_support:
-            if sys.platform.startswith('win') and not self.emu_vboxdev.console_telnet_server:
+            if not self.emu_vboxdev.console_telnet_server:
                 p = re.compile('\s+', re.UNICODE)
                 pipe_name = p.sub("_", self.emu_vboxdev.image)
-                pipe_name = r'\\.\pipe\VBOX\%s' % pipe_name
-                console.pipe_connect(self.hostname, pipe_name)
-            elif not self.emu_vboxdev.console_telnet_server:
-                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AnyVBoxEmuDevice", "Console"), translate("AnyVBoxEmuDevice", "Local console connections are not supported on this platform, please activate the console server or access your console using a 3rd-party software"))
+                if sys.platform.startswith('win'):
+                    pipe_name = r'\\.\pipe\VBOX\%s' % pipe_name
+                elif os.path.exists(self.emu_vboxdev.dynamips.workingdir):
+                    pipe_name = self.emu_vboxdev.dynamips.workingdir + os.sep + "vbox_pipe_to_%s" % pipe_name
+                else:
+                    pipe_name = "/tmp/vbox_pipe_to_%s" % pipe_name
+                proc = console.pipe_connect(self.hostname, pipe_name)
             else:
-                console.connect(self.emu_vboxdev.dynamips.host, self.emu_vboxdev.console, self.hostname)
+                proc = console.connect(self.emu_vboxdev.dynamips.host, self.emu_vboxdev.console, self.hostname)
+            if proc:
+                self.consoleProcesses.append(proc)
 
     def displayWindowFocus(self):
         """ Bring VM's display as foreground window and focus on it

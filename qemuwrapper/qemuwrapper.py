@@ -83,7 +83,7 @@ debugmsg(2, msg)
 __author__ = 'Thomas Pani and Jeremy Grossmann'
 __version__ = '0.8.3'
 
-QEMU_PATH = "qemu"
+QEMU_PATH = "qemu-system-i386"
 QEMU_IMG_PATH = "qemu-img"
 PORT = 10525
 IP = ""
@@ -159,9 +159,14 @@ class xEMUInstance(object):
         qemu_cmd = " ".join(command)
         print "Command =>", qemu_cmd
         try:
+            if platform.system() == 'Windows':
+                shell = False
+            else:
+                shell = True
+
             self.process = subprocess.Popen(qemu_cmd.strip(),
                                             stdin=subprocess.PIPE,
-                                            cwd=self.workdir)
+                                            cwd=self.workdir, shell)
         except OSError, e:
             print >> sys.stderr, "Unable to start instance", self.name, "of", self.__class__
             print >> sys.stderr, e

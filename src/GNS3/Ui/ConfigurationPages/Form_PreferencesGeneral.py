@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
+# Form implementation generated from reading ui file 'ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Mon May 21 21:18:29 2012
+# Created: Sun Jun 17 18:59:42 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_PreferencesGeneral(object):
     def setupUi(self, PreferencesGeneral):
         PreferencesGeneral.setObjectName(_fromUtf8("PreferencesGeneral"))
-        PreferencesGeneral.resize(539, 581)
+        PreferencesGeneral.resize(539, 588)
         PreferencesGeneral.setWindowTitle(QtGui.QApplication.translate("PreferencesGeneral", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout_5 = QtGui.QGridLayout(PreferencesGeneral)
         self.gridLayout_5.setObjectName(_fromUtf8("gridLayout_5"))
@@ -160,21 +160,21 @@ class Ui_PreferencesGeneral(object):
         self.gridLayout.addWidget(self.label_4, 2, 0, 1, 1)
         self.lineEditTermCommand = QtGui.QLineEdit(self.tab_3)
         self.lineEditTermCommand.setObjectName(_fromUtf8("lineEditTermCommand"))
-        self.gridLayout.addWidget(self.lineEditTermCommand, 3, 0, 1, 1)
+        self.gridLayout.addWidget(self.lineEditTermCommand, 3, 0, 1, 2)
         self.checkBoxUseShell = QtGui.QCheckBox(self.tab_3)
-        self.checkBoxUseShell.setText(QtGui.QApplication.translate("PreferencesGeneral", "Launch this command using the system default shell", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxUseShell.setText(QtGui.QApplication.translate("PreferencesGeneral", "Launch terminals using the system default shell", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxUseShell.setChecked(False)
         self.checkBoxUseShell.setObjectName(_fromUtf8("checkBoxUseShell"))
-        self.gridLayout.addWidget(self.checkBoxUseShell, 4, 0, 1, 1)
+        self.gridLayout.addWidget(self.checkBoxUseShell, 7, 0, 1, 1)
         self.checkBoxBringConsoleToFront = QtGui.QCheckBox(self.tab_3)
         self.checkBoxBringConsoleToFront.setToolTip(QtGui.QApplication.translate("PreferencesGeneral", "<html>This option will attempt to bring existing opened console window to front, instead of opening a new window.<br>If no existing opened console window exists, it will start a new  console window.</html>", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxBringConsoleToFront.setText(QtGui.QApplication.translate("PreferencesGeneral", "Bring console window to front (experimental feature)", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxBringConsoleToFront.setObjectName(_fromUtf8("checkBoxBringConsoleToFront"))
-        self.gridLayout.addWidget(self.checkBoxBringConsoleToFront, 5, 0, 1, 1)
+        self.gridLayout.addWidget(self.checkBoxBringConsoleToFront, 8, 0, 1, 1)
         self.label_11 = QtGui.QLabel(self.tab_3)
         self.label_11.setText(QtGui.QApplication.translate("PreferencesGeneral", "Delay between each console when consoling to all devices:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_11.setObjectName(_fromUtf8("label_11"))
-        self.gridLayout.addWidget(self.label_11, 6, 0, 1, 2)
+        self.gridLayout.addWidget(self.label_11, 9, 0, 1, 1)
         self.doubleSpinBoxConsoleDelay = QtGui.QDoubleSpinBox(self.tab_3)
         self.doubleSpinBoxConsoleDelay.setSuffix(QtGui.QApplication.translate("PreferencesGeneral", " seconds", None, QtGui.QApplication.UnicodeUTF8))
         self.doubleSpinBoxConsoleDelay.setDecimals(1)
@@ -182,16 +182,28 @@ class Ui_PreferencesGeneral(object):
         self.doubleSpinBoxConsoleDelay.setSingleStep(0.5)
         self.doubleSpinBoxConsoleDelay.setProperty("value", 1.0)
         self.doubleSpinBoxConsoleDelay.setObjectName(_fromUtf8("doubleSpinBoxConsoleDelay"))
-        self.gridLayout.addWidget(self.doubleSpinBoxConsoleDelay, 7, 0, 1, 2)
+        self.gridLayout.addWidget(self.doubleSpinBoxConsoleDelay, 10, 0, 1, 1)
         self.label_9 = QtGui.QLabel(self.tab_3)
         self.label_9.setText(QtGui.QApplication.translate("PreferencesGeneral", "Terminal command magic strings:\n"
 "%h = device server \n"
 "%p = device port\n"
-"%d = device hostname", None, QtGui.QApplication.UnicodeUTF8))
+"%d = device hostname\n"
+"%s = device pipe", None, QtGui.QApplication.UnicodeUTF8))
         self.label_9.setObjectName(_fromUtf8("label_9"))
-        self.gridLayout.addWidget(self.label_9, 8, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_9, 13, 0, 1, 1)
         spacerItem3 = QtGui.QSpacerItem(20, 315, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem3, 9, 0, 1, 2)
+        self.gridLayout.addItem(spacerItem3, 14, 0, 1, 2)
+        self.label_12 = QtGui.QLabel(self.tab_3)
+        self.label_12.setText(QtGui.QApplication.translate("PreferencesGeneral", "Terminal command for VirtualBox local console/serial connections:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_12.setObjectName(_fromUtf8("label_12"))
+        self.gridLayout.addWidget(self.label_12, 4, 0, 1, 2)
+        self.lineEditTermCommandVBoxConsole = QtGui.QLineEdit(self.tab_3)
+        self.lineEditTermCommandVBoxConsole.setObjectName(_fromUtf8("lineEditTermCommandVBoxConsole"))
+        self.gridLayout.addWidget(self.lineEditTermCommandVBoxConsole, 5, 0, 1, 2)
+        self.checkBoxCloseTermPrograms = QtGui.QCheckBox(self.tab_3)
+        self.checkBoxCloseTermPrograms.setText(QtGui.QApplication.translate("PreferencesGeneral", "Close associated terminal programs when deleting a node", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxCloseTermPrograms.setObjectName(_fromUtf8("checkBoxCloseTermPrograms"))
+        self.gridLayout.addWidget(self.checkBoxCloseTermPrograms, 6, 0, 1, 1)
         self.tabWidget.addTab(self.tab_3, _fromUtf8(""))
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName(_fromUtf8("tab_2"))

@@ -126,6 +126,7 @@ class IOSRouter(AbstractNode):
     def __del__(self):
 
         self.delete_router()
+        AbstractNode.__del__(self)
 
     def delete_router(self):
         """ Delete this router
@@ -670,7 +671,9 @@ class IOSRouter(AbstractNode):
         """
 
         if self.router and self.router.state == 'running' and self.router.console:
-            console.connect(self.hypervisor.host, self.router.console, self.hostname)
+            proc = console.connect(self.hypervisor.host, self.router.console, self.hostname)
+            if proc:
+                self.consoleProcesses.append(proc)
 
     def aux(self):
         """ Start a telnet console and connect it to this router's AUX port
@@ -681,7 +684,9 @@ class IOSRouter(AbstractNode):
             return False
 
         if self.router and self.router.state == 'running':
-            console.connect(self.hypervisor.host, self.router.aux, self.hostname)
+            proc = console.connect(self.hypervisor.host, self.router.aux, self.hostname)
+            if proc:
+                self.consoleProcesses.append(proc)
 
     def isStarted(self):
         """ Returns True if this router is started
