@@ -253,20 +253,20 @@ class xEMUInstance(object):
             # fallback on another syntax if the current one is not supported
             if qemuprotocol == 0:
                 try:
-                    p = subprocess.Popen([self.bin, '--help'], stdout = subprocess.PIPE)
+                    p = subprocess.Popen([self.bin, '-help'], stdout = subprocess.PIPE)
                     qemustdout = p.communicate()
                 except:
-                    print >> sys.stderr, "Unable to execute %s --help" % self.bin
+                    print >> sys.stderr, "Unable to execute %s -help" % self.bin
                     return options
                 if not qemustdout[0].__contains__('for dynamips/pemu/GNS3'):
                     print "Falling back to the new qemu syntax"
                     qemuprotocol = 1
             elif qemuprotocol == 1:
                 try:
-                    p = subprocess.Popen([self.bin, '--net', 'socket'], stderr = subprocess.PIPE)
+                    p = subprocess.Popen([self.bin, '-net', 'socket'], stderr = subprocess.PIPE)
                     qemustderr = p.communicate()
                 except:
-                    print >> sys.stderr, "Unable to execute %s --net socket" % self.bin
+                    print >> sys.stderr, "Unable to execute %s -net socket" % self.bin
                     return options
                 if not qemustderr[1].__contains__('udp='):
                     print "Falling back to the old qemu syntax"
