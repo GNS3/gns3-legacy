@@ -29,9 +29,9 @@ class MACTableDialog(QtGui.QDialog, Ui_MACTableDialog):
     """ MACTableDialog class
     """
 
-    def __init__(self, node):
+    def __init__(self, node, parent=None):
 
-        QtGui.QDialog.__init__(self)
+        QtGui.QDialog.__init__(self, parent)
         self.setupUi(self)
 
         self.connect(self.pushButtonRefresh, QtCore.SIGNAL('clicked()'), self.__refreshTable)

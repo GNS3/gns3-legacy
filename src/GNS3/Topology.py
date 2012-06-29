@@ -602,8 +602,8 @@ class Topology(QtGui.QGraphicsScene):
                 for device in self.__nodes.itervalues():
                     if isinstance(device, VBoxDevice):
                         current_vboximages.append(device.get_config()['image'])
-                for name in globals.GApp.vboximages.keys():
-                    if not name in current_vboximages:
+                for (name, conf) in globals.GApp.vboximages.iteritems():
+                    if not conf.filename in current_vboximages:
                         devices.append(name)
                 if len(devices) == 0:
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VirtualBox guest"), translate("Topology", "All configured VMs already in use. You may add or clone additional VMs in VirtualBox"))
@@ -871,10 +871,14 @@ class Topology(QtGui.QGraphicsScene):
 
             if iosConfig:
                 self.applyIOSBaseConfig(node, iosConfig)
-                
-            #FIXME: temporary workaround to have VBox VMs with same hostname as in VirtualBox names (this is not clean as params are sent twice to vboxwrapper)
+
+            #FIXME: ugly temporary workaround to have VBox VMs with same hostname as in VirtualBox names (this is not a clean solution as params are sent twice to vboxwrapper)
             if isinstance(node, VBoxDevice) and globals.GApp.systconf['vbox'].use_VBoxVmnames:
-                vmname = node.config['image'].strip()
+                image = node.config['image'].strip()
+                vmname = image
+                for (name, conf) in globals.GApp.vboximages.iteritems():
+                    if conf.filename == image:
+                        vmname = name
                 # white spaces have to be replaced
                 p = re.compile('\s+', re.UNICODE)
                 vmname = p.sub("_", vmname)
@@ -947,7 +951,7 @@ class Topology(QtGui.QGraphicsScene):
                     # internal hypervisor
                     image_conf = globals.GApp.iosimages[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + router.image]
                     if globals.GApp.HypervisorManager and len(image_conf.hypervisors) == 0:
-                        globals.GApp.HypervisorManager.unallocateHypervisor(node, router.dynamips.port)
+                        globals.GApp.HypervisorManager.unallocateHypervisor(node, router.dynamips.host ,router.dynamips.port)
                 else:
                     # external hypevisor
                     external_hypervisor_key = router.dynamips.host + ':' + str(router.dynamips.port)

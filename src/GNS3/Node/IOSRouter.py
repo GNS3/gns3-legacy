@@ -674,6 +674,7 @@ class IOSRouter(AbstractNode):
             proc = console.connect(self.hypervisor.host, self.router.console, self.hostname)
             if proc:
                 self.consoleProcesses.append(proc)
+        AbstractNode.clearClosedConsoles(self)
 
     def aux(self):
         """ Start a telnet console and connect it to this router's AUX port
@@ -687,6 +688,7 @@ class IOSRouter(AbstractNode):
             proc = console.connect(self.hypervisor.host, self.router.aux, self.hostname)
             if proc:
                 self.consoleProcesses.append(proc)
+        AbstractNode.clearClosedConsoles(self)
 
     def isStarted(self):
         """ Returns True if this router is started

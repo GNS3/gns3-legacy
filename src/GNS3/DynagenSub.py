@@ -26,7 +26,7 @@ import sys, os, re, socket
 import GNS3.Globals as globals
 from GNS3.Dynagen.dynagen import Dynagen, DEVICETUPLE
 from GNS3.Utils import translate, debug, getWindowsInterfaces
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtCore, QtGui, QtNetwork
 
 def debugmsg(level, message):
     if debuglevel == 0:
@@ -43,6 +43,8 @@ class DynagenSub(Dynagen):
         Dynagen.__init__(self)
         self.gns3_data = None
         self.rpcap_mapping = {}
+        self.local_addresses = map(lambda addr: unicode(addr.toString()), QtNetwork.QNetworkInterface.allAddresses())
+        self.local_addresses += ['0.0.0.0', '127.0.0.1', 'localhost', '::1', '0:0:0:0:0:0:0:1', QtNetwork.QHostInfo.localHostName()]
 
     def check_replace_GUID_NIO(self, filename):
         """ Check and replace non-existing GUID (network interface ID) on Windows
@@ -173,11 +175,10 @@ class DynagenSub(Dynagen):
                 if ':' in host:
                     # unpack the server and port
                     # controlPort is ignored
-                    #(host, controlPort) = host.split(':')  # What if we provide IPv6 ???
                     controlPort = host.split(':')[-1]
                     host = self.getHost(host)
-                if emulator == 'qemu' and (host == globals.GApp.systconf['qemu'].QemuManager_binding or host == 'localhost') and globals.GApp.systconf['qemu'].enable_QemuManager:
-                    globals.GApp.QemuManager.startQemu(int(controlPort))
+                if emulator == 'qemu' and globals.GApp.systconf['qemu'].enable_QemuManager and globals.GApp.systconf['vbox'].import_use_QemuManager and host in self.local_addresses:
+                    globals.GApp.QemuManager.startQemu(int(controlPort), host)
                     debugmsg(2, "DynagenSub::open_config(), entered QemuManager")
 
                     # Check if this is a relative working directory path and convert to an absolute path if necessary
@@ -294,9 +295,9 @@ class DynagenSub(Dynagen):
                                 print translate("DynagenSub", "Local PIX image %s cannot be found, use image %s instead") \
                                 % (unicode(device['image']), image_name)
                                 device['image'] = image_name
-                elif emulator == 'vbox' and (host == globals.GApp.systconf['vbox'].VBoxManager_binding or host == 'localhost') and globals.GApp.systconf['vbox'].enable_VBoxManager:
+                elif emulator == 'vbox' and globals.GApp.systconf['vbox'].enable_VBoxManager and globals.GApp.systconf['vbox'].import_use_VBoxManager and host in self.local_addresses:
                     debugmsg(2, "DynagenSub::open_config(), entered VBoxManager")
-                    globals.GApp.VBoxManager.startVBox(int(controlPort))
+                    globals.GApp.VBoxManager.startVBox(int(controlPort), host)
 
                     # Check if this is a relative working directory path and convert to an absolute path if necessary
                     if server['workingdir']:
@@ -327,8 +328,8 @@ class DynagenSub(Dynagen):
                     controlPort = '7200'
 
                 # need to start local hypervisors
-                if (server.host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or server.host == 'localhost') and \
-                    globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager:
+
+                if globals.GApp.HypervisorManager and globals.GApp.systconf['dynamips'].import_use_HypervisorManager and server.host in self.local_addresses:
                     debugmsg(2, "DynagenSub::open_config(), entered Dynamips HypervisorManager")
 
                     # update server.host and server.name to match with Hypervisor Manager Binding configuration,
@@ -339,17 +340,16 @@ class DynagenSub(Dynagen):
 #                        server.name = server.host + ':' + controlPort
 
                     debug("Start hypervisor on port: " + str(controlPort))
-                    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                    s.setblocking(0)
-                    s.settimeout(300)
+
                     try:
-                        s.connect(('localhost', int(controlPort)))
+                        s = socket.create_connection((server.host, int(controlPort)), 60.0)
                         s.close()
                         print "Warning: a process is already running on port %i, please consider closing it or killing it as this may negatively impact your topology" % int(controlPort)
                     except:
-                        s.close()
-                    hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort), processcheck=False)
-                    globals.GApp.HypervisorManager.waitHypervisor(hypervisor)
+                        pass
+
+                    hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort), binding=server.host, processcheck=False)
+                    globals.GApp.HypervisorManager.waitHypervisor(hypervisor, binding=server.host)
 
                     # Check if this is a relative working directory path and convert to an absolute path if necessary
                     if server['workingdir']:

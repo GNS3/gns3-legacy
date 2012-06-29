@@ -69,7 +69,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         self.connect(self.treeWidgetVBoxImages,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotVBoxImageSelectionChanged)
 
         # Auto-fill of VirtualBox VM name
-        self.connect(self.comboBoxNameVBoxImage, QtCore.SIGNAL('editTextChanged(QString)'), self.VBoxImage, QtCore.SLOT('setText(QString)'))
+        self.connect(self.comboBoxNameVBoxImage, QtCore.SIGNAL('editTextChanged(QString)'), self.VBoxID, QtCore.SLOT('setText(QString)'))
 
         # Refresh VM list
         self.connect(self.pushButtonRefresh, QtCore.SIGNAL('clicked()'), self.slotRefreshVMlist)
@@ -267,7 +267,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         self.port.setValue(self.conf.vboxwrapper_port)
         self.baseUDP.setValue(self.conf.vboxwrapper_baseUDP)
         self.baseConsole.setValue(self.conf.vboxwrapper_baseConsole)
-        
+
         # VirtualBox settings
         for (name, conf) in globals.GApp.vboximages.iteritems():
 
@@ -278,7 +278,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             item.setText(1, conf.filename)
             
         self.treeWidgetVBoxImages.resizeColumnToContents(0)
-        self.treeWidgetVBoxImages.sortItems(0, QtCore.Qt.AscendingOrder) # Sort accoroding to GNS3 name
+        self.treeWidgetVBoxImages.sortItems(1, QtCore.Qt.AscendingOrder) # Sort according to GNS3 name
 
     def saveConf(self):
 
@@ -361,13 +361,12 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         """ Add/Save VBox Image in the list of VBox images
         """
 
-        #name = unicode(self.comboBoxNameVBoxImage.text())
-        name = unicode(self.comboBoxNameVBoxImage.currentText(), 'utf-8', errors='replace')
-        image = unicode(self.VBoxImage.text(), 'utf-8', errors='replace')
+        name = unicode(self.VBoxID.text(), 'utf-8', errors='replace')
+        image = unicode(self.comboBoxNameVBoxImage.currentText(), 'utf-8', errors='replace')
         
         if not name or not image:
             QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesVirtualBox", "VirtualBox guest"), 
-                                       translate("Page_PreferencesVirtualBox", "Identifier and binary image must be set!"))
+                                       translate("Page_PreferencesVirtualBox", "Identifier and VM must be set!"))
             return
 
         if globals.GApp.vboximages.has_key(name):
@@ -375,6 +374,14 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             item_to_update = self.treeWidgetVBoxImages.findItems(name, QtCore.Qt.MatchFixedString)[0]
             item_to_update.setText(1, image)
         else:
+            
+            # white spaces have to be replaced
+            p = re.compile('\s+', re.UNICODE)
+            name = p.sub("_", name)
+            if not re.search(r"""^[\w,.-\[\]]*$""", name, re.UNICODE):
+                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesVirtualBox", "VirtualBox guest"), 
+                                           translate("Page_PreferencesVirtualBox", "Identifier name must contains only alphanumeric characters!"))
+                return
             # else create a new entry
             item = QtGui.QTreeWidgetItem(self.treeWidgetVBoxImages)
             # image name column
@@ -443,9 +450,9 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
 
             conf = globals.GApp.vboximages[name]
             
-            self.comboBoxNameVBoxImage.setItemText(0 ,name)
+            self.comboBoxNameVBoxImage.setItemText(0 , conf.filename)
             self.comboBoxNameVBoxImage.setCurrentIndex(0)
-            self.VBoxImage.setText(conf.filename)
+            self.VBoxID.setText(name)
 
             if self.conf.enable_GuestControl:
                 self.VBoxGuestControl_User.setEnabled(True)

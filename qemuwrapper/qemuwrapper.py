@@ -83,7 +83,10 @@ debugmsg(2, msg)
 __author__ = 'Thomas Pani and Jeremy Grossmann'
 __version__ = '0.8.3'
 
-QEMU_PATH = "qemu-system-i386"
+if platform.system() == 'Windows':
+    QEMU_PATH = "qemu" # we still use Qemu 0.11.0 on Windows
+else:
+    QEMU_PATH = "qemu-system-i386"
 QEMU_IMG_PATH = "qemu-img"
 PORT = 10525
 IP = ""
@@ -157,7 +160,7 @@ class xEMUInstance(object):
         command = self._build_command()
 
         qemu_cmd = " ".join(command)
-        print "Command =>", qemu_cmd
+        print "Starting Qemu =>", qemu_cmd
         try:
             if platform.system() == 'Windows':
                 shell = False
@@ -175,7 +178,13 @@ class xEMUInstance(object):
         # give us some time to wait for Qemu to start
         time.sleep(1)
 
-        print "    pid:", self.process.pid
+        # check if Qemu has exited (not to say crashed!)
+        self.process.poll()
+        if self.process.returncode != None:
+            print >> sys.stderr, "Qemu has exited with return code %i" % self.process.returncode
+            return False
+
+        print "Qemu has successfully started with pid %i" % self.process.pid
 
         if platform.system() == 'Windows':
             print "Setting priority class to BELOW_NORMAL"

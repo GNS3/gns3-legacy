@@ -86,7 +86,7 @@ def bringConsoleToFront(console, name):
         return winm.bringWindowToFront("Dynamips", "%s" % name)
     if sys.platform.startswith('darwin'):
         # Not implemented, this is handled by OSX
-        return False
+        return True
     # X11-based UNIX-like system
     return winm.bringWindowToFront("", "%s" % str(name))
     # X11-based UNIX-like system

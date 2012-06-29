@@ -82,10 +82,29 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         if globals.GApp.systconf['general'].term_close_on_delete:
             # closing terminal programs
             for console in self.consoleProcesses:
-                if not console.returncode:
+                console.poll()
+                if console.returncode == None:
+                    # the process hasn't returned yet (still active)
                     debug("Sending terminate signal to terminal program (pid %i)" % console.pid)
-                    console.terminate()
+                    try:
+                        console.terminate()
+                    except:
+                        debug("Error while sending the signal to terminal program (pid %i)" % console.pid)
+                        continue
         self.consoleProcesses = []
+        
+    def clearClosedConsoles(self):
+        """ Refresh the list of opened terminal programs.
+        """
+
+        updated_list = []
+        for console in self.consoleProcesses:
+            console.poll()
+            if console.returncode == None:
+                # the process hasn't returned yet (still active)
+                updated_list.append(console)
+        self.consoleProcesses = updated_list
+        debug("%s has %i terminal program(s) connected to it" % (self.hostname, len(self.consoleProcesses)))
 
     def setRenderers(self, render_normal, render_select):
         """ renderer_normal: QtSvg.QSvgRenderer

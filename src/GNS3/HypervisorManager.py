@@ -19,13 +19,13 @@
 # http://www.gns3.net/contact
 #
 
-import time, os, sys
+import time, os, socket
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
-from socket import socket, AF_INET, SOCK_STREAM
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug, killAll
 from GNS3.Node.IOSRouter import IOSRouter
+from distutils.version import LooseVersion
 
 class HypervisorManager(object):
     """ HypervisorManager class
@@ -56,9 +56,12 @@ class HypervisorManager(object):
         globals.hypervisor_baseport = self.dynamips.port
         globals.GApp.dynagen.globaludp = self.dynamips.baseUDP
 
-    def startNewHypervisor(self, port, processcheck=True):
+    def startNewHypervisor(self, port, binding=None, processcheck=True):
         """ Create a new dynamips process and start it
         """
+
+        if binding == None:
+            binding = self.dynamips.HypervisorManager_binding
 
         proc = QtCore.QProcess(globals.GApp.mainWindow)
 
@@ -68,16 +71,14 @@ class HypervisorManager(object):
 
         if processcheck:
             # test if a hypervisor is already running on this port
-            s = socket(AF_INET, SOCK_STREAM)
-            s.setblocking(0)
-            s.settimeout(300)
+            timeout = 60.0
             try:
                 #FIXME: replace with bind() for faster process?
-                s.connect(('localhost', port))
+                s = socket.create_connection((binding, port), timeout)
                 s.close()
 
                 reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"),
-                                                   translate("HypervisorManager", "Apparently an hypervisor is already running on port %i, would you like to kill all Dynamips processes?") % port,
+                                                   translate("HypervisorManager", "Apparently an hypervisor is already running on %s port %i, would you like to kill all Dynamips processes?") % (binding, port),
                                                    QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
                     killAll(os.path.basename(self.hypervisor_path))
@@ -92,26 +93,36 @@ class HypervisorManager(object):
                     port = globals.hypervisor_baseport
 
                 #FIXME: replace with bind() for faster process?
-                s.connect(('localhost', port))
+                s = socket.create_connection((binding, port), timeout)
                 s.close()
 
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("HypervisorManager", "Hypervisor Manager"),
-                                           translate("HypervisorManager", "A program is still running on port %i, you will have to stop it manually or change port settings") % port)
+                                           translate("HypervisorManager", "A program is still running on %s port %i, you will have to stop it manually or change port settings") % (binding, port))
 
                 globals.hypervisor_baseport += 1
                 return None
             except:
-                s.close()
+                pass
 
-        # start dynamips in hypervisor mode (-H)
-        #FIXME: Dynamips ignores this format: -H <IP address:port> (bug inside Dynamips, for now binds on 0.0.0.0)
-        proc.start(self.hypervisor_path,  ['-H', str(port)])
+        try:
+            # start dynamips in hypervisor mode (-H)
+            # Dynamips version 0.2.8-RC3 and before cannot accept a specific port when binding on a chosen address with param -H <IP address:port> (bug is inside Dynamips).
+            if self.dynamips.detected_version and LooseVersion(self.dynamips.detected_version) > '0.2.8-RC3':
+                debug("Starting Dynamips with -H %s:%i" % (binding, port))
+                proc.start(self.hypervisor_path,  ['-H', binding + ':' + str(port)])
+            else:
+                debug("Starting Dynamips with -H %i (old way with Dynamips version 0.2.8-RC3 and before)" % port)
+                proc.start(self.hypervisor_path,  ['-H', str(port)])
+        except:
+            debug('Exception with LooseVersion()')
+            proc.start(self.hypervisor_path,  ['-H', str(port)])
 
         if proc.waitForStarted() == False:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager', translate("HypervisorManager", "Can't start Dynamips on port %i") % port)
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager', translate("HypervisorManager", "Can't start Dynamips on %s port %i") % (binding, port))
             return None
 
-        hypervisor = {'port': port,
+        hypervisor = {'host': binding,
+                      'port': port,
                       'proc_instance': proc,
                       'load': 0,
                       'image_ref': ''}
@@ -119,22 +130,23 @@ class HypervisorManager(object):
         self.hypervisors.append(hypervisor)
         return hypervisor
 
-    def waitHypervisor(self, hypervisor):
+    def waitHypervisor(self, hypervisor, binding=None):
         """ Wait the hypervisor until it accepts connections
         """
+        
+        if binding == None:
+            binding = self.dynamips.HypervisorManager_binding
 
         last_exception = None
         # give 15 seconds to the hypervisor to accept connections
         count = 15
         progress = None
+        timeout = 60.0
         connection_success = False
-        debug("Hypervisor manager: connect on " + str(hypervisor['port']))
-        for nb in range(count + 1):
-            s = socket(AF_INET, SOCK_STREAM)
-            s.setblocking(0)
-            s.settimeout(300)
+        debug("Hypervisor manager: connecting on %s:%i" % (binding, hypervisor['port']))
+        for nb in range(count + 1):            
             if nb == 3:
-                progress = QtGui.QProgressDialog(translate("HypervisorManager", "Connecting to a hypervisor on port %i ...") % hypervisor['port'],
+                progress = QtGui.QProgressDialog(translate("HypervisorManager", "Connecting to an hypervisor on %s port %i ...") % (binding, hypervisor['port']),
                                                  translate("HypervisorManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
@@ -146,13 +158,12 @@ class HypervisorManager(object):
                     progress.reset()
                     break
             try:
-                s.connect(('localhost', hypervisor['port']))
+                s = socket.create_connection((binding, hypervisor['port']), timeout)
             except Exception, ex:
-                s.close()
                 time.sleep(1)
                 last_exception = ex
                 continue
-            debug("Hypervisor manager: hypervisor on port " +  str(hypervisor['port']) + " started")
+            debug("Hypervisor manager: connected to hypervisor on %s port %i" % (binding, hypervisor['port']))
             connection_success = True
             break
 
@@ -164,7 +175,7 @@ class HypervisorManager(object):
             if not last_exception:
                 last_exception = 'Unknown problem'
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
-                                       translate("HypervisorManager", "Can't connect to the hypervisor on port %i: %s") % (hypervisor['port'], last_exception))
+                                       translate("HypervisorManager", "Can't connect to the hypervisor on %s port %i: %s") % (binding, hypervisor['port'], last_exception))
             hypervisor['proc_instance'].close()
             self.hypervisors.remove(hypervisor)
             return False
@@ -184,10 +195,10 @@ class HypervisorManager(object):
                     if self.dynamips.allocateHypervisorPerIOS and hypervisor['image_ref'] != node.image_reference:
                         continue
                     hypervisor['load'] += node.default_ram
-                debug('Hypervisor manager: allocates an already started hypervisor (port: ' + str(hypervisor['port']) + ')')
-                if not globals.GApp.dynagen.dynamips.has_key(self.dynamips.HypervisorManager_binding + ':' + str(hypervisor['port'])):
-                    globals.GApp.dynagen.create_dynamips_hypervisor(self.dynamips.HypervisorManager_binding, hypervisor['port'])
-                dynamips_hypervisor = globals.GApp.dynagen.dynamips[self.dynamips.HypervisorManager_binding + ':' + str(hypervisor['port'])]
+                debug("Hypervisor manager: allocates an already started hypervisor on %s port %i" % (hypervisor['host'], hypervisor['port']))
+                if not globals.GApp.dynagen.dynamips.has_key(hypervisor['host'] + ':' + str(hypervisor['port'])):
+                    globals.GApp.dynagen.create_dynamips_hypervisor(hypervisor['host'], hypervisor['port'])
+                dynamips_hypervisor = globals.GApp.dynagen.dynamips[hypervisor['host'] + ':' + str(hypervisor['port'])]
                 node.set_hypervisor(dynamips_hypervisor)
                 return hypervisor
 
@@ -214,14 +225,14 @@ class HypervisorManager(object):
                                           translate("HypervisorManager", "Working directory %s seems to not exist or be writable, please check") % self.hypervisor_wd)
             globals.GApp.dynagen.defaults_config['workingdir'] = self.hypervisor_wd
         try:
-            dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor(self.dynamips.HypervisorManager_binding, hypervisor['port'])
+            dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor(hypervisor['host'], hypervisor['port'])
         except:
             dynamips_hypervisor = None
         if not dynamips_hypervisor:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
-                                       translate("HypervisorManager", "Can't set up hypervisor on port %i, please check the settings (writable working directory ...)") % hypervisor['port'])
-            if globals.GApp.dynagen.dynamips.has_key(self.dynamips.HypervisorManager_binding + ':' + str(hypervisor['port'])):
-                del globals.GApp.dynagen.dynamips[self.dynamips.HypervisorManager_binding + ':' + str(hypervisor['port'])]
+                                       translate("HypervisorManager", "Can't set up hypervisor on %s port %i, please check the settings (writable working directory ...)") % (hypervisor['host'], hypervisor['port']))
+            if globals.GApp.dynagen.dynamips.has_key(hypervisor['host'] + ':' + str(hypervisor['port'])):
+                del globals.GApp.dynagen.dynamips[hypervisor['host'] + ':' + str(hypervisor['port'])]
             hypervisor['proc_instance'].close()
             hypervisor['proc_instance'] = None
             count = 0
@@ -231,7 +242,7 @@ class HypervisorManager(object):
                     break
                 count += 1
             return None
-        debug("Hypervisor manager: create a new hypervisor on port " + str(hypervisor['port']))
+        debug("Hypervisor manager: create a new hypervisor on %s port %i" % (hypervisor['host'], hypervisor['port']))
         globals.GApp.dynagen.update_running_config()
         dynamips_hypervisor.configchange = True
         dynamips_hypervisor.udp = globals.GApp.dynagen.globaludp
@@ -243,30 +254,31 @@ class HypervisorManager(object):
         node.set_hypervisor(dynamips_hypervisor)
         return hypervisor
 
-    def unallocateHypervisor(self, node, port):
+    def unallocateHypervisor(self, node, host, port):
         """ Unallocate a hypervisor for a given node
         """
 
         for hypervisor in self.hypervisors:
-            if hypervisor['port'] == int(port):
-                debug("Hypervisor manager: unallocate hypervisor (port: " + str(port) + ") for node " + node.hostname)
+            if hypervisor['host'] == host and hypervisor['port'] == int(port):
+                debug("Hypervisor manager: unallocate hypervisor on %s port %i for node %s" % (host, port, node.hostname))
                 hypervisor['load'] -= node.default_ram
                 if hypervisor['load'] <= 0:
                     hypervisor['load'] = 0
                 break
 
-    def changeHypervisorLoad(self, node, port, old_default_ram):
-        """ Change the hypervisor RAM load for a given node
-        """
-
-        for hypervisor in self.hypervisors:
-            if hypervisor['port'] == int(port):
-                debug("Hypervisor manager: change hypervisor load (port: " + str(port) + ") for node " + node.hostname)
-                hypervisor['load'] -= old_default_ram
-                if hypervisor['load'] <= 0:
-                    hypervisor['load'] = 0
-                hypervisor['load'] += node.default_ram
-                break
+#FIXME: useless?
+#    def changeHypervisorLoad(self, node, port, old_default_ram):
+#        """ Change the hypervisor RAM load for a given node
+#        """
+#
+#        for hypervisor in self.hypervisors:
+#            if hypervisor['port'] == int(port):
+#                debug("Hypervisor manager: change hypervisor load on %s port %i" % (self.dynamips.HypervisorManager_binding, port, node.hostname))
+#                hypervisor['load'] -= old_default_ram
+#                if hypervisor['load'] <= 0:
+#                    hypervisor['load'] = 0
+#                hypervisor['load'] += node.default_ram
+#                break
 
     def getHypervisor(self, port):
         """ Get a hypervisor from the hypervisor manager
@@ -288,14 +300,14 @@ class HypervisorManager(object):
             if isinstance(hypervisor, lib.Dynamips):
                 try:
                     if globals.GApp.dynagen.dynamips.has_key(hypervisor.host + ':' + hypervisor.port):
-                        debug("Hypervisor manager: reset and close hypervisor on port " + str(hypervisor['port']))
+                        debug("Hypervisor manager: reset and close hypervisor on %s port %i" % (hypervisor['host'], hypervisor['port']))
                         hypervisor.reset()
                         hypervisor.close()
                         del globals.GApp.dynagen.dynamips[hypervisor.host + ':' + hypervisor.port]
                 except:
                     continue
         for hypervisor in self.hypervisors:
-            debug("Hypervisor manager: close hypervisor on port " + str(hypervisor['port']))
+            debug("Hypervisor manager: close hypervisor on %s port %i" % (hypervisor['host'], hypervisor['port']))
             hypervisor['proc_instance'].terminate()
             time.sleep(0.5)
             hypervisor['proc_instance'].close()
@@ -311,24 +323,29 @@ class HypervisorManager(object):
 
         if self.hypervisor_wd:
             # set the working directory
-            proc.setWorkingDirectory(self.hypervisor_wd)
-        # start dynamips in hypervisor mode (-H)
-        #FIXME: Dynamips ignores this format: -H <IP address:port> (bug inside Dynamips, for now binds on 0.0.0.0)
-        proc.start(self.hypervisor_path,  ['-H', str(port)])
+            proc.setWorkingDirectory(self.hypervisor_wd)        
+        try:
+            # start dynamips in hypervisor mode (-H)
+            # Dynamips version 0.2.8-RC3 and before cannot accept a specific port when binding on a chosen address with param -H <IP address:port> (bug is inside Dynamips).
+            if self.dynamips.detected_version and LooseVersion(self.dynamips.detected_version) > '0.2.8-RC3':
+                proc.start(self.hypervisor_path,  ['-H', self.dynamips.HypervisorManager_binding + ':' + str(port)])
+            else:
+                proc.start(self.hypervisor_path,  ['-H', str(port)])
+        except:
+            debug('Exception with LooseVersion')
+            proc.start(self.hypervisor_path,  ['-H', str(port)])
+
         if proc.waitForStarted() == False:
             return False
 
         # give 5 seconds to the hypervisor to accept connections
         count = 5
         connection_success = False
+        timeout = 60.0
         for nb in range(count + 1):
-            s = socket(AF_INET, SOCK_STREAM)
-            s.setblocking(0)
-            s.settimeout(300)
             try:
-                s.connect(('localhost', port))
+                s = socket.create_connection((self.dynamips.HypervisorManager_binding, port), timeout)
             except:
-                s.close()
                 time.sleep(1)
                 continue
             connection_success = True
@@ -345,8 +362,8 @@ class HypervisorManager(object):
         """ Show hypervisors port & load
         """
 
-        print "Memory usage limit per hypervisor : " + str(self.dynamips.memory_limit) + " MB"
-        print '%-10s %-10s' % ('Port','Memory load')
+        print "Memory usage limit per hypervisor: %i MB" % self.dynamips.memory_limit
+        print '%-10s %-10s %-10s' % ('Host/Binding','Port','Memory load')
         for hypervisor in self.hypervisors:
-            print '%-10s %-10s' % (hypervisor['port'], str(hypervisor['load']) + ' MB')
+            print '%-10s %-10s %-10s' % (hypervisor['host'], hypervisor['port'], str(hypervisor['load']) + ' MB')
 

@@ -22,12 +22,9 @@
 #This class is used to start "qemuwrapper" automatically on localhost.
 #It is not used, if you start wrapper manually.
 
-import os
-import sys
-import time
+import os, sys, time, socket
 import GNS3.Globals as globals
 import GNS3.Dynagen.qemu_lib as qlib
-from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug, killAll
 from __main__ import VERSION
@@ -45,32 +42,23 @@ class QemuManager(object):
     def __del__(self):
         """ Kill Qemu
         """
-        #print "Entered QemuManager::__del__()"
+
         if self.proc:
             self.proc.kill()
 
-    def waitQemu(self):
+    def waitQemu(self, binding):
         """ Wait Qemu until it accepts connections
         """
-        #print "Entered QemuManager::waitQemu()"
-        binding = globals.GApp.systconf['qemu'].QemuManager_binding
 
         # give 15 seconds to Qemu to accept connections
         count = 15
         progress = None
         connection_success = False
-        #debug("Qemu manager: connect on " + str(self.port))
-        debug("Qemu manager: connecting to %s on port %s" % (str(globals.GApp.systconf['qemu'].QemuManager_binding), str(self.port)))
+        timeout = 60.0
+        debug("Qemu manager: connecting to %s on port %i" % (binding, self.port))
         for nb in range(count + 1):
-            if binding.__contains__(':'):
-                # IPv6 address support
-                s = socket(AF_INET6, SOCK_STREAM)
-            else:
-                s = socket(AF_INET, SOCK_STREAM)
-            s.setblocking(0)
-            s.settimeout(300)
             if nb == 3:
-                progress = QtGui.QProgressDialog(translate("QemuManager", "Connecting to Qemu on port %i ...") % self.port,
+                progress = QtGui.QProgressDialog(translate("QemuManager", "Connecting to Qemu on %s port %i ...") % (binding, self.port),
                                                  translate("QemuManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
@@ -82,9 +70,8 @@ class QemuManager(object):
                     progress.reset()
                     break
             try:
-                s.connect((binding, self.port))
+                s = socket.create_connection((binding, self.port), timeout)
             except:
-                s.close()
                 time.sleep(1)
                 continue
             connection_success = True
@@ -95,7 +82,7 @@ class QemuManager(object):
             time.sleep(0.2)
         else:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Qemu Manager',
-                                       translate("QemuManager", "Can't connect to Qemu on port %i") % self.port)
+                                       translate("QemuManager", "Can't connect to Qemu on %s port %i") % (binding, self.port))
             self.stopQemu()
             return False
         if progress:
@@ -104,11 +91,12 @@ class QemuManager(object):
             progress = None
         return True
 
-    def startQemu(self, port):
+    def startQemu(self, port, binding=None):
         """ Start Qemu
         """
-        #print "Entered QemuManager::startQemu()"
-        binding = globals.GApp.systconf['qemu'].QemuManager_binding
+
+        if binding == None:
+            binding = globals.GApp.systconf['qemu'].QemuManager_binding
         self.port = port
         if self.proc and self.proc.state():
             debug("QemuManager: Qemu is already started with pid %i" % int(self.proc.pid()))
@@ -123,21 +111,15 @@ class QemuManager(object):
             self.proc.setWorkingDirectory(globals.GApp.systconf['qemu'].qemuwrapper_workdir)
 
         # test if Qemu is already running on this port
-        if binding.__contains__(':'):
-            # IPv6 address support
-            s = socket(AF_INET6, SOCK_STREAM)
-        else:
-            s = socket(AF_INET, SOCK_STREAM)
-        s.setblocking(0)
-        s.settimeout(300)
+        timeout = 60.0
         try:
-            s.connect((binding, self.port))
+            s = socket.create_connection((binding, self.port), timeout)
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Qemu Manager',
-                                      translate("QemuManager", "Qemu is already running on port %i, it will not be shutdown after you quit GNS3") % self.port)
+                                      translate("QemuManager", "Qemu is already running on %s port %i, it will not be shutdown after you quit GNS3") % (binding, self.port))
             s.close()
             return True
         except:
-            s.close()
+            pass
 
         # start Qemuwrapper, use python on all platform but Windows (in release mode)
         binding = globals.GApp.systconf['qemu'].QemuManager_binding
@@ -150,10 +132,10 @@ class QemuManager(object):
             self.proc.start(sys.executable,  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding, '--port', str(self.port), '--no-path-check'])
 
         if self.proc.waitForStarted() == False:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Qemu Manager', translate("QemuManager", "Can't start Qemu on port %i") % self.port)
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Qemu Manager', translate("QemuManager", "Can't start Qemu on %s port %i") % (binding, self.port))
             return False
 
-        self.waitQemu()
+        self.waitQemu(binding)
         if self.proc and self.proc.state():
             debug("QemuManager: Qemu has been started with pid %i"  % int(self.proc.pid()))
         return True
@@ -161,7 +143,7 @@ class QemuManager(object):
     def stopQemu(self):
         """ Stop Qemu
         """
-        #print "Entered QemuManager::stopQemu()"
+
         for hypervisor in globals.GApp.dynagen.dynamips.values():
             if isinstance(hypervisor, qlib.Qemu):
                 try:
@@ -179,7 +161,7 @@ class QemuManager(object):
     def preloadQemuwrapper(self):
         """ Preload Qemuwrapper
         """
-        #print "Entered QemuManager::preloadQemuwrapper()"
+
         proc = QtCore.QProcess(globals.GApp.mainWindow)
         binding = globals.GApp.systconf['qemu'].QemuManager_binding
 
@@ -206,18 +188,11 @@ class QemuManager(object):
         # give 5 seconds to the hypervisor to accept connections
         count = 5
         connection_success = False
+        timeout = 60.0
         for nb in range(count + 1):
-            if binding.__contains__(':'):
-                # IPv6 address support
-                s = socket(AF_INET6, SOCK_STREAM)
-            else:
-                s = socket(AF_INET, SOCK_STREAM)
-            s.setblocking(0)
-            s.settimeout(300)
             try:
-                s.connect((binding, self.port))
+                s = socket.create_connection((binding, self.port), timeout)
             except:
-                s.close()
                 time.sleep(1)
                 continue
             connection_success = True

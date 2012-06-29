@@ -80,9 +80,7 @@ class portTracker:
                         s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
                     else:
                         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                    #FIXME: for now bind on 0.0.0.0 (default for dynamips. A bug inside Dynamips prevent us to bind it to a specific address!)
-                    #s.bind((host, port))
-                    s.bind(('0.0.0.0', port))
+                    s.bind((host, port))
                 except socket.error, e:
                     # Not available
                     if (max_port != 0):

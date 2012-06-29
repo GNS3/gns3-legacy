@@ -360,6 +360,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
             proc = console.connect(self.emudev.dynamips.host, self.emudev.console, self.hostname)
             if proc:
                 self.consoleProcesses.append(proc)
+        AbstractNode.clearClosedConsoles(self)
 
     def isStarted(self):
         """ Returns True if this device is started
