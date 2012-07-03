@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ConfigurationPages/Form_VirtualBoxPage.ui'
+# Form implementation generated from reading ui file 'ConfigurationPages/Form_VirtualBoxPage.ui'
 #
-# Created: Sun Jun 17 21:09:14 2012
+# Created: Mon Jul  2 21:06:17 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -31,6 +31,7 @@ class Ui_VirtualBoxPage(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEditImage.sizePolicy().hasHeightForWidth())
         self.lineEditImage.setSizePolicy(sizePolicy)
+        self.lineEditImage.setReadOnly(True)
         self.lineEditImage.setObjectName(_fromUtf8("lineEditImage"))
         self.gridLayout.addWidget(self.lineEditImage, 0, 1, 1, 1)
         self.label_37 = QtGui.QLabel(VirtualBoxPage)

@@ -376,6 +376,7 @@ class NETFile(object):
         cloud.setPos(x, y)
         config = {}
         config['nios'] = [nio]
+        config['rpcap_mapping'] = dict(self.dynagen.getRpcapMapping())
         cloud.set_config(config)
         QtCore.QObject.connect(cloud, QtCore.SIGNAL("Add link"), globals.GApp.scene.slotAddLink)
         QtCore.QObject.connect(cloud, QtCore.SIGNAL("Delete link"), globals.GApp.scene.slotDeleteLink)
@@ -1033,7 +1034,6 @@ class NETFile(object):
                     self.dynagen.running_config['GNS3-DATA'] = {}
                 self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
                 config = self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)]
-
                 config['text'] = '"' + unicode(item.toPlainText(), 'utf-8', errors='replace').replace("\n", "\\n") + '"'
                 config['x'] = item.x()
                 config['y'] = item.y()
