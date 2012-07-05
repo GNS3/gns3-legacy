@@ -27,11 +27,13 @@ from GNS3.Dynagen.dynagen import Dynagen, DEVICETUPLE
 from GNS3.Utils import translate, debug, getWindowsInterfaces
 from PyQt4 import QtCore, QtGui
 
+
 def debugmsg(level, message):
     if debuglevel == 0:
         return
     if debuglevel >= level:
         print message
+
 
 class DynagenSub(Dynagen):
     """ Subclass of Dynagen
@@ -48,7 +50,7 @@ class DynagenSub(Dynagen):
         """
         debugmsg(2, "DynagenSub::check_replace_GUID_NIO(%s)" % unicode(filename))
 
-        file = open(filename,'r')
+        file = open(filename, 'r')
         lines = file.readlines()
         cregex = re.compile("^.*nio_gen_eth:(.*)")
         niolist = []
@@ -107,7 +109,7 @@ class DynagenSub(Dynagen):
 
         if len(niolist):
             # write changes
-            file = open(filename,'w')
+            file = open(filename, 'w')
             for line in lines:
                 file.write(line)
             file.close()
@@ -115,7 +117,7 @@ class DynagenSub(Dynagen):
     def getHost(self, i_strAddress):
         # IPv6: gets the "host" portion from "host:port" string
         elements = i_strAddress.split(':')
-        for x in range(len(elements)-1): #Except TCP port
+        for x in range(len(elements) -1) : #Except TCP port
             if x == 0:
                 hostname = elements[x]
             else:
@@ -350,8 +352,6 @@ class DynagenSub(Dynagen):
 
                     if server['workingdir'] == '.':
                         server['workingdir'] = os.path.dirname(FILENAME)
-
-
                     # check if the working directory is accessible, if not find an alternative working directory
                     if not server.has_key('workingdir') or not server['workingdir'] or not os.access(server['workingdir'], os.F_OK):
                         if globals.GApp.workspace.projectWorkdir and os.access(globals.GApp.workspace.projectWorkdir, os.F_OK):
@@ -425,7 +425,7 @@ class DynagenSub(Dynagen):
                             if not os.access(device['cnfg'], os.F_OK):
                                 if globals.GApp.workspace.projectConfigs:
 
-                                    basename =  os.path.basename(device['cnfg'])
+                                    basename = os.path.basename(device['cnfg'])
                                     if sys.platform.startswith('win') and basename == device['cnfg']:
                                         # basename is the same as the original path, maybe it's an unix/posix path
                                         import posixpath

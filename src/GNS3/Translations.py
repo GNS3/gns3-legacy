@@ -25,6 +25,7 @@ from GNS3.Utils import debug
 import GNS3.Langs
 import __main__
 
+
 class Translator(object):
 
     def __init__(self):
@@ -73,7 +74,7 @@ class Translator(object):
             fileNames = d.entryList(QtCore.QStringList("*.qm"),
                                     QtCore.QDir.Files, QtCore.QDir.Name)
             for file in fileNames:
-                lang_filename = i18n_dir + str(d.separator().toAscii()) +  file
+                lang_filename = i18n_dir + str(d.separator().toAscii()) + file
                 # Remove file prefix (Lang_)
                 lang = str(file)[5:]
                 # if extended notation used, take 5 chars an language code
@@ -97,11 +98,11 @@ class Translator(object):
                     self.__langs[lang_code] = {
                         'code': lang_code,
                         'name': lang_name,
-                        'dirs': [ i18n_dir ],
+                        'dirs': [i18n_dir ],
                     }
 
         # Do some cleanup, and sort langs code
-        for (k,v) in self.__langs.iteritems():
+        for (k, v) in self.__langs.iteritems():
             # reverse directory order,
             # so first dir = last found
             v['dirs'].reverse()
@@ -186,9 +187,8 @@ class Translator(object):
         for widget in globals.GApp.topLevelWidgets():
             try:
                 widget.retranslateUi(widget)
-            except Exception,e:
+            except Exception, e:
                 # simply ignore topLevelWidgets which don't
                 # have a retranslateUi method
                 pass
         return True
-

@@ -25,6 +25,7 @@ from GNS3.Utils import translate, debug
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Ui.Form_IDLEPCDialog import Ui_IDLEPCDialog
 
+
 class IDLEPCDialog(QtGui.QDialog, Ui_IDLEPCDialog):
     """ IDLEPCDialog class
     """
@@ -81,5 +82,3 @@ class IDLEPCDialog(QtGui.QDialog, Ui_IDLEPCDialog):
         else:
             self.apply(message=True)
             QtGui.QDialog.accept(self)
-
-

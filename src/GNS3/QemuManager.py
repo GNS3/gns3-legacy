@@ -31,6 +31,7 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug, killAll
 from __main__ import VERSION
 
+
 class QemuManager(object):
     """ QemuManager class
     """
@@ -233,7 +234,7 @@ class QemuManager(object):
                 endVerOffset = output.indexOf(ver, verOffset) - verOffset
                 wrapperVer = output.mid(verOffset, endVerOffset)
                 if wrapperVer != VERSION:
-                    print 'QemuManager: qemuwrapper version check failed: (' + wrapperVer  + '|' + VERSION + ')'
+                    print 'QemuManager: qemuwrapper version check failed: (' + wrapperVer + '|' + VERSION + ')'
                     print 'QemuManager: please update your qemuwrapper and check its path in the settings'
                     proc.close()
                     return False

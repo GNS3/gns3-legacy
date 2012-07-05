@@ -24,6 +24,7 @@ from GNS3.Ui.Form_Wizard import Ui_Wizard
 from GNS3.IOSDialog import IOSDialog
 from GNS3.Config.Preferences import PreferencesDialog
 
+
 class Wizard(QtGui.QDialog, Ui_Wizard):
     """ Wizard class
     """

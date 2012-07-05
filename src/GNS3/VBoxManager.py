@@ -30,6 +30,7 @@ from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug, killAll
 
+
 class VBoxManager(object):
     """ VBoxManager class
     """

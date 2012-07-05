@@ -24,6 +24,7 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_NewProject import Ui_NewProject
 from GNS3.Utils import fileBrowser, translate
 
+
 class ProjectDialog(QtGui.QDialog, Ui_NewProject):
     """ ProjectDialog class
     """

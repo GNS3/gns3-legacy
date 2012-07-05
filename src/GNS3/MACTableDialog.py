@@ -24,6 +24,7 @@ from GNS3.Utils import translate
 import GNS3.Dynagen.dynamips_lib as lib
 import socket
 
+
 class MACTableDialog(QtGui.QDialog, Ui_MACTableDialog):
     """ MACTableDialog class
     """
@@ -86,5 +87,3 @@ class MACTableDialog(QtGui.QDialog, Ui_MACTableDialog):
         """
 
         QtGui.QDialog.accept(self)
-
-

@@ -28,6 +28,7 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_StartupConfig import Ui_StartupConfigDialog
 from GNS3.Utils import fileBrowser, translate
 
+
 class StartupConfigDialog(QtGui.QDialog, Ui_StartupConfigDialog):
     """ StartupConfigDialog class
     """

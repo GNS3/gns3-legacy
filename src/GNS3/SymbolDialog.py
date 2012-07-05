@@ -21,6 +21,7 @@
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Ui.Form_SymbolDialog import Ui_SymbolDialog
 
+
 class SymbolDialog(QtGui.QDialog, Ui_SymbolDialog):
     """ SymbolManager class
     """

@@ -21,13 +21,14 @@
 from PyQt4 import QtGui, QtCore
 import GNS3.Globals as globals
 
+
 class AbstractShapeItem(object):
     """ Abstract class to draw shapes on the scene
     """
 
     def __init__(self):
 
-        self.setFlags(QtGui.QGraphicsItem.ItemIsMovable |  QtGui.QGraphicsItem.ItemIsFocusable | QtGui.QGraphicsItem.ItemIsSelectable)
+        self.setFlags(QtGui.QGraphicsItem.ItemIsMovable | QtGui.QGraphicsItem.ItemIsFocusable | QtGui.QGraphicsItem.ItemIsSelectable)
         self.setAcceptsHoverEvents(True)
         self.border = 5
         self.rotation = 0
@@ -57,19 +58,19 @@ class AbstractShapeItem(object):
     def mousePressEvent(self, event):
 
         self.update()
-        if event.pos().x() > (self.rect().right() - self.border) :
+        if event.pos().x() > (self.rect().right() - self.border):
             self.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
             self.edge = 'right'
 
-        elif event.pos().x() < (self.rect().left() + self.border) :
+        elif event.pos().x() < (self.rect().left() + self.border):
             self.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
             self.edge = 'left'
 
-        elif event.pos().y() < (self.rect().top() + self.border) :
+        elif event.pos().y() < (self.rect().top() + self.border):
             self.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
             self.edge = 'top'
 
-        elif event.pos().y() > (self.rect().bottom() - self.border) :
+        elif event.pos().y() > (self.rect().bottom() - self.border):
             self.setFlag(QtGui.QGraphicsItem.ItemIsMovable, False)
             self.edge = 'bottom'
 
@@ -122,7 +123,7 @@ class AbstractShapeItem(object):
                     pos = self.mapFromScene(scenePos)
                     self.setRect(0, 0, pos.x(), self.rect().height())
                 else:
-                    self.setRect(0,0, abs(scenePos.x() - self.x()), self.rect().height())
+                    self.setRect(0, 0, abs(scenePos.x() - self.x()), self.rect().height())
                     self.setPos(scenePos.x(), self.y())
                     self.edge = 'left'
 
@@ -132,13 +133,13 @@ class AbstractShapeItem(object):
 
         # objects on the background layer doesn't need cursors
         if self.zValue() >= 0:
-            if event.pos().x() > (self.rect().right() - self.border) :
+            if event.pos().x() > (self.rect().right() - self.border):
                 globals.GApp.scene.setCursor(QtCore.Qt.SizeHorCursor)
-            elif event.pos().x() < (self.rect().left() + self.border) :
+            elif event.pos().x() < (self.rect().left() + self.border):
                 globals.GApp.scene.setCursor(QtCore.Qt.SizeHorCursor)
-            elif event.pos().y() < (self.rect().top() + self.border) :
+            elif event.pos().y() < (self.rect().top() + self.border):
                 globals.GApp.scene.setCursor(QtCore.Qt.SizeVerCursor)
-            elif event.pos().y() > (self.rect().bottom() - self.border) :
+            elif event.pos().y() > (self.rect().bottom() - self.border):
                 globals.GApp.scene.setCursor(QtCore.Qt.SizeVerCursor)
             else:
                 globals.GApp.scene.setCursor(QtCore.Qt.SizeAllCursor)
@@ -166,11 +167,12 @@ class AbstractShapeItem(object):
 
         painter.setBrush(QtCore.Qt.red)
         painter.setPen(QtCore.Qt.red)
-        painter.drawRect((brect.width() / 2.0) - 10, (brect.height() / 2.0) - 10, 20,20)
+        painter.drawRect((brect.width() / 2.0) - 10, (brect.height() / 2.0) - 10, 20, 20)
         painter.setPen(QtCore.Qt.black)
         painter.setFont(QtGui.QFont("TypeWriter", 14, QtGui.QFont.Bold))
         zval = str(int(self.zValue()))
         painter.drawText(QtCore.QPointF(center.x() - 4, center.y() + 4), zval)
+
 
 class Rectangle(AbstractShapeItem, QtGui.QGraphicsRectItem):
     """ Class to draw a rectangle on the scene
@@ -188,6 +190,7 @@ class Rectangle(AbstractShapeItem, QtGui.QGraphicsRectItem):
 
         QtGui.QGraphicsRectItem.paint(self, painter, option, widget)
         self.drawLayerInfo(painter)
+
 
 class Ellipse(AbstractShapeItem, QtGui.QGraphicsEllipseItem):
     """ Class to draw an ellipse on the scene

@@ -32,6 +32,7 @@ from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice
 from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
 
+
 class Console(PyCutExt, Dynagen_Console):
 
     # list of keywords to color
@@ -80,7 +81,7 @@ class Console(PyCutExt, Dynagen_Console):
             # put our own keywords list
             self.colorizer.keywords = self.keywords
             self._Dynagen_Console_init()
-        except Exception,e:
+        except Exception, e:
             sys.stderr.write(e.message)
 
     def _Dynagen_Console_init(self):
@@ -152,7 +153,7 @@ class Console(PyCutExt, Dynagen_Console):
             source = '\n'.join(self.lines)
             # Exec!
             self.more = self.onecmd(source)
-        except Exception,e:
+        except Exception, e:
             print e
 
         self.write(self.prompt)
@@ -167,7 +168,7 @@ class Console(PyCutExt, Dynagen_Console):
         from __main__ import VERSION, GNS3_RUN_PATH
 
         bitness = struct.calcsize("P") * 8
-        pythonver = str(sys.version_info[0])+'.'+str(sys.version_info[1])+'.'+str(sys.version_info[2])
+        pythonver = str(sys.version_info[0]) + '.' +str(sys.version_info[1])+'.'+str(sys.version_info[2])
         if hasattr(sys, "frozen"):
             print 'GNS3 version is ' + VERSION + " (compiled)"
         else:
@@ -181,7 +182,7 @@ class Console(PyCutExt, Dynagen_Console):
 
         try:
             Dynagen_Console.do_ver(self, args)
-        except Exception,e:
+        except Exception, e:
             print e
 
     def do_start(self, args):
@@ -359,7 +360,7 @@ Examples:
             if command == 'mac':
                 try:
                     Dynagen_Console.do_clear(self, args)
-                except Exception,e:
+                except Exception, e:
                     print e
         except ValueError:
             print translate("Console", "Incorrect number of paramaters or invalid parameters")
@@ -471,7 +472,7 @@ Examples:
                                 router = node.get_dynagen_device()
                                 if globals.GApp.iosimages.has_key(router.dynamips.host + ':' + router.image):
                                     image = globals.GApp.iosimages[router.dynamips.host + ':' + router.image]
-                                    image.idlepc =  idles[int(selection)]
+                                    image.idlepc = idles[int(selection)]
                     except:
                         print translate("Console", "Can't apply idlepc value")
             else:

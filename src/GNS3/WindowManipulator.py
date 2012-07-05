@@ -26,6 +26,7 @@ import sys
 import subprocess as sub
 #from GNS3.Utils import debug
 
+
 def debugmsg(level, message):
     if debuglevel >= level:
         print message
@@ -34,6 +35,7 @@ try:
     import win32gui, win32con
 except:
     pass
+
 
 def bringWindowToFront(parent_window_name, child_window_name):
     # Attempts to bring window to front, and returns True if succeeds.
@@ -62,7 +64,7 @@ def bringWindowToFront(parent_window_name, child_window_name):
         elif sys.platform.startswith('darwin'):
             # Not implemented.
             return False
-        else: # X11-based UNIX-like system
+        else:  # X11-based UNIX-like system
             # Hint: use "xdotool" and "xwininfo -root -tree -int" (part of Debian's "x11-utils")
             p = sub.Popen('xdotool search "%s" | head -1' % str(child_window_name), shell=True, stdout=sub.PIPE, stderr=sub.PIPE)
             hwnd = int(p.communicate()[0])
@@ -76,6 +78,7 @@ def bringWindowToFront(parent_window_name, child_window_name):
 CHILD_WINDOW_HANDLERS = []
 CHILD_WINDOW_NAMES = []
 
+
 def _findChildWindows(hwnd, starttext):
     #debugmsg(3, "ADEBUG: WindowManipulator.py: _findChildWindows(%s)" % (str(hwnd), str(starttext)))
     s = win32gui.GetWindowText(hwnd)
@@ -86,6 +89,7 @@ def _findChildWindows(hwnd, starttext):
         debugmsg(2, "ADEBUG: WindowManipulator.py: _findChildWindows(), CHILD_WINDOW_NAME = %s, CHILD_WINDOW_HANDLER = %s" % (str(s), str(hwnd)))
         return None
     return 1
+
 
 def activateWindow(hwnd):
     debugmsg(3, "ADEBUG: WindowManipulator.py: activateWindow(%s)" % str(hwnd))
@@ -103,7 +107,7 @@ def activateWindow(hwnd):
     elif sys.platform.startswith('darwin'):
         # Not implemented.
         return False
-    else: # X11-based UNIX-like system
+    else:  # X11-based UNIX-like system
         try:
             sub.Popen("xdotool windowmap %d" % hwnd, shell=True)
             p = sub.Popen("xdotool windowactivate %d" % hwnd, shell=True, stdout=sub.PIPE, stderr=sub.PIPE)
@@ -118,6 +122,7 @@ def activateWindow(hwnd):
         except:
             return False
 
+
 def hideWindow(hwnd):
     debugmsg(3, "ADEBUG: WindowManipulator.py: hideWindow(%s)" % str(hwnd))
     hwnd = int(hwnd)
@@ -130,7 +135,7 @@ def hideWindow(hwnd):
     elif sys.platform.startswith('darwin'):
         # Not implemented.
         return False
-    else: # X11-based UNIX-like system
+    else:  # X11-based UNIX-like system
         try:
             sub.Popen("xdotool windowunmap %d" % hwnd, shell=True)
         except:

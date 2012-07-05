@@ -27,6 +27,7 @@ from GNS3.Node.DecorativeNode import DecorativeNode
 from GNS3.Ui.Form_SymbolManager import Ui_SymbolManager
 from GNS3.Utils import translate, fileBrowser
 
+
 class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
     """ SymbolManager class
     """
@@ -104,7 +105,7 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
                            {'name': name, 'object': DecorativeNode,
                             'normal_svg_file': normal_svg_file,
                             'select_svg_file': selected_svg_file,
-                            'translated': False })
+                            'translated': False})
 
             item = QtGui.QTreeWidgetItem(self.treeWidgetNodes)
             item.setText(0, name)
@@ -117,7 +118,6 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
             if index != -1:
                 self.comboBoxNodeType.setCurrentIndex(index)
             self.treeWidgetNodes.setCurrentItem(item)
-
 
     def slotRemove(self):
         """ Remove a symbol from the node list
@@ -161,7 +161,6 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
             self.pushButtonAdd.setEnabled(False)
             self.pushButtonRemove.setEnabled(True)
             self.treeWidgetSymbols.clearSelection()
-
 
     def slotSymbolSelectionChanged(self):
         """ Check if an entry is selected in the list of symbols
@@ -253,5 +252,3 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
         if path is not None and path != '':
             self.lineEditLibrary.clear()
             self.lineEditLibrary.setText(os.path.normpath(path))
-
-

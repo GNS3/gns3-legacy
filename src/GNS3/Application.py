@@ -41,6 +41,7 @@ from GNS3.ProjectDialog import ProjectDialog
 from GNS3.Wizard import Wizard
 from __main__ import VERSION
 
+
 class Application(QApplication, Singleton):
     """ GNS3 Application instance
         Used for containing global app variable,
@@ -108,7 +109,7 @@ class Application(QApplication, Singleton):
 
         return self.__mainWindow
 
-    mainWindow = property(__getMainWindow, __setMainWindow, doc = 'MainWindow instance')
+    mainWindow = property(__getMainWindow, __setMainWindow, doc='MainWindow instance')
 
     def __setWorkspace(self, wkspc):
         """ register the Workspace instance
@@ -122,7 +123,7 @@ class Application(QApplication, Singleton):
 
         return self.__workspace
 
-    workspace = property(__getWorkspace, __setWorkspace, doc = 'Workspace instance')
+    workspace = property(__getWorkspace, __setWorkspace, doc='Workspace instance')
 
     def __setScene(self, scene):
         """ register the Scene instance
@@ -136,7 +137,7 @@ class Application(QApplication, Singleton):
 
         return self.__scene
 
-    scene = property(__getScene, __setScene, doc = 'Scene instance')
+    scene = property(__getScene, __setScene, doc='Scene instance')
 
     def __setTopology(self, topology):
         """ register the Topology instance
@@ -150,7 +151,7 @@ class Application(QApplication, Singleton):
 
         return self.__topology
 
-    topology = property(__getTopology, __setTopology, doc = 'Topology instance')
+    topology = property(__getTopology, __setTopology, doc='Topology instance')
 
     def __setSystConf(self, systconf):
         """ register the systconf instance
@@ -164,7 +165,7 @@ class Application(QApplication, Singleton):
 
         return self.__systconf
 
-    systconf = property(__getSystConf, __setSystConf, doc = 'System config instance')
+    systconf = property(__getSystConf, __setSystConf, doc='System config instance')
 
     def __setIOSImages(self, iosimages):
         """ register the sysconf instance
@@ -178,7 +179,7 @@ class Application(QApplication, Singleton):
 
         return self.__iosimages
 
-    iosimages = property(__getIOSImages, __setIOSImages, doc = 'IOS images dictionnary')
+    iosimages = property(__getIOSImages, __setIOSImages, doc='IOS images dictionnary')
 
     def __setQemuImages(self, qemuimages):
         """ register the sysconf instance
@@ -192,7 +193,7 @@ class Application(QApplication, Singleton):
 
         return self.__qemuimages
 
-    qemuimages = property(__getQemuImages, __setQemuImages, doc = 'Qemu images dictionnary')
+    qemuimages = property(__getQemuImages, __setQemuImages, doc='Qemu images dictionnary')
 
     def __setVBoxImages(self, vboximages):
         """ register the sysconf instance
@@ -206,7 +207,7 @@ class Application(QApplication, Singleton):
 
         return self.__vboximages
 
-    vboximages = property(__getVBoxImages, __setVBoxImages, doc = 'VBox images dictionnary')
+    vboximages = property(__getVBoxImages, __setVBoxImages, doc='VBox images dictionnary')
 
     def __setPIXImages(self, piximages):
         """ register the sysconf instance
@@ -220,7 +221,7 @@ class Application(QApplication, Singleton):
 
         return self.__piximages
 
-    piximages = property(__getPIXImages, __setPIXImages, doc = 'PIX images dictionnary')
+    piximages = property(__getPIXImages, __setPIXImages, doc='PIX images dictionnary')
 
     def __setJunOSImages(self, junosimages):
         """ register the sysconf instance
@@ -234,7 +235,7 @@ class Application(QApplication, Singleton):
 
         return self.__junosimages
 
-    junosimages = property(__getJunOSImages, __setJunOSImages, doc = 'JunOS images dictionnary')
+    junosimages = property(__getJunOSImages, __setJunOSImages, doc='JunOS images dictionnary')
 
     def __setASAImages(self, asaimages):
         """ register the sysconf instance
@@ -248,7 +249,7 @@ class Application(QApplication, Singleton):
 
         return self.__asaimages
 
-    asaimages = property(__getASAImages, __setASAImages, doc = 'ASA images dictionnary')
+    asaimages = property(__getASAImages, __setASAImages, doc='ASA images dictionnary')
 
     def __setIDSImages(self, idsimages):
         """ register the sysconf instance
@@ -262,7 +263,7 @@ class Application(QApplication, Singleton):
 
         return self.__idsimages
 
-    idsimages = property(__getIDSImages, __setIDSImages, doc = 'IDS images dictionnary')
+    idsimages = property(__getIDSImages, __setIDSImages, doc='IDS images dictionnary')
 
     def __setLibraries(self, libraries):
         """ register the sysconf instance
@@ -276,7 +277,7 @@ class Application(QApplication, Singleton):
 
         return self.__libraries
 
-    libraries = property(__getLibraries, __setLibraries, doc = 'Libraries dictionnary')
+    libraries = property(__getLibraries, __setLibraries, doc='Libraries dictionnary')
 
     def __setRecentFiles(self, recentfiles):
         """ register the sysconf instance
@@ -290,8 +291,7 @@ class Application(QApplication, Singleton):
 
         return self.__recentfiles
 
-    recentfiles = property(__getRecentFiles, __setRecentFiles, doc = 'Recent files array')
-
+    recentfiles = property(__getRecentFiles, __setRecentFiles, doc='Recent files array')
 
     def __setHypervisors(self, hypervisors):
         """ register the sysconf instance
@@ -305,7 +305,7 @@ class Application(QApplication, Singleton):
 
         return self.__hypervisors
 
-    hypervisors = property(__getHypervisors, __setHypervisors, doc = 'Hypervisors dictionnary')
+    hypervisors = property(__getHypervisors, __setHypervisors, doc='Hypervisors dictionnary')
 
     def __setDynagen(self, dynagen):
         """ register the dynagen instance
@@ -319,7 +319,7 @@ class Application(QApplication, Singleton):
 
         return self.__dynagen
 
-    dynagen = property(__getDynagen, __setDynagen, doc = 'Dynagen instance')
+    dynagen = property(__getDynagen, __setDynagen, doc='Dynagen instance')
 
     def __setHypervisorManager(self, HypervisorManager):
         """ register the HypervisorManager instance
@@ -333,7 +333,7 @@ class Application(QApplication, Singleton):
 
         return self.__HypervisorManager
 
-    HypervisorManager = property(__getHypervisorManager, __setHypervisorManager, doc = 'HypervisorManager instance')
+    HypervisorManager = property(__getHypervisorManager, __setHypervisorManager, doc='HypervisorManager instance')
 
     def __setQemuManager(self, QemuManager):
         """ register the QemuManager instance
@@ -347,7 +347,7 @@ class Application(QApplication, Singleton):
 
         return self.__QemuManager
 
-    QemuManager = property(__getQemuManager, __setQemuManager, doc = 'QemuManager instance')
+    QemuManager = property(__getQemuManager, __setQemuManager, doc='QemuManager instance')
 
     def __setVBoxManager(self, VBoxManager):
         """ register the VBoxManager instance
@@ -361,12 +361,11 @@ class Application(QApplication, Singleton):
 
         return self.__VBoxManager
 
-    VBoxManager = property(__getVBoxManager, __setVBoxManager, doc = 'VBoxManager instance')
-
+    VBoxManager = property(__getVBoxManager, __setVBoxManager, doc='VBoxManager instance')
 
     def processSplashScreen(self):
         """ Processes the splash screen, Prints a loading picture before entering the application
-		"""
+        """
 
         self.splashMessage = translate("Application", "Starting Graphical Network Simulator...")
         self.splashSleepTime = 1
@@ -483,7 +482,7 @@ class Application(QApplication, Singleton):
         confo.project_path = ConfDB().get('GNS3/project_directory', Defaults.PROJECT_DEFAULT_DIR)
         confo.ios_path = ConfDB().get('GNS3/ios_directory', Defaults.IOS_DEFAULT_DIR)
         confo.status_points = ConfDB().value("GNS3/gui_show_status_points", QVariant(True)).toBool()
-        confo.manual_connection =ConfDB().value("GNS3/gui_use_manual_connection", QVariant(False)).toBool()
+        confo.manual_connection = ConfDB().value("GNS3/gui_use_manual_connection", QVariant(False)).toBool()
         confo.draw_selected_rectangle = ConfDB().value("GNS3/gui_draw_selected_rectangle", QVariant(False)).toBool()
         confo.scene_width = int(ConfDB().get('GNS3/scene_width', 2000))
         confo.scene_height = int(ConfDB().get('GNS3/scene_height', 1000))

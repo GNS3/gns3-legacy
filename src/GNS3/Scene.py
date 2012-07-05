@@ -23,6 +23,7 @@
 #debuglevel: 0=disabled, 1=default, 2=debug, 3=deep debug
 debuglevel = 0
 
+
 def debugmsg(level, message):
     if debuglevel == 0:
         return
@@ -56,11 +57,12 @@ from GNS3.Node.ATMBR import ATMBR
 from GNS3.Link.Ethernet import Ethernet
 from GNS3.Link.Serial import Serial
 
+
 class Scene(QtGui.QGraphicsView):
     """ Scene class
     """
 
-    def __init__(self, parent = None):
+    def __init__(self, parent=None):
 
         QtGui.QGraphicsView.__init__(self, parent)
 
@@ -462,7 +464,7 @@ class Scene(QtGui.QGraphicsView):
 
         try:
             if globals.GApp.dynagen.devices[router.hostname].idlepc != None:
-                reply = QtGui.QMessageBox.question(globals.GApp.mainWindow,translate("Scene", "IDLE PC"),
+                reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),
                                                    translate("Scene", "%s already has an idlepc value applied, do you want to calculate a new one?") % router.hostname,
                                                    QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
@@ -834,10 +836,10 @@ class Scene(QtGui.QGraphicsView):
                 if (globals.currentLinkType == globals.Enum.LinkType.Serial or globals.currentLinkType == globals.Enum.LinkType.ATM) or \
                     (globals.currentLinkType == globals.Enum.LinkType.Manual and ((interface[0] == 's' or interface[0] == 'a') or (isinstance(node, ATMSW) or isinstance(node, FRSW)))):
                     # interface is serial or ATM
-                    self.newedge = Serial(node, interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake = True)
+                    self.newedge = Serial(node, interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake=True)
                 else:
                     # by default use an ethernet link
-                    self.newedge = Ethernet(node, interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake = True)
+                    self.newedge = Ethernet(node, interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake=True)
                 self.__topology.addItem(self.newedge)
             else:
                 # destination node
@@ -903,7 +905,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         #debug("Drop event %s" % str(list(event.mimeData().formats())))
-        if event.mimeData().hasFormat("text/uri-list") or event.mimeData().hasFormat("application/x-qt-mime-type-name") :
+        if event.mimeData().hasFormat("text/uri-list") or event.mimeData().hasFormat("application/x-qt-mime-type-name"):
             event.acceptProposedAction()
 
     def dropEvent(self, event):

@@ -292,7 +292,7 @@ class Topology(QtGui.QGraphicsScene):
     def getHost(self, i_strAddress):
         # IPv6: gets the "host" portion from "host:port" string
         elements = i_strAddress.split(':')
-        for x in range(len(elements)-1): #Except TCP port
+        for x in range(len(elements) -1)  : #Except TCP port
             if x == 0:
                 hostname = elements[x]
             else:
@@ -612,7 +612,7 @@ class Topology(QtGui.QGraphicsScene):
                     conf = globals.GApp.vboximages[devices[0]]
                     node.image_reference = devices[0]
 
-                vmname = conf.filename  #Qemu's Disk Image equals to VMname/UUID in this release.
+                vmname = conf.filename  # Qemu's Disk Image equals to VMname/UUID in this release.
 
                 for device in self.__nodes.itervalues():
                     if isinstance(device, VBoxDevice) and device.get_config()['image'] == vmname:
@@ -1090,21 +1090,21 @@ class Topology(QtGui.QGraphicsScene):
                 srcdev = src_node.get_dynagen_device()
                 if type(dst_node) == Cloud:
                     if not type(src_node) in (ETHSW, ATMSW, ATMBR, FRSW):
-                        debug('Connect link from ' + srcdev.name + ' ' + srcif +' to ' + dstif)
+                        debug('Connect link from ' + srcdev.name + ' ' + srcif + ' to ' + dstif)
                         self.dynagen.connect(srcdev, srcif, dstif)
                 else:
                     dstdev = dst_node.get_dynagen_device()
-                    debug('Connect link from ' + srcdev.name + ' ' + srcif +' to ' + dstdev.name + ' ' + dstif)
+                    debug('Connect link from ' + srcdev.name + ' ' + srcif + ' to ' + dstdev.name + ' ' + dstif)
                     self.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
             elif isinstance(dst_node, IOSRouter) or isinstance(dst_node, AnyEmuDevice) or isinstance(dst_node, AnyVBoxEmuDevice) or type(dst_node) in (ETHSW, ATMSW, ATMBR, FRSW):
                 dstdev = dst_node.get_dynagen_device()
                 if type(src_node) == Cloud:
                     if not type(dst_node) in (ETHSW, ATMSW, ATMBR, FRSW):
-                        debug('Connect link from ' + dstdev.name + ' ' + srcif +' to ' + dstif)
+                        debug('Connect link from ' + dstdev.name + ' ' + srcif + ' to ' + dstif)
                         self.dynagen.connect(dstdev, dstif, srcif)
                 else:
                     srcdev = src_node.get_dynagen_device()
-                    debug('Connect link from ' + dstdev.name + ' ' + srcif +' to ' + srcdev.name + ' ' + dstif)
+                    debug('Connect link from ' + dstdev.name + ' ' + srcif + ' to ' + srcdev.name + ' ' + dstif)
                     self.dynagen.connect(dstdev, dstif, srcdev.name + ' ' + srcif)
 
         except lib.DynamipsError, msg:
@@ -1158,21 +1158,21 @@ class Topology(QtGui.QGraphicsScene):
                 if isinstance(link.source, IOSRouter) or isinstance(link.source, AnyEmuDevice) or isinstance(link.source, AnyVBoxEmuDevice):
                     srcdev = link.source.get_dynagen_device()
                     if type(link.dest) == Cloud:
-                        debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + link.destIf)
+                        debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf + ' to ' + link.destIf)
                         self.dynagen.disconnect(srcdev, link.srcIf, link.destIf, automatically_remove_unused_slot=False)
                     else:
                         dstdev = link.dest.get_dynagen_device()
-                        debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf +' to ' + dstdev.name + ' ' + link.destIf)
+                        debug('Disconnect link from ' + srcdev.name + ' ' + link.srcIf + ' to ' + dstdev.name + ' ' + link.destIf)
                         self.dynagen.disconnect(srcdev, link.srcIf, dstdev.name + ' ' + link.destIf, automatically_remove_unused_slot=False)
                     link.source.set_config(link.source.get_config())
                 elif isinstance(link.dest, IOSRouter) or isinstance(link.dest, AnyEmuDevice) or isinstance(link.dest, AnyVBoxEmuDevice):
                     dstdev = link.dest.get_dynagen_device()
                     if type(link.source) == Cloud:
-                        debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf +' to ' + link.srcIf)
+                        debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf + ' to ' + link.srcIf)
                         self.dynagen.disconnect(dstdev, link.destIf, link.srcIf, automatically_remove_unused_slot=False)
                     else:
                         srcdev = link.source.get_dynagen_device()
-                        debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf +' to ' + srcdev.name + ' ' + link.srcIf)
+                        debug('Disconnect link from ' + dstdev.name + ' ' + link.destIf + ' to ' + srcdev.name + ' ' + link.srcIf)
                         self.dynagen.disconnect(dstdev, link.destIf, srcdev.name + ' ' + link.srcIf, automatically_remove_unused_slot=False)
                     link.dest.set_config(link.dest.get_config())
 

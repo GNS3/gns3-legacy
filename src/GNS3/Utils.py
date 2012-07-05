@@ -25,6 +25,7 @@ import subprocess
 import tempfile
 from PyQt4 import QtCore, QtGui
 
+
 class  Singleton(object):
     _instance = None
 
@@ -34,12 +35,14 @@ class  Singleton(object):
                                 cls, *args, **kwargs)
         return cls._instance
 
+
 def translate(context, text):
     """ returns the translated text
         context: string (classname)
         text: string (original text)
     """
     return unicode(QtGui.QApplication.translate(context, text, None, QtGui.QApplication.UnicodeUTF8))
+
 
 def testOpenFile(path,  flags='r'):
     """ returns True if the file can be opened
@@ -52,6 +55,7 @@ def testOpenFile(path,  flags='r'):
     except IOError:
         return False
     return True
+
 
 def testIfWritableDir(dirpath):
     """ returns True if the directory is writable
@@ -66,6 +70,7 @@ def testIfWritableDir(dirpath):
         return False
     return True
 
+
 def debug(string):
         """ Print string if debugging is true
         """
@@ -75,11 +80,13 @@ def debug(string):
             curtime = time.strftime("%H:%M:%S")
             print "%s: DEBUG (2): %s" % (curtime, unicode(string))
 
+
 def error(msg):
     """ Print out an error message
     """
 
     print '*** Error:', unicode(msg)
+
 
 def showDetailedMsgBox(parent, title, msg, details, icon=QtGui.QMessageBox.Critical):
 
@@ -89,6 +96,7 @@ def showDetailedMsgBox(parent, title, msg, details, icon=QtGui.QMessageBox.Criti
     msgBox.setIcon(icon)
     msgBox.setDetailedText(details)
     msgBox.exec_()
+
 
 def killAll(process_name):
     """ Killall
@@ -104,14 +112,15 @@ def killAll(process_name):
     except:
         return False
 
+
 def nvram_export(input_file_path, output_file_path):
-    last  = ''
+    last = ''
     start = False
-    eol='\r'
+    eol ='\r'
     regex = re.compile('[^-a-zA-Z0-9`~!@#$%^&*()_=+,./<>?;\':\"{}|\\\[\] \3]+')
 
     if platform.system() == 'Windows':
-        eol='\n'
+        eol ='\n'
 
     try:
         in_file = open(input_file_path,  'rb')
@@ -132,6 +141,7 @@ def nvram_export(input_file_path, output_file_path):
     in_file.close()
     out_file.close()
     return True
+
 
 def getWindowsInterfaces():
     """ Try to detect all available interfaces on Windows
@@ -174,11 +184,12 @@ def getWindowsInterfaces():
         return []
     return interfaces
 
+
 class fileBrowser(object):
     """ fileBrowser class
     """
 
-    def __init__(self, caption, directory = '.', filter = 'All files (*)', parent = None):
+    def __init__(self, caption, directory='.', filter = 'All files (*)', parent = None):
 
         self.filedialog = QtGui.QFileDialog(parent)
         self.selected = QtCore.QString()

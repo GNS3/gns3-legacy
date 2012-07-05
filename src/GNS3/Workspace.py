@@ -42,6 +42,7 @@ from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice, VBoxDevice
 from GNS3.Pixmap import Pixmap
 from GNS3.Export.DeployementWizard import DeployementWizard
 
+
 class Workspace(QMainWindow, Ui_MainWindow):
     """ This class is for managing the whole GUI `Workspace'.
         Currently a Workspace is similar to a MainWindow
@@ -51,7 +52,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # Initialize some variables
         self.projectFile = None
-        self.projectWorkdir= None
+        self.projectWorkdir = None
         self.projectConfigs = None
 
         # Initialize the windows
@@ -230,7 +231,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.menu_File.insertMenu(separator, self.submenu_RecentFiles)
         self.connect(self.submenu_RecentFiles, QtCore.SIGNAL("triggered(QAction *)"), self.slotLoadRecentFile)
 
-
     def slotLoadRecentFile(self, action):
         """ Called when a file is selected from the Recent Files submenu
             action: QtCore.QAction instance
@@ -263,9 +263,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         layoutSizeHint = dialog.layout().sizeHint()
         p = dialog.geometry().center()
-        r = QtCore.QRect(QtCore.QPoint (0, 0), layoutSizeHint)
+        r = QtCore.QRect(QtCore.QPoint(0, 0), layoutSizeHint)
         r.moveCenter(p)
-        dialog.setMinimumSize(QtCore.QSize (0, 0))
+        dialog.setMinimumSize(QtCore.QSize(0, 0))
         dialog.setGeometry(r)
         dialog.setMinimumSize(layoutSizeHint)
 
@@ -517,7 +517,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             directory = globals.GApp.systconf['general'].project_path
 
         (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  \
-                                        filter = 'PNG File (*.png);;GIF File (*.gif);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PBM File (*.pbm);;PGM File (*.pgm);;PPM File (*.ppm);;All files (*.*)',
+                                        filter='PNG File (*.png);;GIF File (*.gif);;JPG File (*.jpeg *.jpg);;BMP File (*.bmp);;XPM File (*.xpm *.xbm);;PBM File (*.pbm);;PGM File (*.pgm);;PPM File (*.ppm);;All files (*.*)',
                                         directory=directory, parent=self).getFile()
         if path != None and path != '':
             path = os.path.normpath(path)
@@ -573,7 +573,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 menu.connect(menu, QtCore.SIGNAL("triggered(QAction *)"), self.__setLinkType)
                 menu.exec_(QtGui.QCursor.pos())
             else:
-                globals.currentLinkType =  globals.Enum.LinkType.Manual
+                globals.currentLinkType = globals.Enum.LinkType.Manual
 
             self.action_AddLink.setText(translate('Workspace', 'Cancel'))
             self.action_AddLink.setIcon(QIcon(':/icons/cancel-connection.svg'))
@@ -870,7 +870,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         translated_action = ""
         node_list = []
         if autostart == True:
-            for (hostname,value) in globals.GApp.dynagen.autostart.iteritems():
+            for (hostname, value) in globals.GApp.dynagen.autostart.iteritems():
                 if value == True:
                     node = globals.GApp.topology.getNode(globals.GApp.topology.getNodeID(hostname))
                     node_list.append(node)
@@ -956,7 +956,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         elif sys.platform.startswith('darwin'):
             # Not implemented.
             return False
-        else: # X11-based UNIX-like system
+        else:  # X11-based UNIX-like system
             return winm.bringWindowToFront("", "VirtualBox Manager")
 
     def __action_StartAll(self):
@@ -1066,7 +1066,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             return
 
         if network_reply.error() != QtNetwork.QNetworkReply.NoError and not isSilent:
-            QtGui.QMessageBox.critical(self, translate("Workspace", "Check For Update"),translate("Workspace", "Cannot check for update ... Try again later"))
+            QtGui.QMessageBox.critical(self, translate("Workspace", "Check For Update"), translate("Workspace", "Cannot check for update ... Try again later"))
         else:
             latest_release = str(network_reply.readAll()).rstrip()
 
@@ -1210,7 +1210,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         node.router.cnfg = self.projectConfigs + os.sep + config
 
             if self.projectWorkdir:
-
 
                 unbase = False
                 instances = map(lambda node: isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS), globals.GApp.topology.nodes.values())
@@ -1461,7 +1460,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_Preferences()
             return
 
-        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter = 'NET file (*.net);;All files (*.*)',
+        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter='NET file (*.net);;All files (*.*)',
                                        directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getFile()
 
         if path and (selected == 'NET file (*.net)' or selected == ''):

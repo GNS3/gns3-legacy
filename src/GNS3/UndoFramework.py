@@ -24,11 +24,13 @@ import GNS3.Globals as globals
 from GNS3.Utils import translate
 from PyQt4 import QtGui
 
+
 class UndoView(QtGui.QUndoView):
 
     def __init__(self, parent=None):
 
         QtGui.QUndoView.__init__(self, parent)
+
 
 class AddNode(QtGui.QUndoCommand):
 
@@ -58,6 +60,7 @@ class AddNode(QtGui.QUndoCommand):
         self.node.__del__()
         self.deleted = True
 
+
 class DeleteNode(QtGui.QUndoCommand):
 
     def __init__(self, topology, node):
@@ -78,6 +81,7 @@ class DeleteNode(QtGui.QUndoCommand):
         self.topology.addNode(self.node)
         self.node.set_config(self.config)
 
+
 class AddItem(QtGui.QUndoCommand):
 
     def __init__(self, topology, item, type):
@@ -94,6 +98,7 @@ class AddItem(QtGui.QUndoCommand):
     def undo(self):
 
         self.topology.removeItem(self.item)
+
 
 class DeleteItem(QtGui.QUndoCommand):
 
@@ -113,6 +118,7 @@ class DeleteItem(QtGui.QUndoCommand):
     def undo(self):
 
         self.topology.addItem(self.item)
+
 
 class AddLink(QtGui.QUndoCommand):
 
@@ -150,6 +156,7 @@ class AddLink(QtGui.QUndoCommand):
 
         return self.status
 
+
 class DeleteLink(QtGui.QUndoCommand):
 
     def __init__(self, topology, link):
@@ -186,6 +193,7 @@ class DeleteLink(QtGui.QUndoCommand):
 
         return self.status
 
+
 class AddConfig(QtGui.QUndoCommand):
 
     def __init__(self, node, config, prevConfig):
@@ -203,6 +211,7 @@ class AddConfig(QtGui.QUndoCommand):
     def undo(self):
 
         self.node.set_config(self.previousConfig)
+
 
 class NewHostname(QtGui.QUndoCommand):
 
@@ -231,6 +240,7 @@ class NewHostname(QtGui.QUndoCommand):
             self.node.removeHostname()
             self.node.showHostname()
         self.node.updateToolTips()
+
 
 class NewZValue(QtGui.QUndoCommand):
 
@@ -278,6 +288,7 @@ class NewZValue(QtGui.QUndoCommand):
 
         self.item.update()
 
+
 class NewConsolePort(QtGui.QUndoCommand):
 
     def __init__(self, node, port):
@@ -311,6 +322,7 @@ class NewConsolePort(QtGui.QUndoCommand):
     def getStatus(self):
 
         return self.status
+
 
 class NewAUXPort(QtGui.QUndoCommand):
 
@@ -346,6 +358,7 @@ class NewAUXPort(QtGui.QUndoCommand):
 
         return self.status
 
+
 class NewStartupConfigPath(QtGui.QUndoCommand):
 
     def __init__(self, router, path):
@@ -364,7 +377,7 @@ class NewStartupConfigPath(QtGui.QUndoCommand):
         except lib.DynamipsError, msg:
             self.status = msg
             return
-        config = globals.GApp.dynagen.running_config[self.router.dynamips.host + ':' +  str(self.router.dynamips.port)]['ROUTER ' + self.router.name]
+        config = globals.GApp.dynagen.running_config[self.router.dynamips.host + ':' + str(self.router.dynamips.port)]['ROUTER ' + self.router.name]
         if config.has_key('cnfg'):
             if self.path != 'None':
                 config['cnfg'] = self.path
@@ -377,7 +390,7 @@ class NewStartupConfigPath(QtGui.QUndoCommand):
             self.router.cnfg = self.path.prevPath
         except:
             pass
-        config = globals.GApp.dynagen.running_config[self.router.dynamips.host + ':' +  str(self.router.dynamips.port)]['ROUTER ' + self.router.name]
+        config = globals.GApp.dynagen.running_config[self.router.dynamips.host + ':' + str(self.router.dynamips.port)]['ROUTER ' + self.router.name]
         if config.has_key('cnfg'):
             if self.path.prevPath != None:
                 config['cnfg'] = self.prevPath
@@ -387,6 +400,7 @@ class NewStartupConfigPath(QtGui.QUndoCommand):
     def getStatus(self):
 
         return self.status
+
 
 class NewStartupConfigNvram(QtGui.QUndoCommand):
 
@@ -425,6 +439,7 @@ class NewStartupConfigNvram(QtGui.QUndoCommand):
 
         return self.status
 
+
 class NewAnnotationStyle(QtGui.QUndoCommand):
 
     def __init__(self, item, defaultTextColor, font, rotation):
@@ -459,6 +474,7 @@ class NewAnnotationStyle(QtGui.QUndoCommand):
             self.item.rotate(-self.item.rotation)
         self.item.rotation = self.prevRotation
         self.item.rotate(self.item.rotation)
+
 
 class NewItemStyle(QtGui.QUndoCommand):
 
@@ -495,6 +511,7 @@ class NewItemStyle(QtGui.QUndoCommand):
         self.item.rotation = self.prevRotation
         self.item.rotate(self.item.rotation)
 
+
 class NewAnnotationText(QtGui.QUndoCommand):
 
     def __init__(self, item, prevText):
@@ -518,4 +535,3 @@ class NewAnnotationText(QtGui.QUndoCommand):
             self.item.setPlainText(self.prevText)
             self.hasUndo = True
             self.item.update()
-

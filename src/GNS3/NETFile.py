@@ -21,6 +21,7 @@
 #debuglevel: 0=disabled, 1=default, 2=debug, 3=deep debug
 debuglevel = 0
 
+
 def debugmsg(level, message):
     if debuglevel == 0:
         return
@@ -63,6 +64,7 @@ cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
 emu_hostname_re = re.compile(r"""^[PIX|JUNOS|ASA|IDS|QEMU]([0-9]+)""")
 vbox_emu_hostname_re = re.compile(r"""^[VBOX]([0-9]+)""")
 decorative_hostname_re = re.compile(r"""^N([0-9]+)""")
+
 
 class NETFile(object):
     """ NETFile implementing the .net file import/export
@@ -116,7 +118,7 @@ class NETFile(object):
                                     if remote_device.model_string in ['1710', '1720', '1721', '1750']:
                                         self.add_in_connection_list((device.name, source_interface, remote_device.name, rem_int_name + str(rem_dynagen_port)), connection_list)
                                     else:
-                                        self.add_in_connection_list((device.name, source_interface, remote_device.name, rem_int_name + str(remote_adapter.slot) + "/" +str(rem_dynagen_port)),
+                                        self.add_in_connection_list((device.name, source_interface, remote_device.name, rem_int_name + str(remote_adapter.slot) + "/" + str(rem_dynagen_port)),
                                                                                                                                                                             connection_list)
                                 elif isinstance(remote_device, lib.FRSW) or isinstance(remote_device, lib.ATMSW) or isinstance(remote_device, lib.ETHSW) or isinstance(remote_device, lib.ATMBR):
                                     connection_list.append((device.name, source_interface, remote_device.name, str(remote_port)))
@@ -188,13 +190,13 @@ class NETFile(object):
 
         symbol_name = x = y = z = hx = hy = None
         config = None
-        if   isinstance(device, qlib.AnyEmuDevice)        and self.dynagen.globalconfig['qemu ' + device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
-            config = self.dynagen.globalconfig['qemu ' + device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
-        elif isinstance(device, vboxlib.AnyVBoxEmuDevice) and self.dynagen.globalconfig['vbox ' + device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
-            config = self.dynagen.globalconfig['vbox ' + device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
-        elif self.dynagen.globalconfig.has_key(device.dynamips.host +':' + str(device.dynamips.port)) and \
+        if   isinstance(device, qlib.AnyEmuDevice)        and self.dynagen.globalconfig['qemu ' + device.dynamips.host + ':' + str(device.dynamips.port)].has_key(running_config_name):
+            config = self.dynagen.globalconfig['qemu ' + device.dynamips.host + ':' + str(device.dynamips.port)][running_config_name]
+        elif isinstance(device, vboxlib.AnyVBoxEmuDevice) and self.dynagen.globalconfig['vbox ' + device.dynamips.host + ':' + str(device.dynamips.port)].has_key(running_config_name):
+            config = self.dynagen.globalconfig['vbox ' + device.dynamips.host + ':' + str(device.dynamips.port)][running_config_name]
+        elif self.dynagen.globalconfig.has_key(device.dynamips.host + ':' + str(device.dynamips.port)) and \
             self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)].has_key(running_config_name):
-            config = self.dynagen.globalconfig[device.dynamips.host +':' + str(device.dynamips.port)][running_config_name]
+            config = self.dynagen.globalconfig[device.dynamips.host + ':' + str(device.dynamips.port)][running_config_name]
         elif self.dynagen.globalconfig.has_key(device.dynamips.host) and self.dynagen.globalconfig[device.dynamips.host].has_key(running_config_name):
             config = self.dynagen.globalconfig[device.dynamips.host][running_config_name]
         #print "config = %s" % str(config)
@@ -296,7 +298,7 @@ class NETFile(object):
             conf_image.hypervisors = [host + ':' + str(device.dynamips.port)]
             conf_hypervisor = hypervisorConf()
             conf_hypervisor.id = globals.GApp.hypervisors_ids
-            globals.GApp.hypervisors_ids +=1
+            globals.GApp.hypervisors_ids += 1
             conf_hypervisor.host = host
             conf_hypervisor.port = device.dynamips.port
             conf_hypervisor.workdir = unicode(device.dynamips.workingdir)
@@ -349,12 +351,12 @@ class NETFile(object):
         globals.GApp.topology.recordLink(srcid, source_interface, dstid, destination_interface, src_node, dst_node)
 
         if not isinstance(src_node, IOSRouter) and not isinstance(src_node, AnyEmuDevice) and not isinstance(src_node, AnyVBoxEmuDevice):
-            if not isinstance(src_node,Cloud) and not src_node.hypervisor:
+            if not isinstance(src_node, Cloud) and not src_node.hypervisor:
                 src_node.get_dynagen_device()
             src_node.startupInterfaces()
             src_node.state = 'running'
         if not isinstance(dst_node, IOSRouter) and not isinstance(dst_node, AnyEmuDevice) and not isinstance(dst_node, AnyVBoxEmuDevice):
-            if not isinstance(dst_node,Cloud) and not dst_node.hypervisor:
+            if not isinstance(dst_node, Cloud) and not dst_node.hypervisor:
                 dst_node.get_dynagen_device()
             dst_node.startupInterfaces()
             dst_node.state = 'running'
@@ -535,7 +537,7 @@ class NETFile(object):
 
                     pixmap_image = QtGui.QPixmap(pixmap_path)
                     if not pixmap_image.isNull():
-                        pixmap_object= Pixmap(pixmap_image, pixmap_path)
+                        pixmap_object = Pixmap(pixmap_image, pixmap_path)
                     else:
                         print translate("NETFile", "Cannot load image: %s") % pixmap_path
                         continue
@@ -649,7 +651,7 @@ class NETFile(object):
             return
         except Exception, ex:
             debugmsg(1, ("ADEBUG: NETFile.py: Exception detected: ", ex))
-            logfile = open('dynagen_exception.log','a')
+            logfile = open('dynagen_exception.log', 'a')
             traceback.print_exc(file=logfile)
             logfile.close()
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("NETFile", "Importation"),  translate("NETFile", "Exception detected, stopping importation..."))
@@ -934,7 +936,7 @@ class NETFile(object):
                     print translate("NETFile", "%s: %s: Could not export configuration to %s") % (curtime, device.name, file_path)
             return
         try:
-            f = open(file_path, 'w') #export_router_config
+            f = open(file_path, 'w')  #export_router_config
             f.write(config)
             f.close()
             device.cnfg = file_path
@@ -1003,7 +1005,7 @@ class NETFile(object):
                 if connections:
                     config['connections'] = connections.strip()
             # record notes
-            elif isinstance(item, Annotation): #and item.autoGenerated == False:
+            elif isinstance(item, Annotation):  #and item.autoGenerated == False:
                 if not self.dynagen.running_config.has_key('GNS3-DATA'):
                     self.dynagen.running_config['GNS3-DATA'] = {}
                 self.dynagen.running_config['GNS3-DATA']['NOTE ' + str(note_nb)] = {}
@@ -1114,7 +1116,7 @@ class NETFile(object):
                     if zvalue != 0:
                         self.dynagen.running_config[item.d][item.get_running_config_name()]['z'] = zvalue
                     # record hostname x & y positions
-                    if item.hostname_xpos and item.hostname_ypos: #and \
+                    if item.hostname_xpos and item.hostname_ypos:  #and \
                         self.dynagen.running_config[item.d][item.get_running_config_name()]['hx'] = item.hostname_xpos
                         self.dynagen.running_config[item.d][item.get_running_config_name()]['hy'] = item.hostname_ypos
                 except:

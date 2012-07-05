@@ -28,7 +28,7 @@ from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Uncompress import isIOScompressed, uncompressIOS
 
 # known platforms and corresponding chassis
-PLATFORMS = {
+PLATFORMS ={
              'c1700': ['1710', '1720', '1721', '1750', '1751', '1760'],
              'c2600': ['2610', '2611', '2620', '2621', '2610XM', '2611XM', '2620XM', '2621XM', '2650XM', '2651XM'],
              'c2691': ['2691'],
@@ -45,6 +45,7 @@ DEFAULT_RAM = {
                     'c3700': 128,
                     'c7200': 256
                     }
+
 
 class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
     """ IOSDialog class
@@ -278,7 +279,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             return
 
         if not idlepc:
-            self.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Warning: IDLE PC will have to be configured! <a href='http://www.gns3.net/gns3-simplest-topology' >Find out why and how</a>")  + '</font>')
+            self.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Warning: IDLE PC will have to be configured! <a href='http://www.gns3.net/gns3-simplest-topology' >Find out why and how</a>") + '</font>')
         else:
             self.label_IdlePCWarning.setText('')
 
@@ -305,7 +306,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                     imagekey = hypervisor.host + ':' + imagename
         else:
             imagekey = globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + imagename
-
 
         if globals.GApp.iosimages.has_key(imagekey):
             # update an already existing IOS image
@@ -344,7 +344,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         if self.checkBoxDefaultImage.checkState() == QtCore.Qt.Checked:
             for image in globals.GApp.iosimages:
                 image_conf = globals.GApp.iosimages[image]
-                if imagekey !=  image and image_conf.platform == conf.platform and image_conf.default:
+                if imagekey != image and image_conf.platform == conf.platform and image_conf.default:
                     QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "There is already a default image for this platform"))
                     self.checkBoxDefaultImage.setCheckState(QtCore.Qt.Unchecked)
                     default_platform = False
@@ -477,7 +477,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 conf = hypervisorConf()
 
             conf.id = globals.GApp.hypervisors_ids
-            globals.GApp.hypervisors_ids +=1
+            globals.GApp.hypervisors_ids += 1
             conf.host = hypervisor_host
             conf.port = int(hypervisor_port)
             self.spinBoxHypervisorPort.setValue(conf.port + 1)

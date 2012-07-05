@@ -26,6 +26,7 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug, killAll
 from GNS3.Node.IOSRouter import IOSRouter
 
+
 class HypervisorManager(object):
     """ HypervisorManager class
         Start one or more dynamips in hypervisor mode
@@ -148,7 +149,7 @@ class HypervisorManager(object):
                 time.sleep(1)
                 last_exception = ex
                 continue
-            debug("Hypervisor manager: hypervisor on port " +  str(hypervisor['port']) + " started")
+            debug("Hypervisor manager: hypervisor on port " + str(hypervisor['port']) + " started")
             connection_success = True
             break
 
@@ -341,7 +342,6 @@ class HypervisorManager(object):
         """
 
         print "Memory usage limit per hypervisor : " + str(globals.GApp.systconf['dynamips'].memory_limit) + " MB"
-        print '%-10s %-10s' % ('Port','Memory load')
+        print '%-10s %-10s' % ('Port', 'Memory load')
         for hypervisor in self.hypervisors:
             print '%-10s %-10s' % (hypervisor['port'], str(hypervisor['load']) + ' MB')
-

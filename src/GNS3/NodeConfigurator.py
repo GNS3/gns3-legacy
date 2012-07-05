@@ -38,6 +38,7 @@ from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
 from GNS3.Node.Cloud import Cloud
 
+
 class ConfigurationPageItem(QtGui.QTreeWidgetItem):
     """ Class implementing a QTreeWidgetItem holding the configuration page data.
     """
@@ -72,6 +73,7 @@ class ConfigurationPageItem(QtGui.QTreeWidgetItem):
 
         return self.__ids
 
+
 class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
     """  NodeConfigurator class
     """
@@ -101,7 +103,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             # The dialog module must have the module function create to create
             # the configuration page. This must have the method save to save
             # the settings.
-            "Routers (1700)" : \
+            "Routers (1700)": \
                 [translate("NodeConfigurator", "Routers c1700"), ":/symbols/router.normal.svg",
                  "Page_IOSRouter", None, None],
             "Routers (2600)" : \
@@ -229,7 +231,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
 
         last_item = items[count - 1]
         self.__showConfigurationPage(last_item,  0)
-        lasttype =  type(globals.GApp.topology.getNode(last_item.getIDs()[0]))
+        lasttype = type(globals.GApp.topology.getNode(last_item.getIDs()[0]))
 
         for item in items:
             itmtype = type(globals.GApp.topology.getNode(item.getIDs()[0]))
@@ -247,7 +249,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
         if count > 1:
             pageTitle = translate("NodeConfigurator", "Group of %d %s") % (count, unicode(last_item.parent().text(0)))
         else:
-            pageTitle = translate("NodeConfigurator", "%s node") % (unicode(last_item.text(0)) )
+            pageTitle = translate("NodeConfigurator", "%s node") % (unicode(last_item.text(0)))
         self.titleLabel.setText(pageTitle)
 
     def __importConfigurationPage(self, name):

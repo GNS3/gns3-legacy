@@ -22,6 +22,7 @@
 
 import os, mmap, zipfile, shutil, tempfile
 
+
 def isIOScompressed(ios_image):
     """ Check either a IOS image is compress or not
         Returns True if compressed
@@ -48,6 +49,7 @@ def isIOScompressed(ios_image):
     if (pos > 0 and not zipfile.is_zipfile(ios_image)) and not (multiple_zipped_files > 0 and not cisco_string > 0):
         return True
     return False
+
 
 def uncompressIOS(ios_image, dest_file):
 

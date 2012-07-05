@@ -24,6 +24,7 @@ from GNS3.Utils import translate
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_Snapshots import Ui_Snapshots
 
+
 class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
     """ SnapshotDialog class
     """
@@ -59,7 +60,6 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
 
     def slotCreateSnapshot(self):
 
-
         (text, ok) = QtGui.QInputDialog.getText(globals.GApp.mainWindow, translate("AbstractNode", "Snapshot name"),
                                     translate("AbstractNode", "Snapshot name:"), QtGui.QLineEdit.Normal, "Unnamed")
 
@@ -68,7 +68,7 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
         else:
             snapshot_name = "Unnamed"
 
-        if not globals.GApp.workspace.projectFile:# or not globals.GApp.workspace.projectWorkdir:
+        if not globals.GApp.workspace.projectFile:  # or not globals.GApp.workspace.projectWorkdir:
             QtGui.QMessageBox.critical(self, translate("SnapshotDialog", "Project"), translate("SnapshotDialog", "Create a project first!"))
             return
         globals.GApp.workspace.createSnapshot(snapshot_name)

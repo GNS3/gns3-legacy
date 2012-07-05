@@ -26,6 +26,7 @@ try:
 except:
     pass
 
+
 def connect(host, port, name):
     """ Start a telnet console and connect to it
     """
@@ -47,15 +48,16 @@ def connect(host, port, name):
                 sub.Popen(console)
         else:
             if sys.platform.startswith('darwin'):
-                sub.Popen("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + host + " " + str(port) +"; exit\"'", shell=True)
+                sub.Popen("/usr/bin/osascript -e 'tell application \"Terminal\" to do script with command \"telnet " + host + " " + str(port) + "; exit\"'", shell=True)
             elif sys.platform.startswith('win'):
-                sub.Popen("start telnet " +  host + " " + str(port), shell=True)
+                sub.Popen("start telnet " + host + " " + str(port), shell=True)
             else:
                 sub.Popen("xterm -T " + name + " -e 'telnet " + host + " " + str(port) + "' > /dev/null 2>&1 &", shell=True)
     except (OSError, IOError), e:
         QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Console", "Console"), translate("Console", "Cannot start %s: %s") % (console, e.strerror))
         return (False)
     return (True)
+
 
 def bringConsoleToFront(console, host, port, name):
     # Attempts to bring console terminal to front, and returns True if succeeds.
@@ -71,7 +73,7 @@ def bringConsoleToFront(console, host, port, name):
     elif sys.platform.startswith('darwin'):
         # Not implemented.
         return False
-    else: # X11-based UNIX-like system
+    else:  # X11-based UNIX-like system
         if console.__contains__("putty -telnet %h %p"):
             return winm.bringWindowToFront("", "%s, Console Port" % str(name))
         elif console.__contains__("xterm -T %d -e 'telnet %h %p' >/dev/null 2>&1 &") or console.__contains__("/usr/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &"):
