@@ -280,8 +280,25 @@ class VBoxController_4_1():
                 time.sleep(0.75)
                 continue
         return True
-    
+
     def _console_options(self):
+        """
+        # Example to manually set serial parameters with Python
+
+        from vboxapi import VirtualBoxManager
+        mgr = VirtualBoxManager(None, None)
+        mach = mgr.vbox.findMachine("My VM")
+        session = mgr.mgr.getSessionObject(mgr.vbox)
+        mach.lockMachine(session, 1)
+        mach2=session.machine
+        serial_port = mach2.getSerialPort(0)
+        serial_port.enabled = True
+        serial_port.path = "/tmp/test_pipe"
+        serial_port.hostMode = 1
+        serial_port.server = True
+        session.unlockMachine()
+        
+        """
         debugmsg(2, "VBoxController_4_1::_console_options()")
         #This code looks really ulgy due to constant 'try' and 'except' pairs.
         #But this is because VirtualBox COM interfaces constantly fails
@@ -311,9 +328,9 @@ class VBoxController_4_1():
 
         try:
             serial_port.enabled = True
+            serial_port.path = self.pipe_name
             serial_port.hostMode = 1
             serial_port.server = True
-            serial_port.path = self.pipe_name
         except:
             #Usually due to COM Error: "The object is not ready"
             debugmsg(1, "_console_options() -> serial port settings FAILED !")

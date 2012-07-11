@@ -104,7 +104,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                 # the process hasn't returned yet (still active)
                 updated_list.append(console)
         self.consoleProcesses = updated_list
-        debug("%s has %i terminal program(s) connected to it" % (self.hostname, len(self.consoleProcesses)))
+        debug("%s has %i terminal program(s) connected to itself" % (self.hostname, len(self.consoleProcesses)))
 
     def setRenderers(self, render_normal, render_select):
         """ renderer_normal: QtSvg.QSvgRenderer

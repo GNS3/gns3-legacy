@@ -222,8 +222,10 @@ else:
 # Default terminal serial command
 if sys.platform.startswith('win'):
     TERMINAL_SERIAL_DEFAULT_CMD = unicode('putty.exe -serial %s -wt "%d [Local Console]" -gns3 5')
+elif sys.platform.startswith('darwin'):
+    TERMINAL_SERIAL_DEFAULT_CMD = unicode("/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"socat UNIX-CONNECT:%s stdio,raw,echo=0 ; exit\"'")
 else:
-    TERMINAL_SERIAL_DEFAULT_CMD = unicode('') # no default yet for other platforms
+    TERMINAL_SERIAL_DEFAULT_CMD = unicode('xterm -T %d -e \'socat UNIX-CONNECT:%s stdio,raw,echo=0\' > /dev/null 2>&1 &')
 
 # Default project directory
 if sys.platform.startswith('win') and os.environ.has_key("HOMEDRIVE") and os.environ.has_key("HOMEPATH"):
