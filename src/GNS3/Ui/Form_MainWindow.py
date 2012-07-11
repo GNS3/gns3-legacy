@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sun Jun 17 21:09:11 2012
+# Created: Tue Jul 10 22:27:24 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -79,7 +79,7 @@ class Ui_MainWindow(object):
         MainWindow.addToolBar(QtCore.Qt.TopToolBarArea, self.toolBar_General)
         self.dockWidget_NodeTypes = QtGui.QDockWidget(MainWindow)
         self.dockWidget_NodeTypes.setAllowedAreas(QtCore.Qt.LeftDockWidgetArea|QtCore.Qt.RightDockWidgetArea)
-        self.dockWidget_NodeTypes.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Nodes Types", None, QtGui.QApplication.UnicodeUTF8))
+        self.dockWidget_NodeTypes.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Node Types", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_NodeTypes.setObjectName(_fromUtf8("dockWidget_NodeTypes"))
         self.dockWidgetContents_NodeTypes = QtGui.QWidget()
         self.dockWidgetContents_NodeTypes.setObjectName(_fromUtf8("dockWidgetContents_NodeTypes"))

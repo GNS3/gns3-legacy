@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ConfigurationPages/Form_VirtualBoxPage.ui'
+# Form implementation generated from reading ui file './ConfigurationPages/Form_VirtualBoxPage.ui'
 #
-# Created: Mon Jul  2 21:06:17 2012
+# Created: Tue Jul 10 22:27:28 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -76,7 +76,7 @@ class Ui_VirtualBoxPage(object):
         self.checkBoxVboxConsoleSupport.setObjectName(_fromUtf8("checkBoxVboxConsoleSupport"))
         self.gridLayout.addWidget(self.checkBoxVboxConsoleSupport, 4, 0, 1, 2)
         self.checkBoxVboxConsoleServer = QtGui.QCheckBox(VirtualBoxPage)
-        self.checkBoxVboxConsoleServer.setText(QtGui.QApplication.translate("VirtualBoxPage", "Enable console server (optionnal on Windows)", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxVboxConsoleServer.setText(QtGui.QApplication.translate("VirtualBoxPage", "Enable console server (for remote access)", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxVboxConsoleServer.setObjectName(_fromUtf8("checkBoxVboxConsoleServer"))
         self.gridLayout.addWidget(self.checkBoxVboxConsoleServer, 5, 0, 1, 2)
         self.checkBoxVBoxHeadlessMode = QtGui.QCheckBox(VirtualBoxPage)

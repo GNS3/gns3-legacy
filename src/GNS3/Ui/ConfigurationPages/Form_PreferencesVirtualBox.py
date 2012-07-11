@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ConfigurationPages/Form_PreferencesVirtualBox.ui'
+# Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesVirtualBox.ui'
 #
-# Created: Tue Jun 26 18:21:17 2012
+# Created: Tue Jul 10 22:27:29 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -256,7 +256,7 @@ class Ui_PreferencesVirtualBox(object):
         self.checkBoxVboxConsoleSupport.setObjectName(_fromUtf8("checkBoxVboxConsoleSupport"))
         self.gridLayout.addWidget(self.checkBoxVboxConsoleSupport, 6, 0, 1, 3)
         self.checkBoxVboxConsoleServer = QtGui.QCheckBox(self.groupBox)
-        self.checkBoxVboxConsoleServer.setText(QtGui.QApplication.translate("PreferencesVirtualBox", "Enable console server (optionnal on Windows)", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxVboxConsoleServer.setText(QtGui.QApplication.translate("PreferencesVirtualBox", "Enable console server (for remote access)", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxVboxConsoleServer.setObjectName(_fromUtf8("checkBoxVboxConsoleServer"))
         self.gridLayout.addWidget(self.checkBoxVboxConsoleServer, 7, 0, 1, 3)
         self.label_14 = QtGui.QLabel(self.groupBox)
