@@ -208,12 +208,13 @@ class xVBOXInstance(object):
 
         if started and self.console_support == 'True' and int(self.console) and self.console_telnet_server == 'True':
 
+            global IP
             if sys.platform.startswith('win'):
                 try:
                     self.pipe = open(pipe_name, 'a+b')
                 except:
                     return started
-                self.pipeThread = PipeProxy(self.vmname, msvcrt.get_osfhandle(self.pipe.fileno()), '127.0.0.1', int(self.console))
+                self.pipeThread = PipeProxy(self.vmname, msvcrt.get_osfhandle(self.pipe.fileno()), IP, int(self.console))
                 self.pipeThread.setDaemon(True)
                 self.pipeThread.start()
             else:
@@ -224,7 +225,7 @@ class xVBOXInstance(object):
                     print "connection to pipe %s failed -> %s" % (pipe_name, err[1])
                     return started
 
-                self.pipeThread = PipeProxy(self.vmname, self.pipe, '127.0.0.1', int(self.console))
+                self.pipeThread = PipeProxy(self.vmname, self.pipe, IP, int(self.console))
                 self.pipeThread.setDaemon(True)
                 self.pipeThread.start()
 

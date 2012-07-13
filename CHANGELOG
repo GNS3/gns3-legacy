@@ -17,6 +17,10 @@ GNS3 0.8.3
   * New command line option for patched Putty on Windows (for details: http://forum.gns3.net/topic4859-20.html).   
   * Experimental live pipe capture (Windows only).
   * Option (activated by default) to use the VirtualBox VM names to name VirtualBox devices in GNS3.
+  * Complete IPv6 support (with correct functions).
+  * Support for binding on specific addresses when loading a topology
+  * Option to track opened node consoles in order to close them when the node gets deleted.
+  * New Dynamips 0.2.8-RC4 community (full IPv6 support), only included in Windows all-in-one package for now.
 
   Fixes and other improvements:
 
