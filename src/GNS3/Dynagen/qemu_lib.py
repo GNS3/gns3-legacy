@@ -328,10 +328,12 @@ class AnyEmuDevice(object):
             'nics': 6,
             'netcard': 'rtl8139',
             'kvm': False,
+            'usermod': 1,
             'options': None,
             }
         self._ram = self.defaults['ram']
         self._nics = self.defaults['nics']
+        self._usermod = self.defaults['usermod']
         self._netcard = self.defaults['netcard']
         self._kvm = self.defaults['kvm']
         self._options = self.defaults['options']
@@ -446,6 +448,25 @@ class AnyEmuDevice(object):
         r = r.replace("\\n", "\n")
         r = r.replace("\\t", "    ")
         return r
+
+    def _set_usermod(self, val):
+        """ Toogle the user mod backend for Qemu devices
+            Allows the last interface to request a DHCP offer
+            and be able to send packets out and maintain a TCP
+            connection
+            Default: 1
+            val: 0->False / 1->True
+        """
+        debugmsg(2, "AnyEmuDevice::_set_usermod()")
+        self._usermod = val
+        send(self.p, 'qemu setattr %s usermod %s' % (self.name, str(val)))
+
+    def _get_usermod(self):
+        " Get usermod value"
+        debugmsg(2, "AnyEmuDevice::_get_usermod(), returns %s" % str(self._usermod))
+        return self._usermod
+
+    usermod = property(_get_usermod, _set_usermod, doc='Qemu usermod')
 
     def _setconsole(self, console):
         """ Set console port
@@ -861,7 +882,7 @@ class JunOS(AnyEmuDevice):
     basehostname = 'JUNOS'
     _ufd_machine = 'Juniper router'
     _ufd_hardware = 'Juniper Olive router'
-    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options']
+    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options', 'usermod']
 
 class IDS(AnyEmuDevice):
     model_string = 'IDS-4215'
@@ -869,7 +890,7 @@ class IDS(AnyEmuDevice):
     basehostname = 'IDS'
     _ufd_machine = 'IDS'
     _ufd_hardware = 'Qemu emulated Cisco IDS'
-    available_options = ['image1', 'image2', 'nics', 'ram', 'netcard', 'kvm', 'options']
+    available_options = ['image1', 'image2', 'nics', 'ram', 'netcard', 'kvm', 'options', 'usermod']
 
     def __init__(self, *args, **kwargs):
         super(IDS, self).__init__(*args, **kwargs)
@@ -932,7 +953,7 @@ class QemuDevice(AnyEmuDevice):
     basehostname = 'QEMU'
     _ufd_machine = 'Qemu guest'
     _ufd_hardware = 'Qemu Emulated System'
-    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options']
+    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options', 'usermod']
 
 class ASA(AnyEmuDevice):
     model_string = '5520'
@@ -940,7 +961,7 @@ class ASA(AnyEmuDevice):
     basehostname = 'ASA'
     _ufd_machine = 'ASA firewall'
     _ufd_hardware = 'qemu-emulated Cisco ASA'
-    available_options = ['ram', 'nics', 'netcard', 'kvm', 'options', 'initrd', 'kernel', 'kernel_cmdline']
+    available_options = ['ram', 'nics', 'netcard', 'kvm', 'options', 'initrd', 'kernel', 'kernel_cmdline', 'usermod']
 
     def __init__(self, *args, **kwargs):
         super(ASA, self).__init__(*args, **kwargs)
@@ -1022,7 +1043,7 @@ class PIX(AnyEmuDevice):
     model_string = '525'
     qemu_dev_type = 'pix'
     basehostname = 'PIX'
-    available_options = ['image', 'ram', 'nics', 'netcard', 'options', 'serial', 'key']
+    available_options = ['image', 'ram', 'nics', 'netcard', 'options', 'serial', 'key', 'usermod']
     _ufd_machine = 'PIX firewall'
     _ufd_hardware = 'qemu-emulated Cisco PIX'
     def __init__(self, *args, **kwargs):

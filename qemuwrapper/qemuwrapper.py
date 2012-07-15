@@ -28,7 +28,7 @@
 debuglevel = 0
 
 #qemuprotocol: 0=old, 1=experimental
-qemuprotocol = 0
+qemuprotocol = 1
 
 import csv
 import cStringIO
@@ -133,6 +133,7 @@ class xEMUInstance(object):
         self.nic = {}
         self.nics = '6'
         self.udp = {}
+        self.usermod = 1 # by default: add 1 user backend
         self.capture = {}
         self.netcard = 'rtl8139'
         self.kvm = False
@@ -140,7 +141,7 @@ class xEMUInstance(object):
         self.process = None
         self.processq = None
         self.workdir = WORKDIR + os.sep + name
-        self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options']
+        self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options', 'usermod']
 
     def create(self):
         debugmsg(2, "xEMUInstance::create()")
@@ -298,6 +299,10 @@ class xEMUInstance(object):
                              self.udp[vlan].daddr)])
                 if vlan in self.capture:
                     options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
+
+        if self.usermod == 1:
+            options.extend(['-device', '%s,mac=00:00:ab:%02x:%02x:%02x,netdev=gns3-usermod' % (self.netcard, random.randint(0x00, 0xff), random.randint(0x00, 0xff), random.randint(0x00, 0xff))])
+            options.extend(['-netdev', 'user,id=gns3-usermod'])
 
         return options
 

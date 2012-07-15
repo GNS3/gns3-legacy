@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_QemuPage.ui'
 #
-# Created: Tue May 29 03:21:51 2012
+# Created: Mon Jul 16 01:27:10 2012
 #      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!

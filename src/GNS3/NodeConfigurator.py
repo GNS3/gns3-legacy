@@ -38,7 +38,6 @@ from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
 from GNS3.Node.Cloud import Cloud
 
-
 class ConfigurationPageItem(QtGui.QTreeWidgetItem):
     """ Class implementing a QTreeWidgetItem holding the configuration page data.
     """
@@ -72,7 +71,6 @@ class ConfigurationPageItem(QtGui.QTreeWidgetItem):
     def getIDs(self):
 
         return self.__ids
-
 
 class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
     """  NodeConfigurator class

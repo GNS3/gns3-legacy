@@ -61,7 +61,7 @@ def debugmsg(level, message):
 
 # Constants
 VERSION = '0.13.1.20111031'
-CONFIGSPECPATH = ['/usr/share/dynagen', '/usr/local/share']
+CONFIGSPECPATH = ['/usr/share/dynagen', '/usr/local/share', '/usr/local/share/dynagen']
 CONFIGSPEC = 'configspec'
 INIPATH = ['/etc', '/usr/local/etc']
 INIFILE = 'dynagen.ini'
@@ -232,6 +232,7 @@ class Dynagen:
         self.generic_pix_options = [
             'image',
             'ram',
+            'usermod',
             'key',
             'serial',
             ]
@@ -1197,6 +1198,7 @@ class Dynagen:
                                 'key',
                                 'serial',
                                 'nics',
+                                'usermod',
                                 'netcard',
                                 'kvm',
                                 'options',
@@ -1222,6 +1224,7 @@ class Dynagen:
                                     'key',
                                     'serial',
                                     'nics',
+                                    'usermod',
                                     'netcard',
                                     'kvm',
                                     'options',
@@ -2272,7 +2275,6 @@ class Dynagen:
         if unicode(getattr(device, option)) != unicode(default_option):
             running[option] = getattr(device, option)
 
-
     def update_running_config(self, need_active_config=False):
         """read all Dynamips_lib objects, create ConfObj object that is representing the config in the same format as input file"""
 
@@ -2345,6 +2347,7 @@ class Dynagen:
         #all changes in hypervisor are reflected to running_config, so remove the dynamips.configchange
         for hypervisor in self.dynamips.values():
             hypervisor.configchange = False
+
 
     def get_running_config(self, params):
         """return the running_config string"""

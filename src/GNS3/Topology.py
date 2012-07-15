@@ -264,6 +264,7 @@ class Topology(QtGui.QGraphicsScene):
 
         debug("Set image " + image_conf.filename)
         node.set_image(image_conf.filename, image_conf.chassis)
+        node.set_int_option('usermod', image_conf.default_usermod)
         if image_conf.default_ram:
             # force default ram
             save = node.default_ram
@@ -578,6 +579,7 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_image(conf.filename, node.model)
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
+                node.set_int_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kvm', conf.kvm)
                 node.set_string_option('options', conf.options)
@@ -673,6 +675,7 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_image(conf.filename, node.model)
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
+                node.set_int_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kvm', conf.kvm)
                 node.set_string_option('options', conf.options)
@@ -727,6 +730,7 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('image2', conf.image2)
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
+                node.set_int_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kvm', conf.kvm)
                 node.set_string_option('options', conf.options)
@@ -781,6 +785,7 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_image('None', node.model)
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
+                node.set_int_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kvm', conf.kvm)
                 node.set_string_option('initrd', conf.initrd)
@@ -830,6 +835,7 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_image(conf.filename, node.model)
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
+                node.set_int_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('key', conf.key)
                 node.set_string_option('serial', conf.serial)

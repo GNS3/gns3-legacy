@@ -42,7 +42,6 @@ from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice, VBoxDevice
 from GNS3.Pixmap import Pixmap
 from GNS3.Export.DeployementWizard import DeployementWizard
 
-
 class Workspace(QMainWindow, Ui_MainWindow):
     """ This class is for managing the whole GUI `Workspace'.
         Currently a Workspace is similar to a MainWindow

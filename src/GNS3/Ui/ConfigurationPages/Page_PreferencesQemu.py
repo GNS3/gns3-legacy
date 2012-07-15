@@ -397,6 +397,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         else:
             conf.kvm  = False
 
+        if self.QemucheckBoxUserMod.checkState() == QtCore.Qt.Checked:
+            conf.usermod = 1
+        else:
+            conf.usermod = 0
+
         globals.GApp.qemuimages[name] = conf
         self.treeWidgetQemuImages.resizeColumnToContents(0)
 
@@ -437,6 +442,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.QemucheckBoxKVM.setCheckState(QtCore.Qt.Checked)
             else:
                 self.QemucheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+
+            if conf.usermod == True:
+                self.QemucheckBoxUserMod.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.QemucheckBoxUserMod.setCheckState(QtCore.Qt.Unchecked)
 
     def slotSelectPIXImage(self):
         """ Get a PIX image from the file system
@@ -485,6 +495,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.nic_nb = self.PIXNICNb.value()
         conf.nic = str(self.PIXNIC.currentText())
         conf.options = str(self.PIXOptions.text())
+
+        if self.PIXcheckBoxUserMod.checkState() == QtCore.Qt.Checked:
+            conf.usermod = 1
+        else:
+            conf.usermod = 0
 
         serial = str(self.PIXSerial.text().toAscii())
         if serial and not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):
@@ -542,6 +557,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.PIXKey.setText(conf.key)
             self.PIXSerial.setText(conf.serial)
 
+            if conf.usermod == True:
+                self.PIXcheckBoxUserMod.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.PIXcheckBoxUserMod.setCheckState(QtCore.Qt.Unchecked)
+
     def slotSelectJunOSImage(self):
         """ Get a JunOS image from the file system
         """
@@ -595,6 +615,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         else:
             conf.kvm  = False
 
+        if self.JunOScheckBoxUserMod.checkState() == QtCore.Qt.Checked:
+            conf.usermod = 1
+        else:
+            conf.usermod = 0
+
         globals.GApp.junosimages[name] = conf
         self.treeWidgetJunOSImages.resizeColumnToContents(0)
         QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "JunOS settings have been saved"))
@@ -636,6 +661,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
             else:
                 self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+
+            if conf.usermod == True:
+                self.JunOScheckBoxUserMod.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.JunOScheckBoxUserMod.setCheckState(QtCore.Qt.Unchecked)
 
     def slotSelectASAKernel(self):
         """ Get an ASA kernel from the file system
@@ -705,6 +735,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         else:
             conf.kvm  = False
 
+        if self.ASAcheckBoxUserMod.checkState() == QtCore.Qt.Checked:
+            conf.usermod = 1
+        else:
+            conf.usermod = 0
+
         globals.GApp.asaimages[name] = conf
         self.treeWidgetASAImages.resizeColumnToContents(0)
         QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "ASA settings have been saved"))
@@ -748,6 +783,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Checked)
             else:
                 self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+
+            if conf.usermod == True:
+                self.ASAcheckBoxUserMod.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.ASAcheckBoxUserMod.setCheckState(QtCore.Qt.Unchecked)
 
     def slotSelectIDSImage1(self):
         """ Get a IDS image (hda) from the file system
@@ -816,6 +856,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         else:
             conf.kvm  = False
 
+        if self.IDScheckBoxUserMod.checkState() == QtCore.Qt.Checked:
+            conf.usermod = 1
+        else:
+            conf.usermod = 0
+
         globals.GApp.idsimages[name] = conf
         self.treeWidgetIDSImages.resizeColumnToContents(0)
         QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "IDS settings have been saved"))
@@ -858,6 +903,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.IDScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
             else:
                 self.IDScheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+
+            if conf.usermod == True:
+                self.IDScheckBoxUserMod.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.IDScheckBoxUserMod.setCheckState(QtCore.Qt.Unchecked)
 
     def __testQemu(self):
 

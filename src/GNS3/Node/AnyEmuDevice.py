@@ -71,6 +71,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
             'ram',
             'image',
             'nics',
+            'usermod',
             'netcard',
             'kvm',
             'options',
