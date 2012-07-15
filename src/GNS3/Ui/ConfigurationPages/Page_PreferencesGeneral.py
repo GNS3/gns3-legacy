@@ -25,7 +25,7 @@ from PyQt4 import QtGui, QtCore
 from GNS3.Config.Objects import systemGeneralConf
 from GNS3.Ui.ConfigurationPages.Form_PreferencesGeneral import Ui_PreferencesGeneral
 from GNS3.Utils import translate, fileBrowser, debug
-from GNS3.Config.Defaults import TERMINAL_PRESET_CMDS, TERMINAL_DEFAULT_CMD, PROJECT_DEFAULT_DIR, IOS_DEFAULT_DIR
+from GNS3.Config.Defaults import TERMINAL_PRESET_CMDS, TERMINAL_DEFAULT_CMD, PROJECT_DEFAULT_DIR, IOS_DEFAULT_DIR, BASECONFIG_DIR
 from GNS3.Config.Config import ConfDB
 
 class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
@@ -43,7 +43,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
         if platform.system() == 'Darwin':
             self.checkBoxBringConsoleToFront.setVisible(False)
-        
+
         self.connect(self.pushButton_ClearConfiguration, QtCore.SIGNAL('clicked()'), self.__clearConfiguration)
         self.connect(self.pushButton_ExportConfiguration, QtCore.SIGNAL('clicked()'), self.__exportConfiguration)
         self.connect(self.pushButton_ImportConfiguration, QtCore.SIGNAL('clicked()'), self.__importConfiguration)
@@ -53,7 +53,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
         for (name, cmd) in sorted(TERMINAL_PRESET_CMDS.iteritems()):
             self.comboBoxPreconfigTerminalCommands.addItem(name, cmd)
-            
+
         self.loadConf()
 
     def loadConf(self):
@@ -62,7 +62,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf = globals.GApp.systconf['general']
         else:
             self.conf = systemGeneralConf()
-    
+
         curr_lang_code = self.conf.lang
 
         # Set the languages comboBox the the right value.
@@ -71,10 +71,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             if i[0] == curr_lang_code:
                 self.langsBox.setCurrentIndex(idx)
             idx += 1
-                
+
         # Slow start when starting every devices
         self.slowStartAll.setValue(self.conf.slow_start)
-        
+
         # Autosave
         self.autoSave.setValue(self.conf.autosave)
 
@@ -94,10 +94,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.ProjectPath.setText(os.path.normpath(self.conf.project_path))
         self.IOSPath.setText(os.path.normpath(self.conf.ios_path))
 
-        # GUI settings        
+        # GUI settings
         self.workspaceWidth.setValue(self.conf.scene_width)
         self.workspaceHeight.setValue(self.conf.scene_height)
-        
+
         if self.conf.status_points == True:
             self.checkBoxShowStatusPoints.setCheckState(QtCore.Qt.Checked)
         else:
@@ -123,17 +123,17 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.checkBoxDrawRectangle.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxDrawRectangle.setCheckState(QtCore.Qt.Unchecked)
-            
+
         if self.conf.relative_paths == True:
             self.checkBoxRelativePaths.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxRelativePaths.setCheckState(QtCore.Qt.Unchecked)
-            
+
         if self.conf.auto_check_for_update == True:
             self.checkBoxCheckForUpdate.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxCheckForUpdate.setCheckState(QtCore.Qt.Unchecked)
-            
+
         self.labelConfigurationPath.setText(os.path.normpath(unicode(ConfDB().fileName())))
 
         # Delay between console starts
@@ -146,7 +146,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             new_lang_code = self.langs[new_idx][0]
             self.conf.lang = unicode(new_lang_code)
             globals.GApp.translator.switchLangTo(new_lang_code)
-        
+
         # GUI settings
         if self.checkBoxShowStatusPoints.checkState() == QtCore.Qt.Checked:
             if self.conf.status_points == False:
@@ -174,7 +174,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf.project_startup = True
         else:
             self.conf.project_startup = False
-            
+
         if self.checkBoxDrawRectangle.checkState() == QtCore.Qt.Checked:
             self.conf.draw_selected_rectangle = True
         else:
@@ -184,7 +184,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf.relative_paths = True
         else:
             self.conf.relative_paths = False
-            
+
         if self.checkBoxCheckForUpdate.checkState() == QtCore.Qt.Checked:
             self.conf.auto_check_for_update = True
         else:
@@ -220,10 +220,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
                                                 translate("UiConfig_PreferencesGeneral", "Cannot create image directory: %s") % e.strerror)
 
         try:
-            shutil.copyfile('baseconfig.txt', self.conf.ios_path + os.sep + 'baseconfig.txt')
-            shutil.copyfile('baseconfig_sw.txt', self.conf.ios_path + os.sep + 'baseconfig_sw.txt')
+            shutil.copyfile(BASECONFIG_DIR + 'baseconfig.txt', self.conf.ios_path + os.sep + 'baseconfig.txt')
+            shutil.copyfile(BASECONFIG_DIR + 'baseconfig_sw.txt', self.conf.ios_path + os.sep + 'baseconfig_sw.txt')
         except (OSError, IOError), e:
-            debug("Warning: cannot copy baseconfig.txt to " + self.conf.ios_path + ": " + e.strerror)
+            debug("Warning: cannot copy baseconfig.txt and/or baseconfig_sw.txt to " + self.conf.ios_path + ": " + e.strerror)
 
         # Apply scene size
         globals.GApp.topology.setSceneRect(-(self.conf.scene_width / 2), -(self.conf.scene_height / 2), self.conf.scene_width, self.conf.scene_height)
@@ -232,23 +232,23 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         ConfDB().sync()
 
     def __setProjectPath(self):
-    
+
         fb = fileBrowser(translate('UiConfig_PreferencesGeneral', 'Project Directory'), parent=globals.preferencesWindow)
         path = fb.getDir()
 
         if path:
             self.ProjectPath.setText(os.path.normpath(path))
-        
+
     def __setIOSPath(self):
-    
+
         fb = fileBrowser(translate('UiConfig_PreferencesGeneral', 'Image Directory'), parent=globals.preferencesWindow)
         path = fb.getDir()
 
         if path:
             self.IOSPath.setText(os.path.normpath(path))
-            
+
     def __setTerminalCmd(self):
-    
+
         self.lineEditTermCommand.clear()
         command = self.comboBoxPreconfigTerminalCommands.itemData(self.comboBoxPreconfigTerminalCommands.currentIndex(), QtCore.Qt.UserRole).toString()
         self.lineEditTermCommand.setText(command)

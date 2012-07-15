@@ -40,6 +40,11 @@ elif os.environ.has_key("TMP"):
 else:
     DYNAMIPS_DEFAULT_WORKDIR = unicode('/tmp')
 
+if sys.platform.startswith('win') or sys.platform.startswith('darwin'):
+    BASECONFIG_DIR = ''
+else:
+    BASECONFIG_DIR = '/usr/local/share/examples/gns3/'
+
 # Default path to qemuwrapper
 if sys.platform.startswith('win'):
     QEMUWRAPPER_DEFAULT_PATH = unicode('qemuwrapper.exe')
