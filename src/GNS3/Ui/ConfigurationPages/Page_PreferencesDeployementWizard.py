@@ -24,7 +24,7 @@ import os, platform, shutil
 from GNS3.Config.Objects import systemDeployementWizardConf
 from GNS3.Utils import translate, fileBrowser
 from PyQt4 import QtGui, QtCore
-from GNS3.Config.Defaults import DEPLOYEMENTWIZARD_DEFAULT_PATH
+from GNS3.Config.Defaults import DEPLOYEMENTWIZARD_DEFAULT_PATH, PIL_DEFAULT_DIR, REPORTLAB_DEFAULT_DIR
 from GNS3.Ui.ConfigurationPages.Form_PreferencesDeployementWizard import Ui_PreferencesDeployementWizard
 
 class UiConfig_PreferencesDeployementWizard(QtGui.QWidget, Ui_PreferencesDeployementWizard):
@@ -33,6 +33,7 @@ class UiConfig_PreferencesDeployementWizard(QtGui.QWidget, Ui_PreferencesDeploye
         QtGui.QWidget.__init__(self)
         Ui_PreferencesDeployementWizard.setupUi(self, self)
         self.connect(self.ProjectPath_browser, QtCore.SIGNAL('clicked()'), self.__changePath)
+        self.connect(self.pushButtonTestDeployementWizard, QtCore.SIGNAL('clicked()'), self.__testDeployementWizard)
 
         self.loadConf()
 
@@ -49,8 +50,8 @@ class UiConfig_PreferencesDeployementWizard(QtGui.QWidget, Ui_PreferencesDeploye
 
 
     def saveConf(self):
-        self.conf.deployementwizard_path = unicode(self.ProjectPath)
-        self.conf.deployementwizard_filename = unicode(self.ProjectName)
+        self.conf.deployementwizard_path = unicode(self.ProjectPath.text())
+        self.conf.deployementwizard_filename = unicode(self.ProjectName.text())
 
     def __changePath(self):
         fb = fileBrowser(translate('UiConfig_PreferencesDeployementWizard', 'Deployement Wizard directory'), parent=globals.preferencesWindow)
@@ -58,3 +59,24 @@ class UiConfig_PreferencesDeployementWizard(QtGui.QWidget, Ui_PreferencesDeploye
 
         if path:
             self.ProjectPath.setText(os.path.normpath(path))
+
+    def __testDeployementWizard(self):
+        self.saveConf()
+        self.currentDeployementWizardStatusText = ''
+        self.missingDirOrBinary = False
+        if not os.path.exists(REPORTLAB_DEFAULT_DIR):
+            self.currentDeployementWizardStatusText += 'Reportlab is not installed. You will not be able to deploy your configuration.\n'
+            self.missingDirOrBinary = True
+        if not os.path.exists(PIL_DEFAULT_DIR):
+            self.currentDeployementWizardStatusText += 'PIL is not installed. Deployement Wizard requires it to display images in the pdf.\n'
+            self.missingDirOrBinary = True
+        try:
+            p = subprocess.Popen([DOT_DEFAULT_PATH])
+            p.terminate()
+        except:
+            self.currentDeployementWizardStatusText += 'Graphviz is not installed. You will need it to have a graphical topology.\n'
+            self.missingDirOrBinary = True
+        if (self.missingDirOrBinary == True):
+            self.labelDeployementWizardStatus.setText('<font color="green">' + self.currentDeployementWizardStatusText + '</font>')
+        else:
+            self.labelDeployementWizardStatus.setText('<font color="green">"Everything looks fine. You should be able to deploy your configuration."</font>')

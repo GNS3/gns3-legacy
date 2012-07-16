@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'src/GNS3/Ui/ConfigurationPages/Form_PreferencesDeployementWizard.ui'
 #
-# Created: Mon Jul 16 12:00:18 2012
+# Created: Mon Jul 16 16:52:09 2012
 #      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -53,7 +53,19 @@ class Ui_PreferencesDeployementWizard(object):
         self.gridLayout_4.addWidget(self.label, 3, 0, 1, 1)
         self.gridLayout_3.addWidget(self.groupBox_2, 0, 0, 1, 1)
         spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout_3.addItem(spacerItem, 1, 0, 1, 1)
+        self.gridLayout_3.addItem(spacerItem, 3, 0, 1, 1)
+        self.hboxlayout = QtGui.QHBoxLayout()
+        self.hboxlayout.setObjectName(_fromUtf8("hboxlayout"))
+        self.pushButtonTestDeployementWizard = QtGui.QPushButton(self.tab)
+        self.pushButtonTestDeployementWizard.setObjectName(_fromUtf8("pushButtonTestDeployementWizard"))
+        self.hboxlayout.addWidget(self.pushButtonTestDeployementWizard)
+        self.labelDeployementWizardStatus = QtGui.QLabel(self.tab)
+        self.labelDeployementWizardStatus.setText(_fromUtf8(""))
+        self.labelDeployementWizardStatus.setObjectName(_fromUtf8("labelDeployementWizardStatus"))
+        self.hboxlayout.addWidget(self.labelDeployementWizardStatus)
+        spacerItem1 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.hboxlayout.addItem(spacerItem1)
+        self.gridLayout_3.addLayout(self.hboxlayout, 1, 0, 1, 1)
         self.tabWidget.addTab(self.tab, _fromUtf8(""))
         self.gridLayout_5.addWidget(self.tabWidget, 0, 0, 1, 1)
 
@@ -69,5 +81,6 @@ class Ui_PreferencesDeployementWizard(object):
         self.ProjectName.setText(QtGui.QApplication.translate("PreferencesDeployementWizard", "Topology.pdf", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxRelativePaths.setText(QtGui.QApplication.translate("PreferencesDeployementWizard", "Use relative path for the PDF", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("PreferencesDeployementWizard", "Project Name:", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonTestDeployementWizard.setText(QtGui.QApplication.translate("PreferencesDeployementWizard", "&Test Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("PreferencesDeployementWizard", "Export Settings", None, QtGui.QApplication.UnicodeUTF8))
 
