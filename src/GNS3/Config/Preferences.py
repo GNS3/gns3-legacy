@@ -40,6 +40,7 @@ class PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
                         'Capture',
                         'Qemu',
                         'VirtualBox',
+                        'DeployementWizard'
                         ]
 
         QtGui.QDialog.__init__(self)

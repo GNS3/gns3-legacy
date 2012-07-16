@@ -29,7 +29,7 @@ from PyQt4.QtGui import QApplication, QSplashScreen, QPixmap, QMessageBox
 from PyQt4.QtCore import Qt, QVariant, QSettings, QEventLoop
 from GNS3.Utils import Singleton, translate
 from GNS3.Workspace import Workspace
-from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf, systemCaptureConf, systemQemuConf, systemVBoxConf
+from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf, systemCaptureConf, systemQemuConf, systemVBoxConf, systemDeployementWizardConf
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Config.Config import ConfDB, GNS_Conf
 from GNS3.HypervisorManager import HypervisorManager
@@ -467,6 +467,14 @@ class Application(QApplication, Singleton):
         # Expand user home dir and environment variables
         confo.cap_cmd = os.path.expandvars(os.path.expanduser(confo.cap_cmd))
         confo.workdir = os.path.expandvars(os.path.expanduser(confo.workdir))
+
+        # Deployement Wizard config
+        self.systconf['deployement wizard'] = systemDeployementWizardConf()
+        confo = self.systconf['deployement wizard']
+        confo.deployementwizard_path = ConfDB().get('DeployementWizard/deployementwizard_path', Defaults.DEPLOYEMENTWIZARD_DEFAULT_PATH)
+
+        # Expand user home dir and environement variable
+        confo.deployementwizard_path = os.path.expandvars(os.path.expanduser(confo.deployementwizard_path))
 
         # System general config
         self.systconf['general'] = systemGeneralConf()

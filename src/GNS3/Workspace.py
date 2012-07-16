@@ -179,7 +179,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_Redo, QtCore.SIGNAL('triggered()'), self.__action_Redo)
         self.connect(self.action_ShowLayers, QtCore.SIGNAL('triggered()'), self.__action_ShowLayers)
         self.connect(self.action_ResetInterfaceLabels, QtCore.SIGNAL('triggered()'), self.__action_ResetInterfaceLabels)
-        self.connect(self.action_Export_in_a_PDF, QtCore.SIGNAL('triggered()'), self.__action_DisplayWizard)
+        self.connect(self.action_Deployement_Wizard, QtCore.SIGNAL('triggered()'), self.__action_DisplayWizard)
 
         # Device menu is contextual and is build on-the-fly
         self.connect(self.menuDevice, QtCore.SIGNAL('aboutToShow()'), self.__action_ShowDeviceMenu)

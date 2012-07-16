@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Form_MainWindow.ui'
+# Form implementation generated from reading ui file 'src/GNS3/Ui/Form_MainWindow.ui'
 #
-# Created: Mon Jul 16 01:27:08 2012
-#      by: PyQt4 UI code generator 4.8.4
+# Created: Mon Jul 16 11:06:11 2012
+#      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -53,7 +53,7 @@ class Ui_MainWindow(object):
         self.gridlayout.addWidget(self.graphicsView, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 944, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 944, 20))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menu_Edit = QtGui.QMenu(self.menubar)
         self.menu_Edit.setObjectName(_fromUtf8("menu_Edit"))
@@ -71,8 +71,6 @@ class Ui_MainWindow(object):
         self.menuAnnotate.setObjectName(_fromUtf8("menuAnnotate"))
         self.menuDevice = QtGui.QMenu(self.menubar)
         self.menuDevice.setObjectName(_fromUtf8("menuDevice"))
-        self.menuExport_as_PDF = QtGui.QMenu(self.menubar)
-        self.menuExport_as_PDF.setObjectName(_fromUtf8("menuExport_as_PDF"))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
@@ -458,6 +456,8 @@ class Ui_MainWindow(object):
         self.action_Console.setObjectName(_fromUtf8("action_Console"))
         self.action_Export_in_a_PDF = QtGui.QAction(MainWindow)
         self.action_Export_in_a_PDF.setObjectName(_fromUtf8("action_Export_in_a_PDF"))
+        self.action_Deployement_Wizard = QtGui.QAction(MainWindow)
+        self.action_Deployement_Wizard.setObjectName(_fromUtf8("action_Deployement_Wizard"))
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -472,6 +472,7 @@ class Ui_MainWindow(object):
         self.menu_File.addAction(self.action_SaveProjectAs)
         self.menu_File.addSeparator()
         self.menu_File.addAction(self.action_config)
+        self.menu_File.addAction(self.action_Deployement_Wizard)
         self.menu_File.addAction(self.action_Export)
         self.menu_File.addAction(self.action_Snapshot)
         self.menu_File.addSeparator()
@@ -503,14 +504,12 @@ class Ui_MainWindow(object):
         self.menuAnnotate.addAction(self.action_InsertImage)
         self.menuAnnotate.addAction(self.action_DrawRectangle)
         self.menuAnnotate.addAction(self.action_DrawEllipse)
-        self.menuExport_as_PDF.addAction(self.action_Export_in_a_PDF)
         self.menubar.addAction(self.menu_File.menuAction())
         self.menubar.addAction(self.menu_Edit.menuAction())
         self.menubar.addAction(self.menu_View.menuAction())
         self.menubar.addAction(self.menuControl.menuAction())
         self.menubar.addAction(self.menuDevice.menuAction())
         self.menubar.addAction(self.menuAnnotate.menuAction())
-        self.menubar.addAction(self.menuExport_as_PDF.menuAction())
         self.menubar.addAction(self.menu_About.menuAction())
         self.toolBar_General.addAction(self.action_Open)
         self.toolBar_General.addAction(self.action_Save)
@@ -563,7 +562,6 @@ class Ui_MainWindow(object):
         self.menuControl.setTitle(QtGui.QApplication.translate("MainWindow", "Control", None, QtGui.QApplication.UnicodeUTF8))
         self.menuAnnotate.setTitle(QtGui.QApplication.translate("MainWindow", "Annotate", None, QtGui.QApplication.UnicodeUTF8))
         self.menuDevice.setTitle(QtGui.QApplication.translate("MainWindow", "Device", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuExport_as_PDF.setTitle(QtGui.QApplication.translate("MainWindow", "Export", None, QtGui.QApplication.UnicodeUTF8))
         self.toolBar_General.setWindowTitle(QtGui.QApplication.translate("MainWindow", "General", None, QtGui.QApplication.UnicodeUTF8))
         self.dockWidget_NodeTypes.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Nodes Types", None, QtGui.QApplication.UnicodeUTF8))
         self.nodesDock.setStatusTip(QtGui.QApplication.translate("MainWindow", "Select Node Type", None, QtGui.QApplication.UnicodeUTF8))
@@ -734,6 +732,7 @@ class Ui_MainWindow(object):
         self.action_Console.setToolTip(QtGui.QApplication.translate("MainWindow", "Start Console...", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Console.setStatusTip(QtGui.QApplication.translate("MainWindow", "Start Console...", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Export_in_a_PDF.setText(QtGui.QApplication.translate("MainWindow", "Export in a PDF", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Deployement_Wizard.setText(QtGui.QApplication.translate("MainWindow", "Deployement Wizard", None, QtGui.QApplication.UnicodeUTF8))
 
 from GNS3.UndoFramework import UndoView
 from GNS3.Ui.Widget_nodesDock import nodesDock

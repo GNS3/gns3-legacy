@@ -86,7 +86,7 @@ else:
     if os.path.exists(qemuwrapper_path):
         VBOXWRAPPER_DEFAULT_PATH = vboxwrapper_path
     elif platform.system() == 'Linux':
-        QEMUWRAPPER_DEFAULT_PATH = unicode("/usr/lib/gns3/vboxwrapper.py")
+        VBOXWRAPPER_DEFAULT_PATH = unicode("/usr/lib/gns3/vboxwrapper.py")
     else:
         VBOXWRAPPER_DEFAULT_PATH = unicode("/usr/local/libexec/gns3/vboxwrapper.py")
 
@@ -245,6 +245,41 @@ elif os.environ.has_key("TMP"):
     IOS_DEFAULT_DIR = unicode(os.environ["TMP"], 'utf-8', errors='replace')
 else:
     IOS_DEFAULT_DIR = unicode('/tmp')
+
+# Default path to dot executable
+if sys.platform.startswith('win'):
+    DOT_DEFAULT_PATH = unicode('dot.exe')
+elif sys.platform.startswith('darwin'):
+    if hasattr(sys, "frozen"):
+        DOT_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/dot.bin'
+    else:
+        DOT_DEFAULT_PATH = os.getcwdu() + os.sep + 'dot.bin'
+else:
+    DOT_DEFAULT_PATH = unicode('dot')
+
+# Default reportlab directory
+if sys.platform.startswith('win'):
+    REPORTLAB_DEFAULT_DIR = unicode(sys.prefix + os.sep + 'Lib' + os.sep + 'site-packages' + os.sep + 'reportlab')
+else:
+    REPORTLAB_DEFAULT_DIR = unicode(sys.prefix + os.sep + 'lib' + os.sep + 'python' + sys.version[0] + sys.version[1] + sys.version[2] + os.sep + 'site-packages' + os.sep + 'reportlab')
+
+# Default PIL directory
+if sys.platform.startswith('win'):
+    PIL_DEFAULT_DIR = unicode(sys.prefix + os.sep + 'Lib' + os.sep + 'site-packages' + os.sep + 'PIL')
+else:
+    PIL_DEFAULT_DIR = unicode(sys.prefix + os.sep + 'lib' + os.sep + 'python' + sys.version[0] + sys.version[1] + sys.version[2] + os.sep + 'site-packages' + os.sep + 'PIL')
+
+# Default deployement wizard directory
+if sys.platform.startswith('win') and os.environ.has_key("HOMEDRIVE") and os.environ.has_key("HOMEPATH"):
+    DEPLOYEMENTWIZARD_DEFAULT_PATH = unicode(os.environ["HOMEDRIVE"] + os.environ["HOMEPATH"] + os.sep + 'GNS3' + os.sep + 'Projects')
+elif os.environ.has_key("HOME"):
+    DEPLOYEMENTWIZARD_DEFAULT_PATH = unicode(os.environ["HOME"] + os.sep + 'GNS3' + os.sep + 'Projects')
+elif os.environ.has_key("TEMP"):
+    DEPLOYEMENTWIZARD_DEFAULT_PATH = unicode(os.environ["TEMP"])
+elif os.environ.has_key("TMP"):
+    DEPLOYEMENTWIZARD_DEFAULT_PATH = unicode(os.environ["TMP"])
+else:
+    DEPLOYEMENTWIZARD_DEFAULT_PATH = unicode('/tmp')
 
 SysConfigDir = "/etc/gns3"
 UsrConfigDir = "~/.gns3"
@@ -611,4 +646,12 @@ conf_systemVBox_types = {
     'vboxwrapper_port': int,
     'vboxwrapper_baseUDP': int,
     'vboxwrapper_baseConsole': int,
+}
+
+conf_systemDeployementWizard_defaults = {
+    'deployementwizard_path': '',
+}
+
+conf_systemDeployementWizard_types = {
+    'deployementwizard_path': unicode,
 }

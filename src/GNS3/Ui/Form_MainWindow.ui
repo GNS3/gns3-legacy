@@ -66,7 +66,7 @@ background-none;
      <x>0</x>
      <y>0</y>
      <width>944</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -92,6 +92,7 @@ background-none;
     <addaction name="action_SaveProjectAs"/>
     <addaction name="separator"/>
     <addaction name="action_config"/>
+    <addaction name="action_Deployement_Wizard"/>
     <addaction name="action_Export"/>
     <addaction name="action_Snapshot"/>
     <addaction name="separator"/>
@@ -154,19 +155,12 @@ background-none;
      <string>Device</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menuExport_as_PDF">
-    <property name="title">
-     <string>Export</string>
-    </property>
-    <addaction name="action_Export_in_a_PDF"/>
-   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
    <addaction name="menu_View"/>
    <addaction name="menuControl"/>
    <addaction name="menuDevice"/>
    <addaction name="menuAnnotate"/>
-   <addaction name="menuExport_as_PDF"/>
    <addaction name="menu_About"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -1295,6 +1289,11 @@ background-none;
   <action name="action_Export_in_a_PDF">
    <property name="text">
     <string>Export in a PDF</string>
+   </property>
+  </action>
+  <action name="action_Deployement_Wizard">
+   <property name="text">
+    <string>Deployement Wizard</string>
    </property>
   </action>
  </widget>

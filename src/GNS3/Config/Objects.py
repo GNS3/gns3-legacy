@@ -174,3 +174,9 @@ class systemVBoxConf(ConfigObject):
         ConfigObject.__init__(self)
         self.conf = Defaults.conf_systemVBox_defaults.copy()
         self.types = Defaults.conf_systemVBox_types
+
+class systemDeployementWizardConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_systemDeployementWizard_defaults.copy()
+        self.types = Defaults.conf_systemDeployementWizard_types
