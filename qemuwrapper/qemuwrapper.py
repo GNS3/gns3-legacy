@@ -44,7 +44,6 @@ import time
 import random
 import ctypes
 import hashlib
-import Queue
 
 try:
     reload(sys)
@@ -89,6 +88,7 @@ PORT = 10525
 IP = ""
 QEMU_INSTANCES = {}
 FORCE_IPV6 = False
+MONITOR_BASE_PORT = 5001
 
 # set correctly the working directory for qemuwrapper
 WORKDIR = os.getcwdu()
@@ -139,9 +139,14 @@ class xEMUInstance(object):
         self.kvm = False
         self.options = ''
         self.process = None
-        self.processq = None
         self.workdir = WORKDIR + os.sep + name
         self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options', 'usermod']
+        # For Qemu monitor mode
+        self.monitor_conn = None
+        self.monitor_sock = None
+        global MONITOR_BASE_PORT
+        self.monitor_port = MONITOR_BASE_PORT
+        MONITOR_BASE_PORT = MONITOR_BASE_PORT + 1
 
     def create(self):
         debugmsg(2, "xEMUInstance::create()")
@@ -158,57 +163,58 @@ class xEMUInstance(object):
         debugmsg(2, "xEMUInstance::start()")
         command = self._build_command()
 
+        # Prepare the socket taking care of Qemu monitor mode
+        for res in socket.getaddrinfo('localhost', self.monitor_port, socket.AF_UNSPEC, socket.SOCK_STREAM):
+            af, socktype, proto, cannonname, sa = res
+            try:
+                self.monitor_sock = socket.socket(af, socktype, proto)
+            except socket.error, msg:
+                self.monitor_sock = None
+                continue
+            try:
+                self.monitor_sock.bind(sa)
+                self.monitor_sock.listen(1) # Allow only one connection
+            except socket.error, msg:
+                self.monitor_sock.close()
+                s = None
+                continue
+            break
+            if self.monitor_sock is None:
+                print >> sys.stderr, "Unable to open socket for monitor mode: disabling"
+
         qemu_cmd = " ".join(command)
         print "Command =>", qemu_cmd
         try:
             self.process = subprocess.Popen(command,
-                                            stdin=subprocess.PIPE,
-                                            stdout=subprocess.PIPE,
+                                            stdin = subprocess.PIPE,
+                                            stdout = subprocess.PIPE,
+                                            stderr = subprocess.PIPE,
                                             cwd=self.workdir)
         except OSError, e:
             print >> sys.stderr, "Unable to start instance", self.name, "of", self.__class__
             print >> sys.stderr, e
             return False
 
-        # give us some time to wait for Qemu to start
         time.sleep(1)
+        self.monitor_conn, addr = self.monitor_sock.accept()
+        self.monitor_conn.setblocking(0)
 
-        # set Qemu's stdout to be non blocking in order to parse monitor mode's output
-        self.processq = Queue.Queue()
-        t = threading.Thread(target=self._enqueue_output, args=(self.process.stdout, self.processq))
-        t.daemon = True
-        t.start()
-        # consume the first lines of output of qemu monitor mode
+        # consume the first lines of output of Qemu monitor mode
         output = ''
-        while 1:
-            try:
-                output += self.processq.get_nowait()
-            except Queue.Empty:
-                if len(output) == 0 or 'monitor -'not in output:
-                    time.sleep(1)
-                    continue
-                else:
-                    break
-
-        print "PID:", self.process.pid
+        while True:
+            select.select([self.monitor_conn], [], [], 1)
+            output += self.monitor_conn.recv(4096)
+            if len(output) == 0 or 'monitor -'not in output:
+                continue
+            else:
+                break
 
         if platform.system() == 'Windows':
             print "Setting priority class to BELOW_NORMAL"
-            handle = win32api.OpenProcess(win32con.PROCESS_ALL_ACCESS,
-                    0, self.process.pid)
-            returncode =  win32process.SetPriorityClass(handle,
-                    win32process.BELOW_NORMAL_PRIORITY_CLASS)
-            if returncode:
-                print "   failed."
-                return False
-
+            handle = win32api.OpenProcess(win32con.PROCESS_ALL_ACCESS, 0, self.process.pid)
+            win32process.SetPriorityClass(handle, win32process.BELOW_NORMAL_PRIORITY_CLASS)
         else:
-            print "Renicing to 19"
-            returncode = subprocess.call(['renice', '-n', '19', '-p', str(self.process.pid)])
-            if returncode:
-                print "    failed."
-                # ignore if renice didn't worked
-                return True
+            subprocess.call(['renice', '-n', '19', '-p', str(self.process.pid)])
 
         return True
 
@@ -230,16 +236,9 @@ class xEMUInstance(object):
             except OSError, e:
                 print >> sys.stderr, "Unable to stop Qemu instance", self.name
                 print >> sys.stderr, e
-                # ignore and continue
-                #return False
         self.process = None
 
         return True
-
-    def _enqueue_output(self, out, queue):
-        for line in iter(out.readline, b''):
-            queue.put(line)
-        out.close()
 
     def _net_options(self):
         global qemuprotocol
@@ -248,7 +247,7 @@ class xEMUInstance(object):
         # compute new MAC address based on VM name + vlan number
         mac = hashlib.md5(self.name).hexdigest()
 
-        #FIXME: do not check on Windows, we use Qemu 0.11.0 which is patched BUT doesn't support new syntax!
+        # Do not check on windows, we ship qemu 1.1 and it works with the default protocol
         if platform.system() != 'Windows':
 
             # fallback on another syntax if the current one is not supported
@@ -282,7 +281,7 @@ class xEMUInstance(object):
                 if vlan in self.udp:
                     options.append('-netdev')
                     options.append('socket,id=gns3-%s,udp=%s:%s,localaddr=%s:%s' % (vlan, self.udp[vlan].daddr, self.udp[vlan].dport, self.udp[vlan].saddr, self.udp[vlan].sport))
-                # FIXME: dump relies on vlans, incompatible with the new syntax: patch it.
+                # FIXME: dump relies on vlans, incompatible with the new syntax: patch Qemu
                 #if vlan in self.capture:
                     #options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
             else:
@@ -369,7 +368,12 @@ class QEMUInstance(xEMUInstance):
         debugmsg(3, "QEMUInstance::_build_command()")
         "Builds the command as a list of shell arguments."
         command = [self.bin]
+
+        # Qemu monitor mode through socket
         command.extend(['-monitor', 'stdio'])
+        command.extend(['-chardev', 'socket,id=qemuwrapper-monitor,host=localhost,port=' + str(self.monitor_port)])
+        command.extend(['-mon', 'qemuwrapper-monitor'])
+
         command.extend(['-name', self.name])
         command.extend(['-m', str(self.ram)])
         command.extend(self._disk_options())
@@ -1075,19 +1079,15 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             return
 
         # send the command to qemu monitor mode
-        QEMU_INSTANCES[name].process.stdin.write(command)
-        QEMU_INSTANCES[name].process.stdin.write("\n")
+        QEMU_INSTANCES[name].monitor_conn.send(command)
 
         output = ''
-        while 1:
+        while True:
             try:
-                output += QEMU_INSTANCES[name].processq.get_nowait()
-            except Queue.Empty:
-                if len(output) == 0 or output.rfind('(qemu) ') == len(output) - 6:
-                    time.sleep(1)
-                    continue
-                else:
-                    break
+                select.select([QEMU_INSTANCES[name].monitor_conn], [], [], 1)
+                output += QEMU_INSTANCES[name].monitor_conn.recv(512)
+            except:
+                break
         output = output.replace("\r", "")
         # remove the first line (trash input and ESC sequence)
         output = output[output.find("\n") + 1:]
