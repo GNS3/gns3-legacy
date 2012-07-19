@@ -280,6 +280,7 @@ class Dynagen:
                 'serial',
                 'nics',
                 'netcard',
+                'usermod',
                 'kvm',
                 'options',
                 'initrd',
