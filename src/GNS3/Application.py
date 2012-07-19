@@ -602,7 +602,7 @@ class Application(QApplication, Singleton):
                     self.mainWindow.raise_()
                     dialog.raise_()
                 else:
-                    self.GApp.mainWindow.createProject((None, None, None))
+                    self.mainWindow.createProject((None, None, None))
                     self.mainWindow.raise_()
 
         retcode = QApplication.exec_()
