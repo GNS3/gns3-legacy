@@ -264,7 +264,6 @@ class Topology(QtGui.QGraphicsScene):
 
         debug("Set image " + image_conf.filename)
         node.set_image(image_conf.filename, image_conf.chassis)
-        node.set_int_option('usermod', image_conf.default_usermod)
         if image_conf.default_ram:
             # force default ram
             save = node.default_ram
