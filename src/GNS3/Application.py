@@ -484,7 +484,7 @@ class Application(QApplication, Singleton):
         confo.autosave = int(ConfDB().get('GNS3/autosave', 0))
         confo.project_startup = ConfDB().value("GNS3/project_startup", QVariant(True)).toBool()
         confo.relative_paths = ConfDB().value("GNS3/relative_paths", QVariant(True)).toBool()
-        confo.use_shell = ConfDB().value("GNS3/use_shell", QVariant(False)).toBool()
+        confo.use_shell = ConfDB().value("GNS3/use_shell", QVariant(True)).toBool()
         confo.bring_console_to_front = ConfDB().value("GNS3/bring_console_to_front", QVariant(False)).toBool()
         confo.term_cmd = ConfDB().get('GNS3/console', Defaults.TERMINAL_DEFAULT_CMD)
         confo.project_path = ConfDB().get('GNS3/project_directory', Defaults.PROJECT_DEFAULT_DIR)

@@ -542,7 +542,7 @@ conf_systemGeneral_defaults = {
     'slow_start': 1,
     'autosave': 60,
     'term_cmd': '',
-    'use_shell': False,
+    'use_shell': True,
     'bring_console_to_front': False,
     'project_path': '.',
     'ios_path': '.',
