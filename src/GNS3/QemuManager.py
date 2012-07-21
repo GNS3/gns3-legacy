@@ -176,18 +176,18 @@ class QemuManager(object):
             self.proc.close()
         self.proc = None
 
-    def preloadQemuwrapper(self):
+    def preloadQemuwrapper(self, port):
         """ Preload Qemuwrapper
         """
         #print "Entered QemuManager::preloadQemuwrapper()"
         proc = QtCore.QProcess(globals.GApp.mainWindow)
         binding = globals.GApp.systconf['qemu'].QemuManager_binding
+        self.port = port
 
         if globals.GApp.systconf['qemu'].qemuwrapper_workdir:
             if not os.access(globals.GApp.systconf['qemu'].qemuwrapper_workdir, os.F_OK | os.W_OK):
-                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'Qemu Manager',
-                                          translate("QemuManager", "Working directory %s seems to not exist or be writable, please check") % globals.GApp.systconf['qemu'].qemuwrapper_workdir)
-                return False
+                raise Exception(translate("QemuManager", "Working directory %s seems to not exist or be writable, please check") %
+                                globals.GApp.systconf['qemu'].qemuwrapper_workdir)
 
             proc.setWorkingDirectory(globals.GApp.systconf['qemu'].qemuwrapper_workdir)
 
@@ -201,14 +201,13 @@ class QemuManager(object):
             proc.start(sys.executable,  [globals.GApp.systconf['qemu'].qemuwrapper_path, '--listen', binding, '--no-path-check'])
 
         if proc.waitForStarted() == False:
-            return False
+            raise Exception(translate('QemuManager', 'Could not start qemuwrapper.py'))
 
-        # give 5 seconds to the hypervisor to accept connections
-        count = 5
+        # give 3 seconds to the hypervisor to accept connections
+        count = 3
         connection_success = False
         for nb in range(count + 1):
             if binding.__contains__(':'):
-                # IPv6 address support
                 s = socket(AF_INET6, SOCK_STREAM)
             else:
                 s = socket(AF_INET, SOCK_STREAM)
@@ -234,13 +233,11 @@ class QemuManager(object):
                 endVerOffset = output.indexOf(ver, verOffset) - verOffset
                 wrapperVer = output.mid(verOffset, endVerOffset)
                 if wrapperVer != VERSION:
-                    print 'QemuManager: qemuwrapper version check failed: (' + wrapperVer + '|' + VERSION + ')'
-                    print 'QemuManager: please update your qemuwrapper and check its path in the settings'
                     proc.close()
-                    return False
+                    raise Exception(translate('QemuManager', 'Bad qemuwrapper.py version, expected (%s) got (%s)') % (VERSION, wrapperVer))
 
             proc.close()
             return True
         if proc.state():
             proc.close()
-        return False
+        raise Exception(translate('QemuManager', 'Could not connect to qemuwrapper on %s:%s' % (binding, self.port)))

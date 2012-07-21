@@ -931,11 +931,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
             globals.GApp.workspace.clear()
             globals.GApp.QemuManager = QemuManager()
-            if globals.GApp.QemuManager.preloadQemuwrapper() == False:
-                if hasattr(sys, "frozen") and (globals.GApp.systconf['qemu'].qemuwrapper_path.split('.')[-1] == 'py'):
-                    self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start Qemuwrapper (python.exe path must be in your PATH environment variable)")  + '</font>')
-                else:
-                    self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start Qemuwrapper")  + '</font>')
+
+            try:
+                globals.GApp.QemuManager.preloadQemuwrapper(self.conf.qemuwrapper_port)
+            except Exception as QMerror:
+                self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start Qemuwrapper: ") + QMerror.args[0]  + '</font>')
                 return
 
             try:
@@ -958,7 +958,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 if qemustdout[0].__contains__('for dynamips/pemu/GNS3'):
                     qemu_check = qemu_check + 1
                 try:
-                    p = subprocess.Popen([globals.GApp.systconf['qemu'].qemu_path, '--net', 'socket'], cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir, stderr = subprocess.PIPE)
+                    p = subprocess.Popen([globals.GApp.systconf['qemu'].qemu_path, '-net', 'socket'], cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir, stderr = subprocess.PIPE)
                     qemustderr = p.communicate()
                 except:
                     self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start qemu")  + '</font>')
