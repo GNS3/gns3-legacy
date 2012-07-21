@@ -971,7 +971,6 @@ class NETFile(object):
             # record router configs
             if isinstance(device, lib.Router) and globals.GApp.workspace.projectConfigs:
                 self.export_router_config(device, auto)
-        print ""
 
         note_nb = 1
         shape_nb = 1
