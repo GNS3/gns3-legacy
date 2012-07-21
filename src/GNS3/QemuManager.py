@@ -45,21 +45,18 @@ class QemuManager(object):
     def __del__(self):
         """ Kill Qemu
         """
-        #print "Entered QemuManager::__del__()"
         if self.proc:
             self.proc.kill()
 
     def waitQemu(self):
         """ Wait Qemu until it accepts connections
         """
-        #print "Entered QemuManager::waitQemu()"
         binding = globals.GApp.systconf['qemu'].QemuManager_binding
 
         # give 15 seconds to Qemu to accept connections
         count = 15
         progress = None
         connection_success = False
-        #debug("Qemu manager: connect on " + str(self.port))
         debug("Qemu manager: connecting to %s on port %s" % (str(globals.GApp.systconf['qemu'].QemuManager_binding), str(self.port)))
         for nb in range(count + 1):
             if binding.__contains__(':'):
@@ -107,7 +104,6 @@ class QemuManager(object):
     def startQemu(self, port):
         """ Start Qemu
         """
-        #print "Entered QemuManager::startQemu()"
         binding = globals.GApp.systconf['qemu'].QemuManager_binding
         self.port = port
         if self.proc and self.proc.state():
@@ -124,7 +120,6 @@ class QemuManager(object):
 
         # test if Qemu is already running on this port
         if binding.__contains__(':'):
-            # IPv6 address support
             s = socket(AF_INET6, SOCK_STREAM)
         else:
             s = socket(AF_INET, SOCK_STREAM)
@@ -141,7 +136,6 @@ class QemuManager(object):
 
         # start Qemuwrapper, use python on all platform but Windows (in release mode)
         binding = globals.GApp.systconf['qemu'].QemuManager_binding
-        #print "ADEBUG: qemuwrapper_path = %s" % str(globals.GApp.systconf['qemu'].qemuwrapper_path)
         if sys.platform.startswith('win') and (globals.GApp.systconf['qemu'].qemuwrapper_path.split('.')[-1] == 'exe'):
             self.proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"', ['--listen', binding, '--port', str(self.port), '--no-path-check'])
         elif hasattr(sys, "frozen"):
@@ -161,7 +155,6 @@ class QemuManager(object):
     def stopQemu(self):
         """ Stop Qemu
         """
-        #print "Entered QemuManager::stopQemu()"
         for hypervisor in globals.GApp.dynagen.dynamips.values():
             if isinstance(hypervisor, qlib.Qemu):
                 try:
@@ -179,7 +172,6 @@ class QemuManager(object):
     def preloadQemuwrapper(self, port):
         """ Preload Qemuwrapper
         """
-        #print "Entered QemuManager::preloadQemuwrapper()"
         proc = QtCore.QProcess(globals.GApp.mainWindow)
         binding = globals.GApp.systconf['qemu'].QemuManager_binding
         self.port = port
