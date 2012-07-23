@@ -8,7 +8,7 @@ INSTALLATION
 - PyQt 4.5 (or higher)
 - Dynamips 0.2.8+
 - VirtualBox 4.1.x
-- QEMU (with UDP patch)
+- QEMU 1.1+
 - PEMU
 - xdotool (on X11 UNIX-like platforms)
 - Wireshark
@@ -35,7 +35,7 @@ Method 1.
 
 2. Download Python 2.6 for MacOS X on http://www.python.org/download/ and install it.
 
-3. Download Qt librairies for Mac on http://qt.nokia.com/downloads and install it. 
+3. Download Qt librairies for Mac on http://qt.nokia.com/downloads and install it.
 
 4. Download SIP on http://www.riverbankcomputing.com/software/sip/download, compile and install it:
 
@@ -64,15 +64,15 @@ Method 2 (this can take a few hours as everything is compiled).
 
 1. Download and install MacPorts http://guide.macports.org/#installing (you will need the Apple Devs Tools).
 
-2. Open a terminal and install GNS3 dependencies. 
+2. Open a terminal and install GNS3 dependencies.
 
 	Macintosh:$ sudo port install python26
 	Macintosh:$ sudo port install py26-sip
 	Macintosh:$ sudo port install py26-pyqt4
 	Macintosh:$ sudo port install qt4-mac
-	
+
 	Optionnal: to prevent MacPorts to install the last version of the dependencies (which may not work properly with GNS3), you can force a specified version with @.
-	
+
 	Example:
 
 	Macintosh:$ sudo port install python26
