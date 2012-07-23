@@ -1172,6 +1172,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
             try:
                 projectDir = tempfile.mktemp()
+                projectDir = os.path.dirname(projectDir) + os.sep + 'GNS3_' + os.path.basename(projectDir)
                 os.makedirs(projectDir)
                 self.projectWorkdir = os.path.normpath(projectDir + os.sep + 'workdir')
                 self.projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
