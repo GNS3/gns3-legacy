@@ -66,7 +66,7 @@ background-none;
      <x>0</x>
      <y>0</y>
      <width>944</width>
-     <height>20</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -84,11 +84,9 @@ background-none;
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="action_Clear"/>
+    <addaction name="action_New"/>
     <addaction name="action_Open"/>
     <addaction name="action_Save"/>
-    <addaction name="action_SaveAs"/>
-    <addaction name="action_New"/>
     <addaction name="action_SaveProjectAs"/>
     <addaction name="separator"/>
     <addaction name="action_config"/>
@@ -537,7 +535,7 @@ background-none;
      <normaloff>:/icons/open.svg</normaloff>:/icons/open.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;Open</string>
+    <string>&amp;Open Project</string>
    </property>
    <property name="toolTip">
     <string>Open project or topology file</string>
@@ -555,7 +553,7 @@ background-none;
      <normaloff>:/icons/save.svg</normaloff>:/icons/save.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;Save</string>
+    <string>&amp;Save project</string>
    </property>
    <property name="toolTip">
     <string>Save project or topology file</string>
@@ -911,7 +909,7 @@ background-none;
      <normaloff>:/icons/import_export_configs.svg</normaloff>:/icons/import_export_configs.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;Import/Export</string>
+    <string>&amp;Import/Export IOS configs</string>
    </property>
    <property name="toolTip">
     <string>Import/Export Startup Configs</string>

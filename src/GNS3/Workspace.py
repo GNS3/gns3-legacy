@@ -166,10 +166,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_SaveProjectAs, QtCore.SIGNAL('triggered()'), self.__action_SaveProjectAs)
         self.connect(self.action_Open, QtCore.SIGNAL('triggered()'), self.__action_OpenFile)
         self.connect(self.action_Save, QtCore.SIGNAL('triggered()'), self.__action_Save)
-        self.connect(self.action_SaveAs, QtCore.SIGNAL('triggered()'), self.__action_SaveAs)
         self.connect(self.action_Preferences, QtCore.SIGNAL('triggered()'), self.__action_Preferences)
         self.connect(self.action_AddNote, QtCore.SIGNAL('triggered()'), self.__action_AddNote)
-        self.connect(self.action_Clear, QtCore.SIGNAL('triggered()'), self.__action_Clear)
         self.connect(self.action_config, QtCore.SIGNAL('triggered()'), self.__action_Config)
         self.connect(self.action_InsertImage, QtCore.SIGNAL('triggered()'), self.__action_InsertImage)
         self.connect(self.action_DrawRectangle, QtCore.SIGNAL('triggered()'), self.__action_DrawRectangle)
@@ -403,30 +401,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.clear_workdir(projectWorkdir)
         globals.GApp.mainWindow.capturesDock.refresh()
         self.track.clearAllTcpPort()
-
-    def __action_Clear(self):
-        """ Clear the topology
-        """
-
-        running_nodes = False
-        for node in globals.GApp.topology.nodes.itervalues():
-            if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice)) and node.get_dynagen_device().state == 'running':
-                running_nodes = True
-
-        if len(globals.GApp.topology.nodes) and globals.GApp.topology.changed == True:
-            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
-                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No, QtGui.QMessageBox.Cancel)
-            if reply == QtGui.QMessageBox.Yes:
-                self.__action_Save()
-            elif reply == QtGui.QMessageBox.Cancel:
-                return
-        elif running_nodes:
-            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "You have running nodes and you may lose your configurations inside them, would you like to continue anyway?"),
-                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-            if reply == QtGui.QMessageBox.No:
-                return
-
-        self.clear()
 
     def __action_Config(self):
         """ Choose between extracting or importing configs

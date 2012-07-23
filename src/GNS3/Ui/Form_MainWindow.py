@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'src/GNS3/Ui/Form_MainWindow.ui'
+# Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Mon Jul 16 11:06:11 2012
-#      by: PyQt4 UI code generator 4.9.4
+# Created: Tue Jul 24 04:53:19 2012
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -53,7 +53,7 @@ class Ui_MainWindow(object):
         self.gridlayout.addWidget(self.graphicsView, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 944, 20))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 944, 23))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menu_Edit = QtGui.QMenu(self.menubar)
         self.menu_Edit.setObjectName(_fromUtf8("menu_Edit"))
@@ -464,11 +464,9 @@ class Ui_MainWindow(object):
         self.menu_Edit.addAction(self.action_IOS_images)
         self.menu_Edit.addAction(self.action_Symbol_Manager)
         self.menu_Edit.addAction(self.action_Preferences)
-        self.menu_File.addAction(self.action_Clear)
+        self.menu_File.addAction(self.action_New)
         self.menu_File.addAction(self.action_Open)
         self.menu_File.addAction(self.action_Save)
-        self.menu_File.addAction(self.action_SaveAs)
-        self.menu_File.addAction(self.action_New)
         self.menu_File.addAction(self.action_SaveProjectAs)
         self.menu_File.addSeparator()
         self.menu_File.addAction(self.action_config)
@@ -585,11 +583,11 @@ class Ui_MainWindow(object):
         self.action_Quit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setStatusTip(QtGui.QApplication.translate("MainWindow", "Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Quit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Open.setText(QtGui.QApplication.translate("MainWindow", "&Open", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Open.setText(QtGui.QApplication.translate("MainWindow", "&Open Project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Open.setToolTip(QtGui.QApplication.translate("MainWindow", "Open project or topology file", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Open.setStatusTip(QtGui.QApplication.translate("MainWindow", "Open project or topology file", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Open.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+O", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Save.setText(QtGui.QApplication.translate("MainWindow", "&Save", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Save.setText(QtGui.QApplication.translate("MainWindow", "&Save project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Save.setToolTip(QtGui.QApplication.translate("MainWindow", "Save project or topology file", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Save.setStatusTip(QtGui.QApplication.translate("MainWindow", "Save project or topology file", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Save.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+S", None, QtGui.QApplication.UnicodeUTF8))
@@ -658,7 +656,7 @@ class Ui_MainWindow(object):
         self.action_New.setToolTip(QtGui.QApplication.translate("MainWindow", "New blank project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_New.setStatusTip(QtGui.QApplication.translate("MainWindow", "New blank project", None, QtGui.QApplication.UnicodeUTF8))
         self.action_New.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+N", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_config.setText(QtGui.QApplication.translate("MainWindow", "&Import/Export", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_config.setText(QtGui.QApplication.translate("MainWindow", "&Import/Export IOS configs", None, QtGui.QApplication.UnicodeUTF8))
         self.action_config.setToolTip(QtGui.QApplication.translate("MainWindow", "Import/Export Startup Configs", None, QtGui.QApplication.UnicodeUTF8))
         self.action_config.setStatusTip(QtGui.QApplication.translate("MainWindow", "Import/Export Startup Configs", None, QtGui.QApplication.UnicodeUTF8))
         self.action_InsertImage.setText(QtGui.QApplication.translate("MainWindow", "Insert picture", None, QtGui.QApplication.UnicodeUTF8))
