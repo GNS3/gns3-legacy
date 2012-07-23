@@ -53,6 +53,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.projectFile = None
         self.projectWorkdir = None
         self.projectConfigs = None
+        # Ask to unbase when saving
+        self.unbase = False
 
         # Initialize the windows
         QMainWindow.__init__(self)
@@ -166,10 +168,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_SaveProjectAs, QtCore.SIGNAL('triggered()'), self.__action_SaveProjectAs)
         self.connect(self.action_Open, QtCore.SIGNAL('triggered()'), self.__action_OpenFile)
         self.connect(self.action_Save, QtCore.SIGNAL('triggered()'), self.__action_Save)
-        self.connect(self.action_SaveAs, QtCore.SIGNAL('triggered()'), self.__action_SaveAs)
         self.connect(self.action_Preferences, QtCore.SIGNAL('triggered()'), self.__action_Preferences)
         self.connect(self.action_AddNote, QtCore.SIGNAL('triggered()'), self.__action_AddNote)
-        self.connect(self.action_Clear, QtCore.SIGNAL('triggered()'), self.__action_Clear)
         self.connect(self.action_config, QtCore.SIGNAL('triggered()'), self.__action_Config)
         self.connect(self.action_InsertImage, QtCore.SIGNAL('triggered()'), self.__action_InsertImage)
         self.connect(self.action_DrawRectangle, QtCore.SIGNAL('triggered()'), self.__action_DrawRectangle)
@@ -403,30 +403,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.clear_workdir(projectWorkdir)
         globals.GApp.mainWindow.capturesDock.refresh()
         self.track.clearAllTcpPort()
-
-    def __action_Clear(self):
-        """ Clear the topology
-        """
-
-        running_nodes = False
-        for node in globals.GApp.topology.nodes.itervalues():
-            if (isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice)) and node.get_dynagen_device().state == 'running':
-                running_nodes = True
-
-        if len(globals.GApp.topology.nodes) and globals.GApp.topology.changed == True:
-            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to save the current topology?"),
-                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No, QtGui.QMessageBox.Cancel)
-            if reply == QtGui.QMessageBox.Yes:
-                self.__action_Save()
-            elif reply == QtGui.QMessageBox.Cancel:
-                return
-        elif running_nodes:
-            reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "You have running nodes and you may lose your configurations inside them, would you like to continue anyway?"),
-                                               QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-            if reply == QtGui.QMessageBox.No:
-                return
-
-        self.clear()
 
     def __action_Config(self):
         """ Choose between extracting or importing configs
@@ -1165,7 +1141,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         globals.GApp.workspace.setWindowTitle("GNS3")
         self.projectWorkdir = None
         self.projectConfigs = None
-        (self.projectFile, self.projectWorkdir, self.projectConfigs) = settings
+        (self.projectFile, self.projectWorkdir, self.projectConfigs, self.unbase) = settings
 
         # Create a project in a temporary location
         if not self.projectFile and not self.projectWorkdir and not self.projectConfigs:
@@ -1292,7 +1268,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         if self.projectFile is None:
-            if self.__action_SaveAs() == False:
+            if self.__action_SaveProjectAs() == False:
                 return
             self.createSnapshot(name)
             return
@@ -1494,12 +1470,29 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         if self.projectFile is None:
-            return self.__action_SaveAs()
+            return self.__action_SaveProjectAs()
+
+        # check if the project is configured to unbase qemu disk images
+        unbase = False
+        if self.unbase == True:
+            instances = map(lambda node: isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS), globals.GApp.topology.nodes.values())
+            if True in instances:
+                reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)"),
+                                                   QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+                if reply == QtGui.QMessageBox.Yes:
+                    unbase = True
 
         try:
             net = netfile.NETFile()
             net.export_net_file(self.projectFile, auto)
             self.__addToRecentFiles(self.projectFile)
+
+            # unbase the qemu disk
+            if unbase == True:
+                for node in globals.GApp.topology.nodes.values():
+                    if (isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS)) and unbase:
+                        node.get_dynagen_device().unbase()
+
             globals.GApp.topology.changed = False
             autosave = globals.GApp.systconf['general'].autosave
             if autosave > 0:
@@ -1508,27 +1501,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 self.timer.stop()
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
-
-    def __action_SaveAs(self):
-        """ Save as (scenario or dynagen .NET format)
-        """
-
-        (path, selected) = fileBrowser(translate("Workspace", "Save As..."),
-                                filter='NET file (*.net);;All files (*)', directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getSaveFile()
-
-        if path != None and path != '':
-            if str(selected) == 'NET file (*.net)' or selected == '':
-                path = os.path.normpath(path)
-                if not path.endswith('.net'):
-                    path = path + '.net'
-                self.projectFile = path
-                self.setWindowTitle("GNS3 - " + self.projectFile)
-                net = netfile.NETFile()
-                net.export_net_file(path)
-                self.__addToRecentFiles(path)
-                globals.GApp.topology.changed = False
-                return True
-        return False
 
     def closeEvent(self, event):
         """ Ask to close GNS3
