@@ -85,7 +85,6 @@ class Ethernet(AbstractEdge):
     def paint(self, painter, option, widget):
         """ Draw the status points
         """
-
         QtGui.QGraphicsPathItem.paint(self, painter, option, widget)
 
         if not self.fake and globals.GApp.systconf['general'].status_points:
@@ -199,3 +198,4 @@ class Ethernet(AbstractEdge):
                 self.labelDestIf.hide()
 
             painter.drawPoint(point2)
+

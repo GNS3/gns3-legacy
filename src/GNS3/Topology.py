@@ -1035,7 +1035,6 @@ class Topology(QtGui.QGraphicsScene):
     def addLink(self, srcid, srcif, dstid, dstif, draw=True):
         """ Add a link to the topology
         """
-
         src_node = globals.GApp.topology.getNode(srcid)
         dst_node = globals.GApp.topology.getNode(dstid)
         # special cases
@@ -1156,7 +1155,6 @@ class Topology(QtGui.QGraphicsScene):
     def deleteLink(self, link):
         """ Delete a link from the topology
         """
-
         if not isinstance(link.source, DecorativeNode) and not isinstance(link.dest, DecorativeNode):
             # not a decorative device
             try:

@@ -24,7 +24,7 @@ import os, platform, shutil
 from GNS3.Config.Objects import systemDeployementWizardConf
 from GNS3.Utils import translate, fileBrowser
 from PyQt4 import QtGui, QtCore
-from GNS3.Config.Defaults import DEPLOYEMENTWIZARD_DEFAULT_PATH, PIL_DEFAULT_DIR, REPORTLAB_DEFAULT_DIR
+from GNS3.Config.Defaults import PIL_DEFAULT_DIR, REPORTLAB_DEFAULT_DIR
 from GNS3.Ui.ConfigurationPages.Form_PreferencesDeployementWizard import Ui_PreferencesDeployementWizard
 
 class UiConfig_PreferencesDeployementWizard(QtGui.QWidget, Ui_PreferencesDeployementWizard):
@@ -44,7 +44,7 @@ class UiConfig_PreferencesDeployementWizard(QtGui.QWidget, Ui_PreferencesDeploye
             self.conf = systemDeployementWizardConf()
 
         if self.conf.deployementwizard_path == '':
-            self.conf.deployementwizard_path = DEPLOYEMENTWIZARD_DEFAULT_PATH
+            self.conf.deployementwizard_path = globals.GApp.mainWindow.projectFile
 
         self.ProjectPath.setText(os.path.normpath(self.conf.deployementwizard_path))
 

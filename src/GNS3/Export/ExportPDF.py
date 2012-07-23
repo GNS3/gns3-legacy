@@ -8,6 +8,7 @@ from PIL import Image
 from PyQt4 import QtCore
 from PyQt4.QtGui import QApplication, QDialog, QWizard
 import sys, os, tempfile
+import GNS3.Globals as globals
 from os import chdir
 
 try:
@@ -143,8 +144,13 @@ class ExportedPDF():
         """Method used to write in the dot temporary file."""
         f = os.fdopen(self.filename[0], 'w')
         f.write('graph G {\n')
+        for elem in globals.GApp.topology.nodes.itervalues():
+            print elem
+
         for key, elem in Object.items():
             f.write(str(key) + '[labelloc="b", label="\\n\\n\\n\\n\\n' + str(elem[0]) + '\\n' + str(elem[4]) + '", color="white"];\n')
+        for elem in globals.GApp.topology.links:
+            f.write(str(elem.source.hostname) + '--' + str(elem.dest.hostname) + '\n')
         f.write('}')
 
     def execDOT(self, Object):
