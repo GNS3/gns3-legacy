@@ -74,7 +74,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         """
 
         if self.newProject == True:
-            globals.GApp.mainWindow.createProject((None, None, None))
+            globals.GApp.mainWindow.createProject((None, None, None, False))
 
     def __setProjectDir(self):
         """ Open a file dialog for choosing the location of the project directory
@@ -129,7 +129,11 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
             projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
         else:
             projectConfigs = None
-        return (projectFile, projectWorkdir, projectConfigs)
+        if self.checkBox_ConfigFiles.checkState() == QtCore.Qt.Checked:
+            unbaseImages = True
+        else:
+            unbaseImages = False
+        return (projectFile, projectWorkdir, projectConfigs, unbaseImages)
 
     def accept(self):
 
