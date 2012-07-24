@@ -197,9 +197,9 @@ class Console(PyCutExt, Dynagen_Console):
                     globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(node.hostname, 'running')
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("Console", "%s: Dynamips error") % node.hostname,  unicode(msg))
-        except lib.DynamipsWarning,  msg:
+        except lib.DynamipsWarning, msg:
             QtGui.QMessageBox.warning(self, translate("Console", "%s: Dynamips warning") % node.hostname,  unicode(msg))
-        except (lib.DynamipsErrorHandled,  socket.error):
+        except (lib.DynamipsErrorHandled, socket.error):
             QtGui.QMessageBox.critical(self, translate("Console", "%s: Dynamips error") % node.hostname, translate("Console", "Connection lost"))
 
     def do_stop(self, args):

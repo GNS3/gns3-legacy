@@ -318,41 +318,31 @@
               <string>VirtualBox Guest Settings</string>
              </property>
              <layout class="QGridLayout" name="gridLayout">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_14">
-                <property name="text">
-                 <string>VM List / unique ID:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1" colspan="2">
-               <widget class="QComboBox" name="comboBoxNameVBoxImage">
-                <property name="editable">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
               <item row="1" column="0">
                <widget class="QLabel" name="label">
                 <property name="enabled">
                  <bool>true</bool>
                 </property>
                 <property name="text">
-                 <string>VM Name / UUID:</string>
+                 <string>Identifier name:</string>
                 </property>
                </widget>
               </item>
               <item row="1" column="1" colspan="2">
-               <widget class="QLineEdit" name="VBoxImage"/>
+               <widget class="QLineEdit" name="VBoxID">
+                <property name="readOnly">
+                 <bool>false</bool>
+                </property>
+               </widget>
               </item>
-              <item row="2" column="0">
+              <item row="3" column="0">
                <widget class="QLabel" name="label_37">
                 <property name="text">
                  <string>Number of NICs:</string>
                 </property>
                </widget>
               </item>
-              <item row="2" column="1" colspan="2">
+              <item row="3" column="1" colspan="2">
                <widget class="QSpinBox" name="VBoxNICNb">
                 <property name="enabled">
                  <bool>true</bool>
@@ -371,14 +361,14 @@
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
+              <item row="4" column="0">
                <widget class="QLabel" name="label_10">
                 <property name="text">
                  <string>NIC model:</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="1" colspan="2">
+              <item row="4" column="1" colspan="2">
                <widget class="QComboBox" name="VBoxNIC">
                 <property name="enabled">
                  <bool>true</bool>
@@ -413,34 +403,34 @@
                 </item>
                </widget>
               </item>
-              <item row="8" column="0" colspan="3">
+              <item row="9" column="0" colspan="3">
                <widget class="QCheckBox" name="VBoxcheckBoxEnableGuestControl">
                 <property name="text">
                  <string>Enable GuestControl (experimental)</string>
                 </property>
                </widget>
               </item>
-              <item row="9" column="0">
+              <item row="10" column="0">
                <widget class="QLabel" name="label_4">
                 <property name="text">
-                 <string>GuestControl User</string>
-                </property>
-               </widget>
-              </item>
-              <item row="9" column="2">
-               <widget class="QLineEdit" name="VBoxGuestControl_User"/>
-              </item>
-              <item row="10" column="0" colspan="2">
-               <widget class="QLabel" name="label_7">
-                <property name="text">
-                 <string>GuestControl Password</string>
+                 <string>GuestControl User:</string>
                 </property>
                </widget>
               </item>
               <item row="10" column="2">
+               <widget class="QLineEdit" name="VBoxGuestControl_User"/>
+              </item>
+              <item row="11" column="0" colspan="2">
+               <widget class="QLabel" name="label_7">
+                <property name="text">
+                 <string>GuestControl Password:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="2">
                <widget class="QLineEdit" name="VBoxGuestControl_Password"/>
               </item>
-              <item row="4" column="0" colspan="3">
+              <item row="5" column="0" colspan="3">
                <widget class="QCheckBox" name="checkBoxVBoxFirstInterfaceManaged">
                 <property name="text">
                  <string>Do not use first NIC for connections with the host OS</string>
@@ -450,24 +440,38 @@
                 </property>
                </widget>
               </item>
-              <item row="7" column="0" colspan="3">
+              <item row="8" column="0" colspan="3">
                <widget class="QCheckBox" name="checkBoxVBoxHeadlessMode">
                 <property name="text">
                  <string>Start in headless mode (without GUI)</string>
                 </property>
                </widget>
               </item>
-              <item row="5" column="0" colspan="3">
+              <item row="6" column="0" colspan="3">
                <widget class="QCheckBox" name="checkBoxVboxConsoleSupport">
                 <property name="text">
                  <string>Enable console support</string>
                 </property>
                </widget>
               </item>
-              <item row="6" column="0" colspan="3">
+              <item row="7" column="0" colspan="3">
                <widget class="QCheckBox" name="checkBoxVboxConsoleServer">
                 <property name="text">
                  <string>Enable console server (optionnal on Windows)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>VM List:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1" colspan="2">
+               <widget class="QComboBox" name="comboBoxNameVBoxImage">
+                <property name="editable">
+                 <bool>false</bool>
                 </property>
                </widget>
               </item>
@@ -523,12 +527,12 @@
             <widget class="QTreeWidget" name="treeWidgetVBoxImages">
              <column>
               <property name="text">
-               <string>GNS3 Name</string>
+               <string>Name</string>
               </property>
              </column>
              <column>
               <property name="text">
-               <string>Virtual Machine Name or Unique Identifier</string>
+               <string>Virtual Machine Name</string>
               </property>
              </column>
             </widget>

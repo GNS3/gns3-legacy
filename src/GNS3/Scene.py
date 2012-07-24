@@ -378,7 +378,7 @@ class Scene(QtGui.QGraphicsView):
 
         for item in self.__topology.selectedItems():
             if isinstance(item, ETHSW):
-                table = MACTableDialog(item)
+                table = MACTableDialog(item, globals.GApp.mainWindow)
                 table.show()
                 table.exec_()
 

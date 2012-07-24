@@ -24,13 +24,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #This file is a client, that connects to 'dynamips' server.
 #This is part of Dynagen-GNS3.
 
-from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
 import portTracker_lib as tracker
 import sys
 import os
 import re
 import copy
 import time
+import socket
 
 #version = "0.11.0.101003"
 # Minimum version of dynamips required. Currently 0.2.8-RC1 (due to change to
@@ -247,19 +247,12 @@ class Dynamips(object):
                  default is 3 seconds
     """
 
-    def __init__(self, host, port=7200, timeout=500):
-        if host.__contains__(':'):
-            # IPv6 address support
-            self.s = socket(AF_INET6, SOCK_STREAM)
-        else:
-            self.s = socket(AF_INET, SOCK_STREAM)
-        self.s.setblocking(0)
-        self.s.settimeout(timeout)
+    def __init__(self, host, port=7200, timeout=60.0):
         self.configchange = False
         self.__type = 'dynamips'
         if not NOSEND:
             try:
-                self.s.connect((host, port))
+                self.s = socket.create_connection((host, port), timeout)
             except:
                 raise DynamipsError, 'Could not connect to server'
         self.__devices = []
@@ -4516,7 +4509,7 @@ class ATMSW(Emulated_switch):
             except KeyError:
                 return None
             except AttributeError, e:
-                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port1)
+                raise DynamipsError, 'nothing connected to port %s, it does not exist' % (port)
 
         if isinstance(nio, NIO):
             # Set the NETIO for this port

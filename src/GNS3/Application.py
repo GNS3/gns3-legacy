@@ -408,6 +408,7 @@ class Application(QApplication, Singleton):
         else:
             confo.memory_limit = int(ConfDB().get("Dynamips/hypervisor_memory_usage_limit", 1024))
         confo.udp_incrementation = int(ConfDB().get("Dynamips/hypervisor_udp_incrementation", 100))
+        confo.detected_version = ConfDB().get('Dynamips/detected_version', unicode(''))
         confo.import_use_HypervisorManager = ConfDB().value("Dynamips/hypervisor_manager_import", QVariant(True)).toBool()
         confo.HypervisorManager_binding = ConfDB().get('Dynamips/hypervisor_manager_binding', unicode('127.0.0.1'))
         confo.allocateHypervisorPerIOS = ConfDB().value("Dynamips/allocate_hypervisor_per_IOS", QVariant(True)).toBool()
@@ -670,6 +671,7 @@ class Application(QApplication, Singleton):
         c.set('Dynamips/dynamips_jitsharing', confo.jitsharing)
         c.set('Dynamips/dynamips_mmap', confo.mmap)
         c.set('Dynamips/hypervisor_memory_usage_limit', confo.memory_limit)
+        c.set('Dynamips/detected_version', confo.detected_version)
         c.set('Dynamips/hypervisor_udp_incrementation', confo.udp_incrementation)
         c.set('Dynamips/hypervisor_manager_import', confo.import_use_HypervisorManager)
         c.set('Dynamips/allocate_hypervisor_per_IOS', confo.allocateHypervisorPerIOS)

@@ -69,7 +69,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         self.connect(self.treeWidgetVBoxImages,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotVBoxImageSelectionChanged)
 
         # Auto-fill of VirtualBox VM name
-        self.connect(self.comboBoxNameVBoxImage, QtCore.SIGNAL('editTextChanged(QString)'), self.VBoxImage, QtCore.SLOT('setText(QString)'))
+        self.connect(self.comboBoxNameVBoxImage, QtCore.SIGNAL('editTextChanged(QString)'), self.VBoxID, QtCore.SLOT('setText(QString)'))
 
         # Refresh VM list
         self.connect(self.pushButtonRefresh, QtCore.SIGNAL('clicked()'), self.slotRefreshVMlist)
@@ -278,7 +278,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             item.setText(1, conf.filename)
 
         self.treeWidgetVBoxImages.resizeColumnToContents(0)
-        self.treeWidgetVBoxImages.sortItems(0, QtCore.Qt.AscendingOrder) # Sort accoroding to GNS3 name
+        self.treeWidgetVBoxImages.sortItems(1, QtCore.Qt.AscendingOrder) # Sort according to GNS3 name
 
     def saveConf(self):
 
@@ -375,6 +375,14 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             item_to_update = self.treeWidgetVBoxImages.findItems(name, QtCore.Qt.MatchFixedString)[0]
             item_to_update.setText(1, image)
         else:
+            
+            # white spaces have to be replaced
+            p = re.compile('\s+', re.UNICODE)
+            name = p.sub("_", name)
+            if not re.search(r"""^[\w,.-\[\]]*$""", name, re.UNICODE):
+                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesVirtualBox", "VirtualBox guest"), 
+                                           translate("Page_PreferencesVirtualBox", "Identifier name must contains only alphanumeric characters!"))
+                return
             # else create a new entry
             item = QtGui.QTreeWidgetItem(self.treeWidgetVBoxImages)
             # image name column

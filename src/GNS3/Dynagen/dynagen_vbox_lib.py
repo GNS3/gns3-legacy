@@ -57,9 +57,9 @@ def debugmsg(level, message):
 msg = "WELCOME to dynagen_vbox_lib.py"
 debugmsg(2, msg)
 
-from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
 from dynamips_lib import NIO_udp, send, dowarning, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW, DynamipsWarning
 import random
+import socket
 
 #version = "0.11.0.111211"
 (MAJOR, MINOR, SUB) = (0, 8, 2)
@@ -120,17 +120,11 @@ class VBox(object):
         self.host = name
 
         #connect to VBox Wrapper
-        if name.__contains__(':'):
-            # IPv6 address support
-            self.s = socket(AF_INET6, SOCK_STREAM)
-        else:
-            self.s = socket(AF_INET, SOCK_STREAM)
-        self.s.setblocking(0)
-        self.s.settimeout(300)
+        timeout = 60.0
         self._type = 'vboxwrapper'
         if not NOSEND:
             try:
-                self.s.connect((self.host, self.port))
+                self.s = socket.create_connection((self.host, self.port), timeout)
             except:
                 raise DynamipsError, '101-Could not connect to vboxwrapper at %s:%i' % (self.host, self.port)
         #version checking

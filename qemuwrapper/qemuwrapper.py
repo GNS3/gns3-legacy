@@ -82,7 +82,10 @@ debugmsg(2, msg)
 __author__ = 'Thomas Pani and Jeremy Grossmann'
 __version__ = '0.8.4'
 
-QEMU_PATH = "qemu-system-i386"
+if platform.system() == 'Windows':
+    QEMU_PATH = "qemu" # we still use Qemu 0.11.0 on Windows
+else:
+    QEMU_PATH = "qemu-system-i386"
 QEMU_IMG_PATH = "qemu-img"
 PORT = 10525
 IP = ""
@@ -183,7 +186,7 @@ class xEMUInstance(object):
                 print >> sys.stderr, "Unable to open socket for monitor mode: disabling"
 
         qemu_cmd = " ".join(command)
-        print "Command =>", qemu_cmd
+        print "Starting Qemu: ", qemu_cmd
 
         if platform.system() == 'Windows':
             shell = False
@@ -202,9 +205,17 @@ class xEMUInstance(object):
             return False
 
         time.sleep(1)
+        # check if Qemu has exited (not to say crashed!)
+        # ^ Qemu doesn't crash, it crashes you
+        self.process.poll()
+        if self.process.returncode != None:
+            print >> sys.stderr, "Qemu has exited with return code %i" % self.process.returncode
+            return False
+
+        print "Qemu has successfully started with pid %i" % self.process.pid
+
         self.monitor_conn, addr = self.monitor_sock.accept()
         self.monitor_conn.setblocking(0)
-
         # consume the first lines of output of Qemu monitor mode
         output = ''
         while True:

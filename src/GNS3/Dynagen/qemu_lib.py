@@ -58,10 +58,10 @@ def debugmsg(level, message):
 msg = "WELCOME to qemu_lib.py"
 debugmsg(2, msg)
 
-from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
 from dynamips_lib import NIO_udp, send, dowarning, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW, DynamipsWarning
 import random
 import hashlib
+import socket
 
 #version = "0.11.0.091411"
 (MAJOR, MINOR, SUB, RCVER) = (0, 2, 1, .1)
@@ -122,17 +122,11 @@ class Qemu(object):
         self.host = name
 
         #connect to Qemu Wrapper
-        if name.__contains__(':'):
-            # IPv6 address support
-            self.s = socket(AF_INET6, SOCK_STREAM)
-        else:
-            self.s = socket(AF_INET, SOCK_STREAM)
-        self.s.setblocking(0)
-        self.s.settimeout(300)
+        timeout = 60.0
         self._type = 'qemuwrapper'
         if not NOSEND:
             try:
-                self.s.connect((self.host, self.port))
+                self.s = socket.create_connection((self.host, self.port), timeout)
             except:
                 raise DynamipsError, 'Could not connect to qemuwrapper at %s:%i' % (self.host, self.port)
         #version checking
@@ -173,7 +167,6 @@ class Qemu(object):
 
     def close(self):
         """ Close the connection to the Qemuwrapper (but leave it running)"""
-        debugmsg(2, "Qemu::close(%s, %s)" % (unicode(name), str(port)))
 
         self.s.close()
 

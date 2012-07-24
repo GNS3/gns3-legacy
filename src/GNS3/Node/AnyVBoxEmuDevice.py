@@ -333,8 +333,10 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         try:
             if self.emu_vboxdev.state == 'stopped':
                 self.emu_vboxdev.start()
+                self.displayWindowFocus()
             if self.emu_vboxdev.state == 'suspended':
                 self.emu_vboxdev.resume()
+                self.displayWindowFocus()
         except:
             if progress:
                 raise
@@ -405,10 +407,12 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
                 proc = console.connect(self.emu_vboxdev.dynamips.host, self.emu_vboxdev.console, self.hostname)
             if proc:
                 self.consoleProcesses.append(proc)
+        AbstractNode.clearClosedConsoles(self)
 
     def displayWindowFocus(self):
         """ Bring VM's display as foreground window and focus on it
         """
+
         if self.emu_vboxdev.state == 'running' or self.emu_vboxdev.state == 'suspended':
             hwnd = int(self.emu_vboxdev.displayWindowFocus())
             if hwnd > 0:
@@ -417,6 +421,7 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
     def displayWindowHide(self):
         """ Hide VM's display window
         """
+
         if self.emu_vboxdev.state == 'running' or self.emu_vboxdev.state == 'suspended':
             hwnd = int(self.emu_vboxdev.displayWindowFocus())
             if hwnd > 0:

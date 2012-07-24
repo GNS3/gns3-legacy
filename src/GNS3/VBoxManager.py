@@ -21,12 +21,9 @@
 #This class is used to start "vboxwrapper" automatically on localhost.
 #It is not used, if you start wrapper manually.
 
-import os
-import sys
-import time
+import os, sys, time, socket
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynagen_vbox_lib as vboxlib
-from socket import socket, AF_INET, AF_INET6, SOCK_STREAM
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug, killAll
 
@@ -47,28 +44,19 @@ class VBoxManager(object):
 
         self.stopVBox()
 
-    def waitVBox(self):
+    def waitVBox(self, binding):
         """ Wait VBox until it accepts connections
         """
-        #print "Entered VBoxManager::waitVBox()"
-        binding = globals.GApp.systconf['vbox'].VBoxManager_binding
 
         # give 15 seconds to VBox to accept connections
         count = 15
         progress = None
         connection_success = False
-        debug("VBox manager: connecting to %s on port %s" % (str(binding), str(self.port)))
+        timeout = 60.0
+        debug("VBox manager: connecting to %s on port %i" % (binding, self.port))
         for nb in range(count + 1):
-            #print "ADEBUG: VBoxManager.py: binding = " + binding
-            if binding.__contains__(':'):
-                # IPv6 address support
-                s = socket(AF_INET6, SOCK_STREAM)
-            else:
-                s = socket(AF_INET, SOCK_STREAM)
-            s.setblocking(0)
-            s.settimeout(300)
             if nb == 3:
-                progress = QtGui.QProgressDialog(translate("VBoxManager", "Connecting to VBox on port %i ...") % self.port,
+                progress = QtGui.QProgressDialog(translate("VBoxManager", "Connecting to VBox on %s port %i ...") % (binding, self.port),
                                                  translate("VBoxManager", "Abort"), 0, count, globals.GApp.mainWindow)
                 progress.setMinimum(1)
                 progress.setWindowModality(QtCore.Qt.WindowModal)
@@ -80,9 +68,8 @@ class VBoxManager(object):
                     progress.reset()
                     break
             try:
-                s.connect((binding, self.port))
+                s = socket.create_connection((binding, self.port), timeout)
             except:
-                s.close()
                 time.sleep(1)
                 continue
             connection_success = True
@@ -93,7 +80,7 @@ class VBoxManager(object):
             time.sleep(0.2)
         else:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'VBox Manager',
-                                       translate("VBoxManager", "Can't connect to VBox on port %i") % self.port)
+                                       translate("VBoxManager", "Can't connect to VBox on %s port %i") % (binding, self.port))
             self.stopVBox()
             return False
         if progress:
@@ -103,11 +90,12 @@ class VBoxManager(object):
         return True
 
 
-    def startVBox(self, port):
+    def startVBox(self, port, binding=None):
         """ Start VBox
         """
-        #print "Entered VBoxManager::startVBox()"
-        binding = globals.GApp.systconf['vbox'].VBoxManager_binding
+
+        if binding == None:
+            binding = globals.GApp.systconf['vbox'].VBoxManager_binding
         self.port = port
 
         if self.proc and self.proc.state():
@@ -123,22 +111,15 @@ class VBoxManager(object):
             self.proc.setWorkingDirectory(globals.GApp.systconf['vbox'].vboxwrapper_workdir)
 
         # test if VBox is already running on this port
-        #print "ADEBUG: VBoxManager.py: binding = " + binding
-        if binding.__contains__(':'):
-            # IPv6 address support
-            s = socket(AF_INET6, SOCK_STREAM)
-        else:
-            s = socket(AF_INET, SOCK_STREAM)
-        s.setblocking(0)
-        s.settimeout(300)
+        timeout = 60.0
         try:
-            s.connect((binding, self.port))
+            s = socket.create_connection((binding, self.port), timeout)
             QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'VBox Manager',
-                                       translate("VBoxManager", "VBox is already running on port %i, it will not be shutdown after you quit GNS3") % self.port)
+                                       translate("VBoxManager", "VBox is already running on %s port %i, it will not be shutdown after you quit GNS3") % (binding, self.port))
             s.close()
             return True
         except:
-            s.close()
+            pass
 
         # start VBoxwrapper, use python on all platform but Windows (in release mode)
         if sys.platform.startswith('win') and (globals.GApp.systconf['vbox'].vboxwrapper_path.split('.')[-1] == 'exe'):
@@ -150,10 +131,10 @@ class VBoxManager(object):
             self.proc.start(sys.executable, [globals.GApp.systconf['vbox'].vboxwrapper_path, '--listen', binding, '--port', str(self.port), '--no-vbox-checks'])
 
         if self.proc.waitForStarted() == False:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'VBox Manager', translate("VBoxManager", "Can't start VBox on port %i") % self.port)
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'VBox Manager', translate("VBoxManager", "Can't start VBox on %s port %i") % (binding, self.port))
             return False
 
-        self.waitVBox()
+        self.waitVBox(binding)
         if self.proc and self.proc.state():
             debug('VBoxManager: VBox has been started with pid ' + str(self.proc.pid()))
         return True
@@ -177,62 +158,3 @@ class VBoxManager(object):
             time.sleep(0.5)
             self.proc.close()
         self.proc = None
-
-#    def preloadVBoxwrapper(self):
-#        """ Preload VBoxwrapper
-#        """
-#        #print "Entered VBoxManager::preloadVBoxwrapper()"
-#
-#        proc = QtCore.QProcess(globals.GApp.mainWindow)
-#        binding = globals.GApp.systconf['vbox'].VBoxManager_binding
-#
-#        if globals.GApp.systconf['vbox'].vboxwrapper_workdir:
-#            if not os.access(globals.GApp.systconf['vbox'].vboxwrapper_workdir, os.F_OK | os.W_OK):
-#                QtGui.QMessageBox.warning(globals.GApp.mainWindow, 'VBox Manager',
-#                                          translate("VBoxManager", "Working directory %s seems to not exist or be writable, please check") % globals.GApp.systconf['vbox'].vboxwrapper_workdir)
-#                return False
-#            # set the working directory
-#            proc.setWorkingDirectory(globals.GApp.systconf['vbox'].vboxwrapper_workdir)
-#
-#        # start VBoxwrapper, use python on all platform but Windows (in release mode)
-#        if sys.platform.startswith('win')  and (globals.GApp.systconf['vbox'].vboxwrapper_path.split('.')[-1] == 'exe'):
-#            # On Windows hosts, we remove python dependency by pre-compiling VBoxwrapper. (release mode)
-#            proc.start('"' + globals.GApp.systconf['vbox'].vboxwrapper_path + '"', ['--listen', binding, '--no-vbox-checks'])
-#        elif hasattr(sys, "frozen"):
-#            proc.start('python',  [globals.GApp.systconf['vbox'].vboxwrapper_path, '--listen', binding, '--no-vbox-checks'])
-#        else:
-#            proc.start(sys.executable,  [globals.GApp.systconf['vbox'].vboxwrapper_path, '--listen', binding, '--no-vbox-checks'])
-#
-#        if proc.waitForStarted() == False:
-#            return False
-#
-#        # give 5 seconds to the hypervisor to accept connections
-#        count = 5
-#        connection_success = False
-#        for nb in range(count + 1):
-#            #print "ADEBUG: VBoxManager.py: binding = " + binding
-#            if binding.__contains__(':'):
-#                # IPv6 address support
-#                s = socket(AF_INET6, SOCK_STREAM)
-#            else:
-#                s = socket(AF_INET, SOCK_STREAM)
-#            s.setblocking(0)
-#            s.settimeout(300)
-#            try:
-#                s.connect((binding, self.port))
-#            except:
-#                s.close()
-#                time.sleep(1)
-#                continue
-#            connection_success = True
-#            break
-#        if connection_success:
-#            # check vboxwrapper version
-#
-#            s.close()
-#            proc.close()
-#            return True
-#        if proc.state():
-#            s.close()
-#            proc.close()
-#        return False

@@ -43,9 +43,8 @@ if QtCore.QT_VERSION < 0x040600:
 if QtCore.PYQT_VERSION < 0x040500:
     raise RuntimeError, "Need PyQt v4.5 or higher, but got v%s" % QtCore.PYQT_VERSION_STR
 
-if sys.version_info < (2, 5):
-    #FIXME: need to check that, I think this is 2.6 at least
-    raise RuntimeError, "Need Python 2.5 or higher"
+if sys.version_info < (2, 6):
+    raise RuntimeError, "Python 2.6 or higher is required"
 
 def exceptionHook(type, value, tb):
 
