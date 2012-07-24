@@ -8,19 +8,6 @@ no ip domain lookup
 ip domain name lab.local
 !
 !
-macro name add_vlan
-end
-vlan database
-vlan $v
-exit
-@
-macro name del_vlan
-end
-vlan database
-no vlan $v
-exit
-@
-!
 interface FastEthernet0/0
  description *** Unused for Layer2 SW ***
  no ip address
@@ -116,6 +103,51 @@ interface Vlan1
  shutdown
 !
 !
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+ privilege level 15
+ no login
+line aux 0
+ exec-timeout 0 0
+ logging synchronous
+ privilege level 15
+ no login
+!
+!
+banner exec 
+
+***************************************************************
+This is a normal Router with a SW module inside (NM-16ESW)
+It has been preconfigured with hard-code speed and duplex
+
+To create vlans use the command "vlan database" from exec mode
+After creating all desired vlans use "exit" to apply the config
+
+To view existing vlans use the command "show vlan-switch brief"
+
+Warning: You are using an old IOS image for this router.
+Please update the IOS to enable the "macro" command!
+***************************************************************
+
+
+!
+!Warning: If the IOS is old and doesn't support macro, it will stop the configuration loading from this point!
+!
+macro name add_vlan
+end
+vlan database
+vlan $v
+exit
+@
+macro name del_vlan
+end
+vlan database
+no vlan $v
+exit
+@
+!
+!
 banner exec 
 
 ***************************************************************
@@ -137,17 +169,6 @@ Alias(configure): novlan X - macro to delete vlan X
 alias configure vlan macro global trace add_vlan $v
 alias configure novlan macro global trace del_vlan $v
 alias exec vl show vlan-switch brief
-!
-line con 0
- exec-timeout 0 0
- logging synchronous
- privilege level 15
- no login
-line aux 0
- exec-timeout 0 0
- logging synchronous
- privilege level 15
- no login
 !
 !
 end
