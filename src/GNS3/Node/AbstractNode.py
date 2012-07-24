@@ -43,6 +43,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         self.dynagen = globals.GApp.dynagen
         self.default_symbol = True
+        self.consoleProcesses = []
 
         # status used in the topology summary
         self.state = 'stopped'
@@ -74,6 +75,16 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.image_reference = None
 
         self.setZValue(1)
+
+    def __del__(self):
+
+        if globals.GApp.systconf['general'].term_close_on_delete:
+            # closing terminal programs
+            for console in self.consoleProcesses:
+                if not console.returncode:
+                    debug("Sending terminate signal to terminal program (pid %i)" % console.pid)
+                    console.terminate()
+        self.consoleProcesses = []
 
     def setRenderers(self, render_normal, render_select):
         """ renderer_normal: QtSvg.QSvgRenderer

@@ -25,7 +25,7 @@ from PyQt4 import QtGui, QtCore
 from GNS3.Config.Objects import systemGeneralConf
 from GNS3.Ui.ConfigurationPages.Form_PreferencesGeneral import Ui_PreferencesGeneral
 from GNS3.Utils import translate, fileBrowser, debug
-from GNS3.Config.Defaults import TERMINAL_PRESET_CMDS, TERMINAL_DEFAULT_CMD, PROJECT_DEFAULT_DIR, IOS_DEFAULT_DIR, BASECONFIG_DIR
+from GNS3.Config.Defaults import TERMINAL_PRESET_CMDS, TERMINAL_DEFAULT_CMD, TERMINAL_SERIAL_DEFAULT_CMD, PROJECT_DEFAULT_DIR, IOS_DEFAULT_DIR, BASECONFIG_DIR
 from GNS3.Config.Config import ConfDB
 
 class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
@@ -82,6 +82,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         if self.conf.term_cmd == '':
             self.conf.term_cmd = TERMINAL_DEFAULT_CMD
 
+        # Set default terminal command
+        if self.conf.term_serial_cmd == '':
+            self.conf.term_serial_cmd = TERMINAL_SERIAL_DEFAULT_CMD
+
         # Set default project dir
         if self.conf.project_path == '':
             self.conf.project_path = PROJECT_DEFAULT_DIR
@@ -91,6 +95,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf.ios_path = IOS_DEFAULT_DIR
 
         self.lineEditTermCommand.setText(self.conf.term_cmd)
+        self.lineEditTermCommandVBoxConsole.setText(self.conf.term_serial_cmd)
         self.ProjectPath.setText(os.path.normpath(self.conf.project_path))
         self.IOSPath.setText(os.path.normpath(self.conf.ios_path))
 
@@ -123,7 +128,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.checkBoxDrawRectangle.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxDrawRectangle.setCheckState(QtCore.Qt.Unchecked)
-
+        if self.conf.term_close_on_delete == True:
+            self.checkBoxCloseTermPrograms.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxCloseTermPrograms.setCheckState(QtCore.Qt.Unchecked)
         if self.conf.relative_paths == True:
             self.checkBoxRelativePaths.setCheckState(QtCore.Qt.Checked)
         else:
@@ -174,7 +182,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf.project_startup = True
         else:
             self.conf.project_startup = False
-
+        if self.checkBoxCloseTermPrograms.checkState() == QtCore.Qt.Checked:
+            self.conf.term_close_on_delete = True
+        else:
+            self.conf.term_close_on_delete = False
         if self.checkBoxDrawRectangle.checkState() == QtCore.Qt.Checked:
             self.conf.draw_selected_rectangle = True
         else:
@@ -194,6 +205,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.conf.project_path = unicode(self.ProjectPath.text(), 'utf-8', errors='replace')
         self.conf.ios_path = unicode(self.IOSPath.text(), 'utf-8', errors='replace')
         self.conf.term_cmd = unicode(self.lineEditTermCommand.text(), 'utf-8', errors='replace')
+        self.conf.term_serial_cmd = unicode(self.lineEditTermCommandVBoxConsole.text(), 'utf-8', errors='replace')
         self.conf.scene_width = self.workspaceWidth.value()
         self.conf.scene_height = self.workspaceHeight.value()
         self.conf.slow_start = self.slowStartAll.value()

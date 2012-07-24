@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>547</width>
-    <height>486</height>
+    <width>542</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -183,6 +183,12 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>0</height>
+             </size>
             </property>
             <property name="text">
              <string>127.0.0.1</string>

@@ -121,8 +121,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 self.__action_CheckForUpdate(silent=True)
                 globals.GApp.systconf['general'].last_check_for_update = currentEpoch
 
-        # Register local addresses into tracker
+        # Port tracker 
         self.track = tracker.portTracker()
+        # Register local addresses into tracker
         local_addresses = map(lambda addr: unicode(addr.toString()), QtNetwork.QNetworkInterface.allAddresses())
         for addr in local_addresses:
             self.track.addLocalAddress(addr)
@@ -1054,15 +1055,21 @@ class Workspace(QMainWindow, Ui_MainWindow):
         else:
             latest_release = str(network_reply.readAll()).rstrip()
 
-            if LooseVersion(VERSION) < latest_release:
-                reply = QtGui.QMessageBox.question(self, translate("Workspace", "Check For Update"),
-                                               translate("Workspace", "Newer GNS3 version %s is available, do you want to visit our website to download it?") % latest_release, QtGui.QMessageBox.Yes, \
-                                               QtGui.QMessageBox.No)
-                if reply == QtGui.QMessageBox.Yes:
-                    QtGui.QDesktopServices.openUrl(QtCore.QUrl("http://www.gns3.net/download"))
-
-            elif not isSilent:
-                QtGui.QMessageBox.information(self, translate("Workspace", "Check For Update"), translate("AbstractNode", "GNS3 is up-to-date!"))
+            try:
+                if LooseVersion(VERSION) < latest_release:
+                    reply = QtGui.QMessageBox.question(self, translate("Workspace", "Check For Update"),
+                                                   translate("Workspace", "Newer GNS3 version %s is available, do you want to visit our website to download it?") % latest_release, QtGui.QMessageBox.Yes, \
+                                                   QtGui.QMessageBox.No)
+                    if reply == QtGui.QMessageBox.Yes:
+                        QtGui.QDesktopServices.openUrl(QtCore.QUrl("http://www.gns3.net/download"))
+    
+                elif not isSilent:
+                    QtGui.QMessageBox.information(self, translate("Workspace", "Check For Update"), translate("AbstractNode", "GNS3 is up-to-date!"))
+            except:
+                # File "GNS3\Workspace.pyo", line 957, in __processCheckForUpdateReply
+                # File "distutils\version.pyo", line 296, in __cmp__
+                #AttributeError: LooseVersion instance has no attribute 'version'
+                debug("Couldn't check for an update, exception in LooseVersion()!")
 
         network_reply.deleteLater()
 

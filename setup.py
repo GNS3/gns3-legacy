@@ -104,6 +104,7 @@ elif sys.platform.startswith('darwin'):
                   ('qemuwrapper/qemuwrapper.py'),
                   ('vboxwrapper/vboxwrapper.py'),
                   ('vboxwrapper/vboxcontroller_4_1.py'),
+                  ('vboxwrapper/tcp_pipe_proxy.py'),
                   ('baseconfig.txt'),
                   ('baseconfig_sw.txt'),
                   ('LICENSE'),
@@ -189,6 +190,11 @@ elif sys.platform.startswith('darwin'):
 
     print '*** Installing Dynamips ***'
     os.system('cp ../dynamips-0.2.8-RC3-community-OSX.intel64.bin ./GNS3.app/Contents/Resources')
+
+    print '*** Applying permissions ***'
+    os.chmod('./GNS3.app/Contents/Resources/vboxwrapper.py', 0755)
+    os.chmod('./GNS3.app/Contents/Resources/qemuwrapper.py', 0755)
+    os.chmod('./GNS3.app/Contents/Resources/dynamips-0.2.8-RC3-community-OSX.intel64.bin', 0755)
 
 #    print '*** Installing Patched Qemu ***'
 #    os.system('cp -R ../qemu-0.15.0/* ./GNS3.app/Contents/Resources/')

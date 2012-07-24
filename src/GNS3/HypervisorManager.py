@@ -48,13 +48,13 @@ class HypervisorManager(object):
         """ Set the default values for the hypervisor manager
         """
 
-        dynamips = globals.GApp.systconf['dynamips']
-        self.hypervisor_path = dynamips.path
-        self.hypervisor_wd = dynamips.workdir
-        self.baseConsole = dynamips.baseConsole
-        self.baseAUX = dynamips.baseAUX
-        globals.hypervisor_baseport = dynamips.port
-        globals.GApp.dynagen.globaludp = dynamips.baseUDP
+        self.dynamips = globals.GApp.systconf['dynamips']
+        self.hypervisor_path = self.dynamips.path
+        self.hypervisor_wd = self.dynamips.workdir
+        self.baseConsole = self.dynamips.baseConsole
+        self.baseAUX = self.dynamips.baseAUX
+        globals.hypervisor_baseport = self.dynamips.port
+        globals.GApp.dynagen.globaludp = self.dynamips.baseUDP
 
     def startNewHypervisor(self, port, processcheck=True):
         """ Create a new dynamips process and start it
@@ -72,6 +72,7 @@ class HypervisorManager(object):
             s.setblocking(0)
             s.settimeout(300)
             try:
+                #FIXME: replace with bind() for faster process?
                 s.connect(('localhost', port))
                 s.close()
 
@@ -90,6 +91,7 @@ class HypervisorManager(object):
                     globals.GApp.dynagen.globaludp += 200
                     port = globals.hypervisor_baseport
 
+                #FIXME: replace with bind() for faster process?
                 s.connect(('localhost', port))
                 s.close()
 
@@ -102,6 +104,7 @@ class HypervisorManager(object):
                 s.close()
 
         # start dynamips in hypervisor mode (-H)
+        #FIXME: Dynamips ignores this format: -H <IP address:port> (bug inside Dynamips, for now binds on 0.0.0.0)
         proc.start(self.hypervisor_path,  ['-H', str(port)])
 
         if proc.waitForStarted() == False:
@@ -176,15 +179,15 @@ class HypervisorManager(object):
         """
 
         for hypervisor in self.hypervisors:
-            if not isinstance(node, IOSRouter) or (isinstance(node, IOSRouter) and hypervisor['load'] + node.default_ram <= globals.GApp.systconf['dynamips'].memory_limit):
+            if not isinstance(node, IOSRouter) or (isinstance(node, IOSRouter) and hypervisor['load'] + node.default_ram <= self.dynamips.memory_limit):
                 if isinstance(node, IOSRouter):
-                    if globals.GApp.systconf['dynamips'].allocateHypervisorPerIOS and hypervisor['image_ref'] != node.image_reference:
+                    if self.dynamips.allocateHypervisorPerIOS and hypervisor['image_ref'] != node.image_reference:
                         continue
                     hypervisor['load'] += node.default_ram
                 debug('Hypervisor manager: allocates an already started hypervisor (port: ' + str(hypervisor['port']) + ')')
-                if not globals.GApp.dynagen.dynamips.has_key(globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + str(hypervisor['port'])):
-                    globals.GApp.dynagen.create_dynamips_hypervisor(globals.GApp.systconf['dynamips'].HypervisorManager_binding, hypervisor['port'])
-                dynamips_hypervisor = globals.GApp.dynagen.dynamips[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + str(hypervisor['port'])]
+                if not globals.GApp.dynagen.dynamips.has_key(self.dynamips.HypervisorManager_binding + ':' + str(hypervisor['port'])):
+                    globals.GApp.dynagen.create_dynamips_hypervisor(self.dynamips.HypervisorManager_binding, hypervisor['port'])
+                dynamips_hypervisor = globals.GApp.dynagen.dynamips[self.dynamips.HypervisorManager_binding + ':' + str(hypervisor['port'])]
                 node.set_hypervisor(dynamips_hypervisor)
                 return hypervisor
 
@@ -211,14 +214,14 @@ class HypervisorManager(object):
                                           translate("HypervisorManager", "Working directory %s seems to not exist or be writable, please check") % self.hypervisor_wd)
             globals.GApp.dynagen.defaults_config['workingdir'] = self.hypervisor_wd
         try:
-            dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor(globals.GApp.systconf['dynamips'].HypervisorManager_binding, hypervisor['port'])
+            dynamips_hypervisor = globals.GApp.dynagen.create_dynamips_hypervisor(self.dynamips.HypervisorManager_binding, hypervisor['port'])
         except:
             dynamips_hypervisor = None
         if not dynamips_hypervisor:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
                                        translate("HypervisorManager", "Can't set up hypervisor on port %i, please check the settings (writable working directory ...)") % hypervisor['port'])
-            if globals.GApp.dynagen.dynamips.has_key(globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + str(hypervisor['port'])):
-                del globals.GApp.dynagen.dynamips[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + str(hypervisor['port'])]
+            if globals.GApp.dynagen.dynamips.has_key(self.dynamips.HypervisorManager_binding + ':' + str(hypervisor['port'])):
+                del globals.GApp.dynagen.dynamips[self.dynamips.HypervisorManager_binding + ':' + str(hypervisor['port'])]
             hypervisor['proc_instance'].close()
             hypervisor['proc_instance'] = None
             count = 0
@@ -235,7 +238,7 @@ class HypervisorManager(object):
         dynamips_hypervisor.starting_udp = globals.GApp.dynagen.globaludp
         dynamips_hypervisor.baseconsole = self.baseConsole
         dynamips_hypervisor.baseaux = self.baseAUX
-        globals.GApp.dynagen.globaludp += globals.GApp.systconf['dynamips'].udp_incrementation
+        globals.GApp.dynagen.globaludp += self.dynamips.udp_incrementation
         debug("Hypervisor manager: hypervisor base UDP is %d " % dynamips_hypervisor.udp)
         node.set_hypervisor(dynamips_hypervisor)
         return hypervisor
@@ -278,7 +281,7 @@ class HypervisorManager(object):
         """ Shutdown all started hypervisors
         """
 
-        if globals.GApp != None and globals.GApp.systconf['dynamips']:
+        if globals.GApp != None and self.dynamips:
             self.setDefaults()
         hypervisors = globals.GApp.dynagen.dynamips.copy()
         for hypervisor in hypervisors.values():
@@ -310,6 +313,7 @@ class HypervisorManager(object):
             # set the working directory
             proc.setWorkingDirectory(self.hypervisor_wd)
         # start dynamips in hypervisor mode (-H)
+        #FIXME: Dynamips ignores this format: -H <IP address:port> (bug inside Dynamips, for now binds on 0.0.0.0)
         proc.start(self.hypervisor_path,  ['-H', str(port)])
         if proc.waitForStarted() == False:
             return False
@@ -341,7 +345,7 @@ class HypervisorManager(object):
         """ Show hypervisors port & load
         """
 
-        print "Memory usage limit per hypervisor : " + str(globals.GApp.systconf['dynamips'].memory_limit) + " MB"
+        print "Memory usage limit per hypervisor : " + str(self.dynamips.memory_limit) + " MB"
         print '%-10s %-10s' % ('Port', 'Memory load')
         for hypervisor in self.hypervisors:
             print '%-10s %-10s' % (hypervisor['port'], str(hypervisor['load']) + ' MB')

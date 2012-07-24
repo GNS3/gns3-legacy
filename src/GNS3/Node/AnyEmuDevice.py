@@ -80,6 +80,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
     def __del__(self):
 
         self.delete_emudev()
+        AbstractNode.__del__(self)
 
     def delete_emudev(self, delete_persistent=False):
         """ Delete this emulated device
@@ -362,7 +363,9 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
         """
 
         if self.emudev and self.emudev.state == 'running' and self.emudev.console:
-            console.connect(self.emudev.dynamips.host, self.emudev.console, self.hostname)
+            proc = console.connect(self.emudev.dynamips.host, self.emudev.console, self.hostname)
+            if proc:
+                self.consoleProcesses.append(proc)
 
     def isStarted(self):
         """ Returns True if this device is started

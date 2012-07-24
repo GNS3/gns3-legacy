@@ -184,12 +184,18 @@ class xEMUInstance(object):
 
         qemu_cmd = " ".join(command)
         print "Command =>", qemu_cmd
+
+        if platform.system() == 'Windows':
+            shell = False
+        else:
+            shell = True
+
         try:
             self.process = subprocess.Popen(command,
                                             stdin = subprocess.PIPE,
                                             stdout = subprocess.PIPE,
                                             stderr = subprocess.PIPE,
-                                            cwd=self.workdir)
+                                            cwd=self.workdir, shell)
         except OSError, e:
             print >> sys.stderr, "Unable to start instance", self.name, "of", self.__class__
             print >> sys.stderr, e

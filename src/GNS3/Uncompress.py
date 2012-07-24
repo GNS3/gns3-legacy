@@ -46,7 +46,9 @@ def isIOScompressed(ios_image):
     fd.close()
 
     # finding the signature and not recognized as a regular zip file means IOS is compressed
-    if (pos > 0 and not zipfile.is_zipfile(ios_image)) and not (multiple_zipped_files > 0 and not cisco_string > 0):
+    #if (pos > 0 and not zipfile.is_zipfile(ios_image)) and not (multiple_zipped_files > 0 and not cisco_string > 0):
+    # issue: zipfile.is_zipfile now returns True in Python 2.7.3, let's try without it ...
+    if pos > 0 and not (multiple_zipped_files > 0 and not cisco_string > 0):
         return True
     return False
 

@@ -595,6 +595,21 @@ p, li { white-space: pre-wrap; }
         <source>Cannot change the hostname of a running device</source>
         <translation>Impossibile cambiare il nome host di un dispositivo in esecuzione</translation>
     </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="615"/>
+        <source>Cannot start router %s: lost communication with server %s:%s</source>
+        <translation>Impossibile avviare il router %s: comunicazione interrotta con il server %s: %s</translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="633"/>
+        <source>Cannot stop router %s: lost communication with server %s:%s</source>
+        <translation>Impossibile fermare il router %s: comunicazione interrotta con il server %s: %s</translation>
+    </message>
+    <message>
+        <location filename="../Node/IOSRouter.py" line="661"/>
+        <source>Cannot suspend router %s: lost communication with server %s:%s</source>
+        <translation>Impossibile sospendere il router %s: comunicazione interrotta con il server %s: %s</translation>
+    </message>
 </context>
 <context>
     <name>AnyVBoxEmuDevice</name>
@@ -3776,17 +3791,17 @@ o sul collegamento stesso.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="195"/>
         <source>&amp;Import</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Importa</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="202"/>
         <source>&amp;Export</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Esporta</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="209"/>
         <source>&amp;Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Cancella</translation>
     </message>
 </context>
 <context>
@@ -5463,32 +5478,32 @@ editing (notes only) with ALT and &apos;+&apos; (or P) / ALT and &apos;-&apos; (
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="258"/>
         <source>All GNS3 configuration will be lost. Do you want to proceed?</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutte le impostazioni di GNS3 saranno perse. Vuoi procedere?</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="285"/>
         <source>Export configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Esporta la configurazione</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="299"/>
         <source>Cannot export configuration file: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile esportare il file di configurazione: %s</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="303"/>
         <source>%s</source>
-        <translation type="unfinished"></translation>
+        <translation>%s</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="303"/>
         <source>Import configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Importa la configurazione</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesGeneral.py" line="307"/>
         <source>Configuration file imported, default settings will be applied after a restart</source>
-        <translation type="unfinished"></translation>
+        <translation>File di configurazione importato, le impostazioni predefinite saranno applicate al riavvio</translation>
     </message>
 </context>
 <context>
