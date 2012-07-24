@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IDLEPCDialog.ui'
 #
-# Created: Tue Jul 24 04:58:19 2012
+# Created: Wed Jul 25 02:18:42 2012
 #      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -43,6 +43,6 @@ class Ui_IDLEPCDialog(object):
 
     def retranslateUi(self, IDLEPCDialog):
         IDLEPCDialog.setWindowTitle(QtGui.QApplication.translate("IDLEPCDialog", "IDLE PC values", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("IDLEPCDialog", "Potentially better idlepc values marked with \'*\'", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("IDLEPCDialog", "Potentially better idlepc values are marked with \'*\'", None, QtGui.QApplication.UnicodeUTF8))
 
 import svg_resources_rc
