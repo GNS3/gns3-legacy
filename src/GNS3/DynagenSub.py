@@ -54,13 +54,13 @@ class DynagenSub(Dynagen):
 
         file = open(filename, 'r')
         lines = file.readlines()
-        cregex = re.compile("^.*nio_gen_eth:(.*)")
+        cregex = re.compile(r"""^.*nio_gen_eth:(\\device\\npf_{[a-fA-F0-9\-]*}).*""")
         niolist = []
 
         for currentline in lines:
             currentline = currentline.lower().strip()
             match_obj = cregex.match(currentline)
-            if match_obj:
+            if match_obj and match_obj.group(1) not in niolist:
                 niolist.append(match_obj.group(1))
 
         self.rpcap_mapping.clear()
@@ -178,7 +178,7 @@ class DynagenSub(Dynagen):
                     # controlPort is ignored
                     controlPort = host.split(':')[-1]
                     host = self.getHost(host)
-                if emulator == 'qemu' and globals.GApp.systconf['qemu'].enable_QemuManager and globals.GApp.systconf['vbox'].import_use_QemuManager and host in self.local_addresses:
+                if emulator == 'qemu' and globals.GApp.systconf['qemu'].enable_QemuManager and globals.GApp.systconf['qemu'].import_use_QemuManager and host in self.local_addresses:
                     globals.GApp.QemuManager.startQemu(int(controlPort), host)
                     debugmsg(2, "DynagenSub::open_config(), entered QemuManager")
 

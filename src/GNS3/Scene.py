@@ -581,6 +581,9 @@ class Scene(QtGui.QGraphicsView):
         ok_to_delete_node = True
         for item in self.__topology.selectedItems():
             if not isinstance(item, Annotation) and not isinstance(item, Pixmap) and not isinstance(item, AbstractShapeItem):
+                # forced stop for Qemu based devices (Qemuwrapper doesn't support hot link removal)
+                #if isinstance(item, AnyEmuDevice):
+                #    item.stopNode()
                 for link in item.getEdgeList().copy():
                     if self.__topology.deleteLinkFromScene(link) == False:
                         if ok_to_delete_node:

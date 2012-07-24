@@ -29,6 +29,7 @@ class Ui_VirtualBoxPage(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEditImage.sizePolicy().hasHeightForWidth())
         self.lineEditImage.setSizePolicy(sizePolicy)
+        self.lineEditImage.setReadOnly(True)
         self.lineEditImage.setObjectName(_fromUtf8("lineEditImage"))
         self.gridLayout.addWidget(self.lineEditImage, 0, 1, 1, 1)
         self.label_37 = QtGui.QLabel(VirtualBoxPage)

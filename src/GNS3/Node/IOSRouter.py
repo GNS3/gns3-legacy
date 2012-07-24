@@ -679,7 +679,7 @@ class IOSRouter(AbstractNode):
         """ Start a telnet console and connect it to this router's AUX port
         """
         if not self.router.aux:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "AUX port"),
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("IOSRouter", "AUX port"),
                                        translate("AbstractNode", "AUX port not available for this router model or base AUX port is set to 0 in preferences"))
             return False
 
@@ -688,6 +688,22 @@ class IOSRouter(AbstractNode):
             if proc:
                 self.consoleProcesses.append(proc)
         AbstractNode.clearClosedConsoles(self)
+
+    def changeConsolePort(self):
+        """ Called to change the console port
+        """
+
+        if self.router.state != 'stopped':
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("IOSRouter", "Console"), translate("IOSRouter", "You must restart this router after changing its console port"))
+        AbstractNode.changeConsolePort(self)
+
+    def changeAUXPort(self):
+        """ Called to change the aux port
+        """
+
+        if self.router.state != 'stopped':
+            QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("IOSRouter", "AUX port"), translate("IOSRouter", "You must restart this router after changing its AUX port"))
+        AbstractNode.changeAUXPort(self)
 
     def isStarted(self):
         """ Returns True if this router is started
