@@ -82,10 +82,7 @@ debugmsg(2, msg)
 __author__ = 'Thomas Pani and Jeremy Grossmann'
 __version__ = '0.8.4'
 
-if platform.system() == 'Windows':
-    QEMU_PATH = "qemu" # we still use Qemu 0.11.0 on Windows
-else:
-    QEMU_PATH = "qemu-system-i386"
+QEMU_PATH = "qemu-system-i386"
 QEMU_IMG_PATH = "qemu-img"
 PORT = 10525
 IP = ""
@@ -187,35 +184,22 @@ class xEMUInstance(object):
 
         qemu_cmd = " ".join(command)
         print "Starting Qemu: ", qemu_cmd
-
-        if platform.system() == 'Windows':
-            shell = False
-        else:
-            shell = True
-
         try:
             self.process = subprocess.Popen(command,
                                             stdin = subprocess.PIPE,
                                             stdout = subprocess.PIPE,
                                             stderr = subprocess.PIPE,
-                                            cwd=self.workdir, shell)
+                                            cwd=self.workdir,
+                                            shell=False) # MUST STAY FALSE
         except OSError, e:
             print >> sys.stderr, "Unable to start instance", self.name, "of", self.__class__
             print >> sys.stderr, e
             return False
 
         time.sleep(1)
-        # check if Qemu has exited (not to say crashed!)
-        # ^ Qemu doesn't crash, it crashes you
-        self.process.poll()
-        if self.process.returncode != None:
-            print >> sys.stderr, "Qemu has exited with return code %i" % self.process.returncode
-            return False
-
-        print "Qemu has successfully started with pid %i" % self.process.pid
-
         self.monitor_conn, addr = self.monitor_sock.accept()
         self.monitor_conn.setblocking(0)
+
         # consume the first lines of output of Qemu monitor mode
         output = ''
         while True:
@@ -300,7 +284,7 @@ class xEMUInstance(object):
                     options.append('socket,id=gns3-%s,udp=%s:%s,localaddr=%s:%s' % (vlan, self.udp[vlan].daddr, self.udp[vlan].dport, self.udp[vlan].saddr, self.udp[vlan].sport))
                 # FIXME: dump relies on vlans, incompatible with the new syntax: patch Qemu
                 #if vlan in self.capture:
-                    #options.extend(['-net', '"dump,vlan=%s,file=%s"' % (vlan, self.capture[vlan])])
+                    #options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
             else:
                 options.append('-net')
                 if vlan in self.nic:
@@ -314,7 +298,7 @@ class xEMUInstance(object):
                              self.udp[vlan].dport,
                              self.udp[vlan].daddr)])
                 if vlan in self.capture:
-                    options.extend(['-net', '"dump,vlan=%s,file=%s"' % (vlan, self.capture[vlan])])
+                    options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
 
         if self.usermod == 1:
             options.extend(['-device', '%s,mac=00:00:ab:%02x:%02x:%02x,netdev=gns3-usermod' % (self.netcard, random.randint(0x00, 0xff), random.randint(0x00, 0xff), random.randint(0x00, 0xff))])
@@ -396,7 +380,7 @@ class QEMUInstance(xEMUInstance):
         command.extend(self._disk_options())
         command.extend(self._image_options())
         command.extend(self._kernel_options())
-        if self.kvm == 'True':
+        if bool(self.kvm) == True:
             command.extend(['-enable-kvm'])
         command.extend(self._net_options())
         command.extend(self._ser_options())
@@ -450,11 +434,11 @@ class ASAInstance(QEMUInstance):
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
 
-        return ('-hda', '"' + flash + '"')
+        return ('-hda', flash)
 
     def _image_options(self):
         debugmsg(3, "ASAInstance::_image_options()")
-        return ('-kernel', '"' + self.kernel + '"', '-initrd', '"' + self.initrd + '"')
+        return ('-kernel', self.kernel, '-initrd', self.initrd)
 
     def _kernel_options(self):
         debugmsg(3, "ASAInstance::_kernel_options()")
@@ -521,7 +505,7 @@ class JunOSInstance(QEMUInstance):
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
 
-        return ('"' + flash + '"', '-hdb', '"' + swap + '"')
+        return (flash, '-hdb', swap)
 
 class IDSInstance(QEMUInstance):
 
@@ -599,7 +583,7 @@ class IDSInstance(QEMUInstance):
             except OSError, e:
                 print >> sys.stderr, "Execution failed:", e
 
-        return ('-hda', '"' + img1 + '"', '-hdb', '"' + img2 + '"')
+        return ('-hda', img1, '-hdb', img2)
 
 class QemuDeviceInstance(QEMUInstance):
 
@@ -664,7 +648,8 @@ class QemuDeviceInstance(QEMUInstance):
         debugmsg(3, "flash = %s" % str(flash))
         debugmsg(3, "image = %s" % str(self.image))
         debugmsg(3, "swap = %s" % str(swap))
-        return ('"' + flash + '"', '-hdb', '"' + swap + '"')
+
+        return (flash, '-hdb', swap)
 
 class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
 
