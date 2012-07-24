@@ -37,13 +37,19 @@ def pipe_connect(hostname, pipe_name):
         QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Console", "Console"), translate("Console", "No terminal command defined for local console/serial connections"))
         return False
 
+    if globals.GApp.systconf['general'].use_shell:
+        shell = True
+    else:
+        shell = False
+
     cmd = cmd.replace('%s', pipe_name)
     cmd = cmd.replace('%d', hostname)
     try:
-        sub.Popen(cmd)
+        proc = sub.Popen(cmd, shell=shell)
     except (OSError, IOError), e:
         QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Console", "Console"), translate("Console", "Cannot start %s: %s") % (cmd, e.strerror))
-        return False
+        return None
+    return proc
 
 def connect(host, port, name):
     """ Start a telnet console and connect to it

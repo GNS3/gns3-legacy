@@ -128,7 +128,7 @@
    <item row="5" column="0" colspan="2">
     <widget class="QCheckBox" name="checkBoxVboxConsoleServer">
      <property name="text">
-      <string>Enable console server (optionnal on Windows)</string>
+      <string>Enable console server (for remote access)</string>
      </property>
     </widget>
    </item>

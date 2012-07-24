@@ -207,14 +207,14 @@ class Topology(QtGui.QGraphicsScene):
             external_hypervisor_key = selected_hypervisor
         else:
             external_hypervisor_key = hypervisors[0]
-        globals.GApp.hypervisors[external_hypervisor_key].used_ram += node.default_ram
-        (host, port) = external_hypervisor_key.rsplit(':',  1)
 
+        (host, port) = external_hypervisor_key.rsplit(':',  1)
         if self.dynagen.dynamips.has_key(external_hypervisor_key):
             debug("Use an external hypervisor: " + external_hypervisor_key)
             dynamips_hypervisor = self.dynagen.dynamips[external_hypervisor_key]
         else:
             debug("Connection to an external hypervisor: " + external_hypervisor_key)
+            globals.GApp.hypervisors[external_hypervisor_key].used_ram += node.default_ram
             hypervisor_conf = globals.GApp.hypervisors[external_hypervisor_key]
             # use project workdir in priority
             if globals.GApp.workspace.projectWorkdir:

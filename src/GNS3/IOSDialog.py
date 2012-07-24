@@ -191,7 +191,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                     else:
                         extracted_ios = path + '.image'
                     reply = QtGui.QMessageBox.question(self, translate("IOSDialog", "IOS Image"),
-                                                       translate("IOSDialog", "The IOS image is compressed. Would you like to uncompress it? Yes will create %s") % os.path.basename(extracted_ios),
+                                                       translate("IOSDialog", "The IOS image is compressed. Would you like to uncompress it?\nThis will create %s") % os.path.basename(extracted_ios),
                                                        QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                     if reply == QtGui.QMessageBox.Yes:
                         if os.path.exists(extracted_ios):

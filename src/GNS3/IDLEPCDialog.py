@@ -80,7 +80,7 @@ class IDLEPCDialog(QtGui.QDialog, Ui_IDLEPCDialog):
         elif button == self.buttonBox.button(QtGui.QDialogButtonBox.Apply):
             self.apply()
         elif button == self.buttonBox.button(QtGui.QDialogButtonBox.Help):
-            help_text = translate("IDLEPCDialog", "This is a trial and error process, apply different idlepc values and closely monitor the CPU usage. Choose the one that has the lowest CPU usage.\n\nBest idlepc values are usually obtained when IOS is in idle state: %s con0 is now available ... Press RETURN to get started.") % self.router.hostname
+            help_text = translate("IDLEPCDialog", "Finding the right idlepc value is a trial and error process, consisting of applying different idlepc values and monitoring the CPU usage.\n\nBest idlepc values are usually obtained when IOS is in idle state, the following message being displayed on the console: %s con0 is now available ... Press RETURN to get started.") % self.router.hostname
             QtGui.QMessageBox.information(self, translate("IDLEPCDialog", "Hints for IDLE PC"), help_text)
         else:
             self.apply(message=True)

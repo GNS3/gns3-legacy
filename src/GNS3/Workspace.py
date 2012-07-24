@@ -1087,7 +1087,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if file == None:
             return
-        path = os.path.abspath(file)
+        path = unicode(os.path.abspath(file))
         if not os.path.exists(path):
             QtGui.QMessageBox.critical(self, translate("Workspace", "Loading"), translate("Workspace", "No such file: %s") % file)
             return
@@ -1353,7 +1353,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         save_projectFile = self.projectFile
         self.projectConfigs = snapshot_configs
         self.projectWorkdir = snapshot_workdir
-        self.projectFile = snapshot_dir + os.sep + projectName
+        self.projectFile = unicode(snapshot_dir + os.sep + projectName)
         self.__action_Save(auto=True)
         self.projectFile = save_projectFile
         self.projectConfigs = save_cfg
