@@ -90,7 +90,6 @@ def bringConsoleToFront(console, name):
     # Technologov: This code is experimental, and does not support all terminal emulators.
     # Maybe it should be based on PIDs, rather than window names?
     if sys.platform.startswith('win'):# and console.startswith("putty.exe"):
-    if sys.platform.startswith('win'):# and console.startswith("putty.exe"):
         return winm.bringWindowToFront("Dynamips", "%s" % name)
     if sys.platform.startswith('darwin'):
         # Not implemented, this is handled by OSX
