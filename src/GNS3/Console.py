@@ -339,9 +339,33 @@ show project_info
             track.showTcpPortAllocation()
             return
         elif command == 'project_info':
+            print
             print "Project File:\t\t\t" + globals.GApp.mainWindow.projectFile
-            print "Qemuwrapper working directory:\t" + globals.GApp.systconf['qemu'].qemuwrapper_workdir
-            print "Vboxwrapper working directory:\t" + globals.GApp.systconf['vbox'].vboxwrapper_workdir
+            print "Project Working directory:\t\t" + globals.GApp.workspace.projectWorkdir
+            print "Project Config directory:\t\t" + globals.GApp.workspace.projectConfigs
+            print
+
+            if globals.GApp.workspace.projectWorkdir:
+                workdir = globals.GApp.workspace.projectWorkdir
+            elif globals.GApp.systconf['qemu'].qemuwrapper_workdir:
+                workdir = globals.GApp.systconf['qemu'].qemuwrapper_workdir
+            else:
+                realpath = os.path.realpath(self.dynagen.global_filename)
+                workdir = os.path.dirname(realpath)
+            print "Qemuwrapper working directory:\t" + workdir
+
+            if globals.GApp.systconf['vbox'].enable_VBoxManager:
+                if globals.GApp.workspace.projectWorkdir:
+                    workdir = globals.GApp.workspace.projectWorkdir
+                elif globals.GApp.systconf['vbox'].vboxwrapper_workdir:
+                    workdir = globals.GApp.systconf['vbox'].vboxwrapper_workdir
+                else:
+                    realpath = os.path.realpath(self.dynagen.global_filename)
+                    workdir = os.path.dirname(realpath)
+                print "Vboxwrapper working directory:\t" + workdir
+            else:
+               print "VBoxManager is disabled"
+
             print "Dynamips working directory:\t\t" + globals.GApp.systconf['dynamips'].workdir
         else:
             Dynagen_Console.do_show(self, args)
