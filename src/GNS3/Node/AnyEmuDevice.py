@@ -448,6 +448,7 @@ class JunOS(AnyEmuDevice, JunOSDefaults):
     def __init__(self, *args, **kwargs):
         AnyEmuDevice.__init__(self, *args, **kwargs)
         JunOSDefaults.__init__(self)
+        self.unbased = False
         debug('Hello, I have initialized and my model is %s' % self.model)
 
     def _make_devinstance(self, qemu_name):
@@ -464,6 +465,7 @@ class IDS(AnyEmuDevice, IDSDefaults):
     def __init__(self, *args, **kwargs):
         AnyEmuDevice.__init__(self, *args, **kwargs)
         IDSDefaults.__init__(self)
+        self.unbased = False
         self.emudev_options.extend([
             'image1',
             'image2',
@@ -482,6 +484,7 @@ class QemuDevice(AnyEmuDevice, QemuDefaults):
     friendly_name ='Qemu Emulated System'
 
     def __init__(self, *args, **kwargs):
+        self.unbased = False
         AnyEmuDevice.__init__(self, *args, **kwargs)
         QemuDefaults.__init__(self)
         debug('Hello, I have initialized and my model is %s' % self.model)

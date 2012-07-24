@@ -343,7 +343,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if selected == '':
             format = path[-3:]
         else:
-            format = str(str(selected)[:3])
+            format = unicode(unicode(selected)[:3])
 
         if str(selected) == 'PNG File (*.png)' and not path.endswith(".png"):
             path = path + '.png'
@@ -1490,8 +1490,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
             # unbase the qemu disk
             if unbase == True:
                 for node in globals.GApp.topology.nodes.values():
-                    if (isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS)) and unbase:
+                    if (isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS)) and unbase and not node.unbased:
+                        node.stopNode()
                         node.get_dynagen_device().unbase()
+                        node.unbased = True
 
             globals.GApp.topology.changed = False
             autosave = globals.GApp.systconf['general'].autosave
