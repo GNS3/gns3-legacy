@@ -321,6 +321,8 @@ show hypervisors
 \tshow allocated memory for hypervisors by Hypervisor Manager
 show ports
 \tshow all TCP ports allocated by GNS3
+show project_info
+\tshow the current project path
         """
 
         if '?' in args or args.strip() == '':
@@ -336,6 +338,11 @@ show ports
             track = tracker.portTracker()
             track.showTcpPortAllocation()
             return
+        elif command == 'project_info':
+            print "Project File:\t\t\t" + globals.GApp.mainWindow.projectFile
+            print "Qemuwrapper working directory:\t" + globals.GApp.systconf['qemu'].qemuwrapper_workdir
+            print "Vboxwrapper working directory:\t" + globals.GApp.systconf['vbox'].vboxwrapper_workdir
+            print "Dynamips working directory:\t\t" + globals.GApp.systconf['dynamips'].workdir
         else:
             Dynagen_Console.do_show(self, args)
 
