@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_CloudPage.ui'
 #
-# Created: Wed Jul 25 02:18:42 2012
+# Created: Wed Jul 25 03:11:33 2012
 #      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_CloudPage(object):
     def setupUi(self, CloudPage):
         CloudPage.setObjectName(_fromUtf8("CloudPage"))
-        CloudPage.resize(547, 486)
+        CloudPage.resize(542, 500)
         self.vboxlayout = QtGui.QVBoxLayout(CloudPage)
         self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))
         self.tabWidget = QtGui.QTabWidget(CloudPage)
@@ -117,6 +117,7 @@ class Ui_CloudPage(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEditRemoteHost.sizePolicy().hasHeightForWidth())
         self.lineEditRemoteHost.setSizePolicy(sizePolicy)
+        self.lineEditRemoteHost.setMinimumSize(QtCore.QSize(80, 0))
         self.lineEditRemoteHost.setObjectName(_fromUtf8("lineEditRemoteHost"))
         self.gridlayout3.addWidget(self.lineEditRemoteHost, 1, 1, 1, 1)
         self.label_3 = QtGui.QLabel(self.groupBox_3)
