@@ -380,6 +380,9 @@ conf_vboxImage_defaults = {
     'guestcontrol_user': '',
     'guestcontrol_password': '',
     'first_nic_managed': False,
+    'headless_mode': False,
+    'console_support': False,
+    'console_telnet_server': False,
 }
 
 conf_vboxImage_types = {
@@ -391,6 +394,9 @@ conf_vboxImage_types = {
     'guestcontrol_user': str,
     'guestcontrol_password': str,
     'first_nic_managed': bool,
+    'headless_mode': bool,
+    'console_support': bool,
+    'console_telnet_server': bool,
 }
 
 conf_pixImage_defaults = {
@@ -599,8 +605,8 @@ conf_systemQemu_defaults = {
     'send_paths_external_Qemuwrapper': False,
     'QemuManager_binding': u'localhost',
     'qemuwrapper_port': 10525,
-    'qemuwrapper_baseUDP': 20000,
-    'qemuwrapper_baseConsole': 3000,
+    'qemuwrapper_baseUDP': 40000,
+    'qemuwrapper_baseConsole': 3001,
 }
 
 conf_systemQemu_types = {
@@ -623,6 +629,7 @@ conf_systemVBox_defaults = {
     'vboxwrapper_path':'',
     'vboxwrapper_workdir':'',
     'external_hosts':[],
+    'use_VBoxVmnames': True,
     'enable_VBoxWrapperAdvOptions' : False,
     'enable_VBoxAdvOptions' : False,
     'enable_GuestControl': False,
@@ -631,13 +638,14 @@ conf_systemVBox_defaults = {
     'VBoxManager_binding': u'localhost',
     'vboxwrapper_port': 11525,
     'vboxwrapper_baseUDP': 20900,
-    'vboxwrapper_baseConsole': 3900,
+    'vboxwrapper_baseConsole': 3501,
 }
 
 conf_systemVBox_types = {
     'vboxwrapper_path': unicode,
     'vboxwrapper_workdir': unicode,
     'external_hosts': list,
+    'use_VBoxVmnames': bool,
     'enable_VBoxWrapperAdvOptions' : bool,
     'enable_VBoxAdvOptions' : bool,
     'enable_GuestControl': bool,

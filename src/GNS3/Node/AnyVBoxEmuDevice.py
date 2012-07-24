@@ -21,7 +21,7 @@
 # AnyVBoxEmuDevice module is a highter-level control of dynagen_vbox_lib TCP client.
 # This one is part of GNS3 GUI layer, rather than dynagen topology layer.
 
-import os, shutil, time
+import os, shutil, time, re, sys
 import GNS3.Dynagen.dynagen as dynagen_namespace
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
@@ -78,6 +78,9 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
             'guestcontrol_user',
             'guestcontrol_password',
             'first_nic_managed',
+            'headless_mode',
+            'console_support',
+            'console_telnet_server',
             ]
 
     def __del__(self):
@@ -175,6 +178,7 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
                 emu_option = getattr(self.emu_vboxdev, option)
             except AttributeError:
                 continue
+
             if emu_option != config[option]:
                 try:
                     setattr(self.emu_vboxdev, option, config[option])
@@ -385,8 +389,16 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         """ Start a telnet console and connect it to this router
         """
 
-        if self.emu_vboxdev and self.emu_vboxdev.state == 'running' and self.emu_vboxdev.console:
-            console.connect(self.emu_vboxdev.dynamips.host, self.emu_vboxdev.console, self.hostname)
+        if self.emu_vboxdev and self.emu_vboxdev.state == 'running' and self.emu_vboxdev.console and self.emu_vboxdev.console_support:
+            if sys.platform.startswith('win') and not self.emu_vboxdev.console_telnet_server:
+                p = re.compile('\s+', re.UNICODE)
+                pipe_name = p.sub("_", self.emu_vboxdev.image)
+                pipe_name = r'\\.\pipe\VBOX\%s' % pipe_name
+                console.pipe_connect(self.hostname, pipe_name)
+            elif not self.emu_vboxdev.console_telnet_server:
+                QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AnyVBoxEmuDevice", "Console"), translate("AnyVBoxEmuDevice", "Local console connections are not supported on this platform, please activate the console server or access your console using a 3rd-party software"))
+            else:
+                console.connect(self.emu_vboxdev.dynamips.host, self.emu_vboxdev.console, self.hostname)
 
     def displayWindowFocus(self):
         """ Bring VM's display as foreground window and focus on it
@@ -429,6 +441,15 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
 
         AbstractNode.mousePressEvent(self, event)
 
+    def changeConsolePort(self):
+        """ Called to change the console port
+        """
+        
+        if self.emu_vboxdev.state != 'stopped':
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyVBoxEmuDevice", "Cannot change the console port while the node is running"))
+            return
+        AbstractNode.changeConsolePort(self)
+
 class VBoxDevice(AnyVBoxEmuDevice, VBoxDefaults):
 
     instance_counter = 0
@@ -442,6 +463,5 @@ class VBoxDevice(AnyVBoxEmuDevice, VBoxDefaults):
         debug('Hello, I have initialized and my model is %s' % self.model)
 
     def _make_devinstance(self, vbox_name):
-        from GNS3.Dynagen import dynagen_vbox_lib
+        from GNS3.Dynagen import dynagen_vbox_lib 
         return dynagen_vbox_lib.VBoxDevice(self.dynagen.dynamips[vbox_name], self.hostname)
-

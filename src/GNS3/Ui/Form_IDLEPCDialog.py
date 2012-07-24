@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_IDLEPCDialog(object):
     def setupUi(self, IDLEPCDialog):
         IDLEPCDialog.setObjectName(_fromUtf8("IDLEPCDialog"))
-        IDLEPCDialog.resize(316, 108)
+        IDLEPCDialog.resize(410, 108)
         IDLEPCDialog.setMinimumSize(QtCore.QSize(316, 108))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -32,7 +32,7 @@ class Ui_IDLEPCDialog(object):
         self.gridLayout.addWidget(self.comboBox, 1, 0, 1, 1)
         self.buttonBox = QtGui.QDialogButtonBox(IDLEPCDialog)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Apply|QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Apply|QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Help|QtGui.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName(_fromUtf8("buttonBox"))
         self.gridLayout.addWidget(self.buttonBox, 2, 0, 1, 1)
 

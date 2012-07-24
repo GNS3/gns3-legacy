@@ -80,7 +80,6 @@ class portTracker:
                         s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
                     else:
                         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
                     s.bind((host, port))
                 except socket.error:
                     # Not available
@@ -136,7 +135,7 @@ class portTracker:
     def freeTcpPort(self, host, port):
         if host in self.local_addresses:
             host = 'localhost'
-        if not self.tcpPortIsFree(host, port):
+        if not self.tcpPortIsFree(host, port) and self.tcptrack.has_key(host) and port in self.tcptrack[host]:
             debug("freeing port %i" % port)
             self.tcptrack[host].remove(port)
         else:

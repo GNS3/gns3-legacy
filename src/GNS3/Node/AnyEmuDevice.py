@@ -380,6 +380,15 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
 
         AbstractNode.mousePressEvent(self, event)
 
+    def changeConsolePort(self):
+        """ Called to change the console port
+        """
+        
+        if self.emudev.state != 'stopped':
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyEmuDevice", "Cannot change the console port while the node is running"))
+            return
+        AbstractNode.changeConsolePort(self)
+
 class PIX(AnyEmuDevice, PIXDefaults):
     instance_counter = 0
     model = '525'

@@ -600,7 +600,10 @@ Examples:
         net = netfile.NETFile()
         for device in devices:
             if isinstance(device, lib.Router):
-                net.export_router_config(device)
+                try:
+                    net.export_router_config(device)
+                except lib.DynamipsErrorHandled:
+                    continue
         globals.GApp.workspace.projectConfigs = save
 
     def do_import(self, args):

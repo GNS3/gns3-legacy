@@ -246,7 +246,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                 hostname = unicode(hostname)
             if not self.__returnCaptureOptions(options, hostname, self.dest, self.srcIf):
                 return
-        if isinstance(self.dest, IOSRouter) or (isinstance(self.dest, AnyEmuDevice) and not isinstance(self.source, PIX)) or isinstance(self.dest, AnyVBoxEmuDevice):
+        if isinstance(self.dest, IOSRouter) or (isinstance(self.dest, AnyEmuDevice) and not isinstance(self.dest, PIX)) or isinstance(self.dest, AnyVBoxEmuDevice):
             hostname = self.dest.hostname
             if type(hostname) != unicode:
                 hostname = unicode(hostname)

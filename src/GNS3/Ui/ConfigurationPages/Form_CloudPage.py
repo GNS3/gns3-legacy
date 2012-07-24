@@ -36,6 +36,7 @@ class Ui_CloudPage(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.comboBoxGenEth.sizePolicy().hasHeightForWidth())
         self.comboBoxGenEth.setSizePolicy(sizePolicy)
+        self.comboBoxGenEth.setSizeAdjustPolicy(QtGui.QComboBox.AdjustToContents)
         self.comboBoxGenEth.setObjectName(_fromUtf8("comboBoxGenEth"))
         self.gridlayout.addWidget(self.comboBoxGenEth, 0, 0, 1, 3)
         self.lineEditGenEth = QtGui.QLineEdit(self.groupBox)

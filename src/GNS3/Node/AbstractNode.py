@@ -115,7 +115,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                                           self.hostname)
         if ok and text:
             text = unicode(text)
-            if not re.search(r"""^[\w,.-]*$""", text, re.UNICODE):
+            if not re.search(r"""^[\w,.-\[\]]*$""", text, re.UNICODE):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hostname"),
                                            translate("AbstractNode", "Please use only alphanumeric characters"))
                 self.changeHostname()

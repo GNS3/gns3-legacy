@@ -291,6 +291,9 @@ class Dynagen:
                 'guestcontrol_user',
                 'guestcontrol_password',
                 'first_nic_managed',
+                'headless_mode',
+                'console_support',
+                'console_telnet_server',
                 ):
                 setattr(device, option, value)
                 return True
@@ -1343,6 +1346,9 @@ class Dynagen:
                                 'guestcontrol_user',
                                 'guestcontrol_password',
                                 'first_nic_managed',
+                                'headless_mode',
+                                'console_support',
+                                'console_telnet_server',
                                 ):
                                 setattr(dev, option, devdefaults[dev.model_string][option])
 
@@ -1361,6 +1367,9 @@ class Dynagen:
                                     'guestcontrol_user',
                                     'guestcontrol_password',
                                     'first_nic_managed',
+                                    'headless_mode',
+                                    'console_support',
+                                    'console_telnet_server',
                                     ):
                                     setattr(dev, subitem, device[subitem])
                                     continue

@@ -27,6 +27,18 @@ except:
     pass
 
 
+def pipe_connect(hostname, pipe_name):
+    """ Start a telnet console and connect to a pipe
+    """
+
+    # We use Putty shipped with GNS3
+    cmd = r'putty.exe -serial %s -wt "%s [Local Console]" -sr' % (pipe_name, hostname)
+    try:
+        sub.Popen(cmd)
+    except (OSError, IOError), e:
+        QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Console", "Console"), translate("Console", "Cannot start %s: %s") % (cmd, e.strerror))
+        return (False)
+
 def connect(host, port, name):
     """ Start a telnet console and connect to it
     """

@@ -21,7 +21,7 @@
 #debuglevel: 0=disabled, 1=default, 2=debug, 3=deep debug
 debuglevel = 0
 
-import sys, os, re
+import sys, os, re, socket
 import GNS3.Globals as globals
 from GNS3.Dynagen.dynagen import Dynagen, DEVICETUPLE
 from GNS3.Utils import translate, debug, getWindowsInterfaces
@@ -340,6 +340,15 @@ class DynagenSub(Dynagen):
 #                        server.name = server.host + ':' + controlPort
 
                     debug("Start hypervisor on port: " + str(controlPort))
+                    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    s.setblocking(0)
+                    s.settimeout(300)
+                    try:
+                        s.connect(('localhost', int(controlPort)))
+                        s.close()
+                        print "Warning: a process is already running on port %i, please consider closing it or killing it as this may negatively impact your topology" % int(controlPort)
+                    except:
+                        s.close()
                     hypervisor = globals.GApp.HypervisorManager.startNewHypervisor(int(controlPort), processcheck=False)
                     globals.GApp.HypervisorManager.waitHypervisor(hypervisor)
 
@@ -385,15 +394,14 @@ class DynagenSub(Dynagen):
                                 if len(selected_images):
                                     message = unicode("Local IOS image %s\ncannot be found for hypervisor %s:%s\n\nPlease choose an alternative image:") % (device['image'], server.host, controlPort)
                                     selected_images.sort()
-                                    (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("DynagenSub", "IOS image"),
+                                    (selection, ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("DynagenSub", "IOS image"),
                                                                                       translate("DynagenSub", message), selected_images, 0, False)
                                     if ok:
                                         image_to_use = unicode(selection)
 
                                 if image_to_use == None and len(selected_images) == 0:
-                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
-                                                               translate("IOS image", "IOS image %s cannot be found for hypervisor %s:%s and cannot find an alternative %s image")
-                                                                % (device['image'], server.host, controlPort, device.name))
+                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("DynagenSub", "IOS image"),
+                                                               translate("DynagenSub", "IOS image %s cannot be found and cannot find an alternative %s image") % (device['image'], device.name))
                                     continue
                                 if image_to_use == None and len(selected_images) > 1:
                                     for image in selected_images:
@@ -406,11 +414,13 @@ class DynagenSub(Dynagen):
                                 image_name = globals.GApp.iosimages[image_to_use].filename
                                 ram = globals.GApp.iosimages[image_to_use].default_ram
                                 idlepc = globals.GApp.iosimages[image_to_use].idlepc
-                                print translate("DynagenSub", "Local IOS image %s cannot be found for hypervisor %s:%s, use image %s instead") \
-                                % (device['image'], server.host, controlPort, image_name)
+                                print translate("DynagenSub", "Local IOS image %s cannot be found, use image %s instead") % (device['image'], image_name)
                                 device['image'] = image_name
                                 device['ram'] = ram
-                                device['idlepc'] = idlepc
+                                if idlepc:
+                                    device['idlepc'] = idlepc
+                                else:
+                                    print translate("DynagenSub", "WARNING: no IDLE PC value found for %s, please apply one before using this topology!") % device['image']
 
                         # check if the config file is accessible, if not find an alternative config
                         elif device.has_key('cnfg') and device['cnfg']:

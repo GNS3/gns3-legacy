@@ -19,12 +19,10 @@
 # http://www.gns3.net/contact
 #
 
-
-import os
 import GNS3.Globals as globals
 from PyQt4 import QtCore, QtGui
 from Form_VirtualBoxPage import Ui_VirtualBoxPage
-from GNS3.Utils import fileBrowser, translate
+from GNS3.Utils import translate
 
 class Page_VirtualBox(QtGui.QWidget, Ui_VirtualBoxPage):
     """ Class implementing the VirtualBox configuration page.
@@ -37,7 +35,7 @@ class Page_VirtualBox(QtGui.QWidget, Ui_VirtualBoxPage):
         self.setObjectName("VBox device")
         self.currentNodeID = None
 
-    def loadConfig(self,  id,  config = None):
+    def loadConfig(self, id, config = None):
         # Load the config
         
         
@@ -52,11 +50,31 @@ class Page_VirtualBox(QtGui.QWidget, Ui_VirtualBoxPage):
             self.lineEditImage.setText(vbox_config['image'])
 
         self.spinBoxNics.setValue(vbox_config['nics'])
-        
+
         index = self.comboBoxNIC.findText(vbox_config['netcard'])
         if index != -1:
             self.comboBoxNIC.setCurrentIndex(index)
-                    
+
+        if vbox_config['first_nic_managed']:
+            self.checkBoxVBoxFirstInterfaceManaged.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxVBoxFirstInterfaceManaged.setCheckState(QtCore.Qt.Unchecked)
+
+        if vbox_config['headless_mode']:
+            self.checkBoxVBoxHeadlessMode.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxVBoxHeadlessMode.setCheckState(QtCore.Qt.Unchecked)
+
+        if vbox_config['console_support']:
+            self.checkBoxVboxConsoleSupport.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxVboxConsoleSupport.setCheckState(QtCore.Qt.Unchecked)
+
+        if vbox_config['console_telnet_server']:
+            self.checkBoxVboxConsoleServer.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxVboxConsoleServer.setCheckState(QtCore.Qt.Unchecked)
+
     def saveConfig(self, id, config = None):
         # Save the config
         
@@ -78,10 +96,28 @@ class Page_VirtualBox(QtGui.QWidget, Ui_VirtualBoxPage):
 
         vbox_config['netcard'] = str(self.comboBoxNIC.currentText())
 
-        #options = str(self.lineEditOptions.text())
+        if self.checkBoxVBoxFirstInterfaceManaged.checkState() == QtCore.Qt.Checked:
+            vbox_config['first_nic_managed'] = True
+        else:
+            vbox_config['first_nic_managed'] = False
+
+        if self.checkBoxVboxConsoleSupport.checkState() == QtCore.Qt.Checked:
+            vbox_config['console_support'] = True
+        else:
+            vbox_config['console_support'] = False
+
+        if self.checkBoxVBoxHeadlessMode.checkState() == QtCore.Qt.Checked:
+            vbox_config['headless_mode'] = True
+        else:
+            vbox_config['headless_mode'] = False
+
+        if self.checkBoxVboxConsoleServer.checkState() == QtCore.Qt.Checked:
+            vbox_config['console_telnet_server'] = True
+        else:
+            vbox_config['console_telnet_server'] = False
 
         return vbox_config
-    
+
 def create(dlg):
 
     return  Page_VirtualBox()
