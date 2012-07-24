@@ -7,6 +7,7 @@ from reportlab.lib.pagesizes import A4, A3, letter
 from PIL import Image
 from PyQt4 import QtCore
 from PyQt4.QtGui import QApplication, QDialog, QWizard
+import subprocess
 import sys, os, tempfile
 import GNS3.Globals as globals
 from os import chdir
@@ -113,7 +114,6 @@ class ExportedPDF():
             self.canvas.line(self.x + 150, self.y, self.x + 150, self.y + -(50 * 14))
             self.canvas.line(self.x + 260, self.y, self.x + 260, self.y + -(50 * 14))
 
-
     def tablePage(self, Object):
         """Method used to draw the simple table. Contains the output for
         the object name, ip type, login, password and the ip adress."""
@@ -161,8 +161,7 @@ class ExportedPDF():
         #FIXME: do not use system, check configuration before (dot
         # is in path? use it, no? ask where it is, etc, do it like
         # we do everything, in the Preferences of GNS3)
-        os.system("dot -Tpng " + self.filename[1] + " -o " + outputfilename[1])
-
+        os.system('dot -Tpng ' + self.filename[1] + ' -o ' + outputfilename[1])
         self.canvas.drawImage(outputfilename[1], 20, 20)
         del self.filename # remove the tmp file (reference count -> 0)
         #del outputfilename # don't close it yet or it will be deleted

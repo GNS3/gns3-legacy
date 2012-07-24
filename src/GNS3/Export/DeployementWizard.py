@@ -18,6 +18,7 @@ class DeployementWizard(QWizard, Ui_Wizard):
         QWizard.__init__(self)
         self.setupUi(self)
         self.listNetworkItems = globals.GApp.dynagen.devices.keys()
+        self.listNetworkItems.sort()
         for elem in self.listNetworkItems:
             self.listWidget.addItem(QString(str(elem)))
         self.wizardPage1.registerField("Path*", self.lineEdit)
