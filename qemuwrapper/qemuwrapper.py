@@ -176,11 +176,12 @@ class xEMUInstance(object):
                 self.monitor_sock.listen(1) # Allow only one connection
             except socket.error, msg:
                 self.monitor_sock.close()
-                s = None
+                self.monitor_sock = None
                 continue
             break
-            if self.monitor_sock is None:
-                print >> sys.stderr, "Unable to open socket for monitor mode: disabling"
+        if self.monitor_sock is None:
+            print >> sys.stderr, 'Unable to open socket for monitor mode on localhost:' + self.monitor_port
+            return False
 
         qemu_cmd = " ".join(command)
         print "Starting Qemu: ", qemu_cmd
@@ -197,9 +198,9 @@ class xEMUInstance(object):
             return False
 
         time.sleep(1)
+
         self.monitor_conn, addr = self.monitor_sock.accept()
         self.monitor_conn.setblocking(0)
-
         # consume the first lines of output of Qemu monitor mode
         output = ''
         while True:
