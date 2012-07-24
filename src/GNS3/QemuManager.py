@@ -54,6 +54,7 @@ class QemuManager(object):
         progress = None
         connection_success = False
         timeout = 10
+        s = None
         debug("Qemu manager: connecting to %s on port %i" % (binding, self.port))
         for nb in range(count + 1):
             if nb == 3:
@@ -76,7 +77,7 @@ class QemuManager(object):
             connection_success = True
             break
 
-        if connection_success:
+        if connection_success and s:
             s.close()
             time.sleep(0.2)
         else:
@@ -192,7 +193,6 @@ class QemuManager(object):
                 continue
             connection_success = True
             break
-        s.close()
         if connection_success:
             # check qemuwrapper version
             proc.waitForReadyRead(5000)
@@ -209,6 +209,6 @@ class QemuManager(object):
 
             proc.close()
             return True
-        if proc.state():
-            proc.close()
+        elif proc.state():
+                proc.close()
         raise Exception(translate('QemuManager', 'Could not connect to qemuwrapper on %s:%s' % (binding, self.port)))
