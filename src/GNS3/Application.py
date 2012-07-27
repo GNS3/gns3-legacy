@@ -474,9 +474,11 @@ class Application(QApplication, Singleton):
         self.systconf['deployement wizard'] = systemDeployementWizardConf()
         confo = self.systconf['deployement wizard']
         confo.deployementwizard_path = ConfDB().get('DeployementWizard/deployementwizard_path', Defaults.DEPLOYEMENTWIZARD_DEFAULT_PATH)
+        confo.deployementwizard_filename = ConfDB().get('DeployementWizard/deployementwizard_filename', unicode('Topology.pdf'))
 
         # Expand user home dir and environement variable
         confo.deployementwizard_path = os.path.expandvars(os.path.expanduser(confo.deployementwizard_path))
+        confo.deployementwizard_filename = os.path.expandvars(os.path.expanduser(confo.deployementwizard_filename))
 
         # System general config
         self.systconf['general'] = systemGeneralConf()

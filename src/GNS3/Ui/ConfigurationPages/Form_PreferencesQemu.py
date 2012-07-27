@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesQemu.ui'
 #
-# Created: Wed Jul 25 03:11:35 2012
-#      by: PyQt4 UI code generator 4.8.4
+# Created: Fri Jul 27 16:50:50 2012
+#      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -211,7 +211,7 @@ class Ui_PreferencesQemu(object):
         self.QemuNICNb.setMinimum(0)
         self.QemuNICNb.setMaximum(100000)
         self.QemuNICNb.setSingleStep(1)
-        self.QemuNICNb.setProperty(_fromUtf8("value"), 6)
+        self.QemuNICNb.setProperty("value", 6)
         self.QemuNICNb.setObjectName(_fromUtf8("QemuNICNb"))
         self.gridLayout.addWidget(self.QemuNICNb, 3, 1, 1, 2)
         self.label_20 = QtGui.QLabel(self.groupBox)
@@ -221,7 +221,7 @@ class Ui_PreferencesQemu(object):
         self.QemuMemory.setMinimum(1)
         self.QemuMemory.setMaximum(100000)
         self.QemuMemory.setSingleStep(16)
-        self.QemuMemory.setProperty(_fromUtf8("value"), 128)
+        self.QemuMemory.setProperty("value", 128)
         self.QemuMemory.setObjectName(_fromUtf8("QemuMemory"))
         self.gridLayout.addWidget(self.QemuMemory, 2, 1, 1, 2)
         self.label_37 = QtGui.QLabel(self.groupBox)
@@ -327,7 +327,7 @@ class Ui_PreferencesQemu(object):
         self.PIXNICNb.setMinimum(0)
         self.PIXNICNb.setMaximum(100000)
         self.PIXNICNb.setSingleStep(1)
-        self.PIXNICNb.setProperty(_fromUtf8("value"), 6)
+        self.PIXNICNb.setProperty("value", 6)
         self.PIXNICNb.setObjectName(_fromUtf8("PIXNICNb"))
         self.gridLayout_6.addWidget(self.PIXNICNb, 3, 1, 1, 2)
         self.PIXMemory = QtGui.QSpinBox(self.groupBox_6)
@@ -335,7 +335,7 @@ class Ui_PreferencesQemu(object):
         self.PIXMemory.setMinimum(1)
         self.PIXMemory.setMaximum(100000)
         self.PIXMemory.setSingleStep(16)
-        self.PIXMemory.setProperty(_fromUtf8("value"), 128)
+        self.PIXMemory.setProperty("value", 128)
         self.PIXMemory.setObjectName(_fromUtf8("PIXMemory"))
         self.gridLayout_6.addWidget(self.PIXMemory, 2, 1, 1, 2)
         self.PIXOptions = QtGui.QLineEdit(self.groupBox_6)
@@ -440,7 +440,7 @@ class Ui_PreferencesQemu(object):
         self.JunOSMemory.setMinimum(1)
         self.JunOSMemory.setMaximum(100000)
         self.JunOSMemory.setSingleStep(16)
-        self.JunOSMemory.setProperty(_fromUtf8("value"), 96)
+        self.JunOSMemory.setProperty("value", 96)
         self.JunOSMemory.setObjectName(_fromUtf8("JunOSMemory"))
         self.gridLayout_2.addWidget(self.JunOSMemory, 2, 1, 1, 2)
         self.label_41 = QtGui.QLabel(self.groupBox_5)
@@ -450,7 +450,7 @@ class Ui_PreferencesQemu(object):
         self.JunOSNICNb.setMinimum(0)
         self.JunOSNICNb.setMaximum(100000)
         self.JunOSNICNb.setSingleStep(1)
-        self.JunOSNICNb.setProperty(_fromUtf8("value"), 6)
+        self.JunOSNICNb.setProperty("value", 6)
         self.JunOSNICNb.setObjectName(_fromUtf8("JunOSNICNb"))
         self.gridLayout_2.addWidget(self.JunOSNICNb, 3, 1, 1, 2)
         self.label_11 = QtGui.QLabel(self.groupBox_5)
@@ -536,7 +536,7 @@ class Ui_PreferencesQemu(object):
         self.ASAMemory.setMinimum(1)
         self.ASAMemory.setMaximum(100000)
         self.ASAMemory.setSingleStep(16)
-        self.ASAMemory.setProperty(_fromUtf8("value"), 256)
+        self.ASAMemory.setProperty("value", 256)
         self.ASAMemory.setObjectName(_fromUtf8("ASAMemory"))
         self.gridLayout_3.addWidget(self.ASAMemory, 1, 1, 1, 1)
         self.label_43 = QtGui.QLabel(self.groupBox_3)
@@ -546,7 +546,7 @@ class Ui_PreferencesQemu(object):
         self.ASANICNb.setMinimum(0)
         self.ASANICNb.setMaximum(100000)
         self.ASANICNb.setSingleStep(1)
-        self.ASANICNb.setProperty(_fromUtf8("value"), 6)
+        self.ASANICNb.setProperty("value", 6)
         self.ASANICNb.setObjectName(_fromUtf8("ASANICNb"))
         self.gridLayout_3.addWidget(self.ASANICNb, 2, 1, 1, 1)
         self.label_15 = QtGui.QLabel(self.groupBox_3)
@@ -687,7 +687,7 @@ class Ui_PreferencesQemu(object):
         self.IDSMemory.setMinimum(1)
         self.IDSMemory.setMaximum(100000)
         self.IDSMemory.setSingleStep(16)
-        self.IDSMemory.setProperty(_fromUtf8("value"), 512)
+        self.IDSMemory.setProperty("value", 512)
         self.IDSMemory.setObjectName(_fromUtf8("IDSMemory"))
         self.gridLayout_8.addWidget(self.IDSMemory, 3, 1, 1, 2)
         self.label_44 = QtGui.QLabel(self.groupBox_9)
@@ -697,7 +697,7 @@ class Ui_PreferencesQemu(object):
         self.IDSNICNb.setMinimum(0)
         self.IDSNICNb.setMaximum(100000)
         self.IDSNICNb.setSingleStep(1)
-        self.IDSNICNb.setProperty(_fromUtf8("value"), 3)
+        self.IDSNICNb.setProperty("value", 3)
         self.IDSNICNb.setObjectName(_fromUtf8("IDSNICNb"))
         self.gridLayout_8.addWidget(self.IDSNICNb, 4, 1, 1, 2)
         self.label_32 = QtGui.QLabel(self.groupBox_9)

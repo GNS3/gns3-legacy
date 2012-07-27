@@ -80,6 +80,7 @@ if sys.platform.startswith('win'):
                                                   "GNS3.Ui.ConfigurationPages.Page_PreferencesCapture",
                                                   "GNS3.Ui.ConfigurationPages.Page_PreferencesQemu",
                                                   "GNS3.Ui.ConfigurationPages.Page_PreferencesVirtualBox",
+                                                  "GNS3.Ui.ConfigurationPages.Page_PreferencesDeployementWizard",
                                                 ]
                                         }
                              }
@@ -144,6 +145,7 @@ elif sys.platform.startswith('darwin'):
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesCapture',
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesQemu',
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesVirtualBox'
+                            'GNS3.Ui.ConfigurationPages.Page_PreferencesDeployementWizard',
                             ],
 
                 'plist'    : {  'CFBundleName': 'GNS3',

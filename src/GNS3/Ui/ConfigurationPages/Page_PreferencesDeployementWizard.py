@@ -45,9 +45,9 @@ class UiConfig_PreferencesDeployementWizard(QtGui.QWidget, Ui_PreferencesDeploye
 
         if self.conf.deployementwizard_path == '':
             self.conf.deployementwizard_path = globals.GApp.mainWindow.projectFile
-
         self.ProjectPath.setText(os.path.normpath(self.conf.deployementwizard_path))
-
+        if self.conf.deployementwizard_filename == '':
+            self.conf.deployementwizard_filename = unicode(self.ProjectName.text())
 
     def saveConf(self):
         self.conf.deployementwizard_path = unicode(self.ProjectPath.text())
@@ -77,6 +77,6 @@ class UiConfig_PreferencesDeployementWizard(QtGui.QWidget, Ui_PreferencesDeploye
             self.currentDeployementWizardStatusText += 'Graphviz is not installed. You will need it to have a graphical topology.\n'
             self.missingDirOrBinary = True
         if (self.missingDirOrBinary == True):
-            self.labelDeployementWizardStatus.setText('<font color="green">' + self.currentDeployementWizardStatusText + '</font>')
+            self.labelDeployementWizardStatus.setText('<font color="red">' + self.currentDeployementWizardStatusText + '</font>')
         else:
             self.labelDeployementWizardStatus.setText('<font color="green">"Everything looks fine. You should be able to deploy your configuration."</font>')

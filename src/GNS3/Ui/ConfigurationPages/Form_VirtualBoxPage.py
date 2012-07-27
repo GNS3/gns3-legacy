@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_VirtualBoxPage.ui'
 #
-# Created: Wed Jul 25 03:11:34 2012
-#      by: PyQt4 UI code generator 4.8.4
+# Created: Fri Jul 27 16:50:49 2012
+#      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -41,7 +41,7 @@ class Ui_VirtualBoxPage(object):
         self.spinBoxNics.setMinimum(2)
         self.spinBoxNics.setMaximum(8)
         self.spinBoxNics.setSingleStep(1)
-        self.spinBoxNics.setProperty(_fromUtf8("value"), 6)
+        self.spinBoxNics.setProperty("value", 6)
         self.spinBoxNics.setObjectName(_fromUtf8("spinBoxNics"))
         self.gridLayout.addWidget(self.spinBoxNics, 1, 1, 1, 1)
         self.label_26 = QtGui.QLabel(VirtualBoxPage)
@@ -89,6 +89,6 @@ class Ui_VirtualBoxPage(object):
         self.comboBoxNIC.setItemText(4, QtGui.QApplication.translate("VirtualBoxPage", "virtio", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxVBoxFirstInterfaceManaged.setText(QtGui.QApplication.translate("VirtualBoxPage", "Do not use first NIC for connections with the host OS", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxVboxConsoleSupport.setText(QtGui.QApplication.translate("VirtualBoxPage", "Enable console support", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxVboxConsoleServer.setText(QtGui.QApplication.translate("VirtualBoxPage", "Enable console server (optionnal on Windows)", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxVboxConsoleServer.setText(QtGui.QApplication.translate("VirtualBoxPage", "Enable console server (for remote access)", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxVBoxHeadlessMode.setText(QtGui.QApplication.translate("VirtualBoxPage", "Start in headless mode (without GUI)", None, QtGui.QApplication.UnicodeUTF8))
 

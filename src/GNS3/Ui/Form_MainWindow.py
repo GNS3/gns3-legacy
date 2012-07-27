@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Wed Jul 25 03:11:32 2012
-#      by: PyQt4 UI code generator 4.8.4
+# Created: Fri Jul 27 16:50:45 2012
+#      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -561,7 +561,7 @@ class Ui_MainWindow(object):
         self.menuAnnotate.setTitle(QtGui.QApplication.translate("MainWindow", "Annotate", None, QtGui.QApplication.UnicodeUTF8))
         self.menuDevice.setTitle(QtGui.QApplication.translate("MainWindow", "Device", None, QtGui.QApplication.UnicodeUTF8))
         self.toolBar_General.setWindowTitle(QtGui.QApplication.translate("MainWindow", "General", None, QtGui.QApplication.UnicodeUTF8))
-        self.dockWidget_NodeTypes.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Nodes Types", None, QtGui.QApplication.UnicodeUTF8))
+        self.dockWidget_NodeTypes.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Node Types", None, QtGui.QApplication.UnicodeUTF8))
         self.nodesDock.setStatusTip(QtGui.QApplication.translate("MainWindow", "Select Node Type", None, QtGui.QApplication.UnicodeUTF8))
         self.nodesDock.headerItem().setText(0, QtGui.QApplication.translate("MainWindow", "1", None, QtGui.QApplication.UnicodeUTF8))
         self.toolBar_Devices.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Devices", None, QtGui.QApplication.UnicodeUTF8))

@@ -673,8 +673,10 @@ conf_systemVBox_types = {
 
 conf_systemDeployementWizard_defaults = {
     'deployementwizard_path': '',
+    'deployementwizard_filename': '',
 }
 
 conf_systemDeployementWizard_types = {
     'deployementwizard_path': unicode,
+    'deployementwizard_filename': unicode,
 }

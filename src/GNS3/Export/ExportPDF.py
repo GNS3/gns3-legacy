@@ -19,9 +19,14 @@ except AttributeError:
 
 class ExportedPDF():
     """Main class to interact with wizard"""
-    def __init__(self, name, path):
-        self.name = name
-        self.path = path
+    def __init__(self):
+        if globals.GApp.systconf.has_key('deployement wizard'):
+            self.conf = globals.GApp.systconf['deployement wizard']
+        else:
+            self.conf = systemDeployementWizardConf()
+        
+        self.name = self.conf.conf.items()[1][1]
+        self.path = self.conf.conf.items()[0][1] + os.sep + self.name
         self.canvas = canvas.Canvas(self.path, pagesize=A4)
         self.dictionnaryCounter = 0
         self.filename = tempfile.mkstemp(suffix='.dot')
@@ -140,7 +145,7 @@ class ExportedPDF():
             self.counterPage += 1
             self.canvas.showPage()
 
-    def writeDotFile(self, Object):
+    def writeDotFile(self, Object, nodeNumber):
         """Method used to write in the dot temporary file."""
         f = os.fdopen(self.filename[0], 'w')
         f.write('graph G {\n')
@@ -152,15 +157,11 @@ class ExportedPDF():
             f.write(unicode(elem.source.hostname) + ' -- ' + unicode(elem.dest.hostname) + '\n')
         f.write('}')
 
-    def execDOT(self, Object):
+    def execDOT(self, Object, nodeNumber):
         """Method used to create the temporary filename and launching the dot program, getting a png in output. This png is displayed in the pdf."""
         self.canvas.setPageSize((1200, 860))
-        self.writeDotFile(Object)
+        self.writeDotFile(Object, nodeNumber)
         outputfilename = tempfile.mkstemp(suffix='.png')
-
-        #FIXME: do not use system, check configuration before (dot
-        # is in path? use it, no? ask where it is, etc, do it like
-        # we do everything, in the Preferences of GNS3)
         os.system('dot -Tpng ' + self.filename[1] + ' -o ' + outputfilename[1])
         self.canvas.drawImage(outputfilename[1], 20, 20)
         del self.filename # remove the tmp file (reference count -> 0)

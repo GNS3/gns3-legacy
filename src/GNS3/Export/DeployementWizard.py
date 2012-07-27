@@ -21,15 +21,15 @@ class DeployementWizard(QWizard, Ui_Wizard):
         self.listNetworkItems.sort()
         for elem in self.listNetworkItems:
             self.listWidget.addItem(QString(str(elem)))
-        self.wizardPage1.registerField("Path*", self.lineEdit)
-        self.wizardPage1.registerField("Name*", self.lineEdit_2)
         self.configureListItems = []
         self.configure = {}
         self.dict = {}
         self.counter = 0
+        self.numberOfNodes = 0
         while (self.counter < self.listWidget.count()):
             self.dict[self.counter] = ConfigureNetworkObject()
             self.counter += 1
+            self.numberOfNodes += 1
         self.counter = 0
         QtCore.QObject.connect(self.wizardPage1, QtCore.SIGNAL(_fromUtf8("completeChanged()")), self.changeListItems)
         QtCore.QObject.connect(self.listWidget, QtCore.SIGNAL(_fromUtf8("itemSelectionChanged()")), self.enableConfigureObject)
@@ -52,16 +52,11 @@ class DeployementWizard(QWizard, Ui_Wizard):
     def display(self):
         """method called when the wizard is finished. Instanciate the ExportedPDF class with his methods."""
         from GNS3.Export.ExportPDF import ExportedPDF
-        if (self.wizardPage2.isFinalPage()):
-            if (os.name == 'nt'):
-                self.completePath = self.wizardPage1.field("Path").toString() + '\\' + self.wizardPage1.field("Name").toString()
-            else :
-                self.completePath = self.wizardPage1.field("Path").toString() + '/' + self.wizardPage1.field("Name").toString()
-            self.pdf = ExportedPDF(self.wizardPage1.field("Name").toString(), self.completePath)
-            self.pdf.startPage()
-            self.pdf.tablePage(self.configure)
-            self.pdf.execDOT(self.configure)
-            self.pdf.finish()
+        self.pdf = ExportedPDF()
+        self.pdf.startPage()
+        self.pdf.tablePage(self.configure)
+        self.pdf.execDOT(self.configure, self.numberOfNodes)
+        self.pdf.finish()
     def configureList(self):
         """display the configuration pages for the differents network items in the list. 1 page per network item."""
         self.dict[self.listWidget.currentRow()].show()

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_ATMBRPage.ui'
 #
-# Created: Wed Jul 25 03:11:34 2012
-#      by: PyQt4 UI code generator 4.8.4
+# Created: Fri Jul 27 16:50:48 2012
+#      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -40,7 +40,7 @@ class Ui_ATMBRPage(object):
         self.spinBoxSrcPort.setSizePolicy(sizePolicy)
         self.spinBoxSrcPort.setMinimum(0)
         self.spinBoxSrcPort.setMaximum(65535)
-        self.spinBoxSrcPort.setProperty(_fromUtf8("value"), 1)
+        self.spinBoxSrcPort.setProperty("value", 1)
         self.spinBoxSrcPort.setObjectName(_fromUtf8("spinBoxSrcPort"))
         self.gridlayout1.addWidget(self.spinBoxSrcPort, 0, 1, 1, 1)
         self.gridlayout.addWidget(self.groupBox, 0, 0, 1, 2)
@@ -78,7 +78,7 @@ class Ui_ATMBRPage(object):
         self.spinBoxDestPort.setSizePolicy(sizePolicy)
         self.spinBoxDestPort.setMinimum(0)
         self.spinBoxDestPort.setMaximum(65535)
-        self.spinBoxDestPort.setProperty(_fromUtf8("value"), 10)
+        self.spinBoxDestPort.setProperty("value", 10)
         self.spinBoxDestPort.setObjectName(_fromUtf8("spinBoxDestPort"))
         self.gridlayout2.addWidget(self.spinBoxDestPort, 0, 1, 1, 1)
         self.label_6 = QtGui.QLabel(self.groupBox_3)
@@ -94,7 +94,7 @@ class Ui_ATMBRPage(object):
         self.spinBoxDestVPI.setMinimum(0)
         self.spinBoxDestVPI.setMaximum(65535)
         self.spinBoxDestVPI.setSingleStep(1)
-        self.spinBoxDestVPI.setProperty(_fromUtf8("value"), 0)
+        self.spinBoxDestVPI.setProperty("value", 0)
         self.spinBoxDestVPI.setObjectName(_fromUtf8("spinBoxDestVPI"))
         self.gridlayout2.addWidget(self.spinBoxDestVPI, 1, 1, 1, 1)
         self.label_4 = QtGui.QLabel(self.groupBox_3)
@@ -107,7 +107,7 @@ class Ui_ATMBRPage(object):
         sizePolicy.setHeightForWidth(self.spinBoxDestVCI.sizePolicy().hasHeightForWidth())
         self.spinBoxDestVCI.setSizePolicy(sizePolicy)
         self.spinBoxDestVCI.setMaximum(65535)
-        self.spinBoxDestVCI.setProperty(_fromUtf8("value"), 100)
+        self.spinBoxDestVCI.setProperty("value", 100)
         self.spinBoxDestVCI.setObjectName(_fromUtf8("spinBoxDestVCI"))
         self.gridlayout2.addWidget(self.spinBoxDestVCI, 2, 1, 1, 1)
         self.gridlayout.addWidget(self.groupBox_3, 1, 0, 1, 2)

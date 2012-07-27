@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesVirtualBox.ui'
 #
-# Created: Wed Jul 25 03:11:35 2012
-#      by: PyQt4 UI code generator 4.8.4
+# Created: Fri Jul 27 16:50:50 2012
+#      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -179,7 +179,7 @@ class Ui_PreferencesVirtualBox(object):
         self.VBoxNICNb.setMinimum(1)
         self.VBoxNICNb.setMaximum(8)
         self.VBoxNICNb.setSingleStep(1)
-        self.VBoxNICNb.setProperty(_fromUtf8("value"), 2)
+        self.VBoxNICNb.setProperty("value", 2)
         self.VBoxNICNb.setObjectName(_fromUtf8("VBoxNICNb"))
         self.gridLayout.addWidget(self.VBoxNICNb, 3, 1, 1, 2)
         self.label_10 = QtGui.QLabel(self.groupBox)
@@ -298,7 +298,7 @@ class Ui_PreferencesVirtualBox(object):
         self.checkBoxVBoxFirstInterfaceManaged.setText(QtGui.QApplication.translate("PreferencesVirtualBox", "Do not use first NIC for connections with the host OS", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxVBoxHeadlessMode.setText(QtGui.QApplication.translate("PreferencesVirtualBox", "Start in headless mode (without GUI)", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxVboxConsoleSupport.setText(QtGui.QApplication.translate("PreferencesVirtualBox", "Enable console support", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxVboxConsoleServer.setText(QtGui.QApplication.translate("PreferencesVirtualBox", "Enable console server (optionnal on Windows)", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxVboxConsoleServer.setText(QtGui.QApplication.translate("PreferencesVirtualBox", "Enable console server (for remote access)", None, QtGui.QApplication.UnicodeUTF8))
         self.label_14.setText(QtGui.QApplication.translate("PreferencesVirtualBox", "VM List:", None, QtGui.QApplication.UnicodeUTF8))
         self.SaveVBoxImage.setText(QtGui.QApplication.translate("PreferencesVirtualBox", "&Save", None, QtGui.QApplication.UnicodeUTF8))
         self.DeleteVBoxImage.setText(QtGui.QApplication.translate("PreferencesVirtualBox", "&Delete", None, QtGui.QApplication.UnicodeUTF8))

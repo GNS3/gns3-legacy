@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'src/GNS3/Ui/ConfigurationPages/Form_PreferencesDeployementWizard.ui'
+# Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDeployementWizard.ui'
 #
-# Created: Mon Jul 16 16:52:09 2012
+# Created: Fri Jul 27 16:50:50 2012
 #      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!

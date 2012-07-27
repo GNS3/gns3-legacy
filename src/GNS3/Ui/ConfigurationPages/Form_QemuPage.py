@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_QemuPage.ui'
 #
-# Created: Wed Jul 25 03:11:34 2012
-#      by: PyQt4 UI code generator 4.8.4
+# Created: Fri Jul 27 16:50:49 2012
+#      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -51,7 +51,7 @@ class Ui_QemuPage(object):
         self.spinBoxRamSize.setSizePolicy(sizePolicy)
         self.spinBoxRamSize.setMaximum(100000)
         self.spinBoxRamSize.setSingleStep(4)
-        self.spinBoxRamSize.setProperty(_fromUtf8("value"), 128)
+        self.spinBoxRamSize.setProperty("value", 128)
         self.spinBoxRamSize.setObjectName(_fromUtf8("spinBoxRamSize"))
         self.gridLayout.addWidget(self.spinBoxRamSize, 1, 1, 1, 2)
         self.label_37 = QtGui.QLabel(QemuPage)
@@ -61,7 +61,7 @@ class Ui_QemuPage(object):
         self.spinBoxNics.setMinimum(0)
         self.spinBoxNics.setMaximum(100000)
         self.spinBoxNics.setSingleStep(1)
-        self.spinBoxNics.setProperty(_fromUtf8("value"), 6)
+        self.spinBoxNics.setProperty("value", 6)
         self.spinBoxNics.setObjectName(_fromUtf8("spinBoxNics"))
         self.gridLayout.addWidget(self.spinBoxNics, 2, 1, 1, 2)
         self.label_26 = QtGui.QLabel(QemuPage)
