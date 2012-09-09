@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_VirtualBoxPage.ui'
 #
-# Created: Fri Jul 27 16:50:49 2012
-#      by: PyQt4 UI code generator 4.9.4
+# Created: Mon Sep 10 03:32:28 2012
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -41,7 +41,7 @@ class Ui_VirtualBoxPage(object):
         self.spinBoxNics.setMinimum(2)
         self.spinBoxNics.setMaximum(8)
         self.spinBoxNics.setSingleStep(1)
-        self.spinBoxNics.setProperty("value", 6)
+        self.spinBoxNics.setProperty(_fromUtf8("value"), 6)
         self.spinBoxNics.setObjectName(_fromUtf8("spinBoxNics"))
         self.gridLayout.addWidget(self.spinBoxNics, 1, 1, 1, 1)
         self.label_26 = QtGui.QLabel(VirtualBoxPage)

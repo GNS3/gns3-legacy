@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Fri Jul 27 16:50:45 2012
-#      by: PyQt4 UI code generator 4.9.4
+# Created: Mon Sep 10 03:32:25 2012
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -187,7 +187,7 @@ class Ui_IOSDialog(object):
         self.spinBoxHypervisorPort.setSuffix(_fromUtf8(" TCP"))
         self.spinBoxHypervisorPort.setMinimum(1)
         self.spinBoxHypervisorPort.setMaximum(65535)
-        self.spinBoxHypervisorPort.setProperty("value", 7200)
+        self.spinBoxHypervisorPort.setProperty(_fromUtf8("value"), 7200)
         self.spinBoxHypervisorPort.setObjectName(_fromUtf8("spinBoxHypervisorPort"))
         self.gridlayout3.addWidget(self.spinBoxHypervisorPort, 1, 3, 1, 2)
         self.label_7 = QtGui.QLabel(self.groupBox_4)
@@ -199,7 +199,7 @@ class Ui_IOSDialog(object):
         self.spinBoxBaseUDP.setSuffix(_fromUtf8(" UDP"))
         self.spinBoxBaseUDP.setMinimum(1)
         self.spinBoxBaseUDP.setMaximum(65535)
-        self.spinBoxBaseUDP.setProperty("value", 10000)
+        self.spinBoxBaseUDP.setProperty(_fromUtf8("value"), 10000)
         self.spinBoxBaseUDP.setObjectName(_fromUtf8("spinBoxBaseUDP"))
         self.gridlayout3.addWidget(self.spinBoxBaseUDP, 2, 3, 1, 2)
         self.label_8 = QtGui.QLabel(self.groupBox_4)
@@ -209,7 +209,7 @@ class Ui_IOSDialog(object):
         self.spinBoxBaseConsole.setSuffix(_fromUtf8(" TCP"))
         self.spinBoxBaseConsole.setMinimum(1)
         self.spinBoxBaseConsole.setMaximum(65535)
-        self.spinBoxBaseConsole.setProperty("value", 2001)
+        self.spinBoxBaseConsole.setProperty(_fromUtf8("value"), 2001)
         self.spinBoxBaseConsole.setObjectName(_fromUtf8("spinBoxBaseConsole"))
         self.gridlayout3.addWidget(self.spinBoxBaseConsole, 3, 3, 1, 2)
         self.label_5 = QtGui.QLabel(self.groupBox_4)
@@ -227,7 +227,7 @@ class Ui_IOSDialog(object):
         self.spinBoxBaseAUX = QtGui.QSpinBox(self.groupBox_4)
         self.spinBoxBaseAUX.setSuffix(_fromUtf8(" TCP"))
         self.spinBoxBaseAUX.setMaximum(65535)
-        self.spinBoxBaseAUX.setProperty("value", 2501)
+        self.spinBoxBaseAUX.setProperty(_fromUtf8("value"), 2501)
         self.spinBoxBaseAUX.setObjectName(_fromUtf8("spinBoxBaseAUX"))
         self.gridlayout3.addWidget(self.spinBoxBaseAUX, 4, 3, 1, 2)
         self.label_11 = QtGui.QLabel(self.groupBox_4)

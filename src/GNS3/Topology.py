@@ -587,6 +587,7 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_int_option('nics', conf.nic_nb)
                 node.set_int_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
+                node.set_string_option('flavor', conf.flavor)
                 node.set_string_option('kvm', conf.kvm)
                 node.set_string_option('options', conf.options)
 

@@ -134,13 +134,14 @@ class xEMUInstance(object):
         self.nics = '6'
         self.udp = {}
         self.usermod = 1 # by default: add 1 user backend
+        self.flavor = 'Default'
         self.capture = {}
         self.netcard = 'rtl8139'
         self.kvm = False
         self.options = ''
         self.process = None
         self.workdir = WORKDIR + os.sep + name
-        self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options', 'usermod']
+        self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options', 'usermod', 'flavor']
         # For Qemu monitor mode
         self.monitor_conn = None
         self.monitor_sock = None
@@ -369,6 +370,11 @@ class QEMUInstance(xEMUInstance):
     def _build_command(self):
         debugmsg(3, "QEMUInstance::_build_command()")
         "Builds the command as a list of shell arguments."
+
+        if 'qemu-system-' in self.bin and self.flavor != 'Default':
+            self.bin = 'qemu-system' + self.flavor
+            if sys.platform.startswith('win'):
+                self.bin += 'w.exe' # We ship qemu-system-XXXw.exe on Windows
         command = [self.bin]
 
         # Qemu monitor mode through socket

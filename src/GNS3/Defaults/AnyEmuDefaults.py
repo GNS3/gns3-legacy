@@ -29,6 +29,7 @@ class AnyEmuDefaults(AbstractDefaults):
 
         self.default_image = 'None'
         self.default_netcard = 'rtl8139'
+        self.default_flavor = 'Default'
         self.default_nics = 6
         self.default_usermod = 1
         self.default_kvm = False

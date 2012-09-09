@@ -361,8 +361,9 @@ conf_qemuImage_defaults = {
     'filename': '',
     'memory': 256,
     'nic_nb': 6,
-    'usermod' : 1,
+    'usermod': 1,
     'nic': 'rtl8139',
+    'flavor': 'Default',
     'options': '',
     'kvm': False
 }
@@ -373,8 +374,9 @@ conf_qemuImage_types = {
     'filename': unicode,
     'memory': int,
     'nic_nb': int,
-    'usermod' : int,
+    'usermod': int,
     'nic': str,
+    'flavor': str,
     'options': str,
     'kvm': bool
 }

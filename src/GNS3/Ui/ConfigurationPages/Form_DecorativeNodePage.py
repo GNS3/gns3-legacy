@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_DecorativeNodePage.ui'
 #
-# Created: Fri Jul 27 16:50:49 2012
-#      by: PyQt4 UI code generator 4.9.4
+# Created: Mon Sep 10 03:32:28 2012
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 

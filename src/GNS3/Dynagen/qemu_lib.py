@@ -320,6 +320,7 @@ class AnyEmuDevice(object):
             'ram': 256,
             'nics': 6,
             'netcard': 'rtl8139',
+            'flavor': 'Default',
             'kvm': False,
             'usermod': 1,
             'options': None,
@@ -328,6 +329,7 @@ class AnyEmuDevice(object):
         self._nics = self.defaults['nics']
         self._usermod = self.defaults['usermod']
         self._netcard = self.defaults['netcard']
+        self._flavor = self.defaults['flavor']
         self._kvm = self.defaults['kvm']
         self._options = self.defaults['options']
         self._capture = {}
@@ -441,6 +443,20 @@ class AnyEmuDevice(object):
         r = r.replace("\\n", "\n")
         r = r.replace("\\t", "    ")
         return r
+
+    def _set_flavor(self, val):
+        """ Set the qemu binary flavor
+        """
+        debugmsg(2, "AnyEmuDevice::_set_flavor()")
+        self._flavor = val
+        send(self.p, 'qemu setattr %s flavor %s' % (self.name, str(val)))
+
+    def _get_flavor(self):
+        " Get flavor value"
+        debugmsg(2, "AnyEmuDevice::_get_flavor(), returns %s" % str(self._flavor))
+        return self._flavor
+
+    flavor = property(_get_flavor, _set_flavor, doc='Qemu flavor')
 
     def _set_usermod(self, val):
         """ Toogle the user mod backend for Qemu devices
@@ -946,7 +962,7 @@ class QemuDevice(AnyEmuDevice):
     basehostname = 'QEMU'
     _ufd_machine = 'Qemu guest'
     _ufd_hardware = 'Qemu Emulated System'
-    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options', 'usermod']
+    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options', 'usermod', 'flavor']
 
 class ASA(AnyEmuDevice):
     model_string = '5520'

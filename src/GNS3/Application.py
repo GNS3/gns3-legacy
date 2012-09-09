@@ -802,6 +802,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/nic_nb", o.nic_nb)
             c.set(basekey + "/usermod", o.usermod)
             c.set(basekey + "/nic", o.nic)
+            c.set(basekey + "/flavor", o.flavor)
             c.set(basekey + "/options", o.options)
             c.set(basekey + "/kvm", o.kvm)
 

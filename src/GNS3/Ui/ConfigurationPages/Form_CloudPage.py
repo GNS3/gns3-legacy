@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_CloudPage.ui'
 #
-# Created: Fri Jul 27 16:50:47 2012
-#      by: PyQt4 UI code generator 4.9.4
+# Created: Mon Sep 10 03:32:27 2012
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -105,7 +105,7 @@ class Ui_CloudPage(object):
         sizePolicy.setHeightForWidth(self.spinBoxLocalPort.sizePolicy().hasHeightForWidth())
         self.spinBoxLocalPort.setSizePolicy(sizePolicy)
         self.spinBoxLocalPort.setMaximum(65535)
-        self.spinBoxLocalPort.setProperty("value", 30000)
+        self.spinBoxLocalPort.setProperty(_fromUtf8("value"), 30000)
         self.spinBoxLocalPort.setObjectName(_fromUtf8("spinBoxLocalPort"))
         self.gridlayout3.addWidget(self.spinBoxLocalPort, 0, 1, 1, 1)
         self.label_2 = QtGui.QLabel(self.groupBox_3)
@@ -130,7 +130,7 @@ class Ui_CloudPage(object):
         sizePolicy.setHeightForWidth(self.spinBoxRemotePort.sizePolicy().hasHeightForWidth())
         self.spinBoxRemotePort.setSizePolicy(sizePolicy)
         self.spinBoxRemotePort.setMaximum(65535)
-        self.spinBoxRemotePort.setProperty("value", 20000)
+        self.spinBoxRemotePort.setProperty(_fromUtf8("value"), 20000)
         self.spinBoxRemotePort.setObjectName(_fromUtf8("spinBoxRemotePort"))
         self.gridlayout3.addWidget(self.spinBoxRemotePort, 2, 1, 1, 1)
         self.gridlayout2.addWidget(self.groupBox_3, 0, 0, 1, 2)

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_IOSRouterPage.ui'
 #
-# Created: Fri Jul 27 16:50:47 2012
-#      by: PyQt4 UI code generator 4.9.4
+# Created: Mon Sep 10 03:32:26 2012
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -100,7 +100,7 @@ class Ui_IOSRouterPage(object):
         self.spinBoxRamSize.setSizePolicy(sizePolicy)
         self.spinBoxRamSize.setMaximum(4096)
         self.spinBoxRamSize.setSingleStep(4)
-        self.spinBoxRamSize.setProperty("value", 128)
+        self.spinBoxRamSize.setProperty(_fromUtf8("value"), 128)
         self.spinBoxRamSize.setObjectName(_fromUtf8("spinBoxRamSize"))
         self.gridlayout1.addWidget(self.spinBoxRamSize, 0, 1, 1, 1)
         self.label_9 = QtGui.QLabel(self.groupBox_2)
@@ -114,7 +114,7 @@ class Ui_IOSRouterPage(object):
         self.spinBoxNvramSize.setSizePolicy(sizePolicy)
         self.spinBoxNvramSize.setMaximum(4096)
         self.spinBoxNvramSize.setSingleStep(4)
-        self.spinBoxNvramSize.setProperty("value", 128)
+        self.spinBoxNvramSize.setProperty(_fromUtf8("value"), 128)
         self.spinBoxNvramSize.setObjectName(_fromUtf8("spinBoxNvramSize"))
         self.gridlayout1.addWidget(self.spinBoxNvramSize, 1, 1, 1, 1)
         self.vboxlayout1.addWidget(self.groupBox_2)
@@ -328,7 +328,7 @@ class Ui_IOSRouterPage(object):
         self.spinBoxExecArea.setSizePolicy(sizePolicy)
         self.spinBoxExecArea.setMaximum(4096)
         self.spinBoxExecArea.setSingleStep(4)
-        self.spinBoxExecArea.setProperty("value", 64)
+        self.spinBoxExecArea.setProperty(_fromUtf8("value"), 64)
         self.spinBoxExecArea.setObjectName(_fromUtf8("spinBoxExecArea"))
         self.gridlayout4.addWidget(self.spinBoxExecArea, 2, 1, 1, 1)
         self.label_22 = QtGui.QLabel(self.Advanced)
@@ -343,7 +343,7 @@ class Ui_IOSRouterPage(object):
         self.spinBoxIomem.setSizePolicy(sizePolicy)
         self.spinBoxIomem.setMaximum(100)
         self.spinBoxIomem.setSingleStep(5)
-        self.spinBoxIomem.setProperty("value", 5)
+        self.spinBoxIomem.setProperty(_fromUtf8("value"), 5)
         self.spinBoxIomem.setObjectName(_fromUtf8("spinBoxIomem"))
         self.gridlayout4.addWidget(self.spinBoxIomem, 3, 1, 1, 1)
         spacerItem3 = QtGui.QSpacerItem(304, 251, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)

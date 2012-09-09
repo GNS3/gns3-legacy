@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Fri Jul 27 16:50:49 2012
-#      by: PyQt4 UI code generator 4.9.4
+# Created: Mon Sep 10 03:32:28 2012
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -63,7 +63,7 @@ class Ui_PreferencesGeneral(object):
         self.gridLayout_3.addWidget(self.label_10, 7, 0, 1, 1)
         self.autoSave = QtGui.QSpinBox(self.tab)
         self.autoSave.setMaximum(10000)
-        self.autoSave.setProperty("value", 60)
+        self.autoSave.setProperty(_fromUtf8("value"), 60)
         self.autoSave.setObjectName(_fromUtf8("autoSave"))
         self.gridLayout_3.addWidget(self.autoSave, 8, 0, 1, 1)
         self.groupBox_2 = QtGui.QGroupBox(self.tab)
@@ -153,7 +153,7 @@ class Ui_PreferencesGeneral(object):
         self.doubleSpinBoxConsoleDelay.setDecimals(1)
         self.doubleSpinBoxConsoleDelay.setMinimum(0.0)
         self.doubleSpinBoxConsoleDelay.setSingleStep(0.5)
-        self.doubleSpinBoxConsoleDelay.setProperty("value", 1.0)
+        self.doubleSpinBoxConsoleDelay.setProperty(_fromUtf8("value"), 1.0)
         self.doubleSpinBoxConsoleDelay.setObjectName(_fromUtf8("doubleSpinBoxConsoleDelay"))
         self.gridLayout.addWidget(self.doubleSpinBoxConsoleDelay, 10, 0, 1, 1)
         self.label_9 = QtGui.QLabel(self.tab_3)
@@ -187,7 +187,7 @@ class Ui_PreferencesGeneral(object):
         self.workspaceWidth.setMinimum(500)
         self.workspaceWidth.setMaximum(1000000)
         self.workspaceWidth.setSingleStep(100)
-        self.workspaceWidth.setProperty("value", 2000)
+        self.workspaceWidth.setProperty(_fromUtf8("value"), 2000)
         self.workspaceWidth.setObjectName(_fromUtf8("workspaceWidth"))
         self.gridlayout.addWidget(self.workspaceWidth, 0, 1, 1, 1)
         self.label_6 = QtGui.QLabel(self.tab_2)
@@ -202,7 +202,7 @@ class Ui_PreferencesGeneral(object):
         self.workspaceHeight.setMinimum(500)
         self.workspaceHeight.setMaximum(1000000)
         self.workspaceHeight.setSingleStep(100)
-        self.workspaceHeight.setProperty("value", 1000)
+        self.workspaceHeight.setProperty(_fromUtf8("value"), 1000)
         self.workspaceHeight.setObjectName(_fromUtf8("workspaceHeight"))
         self.gridlayout.addWidget(self.workspaceHeight, 1, 1, 1, 1)
         self.checkBoxDrawRectangle = QtGui.QCheckBox(self.tab_2)

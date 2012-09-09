@@ -390,6 +390,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.memory = self.QemuMemory.value()
         conf.nic_nb = self.QemuNICNb.value()
         conf.nic = str(self.QemuNIC.currentText())
+        conf.flavor = str(self.QemuFlavor.currentText())
         conf.options = str(self.QemuOptions.text())
 
         if self.QemucheckBoxKVM.checkState() == QtCore.Qt.Checked:
@@ -433,6 +434,10 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.QemuMemory.setValue(conf.memory)
             self.QemuOptions.setText(conf.options)
             self.QemuNICNb.setValue(conf.nic_nb)
+
+            index = self.QemuFlavor.findText(conf.flavor)
+            if index != -1:
+                self.QemuFlavor.setCurrentIndex(index)
 
             index = self.QemuNIC.findText(conf.nic)
             if index != -1:

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesVirtualBox.ui'
 #
-# Created: Fri Jul 27 16:50:50 2012
-#      by: PyQt4 UI code generator 4.9.4
+# Created: Mon Sep 10 03:32:29 2012
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -179,7 +179,7 @@ class Ui_PreferencesVirtualBox(object):
         self.VBoxNICNb.setMinimum(1)
         self.VBoxNICNb.setMaximum(8)
         self.VBoxNICNb.setSingleStep(1)
-        self.VBoxNICNb.setProperty("value", 2)
+        self.VBoxNICNb.setProperty(_fromUtf8("value"), 2)
         self.VBoxNICNb.setObjectName(_fromUtf8("VBoxNICNb"))
         self.gridLayout.addWidget(self.VBoxNICNb, 3, 1, 1, 2)
         self.label_10 = QtGui.QLabel(self.groupBox)

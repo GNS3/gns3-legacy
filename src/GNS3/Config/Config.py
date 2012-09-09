@@ -254,6 +254,7 @@ class GNS_Conf(object):
             conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
             conf.usermod = int(c.get(cgroup + "/usermod", 1))
             conf.nic = str(c.get(cgroup + "/nic", 'rtl8139'))
+            conf.flavor = str(c.get(cgroup + "/flavor", 'Default'))
             conf.options = str(c.get(cgroup + "/options", ''))
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
             globals.GApp.qemuimages[conf.name] = conf

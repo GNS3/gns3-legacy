@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDynamips.ui'
 #
-# Created: Fri Jul 27 16:50:49 2012
-#      by: PyQt4 UI code generator 4.9.4
+# Created: Mon Sep 10 03:32:28 2012
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -79,25 +79,25 @@ class Ui_PreferencesDynamips(object):
         self.dynamips_port = QtGui.QSpinBox(self.groupBox)
         self.dynamips_port.setSuffix(_fromUtf8(" TCP"))
         self.dynamips_port.setMaximum(65535)
-        self.dynamips_port.setProperty("value", 7200)
+        self.dynamips_port.setProperty(_fromUtf8("value"), 7200)
         self.dynamips_port.setObjectName(_fromUtf8("dynamips_port"))
         self.gridLayout.addWidget(self.dynamips_port, 6, 0, 1, 1)
         self.dynamips_baseUDP = QtGui.QSpinBox(self.groupBox)
         self.dynamips_baseUDP.setSuffix(_fromUtf8(" UDP"))
         self.dynamips_baseUDP.setMaximum(65535)
-        self.dynamips_baseUDP.setProperty("value", 10000)
+        self.dynamips_baseUDP.setProperty(_fromUtf8("value"), 10000)
         self.dynamips_baseUDP.setObjectName(_fromUtf8("dynamips_baseUDP"))
         self.gridLayout.addWidget(self.dynamips_baseUDP, 6, 1, 1, 1)
         self.dynamips_baseConsole = QtGui.QSpinBox(self.groupBox)
         self.dynamips_baseConsole.setSuffix(_fromUtf8(" TCP"))
         self.dynamips_baseConsole.setMaximum(65535)
-        self.dynamips_baseConsole.setProperty("value", 2000)
+        self.dynamips_baseConsole.setProperty(_fromUtf8("value"), 2000)
         self.dynamips_baseConsole.setObjectName(_fromUtf8("dynamips_baseConsole"))
         self.gridLayout.addWidget(self.dynamips_baseConsole, 6, 2, 1, 1)
         self.dynamips_baseAUX = QtGui.QSpinBox(self.groupBox)
         self.dynamips_baseAUX.setSuffix(_fromUtf8(" TCP"))
         self.dynamips_baseAUX.setMaximum(65535)
-        self.dynamips_baseAUX.setProperty("value", 2500)
+        self.dynamips_baseAUX.setProperty(_fromUtf8("value"), 2500)
         self.dynamips_baseAUX.setObjectName(_fromUtf8("dynamips_baseAUX"))
         self.gridLayout.addWidget(self.dynamips_baseAUX, 6, 3, 1, 1)
         self.checkBoxGhosting = QtGui.QCheckBox(self.groupBox)
@@ -154,7 +154,7 @@ class Ui_PreferencesDynamips(object):
         self.spinBoxMemoryLimit = QtGui.QSpinBox(self.groupBox_2)
         self.spinBoxMemoryLimit.setMaximum(1000000)
         self.spinBoxMemoryLimit.setSingleStep(128)
-        self.spinBoxMemoryLimit.setProperty("value", 512)
+        self.spinBoxMemoryLimit.setProperty(_fromUtf8("value"), 512)
         self.spinBoxMemoryLimit.setObjectName(_fromUtf8("spinBoxMemoryLimit"))
         self.gridlayout.addWidget(self.spinBoxMemoryLimit, 1, 0, 1, 1)
         self.label_8 = QtGui.QLabel(self.groupBox_2)
@@ -163,7 +163,7 @@ class Ui_PreferencesDynamips(object):
         self.spinBoxUDPIncrementation = QtGui.QSpinBox(self.groupBox_2)
         self.spinBoxUDPIncrementation.setMaximum(100000)
         self.spinBoxUDPIncrementation.setSingleStep(10)
-        self.spinBoxUDPIncrementation.setProperty("value", 100)
+        self.spinBoxUDPIncrementation.setProperty(_fromUtf8("value"), 100)
         self.spinBoxUDPIncrementation.setObjectName(_fromUtf8("spinBoxUDPIncrementation"))
         self.gridlayout.addWidget(self.spinBoxUDPIncrementation, 4, 0, 1, 1)
         self.label_3 = QtGui.QLabel(self.groupBox_2)

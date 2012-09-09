@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_IDSPage.ui'
 #
-# Created: Fri Jul 27 16:50:48 2012
-#      by: PyQt4 UI code generator 4.9.4
+# Created: Mon Sep 10 03:32:28 2012
+#      by: PyQt4 UI code generator 4.8.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -71,7 +71,7 @@ class Ui_IDSPage(object):
         self.spinBoxRamSize.setSizePolicy(sizePolicy)
         self.spinBoxRamSize.setMaximum(100000)
         self.spinBoxRamSize.setSingleStep(4)
-        self.spinBoxRamSize.setProperty("value", 96)
+        self.spinBoxRamSize.setProperty(_fromUtf8("value"), 96)
         self.spinBoxRamSize.setObjectName(_fromUtf8("spinBoxRamSize"))
         self.gridLayout.addWidget(self.spinBoxRamSize, 2, 2, 1, 2)
         self.label_37 = QtGui.QLabel(IDSPage)
@@ -81,7 +81,7 @@ class Ui_IDSPage(object):
         self.spinBoxNics.setMinimum(0)
         self.spinBoxNics.setMaximum(100000)
         self.spinBoxNics.setSingleStep(1)
-        self.spinBoxNics.setProperty("value", 6)
+        self.spinBoxNics.setProperty(_fromUtf8("value"), 6)
         self.spinBoxNics.setObjectName(_fromUtf8("spinBoxNics"))
         self.gridLayout.addWidget(self.spinBoxNics, 3, 2, 1, 2)
         self.label_26 = QtGui.QLabel(IDSPage)
