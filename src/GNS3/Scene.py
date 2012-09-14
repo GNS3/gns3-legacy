@@ -941,6 +941,8 @@ class Scene(QtGui.QGraphicsView):
             event: QtGui.QGraphicsSceneMouseEvent instance
         """
 
+        print 'Mouse Press Event '
+        
         show = True
         item = self.itemAt(event.pos())
 
@@ -1017,10 +1019,16 @@ class Scene(QtGui.QGraphicsView):
             this means the user is no longer trying to drag the scene
         """
 
+        item = self.itemAt(event.pos())
+        print 'Mouse Release Event'
+        
         if self.sceneDragging and not event.buttons() == (QtCore.Qt.LeftButton | QtCore.Qt.RightButton) and not event.buttons() & QtCore.Qt.MidButton:
+            print 'Mouse Release Event: Buttons released'
             self.sceneDragging = False
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
         else:
+            print 'Mouse Release Event: NOT Buttons released'
+            item.setSelected(False)
             QtGui.QGraphicsView.mouseReleaseEvent(self, event)
 
     def mouseDoubleClickEvent(self, event):
