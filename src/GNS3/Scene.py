@@ -1,4 +1,5 @@
-# vim: expandtab ts=4 sw=4 sts=4 fileencoding=utf-8:
+# -*- coding: utf-8 -*-
+# vim: expandtab ts=4 sw=4 sts=4:
 #
 # Copyright (C) 2007-2010 GNS3 Development Team (http://www.gns3.net/team).
 #
@@ -22,7 +23,6 @@
 
 #debuglevel: 0=disabled, 1=default, 2=debug, 3=deep debug
 debuglevel = 0
-
 
 def debugmsg(level, message):
     if debuglevel == 0:
@@ -48,7 +48,7 @@ from GNS3.NodeConfigurator import NodeConfigurator
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Node.IOSRouter import IOSRouter
-from GNS3.Node.AnyEmuDevice import AnyEmuDevice, PIX
+from GNS3.Node.AnyEmuDevice import AnyEmuDevice
 from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
 from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ATMSW import ATMSW
@@ -57,12 +57,11 @@ from GNS3.Node.ATMBR import ATMBR
 from GNS3.Link.Ethernet import Ethernet
 from GNS3.Link.Serial import Serial
 
-
 class Scene(QtGui.QGraphicsView):
     """ Scene class
     """
 
-    def __init__(self, parent=None):
+    def __init__(self, parent = None):
 
         QtGui.QGraphicsView.__init__(self, parent)
 
@@ -85,8 +84,6 @@ class Scene(QtGui.QGraphicsView):
 
         self.sceneDragging = False
         self.lastMousePos = None
-
-        self.showWarningMessageBackgroundLayer = True
 
     def reloadRenderers(self):
         """ Load all needed renderers
@@ -208,18 +205,6 @@ class Scene(QtGui.QGraphicsView):
                 displayWindowHideAct.setIcon(QtGui.QIcon(':/symbols/computer.normal.svg'))
                 self.connect(displayWindowHideAct, QtCore.SIGNAL('triggered()'), self.slotDisplayWindowHide)
                 menu.addAction(displayWindowHideAct)
-                
-            # Action: Change the console port
-            consolePortAct = QtGui.QAction(translate('Scene', 'Change console port'), menu)
-            consolePortAct.setIcon(QtGui.QIcon(':/icons/console_port.svg'))
-            self.connect(consolePortAct, QtCore.SIGNAL('triggered()'), self.slotChangeConsolePort)
-            menu.addAction(consolePortAct)
-
-            # Action: Console (Connect to the node console)
-            consoleAct = QtGui.QAction(translate('Scene', 'Console'), menu)
-            consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
-            self.connect(consoleAct, QtCore.SIGNAL('triggered()'), self.slotConsole)
-            menu.addAction(consoleAct)
 
             # Action: Capture traffic on an interface
             captureAct = QtGui.QAction(translate('Scene', 'Capture'), menu)
@@ -378,7 +363,7 @@ class Scene(QtGui.QGraphicsView):
 
         for item in self.__topology.selectedItems():
             if isinstance(item, ETHSW):
-                table = MACTableDialog(item, globals.GApp.mainWindow)
+                table = MACTableDialog(item)
                 table.show()
                 table.exec_()
 
@@ -476,7 +461,7 @@ class Scene(QtGui.QGraphicsView):
 
         try:
             if globals.GApp.dynagen.devices[router.hostname].idlepc != None:
-                reply = QtGui.QMessageBox.question(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),
+                reply = QtGui.QMessageBox.question(globals.GApp.mainWindow,translate("Scene", "IDLE PC"),
                                                    translate("Scene", "%s already has an idlepc value applied, do you want to calculate a new one?") % router.hostname,
                                                    QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                 if reply == QtGui.QMessageBox.Yes:
@@ -489,9 +474,6 @@ class Scene(QtGui.QGraphicsView):
                 result = self.calculateIDLEPC(router)
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("Scene", "Dynamips error"),  unicode(msg))
-            return
-        except lib.DynamipsErrorHandled:
-            QtGui.QMessageBox.critical(self, translate("Scene", "Dynamips error"), translate("Scene", "Connection lost"))
             return
 
         # remove the '100-OK' line
@@ -581,9 +563,6 @@ class Scene(QtGui.QGraphicsView):
         ok_to_delete_node = True
         for item in self.__topology.selectedItems():
             if not isinstance(item, Annotation) and not isinstance(item, Pixmap) and not isinstance(item, AbstractShapeItem):
-                # forced stop for Qemu based devices (Qemuwrapper doesn't support hot link removal)
-                #if isinstance(item, AnyEmuDevice):
-                #    item.stopNode()
                 for link in item.getEdgeList().copy():
                     if self.__topology.deleteLinkFromScene(link) == False:
                         if ok_to_delete_node:
@@ -599,6 +578,7 @@ class Scene(QtGui.QGraphicsView):
         """ Lower Z value
         """
 
+        show_message = True
         for item in self.__topology.selectedItems():
             zvalue = item.zValue()
             if zvalue > 0:
@@ -608,9 +588,9 @@ class Scene(QtGui.QGraphicsView):
                 # shape items, annotations and pictures can have a z value lower than 0
                 command = undo.NewZValue(item, zvalue - 1)
                 self.__topology.undoStack.push(command)
-                if zvalue == 0 and self.showWarningMessageBackgroundLayer:
+                if zvalue == 0 and show_message:
                     QtGui.QMessageBox.information(globals.GApp.mainWindow, translate("Scene", "Layer position"),  translate("Scene", "Object moved to a background layer. You will now have to use the right-click action to select this object in the future and raise it to layer 0 to be able to move it"))
-                    self.showWarningMessageBackgroundLayer = False
+                    show_message = False
 
     def slotraiseZValue(self):
         """ Raise Z value
@@ -648,18 +628,17 @@ class Scene(QtGui.QGraphicsView):
         """
 
         for item in self.__topology.selectedItems():
-            if isinstance(item, IOSRouter) or (isinstance(item, AnyEmuDevice) and not isinstance(item, PIX)) or isinstance(item, AnyVBoxEmuDevice):
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 links = []
                 for localif in item.getConnectedInterfaceList():
                     linkobj = item.getConnectedLinkByName(localif)
                     (neighbor, neighborif) = linkobj.getConnectedNeighbor(item)
                     links.append("%s connected to %s %s" % (localif, neighbor.hostname, neighborif))
-                if len(links):
-                    (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Scene", "Capture"), translate("Scene", "Please choose a link"), links, 0, False)
-                    if ok:
-                        interface = unicode(selection).split(' ')[0]
-                        linkobj = item.getConnectedLinkByName(interface)
-                        linkobj.startCapture()
+                (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Scene", "Capture"), translate("Scene", "Please choose a link"), links, 0, False)
+                if ok:
+                    interface = unicode(selection).split(' ')[0]
+                    linkobj = item.getConnectedLinkByName(interface)
+                    linkobj.startCapture()
 
     def slotDisplayWindowFocus(self):
         """ Slot called to bring VM's display as foreground window and focus on it
@@ -851,10 +830,10 @@ class Scene(QtGui.QGraphicsView):
                 if (globals.currentLinkType == globals.Enum.LinkType.Serial or globals.currentLinkType == globals.Enum.LinkType.ATM) or \
                     (globals.currentLinkType == globals.Enum.LinkType.Manual and ((interface[0] == 's' or interface[0] == 'a') or (isinstance(node, ATMSW) or isinstance(node, FRSW)))):
                     # interface is serial or ATM
-                    self.newedge = Serial(node, interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake=True)
+                    self.newedge = Serial(node, interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake = True)
                 else:
                     # by default use an ethernet link
-                    self.newedge = Ethernet(node, interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake=True)
+                    self.newedge = Ethernet(node, interface, self.mapToScene(QtGui.QCursor.pos()), 0, Fake = True)
                 self.__topology.addItem(self.newedge)
             else:
                 # destination node
@@ -908,9 +887,6 @@ class Scene(QtGui.QGraphicsView):
                     return
             self.slotDeleteNode()
         elif globals.addingLinkFlag and key == QtCore.Qt.Key_Escape:
-            if self.__isFirstClick:
-                # Escape has been pressed while we were not drawing a link
-                globals.GApp.workspace.stopAction_addLink()
             self.resetAddingLink()
         else:
             QtGui.QGraphicsView.keyPressEvent(self, event)
@@ -919,27 +895,14 @@ class Scene(QtGui.QGraphicsView):
         """ Drag move event
         """
 
-        #debug("Drop event %s" % str(list(event.mimeData().formats())))
-        if event.mimeData().hasFormat("text/uri-list") or event.mimeData().hasFormat("application/x-qt-mime-type-name"):
-            event.acceptProposedAction()
+        event.accept()
 
     def dropEvent(self, event):
         """ Drop event
         """
 
-        if event.mimeData().hasFormat("text/uri-list") and event.mimeData().hasUrls():
-            if len(event.mimeData().urls()) > 1:
-                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "Topology file"),  translate("Scene", "Please select only one file!"))
-                return
-            for url in event.mimeData().urls():
-                path = unicode(url.toLocalFile(), 'utf-8', errors='replace')
-                if os.path.isfile(path):
-                    path = os.path.normpath(path)
-                    debug("Load file from drop event %s" % path)
-                    globals.GApp.workspace.openFromDroppedFile(path)
-                    break
-            event.acceptProposedAction()
-        elif event.mimeData().hasText():
+        if event.mimeData().hasText():
+
             symbolname = str(event.mimeData().text())
             # Get resource corresponding to node type
             object = None
@@ -968,9 +931,8 @@ class Scene(QtGui.QGraphicsView):
             pos_y = node.pos().y() - (node.boundingRect().height() / 2)
             node.setPos(pos_x, pos_y)
 
-            event.acceptProposedAction()
-            #event.setDropAction(QtCore.Qt.MoveAction)
-            #event.accept()
+            event.setDropAction(QtCore.Qt.MoveAction)
+            event.accept()
         else:
             event.ignore()
 
@@ -979,6 +941,8 @@ class Scene(QtGui.QGraphicsView):
             event: QtGui.QGraphicsSceneMouseEvent instance
         """
 
+        print 'Mouse Press Event '
+        
         show = True
         item = self.itemAt(event.pos())
 
@@ -996,6 +960,9 @@ class Scene(QtGui.QGraphicsView):
             return
 
         if show and event.modifiers() & QtCore.Qt.ShiftModifier and event.button() == QtCore.Qt.LeftButton and item and not globals.addingLinkFlag:
+#            print 'HERE'
+#            if isinstance(item, AbstractShapeItem) or isinstance(item, Annotation) or isinstance(item, Pixmap):
+#                item.setFlag(item.ItemIsSelectable, True)
             item.setSelected(True)
         elif show and event.button() == QtCore.Qt.RightButton and not globals.addingLinkFlag:
             if item:
@@ -1052,26 +1019,28 @@ class Scene(QtGui.QGraphicsView):
             this means the user is no longer trying to drag the scene
         """
 
+        item = self.itemAt(event.pos())
+        print 'Mouse Release Event'
+        
         if self.sceneDragging and not event.buttons() == (QtCore.Qt.LeftButton | QtCore.Qt.RightButton) and not event.buttons() & QtCore.Qt.MidButton:
+            print 'Mouse Release Event: Buttons released'
             self.sceneDragging = False
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
         else:
+            print 'Mouse Release Event: NOT Buttons released'
+            item.setSelected(False)
             QtGui.QGraphicsView.mouseReleaseEvent(self, event)
 
     def mouseDoubleClickEvent(self, event):
 
         item = self.itemAt(event.pos())
+        #print "ADEBUG: Scene.py: globals.addingLinkFlag = ", globals.addingLinkFlag
         if not globals.addingLinkFlag and isinstance(item, AbstractNode):
             item.setSelected(True)
             if (isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice)) and item.isStarted():
                 self.slotConsole()
             elif isinstance(item, AnyVBoxEmuDevice) and (item.isStarted() or item.isSuspended()) and not globals.addingLinkFlag:
-                if item.get_config()['console_support']:
-                    self.slotConsole()
-                elif item.get_config()['headless_mode']:
-                    print translate("Scene", "Warning, you are using headless mode without console support")
-                else:
-                    self.slotDisplayWindowFocus()
+                self.slotDisplayWindowFocus()
             else:
                 self.slotConfigNode()
         else:
