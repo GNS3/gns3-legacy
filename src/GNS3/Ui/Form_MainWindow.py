@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Sep 15 19:40:33 2012
+# Created: Sat Sep 15 19:58:17 2012
 #      by: PyQt4 UI code generator 4.9
 #
 # WARNING! All changes made in this file will be lost!
@@ -397,8 +397,11 @@ class Ui_MainWindow(object):
         self.action_ShowVirtualBoxManager.setIcon(icon31)
         self.action_ShowVirtualBoxManager.setObjectName(_fromUtf8("action_ShowVirtualBoxManager"))
         self.action_EnergySavingStyle = QtGui.QAction(MainWindow)
+        self.action_EnergySavingStyle.setCheckable(True)
         self.action_EnergySavingStyle.setObjectName(_fromUtf8("action_EnergySavingStyle"))
         self.action_DefaultStyle = QtGui.QAction(MainWindow)
+        self.action_DefaultStyle.setCheckable(True)
+        self.action_DefaultStyle.setChecked(True)
         self.action_DefaultStyle.setObjectName(_fromUtf8("action_DefaultStyle"))
         self.action_Router = QtGui.QAction(MainWindow)
         icon32 = QtGui.QIcon()
@@ -437,6 +440,7 @@ class Ui_MainWindow(object):
         self.action_IDS.setIcon(icon37)
         self.action_IDS.setObjectName(_fromUtf8("action_IDS"))
         self.action_HighContrastStyle = QtGui.QAction(MainWindow)
+        self.action_HighContrastStyle.setCheckable(True)
         self.action_HighContrastStyle.setObjectName(_fromUtf8("action_HighContrastStyle"))
         self.action_BrowseAllDevices = QtGui.QAction(MainWindow)
         icon38 = QtGui.QIcon()

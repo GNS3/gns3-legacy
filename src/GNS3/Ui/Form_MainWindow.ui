@@ -1118,6 +1118,9 @@ background-none;
    </property>
   </action>
   <action name="action_EnergySavingStyle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Energy Saving</string>
    </property>
@@ -1126,6 +1129,12 @@ background-none;
    </property>
   </action>
   <action name="action_DefaultStyle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Default</string>
    </property>
@@ -1227,6 +1236,9 @@ background-none;
    </property>
   </action>
   <action name="action_HighContrastStyle">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>High Contrast</string>
    </property>

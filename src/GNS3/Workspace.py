@@ -733,13 +733,17 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         self.setStyleSheet('')
         self.__restoreIcons()
+        self.action_EnergySavingStyle.setChecked(False)
+        self.action_HighContrastStyle.setChecked(False)
 
     def __action_EnergySavingStyle(self):
         """ Put stylesheet meant to save energy, very popular these days
         """
 
         self.setStyleSheet(' QMainWindow {} QMenuBar { background: black; } QDockWidget { background: black; color: white; } QToolBar { background: black; } QFrame { background: gray; } QToolButton { width: 30px; height: 30px; /*border:solid 1px black opacity 0.4;*/ /*background-none;*/ } QStatusBar { /*	background-image: url(:/pictures/pictures/texture_blackgrid.png);*/ 	background: black; color: rgb(255,255,255); } ')
-
+        self.action_DefaultStyle.setChecked(False)
+        self.action_HighContrastStyle.setChecked(False)
+        
     def __action_HighContrastStyle(self):
         """ Put stylesheet meant to display high contrast icons, useful for low vision people
         """
@@ -747,6 +751,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.action_StartAll.setIcon(QtGui.QIcon(':/icons/play7-test.svg'))
         self.action_SuspendAll.setIcon(QtGui.QIcon(':/icons/pause3-test.svg'))
         self.action_StopAll.setIcon(QtGui.QIcon(':/icons/stop3-test.svg'))
+        self.action_EnergySavingStyle.setChecked(False)
+        self.action_DefaultStyle.setChecked(False)
 
     def __restoreIcons(self):
         """ Put normal icons back if the High Contrast Mode has been activated
