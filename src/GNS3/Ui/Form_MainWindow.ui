@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>944</width>
-    <height>599</height>
+    <height>726</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -66,7 +66,7 @@ background-none;
      <x>0</x>
      <y>0</y>
      <width>944</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -227,7 +227,7 @@ background-none;
         </sizepolicy>
        </property>
        <property name="statusTip">
-        <string>Select Node Type</string>
+        <string>Select Node Type (keep SHIFT key pressed wile drag &amp; dropping the device to add several identical items to the topology)</string>
        </property>
        <property name="iconSize">
         <size>

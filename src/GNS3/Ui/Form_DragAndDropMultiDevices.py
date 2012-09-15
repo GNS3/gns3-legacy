@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_DragAndDropMultiDevices.ui'
 #
-# Created: Sat Sep 15 18:16:50 2012
+# Created: Sat Sep 15 19:39:11 2012
 #      by: PyQt4 UI code generator 4.9
 #
 # WARNING! All changes made in this file will be lost!
