@@ -34,7 +34,7 @@ import sys, time
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.UndoFramework as undo
-from PyQt4 import QtCore, QtGui, QtSvg
+from PyQt4 import QtCore, QtGui, QtSvg, Qt
 from GNS3.Topology import Topology
 from GNS3.Utils import translate, debug
 from GNS3.Annotation import Annotation
@@ -56,6 +56,8 @@ from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMBR import ATMBR
 from GNS3.Link.Ethernet import Ethernet
 from GNS3.Link.Serial import Serial
+from GNS3.DragDropMultipleDevicesDialog import DragDropMultipleDevicesDialog
+#from GNS3.Ui.Form_DragAndDropMultiDevices import Ui_DragDropMultipleDevices
 
 class Scene(QtGui.QGraphicsView):
     """ Scene class
@@ -896,7 +898,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         event.accept()
-
+        
     def dropEvent(self, event):
         """ Drop event
         """
@@ -907,12 +909,19 @@ class Scene(QtGui.QGraphicsView):
             # Get resource corresponding to node type
             object = None
             for item in SYMBOLS:
+                print "OK I AM IN THE LOOP"
                 if item['name'] == symbolname:
                     renderer_normal = self.renders[symbolname]['normal']
                     renderer_select = self.renders[symbolname]['selected']
                     object = item['object']
                     break
-
+                    
+            # If SHIFT key is pressed, launch the multi-drop feature
+            if event.keyboardModifiers () == QtCore.Qt.ShiftModifier:
+                print "OK Shift pressed"
+                dialog = DragDropMultipleDevicesDialog()
+                dialog.exec_()
+  
             if object == None:
                 return
             node = object(renderer_normal, renderer_select)
