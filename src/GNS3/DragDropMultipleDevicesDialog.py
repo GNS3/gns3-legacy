@@ -46,6 +46,9 @@ class DragDropMultipleDevicesDialog(QtGui.QDialog, Ui_DragDropMultipleDevices):
         self.connect(self.OKButton, QtCore.SIGNAL('clicked()'), self.__dropItems)
 
     def __dropItems(self):
-     
-        print self.nbOfDevices.value()
+
         QtGui.QDialog.accept(self)
+        
+    def getNbOfDevices(self):
+        
+        return self.nbOfDevices.value()

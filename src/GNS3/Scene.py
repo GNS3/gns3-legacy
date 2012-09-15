@@ -909,7 +909,6 @@ class Scene(QtGui.QGraphicsView):
             # Get resource corresponding to node type
             object = None
             for item in SYMBOLS:
-                print "OK I AM IN THE LOOP"
                 if item['name'] == symbolname:
                     renderer_normal = self.renders[symbolname]['normal']
                     renderer_select = self.renders[symbolname]['selected']
@@ -918,30 +917,39 @@ class Scene(QtGui.QGraphicsView):
                     
             # If SHIFT key is pressed, launch the multi-drop feature
             if event.keyboardModifiers () == QtCore.Qt.ShiftModifier:
-                print "OK Shift pressed"
                 dialog = DragDropMultipleDevicesDialog()
                 dialog.exec_()
-  
-            if object == None:
-                return
-            node = object(renderer_normal, renderer_select)
-            node.type = item['name']
-            if SYMBOL_TYPES[item['object']] != item['name']:
-                node.default_symbol = False
-            node.setPos(self.mapToScene(event.pos()))
+            else:
+                dialog = None
 
-            if globals.GApp.workspace.flg_showHostname == True:
-                node.showHostname()
+            if dialog is not None:
+                nbOfDevices = DragDropMultipleDevicesDialog.getNbOfDevices(dialog)
+            else:
+                nbOfDevices = 1
+                
+            for i in range(nbOfDevices):
 
-            self.__topology.addNodeFromScene(node)
+                if object == None:
+                    return
+                node = object(renderer_normal, renderer_select)
+                node.type = item['name']
+                if SYMBOL_TYPES[item['object']] != item['name']:
+                    node.default_symbol = False
+                node.setPos(self.mapToScene(event.pos()))
 
-            # Center the node
-            pos_x = node.pos().x() - (node.boundingRect().width() / 2)
-            pos_y = node.pos().y() - (node.boundingRect().height() / 2)
-            node.setPos(pos_x, pos_y)
+                if globals.GApp.workspace.flg_showHostname == True:
+                    node.showHostname()
+            
+                self.__topology.addNodeFromScene(node)
 
-            event.setDropAction(QtCore.Qt.MoveAction)
-            event.accept()
+                # Center the node
+                pos_x = node.pos().x() - (node.boundingRect().width() / 2)
+                pos_y = node.pos().y() - (node.boundingRect().height() / 2)
+                node.setPos(pos_x, pos_y)
+
+                event.setDropAction(QtCore.Qt.MoveAction)
+                event.accept()
+
         else:
             event.ignore()
 
@@ -949,8 +957,6 @@ class Scene(QtGui.QGraphicsView):
         """ Call when the node is clicked
             event: QtGui.QGraphicsSceneMouseEvent instance
         """
-
-        print 'Mouse Press Event '
         
         show = True
         item = self.itemAt(event.pos())
@@ -1029,15 +1035,13 @@ class Scene(QtGui.QGraphicsView):
         """
 
         item = self.itemAt(event.pos())
-        print 'Mouse Release Event'
         
         if self.sceneDragging and not event.buttons() == (QtCore.Qt.LeftButton | QtCore.Qt.RightButton) and not event.buttons() & QtCore.Qt.MidButton:
-            print 'Mouse Release Event: Buttons released'
             self.sceneDragging = False
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
         else:
-            print 'Mouse Release Event: NOT Buttons released'
-            item.setSelected(False)
+            if item is not None:
+                item.setSelected(False)
             QtGui.QGraphicsView.mouseReleaseEvent(self, event)
 
     def mouseDoubleClickEvent(self, event):
