@@ -18,14 +18,24 @@
 # http://www.gns3.net/contact
 #
 
-import sys, os, re
+import sys, os, re, time, subprocess
 import GNS3.Globals as globals
-from PyQt4 import QtCore, QtGui
+import GNS3.Dynagen.dynamips_lib as lib
+from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Ui.Form_IOSDialog import Ui_IOSDialog
-from GNS3.Utils import fileBrowser, translate, testOpenFile
+from GNS3.Utils import fileBrowser, translate, testOpenFile, debug
 from GNS3.Config.Objects import iosImageConf, hypervisorConf
 from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.IOSRouter7200 import IOSRouter7200
+from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Uncompress import isIOScompressed, uncompressIOS
+from GNS3.Globals.Symbols import SYMBOLS
+import GNS3.Scene
+import GNS3.Workspace
+from GNS3.IDLEPCDialog import IDLEPCDialog
+from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.AnyEmuDevice import AnyEmuDevice
+from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
 
 # known platforms and corresponding chassis
 PLATFORMS ={
@@ -65,6 +75,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         self.connect(self.pushButtonSaveHypervisor, QtCore.SIGNAL('clicked()'), self.slotSaveHypervisor)
         self.connect(self.pushButtonDeleteHypervisor, QtCore.SIGNAL('clicked()'), self.slotDeleteHypervisor)
         self.connect(self.pushButtonSelectWorkingDir, QtCore.SIGNAL('clicked()'), self.slotWorkingDirectory)
+        self.connect(self.pushButtonCalcIdlePC, QtCore.SIGNAL('clicked()'), self.slotCalcIdlePC)
         self.connect(self.checkBoxIntegratedHypervisor, QtCore.SIGNAL('stateChanged(int)'), self.slotCheckBoxIntegratedHypervisor)
         self.connect(self.comboBoxPlatform, QtCore.SIGNAL('currentIndexChanged(const QString &)'), self.slotSelectedPlatform)
         self.connect(self.treeWidgetIOSimages,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotIOSSelectionChanged)
@@ -446,6 +457,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 except:
                     QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn't support unicode on Windows!"))
 
+
     def slotSaveHypervisor(self):
         """ Save a hypervisor to the hypervisors list
         """
@@ -529,3 +541,125 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         globals.GApp.mainWindow.nodesDock.populateNodeDock("Router")
         QtGui.QDialog.reject(self)
+
+
+
+############################## Idle PC calculation #################################
+
+
+    def slotCalcIdlePC(self):
+        """ Calculate optimal IdlePC value
+        """
+
+        if sys.platform.startswith('win'):
+            QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "Experimental : doesn't work on Windows yet"))
+            return
+
+        # Stop all nodes to gather CPU statistics
+        for item in globals.GApp.topology.nodes.values():
+            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
+                item.stopNode()
+
+        self.slotSaveIOS()
+
+        for symbol in SYMBOLS:
+            if symbol['name'] == "Router " + str(self.comboBoxPlatform.currentText()):
+                router = symbol['object'](QtSvg.QSvgRenderer(symbol['normal_svg_file']), QtSvg.QSvgRenderer(symbol['select_svg_file']))
+                globals.GApp.topology.addNode(router, False)
+                router.startNode()
+                globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+
+                if globals.GApp.dynagen.devices[router.hostname].idlepc != None:
+                    """ work in progress
+                    """
+                    time.sleep(25)
+                    globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+                    #pid = str(os.getpid())
+                    #p = subprocess.Popen(["ps", "--no-headers", "-o", "%cpu", "-p", pid], stdout = subprocess.PIPE)
+                    p = subprocess.Popen(["ps", "--no-headers", "-A", "-o", "fname", "-o", "%cpu"], stdout = subprocess.PIPE)
+                    out, err = p.communicate()
+                    test = out.split()
+                    i = 0
+                    for line in test:
+                        i += 1
+                        if line == "dynamips":
+                            cpusage = float(test[i])
+                            break
+                    #res = out.rstrip('\n')
+                    #if float(res) > 90.0:
+                    QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "CPU usage: " + str(cpusage) + "%"))
+                    #start = time.time()
+                    #cpustart = time.clock()
+                    #globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 100000000)
+                    #globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+                    #time.sleep(10)
+                    #globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+                    #stamp = time.time()
+                    #while stamp < (start + 10.0):
+                     #   stamp = time.time()
+                      #  time.sleep(1)
+                    #elapsed = time.time() - start
+                    #cpuelapsed = time.clock() - cpustart
+                    #if (cpuelapsed * 100.0 / elapsed) < 85.0:
+                    #QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "IdlePC for this image looks fine. Are you sure you want to continue?\nCPU usage: " + str(cpuelapsed * 100.0 / elapsed) + "%\nElapsed: " + str(elapsed) + "\nCpuelapsed: " + str(cpuelapsed)))
+
+                    lib.send(globals.GApp.dynagen.devices[router.hostname].dynamips, 'vm set_idle_pc_online %s 0 %s' % (router.hostname, '0x0'))
+
+                globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+                result = globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPGET)
+
+                # remove the '100-OK' line
+                result.pop()
+
+                idles = {}
+                options = []
+                i = 1
+                for line in result:
+                    (value, count) = line.split()[1:]
+
+                    # Flag potentially "best" idlepc values (between 50 and 60)
+                    iCount = int(count[1:-1])
+                    if 50 < iCount < 60:
+                        flag = '*'
+                    else:
+                        flag = ' '
+
+                    option = "%s %i: %s %s" % (flag, i, value, count)
+                    options.append(option)
+                    idles[i] = value
+                    i += 1
+                if len(idles) == 0:
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "IDLE PC"),  translate("Scene", "No idlepc values found"))
+                    return
+
+                # Apply the IDLE PC to the router
+                for index in idles:
+                    try:
+                        for node in globals.GApp.topology.nodes.values():
+                            if isinstance(node, IOSRouter) and node.hostname == router.hostname:
+                                dyn_router = node.get_dynagen_device()
+                                if globals.GApp.iosimages.has_key(dyn_router.dynamips.host + ':' + dyn_router.image):
+                                    image = globals.GApp.iosimages[dyn_router.dynamips.host + ':' + dyn_router.image]
+                                    debug("Register IDLE PC " + idles[index] + " for image " + image.filename)
+                                    image.idlepc = idles[index]
+                                    globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+                                    self.lineEditIdlePC.setText(str(idles[index]))
+                                    # Apply idle pc to devices with the same IOS image
+                                    for device in globals.GApp.topology.nodes.values():
+                                        if isinstance(device, IOSRouter) and device.config['image'] == image.filename:
+                                            debug("Apply IDLE PC " + idles[index] + " to " + device.hostname)
+                                            device.get_dynagen_device().idlepc = idles[index]
+                                            config = device.get_config()
+                                            config['idlepc'] = idles[index]
+                                            device.set_config(config)
+                                            device.setCustomToolTip()
+                                    break
+
+                    except lib.DynamipsError, msg:
+                        QtGui.QMessageBox.critical(self, translate("IDLEPCDialog", "Dynamips error"),  unicode(msg))
+                        return
+
+        # cleanup
+        globals.GApp.topology.deleteNode(router.id)
+        router.__del__()
+        self.slotSaveIOS()
