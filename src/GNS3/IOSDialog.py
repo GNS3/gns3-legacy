@@ -29,6 +29,7 @@ from GNS3.Config.Objects import iosImageConf, hypervisorConf
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Uncompress import isIOScompressed, uncompressIOS
 from GNS3.Globals.Symbols import SYMBOLS
+from GNS3.CalcIDLEPCDialog import CalcIDLEPCDialog
 
 # known platforms and corresponding chassis
 PLATFORMS ={
@@ -544,10 +545,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """ Calculate optimal IdlePC value
         """
 
-        if sys.platform.startswith('win'):
-            QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "Experimental : doesn't work on Windows yet"))
-            return
-
         # Check Dynamips' version
         if globals.GApp.systconf['dynamips'].path:
             if os.path.exists(globals.GApp.systconf['dynamips'].path) == False:
@@ -583,142 +580,4 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         if reply == QtGui.QMessageBox.No:
             return
 
-        success = False
-        # Stop all nodes to gather CPU statistics
-        self.label_IdlePCWarning.setText('<font color="gray">' + translate("IOSDialog", "Stopping all devices and creating test node...") + '</font>')
-        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-        for item in globals.GApp.topology.nodes.values():
-            if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
-                item.stopNode()
-
-        self.slotSaveIOS()
-
-        for symbol in SYMBOLS:
-            if symbol['name'] == "Router " + str(self.comboBoxPlatform.currentText()):
-                router = symbol['object'](QtSvg.QSvgRenderer(symbol['normal_svg_file']), QtSvg.QSvgRenderer(symbol['select_svg_file']))
-                globals.GApp.topology.addNode(router, False)
-                router.startNode()
-                globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-
-                if globals.GApp.dynagen.devices[router.hostname].idlepc != None:
-                    reply = QtGui.QMessageBox.question(self, translate("IOSDialog", "Message"), translate("IOSDialog", "There already is an Idle PC value specified, do you want to test it?"),
-                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-                    if reply == QtGui.QMessageBox.Yes:
-                        self.label_IdlePCWarning.setText('<font color="gray">' + translate("IOSDialog", "Checking CPU usage with current Idle PC value...") + '</font>')
-                        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                        GyStart = time.time()
-                        GyCpuStart = self.findDynamipsCpuUsage(router.hostname)
-                        time.sleep(5)
-                        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                        GyElapsed = time.time() - GyStart
-                        GyCpuElapsed = self.findDynamipsCpuUsage(router.hostname) - GyCpuStart
-                        cpuUsage = abs(GyCpuElapsed * 100.0 / GyElapsed)
-                        if cpuUsage < 85.0:
-                            self.label_IdlePCWarning.setText('<font color="gray">' + translate("IOSDialog", "CPU usage: " + str(cpuUsage) + "%") + '</font>')
-                            globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                            reply = QtGui.QMessageBox.question(self, translate("IOSDialog", "Message"), translate("IOSDialog", "This Idle PC value seems to work, continue anyway?"),
-                                        QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-                            if reply == QtGui.QMessageBox.No:
-                                self.label_IdlePCWarning.setText('')
-                                globals.GApp.topology.deleteNode(router.id)
-                                router.__del__()
-                                return
-
-                    # reset Idle PC value
-                    lib.send(globals.GApp.dynagen.devices[router.hostname].dynamips, 'vm set_idle_pc_online %s 0 %s' % (router.hostname, '0x00000000'))
-
-                globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-
-                # getting dynagen's idlepc calculation results
-                self.label_IdlePCWarning.setText('<font color="gray">' + translate("IOSDialog", "Getting Idle PC values from Dynagen...") + '</font>')
-                globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                result = globals.GApp.dynagen.devices[router.hostname].idleprop(lib.IDLEPROPGET)
-
-                # remove the '100-OK' line
-                result.pop()
-
-                idles = []
-                for line in result:
-                    (value, count) = line.split()[1:]
-                    # Sort table, best values first - if existing
-                    iCount = int(count[1:-1])
-                    if 50 < iCount < 60:
-                        idles.insert(0, value)
-                    else:
-                        idles.append(value)
-
-                if len(idles) == 0:
-                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'IOSDialog', "Dynagen didn't find any Idle PC value. It happens sometimes, please try again.")
-                    globals.GApp.topology.deleteNode(router.id)
-                    router.__del__()
-                    return
-
-                # Apply the IDLE PC to the router
-                for line in idles:
-                    try:
-                        for node in globals.GApp.topology.nodes.values():
-                            if success == True:
-                                break
-                            if isinstance(node, IOSRouter) and node.hostname == router.hostname:
-                                dyn_router = node.get_dynagen_device()
-                                if globals.GApp.iosimages.has_key(dyn_router.dynamips.host + ':' + dyn_router.image):
-                                    image = globals.GApp.iosimages[dyn_router.dynamips.host + ':' + dyn_router.image]
-                                    image.idlepc = line
-                                    self.label_IdlePCWarning.setText('<font color="gray">' + translate("IOSDialog", "Applying Idle PC value " + line + " and monitoring CPU usage...") + '</font>')
-                                    self.lineEditIdlePC.setText(line)
-                                    lib.send(globals.GApp.dynagen.devices[router.hostname].dynamips, 'vm set_idle_pc_online %s 0 %s' % (router.hostname, line))
-                                    globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                                    GyStart = time.time()
-                                    GyCpuStart = self.findDynamipsCpuUsage(router.hostname)
-                                    time.sleep(5)
-                                    globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                                    cpuUsage = 100.0
-                                    GyElapsed = time.time() - GyStart
-                                    GyCpuElapsed = self.findDynamipsCpuUsage(router.hostname) - GyCpuStart
-                                    cpuUsage = abs(GyCpuElapsed * 100.0 / GyElapsed)
-                                    if cpuUsage < 70.0:
-                                        self.label_IdlePCWarning.setText('<font color="gray">' + translate("IOSDialog", "Working Idle PC value found. Applying to other devices using this IOS image...") + '</font>')
-                                        # Apply idle pc to devices with the same IOS image
-                                        for device in globals.GApp.topology.nodes.values():
-                                            if isinstance(device, IOSRouter) and device.config['image'] == image.filename:
-                                                device.get_dynagen_device().idlepc = line
-                                                config = device.get_config()
-                                                config['idlepc'] = line
-                                                device.set_config(config)
-                                                device.setCustomToolTip()
-                                        success = True
-                                    else:
-                                        lib.send(globals.GApp.dynagen.devices[router.hostname].dynamips, 'vm set_idle_pc_online %s 0 %s' % (router.hostname, '0x00000000'))
-
-                    except lib.DynamipsError, msg:
-                        QtGui.QMessageBox.critical(self, translate("IDLEPCDialog", "Dynamips error"),  unicode(msg))
-                        return
-
-        # cleanup
-        self.label_IdlePCWarning.setText('<font color="gray">' + translate("IOSDialog", "Cleaning up...") + '</font>')
-        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-        globals.GApp.topology.deleteNode(router.id)
-        router.__del__()
-        self.slotSaveIOS()
-        if success == True:
-            self.label_IdlePCWarning.setText('<font color="green">' + translate("IOSDialog", "Working Idle PC value found.") + '</font>')
-        else:
-            self.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Failed to find a working Idle PC value.") + '</font>')
-
-    def findDynamipsCpuUsage(self, hostname):
-        """ Asks dynamips for its CPU usage
-        """
-
-        ret = long(0.0)
-        usage = lib.send(globals.GApp.dynagen.devices[hostname].dynamips, 'vm cpu_usage %s 0' % hostname)
-        if usage[1] == "100-OK":
-            if usage[0].lstrip('101 '):
-                ret = long(usage[0].lstrip('101 '))
-            else:
-                ret = 0.0
-        else:
-            ret = -1
-
-        if ret < 0:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'IOSDialog', "Negative return")
-        return ret
+        calcDiag = CalcIDLEPCDialog(self)
