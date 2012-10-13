@@ -46,7 +46,7 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
         """ Calculate optimal IdlePC value
         """
 
-        timeout = 3 # time in seconds for testing the cpu usage of an idlepc value
+        timeout = 4 # time in seconds for testing the cpu usage of an idlepc value
         success = False
         # Stop all nodes to gather CPU statistics
         self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Stopping all devices and creating test node...") + '</font>')
@@ -132,7 +132,7 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
                     self.reject()
                     return
 
-                self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Found " + str(length) + " possible values. The test will last at most " + str(length * 5) + " seconds.") + '</font>')
+                self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Found " + str(length) + " possible values. The test will last at most " + str(length * timeout) + " seconds.") + '</font>')
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
 
                 # Apply the IDLE PC to the router
@@ -225,13 +225,12 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
         self.router.__del__()
 
     def cancel(self):
-        """ Clean cancel
+        """ Clean cancel or close
         """
 
-        self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Cleaning up...") + '</font>')
         if self.pushButton.text() == "Cancel":
             self.iosDialog.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Operation cancelled"))
-        globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-        globals.GApp.topology.deleteNode(self.router.id)
-        self.router.__del__()
-        self.reject()
+            self.cleanUp()
+            self.reject()
+        else:
+            self.accept()
