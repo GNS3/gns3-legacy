@@ -35,19 +35,18 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
     def __init__(self, iosDialog):
 
         QtGui.QDialog.__init__(self, iosDialog)
-        self.setWindowModality(1)
         self.setupUi(self)
-        self.iosDiag = iosDialog
+        self.iosDialog = iosDialog
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
         self.show()
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-        self.calcIdlePC(iosDialog)
+        self.calcIdlePC()
 
-    def calcIdlePC(self, iosDialog):
+    def calcIdlePC(self):
         """ Calculate optimal IdlePC value
         """
 
-        timeout = 5 # time in seconds for testing the cpu usage of an idlepc value
+        timeout = 3 # time in seconds for testing the cpu usage of an idlepc value
         success = False
         # Stop all nodes to gather CPU statistics
         self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Stopping all devices and creating test node...") + '</font>')
@@ -56,13 +55,15 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
             if isinstance(item, IOSRouter) or isinstance(item, AnyEmuDevice) or isinstance(item, AnyVBoxEmuDevice):
                 item.stopNode()
 
-        iosDialog.slotSaveIOS()
+        self.iosDialog.slotSaveIOS()
 
         for symbol in SYMBOLS:
-            if symbol['name'] == "Router " + str(iosDialog.comboBoxPlatform.currentText()):
+            if symbol['name'] == "Router " + str(self.iosDialog.comboBoxPlatform.currentText()):
                 self.router = symbol['object'](QtSvg.QSvgRenderer(symbol['normal_svg_file']), QtSvg.QSvgRenderer(symbol['select_svg_file']))
                 globals.GApp.topology.addNode(self.router, False)
                 self.router.startNode()
+                globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+                time.sleep(2)
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
 
                 if globals.GApp.dynagen.devices[self.router.hostname].idlepc != None:
@@ -71,8 +72,8 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
                     if reply == QtGui.QMessageBox.Yes:
                         self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Checking CPU usage with current Idle PC value...") + '</font>')
                         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                        GyStart = time.time()
-                        GyCpuStart = self.findDynamipsCpuUsage()
+                        start = time.time()
+                        cpuStart = self.findDynamipsCpuUsage()
                         count = 0
                         while count < timeout:
                             time.sleep(1)
@@ -81,9 +82,9 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
                             count += 1
                         self.progressBar.setValue(100)
                         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                        GyElapsed = time.time() - GyStart
-                        GyCpuElapsed = self.findDynamipsCpuUsage() - GyCpuStart
-                        cpuUsage = abs(GyCpuElapsed * 100.0 / GyElapsed)
+                        elapsed = time.time() - start
+                        cpuElapsed = self.findDynamipsCpuUsage() - cpuStart
+                        cpuUsage = abs(cpuElapsed * 100.0 / elapsed)
                         if cpuUsage > 100:
                             cpuUsage = 100
                         self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "CPU usage: " + str(int(cpuUsage)) + "%") + '</font>')
@@ -126,7 +127,7 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
                 length = len(idles)
                 if length == 0:
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'CalcIDLEPCDialog', "Dynagen didn't find any Idle PC value. It happens sometimes, please try again.")
-                    iosDialog.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Dynagen didn't find any Idle PC value. It happens sometimes, please try again."))
+                    self.iosDialog.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Dynagen didn't find any Idle PC value. It happens sometimes, please try again."))
                     self.cleanUp()
                     self.reject()
                     return
@@ -152,8 +153,8 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
                                     self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Applying Idle PC value " + line + " and monitoring CPU usage...") + '</font>')
                                     globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
                                     lib.send(globals.GApp.dynagen.devices[self.router.hostname].dynamips, 'vm set_idle_pc_online %s 0 %s' % (self.router.hostname, line))
-                                    GyStart = time.time()
-                                    GyCpuStart = self.findDynamipsCpuUsage()
+                                    start = time.time()
+                                    cpuStart = self.findDynamipsCpuUsage()
                                     count = 0
                                     while count < timeout:
                                         time.sleep(1)
@@ -163,14 +164,14 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
                                         count += 1
                                     globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
                                     cpuUsage = 100.0
-                                    GyElapsed = time.time() - GyStart
-                                    GyCpuElapsed = self.findDynamipsCpuUsage() - GyCpuStart
-                                    cpuUsage = abs(GyCpuElapsed * 100.0 / GyElapsed)
+                                    elapsed = time.time() - start
+                                    cpuElapsed = self.findDynamipsCpuUsage() - cpuStart
+                                    cpuUsage = abs(cpuElapsed * 100.0 / elapsed)
                                     if cpuUsage > 100:
                                         cpuUsage = 100
                                     self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "CPU usage: " + str(int(cpuUsage)) + "%") + '</font>')
                                     if cpuUsage < 70.0:
-                                        iosDialog.lineEditIdlePC.setText(line)
+                                        self.iosDialog.lineEditIdlePC.setText(line)
                                         self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Working Idle PC value found. Applying to other devices using this IOS image...") + '</font>')
                                         # Apply idle pc to devices with the same IOS image
                                         for device in globals.GApp.topology.nodes.values():
@@ -190,7 +191,7 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
 
         if success == True:
-            iosDialog.slotSaveIOS()
+            self.iosDialog.slotSaveIOS()
             self.textEdit.append('<font color="green">' + translate("CalcIDLEPCDialog", "Working Idle PC value found.") + '</font>')
         else:
             self.textEdit.append('<font color="red">' + translate("CalcIDLEPCDialog", "Failed to find a working Idle PC value.") + '</font>')
@@ -211,7 +212,7 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
             ret = -1
 
         if ret < 0:
-            QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'iosDialog', "Negative return")
+            QtGui.QMessageBox.critical(globals.GApp.mainWindow, "CalcIDLEPCDialog", "Negative return")
         return ret
 
     def cleanUp(self):
@@ -229,7 +230,7 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
 
         self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Cleaning up...") + '</font>')
         if self.pushButton.text() == "Cancel":
-            self.iosDiag.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Operation cancelled"))
+            self.iosDialog.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Operation cancelled"))
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
         globals.GApp.topology.deleteNode(self.router.id)
         self.router.__del__()

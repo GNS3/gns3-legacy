@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Ui/Form_CalcIDLEPCDialog.ui'
+# Form implementation generated from reading ui file 'Form_CalcIDLEPCDialog.ui'
 #
-# Created: Fri Oct 12 20:38:39 2012
+# Created: Sat Oct 13 02:03:38 2012
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,6 +17,7 @@ except AttributeError:
 class Ui_CalcIDLEPCDialog(object):
     def setupUi(self, CalcIDLEPCDialog):
         CalcIDLEPCDialog.setObjectName(_fromUtf8("CalcIDLEPCDialog"))
+        CalcIDLEPCDialog.setWindowModality(QtCore.Qt.WindowModal)
         CalcIDLEPCDialog.resize(400, 300)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -28,6 +29,7 @@ class Ui_CalcIDLEPCDialog(object):
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         CalcIDLEPCDialog.setWindowIcon(icon)
+        CalcIDLEPCDialog.setModal(True)
         self.gridLayout = QtGui.QGridLayout(CalcIDLEPCDialog)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.textEdit = QtGui.QTextEdit(CalcIDLEPCDialog)
