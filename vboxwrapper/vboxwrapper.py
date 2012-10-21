@@ -83,7 +83,7 @@ debugmsg(2, 'Starting vboxwrapper')
 debugmsg(1, "debuglevel =  %s" % debuglevel + os.linesep)
 
 __author__ = 'Thomas Pani, Jeremy Grossmann and Alexey Eromenko "Technologov"'
-__version__ = '0.8.3'
+__version__ = '0.8.3.1'
 
 PORT = 11525
 IP = ""
@@ -205,6 +205,9 @@ class xVBOXInstance(object):
             pipe_name = None
 
         started = self.vbc.start(self.vmname, self.nics, self.udp, self.capture, self.netcard, self.first_nic_managed, self.headless_mode, pipe_name)
+
+        if started:
+            self.vbc.setName(self.name)
 
         if started and self.console_support == 'True' and int(self.console) and self.console_telnet_server == 'True':
 

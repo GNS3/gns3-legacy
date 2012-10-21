@@ -257,7 +257,11 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         try:
             self.create_emudev()
             if old_console:
-                self.emu_vboxdev.console = old_console
+                #FIXME: temporary workaround
+                try:
+                    self.emu_vboxdev.console = old_console
+                except:
+                    pass
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyVBoxEmuDevice", "Dynamips error"),  unicode(msg))
             self.delete_emudev()

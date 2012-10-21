@@ -81,7 +81,7 @@ msg = "WELCOME to qemuwrapper.py"
 debugmsg(2, msg)
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.8.3'
+__version__ = '0.8.3.1'
 
 if platform.system() == 'Windows':
     QEMU_PATH = "qemu" # we still use Qemu 0.11.0 on Windows

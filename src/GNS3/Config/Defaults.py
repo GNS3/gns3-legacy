@@ -175,6 +175,7 @@ if platform.system() == 'Linux' or platform.system().__contains__("BSD"):
 elif platform.system() == 'Windows'  and os.path.exists("C:\Program Files (x86)\\"):
     TERMINAL_PRESET_CMDS = {
                             'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt %d -gns3 5',
+                            'SuperPutty (Windows)': 'SuperPutty.exe -telnet "%h -P %p -wt \"%d\" -gns3 5 -skin 4"',
                             'SecureCRT (Windows 64-bit)': '"C:\Program Files (x86)\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
                             'SecureCRT (Windows 32-bit)': '"C:\Program Files\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
                             'TeraTerm (Windows 64-bit)': '"C:\Program Files (x86)\\teraterm\\ttermpro.exe" /W=%d /T=1 %h %p',
@@ -184,6 +185,7 @@ elif platform.system() == 'Windows'  and os.path.exists("C:\Program Files (x86)\
 elif platform.system() == 'Windows':
     TERMINAL_PRESET_CMDS = {
                             'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt %d -gns3 5',
+                            'SuperPutty (Windows)': 'SuperPutty.exe -telnet "%h -P %p -wt \"%d\" -gns3 5 -skin 4"',
                             'SecureCRT (Windows)': '"C:\Program Files\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
                             'TeraTerm (Windows)': '"C:\Program Files\\teraterm\\ttermpro.exe" /W=%d /T=1 %h %p',
                             'Telnet (Windows)': 'telnet %h %p'
@@ -197,6 +199,7 @@ elif platform.system() == 'Darwin':
 else:  # For unknown platforms, or if detection failed, we list all options.
     TERMINAL_PRESET_CMDS = {
                             'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt %d -gns3 5',
+                            'SuperPutty (Windows)': 'SuperPutty.exe -telnet "%h -P %p -wt \"%d\" -gns3 5 -skin 4"',
                             'SecureCRT (Windows 64-bit)': '"C:\Program Files (x86)\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
                             'SecureCRT (Windows 32-bit)': '"C:\Program Files\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
                             'TeraTerm (Windows 32-bit)': '"C:\Program Files\\teraterm\\ttermpro.exe" /W=%d /T=1 %h %p',
