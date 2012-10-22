@@ -83,7 +83,7 @@ else:
     if os.path.exists(qemuwrapper_path):
         VBOXWRAPPER_DEFAULT_PATH = vboxwrapper_path
     elif platform.system() == 'Linux':
-        QEMUWRAPPER_DEFAULT_PATH = unicode("/usr/lib/gns3/vboxwrapper.py")
+        VBOXWRAPPER_DEFAULT_PATH = unicode("/usr/lib/gns3/vboxwrapper.py")
     else:
         VBOXWRAPPER_DEFAULT_PATH = unicode("/usr/local/libexec/gns3/vboxwrapper.py") # libexec is standard on BSD platforms
 
