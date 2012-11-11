@@ -108,7 +108,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         projectDir = os.path.normpath(unicode(self.ProjectPath.text()))
 
         if not projectName or not projectDir:
-            return (None, None, None)
+            return (None, None, None, None)
 
         if not os.path.exists(projectDir):
             try:
@@ -116,7 +116,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
             except (OSError, IOError), e:
                 QtGui.QMessageBox.critical(self, translate('ProjectDialog', 'Project Directory'),
                                            translate("Workspace", "Cannot create directory %s: %s") % (projectDir, e.strerror))
-                return (None, None, None)
+                return (None, None, None, None)
 
         projectFile = projectDir + os.sep + 'topology.net'
         projectFile = os.path.expandvars(os.path.expanduser(projectFile))
