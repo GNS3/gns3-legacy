@@ -362,8 +362,11 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         """
 
         #name = unicode(self.comboBoxNameVBoxImage.text())
-        name = unicode(self.comboBoxNameVBoxImage.currentText(), 'utf-8', errors='replace')
-        image = unicode(self.VBoxImage.text(), 'utf-8', errors='replace')
+
+        #name = unicode(self.comboBoxNameVBoxImage.currentText(), 'utf-8', errors='replace')
+        #image = unicode(self.VBoxImage.text(), 'utf-8', errors='replace')
+        name = unicode(self.VBoxID.text(), 'utf-8', errors='replace')
+        image = unicode(self.comboBoxNameVBoxImage.currentText(), 'utf-8', errors='replace')
 
         if not name or not image:
             QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesVirtualBox", "VirtualBox guest"),
@@ -375,12 +378,12 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             item_to_update = self.treeWidgetVBoxImages.findItems(name, QtCore.Qt.MatchFixedString)[0]
             item_to_update.setText(1, image)
         else:
-            
+
             # white spaces have to be replaced
             p = re.compile('\s+', re.UNICODE)
             name = p.sub("_", name)
             if not re.search(r"""^[\w,.-\[\]]*$""", name, re.UNICODE):
-                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesVirtualBox", "VirtualBox guest"), 
+                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesVirtualBox", "VirtualBox guest"),
                                            translate("Page_PreferencesVirtualBox", "Identifier name must contains only alphanumeric characters!"))
                 return
             # else create a new entry

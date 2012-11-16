@@ -22,7 +22,7 @@ import socket
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Globals as globals
 from GNS3.Utils import translate
-from PyQt4 import QtGui
+from PyQt4 import QtGui,QtCore
 
 
 class UndoView(QtGui.QUndoView):
