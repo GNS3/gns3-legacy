@@ -454,9 +454,9 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
 
             conf = globals.GApp.vboximages[name]
 
-            self.comboBoxNameVBoxImage.setItemText(0 ,name)
-            self.comboBoxNameVBoxImage.setCurrentIndex(0)
-            self.VBoxImage.setText(conf.filename)
+            self.VBoxID.setText(name)
+            imageIndex = self.comboBoxNameVBoxImage.findText(conf.filename)
+            self.comboBoxNameVBoxImage.setCurrentIndex(imageIndex)
 
             if self.conf.enable_GuestControl:
                 self.VBoxGuestControl_User.setEnabled(True)
