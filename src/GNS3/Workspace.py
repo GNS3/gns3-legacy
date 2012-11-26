@@ -1200,7 +1200,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         try:
                             shutil.copy(node.router.cnfg, self.projectConfigs)
                         except (OSError, IOError), e:
-                            debug("Warning: cannot copy " + file + " to " + self.projectConfigs)
+                            debug("Warning: cannot copy " + node.router.cnfg + " to " + self.projectConfigs)
                             continue
                         except:
                             continue

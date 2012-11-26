@@ -573,6 +573,7 @@ class Application(QApplication, Singleton):
             int(version)
         except:
             force_clear_configuration = False
+            pass
             # for future releases
             #if LooseVersion(VERSION) > version:
             #    pass

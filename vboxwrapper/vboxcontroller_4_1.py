@@ -203,6 +203,21 @@ class VBoxController_4_1():
         except:
           return False
         return True
+    
+    def setName(self, name):
+        debugmsg(2, "VBoxController_4_1::setName()")
+        try:
+            self.mach.setGuestPropertyValue("NameInGNS3",name)
+        except E_ACCESSDENIED:
+            debugmsg(2, "setName FAILED : E_ACCESSDENIED")
+            return False
+        except VBOX_E_INVALID_VM_STATE:
+            debugmsg(2, "setName FAILED : VBOX_E_INVALID_VM_STATE")
+            return False
+        except VBOX_E_INVALID_OBJECT_STATE:
+            debugmsg(2, "setName FAILED : VBOX_E_INVALID_OBJECT_STATE")
+            return False
+        return True
 
     def displayWindowFocus(self):
         debugmsg(2, "VBoxController_4_1::displayWindowFocus()")

@@ -204,6 +204,9 @@ class xVBOXInstance(object):
             pipe_name = None
 
         started = self.vbc.start(self.vmname, self.nics, self.udp, self.capture, self.netcard, self.first_nic_managed, self.headless_mode, pipe_name)
+        
+        if started:
+            self.vbc.setName(self.name)
 
         if started and self.console_support == 'True' and int(self.console) and self.console_telnet_server == 'True':
 
