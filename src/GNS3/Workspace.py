@@ -88,6 +88,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # By default, don't show the UndoView
         self.dockWidget_UndoView.hide()
+        
+        # By default, don't show the NodeTypes dock
+        self.dockWidget_NodeTypes.setVisible(False)
 
         # Add Undo & Redo actions to Edit menu
         action = globals.GApp.topology.undoStack.createUndoAction(self)
@@ -184,9 +187,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # Device menu is contextual and is build on-the-fly
         self.connect(self.menuDevice, QtCore.SIGNAL('aboutToShow()'), self.__action_ShowDeviceMenu)
-
-        # By default, don't show the NodeTypes dock                 # A bit dirty but doesn't work if put before
-        self.dockWidget_NodeTypes.setVisible(False)
 
     def __action_DisplayWizard(self):
         self.wizard = DeployementWizard()
