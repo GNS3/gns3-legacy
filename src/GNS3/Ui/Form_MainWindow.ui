@@ -66,7 +66,7 @@ background-none;
      <x>0</x>
      <y>0</y>
      <width>944</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -262,7 +262,7 @@ background-none;
     <enum>Qt::ToolButtonIconOnly</enum>
    </property>
    <attribute name="toolBarArea">
-    <enum>RightToolBarArea</enum>
+    <enum>LeftToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
     <bool>false</bool>
@@ -718,7 +718,7 @@ background-none;
   </action>
   <action name="action_ZoomIn">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/zoom-in.png</normaloff>
      <activeoff>:/icons/zoom-in-hover.png</activeoff>:/icons/zoom-in.png</iconset>
    </property>
@@ -737,7 +737,7 @@ background-none;
   </action>
   <action name="action_ZoomOut">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/zoom-out.png</normaloff>
      <activeoff>:/icons/zoom-out-hover.png</activeoff>:/icons/zoom-out.png</iconset>
    </property>
@@ -1141,7 +1141,7 @@ background-none;
   </action>
   <action name="action_Router">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/router.png</normaloff>
      <activeoff>:/icons/router-hover.png</activeoff>:/icons/router.png</iconset>
    </property>
@@ -1157,7 +1157,7 @@ background-none;
   </action>
   <action name="action_Switch">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/switch.png</normaloff>
      <activeoff>:/icons/switch-hover.png</activeoff>:/icons/switch.png</iconset>
    </property>
@@ -1173,7 +1173,7 @@ background-none;
   </action>
   <action name="action_EndDevices">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/PC.png</normaloff>
      <activeoff>:/icons/PC-hover.png</activeoff>:/icons/PC.png</iconset>
    </property>
@@ -1189,7 +1189,7 @@ background-none;
   </action>
   <action name="action_OtherDevices">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/other-devices.png</normaloff>
      <activeoff>:/icons/other-devices-hover.png</activeoff>:/icons/other-devices.png</iconset>
    </property>
@@ -1205,7 +1205,7 @@ background-none;
   </action>
   <action name="action_Firewall">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/firewall.png</normaloff>
      <activeoff>:/icons/firewall-hover.png</activeoff>:/icons/firewall.png</iconset>
    </property>
@@ -1221,7 +1221,7 @@ background-none;
   </action>
   <action name="action_IDS">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/ids.png</normaloff>
      <activeoff>:/icons/ids-hover.png</activeoff>:/icons/ids.png</iconset>
    </property>
@@ -1248,7 +1248,7 @@ background-none;
   </action>
   <action name="action_BrowseAllDevices">
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/browse-all-icons.png</normaloff>
      <activeoff>:/icons/browse-all-icons-hover.png</activeoff>:/icons/browse-all-icons.png</iconset>
    </property>
@@ -1267,7 +1267,7 @@ background-none;
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
+    <iconset>
      <normaloff>:/icons/connection-new.svg</normaloff>
      <activeoff>:/icons/connection-new-hover.svg</activeoff>:/icons/connection-new.svg</iconset>
    </property>
