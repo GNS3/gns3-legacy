@@ -1161,13 +1161,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         globals.GApp.workspace.setWindowTitle("GNS3")
+        temporary_project = False
         self.projectWorkdir = None
         self.projectConfigs = None
         (self.projectFile, self.projectWorkdir, self.projectConfigs, self.unbase) = settings
 
         # Create a project in a temporary location
         if not self.projectFile and not self.projectWorkdir and not self.projectConfigs:
-
+            temporary_project = True
             try:
                 projectDir = tempfile.mktemp()
                 projectDir = os.path.dirname(projectDir) + os.sep + 'GNS3_' + os.path.basename(projectDir)
@@ -1272,7 +1273,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 except lib.DynamipsError, msg:
                     QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error %s: %s") % (self.projectWorkdir, unicode(msg)))
 
-        self.__action_Save()
+        if temporary_project == False:
+            self.__action_Save()
         self.setWindowTitle("GNS3 Project - " + os.path.split(os.path.dirname(self.projectFile))[1])
 
     def __action_Snapshot(self):
