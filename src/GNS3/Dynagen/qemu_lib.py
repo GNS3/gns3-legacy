@@ -27,6 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #debuglevel: 0=disabled, 1=default, 2=debug, 3=deep debug
 debuglevel = 0
 
+import time
 import platform, os
 import portTracker_lib as tracker
 
@@ -352,6 +353,10 @@ class AnyEmuDevice(object):
         self._console = self.track.allocateTcpPort(self.p.host, self.p.baseconsole)
         send(self.p, 'qemu setattr %s console %i' % (self.name, self._console))
         self.p.baseconsole += 1
+        self.starttime = int(time.time())
+        self.suspendtime = self.starttime
+        self.stoptime = self.starttime
+        self.waittime = 0
 
     def delete(self):
         """delete the emulated device instance in Qemu"""
@@ -373,6 +378,11 @@ class AnyEmuDevice(object):
 
         r = send(self.p, 'qemu start %s' % self.name)
         self.state = 'running'
+
+        # Updates the starttime.
+        self.starttime = int(time.time())
+        self.waittime = 0
+
         return r
 
     def stop(self):
@@ -383,6 +393,10 @@ class AnyEmuDevice(object):
             raise DynamipsWarning, 'emulated device %s is already stopped' % self.name
         r = send(self.p, 'qemu stop %s' % self.name)
         self.state = 'stopped'
+
+        # Updates the starttime.
+        self.stoptime = int(time.time())
+
         return r
 
     def clean(self):
@@ -863,9 +877,29 @@ class AnyEmuDevice(object):
         """prints information about specific device"""
         #debugmsg(2, "AnyEmuDevice::info()")
 
+        # Uptime of the device.
+        def utimetotxt(utime):
+            (zmin, zsec) = divmod(utime, 60)
+            (zhur, zmin) = divmod(zmin, 60)
+            (zday, zhur) = divmod(zhur, 24)
+            utxt = ('%d %s, ' % (zday, 'days'  if (zday != 1) else 'day')  if (zday > 0) else '') + \
+                   ('%d %s, ' % (zhur, 'hours' if (zhur != 1) else 'hour') if ((zhur > 0) or (zday > 0)) else '') + \
+                   ('%d %s'   % (zmin, 'mins'  if (zmin != 1) else 'min'))
+            return utxt
+
+        if (self.state == 'running'):
+            txtuptime = '  Device running time is ' + utimetotxt((int(time.time()) - self.starttime) - self.waittime)
+        elif (self.state == 'suspended'):
+            txtuptime = '  Device suspended time is ' + utimetotxt(int(time.time()) - self.suspendtime)
+        elif (self.state == 'stopped'):
+            txtuptime = '  Device stopped time is ' + utimetotxt(int(time.time()) - self.stoptime)
+        else:
+            txtuptime = '  Device uptime is unknown'
+
         info = '\n'.join([
             '%s %s is %s' % (self._ufd_machine, self.name, self.state),
             '  Hardware is %s %s with %s MB RAM' % (self._ufd_hardware, self.model_string, self._ram),
+            txtuptime,
             '  %s\'s wrapper runs on %s:%s, console is on port %s' % (self._ufd_machine, self.dynamips.host, self.dynamips.port, self.console),
             '  Image is %s' % self.image,
             '  %s KB NVRAM, %s MB flash size' % (self.nvram, self.disk0)

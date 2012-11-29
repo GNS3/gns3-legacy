@@ -30,6 +30,7 @@ import StringIO
 import csv
 import base64
 import sys
+import re
 from dynamips_lib import Router, Emulated_switch, DynamipsError, DynamipsWarning, IDLEPROPGET, IDLEPROPSHOW, IDLEPROPSET
 from configobj import ConfigObj
 from confConsole import AbstractConsole, confHypervisorConsole, confConsole
@@ -85,11 +86,11 @@ class progressBar:
         self.progBar = "[" + '#'*numHashes + ' '*(allFull-numHashes) + "]"
 
         # figure out where to put the percentage, roughly centered
-        percentPlace = (len(self.progBar) / 2) - len(str(percentDone))
-        percentString = str(percentDone) + "%"
+        percentString = ' ' + str(percentDone) + '% '
+        percentPlace = (len(self.progBar) - len(percentString)) / 2
 
         # slice the percentage into the bar
-        self.progBar = self.progBar[0:percentPlace] + percentString + self.progBar[percentPlace+len(percentString):]
+        self.progBar = self.progBar[0:percentPlace-1] + percentString + self.progBar[percentPlace+len(percentString):]
 
     def __str__(self):
         return str(self.progBar)
@@ -101,31 +102,50 @@ class Console(AbstractConsole):
     def __init__(self, dynagen):
         AbstractConsole.__init__(self)
         self.prompt = '=> '
-        self.intro  = 'Dynagen management console for Dynamips and Qemuwrapper/VBoxwrapper ' + self.namespace.VERSION + '\nCopyright (c) 2005-2011 Greg Anuzelli, contributions Pavel Skovajsa, Jeremy Grossmann & Alexey Eromenko "Technologov"\n'
+        self.intro  = 'Dynagen management console for Dynamips and Qemuwrapper/VBoxwrapper \n'
+        self.intro += 'Version '+  self.namespace.VERSION + '\n'
+        self.intro += 'Copyright (c) 2005-2011 Greg Anuzelli, contributions Pavel Skovajsa,\n'
+        self.intro += '                        Jeremy Grossmann & Alexey Eromenko "Technologov"\n'
         self.dynagen = dynagen
     ## Command definitions ##
 
-    def delayWithProgress(self, seconds):
+    def delayWithProgress(self, seconds, device):
         """ Sleep while displaying a progresss bar
         """
-        width = 40      # Width of progress bar in characters
-        interval = float(seconds)/width
-        prog = progressBar(0, seconds, width)
-        i=0
-        while i < seconds:
-            i += interval
-            prog.updateAmount(i)
-            print width*"\b",
-            print prog, "\r",
-            time.sleep(interval)
-        print
+        if (seconds > 0):
+            if PureDynagen:
+                print 'Delaying start of %s (%d secs): ' % (device, seconds),
+                width = 40      # Width of progress bar in characters
+                interval = float(seconds)/width
+                prog = progressBar(0, seconds, width)
+                i=0
+                print str(prog),
+                sys.stdout.flush()
+                while i < seconds:
+                    time.sleep(interval)
+                    i += interval
+                    prog.updateAmount(i)
+                    print width*'\b' + str(prog),
+                    sys.stdout.flush()
+                print '\r\033[K\r',   
+            else:
+                time.sleep(seconds)
 
     def do_list(self, args):
-        """list
-\tList all devices"""
+        """list [regexp]
+\tList all devices
+\t[regexp] Optional: filter the output through a regular expression"""
 
+        parms = args.split()
+        if ('?' in parms) or ('/?' in parms):
+            print self.do_list.__doc__
+            return
+
+        patt = None
+        if (len(parms) >= 1):
+            patt = re.compile('.*' + parms[0] + '.*', re.IGNORECASE)
         table = []
-        print '%-10s %-10s %-10s %-27s %-10s %-10s' % (
+        print '%-10s %-10s %-10s %-20s %-10s %-10s' % (
             'Name',
             'Type',
             'State',
@@ -165,9 +185,12 @@ class Console(AbstractConsole):
             table.append(row)
         table.sort(con_cmp)  # Sort the table by the console port #
         for line in table:
-            for item in line:
-                print item,
-            print
+            txt = ' '.join(line)
+            try:
+                if patt.match(txt):
+                    print txt
+            except AttributeError:
+                print txt
 
     if PureDynagen:
         def do_conf(self, args):
@@ -230,7 +253,7 @@ class Console(AbstractConsole):
             print self.do_suspend.__doc__
             return
 
-        devices = args.split(" ")
+        devices = args.split()
         if '/all' in devices:
             for device in self.dynagen.devices.values():
                 try:
@@ -284,7 +307,7 @@ This requires VirtualBox Guest Additions to be installed inside the guest VM."""
         if '?' in args or args.strip() == "":
             print self.do_vboxexec.__doc__
             return
-        devices = args.split(" ")
+        devices = args.split()
 
         #if devname in devices[0]:
         devname =  devices[0]
@@ -295,7 +318,7 @@ This requires VirtualBox Guest Additions to be installed inside the guest VM."""
             if not isinstance(device, self.namespace.AnyVBoxEmuDevice):
                 error("Device is not VirtualBox device: " + devname)
                 return
-            result = device.vboxexec(args.split(" ")[1:])
+            result = device.vboxexec(args.split()[1:])
             #print "ADEBUG: console.py: vboxexec raw result = ", result
             #If we got incorrect result, just drop it.
             try:
@@ -316,78 +339,127 @@ This requires VirtualBox Guest Additions to be installed inside the guest VM."""
         except DynamipsWarning, e:
             print "Note: " + str(e)
 
+
     def do_start(self, args):
-        """start  {/all [delay] | router1 [router2] ...}
-\tstart all or a specific router(s)
-\tFor start /all only, a delay can be specified. Dynagen will pause this many seconds between starting devices.
+        """start  {[/delay N] [/multi] [/nomulti] /all | device1 [device2] ...}
+\tstart all or a specific device(s)
+\t/delay N: pause in seconds between starting devices.
+\t/multi:   smart pause between servers in a multiserver environment.
+\t/nomulti: old style pause between devices starts.
         """
 
-        startdelay = self.dynagen.startdelay
+        # Local vars
+        strtall = False
+        strthelp = False
+        strtdelay = self.dynagen.startdelay if (PureDynagen) else 0
+        strtmulti = self.dynagen.multistart if (PureDynagen) else False
+        strtnames = {}
+        strtparms = args.split()
+        flagdelay = False
 
-        if '?' in args or args.strip() == "":
+        # Parse the params
+        if (len(strtparms) == 0):
+            strtparms = ['/?']
+        for param in strtparms:
+            if (flagdelay):
+                strtdelay = param
+                flagdelay = False
+            elif ('?' in param):
+                strthelp = True
+            elif (param == '/all'):
+                strtall = True
+            elif (param == '/multi'):
+                strtmulti = True
+            elif (param == '/nomulti'):
+                strtmulti = False
+            elif (param == '/delay'):
+                flagdelay = True
+            else:
+                strtnames[param] = None
+
+        # Multistart only in console mode
+        if (not PureDynagen):
+            strtmulti = False
+
+        # Test a /delay without value
+        if (flagdelay):
+            strthelp = True
+
+        # Test the delay
+        try:
+            strtdelay = int(strtdelay)
+        except ValueError:
+            strthelp = True
+
+        # Do /all
+        if (strtall):
+            strtnames = {}
+            for tmpdev in self.dynagen.devices.values():
+                strtnames[tmpdev.name] = None
+
+        # Do help
+        if (strthelp) or (len(strtnames) == 0):
             print self.do_start.__doc__
             return
 
-        devices = args.split(" ")
-        if '/all' in devices:
-            try:
-                delay = devices[1]
-            except IndexError:
-                # No delay specified, use default
-                delay = startdelay
-            try:
-                delay = int(delay)
-            except ValueError:
-                print self.do_start.__doc__
-                return
+        # Start empty dictionary. Sintax: { ipserver|'dummy': [device1, device2, ..., deviceN] }
+        strtdict = { 'dummy':[] }
+        if (strtmulti):
+            for tmpdev in self.dynagen.devices.values():
+                strtdict[tmpdev.dynamips.host] = []
 
-            for device in self.dynagen.devices.values():
+        # Fill the dictionary
+        for tmpname in strtnames.keys():
+            try:
+                tmpdev = self.dynagen.devices[tmpname]
+                if (tmpdev.state == 'stopped'):
+                    strtdict[tmpdev.dynamips.host if (strtmulti) else 'dummy'].append(tmpdev)
+                else:
+                    print "Note: device %s is already running" % (tmpdev.name)
+            except KeyError:
+                error('invalid device: ' + tmpname)
+            except AttributeError:
+                if (not strtall):
+                    print "Note: device %s is always on" % (tmpdev.name)
+
+        # Start the devices
+        firstrun = True
+        while (True):
+            # Devices to start in this cicle
+            tmpdev = []
+            for tmpsrv in strtdict.keys():
                 try:
-                    if device.idlepc == None:
-                        if self.dynagen.useridledb and device.imagename in self.dynagen.useridledb:
-                            device.idlepc = self.dynagen.useridledb[device.imagename]
-                        else:
-                            print 'Warning: Starting %s with no idle-pc value' % device.name
-                    self.dynagen.check_ghost_file(device)
-                    self.dynagen.jitsharing()
-                    for line in device.start():
-                        print line.strip()
-                    if delay != 0 and device != self.dynagen.devices.values()[-1]:
-                        # don't delay if there is none or if this is the last device
-                        print 'Delaying start of next device for %i seconds...' % delay
-                        self.delayWithProgress(delay)
+                    tmpdev.append(strtdict[tmpsrv].pop(0))
                 except IndexError:
                     pass
-                except AttributeError:
-                    # If this device doesn't support start just ignore it
-                    pass
+            # Check if no more devices to start
+            if (len(tmpdev) == 0):
+                break
+
+            # Delay
+            if (not firstrun):
+                self.delayWithProgress(strtdelay, 'devices' if (strtmulti) else tmpdev[0].name)
+            firstrun = False
+
+            # Start the device(s)
+            for tmpstrt in tmpdev:
+                try:
+                    if hasattr(tmpstrt, 'idlepc'):
+                        # Only in dynamips class
+                        if tmpstrt.idlepc == None:
+                            if self.dynagen.useridledb and tmpstrt.imagename in self.dynagen.useridledb:
+                                tmpstrt.idlepc = self.dynagen.useridledb[tmpstrt.imagename]
+                            else:
+                                print 'Warning: Starting %s with no idle-pc value' % tmpstrt.name
+                        self.dynagen.check_ghost_file(tmpstrt)
+                        self.dynagen.jitsharing()
+                    for line in tmpstrt.start(): 
+                        print line.strip()
                 except DynamipsError, e:
                     error(e)
                 except DynamipsWarning, e:
                     print "Note: " + str(e)
-            return
-
-        for devname in devices:
-            try:
-                device = self.dynagen.devices[devname]
-                if device.idlepc == None:
-                    if self.dynagen.useridledb and device.imagename in self.dynagen.useridledb:
-                        device.idlepc = self.dynagen.useridledb[device.imagename]
-                    else:
-                        print 'Warning: Starting %s with no idle-pc value' % device.name
-                if not self.dynagen.check_ghost_file(device):
-                    return
-                self.dynagen.jitsharing()
-                for line in device.start():
-                    print line.strip()
-            except IndexError:
-                pass
-            except (KeyError, AttributeError):
-                error('invalid device: ' + devname)
-            except DynamipsError, e:
-                error(e)
-            except DynamipsWarning, e:
-                print "Note: " + str(e)
+        return
 
     def do_stop(self, args):
         """stop  {/all | router1 [router2] ...}
@@ -397,7 +469,7 @@ This requires VirtualBox Guest Additions to be installed inside the guest VM."""
             print self.do_stop.__doc__
             return
 
-        devices = args.split(" ")
+        devices = args.split()
         if '/all' in devices:
             for device in self.dynagen.devices.values():
                 try:
@@ -434,7 +506,7 @@ This requires VirtualBox Guest Additions to be installed inside the guest VM."""
             print self.do_resume.__doc__
             return
 
-        devices = args.split(" ")
+        devices = args.split()
         if '/all' in devices:
             for device in self.dynagen.devices.values():
                 try:
@@ -471,7 +543,7 @@ This requires VirtualBox Guest Additions to be installed inside the guest VM."""
             print self.do_reload.__doc__
             return
 
-        devices = args.split(" ")
+        devices = args.split()
         if '/all' in devices:
             for device in self.dynagen.devices.values():
                 try:
@@ -509,7 +581,16 @@ This requires VirtualBox Guest Additions to be installed inside the guest VM."""
         """Print the dynagen version and credits"""
 
         print 'Dynagen version ' + self.namespace.VERSION
-        print 'hypervisor version(s):'
+        (zmin, zsec) = divmod(int(time.time()) - self.dynagen.starttime, 60)
+        (zhur, zmin) = divmod(zmin, 60)
+        (zday, zhur) = divmod(zhur, 24)
+        print ' dynagen uptime is ' + \
+              ('%d %s, ' % (zday, 'days'  if (zday != 1) else 'day')  if (zday > 0) else '') + \
+              ('%d %s, ' % (zhur, 'hours' if (zhur != 1) else 'hour') if ((zhur > 0) or (zday > 0)) else '') + \
+              ('%d %s'   % (zmin, 'mins'  if (zmin != 1) else 'min'))
+        if (self.dynagen.dynamips.values()):
+            print ''
+            print 'Hypervisor(s) version(s):'
         for d in self.dynagen.dynamips.values():
             if d.type == "vboxwrapper":
                 print ' %s at %s:%i has version %s (running VirtualBox %s)' % (d.type, d.host, d.port, d.version, d.vbox_version)
@@ -518,7 +599,8 @@ This requires VirtualBox Guest Additions to be installed inside the guest VM."""
         print """
 Credits:
 Dynagen is written by Greg Anuzelli
-Contributing developers: Pavel Skovajsa, Jeremy Grossmann & Alexey Eromenko "Technologov"
+Contributing developers: Pavel Skovajsa, Jeremy Grossmann 
+                         & Alexey Eromenko "Technologov"
 Qemuwrapper: Thomas Pani & Jeremy Grossmann
 VBoxwrapper: Thomas Pani, Jeremy Grossmann & Alexey Eromenko "Technologov"
 Pemu: Milen Svobodnikov
@@ -552,13 +634,13 @@ And big thanks of course to Christophe Fillot as the author of Dynamips.
             print self.do_telnet.__doc__
             return
 
-        devices = args.split(" ")
-        if '/all' in args.split(" "):
+        devices = args.split()
+        if '/all' in args.split():
             # Set devices to all the devices
             devices = self.dynagen.devices.values()
         else:
             devices = []
-            for device in args.split(" "):
+            for device in args.split():
                 # Create a list of all the device objects
                 try:
                     devices.append(self.dynagen.devices[device])
@@ -592,13 +674,13 @@ And big thanks of course to Christophe Fillot as the author of Dynamips.
             print self.do_aux.__doc__
             return
 
-        devices = args.split(" ")
-        if '/all' in args.split(" "):
+        devices = args.split()
+        if '/all' in args.split():
             # Set devices to all the devices
             devices = self.dynagen.devices.values()
         else:
             devices = []
-            for device in args.split(" "):
+            for device in args.split():
                 # Create a list of all the device objects
                 try:
                     devices.append(self.dynagen.devices[device])
@@ -624,9 +706,11 @@ And big thanks of course to Christophe Fillot as the author of Dynamips.
                 print "Note: " + str(e)
 
     def show_device(self, params):
-        """show device {something} command prints the output by calling get_device_info function"""
+        """show device {something} command prints the output by calling get_device_info function
+        \tshow device [/all]: show all devices
+        \tshow device dev1 dev2 ...: show some devices"""
 
-        if len(params) == 1:  #if this is only 'show device' command print info about all devices
+        if (len(params) == 1) or ('/all' in params):  #if this is only 'show device' command print info about all devices
             output = []
             for device in self.dynagen.devices.values():
                 #if it is a router or other emulated device
@@ -635,16 +719,15 @@ And big thanks of course to Christophe Fillot as the author of Dynamips.
             output.sort()
             for devinfo in output:
                 print devinfo
-        elif len(params) == 2:
-            #if this is 'show device {something}' command print info about specific device
-            try:
-                device = self.dynagen.devices[params[1]]
-                if isinstance(device, (self.namespace.Router, self.namespace.AnyEmuDevice, self.namespace.AnyVBoxEmuDevice, self.namespace.FRSW, self.namespace.ATMBR, self.namespace.ATMSW, self.namespace.ETHSW)):
-                    print device.info()
-            except KeyError:
-                error('unknown device: ' + params[1])
-        else:
-            error('invalid show device command')
+        elif len(params) >= 2:
+            #if this is 'show device {something}' command print info about one or more devices
+            for name in params[1:]:
+                try:
+                    device = self.dynagen.devices[name]
+                    if isinstance(device, (self.namespace.Router, self.namespace.AnyEmuDevice, self.namespace.AnyVBoxEmuDevice, self.namespace.FRSW, self.namespace.ATMBR, self.namespace.ATMSW, self.namespace.ETHSW)):
+                        print device.info()
+                except KeyError:
+                    error('unknown device: ' + name)
 
     def show_start(self):
         """show start command reads the config file on disk and prints it out"""
@@ -682,6 +765,13 @@ And big thanks of course to Christophe Fillot as the author of Dynamips.
         except DynamipsWarning, e:
             print "Note: " + str(e)
 
+    def show_clock(self, params):
+        """Print the current time and date"""
+
+        tnow = time.localtime()
+        print 'Current date is ' + time.strftime('%d/%m/%Y', tnow)
+        print 'Current time is ' + time.strftime('%H:%M:%S', tnow)
+
     def do_show(self, args):
         """show mac <ethernet_switch_name>
 \tshow the mac address table of an ethernet switch
@@ -695,13 +785,15 @@ show run
 \tshow running configuration of current lab
 show run <device_name>
 \tshow running configuration of a router
+show clock
+\tshow the current date and time
         """
 
         if '?' in args or args.strip() == "":
             print self.do_show.__doc__
             return
 
-        params = args.split(" ")
+        params = args.split()
         #if this is 'show router {something}' command print the output by calling router_Info function
         if params[0] == 'device':
             self.show_device(params)
@@ -717,6 +809,11 @@ show run <device_name>
 
         #if this is a 'show mac <ethernet_switch_name>' command print out the mac table of the switch
             self.show_mac(params)
+        elif params[0] == 'clock':
+
+        # If this is a 'show clock' command print the current date and time
+            self.show_clock(params)
+
         else:
             error('invalid show command')
 
@@ -728,7 +825,7 @@ show run <device_name>
             print self.do_copy.__doc__
             return
         self.dynagen.update_running_config(need_active_config=True)
-        params = args.split(" ")
+        params = args.split()
         if len(params) == 2 and params[0] == 'run' and params[1] == 'start':
             filename = self.dynagen.global_filename
             self.dynagen.running_config.filename = filename
@@ -744,7 +841,7 @@ show run <device_name>
         if '?' in args or args.strip() == "":
             print self.do_clear.__doc__
             return
-        params = args.split(" ")
+        params = args.split()
         if params[0].lower() == 'mac':
             try:
                 print self.dynagen.devices[params[1]].clear_mac()[0].strip()
@@ -767,12 +864,12 @@ show run <device_name>
             print self.do_save.__doc__
             return
         netfile = self.dynagen.globalconfig
-        if '/all' in args.split(" "):
+        if '/all' in args.split():
             # Set devices to all the devices
             devices = self.dynagen.devices.values()
         else:
             devices = []
-            for device in args.split(" "):
+            for device in args.split():
                 # Create a list of all the device objects
                 try:
                     devices.append(self.dynagen.devices[device])
@@ -831,12 +928,12 @@ show run <device_name>
 
         configurations = self.dynagen.configurations
 
-        if '/all' in args.split(" "):
+        if '/all' in args.split():
             # Set devices to all the devices
             devices = self.dynagen.devices.values()
         else:
             devices = []
-            for device in args.split(" "):
+            for device in args.split():
                 # Create a list of all the device objects
                 try:
                     devices.append(self.dynagen.devices[device])
@@ -1026,16 +1123,16 @@ show run <device_name>
             return
 
         try:
-            if len(args.split(" ")) > 4:
+            if len(args.split()) > 4:
                 (
                     device,
                     interface,
                     filterName,
                     direction,
                     options,
-                    ) = args.split(" ", 4)
+                    ) = args.split(None, 4)
             else:
-                (device, interface, filterName, direction) = args.split(" ", 3)
+                (device, interface, filterName, direction) = args.split(None, 3)
                 options = None
         except ValueError:
             print self.do_filter.__doc__
@@ -1131,7 +1228,7 @@ show run <device_name>
             return
 
         try:
-            (command, options) = args.split(" ", 1)
+            (command, options) = args.split(None, 1)
             if command.lower() == 'capture':
                 self.dynagen.no_capture(options)
         except ValueError:
@@ -1150,7 +1247,7 @@ show run <device_name>
             return
 
         try:
-            (host, command) = args.split(" ", 1)
+            (host, command) = args.split(None, 1)
         except ValueError:
             print 'Error parsing command'
             return
@@ -1410,7 +1507,7 @@ Examples:
             print self.do_confreg.__doc__
             return
 
-        devices = args.split(" ")
+        devices = args.split()
         if devices[-1][:2] == '0x':
             confreg = devices.pop()
             flag = 'set'
@@ -1457,7 +1554,7 @@ Examples:
                 print self.do_cpuinfo.__doc__
                 return
 
-            devices = args.split(' ')
+            devices = args.split()
             if '/all' in devices:
                 for device in self.dynagen.devices.values():
                     try:
@@ -1490,12 +1587,11 @@ Examples:
     def telnet(self, device):
         """Telnet to the console port of device"""
 
-        import dynagen as dyn
-        telnetstring = dyn.telnetstring
+        telnetstring = self.dynagen.telnetstring
         port = str(self.dynagen.devices[device].console)
         host = str(self.dynagen.devices[device].dynamips.host)
 
-        if telnetstring and not dyn.notelnet:
+        if telnetstring and not self.dynagen.notelnet:
             telnetstring = telnetstring.replace('%h', host)
             telnetstring = telnetstring.replace('%p', port)
             telnetstring = telnetstring.replace('%d', device)
@@ -1506,12 +1602,11 @@ Examples:
     def aux(self, device):
         """Telnet to the AUX port of device"""
 
-        import dynagen as dyn
-        telnetstring = dyn.telnetstring
+        telnetstring = self.dynagen.telnetstring
         port = str(self.dynagen.devices[device].aux)
         host = str(self.dynagen.devices[device].dynamips.host)
 
-        if telnetstring and not dyn.notelnet:
+        if telnetstring and not self.dynagen.notelnet:
             telnetstring = telnetstring.replace('%h', host)
             telnetstring = telnetstring.replace('%p', port)
             telnetstring = telnetstring.replace('%d', device)
