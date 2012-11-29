@@ -5,7 +5,9 @@ hostname %h-SW
 !
 no ip routing
 no ip domain lookup
+no ip icmp rate-limit unreachable
 ip domain name lab.local
+ip tcp synwait 5
 !
 !
 interface FastEthernet0/0
