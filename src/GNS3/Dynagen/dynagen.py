@@ -60,7 +60,7 @@ def debugmsg(level, message):
         print message
 
 # Constants
-VERSION = '0.13.1.20111031'
+VERSION = '0.13.1.20121128'
 CONFIGSPECPATH = ['/usr/share/dynagen', '/usr/local/share', '/usr/local/share/dynagen']
 CONFIGSPEC = 'configspec'
 INIPATH = ['/etc', '/usr/local/etc']
@@ -206,6 +206,7 @@ class Dynagen:
         self.handled = True   # indicates whether and error was handled
 
         self.import_error = False  #True if errors during import
+        self.baseconfig = None  # Default base configuration when creating a new IOS based router
 
         #confdynagen stuff
         self.running_config = ConfigObj(list_values=False, encoding='utf-8')
@@ -1812,6 +1813,21 @@ class Dynagen:
         except KeyError:
             pass
 
+        # Allow specification of a default configuration for IOS routers
+        try:
+            fbasecfg = config['baseconfig']
+        except KeyError:
+            self.baseconfig = None
+        try:
+            hbasecfg = open(fbasecfg, 'r')
+            self.baseconfig = hbasecfg.read()
+            hbasecfg.close()
+        except IOError:
+            self.dowarning('Ignoring invalid or unreadable baseconfig file in dynagen.ini')
+            self.baseconfig = None
+        except UnboundLocalError:
+            pass
+
     def import_generic_ini(self, inifile):
         """ Import a generic ini file and return it as a dictionary, if it exists
             Returns None if the file doesn't exit, or raises an error that can be handled
@@ -1846,6 +1862,12 @@ class Dynagen:
                 for router_name in self.configurations:
                     device = self.devices[router_name]
                     device.config_b64 = self.configurations[router_name]
+
+    def push_base_configuration(self):
+        if self.baseconfig != None:
+            for device in self.devices.values():
+                if isinstance(device, Router):
+                    device.config_b64 = self.baseconfig.replace('%h', device.name).encode('base64','strict').replace('\n', '')
 
     def ghosting(self):
         """ Implement IOS Ghosting"""
@@ -2711,6 +2733,7 @@ if __name__ == '__main__':
                 sys.exit(1)
 
 
+            dynagen.push_base_configuration()
             dynagen.push_embedded_configurations()
             dynagen.ghosting()
             dynagen.jitsharing()
