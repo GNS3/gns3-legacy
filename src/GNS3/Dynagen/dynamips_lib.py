@@ -655,6 +655,10 @@ class NIO_udp(NIO):
             return ' is connected to emulated device ' + remote_device.name + ' Ethernet' + str(remote_port) + " " + stats
         elif isinstance(remote_device, AnyVBoxEmuDevice):
             return ' is connected to virtualized device ' + remote_device.name + ' Ethernet' + str(remote_port) + " " + stats
+        elif isinstance(remote_device, Bridge):
+            return ' is connected to bridged LAN ' + remote_device.name + ' ' + stats
+        else:
+            return ' is connected to an unknown destination ' + stats
 
     def __getreverse_nio(self):
         return self.__reverse_nio
@@ -2110,6 +2114,10 @@ class Router(Dynamips_device):
         self.__sparsemem = 0
         self.__idlemax = 1500
         self.__idlesleep = 30
+        self.starttime = int(time.time())
+        self.suspendtime = self.starttime
+        self.stoptime = self.starttime
+        self.waittime = 0
         #this sets the default values for this module that do not change
         self._defaults = {
             'image': None,
@@ -2322,6 +2330,11 @@ class Router(Dynamips_device):
             self.__setidlemax(self.__idlemax)
         if self.__idlesleep != self._defaults['idlesleep']:
             self.__setidlesleep(self.__idlesleep)
+
+        # Updates the starttime.
+        self.starttime = int(time.time())
+        self.waittime = 0
+
         return r
 
     def stop(self):
@@ -2334,6 +2347,10 @@ class Router(Dynamips_device):
         # mark it stopped, even if dynamips has crashed
         self.__state = 'stopped'
         r = send(self.__d, 'vm stop %s' % self.__name)
+
+        # Updates the starttime.
+        self.stoptime = int(time.time())
+
         return r
 
     def suspend(self):
@@ -2348,6 +2365,10 @@ class Router(Dynamips_device):
         # mark it suspended, even if dynamips has crashed
         self.__state = 'suspended'
         r = send(self.__d, 'vm suspend %s' % self.__name)
+
+        # Updates the starttime.
+        self.suspendtime = int(time.time())
+
         return r
 
     def resume(self):
@@ -2361,6 +2382,10 @@ class Router(Dynamips_device):
 
         r = send(self.__d, 'vm resume %s' % self.__name)
         self.__state = 'running'
+
+        # Updates the starttime.
+        self.waittime += (int(time.time()) - self.suspendtime)
+
         return r
 
     def slot_info(self):
@@ -2476,9 +2501,28 @@ class Router(Dynamips_device):
         #gather information about PA, their interfaces and connections
         slot_info = self.slot_info()
 
+        # Uptime of the router.
+        def utimetotxt(utime):
+            (zmin, zsec) = divmod(utime, 60)
+            (zhur, zmin) = divmod(zmin, 60)
+            (zday, zhur) = divmod(zhur, 24)
+            utxt = ('%d %s, ' % (zday, 'days'  if (zday != 1) else 'day')  if (zday > 0) else '') + \
+                   ('%d %s, ' % (zhur, 'hours' if (zhur != 1) else 'hour') if ((zhur > 0) or (zday > 0)) else '') + \
+                   ('%d %s'   % (zmin, 'mins'  if (zmin != 1) else 'min'))
+            return utxt
+
+        if (self.state == 'running'):
+            txtuptime = '  Router running time is ' + utimetotxt((int(time.time()) - self.starttime) - self.waittime) + '\n'
+        elif (self.state == 'suspended'):
+            txtuptime = '  Router suspended time is ' + utimetotxt(int(time.time()) - self.suspendtime) + '\n'
+        elif (self.state == 'stopped'):
+            txtuptime = '  Router stopped time is ' + utimetotxt(int(time.time()) - self.stoptime) + '\n'
+        else:
+            txtuptime = '  Router uptime is unknown\n'
+
         #create final output, with proper indentation
         return 'Router ' + self.name + ' is ' + self.state + '\n' + '  Hardware is dynamips emulated Cisco ' + model + router_specific_info + ' with ' + \
-               str(self.ram) + ' MB RAM\n' + '  Router\'s hypervisor runs on ' + self.dynamips.host + ":" + str(self.dynamips.port) + \
+               str(self.ram) + ' MB RAM\n' + txtuptime + '  Router\'s hypervisor runs on ' + self.dynamips.host + ":" + str(self.dynamips.port) + \
                ', console is on port ' + str(self.console) + ', aux is on port ' + str(self.aux) + image_info + idlepc_info + '\n' + jitsharing_group_info  + '\n  ' + str(self.nvram) + ' KB NVRAM, ' + str(self.disk0) + \
                ' MB disk0 size, ' + str(self.disk1) + ' MB disk1 size' + '\n' + slot_info
 
@@ -3086,7 +3130,10 @@ class Router(Dynamips_device):
     def formatted_ghost_file(self):
         """ Return a properly formatted ghost_file for use with get/setghostfile"""
 
-        return self.imagename + '-' + self.dynamips.host  + '.ghost'
+        # Replace specials characters in 'drive:\filename' for Dynagen in Linux and Dynamips in MS Windows or viceversa.
+        tmpghst = self.imagename + '-' + self.dynamips.host  + '.ghost'
+        tmpghst = tmpghst.replace('\\','-').replace('/','-').replace(':','-')
+        return tmpghst
 
     def __getdynamips(self):
         """ Returns the dynamips server on which this device resides

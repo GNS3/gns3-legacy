@@ -135,7 +135,11 @@ class HypervisorManager(object):
         """
         
         if binding == None:
-            binding = self.dynamips.HypervisorManager_binding
+            if self.dynamips.HypervisorManager_binding:
+                binding = self.dynamips.HypervisorManager_binding
+            else:
+                debug("Hypervisor manager: warning: no default binding, defaulting to 127.0.0.1")
+                binding = '127.0.0.1'
 
         last_exception = None
         # give 15 seconds to the hypervisor to accept connections

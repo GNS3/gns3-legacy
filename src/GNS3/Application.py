@@ -564,6 +564,7 @@ class Application(QApplication, Singleton):
         # Restore the geometry & state of the GUI
         self.mainWindow.restoreGeometry(ConfDB().value("GUIState/Geometry").toByteArray())
         self.mainWindow.restoreState(ConfDB().value("GUIState/State").toByteArray())
+        self.mainWindow.action_ZoomLock.setChecked(ConfDB().value("GUIState/ZoomLock", QVariant(False)).toBool())
         self.mainWindow.show()
 
         force_clear_configuration = True
@@ -573,6 +574,7 @@ class Application(QApplication, Singleton):
             int(version)
         except:
             force_clear_configuration = False
+            pass
             # for future releases
             #if LooseVersion(VERSION) > version:
             #    pass
@@ -624,6 +626,7 @@ class Application(QApplication, Singleton):
             # Save the geometry & state of the GUI
             ConfDB().set("GUIState/Geometry", self.mainWindow.saveGeometry())
             ConfDB().set("GUIState/State", self.mainWindow.saveState())
+            ConfDB().set("GUIState/ZoomLock", self.mainWindow.action_ZoomLock.isChecked())
             self.syncConf()
 
         sys.exit(retcode)

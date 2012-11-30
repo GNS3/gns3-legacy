@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_Snapshots.ui'
 #
-# Created: Mon Sep 10 03:32:25 2012
-#      by: PyQt4 UI code generator 4.8.4
+# Created: Mon Nov 26 19:19:35 2012
+#      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -18,6 +18,7 @@ class Ui_Snapshots(object):
     def setupUi(self, Snapshots):
         Snapshots.setObjectName(_fromUtf8("Snapshots"))
         Snapshots.resize(496, 288)
+        Snapshots.setWindowTitle(QtGui.QApplication.translate("Snapshots", "Snapshots", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Snapshots.setWindowIcon(icon)
@@ -27,9 +28,11 @@ class Ui_Snapshots(object):
         self.SnapshotList.setObjectName(_fromUtf8("SnapshotList"))
         self.gridLayout.addWidget(self.SnapshotList, 0, 0, 1, 4)
         self.pushButtonCreate = QtGui.QPushButton(Snapshots)
+        self.pushButtonCreate.setText(QtGui.QApplication.translate("Snapshots", "Create", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonCreate.setObjectName(_fromUtf8("pushButtonCreate"))
         self.gridLayout.addWidget(self.pushButtonCreate, 1, 0, 1, 1)
         self.pushButtonLoad = QtGui.QPushButton(Snapshots)
+        self.pushButtonLoad.setText(QtGui.QApplication.translate("Snapshots", "Load", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonLoad.setObjectName(_fromUtf8("pushButtonLoad"))
         self.gridLayout.addWidget(self.pushButtonLoad, 1, 2, 1, 1)
         self.buttonBox = QtGui.QDialogButtonBox(Snapshots)
@@ -38,6 +41,7 @@ class Ui_Snapshots(object):
         self.buttonBox.setObjectName(_fromUtf8("buttonBox"))
         self.gridLayout.addWidget(self.buttonBox, 1, 3, 1, 1)
         self.pushButtonDelete = QtGui.QPushButton(Snapshots)
+        self.pushButtonDelete.setText(QtGui.QApplication.translate("Snapshots", "Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDelete.setObjectName(_fromUtf8("pushButtonDelete"))
         self.gridLayout.addWidget(self.pushButtonDelete, 1, 1, 1, 1)
 
@@ -47,9 +51,6 @@ class Ui_Snapshots(object):
         QtCore.QMetaObject.connectSlotsByName(Snapshots)
 
     def retranslateUi(self, Snapshots):
-        Snapshots.setWindowTitle(QtGui.QApplication.translate("Snapshots", "Snapshots", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonCreate.setText(QtGui.QApplication.translate("Snapshots", "Create", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonLoad.setText(QtGui.QApplication.translate("Snapshots", "Load", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonDelete.setText(QtGui.QApplication.translate("Snapshots", "Delete", None, QtGui.QApplication.UnicodeUTF8))
+        pass
 
 import svg_resources_rc

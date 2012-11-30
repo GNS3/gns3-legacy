@@ -66,7 +66,7 @@ background-none;
      <x>0</x>
      <y>0</y>
      <width>944</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -120,6 +120,7 @@ background-none;
     <addaction name="action_ZoomIn"/>
     <addaction name="action_ZoomOut"/>
     <addaction name="action_ZoomReset"/>
+    <addaction name="action_ZoomLock"/>
     <addaction name="separator"/>
     <addaction name="action_ShowLayers"/>
     <addaction name="action_ResetInterfaceLabels"/>
@@ -262,7 +263,7 @@ background-none;
     <enum>Qt::ToolButtonIconOnly</enum>
    </property>
    <attribute name="toolBarArea">
-    <enum>RightToolBarArea</enum>
+    <enum>LeftToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
     <bool>false</bool>
@@ -1304,6 +1305,14 @@ background-none;
   <action name="action_Deployement_Wizard">
    <property name="text">
     <string>Deployement Wizard</string>
+   </property>
+  </action>
+  <action name="action_ZoomLock">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Lock wheel zoom</string>
    </property>
   </action>
  </widget>

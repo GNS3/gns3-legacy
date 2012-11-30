@@ -293,6 +293,9 @@ class PyCutExt(QTextEdit):
         text  = e.text()
         key   = e.key()
 
+        # Keep the cursor after the last prompt.
+        self.moveCursor(QTextCursor.End)
+
         if key == Qt.Key_Backspace:
             if self.point:
                 cursor = self.textCursor()
@@ -393,14 +396,14 @@ class PyCutExt(QTextEdit):
 #             return 0
 #         return QTextEdit.focusNextPrevChild(self, next)
 
-    def mousePressEvent(self, e):
-        """
-        Keep the cursor after the last prompt.
-        """
-        if e.button() == Qt.LeftButton:
-            self.moveCursor(QTextCursor.End)
-
-        QTextEdit.mousePressEvent(self, e)
+#    def mousePressEvent(self, e):
+#        """
+#        Keep the cursor after the last prompt.
+#        """
+#        if e.button() == Qt.LeftButton:
+#            self.moveCursor(QTextCursor.End)
+#
+#        QTextEdit.mousePressEvent(self, e)
 
     def contentsContextMenuEvent(self,ev):
         """

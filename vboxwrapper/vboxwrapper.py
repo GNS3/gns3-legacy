@@ -204,6 +204,9 @@ class xVBOXInstance(object):
             pipe_name = None
 
         started = self.vbc.start(self.vmname, self.nics, self.udp, self.capture, self.netcard, self.first_nic_managed, self.headless_mode, pipe_name)
+        
+        if started:
+            self.vbc.setName(self.name)
 
         if started and self.console_support == 'True' and int(self.console) and self.console_telnet_server == 'True':
 
@@ -450,6 +453,7 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             self.handle_one_request()
             while not self.close_connection:
                 self.handle_one_request()
+            print "Disconnection from", self.client_address
         except socket.error, e:
             print >> sys.stderr, e
             self.request.close()
@@ -475,6 +479,9 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
 
         return tokens
 
+    def finish(self):
+        pass
+
     def handle_one_request(self):
         debugmsg(3, "VBoxWrapperRequestHandler::handle_one_request()")
         request = self.rfile.readline()
@@ -495,8 +502,10 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
         # Parse request.
         tokens = self.__get_tokens(request)
         if len(tokens) < 2:
-            self.send_reply(self.HSC_ERR_PARSING, 1,
-                            "At least a module and a command must be specified")
+            try:
+                self.send_reply(self.HSC_ERR_PARSING, 1, "At least a module and a command must be specified")
+            except socket.error:
+                self.close_connection = 1
             return
 
         module, command = tokens[:2]
