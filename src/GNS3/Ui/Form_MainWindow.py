@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Mon Nov 26 19:19:34 2012
+# Created: Thu Nov 29 18:09:55 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -643,6 +643,10 @@ class Ui_MainWindow(object):
         self.action_Deployement_Wizard = QtGui.QAction(MainWindow)
         self.action_Deployement_Wizard.setText(QtGui.QApplication.translate("MainWindow", "Deployement Wizard", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Deployement_Wizard.setObjectName(_fromUtf8("action_Deployement_Wizard"))
+        self.action_ZoomLock = QtGui.QAction(MainWindow)
+        self.action_ZoomLock.setCheckable(True)
+        self.action_ZoomLock.setText(QtGui.QApplication.translate("MainWindow", "Lock zoom", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ZoomLock.setObjectName(_fromUtf8("action_ZoomLock"))
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -670,6 +674,7 @@ class Ui_MainWindow(object):
         self.menu_View.addAction(self.action_ZoomIn)
         self.menu_View.addAction(self.action_ZoomOut)
         self.menu_View.addAction(self.action_ZoomReset)
+        self.menu_View.addAction(self.action_ZoomLock)
         self.menu_View.addSeparator()
         self.menu_View.addAction(self.action_ShowLayers)
         self.menu_View.addAction(self.action_ResetInterfaceLabels)
