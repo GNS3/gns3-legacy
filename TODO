@@ -30,6 +30,7 @@ Client/Server
 
  * Dynamips Management Server intended for teaching environments (not need to share an IOS image).
  * Client/Server protocol should become asynchronous, so users won't wait until all VMs actually start.
+ * Ostinato integration? (http://ostinato.org)
 
 Misc. (by Technologov)
 
