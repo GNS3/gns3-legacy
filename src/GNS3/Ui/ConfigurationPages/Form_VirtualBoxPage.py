@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ConfigurationPages/Form_VirtualBoxPage.ui'
+# Form implementation generated from reading ui file 'ConfigurationPages/Form_VirtualBoxPage.ui'
 #
-# Created: Mon Nov 26 19:19:38 2012
+# Created: Thu Nov 29 18:32:19 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -42,7 +42,7 @@ class Ui_VirtualBoxPage(object):
         self.spinBoxNics = QtGui.QSpinBox(VirtualBoxPage)
         self.spinBoxNics.setEnabled(True)
         self.spinBoxNics.setMinimum(2)
-        self.spinBoxNics.setMaximum(8)
+        self.spinBoxNics.setMaximum(36)
         self.spinBoxNics.setSingleStep(1)
         self.spinBoxNics.setProperty("value", 6)
         self.spinBoxNics.setObjectName(_fromUtf8("spinBoxNics"))

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesVirtualBox.ui'
+# Form implementation generated from reading ui file 'ConfigurationPages/Form_PreferencesVirtualBox.ui'
 #
-# Created: Mon Nov 26 19:19:39 2012
+# Created: Thu Nov 29 18:32:41 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -201,7 +201,7 @@ class Ui_PreferencesVirtualBox(object):
         self.VBoxNICNb = QtGui.QSpinBox(self.groupBox)
         self.VBoxNICNb.setEnabled(True)
         self.VBoxNICNb.setMinimum(1)
-        self.VBoxNICNb.setMaximum(8)
+        self.VBoxNICNb.setMaximum(36)
         self.VBoxNICNb.setSingleStep(1)
         self.VBoxNICNb.setProperty("value", 2)
         self.VBoxNICNb.setObjectName(_fromUtf8("VBoxNICNb"))

@@ -85,9 +85,7 @@ class VBoxController_4_1():
         debugmsg(2, "class VBoxController_4_1::__init__()")
         self.mgr = io_vboxManager
         self.vbox = self.mgr.vbox
-        #self.maxNics = self.vbox.systemProperties.networkAdapterCount    # VBox 4.0.
-        #self.maxNics = self.vbox.systemProperties.getMaxNetworkAdapters(self.mach.chipsetType) # VBox 4.1
-        self.maxNics = 8    # Workaround for VirtualBox 4.1
+        self.maxNics = 8
         self.constants = self.mgr.constants
         self.statBytesReceived = 0
         self.statBytesSent = 0
@@ -117,6 +115,8 @@ class VBoxController_4_1():
             debugmsg(1, "findMachine() FAILED")
             debugmsg(1, e)
             return False
+        # Maximum support network cards depends on the Chipset (PIIX3 or ICH9)
+        self.maxNics = self.vbox.systemProperties.getMaxNetworkAdapters(self.mach.chipsetType)
         if not self._safeGetSessionObject():
             return False
         if not self._safeNetOptions():
