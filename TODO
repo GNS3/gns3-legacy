@@ -8,7 +8,13 @@ GUI
  * Drag'n'drop a topology (.net file) inside GNS3
  * Create more 'Show advanced options' where there are too many options in Preferences.
  * New logo for GNS3?
- 
+ * Snap to grid would be a great option to align all routers in fixed and neat location
+ * Ability to change and set a font type to be the default for all your projects (including interface font size and type)
+ * Ability to centralise fonts (i.e description inside a project), align to the left, or align to the right (similar to notepad/Word)
+ * Ability to slightly change the colour or shades of the routers to add more customisable options (blue-ish colour would be nice).
+ * Ability to display the link bandwidth (right click then display bandwidth) which is read from the startup-config/running-config. I don't know how easy this can be, but studying routing and knowing what bandwidth each link, makes understanding routing protocols more interesting.
+ * Activity lights (http://forum.gns3.net/topic5026.html)
+
 OSX
 
  * Open .net files from Finder on Mac OS X (http://www.gns3.net/phpBB/topic1817.html)
@@ -30,6 +36,11 @@ Client/Server
 
  * Dynamips Management Server intended for teaching environments (not need to share an IOS image).
  * Client/Server protocol should become asynchronous, so users won't wait until all VMs actually start.
+
+Misc.
+
+ * Ostinato integration? (http://ostinato.org)
+ * Load custom flash files (e.g. with cme etc.)
 
 Misc. (by Technologov)
 

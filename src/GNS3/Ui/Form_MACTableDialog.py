@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_MACTableDialog.ui'
 #
-# Created: Sat Dec 01 18:30:18 2012
-#      by: PyQt4 UI code generator 4.9
+# Created: Sat Dec  1 10:30:18 2012
+#      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -18,6 +18,7 @@ class Ui_MACTableDialog(object):
     def setupUi(self, MACTableDialog):
         MACTableDialog.setObjectName(_fromUtf8("MACTableDialog"))
         MACTableDialog.resize(336, 252)
+        MACTableDialog.setWindowTitle(QtGui.QApplication.translate("MACTableDialog", "MAC Address Table", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MACTableDialog.setWindowIcon(icon)
@@ -27,9 +28,11 @@ class Ui_MACTableDialog(object):
         self.plainTextEditMACTable.setObjectName(_fromUtf8("plainTextEditMACTable"))
         self.gridLayout.addWidget(self.plainTextEditMACTable, 0, 0, 1, 3)
         self.pushButtonRefresh = QtGui.QPushButton(MACTableDialog)
+        self.pushButtonRefresh.setText(QtGui.QApplication.translate("MACTableDialog", "Refresh", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonRefresh.setObjectName(_fromUtf8("pushButtonRefresh"))
         self.gridLayout.addWidget(self.pushButtonRefresh, 1, 0, 1, 1)
         self.pushButtonClear = QtGui.QPushButton(MACTableDialog)
+        self.pushButtonClear.setText(QtGui.QApplication.translate("MACTableDialog", "Clear table", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonClear.setObjectName(_fromUtf8("pushButtonClear"))
         self.gridLayout.addWidget(self.pushButtonClear, 1, 1, 1, 1)
         self.buttonBox = QtGui.QDialogButtonBox(MACTableDialog)
@@ -41,8 +44,6 @@ class Ui_MACTableDialog(object):
         QtCore.QMetaObject.connectSlotsByName(MACTableDialog)
 
     def retranslateUi(self, MACTableDialog):
-        MACTableDialog.setWindowTitle(QtGui.QApplication.translate("MACTableDialog", "MAC Address Table", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonRefresh.setText(QtGui.QApplication.translate("MACTableDialog", "Refresh", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonClear.setText(QtGui.QApplication.translate("MACTableDialog", "Clear table", None, QtGui.QApplication.UnicodeUTF8))
+        pass
 
 import svg_resources_rc

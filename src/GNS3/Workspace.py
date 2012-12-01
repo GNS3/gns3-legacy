@@ -88,6 +88,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # By default, don't show the UndoView
         self.dockWidget_UndoView.hide()
+        
+        # By default, don't show the NodeTypes dock
+        self.dockWidget_NodeTypes.setVisible(False)
 
         # Add Undo & Redo actions to Edit menu
         action = globals.GApp.topology.undoStack.createUndoAction(self)
@@ -184,9 +187,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # Device menu is contextual and is build on-the-fly
         self.connect(self.menuDevice, QtCore.SIGNAL('aboutToShow()'), self.__action_ShowDeviceMenu)
-
-        # By default, don't show the NodeTypes dock                 # A bit dirty but doesn't work if put before
-        self.dockWidget_NodeTypes.setVisible(False)
 
     def __action_DisplayWizard(self):
         self.wizard = DeployementWizard()
@@ -1161,13 +1161,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         globals.GApp.workspace.setWindowTitle("GNS3")
+        temporary_project = False
         self.projectWorkdir = None
         self.projectConfigs = None
         (self.projectFile, self.projectWorkdir, self.projectConfigs, self.unbase) = settings
 
         # Create a project in a temporary location
         if not self.projectFile and not self.projectWorkdir and not self.projectConfigs:
-
+            temporary_project = True
             try:
                 projectDir = tempfile.mktemp()
                 projectDir = os.path.dirname(projectDir) + os.sep + 'GNS3_' + os.path.basename(projectDir)
@@ -1200,7 +1201,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         try:
                             shutil.copy(node.router.cnfg, self.projectConfigs)
                         except (OSError, IOError), e:
-                            debug("Warning: cannot copy " + file + " to " + self.projectConfigs)
+                            debug("Warning: cannot copy " + node.router.cnfg + " to " + self.projectConfigs)
                             continue
                         except:
                             continue
@@ -1272,7 +1273,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 except lib.DynamipsError, msg:
                     QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error %s: %s") % (self.projectWorkdir, unicode(msg)))
 
-        self.__action_Save()
+        if temporary_project == False:
+            self.__action_Save()
         self.setWindowTitle("GNS3 Project - " + os.path.split(os.path.dirname(self.projectFile))[1])
 
     def __action_Snapshot(self):

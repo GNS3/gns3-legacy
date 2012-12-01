@@ -36,7 +36,7 @@ class portTracker:
     try:
         local_addresses.append(socket.gethostbyname(socket.gethostname()))
     except:
-        # Dumb admin? rack fedora_std...
+        # Dumb admin?
         print "WARNING: Your host file miss an entry for " + socket.gethostname()
 
     def addLocalAddress(self, addr):

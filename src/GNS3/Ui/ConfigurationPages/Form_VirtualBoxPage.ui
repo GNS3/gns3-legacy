@@ -53,7 +53,7 @@
       <number>2</number>
      </property>
      <property name="maximum">
-      <number>8</number>
+      <number>36</number>
      </property>
      <property name="singleStep">
       <number>1</number>

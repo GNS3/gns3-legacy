@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_DecorativeNodePage.ui'
 #
-# Created: Mon Sep 10 03:32:28 2012
-#      by: PyQt4 UI code generator 4.8.4
+# Created: Sat Dec  1 10:30:21 2012
+#      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -18,13 +18,16 @@ class Ui_DecorativeNodePage(object):
     def setupUi(self, DecorativeNodePage):
         DecorativeNodePage.setObjectName(_fromUtf8("DecorativeNodePage"))
         DecorativeNodePage.resize(433, 443)
+        DecorativeNodePage.setWindowTitle(QtGui.QApplication.translate("DecorativeNodePage", "Decorative Node", None, QtGui.QApplication.UnicodeUTF8))
         self.gridlayout = QtGui.QGridLayout(DecorativeNodePage)
         self.gridlayout.setObjectName(_fromUtf8("gridlayout"))
         self.groupBox_11 = QtGui.QGroupBox(DecorativeNodePage)
+        self.groupBox_11.setTitle(QtGui.QApplication.translate("DecorativeNodePage", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_11.setObjectName(_fromUtf8("groupBox_11"))
         self.gridlayout1 = QtGui.QGridLayout(self.groupBox_11)
         self.gridlayout1.setObjectName(_fromUtf8("gridlayout1"))
         self.label_9 = QtGui.QLabel(self.groupBox_11)
+        self.label_9.setText(QtGui.QApplication.translate("DecorativeNodePage", "Interface name:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_9.setObjectName(_fromUtf8("label_9"))
         self.gridlayout1.addWidget(self.label_9, 0, 0, 1, 1)
         self.lineEditInterface = QtGui.QLineEdit(self.groupBox_11)
@@ -37,6 +40,7 @@ class Ui_DecorativeNodePage(object):
         self.gridlayout1.addWidget(self.lineEditInterface, 1, 0, 1, 1)
         self.gridlayout.addWidget(self.groupBox_11, 0, 0, 1, 2)
         self.groupBox_10 = QtGui.QGroupBox(DecorativeNodePage)
+        self.groupBox_10.setTitle(QtGui.QApplication.translate("DecorativeNodePage", "Interfaces", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_10.setObjectName(_fromUtf8("groupBox_10"))
         self.vboxlayout = QtGui.QVBoxLayout(self.groupBox_10)
         self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))
@@ -50,10 +54,12 @@ class Ui_DecorativeNodePage(object):
         self.vboxlayout.addWidget(self.listWidgetInterfaces)
         self.gridlayout.addWidget(self.groupBox_10, 0, 2, 3, 1)
         self.pushButtonAddInterface = QtGui.QPushButton(DecorativeNodePage)
+        self.pushButtonAddInterface.setText(QtGui.QApplication.translate("DecorativeNodePage", "&Add", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonAddInterface.setObjectName(_fromUtf8("pushButtonAddInterface"))
         self.gridlayout.addWidget(self.pushButtonAddInterface, 1, 0, 1, 1)
         self.pushButtonDeleteInterface = QtGui.QPushButton(DecorativeNodePage)
         self.pushButtonDeleteInterface.setEnabled(False)
+        self.pushButtonDeleteInterface.setText(QtGui.QApplication.translate("DecorativeNodePage", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonDeleteInterface.setObjectName(_fromUtf8("pushButtonDeleteInterface"))
         self.gridlayout.addWidget(self.pushButtonDeleteInterface, 1, 1, 1, 1)
         spacerItem = QtGui.QSpacerItem(20, 321, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
@@ -68,10 +74,5 @@ class Ui_DecorativeNodePage(object):
         DecorativeNodePage.setTabOrder(self.pushButtonDeleteInterface, self.listWidgetInterfaces)
 
     def retranslateUi(self, DecorativeNodePage):
-        DecorativeNodePage.setWindowTitle(QtGui.QApplication.translate("DecorativeNodePage", "Decorative Node", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox_11.setTitle(QtGui.QApplication.translate("DecorativeNodePage", "Settings", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_9.setText(QtGui.QApplication.translate("DecorativeNodePage", "Interface name:", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox_10.setTitle(QtGui.QApplication.translate("DecorativeNodePage", "Interfaces", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonAddInterface.setText(QtGui.QApplication.translate("DecorativeNodePage", "&Add", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButtonDeleteInterface.setText(QtGui.QApplication.translate("DecorativeNodePage", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
+        pass
 

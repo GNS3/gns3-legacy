@@ -1,5 +1,11 @@
 CHANGELOG
 
+GNS3 0.8.3.1
+
+	* Vboxwrapper recompilation to run with VirtualBox 4.2
+	* Support for access to the GNS3 VirtualBox VM name from inside a VM: VBoxControl guestproperty get NameInGNS3
+	* Minor fixes
+
 GNS3 0.8.3
 
   New features:

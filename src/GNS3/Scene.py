@@ -865,7 +865,7 @@ class Scene(QtGui.QGraphicsView):
         """ Zoom or scroll with the mouse wheel
         """
 
-        if event.orientation() == QtCore.Qt.Vertical:
+        if globals.GApp.workspace.action_ZoomLock.isChecked() == False and event.orientation() == QtCore.Qt.Vertical:
             self.scaleView(pow(2.0, event.delta() / 240.0))
 
     def keyPressEvent(self, event):

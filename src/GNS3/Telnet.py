@@ -58,10 +58,10 @@ def connect(host, port, name):
     try:
         console = globals.GApp.systconf['general'].term_cmd.strip()
         if console:
-            if globals.GApp.systconf['general'].bring_console_to_front:
-                if bringConsoleToFront(console, host, port, name):
-                    # On successful attempt, we skip further processing
-                    return (True)
+#            if globals.GApp.systconf['general'].bring_console_to_front:
+#                if bringConsoleToFront(console, host, port, name):
+#                    # On successful attempt, we skip further processing
+#                    return (True)
             console = console.replace('%h', host)
             console = console.replace('%p', str(port))
             console = console.replace('%d', name)

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_IDLEPCDialog.ui'
 #
-# Created: Sat Dec 01 18:29:26 2012
-#      by: PyQt4 UI code generator 4.9
+# Created: Sat Dec  1 10:30:19 2012
+#      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -19,12 +19,14 @@ class Ui_IDLEPCDialog(object):
         IDLEPCDialog.setObjectName(_fromUtf8("IDLEPCDialog"))
         IDLEPCDialog.resize(410, 108)
         IDLEPCDialog.setMinimumSize(QtCore.QSize(316, 108))
+        IDLEPCDialog.setWindowTitle(QtGui.QApplication.translate("IDLEPCDialog", "IDLE PC values", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         IDLEPCDialog.setWindowIcon(icon)
         self.gridLayout = QtGui.QGridLayout(IDLEPCDialog)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.label = QtGui.QLabel(IDLEPCDialog)
+        self.label.setText(QtGui.QApplication.translate("IDLEPCDialog", "Potentially better idlepc values are marked with \'*\'", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setObjectName(_fromUtf8("label"))
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self.comboBox = QtGui.QComboBox(IDLEPCDialog)
@@ -42,7 +44,6 @@ class Ui_IDLEPCDialog(object):
         QtCore.QMetaObject.connectSlotsByName(IDLEPCDialog)
 
     def retranslateUi(self, IDLEPCDialog):
-        IDLEPCDialog.setWindowTitle(QtGui.QApplication.translate("IDLEPCDialog", "IDLE PC values", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("IDLEPCDialog", "Potentially better idlepc values are marked with \'*\'", None, QtGui.QApplication.UnicodeUTF8))
+        pass
 
 import svg_resources_rc
