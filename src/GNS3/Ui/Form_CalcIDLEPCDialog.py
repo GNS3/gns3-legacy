@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_CalcIDLEPCDialog.ui'
 #
-# Created: Sat Oct 13 02:03:38 2012
-#      by: PyQt4 UI code generator 4.9.1
+# Created: Sat Dec 01 18:27:17 2012
+#      by: PyQt4 UI code generator 4.9
 #
 # WARNING! All changes made in this file will be lost!
 

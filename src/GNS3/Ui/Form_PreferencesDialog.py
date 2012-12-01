@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'Form_PreferencesDialog.ui'
 #
-# Created: Mon Sep 10 03:32:25 2012
-#      by: PyQt4 UI code generator 4.8.4
+# Created: Sat Dec 01 18:31:34 2012
+#      by: PyQt4 UI code generator 4.9
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -38,8 +38,8 @@ class Ui_PreferencesDialog(object):
         self.listWidget.setMaximumSize(QtCore.QSize(160, 16777215))
         font = QtGui.QFont()
         font.setPointSize(12)
-        font.setWeight(75)
         font.setBold(True)
+        font.setWeight(75)
         self.listWidget.setFont(font)
         self.listWidget.setObjectName(_fromUtf8("listWidget"))
         self.gridlayout.addWidget(self.listWidget, 0, 0, 1, 1)
