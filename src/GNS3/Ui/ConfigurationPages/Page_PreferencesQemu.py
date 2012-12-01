@@ -62,6 +62,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.connect(self.SaveQemuImage, QtCore.SIGNAL('clicked()'), self.slotSaveQemuImage)
         self.connect(self.DeleteQemuImage, QtCore.SIGNAL('clicked()'), self.slotDeleteQemuImage)
         self.connect(self.treeWidgetQemuImages,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotQemuImageSelectionChanged)
+        self.connect(self.QemuFlavor, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotQemuFlavorSelectionChanged)
 
         # PIX settings
         self.connect(self.PIXImage_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectPIXImage)
@@ -452,6 +453,24 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.QemucheckBoxUserMod.setCheckState(QtCore.Qt.Checked)
             else:
                 self.QemucheckBoxUserMod.setCheckState(QtCore.Qt.Unchecked)
+
+    def slotQemuFlavorSelectionChanged(self, index):
+        """ Change the NIC list to match the flavor
+        """
+        NicByFlavor = {
+            'Default':  ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82259er', 'ne2k_pci', 'pcnet', 'virtio', 'lance'], # Show all known NIC
+            '-i386':    ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82259er', 'ne2k_pci', 'pcnet', 'virtio'],
+            '-x86_64':  ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82259er', 'ne2k_pci', 'pcnet', 'virtio'],
+            '-arm':      ['lance'],
+        }
+
+        self.QemuNIC.clear()
+        flavor = str(self.QemuFlavor.currentText())
+        if flavor not in NicByFlavor:
+            print flavor
+            flavor = 'Default'
+        for nic in NicByFlavor[flavor]:
+            self.QemuNIC.addItem(nic)
 
     def slotSelectPIXImage(self):
         """ Get a PIX image from the file system
