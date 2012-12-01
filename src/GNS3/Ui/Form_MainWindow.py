@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Thu Nov 29 18:09:55 2012
+# Created: Sat Dec  1 10:30:17 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -645,7 +645,7 @@ class Ui_MainWindow(object):
         self.action_Deployement_Wizard.setObjectName(_fromUtf8("action_Deployement_Wizard"))
         self.action_ZoomLock = QtGui.QAction(MainWindow)
         self.action_ZoomLock.setCheckable(True)
-        self.action_ZoomLock.setText(QtGui.QApplication.translate("MainWindow", "Lock zoom", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ZoomLock.setText(QtGui.QApplication.translate("MainWindow", "Lock wheel zoom", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ZoomLock.setObjectName(_fromUtf8("action_ZoomLock"))
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)

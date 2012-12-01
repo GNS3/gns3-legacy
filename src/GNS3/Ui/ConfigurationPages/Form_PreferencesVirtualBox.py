@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ConfigurationPages/Form_PreferencesVirtualBox.ui'
+# Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesVirtualBox.ui'
 #
-# Created: Thu Nov 29 18:32:41 2012
+# Created: Sat Dec  1 10:30:21 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!

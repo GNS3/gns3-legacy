@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_ATMBRPage.ui'
 #
-# Created: Mon Nov 26 19:19:37 2012
+# Created: Sat Dec  1 10:30:20 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
