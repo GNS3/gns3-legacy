@@ -30,7 +30,7 @@ def debugmsg(level, message):
     if debuglevel >= level:
         print message
 
-import sys, time
+import sys, time, math
 import GNS3.Globals as globals
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.UndoFramework as undo
@@ -78,7 +78,7 @@ class Scene(QtGui.QGraphicsView):
         self.setRenderHint(QtGui.QPainter.Antialiasing)
         self.setTransformationAnchor(self.AnchorUnderMouse)
         self.setResizeAnchor(self.AnchorViewCenter)
-        #self.setDragMode(QtGui.QGraphicsView.ScrollHandDrag)
+        #self.setDragMode(QtGui.QGraphicsView.ScrollHandDrag) #FIXME
 
         self.newedge = None
         self.resetAddingLink()
@@ -926,9 +926,12 @@ class Scene(QtGui.QGraphicsView):
                 nbOfDevices = DragDropMultipleDevicesDialog.getNbOfDevices(dialog)
             else:
                 nbOfDevices = 1
-                
+            
+            # Define the radius of the circle to be drawn when multiple-dropping devices
+            radius = nbOfDevices * 35
+            
             for i in range(nbOfDevices):
-
+            
                 if object == None:
                     return
                 node = object(renderer_normal, renderer_select)
@@ -942,9 +945,16 @@ class Scene(QtGui.QGraphicsView):
             
                 self.__topology.addNodeFromScene(node)
 
-                # Center the node
-                pos_x = node.pos().x() - (node.boundingRect().width() / 2)
-                pos_y = node.pos().y() - (node.boundingRect().height() / 2)
+                # Determine center of the node (or set of nodes)
+                x_center = node.pos().x() - (node.boundingRect().width() / 2)
+                y_center = node.pos().y() - (node.boundingRect().height() / 2)
+                
+                # Compute circle arrangement
+                period = math.pi + ((2 * math.pi / nbOfDevices) * i)
+                pos_x = radius * math.cos(period) + x_center
+                pos_y = radius * math.sin(period) + y_center
+                
+                # Set node position on the scene
                 node.setPos(pos_x, pos_y)
 
                 event.setDropAction(QtCore.Qt.MoveAction)

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_DragAndDropMultiDevices.ui'
 #
-# Created: Sat Dec 01 18:29:07 2012
+# Created: Sun Dec 02 18:13:51 2012
 #      by: PyQt4 UI code generator 4.9
 #
 # WARNING! All changes made in this file will be lost!
@@ -29,7 +29,7 @@ class Ui_DragDropMultipleDevices(object):
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.nbOfDevices = QtGui.QSpinBox(self.groupBox)
         self.nbOfDevices.setMinimum(1)
-        self.nbOfDevices.setMaximum(10)
+        self.nbOfDevices.setMaximum(50)
         self.nbOfDevices.setProperty("value", 2)
         self.nbOfDevices.setObjectName(_fromUtf8("nbOfDevices"))
         self.gridLayout.addWidget(self.nbOfDevices, 1, 2, 1, 1)
