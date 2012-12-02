@@ -97,7 +97,7 @@ class nodesDock(QtGui.QTreeWidget):
         item.setDisabled(True)
 
         # If the device is a bridge, switch or cloud, no need to register an image so enable it
-        if symbol['type'] == 'Other Device' or symbol['type'] == 'Switch':
+        if not symbol.has_key('type') or symbol['type'] == 'Other Device' or symbol['type'] == 'Switch':
             item.setDisabled(False)
             return
         # Check if an IOS image is registered

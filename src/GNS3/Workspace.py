@@ -596,7 +596,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog.exec_()
         globals.GApp.scene.reloadRenderers()
         self.nodesDock.clear()
-        self.nodesDock.populateNodeDock()
+        self.nodesDock.populateNodeDock(globals.GApp.workspace.dockWidget_NodeTypes.windowTitle())
 
     def __action_Undo(self):
         """ Implement the QAction `Undo'
