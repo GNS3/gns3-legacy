@@ -62,16 +62,17 @@ class nodesDock(QtGui.QTreeWidget):
             self.addTopLevelItem(parent_emulated_devices)
             self.expandItem(parent_emulated_devices)
             
-            parent_decorative_nodes = QtGui.QTreeWidgetItem()
-            parent_decorative_nodes.setText(0, translate('nodesDock', 'Decorative nodes'))
-            parent_decorative_nodes.setIcon(0,  QtGui.QIcon(':/icons/package.svg'))
-            parent_decorative_nodes.setFlags(QtCore.Qt.ItemIsEnabled)
-            self.addTopLevelItem(parent_decorative_nodes)
-            self.expandItem(parent_decorative_nodes)
+            if nodeType == 'All devices':
+                parent_decorative_nodes = QtGui.QTreeWidgetItem()
+                parent_decorative_nodes.setText(0, translate('nodesDock', 'Decorative nodes'))
+                parent_decorative_nodes.setIcon(0,  QtGui.QIcon(':/icons/package.svg'))
+                parent_decorative_nodes.setFlags(QtCore.Qt.ItemIsEnabled)
+                self.addTopLevelItem(parent_decorative_nodes)
+                self.expandItem(parent_decorative_nodes)
         
         count = 0
         for symbol in SYMBOLS:
-            if nodeType != 'All devices' and 'type' in symbol and symbol['type'] != nodeType:
+            if nodeType != 'All devices' and (not symbol.has_key('type') or symbol['type'] != nodeType):
                 count += 1
                 continue
             if symbol['object'] == DecorativeNode:
