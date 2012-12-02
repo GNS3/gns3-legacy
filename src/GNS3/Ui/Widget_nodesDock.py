@@ -71,7 +71,7 @@ class nodesDock(QtGui.QTreeWidget):
         
         count = 0
         for symbol in SYMBOLS:
-            if nodeType != 'All' and 'type' in symbol and symbol['type'] != nodeType:
+            if nodeType != 'All devices' and 'type' in symbol and symbol['type'] != nodeType:
                 count += 1
                 continue
             if symbol['object'] == DecorativeNode:
@@ -93,13 +93,8 @@ class nodesDock(QtGui.QTreeWidget):
              and if not disable it graphically so it can't be drag & drop'ed """
 
         node = symbol['object']
-        # By default, all items are disabled
-        item.setDisabled(True)
+        item.setDisabled(symbol['checkForImage'])
 
-        # If the device is a bridge, switch or cloud, no need to register an image so enable it
-        if symbol['type'] == 'Other Device' or symbol['type'] == 'Switch':
-            item.setDisabled(False)
-            return
         # Check if an IOS image is registered
         if issubclass(node, IOSRouter):
             if len(globals.GApp.iosimages.keys()) == 0:

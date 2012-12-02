@@ -190,7 +190,6 @@ background-none;
    </attribute>
    <addaction name="action_Open"/>
    <addaction name="action_Save"/>
-   <addaction name="separator"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget_NodeTypes">
    <property name="enabled">
@@ -209,7 +208,7 @@ background-none;
     <string>Node Types</string>
    </property>
    <attribute name="dockWidgetArea">
-    <number>2</number>
+    <number>1</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_NodeTypes">
     <layout class="QVBoxLayout">
@@ -274,11 +273,7 @@ background-none;
    <addaction name="separator"/>
    <addaction name="action_EndDevices"/>
    <addaction name="separator"/>
-   <addaction name="action_Firewall"/>
-   <addaction name="separator"/>
-   <addaction name="action_IDS"/>
-   <addaction name="separator"/>
-   <addaction name="action_OtherDevices"/>
+   <addaction name="action_SecurityDevices"/>
    <addaction name="separator"/>
    <addaction name="action_BrowseAllDevices"/>
    <addaction name="separator"/>
@@ -314,57 +309,6 @@ background-none;
    <addaction name="action_StopAll"/>
    <addaction name="action_ReloadAll"/>
    <addaction name="action_ShowVirtualBoxManager"/>
-  </widget>
-  <widget class="QDockWidget" name="dockWidget_TopoSum">
-   <property name="sizePolicy">
-    <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-     <horstretch>0</horstretch>
-     <verstretch>0</verstretch>
-    </sizepolicy>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>83</width>
-     <height>108</height>
-    </size>
-   </property>
-   <property name="allowedAreas">
-    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
-   </property>
-   <property name="windowTitle">
-    <string>Topology Summary</string>
-   </property>
-   <attribute name="dockWidgetArea">
-    <number>1</number>
-   </attribute>
-   <widget class="QWidget" name="dockWidgetContents_7">
-    <layout class="QGridLayout">
-     <property name="margin">
-      <number>0</number>
-     </property>
-     <property name="spacing">
-      <number>0</number>
-     </property>
-     <item row="0" column="0">
-      <widget class="topologySummaryDock" name="treeWidget_TopologySummary">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="statusTip">
-        <string>Topology Summary</string>
-       </property>
-       <column>
-        <property name="text">
-         <string>1</string>
-        </property>
-       </column>
-      </widget>
-     </item>
-    </layout>
-   </widget>
   </widget>
   <widget class="QDockWidget" name="dockWidget_Console">
    <property name="maximumSize">
@@ -462,7 +406,7 @@ background-none;
     <string>Captures</string>
    </property>
    <attribute name="dockWidgetArea">
-    <number>1</number>
+    <number>2</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_2">
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -497,6 +441,57 @@ background-none;
        <column>
         <property name="text">
          <string>Interface</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dockWidget_TopoSum">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>83</width>
+     <height>108</height>
+    </size>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>Topology Summary</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_7">
+    <layout class="QGridLayout">
+     <property name="margin">
+      <number>0</number>
+     </property>
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="topologySummaryDock" name="treeWidget_TopologySummary">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="statusTip">
+        <string>Topology Summary</string>
+       </property>
+       <column>
+        <property name="text">
+         <string>1</string>
         </property>
        </column>
       </widget>
@@ -1147,10 +1142,10 @@ background-none;
      <activeoff>:/icons/router-hover.png</activeoff>:/icons/router.png</iconset>
    </property>
    <property name="text">
-    <string>Router</string>
+    <string>Routers</string>
    </property>
    <property name="toolTip">
-    <string>Router</string>
+    <string>Routers</string>
    </property>
    <property name="statusTip">
     <string>Select Router</string>
@@ -1163,10 +1158,10 @@ background-none;
      <activeoff>:/icons/switch-hover.png</activeoff>:/icons/switch.png</iconset>
    </property>
    <property name="text">
-    <string>Switch</string>
+    <string>Switches</string>
    </property>
    <property name="toolTip">
-    <string>Switch</string>
+    <string>Switches</string>
    </property>
    <property name="statusTip">
     <string>Select Switch</string>
@@ -1188,52 +1183,20 @@ background-none;
     <string>Select End device</string>
    </property>
   </action>
-  <action name="action_OtherDevices">
-   <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/other-devices.png</normaloff>
-     <activeoff>:/icons/other-devices-hover.png</activeoff>:/icons/other-devices.png</iconset>
-   </property>
-   <property name="text">
-    <string>Other devices</string>
-   </property>
-   <property name="toolTip">
-    <string>Other devices</string>
-   </property>
-   <property name="statusTip">
-    <string>Select Other devices</string>
-   </property>
-  </action>
-  <action name="action_Firewall">
+  <action name="action_SecurityDevices">
    <property name="icon">
     <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
      <normaloff>:/icons/firewall.png</normaloff>
      <activeoff>:/icons/firewall-hover.png</activeoff>:/icons/firewall.png</iconset>
    </property>
    <property name="text">
-    <string>Firewall</string>
+    <string>Security devices</string>
    </property>
    <property name="toolTip">
-    <string>Firewall</string>
+    <string>Security devices</string>
    </property>
    <property name="statusTip">
     <string>Select Firewall</string>
-   </property>
-  </action>
-  <action name="action_IDS">
-   <property name="icon">
-    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">
-     <normaloff>:/icons/ids.png</normaloff>
-     <activeoff>:/icons/ids-hover.png</activeoff>:/icons/ids.png</iconset>
-   </property>
-   <property name="text">
-    <string>IDS</string>
-   </property>
-   <property name="toolTip">
-    <string>IDS</string>
-   </property>
-   <property name="statusTip">
-    <string>Select Intrusion Detection System</string>
    </property>
   </action>
   <action name="action_HighContrastStyle">

@@ -148,9 +148,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_Router, QtCore.SIGNAL('triggered()'), self.__action_Router)
         self.connect(self.action_Switch, QtCore.SIGNAL('triggered()'), self.__action_Switch)
         self.connect(self.action_EndDevices, QtCore.SIGNAL('triggered()'), self.__action_EndDevices)
-        self.connect(self.action_Firewall, QtCore.SIGNAL('triggered()'), self.__action_Firewall)
-        self.connect(self.action_IDS, QtCore.SIGNAL('triggered()'), self.__action_IDS)
-        self.connect(self.action_OtherDevices, QtCore.SIGNAL('triggered()'), self.__action_OtherDevices)
+        self.connect(self.action_SecurityDevices, QtCore.SIGNAL('triggered()'), self.__action_SecurityDevices)
         self.connect(self.action_DefaultStyle, QtCore.SIGNAL('triggered()'), self.__action_DefaultStyle)
         self.connect(self.action_EnergySavingStyle, QtCore.SIGNAL('triggered()'), self.__action_EnergySavingStyle)
         self.connect(self.action_HighContrastStyle, QtCore.SIGNAL('triggered()'), self.__action_HighContrastStyle)
@@ -675,57 +673,35 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.nodesDock.clear()
             self.nodesDock.populateNodeDock(type)
 
-#    def disableUnconfiguredDevices(self):
-
-#        try:
-#               iosConfig = None
-#                if isinstance(node, IOSRouter):
- #                   if len(globals.GApp.iosimages.keys()) == 0:
- #                       # no IOS images configured, users have to register an IOS
-  #                      QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), translate("Topology", "Please register at least one IOS image"))
-  #                      return False
-
     def __action_BrowseAllDevices(self):
         """ Display all devices from all categories.
         """
 
-        self.__doSlidingWindow('All')
+        self.__doSlidingWindow('All devices')
 
     def __action_Router(self):
-        """ Display all devices in the "router" category.
+        """ Display all devices in the "routers" category.
         """
 
-        self.__doSlidingWindow('Router')
+        self.__doSlidingWindow('Routers')
 
     def __action_Switch(self):
-        """ Display all devices in the "switch" category.
+        """ Display all devices in the "switches" category.
         """
 
-        self.__doSlidingWindow('Switch')
+        self.__doSlidingWindow('Switches')
 
     def __action_EndDevices(self):
         """ Display all devices in the "end device" category.
         """
 
-        self.__doSlidingWindow('End Device')
+        self.__doSlidingWindow('End devices')
 
-    def __action_Firewall(self):
-        """ Display all devices in the "firewall" category.
+    def __action_SecurityDevices(self):
+        """ Display all devices in the "security devices" category.
         """
 
-        self.__doSlidingWindow('Firewall')
-
-    def __action_IDS(self):
-        """ Display all devices in the "IDS" category.
-        """
-
-        self.__doSlidingWindow('IDS')
-
-    def __action_OtherDevices(self):
-        """ Display all devices in the "other devices" category.
-        """
-
-        self.__doSlidingWindow('Other Device')
+        self.__doSlidingWindow('Security devices')
 
     def __action_DefaultStyle(self):
         """ Restore/Put stylesheet back to normal (and destroy the planet)
