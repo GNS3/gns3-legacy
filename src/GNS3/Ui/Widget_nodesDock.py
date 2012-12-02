@@ -93,7 +93,7 @@ class nodesDock(QtGui.QTreeWidget):
              and if not disable it graphically so it can't be drag & drop'ed """
 
         node = symbol['object']
-        item.setDisabled(symbol['checkForImage'])
+        item.setDisabled(symbol.has_key('checkForImage') and symbol['checkForImage'])
 
         # Check if an IOS image is registered
         if issubclass(node, IOSRouter):
