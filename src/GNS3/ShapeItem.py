@@ -131,7 +131,7 @@ class AbstractShapeItem(object):
 
     def hoverMoveEvent(self, event):
 
-        # objects on the background layer doesn't need cursors
+        # objects on the background layer don't need cursors
         if self.zValue() >= 0:
             if event.pos().x() > (self.rect().right() - self.border):
                 globals.GApp.scene.setCursor(QtCore.Qt.SizeHorCursor)
