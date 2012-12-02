@@ -924,11 +924,17 @@ class Scene(QtGui.QGraphicsView):
 
             if dialog is not None:
                 nbOfDevices = DragDropMultipleDevicesDialog.getNbOfDevices(dialog)
+                arrangement = DragDropMultipleDevicesDialog.getArrangement(dialog)
             else:
                 nbOfDevices = 1
+                arrangement = None
             
             # Define the radius of the circle to be drawn when multiple-dropping devices
             radius = nbOfDevices * 35
+            # Max number of devices on a single line
+            maxDevPerLine = 5
+            # Spacing between elements
+            offset = 100
             
             for i in range(nbOfDevices):
             
@@ -945,14 +951,21 @@ class Scene(QtGui.QGraphicsView):
             
                 self.__topology.addNodeFromScene(node)
 
-                # Determine center of the node (or set of nodes)
-                x_center = node.pos().x() - (node.boundingRect().width() / 2)
-                y_center = node.pos().y() - (node.boundingRect().height() / 2)
-                
-                # Compute circle arrangement
-                period = math.pi + ((2 * math.pi / nbOfDevices) * i)
-                pos_x = radius * math.cos(period) + x_center
-                pos_y = radius * math.sin(period) + y_center
+                # Compute circle or line(s) arrangement
+                if arrangement is not None:
+                    if arrangement == "Circle":
+                        # Determine center of the node (or set of nodes)
+                        x_center = node.pos().x() - (node.boundingRect().width() / 2)
+                        y_center = node.pos().y() - (node.boundingRect().height() / 2)
+                        period = math.pi + ((2 * math.pi / nbOfDevices) * i)
+                        pos_x = radius * math.cos(period) + x_center
+                        pos_y = radius * math.sin(period) + y_center
+                    elif arrangement == "Line":
+                        pos_x = node.pos().x() - (node.boundingRect().width() / 2) + (i % maxDevPerLine) * offset
+                        pos_y = node.pos().y() - (node.boundingRect().height() / 2) + (i / maxDevPerLine) * offset
+                else:
+                    pos_x = node.pos().x() - (node.boundingRect().width() / 2)
+                    pos_y = node.pos().y() - (node.boundingRect().height() / 2)
                 
                 # Set node position on the scene
                 node.setPos(pos_x, pos_y)

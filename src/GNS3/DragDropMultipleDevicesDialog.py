@@ -52,3 +52,10 @@ class DragDropMultipleDevicesDialog(QtGui.QDialog, Ui_DragDropMultipleDevices):
     def getNbOfDevices(self):
         
         return self.nbOfDevices.value()
+        
+    def getArrangement(self):
+    
+        if self.LineArrangement_radioButton.isChecked():
+            return "Line"
+        else:
+            return "Circle"
