@@ -66,7 +66,7 @@ background-none;
      <x>0</x>
      <y>0</y>
      <width>944</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -1196,7 +1196,7 @@ background-none;
     <string>Security devices</string>
    </property>
    <property name="statusTip">
-    <string>Select Firewall</string>
+    <string>Select Security device</string>
    </property>
   </action>
   <action name="action_HighContrastStyle">
