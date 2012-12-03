@@ -66,7 +66,7 @@ background-none;
      <x>0</x>
      <y>0</y>
      <width>944</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_Edit">
@@ -120,7 +120,8 @@ background-none;
     <addaction name="action_ZoomIn"/>
     <addaction name="action_ZoomOut"/>
     <addaction name="action_ZoomReset"/>
-    <addaction name="action_ZoomLock"/>
+    <addaction name="action_ZoomUsingMouseWheel"/>
+    <addaction name="action_DisableMouseWheel"/>
     <addaction name="separator"/>
     <addaction name="action_ShowLayers"/>
     <addaction name="action_ResetInterfaceLabels"/>
@@ -1270,12 +1271,26 @@ background-none;
     <string>Deployement Wizard</string>
    </property>
   </action>
-  <action name="action_ZoomLock">
+  <action name="action_DisableMouseWheel">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Lock wheel zoom</string>
+    <string>Disable Mouse Wheel</string>
+   </property>
+   <property name="toolTip">
+    <string>Disable Mouse Wheel</string>
+   </property>
+  </action>
+  <action name="action_ZoomUsingMouseWheel">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Zoom using Mouse Wheel</string>
+   </property>
+   <property name="toolTip">
+    <string>Zoom in/out using the mouse whee</string>
    </property>
   </action>
  </widget>

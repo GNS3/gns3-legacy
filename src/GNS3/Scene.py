@@ -865,8 +865,11 @@ class Scene(QtGui.QGraphicsView):
         """ Zoom or scroll with the mouse wheel
         """
 
-        if globals.GApp.workspace.action_ZoomLock.isChecked() == False and event.orientation() == QtCore.Qt.Vertical:
+        if globals.GApp.workspace.action_DisableMouseWheel.isChecked() == False and globals.GApp.workspace.action_ZoomUsingMouseWheel.isChecked() and event.orientation() == QtCore.Qt.Vertical:
             self.scaleView(pow(2.0, event.delta() / 240.0))
+
+        elif globals.GApp.workspace.action_DisableMouseWheel.isChecked() == False:
+            QtGui.QGraphicsView.wheelEvent(self, event)
 
     def keyPressEvent(self, event):
         """ key press handler
@@ -1064,7 +1067,9 @@ class Scene(QtGui.QGraphicsView):
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
         else:
             if item is not None:
-                item.setSelected(True)
+                item.setSelected(False)
+                for other_item in self.__topology.selectedItems():
+                    other_item.setSelected(False)
             QtGui.QGraphicsView.mouseReleaseEvent(self, event)
 
     def mouseDoubleClickEvent(self, event):

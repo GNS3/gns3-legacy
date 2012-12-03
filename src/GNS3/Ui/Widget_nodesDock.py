@@ -22,12 +22,10 @@
 from PyQt4 import QtCore, QtGui
 import GNS3.Globals as globals
 from GNS3.Utils import translate
-from GNS3.Node.DecorativeNode import DecorativeNode
 from GNS3.Globals.Symbols import SYMBOLS
-import GNS3.Dynagen.dynamips_lib as lib
 from GNS3.Node.IOSRouter import IOSRouter
-from GNS3.Node.AnyEmuDevice import QemuDevice, PIX, ASA, AnyEmuDevice, JunOS, IDS
-from GNS3.Node.AnyVBoxEmuDevice import VBoxDevice, AnyVBoxEmuDevice
+from GNS3.Node.AnyEmuDevice import QemuDevice, PIX, ASA, JunOS, IDS
+from GNS3.Node.AnyVBoxEmuDevice import VBoxDevice
 
 class nodesDock(QtGui.QTreeWidget):
     """ Class for managing the node types list
@@ -44,41 +42,12 @@ class nodesDock(QtGui.QTreeWidget):
         """
 
         self.clear()
-        decorative_symbol_present = False
-        for symbol in SYMBOLS:
-            if symbol['object'] == DecorativeNode:
-                decorative_symbol_present = True
-                break
-        
-        parent_emulated_devices = self
-        parent_decorative_nodes = self
-
-        if decorative_symbol_present:
-        
-            parent_emulated_devices = QtGui.QTreeWidgetItem()
-            parent_emulated_devices.setText(0, translate('nodesDock', 'Emulated devices'))
-            parent_emulated_devices.setIcon(0,  QtGui.QIcon(':/icons/package.svg'))
-            parent_emulated_devices.setFlags(QtCore.Qt.ItemIsEnabled)
-            self.addTopLevelItem(parent_emulated_devices)
-            self.expandItem(parent_emulated_devices)
-            
-            if nodeType == 'All devices':
-                parent_decorative_nodes = QtGui.QTreeWidgetItem()
-                parent_decorative_nodes.setText(0, translate('nodesDock', 'Decorative nodes'))
-                parent_decorative_nodes.setIcon(0,  QtGui.QIcon(':/icons/package.svg'))
-                parent_decorative_nodes.setFlags(QtCore.Qt.ItemIsEnabled)
-                self.addTopLevelItem(parent_decorative_nodes)
-                self.expandItem(parent_decorative_nodes)
-        
         count = 0
         for symbol in SYMBOLS:
             if nodeType != 'All devices' and (not symbol.has_key('type') or symbol['type'] != nodeType):
                 count += 1
                 continue
-            if symbol['object'] == DecorativeNode:
-                item = QtGui.QTreeWidgetItem(parent_decorative_nodes, 1000 + count)
-            else:    
-                item = QtGui.QTreeWidgetItem(parent_emulated_devices, 1000 + count)
+            item = QtGui.QTreeWidgetItem(self, 1000 + count)
             if symbol['translated']:
                 item.setText(0, translate("nodesDock", symbol['name']))
                 item.setData(0, QtCore.Qt.UserRole, QtCore.QVariant(symbol['name']))
