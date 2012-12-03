@@ -1064,7 +1064,7 @@ class Scene(QtGui.QGraphicsView):
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
         else:
             if item is not None:
-                item.setSelected(False)
+                item.setSelected(True)
             QtGui.QGraphicsView.mouseReleaseEvent(self, event)
 
     def mouseDoubleClickEvent(self, event):

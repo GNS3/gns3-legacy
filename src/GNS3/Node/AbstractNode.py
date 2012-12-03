@@ -303,6 +303,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         self.setCustomToolTip()
         if not self.isSelected() and self.__render_select:
             self.setSharedRenderer(self.__render_select)
+            if not globals.addingLinkFlag:
+                globals.GApp.scene.setCursor(QtCore.Qt.OpenHandCursor)
 
     def hoverLeaveEvent(self, event):
         """ Called when the mouse leaves the node
@@ -310,6 +312,8 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         if not self.isSelected() and self.__render_select:
             self.setSharedRenderer(self.__render_normal)
+            if not globals.addingLinkFlag:
+                globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
 
     def addEdge(self, edge):
         """ Save the edge
@@ -370,8 +374,15 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Connection"),  translate("AbstractNode", "Already connected interface") )
                     return
                 self.emit(QtCore.SIGNAL("Add link"), self.id,  self.__selectedInterface)
-
+        else:
+            globals.GApp.scene.setCursor(QtCore.Qt.ClosedHandCursor)
         QtSvg.QGraphicsSvgItem.mousePressEvent(self, event)
+
+    def mouseReleaseEvent(self, event):
+
+        if not globals.addingLinkFlag:
+            globals.GApp.scene.setCursor(QtCore.Qt.OpenHandCursor)
+        QtGui.QGraphicsItem.mouseReleaseEvent(self, event)
 
     def getConnectedInterfaceList(self):
         """ Returns a list of all the connected local interfaces

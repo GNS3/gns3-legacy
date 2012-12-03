@@ -565,6 +565,9 @@ class Application(QApplication, Singleton):
         self.mainWindow.restoreGeometry(ConfDB().value("GUIState/Geometry").toByteArray())
         self.mainWindow.restoreState(ConfDB().value("GUIState/State").toByteArray())
         self.mainWindow.action_ZoomLock.setChecked(ConfDB().value("GUIState/ZoomLock", QVariant(False)).toBool())
+
+        # By default, don't show the NodeTypes dock
+        self.mainWindow.dockWidget_NodeTypes.setVisible(False)
         self.mainWindow.show()
 
         force_clear_configuration = True

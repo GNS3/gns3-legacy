@@ -88,9 +88,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # By default, don't show the UndoView
         self.dockWidget_UndoView.hide()
-        
-        # By default, don't show the NodeTypes dock
-        self.dockWidget_NodeTypes.setVisible(False)
 
         # Add Undo & Redo actions to Edit menu
         action = globals.GApp.topology.undoStack.createUndoAction(self)
