@@ -141,7 +141,7 @@
              <number>65535</number>
             </property>
             <property name="value">
-             <number>10000</number>
+             <number>10001</number>
             </property>
            </widget>
           </item>
@@ -154,7 +154,7 @@
              <number>65535</number>
             </property>
             <property name="value">
-             <number>2000</number>
+             <number>2001</number>
             </property>
            </widget>
           </item>
@@ -167,7 +167,7 @@
              <number>65535</number>
             </property>
             <property name="value">
-             <number>2500</number>
+             <number>2501</number>
             </property>
            </widget>
           </item>

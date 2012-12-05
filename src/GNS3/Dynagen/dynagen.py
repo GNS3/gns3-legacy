@@ -195,7 +195,7 @@ class Dynagen:
         self.globalconfig = {}  # A global copy of the config that console.py can access
         self.global_filename = 'lab.net'
         self.autostart_value = False
-        self.globaludp = 10000  # The default base UDP port for NIO
+        self.globaludp = 10001  # The default base UDP port for NIO
         self.global_qemu_udp = 20000   # The default base UDP port for NIO on Qemuwrapper
         self.global_vbox_udp = 20900   # The default base UDP port for NIO on VBoxwrapper
         self.useridledbfile = ''  # The filespec of the idle database
