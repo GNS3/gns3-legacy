@@ -129,6 +129,9 @@ class Topology(QtGui.QGraphicsScene):
         self.undoStack.clear()
         globals.interfaceLabels.clear()
         for n_key in self.__nodes.copy().iterkeys():
+            node = self.getNode(n_key)
+            if node and globals.GApp.systconf['general'].term_close_on_delete:
+                node.closeAllConsoles()
             self.deleteNode(n_key)
         self.__nodes = {}
         while len(self.__links) > 0:

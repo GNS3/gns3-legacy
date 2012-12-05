@@ -79,19 +79,25 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
     def __del__(self):
 
         if globals.GApp.systconf['general'].term_close_on_delete:
-            # closing terminal programs
-            for console in self.consoleProcesses:
-                console.poll()
-                if console.returncode == None:
-                    # the process hasn't returned yet (still active)
-                    debug("Sending terminate signal to terminal program (pid %i)" % console.pid)
-                    try:
-                        console.terminate()
-                    except:
-                        debug("Error while sending the signal to terminal program (pid %i)" % console.pid)
-                        continue
+            self.closeAllConsoles()
+
+    def closeAllConsoles(self):
+        """ Close all opened terminal programs
+        """
+
+        # closing terminal programs
+        for console in self.consoleProcesses:
+            console.poll()
+            if console.returncode == None:
+                # the process hasn't returned yet (still active)
+                debug("Sending terminate signal to terminal program (pid %i)" % console.pid)
+                try:
+                    console.terminate()
+                except:
+                    debug("Error while sending the signal to terminal program (pid %i)" % console.pid)
+                    continue
         self.consoleProcesses = []
-        
+
     def clearClosedConsoles(self):
         """ Refresh the list of opened terminal programs.
         """
