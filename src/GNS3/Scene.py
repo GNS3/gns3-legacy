@@ -208,6 +208,18 @@ class Scene(QtGui.QGraphicsView):
                 self.connect(displayWindowHideAct, QtCore.SIGNAL('triggered()'), self.slotDisplayWindowHide)
                 menu.addAction(displayWindowHideAct)
 
+            # Action: Change the console port
+            consolePortAct = QtGui.QAction(translate('Scene', 'Change console port'), menu)
+            consolePortAct.setIcon(QtGui.QIcon(':/icons/console_port.svg'))
+            self.connect(consolePortAct, QtCore.SIGNAL('triggered()'), self.slotChangeConsolePort)
+            menu.addAction(consolePortAct)
+
+            # Action: Console (Connect to the node console)
+            consoleAct = QtGui.QAction(translate('Scene', 'Console'), menu)
+            consoleAct.setIcon(QtGui.QIcon(':/icons/console.svg'))
+            self.connect(consoleAct, QtCore.SIGNAL('triggered()'), self.slotConsole)
+            menu.addAction(consoleAct)
+
             # Action: Capture traffic on an interface
             captureAct = QtGui.QAction(translate('Scene', 'Capture'), menu)
             captureAct.setIcon(QtGui.QIcon(':/icons/inspect.svg'))

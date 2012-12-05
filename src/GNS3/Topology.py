@@ -454,7 +454,6 @@ class Topology(QtGui.QGraphicsScene):
                     return False
 
         node.set_hypervisor(self.dynagen.dynamips[vbox_name])
-
         return True
 
     def addNodeFromScene(self, node):

@@ -403,9 +403,10 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
                 if sys.platform.startswith('win'):
                     pipe_name = r'\\.\pipe\VBOX\%s' % pipe_name
                 elif os.path.exists(self.emu_vboxdev.dynamips.workingdir):
-                    pipe_name = self.emu_vboxdev.dynamips.workingdir + os.sep + "vbox_pipe_to_%s" % pipe_name
+                    pipe_name = self.emu_vboxdev.dynamips.workingdir + os.sep + "pipe_%s" % pipe_name
                 else:
-                    pipe_name = "/tmp/vbox_pipe_to_%s" % pipe_name
+                    pipe_name = "/tmp/pipe_%s" % pipe_name
+                print pipe_name
                 proc = console.pipe_connect(self.hostname, pipe_name)
             else:
                 proc = console.connect(self.emu_vboxdev.dynamips.host, self.emu_vboxdev.console, self.hostname)

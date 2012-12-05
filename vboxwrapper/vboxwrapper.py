@@ -189,6 +189,7 @@ class xVBOXInstance(object):
 
     def start(self):
         debugmsg(2, "xVBOXInstance::start()")
+        global WORKDIR
         self.vmname = self.image
 
         if self.console_support == 'True':
@@ -196,10 +197,10 @@ class xVBOXInstance(object):
             pipe_name = p.sub("_", self.vmname)
             if sys.platform.startswith('win'):
                 pipe_name = r'\\.\pipe\VBOX\%s' % pipe_name
-            elif os.path.exists(self.workdir):
-                pipe_name = self.workdir + os.sep + "vbox_pipe_to_%s" % pipe_name
+            elif os.path.exists(WORKDIR):
+                pipe_name = WORKDIR + os.sep + "pipe_%s" % pipe_name
             else:
-                pipe_name = "/tmp/vbox_pipe_to_%s" % pipe_name
+                pipe_name = "/tmp/pipe_%s" % pipe_name
         else:
             pipe_name = None
 
@@ -618,8 +619,9 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
             global WORKDIR
             WORKDIR = working_dir
             print "Working directory is now %s" % WORKDIR
-            for vbox_name in VBOX_INSTANCES.keys():
-                VBOX_INSTANCES[vbox_name].workdir = os.path.join(working_dir, VBOX_INSTANCES[vbox_name].name)
+            # VBOX doesn't need a working directory ... for now
+            #for vbox_name in VBOX_INSTANCES.keys():
+            #    VBOX_INSTANCES[vbox_name].workdir = os.path.join(working_dir, VBOX_INSTANCES[vbox_name].name)
             self.send_reply(self.HSC_INFO_OK, 1, "OK")
         except OSError, e:
             self.send_reply(self.HSC_ERR_INV_PARAM, 1,

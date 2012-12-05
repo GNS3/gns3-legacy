@@ -208,7 +208,7 @@ class GNS_Conf(object):
             hyp_port = c.get(cgroup + "/port",  '7200')
             hyp_host = c.get(cgroup + "/host", unicode(''))
             hyp_wdir = c.get(cgroup + "/working_directory", unicode(''))
-            hyp_baseUDP = c.get(cgroup + "/base_udp", '10000')
+            hyp_baseUDP = c.get(cgroup + "/base_udp", '10001')
             hyp_baseConsole = c.get(cgroup + "/base_console", '2000')
             hyp_baseAUX = c.get(cgroup + "/base_aux", '0')
 

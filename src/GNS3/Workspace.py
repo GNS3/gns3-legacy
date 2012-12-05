@@ -1143,9 +1143,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if not self.projectFile and not self.projectWorkdir and not self.projectConfigs:
             temporary_project = True
             try:
-                projectDir = tempfile.mktemp()
-                projectDir = os.path.dirname(projectDir) + os.sep + 'GNS3_' + os.path.basename(projectDir)
-                os.makedirs(projectDir)
+                projectDir = tempfile.mkdtemp(prefix='GNS3_')
+                #projectDir = os.path.dirname(projectDir) + os.sep + 'GNS3_' + os.path.basename(projectDir)
+                #os.makedirs(projectDir)
                 self.projectWorkdir = os.path.normpath(projectDir + os.sep + 'workdir')
                 self.projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
                 self.projectFile = os.path.normpath(projectDir + os.sep + 'topology.net')
