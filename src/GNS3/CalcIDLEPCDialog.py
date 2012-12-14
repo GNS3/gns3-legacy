@@ -34,6 +34,8 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
 
     def __init__(self, iosDialog):
 
+        if globals.GApp.HypervisorManager.preloadDynamips() == False:
+            iosDialog.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Couldn't preload Dynamips. Check configuration."))
         QtGui.QDialog.__init__(self, iosDialog)
         self.setupUi(self)
         self.iosDialog = iosDialog
