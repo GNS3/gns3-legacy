@@ -458,10 +458,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         """ Change the NIC list to match the flavor
         """
         NicByFlavor = {
-            'Default':  ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82259er', 'ne2k_pci', 'pcnet', 'virtio', 'lance'], # Show all known NIC
+            'Default':  ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82259er', 'ne2k_pci', 'pcnet', 'virtio', 'lance', 'smc91c111'], # Show all known NIC
             '-i386':    ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82259er', 'ne2k_pci', 'pcnet', 'virtio'],
             '-x86_64':  ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82259er', 'ne2k_pci', 'pcnet', 'virtio'],
-            '-arm':      ['lance'],
+            '-sparc':   ['lance'],
+            '-arm':     ['smc91c111'],
         }
 
         self.QemuNIC.clear()
