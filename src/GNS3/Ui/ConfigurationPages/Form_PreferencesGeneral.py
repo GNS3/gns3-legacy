@@ -179,7 +179,7 @@ class Ui_PreferencesGeneral(object):
         self.doubleSpinBoxConsoleDelay.setSuffix(QtGui.QApplication.translate("PreferencesGeneral", " seconds", None, QtGui.QApplication.UnicodeUTF8))
         self.doubleSpinBoxConsoleDelay.setDecimals(1)
         self.doubleSpinBoxConsoleDelay.setMinimum(0.0)
-        self.doubleSpinBoxConsoleDelay.setSingleStep(0.5)
+        self.doubleSpinBoxConsoleDelay.setSingleStep(1)
         self.doubleSpinBoxConsoleDelay.setProperty("value", 1.0)
         self.doubleSpinBoxConsoleDelay.setObjectName(_fromUtf8("doubleSpinBoxConsoleDelay"))
         self.gridLayout.addWidget(self.doubleSpinBoxConsoleDelay, 10, 0, 1, 1)
