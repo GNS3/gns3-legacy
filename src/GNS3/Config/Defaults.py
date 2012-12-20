@@ -23,7 +23,7 @@ from GNS3.Utils import translate
 
 # Default path to Dynamips executable
 if sys.platform.startswith('win'):
-    DYNAMIPS_DEFAULT_PATH = unicode('Dynamips-0.2.8-RC4-community\dynamips-0.2.8-RC4-community.exe')
+    DYNAMIPS_DEFAULT_PATH = unicode('dynamips.exe')
 elif sys.platform.startswith('darwin'):
     if hasattr(sys, "frozen"):
         DYNAMIPS_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/dynamips-0.2.8-RC3-community-OSX.intel64.bin'
@@ -342,7 +342,7 @@ conf_hypervisor_defaults = {
     'port': 7200,
     'workdir': '',
     'baseUDP': 10001,
-    'baseConsole': 2001,
+    'baseConsole': 2101,
     'baseAUX': 2501,
     'used_ram':0,
 }

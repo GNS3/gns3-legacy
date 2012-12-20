@@ -246,7 +246,7 @@ class Ui_IOSDialog(object):
         self.spinBoxBaseConsole.setSuffix(_fromUtf8(" TCP"))
         self.spinBoxBaseConsole.setMinimum(1)
         self.spinBoxBaseConsole.setMaximum(65535)
-        self.spinBoxBaseConsole.setProperty("value", 2001)
+        self.spinBoxBaseConsole.setProperty("value", 2101)
         self.spinBoxBaseConsole.setObjectName(_fromUtf8("spinBoxBaseConsole"))
         self.gridlayout3.addWidget(self.spinBoxBaseConsole, 3, 3, 1, 2)
         self.label_5 = QtGui.QLabel(self.groupBox_4)
