@@ -6,7 +6,6 @@ hostname %h-SW
 no ip routing
 no ip domain lookup
 no ip icmp rate-limit unreachable
-ip domain name lab.local
 ip tcp synwait 5
 !
 !
@@ -153,10 +152,10 @@ exit
 banner exec 
 
 ***************************************************************
-This is a normal Router with a SW module inside (NM-16ESW)
-It has been preconfigured with hard-code speed and duplex
+This is a normal Router with a Switch module inside (NM-16ESW)
+It has been pre-configured with hard-coded speed and duplex
 
-To create vlans use the command "vlan database" from exec mode
+To create vlans use the command "vlan database" in exec mode
 After creating all desired vlans use "exit" to apply the config
 
 To view existing vlans use the command "show vlan-switch brief"

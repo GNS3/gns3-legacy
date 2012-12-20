@@ -522,7 +522,7 @@ conf_systemDynamips_defaults = {
     'workdir': '',
     'clean_workdir': True,
     'baseUDP': 10001,
-    'baseConsole': 2001,
+    'baseConsole': 2101,
     'baseAUX': 2501,
     'ghosting': True,
     'jitsharing': False,

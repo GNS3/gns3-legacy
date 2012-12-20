@@ -406,7 +406,6 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
                     pipe_name = self.emu_vboxdev.dynamips.workingdir + os.sep + "pipe_%s" % pipe_name
                 else:
                     pipe_name = "/tmp/pipe_%s" % pipe_name
-                print pipe_name
                 proc = console.pipe_connect(self.hostname, pipe_name)
             else:
                 proc = console.connect(self.emu_vboxdev.dynamips.host, self.emu_vboxdev.console, self.hostname)

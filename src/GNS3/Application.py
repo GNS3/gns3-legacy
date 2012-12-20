@@ -395,7 +395,7 @@ class Application(QApplication, Singleton):
         confo.path = ConfDB().get('Dynamips/hypervisor_path', Defaults.DYNAMIPS_DEFAULT_PATH)
         confo.port = int(ConfDB().get('Dynamips/hypervisor_port', 7200))
         confo.baseUDP = int(ConfDB().get('Dynamips/hypervisor_baseUDP', 10001))
-        confo.baseConsole = int(ConfDB().get('Dynamips/hypervisor_baseConsole', 2001))
+        confo.baseConsole = int(ConfDB().get('Dynamips/hypervisor_baseConsole', 2101))
         confo.baseAUX = int(ConfDB().get('Dynamips/hypervisor_baseAUX', 2501))
         confo.workdir = ConfDB().get('Dynamips/hypervisor_working_directory', Defaults.DYNAMIPS_DEFAULT_WORKDIR)
         confo.clean_workdir = ConfDB().value("Dynamips/clean_working_directory", QVariant(True)).toBool()
