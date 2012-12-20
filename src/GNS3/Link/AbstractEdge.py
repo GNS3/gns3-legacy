@@ -127,7 +127,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
         self.length = math.sqrt(self.dx * self.dx + self.dy * self.dy)
 
         # multi-links management
-        if not self.fake and self.multi:
+        if not self.fake and self.multi and self.length:
             angle = math.radians(90)
             self.dxrot = math.cos(angle) * self.dx - math.sin(angle) *  self.dy
             self.dyrot = math.sin(angle) * self.dx + math.cos(angle) * self.dy
