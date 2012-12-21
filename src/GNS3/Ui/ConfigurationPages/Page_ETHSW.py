@@ -39,6 +39,7 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
         self.connect(self.pushButtonDelete, QtCore.SIGNAL('clicked()'), self.slotDeletePort)
         self.connect(self.treeWidgetPorts,  QtCore.SIGNAL('itemActivated(QTreeWidgetItem *, int)'),  self.slotPortselected)
         self.connect(self.treeWidgetPorts,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotPortSelectionChanged)
+        self.connect(self.comboBoxPortType, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotPortTypeChanged)
 
         # enable sorting
         self.treeWidgetPorts.sortByColumn(0, QtCore.Qt.AscendingOrder)
@@ -69,6 +70,16 @@ class Page_ETHSW(QtGui.QWidget, Ui_ETHSWPage):
             self.pushButtonDelete.setEnabled(True)
         else:
             self.pushButtonDelete.setEnabled(False)
+
+    def slotPortTypeChanged(self, index):
+        """ Gray out VLAN box when dot1q is selected
+        """
+
+        if index == 1:
+            # index 1 is dot1q
+            self.spinBoxVLAN.setEnabled(False)
+        else:
+            self.spinBoxVLAN.setEnabled(True)
 
     def slotAddPort(self):
         """ Add a new port
