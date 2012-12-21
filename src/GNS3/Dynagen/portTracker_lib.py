@@ -133,8 +133,9 @@ class portTracker:
             host = 'localhost'
         if self.tcptrack.has_key(host) and port in self.tcptrack[host]:
             return False
-        if not self.getAvailableTcpPort(host, port, 0):
-            return False
+        # forced to do this as sometimes the port of a (just) closed application is not considered free
+        #if not self.getAvailableTcpPort(host, port, 0):
+        #    return False
         return True
 
     def freeTcpPort(self, host, port):
