@@ -228,7 +228,7 @@ background-none;
         </sizepolicy>
        </property>
        <property name="statusTip">
-        <string>Select Node Type (keep SHIFT key pressed wile drag &amp; dropping the device to add several identical items to the topology)</string>
+        <string>Select Node Type (press SHIFT while dragging a device to add several identical items to your topology)</string>
        </property>
        <property name="iconSize">
         <size>

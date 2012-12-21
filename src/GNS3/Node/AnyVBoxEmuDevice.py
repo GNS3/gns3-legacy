@@ -200,9 +200,7 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
 
         assert(self.emu_vboxdev)
         interfaces = []
-        #VBox interfaces: start counting from 1 (e1, e2, e3 ...)
-        #for i in range(self.emu_vboxdev.nics):
-        for i in range(1, self.emu_vboxdev.nics + 1):
+        for i in range(self.emu_vboxdev.nics):
             interfaces.append('e' + str(i))
         return (interfaces)
 
@@ -213,7 +211,7 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         if self.local_config['first_nic_managed']:
             AbstractNode.showMenuInterface(self)
         else:
-            AbstractNode.showMenuInterface(self, ['e1'])
+            AbstractNode.showMenuInterface(self, ['e0'])
 
     def get_dynagen_device(self):
         """ Returns the dynagen device corresponding to this bridge

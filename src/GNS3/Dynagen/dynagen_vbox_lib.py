@@ -319,7 +319,7 @@ class AnyVBoxEmuDevice(object):
         self._console_telnet_server = self.defaults['console_telnet_server']
 
         self.nios = {}
-        for i in range(self._nics + 1):
+        for i in range(self._nics):
             self.nios[i] = None
 
         send(self.p, 'vbox create %s %s' % (self.vbox_dev_type, self.name))
@@ -517,7 +517,7 @@ class AnyVBoxEmuDevice(object):
         send(self.p, 'vbox setattr %s nics %s' % (self.name, str(nics)))
         self._nics = nics
         new_nios = {}
-        for i in range(self._nics + 1):
+        for i in range(self._nics):
             if self.nios.has_key(i):
                 new_nios[i] = self.nios[i]
             else:
@@ -939,10 +939,10 @@ class AnyVBoxEmuDevice(object):
         from qemu_lib import AnyEmuDevice
         # hide vbox internal interface (self._nics - 1)
         slot_info = '   Slot 0 hardware is ' + self._netcard + ' with ' + str(self._nics) + ' Ethernet interfaces\n'
-        ignore_ports = [0] # port 0 doesn't exists
+        ignore_ports = []
         if not self._first_nic_managed:
-            slot_info = slot_info + "      Ethernet1 is the VirtualBox management interface\n"
-            ignore_ports.append(1) # port 1 is the VirtualBox management interface
+            slot_info = slot_info + "      Ethernet0 is the VirtualBox management interface\n"
+            ignore_ports.append(0) # port 0 is the VirtualBox management interface
         for port in self.nios:
             if port in ignore_ports:
                 continue

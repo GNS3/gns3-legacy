@@ -178,12 +178,13 @@ class VBoxController_4_1():
             debugmsg(3, "mach2=self.session.machine FAILED ! Skipping shutdown of interfaces...")
             return True
 
-        for vnic in range(1, self.maxNics):
-            debugmsg(3, "Disabling managed netadp %s" % str(vnic))
-            if not self._safeDisableNetAdpFromMachine(mach2, vnic):
-                debugmsg(3, "Disabling managed netadp %s FAILED, skipped." % str(vnic))
-                #Return True anyway, so VM state in GNS3 can become "stopped"
-                return True
+#        #for vnic in range(start_nic, int(self.nics)):
+#        for vnic in range(1, self.maxNics):
+#            debugmsg(3, "Disabling managed netadp %s" % str(vnic))
+#            if not self._safeDisableNetAdpFromMachine(mach2, vnic):
+#                debugmsg(3, "Disabling managed netadp %s FAILED, skipped." % str(vnic))
+#                #Return True anyway, so VM state in GNS3 can become "stopped"
+#                return True
         self._safeSaveSettings(mach2)  #Doesn't matter if command returns True or False...
         self._safeUnlockMachine()  #Doesn't matter if command returns True or False...
         return True
@@ -386,16 +387,15 @@ class VBoxController_4_1():
 
         if self.first_nic_managed == 'True':
             # first nic is managed by GNS3
-            start_nic = 1
+            start_nic = 0
         else:
             # We leave vNIC #1 (vnic = 0) for VirtualBox management purposes
-            start_nic = 2
+            start_nic = 1
 
-        for vnic in range(start_nic, int(self.nics) + 1):
-            # By design, we leave vNIC #1 (vnic = 0) for VirtualBox management purposes
+        for vnic in range(start_nic, int(self.nics)):
             try:
                 # Vbox API starts counting from 0
-                netadp = mach2.getNetworkAdapter(vnic-1)
+                netadp = mach2.getNetworkAdapter(vnic)
                 #netadp = mach2.getNetworkAdapter(0)
             except:
                 #Usually due to COM Error on loaded hosts: "The object is not ready"
@@ -455,9 +455,9 @@ class VBoxController_4_1():
                 if not self._safeEnableCapture(netadp, self.capture[vnic]):
                     return False
 
-        for vnic in range(int(self.nics)+1, self.maxNics):
+        for vnic in range(int(self.nics), self.maxNics):
             debugmsg(3, "Disabling remaining netadp %s" % str(vnic))
-            if not self._safeDisableNetAdpFromMachine(mach2, vnic-1):
+            if not self._safeDisableNetAdpFromMachine(mach2, vnic):
                 return False
         if not self._safeSaveSettings(mach2):
             return False
