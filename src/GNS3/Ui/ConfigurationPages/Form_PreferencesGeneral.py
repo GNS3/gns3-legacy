@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
+# Form implementation generated from reading ui file 'ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Sat Dec  1 10:30:21 2012
+# Created: Fri Dec 21 17:34:05 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -179,7 +179,7 @@ class Ui_PreferencesGeneral(object):
         self.doubleSpinBoxConsoleDelay.setSuffix(QtGui.QApplication.translate("PreferencesGeneral", " seconds", None, QtGui.QApplication.UnicodeUTF8))
         self.doubleSpinBoxConsoleDelay.setDecimals(1)
         self.doubleSpinBoxConsoleDelay.setMinimum(0.0)
-        self.doubleSpinBoxConsoleDelay.setSingleStep(1)
+        self.doubleSpinBoxConsoleDelay.setSingleStep(0.5)
         self.doubleSpinBoxConsoleDelay.setProperty("value", 1.0)
         self.doubleSpinBoxConsoleDelay.setObjectName(_fromUtf8("doubleSpinBoxConsoleDelay"))
         self.gridLayout.addWidget(self.doubleSpinBoxConsoleDelay, 10, 0, 1, 1)
@@ -207,12 +207,12 @@ class Ui_PreferencesGeneral(object):
         self.tabWidget.addTab(self.tab_3, _fromUtf8(""))
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName(_fromUtf8("tab_2"))
-        self.gridlayout = QtGui.QGridLayout(self.tab_2)
-        self.gridlayout.setObjectName(_fromUtf8("gridlayout"))
+        self.gridLayout_6 = QtGui.QGridLayout(self.tab_2)
+        self.gridLayout_6.setObjectName(_fromUtf8("gridLayout_6"))
         self.label_5 = QtGui.QLabel(self.tab_2)
         self.label_5.setText(QtGui.QApplication.translate("PreferencesGeneral", "Workspace width:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setObjectName(_fromUtf8("label_5"))
-        self.gridlayout.addWidget(self.label_5, 0, 0, 1, 1)
+        self.gridLayout_6.addWidget(self.label_5, 0, 0, 1, 1)
         self.workspaceWidth = QtGui.QSpinBox(self.tab_2)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -225,11 +225,11 @@ class Ui_PreferencesGeneral(object):
         self.workspaceWidth.setSingleStep(100)
         self.workspaceWidth.setProperty("value", 2000)
         self.workspaceWidth.setObjectName(_fromUtf8("workspaceWidth"))
-        self.gridlayout.addWidget(self.workspaceWidth, 0, 1, 1, 1)
+        self.gridLayout_6.addWidget(self.workspaceWidth, 0, 1, 1, 1)
         self.label_6 = QtGui.QLabel(self.tab_2)
         self.label_6.setText(QtGui.QApplication.translate("PreferencesGeneral", "Workspace height:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_6.setObjectName(_fromUtf8("label_6"))
-        self.gridlayout.addWidget(self.label_6, 1, 0, 1, 1)
+        self.gridLayout_6.addWidget(self.label_6, 1, 0, 1, 1)
         self.workspaceHeight = QtGui.QSpinBox(self.tab_2)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -242,24 +242,28 @@ class Ui_PreferencesGeneral(object):
         self.workspaceHeight.setSingleStep(100)
         self.workspaceHeight.setProperty("value", 1000)
         self.workspaceHeight.setObjectName(_fromUtf8("workspaceHeight"))
-        self.gridlayout.addWidget(self.workspaceHeight, 1, 1, 1, 1)
+        self.gridLayout_6.addWidget(self.workspaceHeight, 1, 1, 1, 1)
         self.checkBoxDrawRectangle = QtGui.QCheckBox(self.tab_2)
         self.checkBoxDrawRectangle.setText(QtGui.QApplication.translate("PreferencesGeneral", "Draw a rectangle when an item is selected", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxDrawRectangle.setChecked(True)
         self.checkBoxDrawRectangle.setObjectName(_fromUtf8("checkBoxDrawRectangle"))
-        self.gridlayout.addWidget(self.checkBoxDrawRectangle, 2, 0, 1, 2)
+        self.gridLayout_6.addWidget(self.checkBoxDrawRectangle, 2, 0, 1, 2)
         self.checkBoxManualConnections = QtGui.QCheckBox(self.tab_2)
         self.checkBoxManualConnections.setText(QtGui.QApplication.translate("PreferencesGeneral", "Always use manual mode when adding links", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxManualConnections.setChecked(True)
         self.checkBoxManualConnections.setObjectName(_fromUtf8("checkBoxManualConnections"))
-        self.gridlayout.addWidget(self.checkBoxManualConnections, 3, 0, 1, 2)
+        self.gridLayout_6.addWidget(self.checkBoxManualConnections, 3, 0, 1, 2)
         self.checkBoxShowStatusPoints = QtGui.QCheckBox(self.tab_2)
         self.checkBoxShowStatusPoints.setText(QtGui.QApplication.translate("PreferencesGeneral", "Show link status points on the workspace", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxShowStatusPoints.setChecked(True)
         self.checkBoxShowStatusPoints.setObjectName(_fromUtf8("checkBoxShowStatusPoints"))
-        self.gridlayout.addWidget(self.checkBoxShowStatusPoints, 4, 0, 1, 2)
+        self.gridLayout_6.addWidget(self.checkBoxShowStatusPoints, 4, 0, 1, 2)
+        self.checkBoxAutoCloseNodePanel = QtGui.QCheckBox(self.tab_2)
+        self.checkBoxAutoCloseNodePanel.setText(QtGui.QApplication.translate("PreferencesGeneral", "Automatically close the node panel when adding a new node", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxAutoCloseNodePanel.setObjectName(_fromUtf8("checkBoxAutoCloseNodePanel"))
+        self.gridLayout_6.addWidget(self.checkBoxAutoCloseNodePanel, 5, 0, 1, 2)
         spacerItem4 = QtGui.QSpacerItem(20, 251, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridlayout.addItem(spacerItem4, 5, 1, 1, 1)
+        self.gridLayout_6.addItem(spacerItem4, 6, 1, 1, 1)
         self.tabWidget.addTab(self.tab_2, _fromUtf8(""))
         self.gridLayout_5.addWidget(self.tabWidget, 0, 0, 1, 1)
 
