@@ -176,7 +176,7 @@ if platform.system() == 'Linux' or platform.system().__contains__("BSD"):
                             'Gnome Terminal (Linux/BSD)': 'gnome-terminal -t %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
                             'KDE Konsole (Linux/BSD)': '/usr/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &'
                             }
-elif platform.system() == 'Windows'  and os.path.exists("C:\Program Files (x86)\\"):
+elif platform.system() == 'Windows' and os.path.exists("C:\Program Files (x86)\\"):
     TERMINAL_PRESET_CMDS = {
                             'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt %d -gns3 5',
                             'SuperPutty (Windows)': 'SuperPutty.exe -telnet "%h -P %p -wt \"%d\" -gns3 5 -skin 4"',
@@ -222,13 +222,19 @@ else:  # For unknown platforms, or if detection failed, we list all options.
 if sys.platform.startswith('darwin'):
     TERMINAL_DEFAULT_CMD = unicode(TERMINAL_PRESET_CMDS['Terminal (Mac OS X)'])
 elif sys.platform.startswith('win'):
-    TERMINAL_DEFAULT_CMD = unicode(TERMINAL_PRESET_CMDS['Putty (Windows, included with GNS3)'])
+    if os.path.exists(os.getcwdu() + os.sep + "SuperPutty.exe"):
+        TERMINAL_DEFAULT_CMD = unicode(TERMINAL_PRESET_CMDS['SuperPutty (Windows)'])
+    else:
+        TERMINAL_DEFAULT_CMD = unicode(TERMINAL_PRESET_CMDS['Putty (Windows, included with GNS3)'])
 else:
     TERMINAL_DEFAULT_CMD = unicode(TERMINAL_PRESET_CMDS['xterm (Linux/BSD)'])
 
 # Default terminal serial command
 if sys.platform.startswith('win'):
-    TERMINAL_SERIAL_DEFAULT_CMD = unicode('putty.exe -serial %s -wt "%d [Local Console]" -gns3 5')
+    if os.path.exists(os.getcwdu() + os.sep + "SuperPutty.exe"):
+        TERMINAL_SERIAL_DEFAULT_CMD = unicode('SuperPutty.exe -serial "%s -wt \"%d\" -gns3 5 -skin 4"')
+    else:
+        TERMINAL_SERIAL_DEFAULT_CMD = unicode('putty.exe -serial %s -wt "%d [Local Console]" -gns3 5')
 elif sys.platform.startswith('darwin'):
     TERMINAL_SERIAL_DEFAULT_CMD = unicode("/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"socat UNIX-CONNECT:%s stdio,raw,echo=0 ; exit\"'")
 else:
@@ -566,7 +572,7 @@ conf_systemGeneral_defaults = {
     'use_shell': True,
     'bring_console_to_front': False,
     'term_serial_cmd': '',
-    'term_close_on_delete': False,
+    'term_close_on_delete': True,
     'project_path': '.',
     'ios_path': '.',
     'status_points': True,

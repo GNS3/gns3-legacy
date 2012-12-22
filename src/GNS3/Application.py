@@ -495,7 +495,7 @@ class Application(QApplication, Singleton):
         confo.bring_console_to_front = ConfDB().value("GNS3/bring_console_to_front", QVariant(False)).toBool()
         confo.term_cmd = ConfDB().get('GNS3/console', Defaults.TERMINAL_DEFAULT_CMD)
         confo.term_serial_cmd = ConfDB().get('GNS3/serial_console', Defaults.TERMINAL_SERIAL_DEFAULT_CMD)
-        confo.term_close_on_delete = ConfDB().value("GNS3/term_close_on_delete", QVariant(False)).toBool()
+        confo.term_close_on_delete = ConfDB().value("GNS3/term_close_on_delete", QVariant(True)).toBool()
         confo.project_path = ConfDB().get('GNS3/project_directory', Defaults.PROJECT_DEFAULT_DIR)
         confo.ios_path = ConfDB().get('GNS3/ios_directory', Defaults.IOS_DEFAULT_DIR)
         confo.status_points = ConfDB().value("GNS3/gui_show_status_points", QVariant(True)).toBool()
