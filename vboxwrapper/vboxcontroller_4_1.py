@@ -178,8 +178,14 @@ class VBoxController_4_1():
             debugmsg(3, "mach2=self.session.machine FAILED ! Skipping shutdown of interfaces...")
             return True
 
-#        #for vnic in range(start_nic, int(self.nics)):
-#        for vnic in range(1, self.maxNics):
+#        if self.first_nic_managed == 'True':
+#            # first nic is managed by GNS3
+#            start_nic = 0
+#        else:
+#            # We leave vNIC #1 (vnic = 0) for VirtualBox management purposes
+#            start_nic = 1
+#
+#        for vnic in range(start_nic, int(self.nics)):
 #            debugmsg(3, "Disabling managed netadp %s" % str(vnic))
 #            if not self._safeDisableNetAdpFromMachine(mach2, vnic):
 #                debugmsg(3, "Disabling managed netadp %s FAILED, skipped." % str(vnic))
