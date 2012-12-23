@@ -28,7 +28,7 @@
 debuglevel = 0
 
 #qemuprotocol: 0=old, 1=experimental
-qemuprotocol = 1
+qemuprotocol = 0
 
 import csv
 import cStringIO
@@ -167,25 +167,25 @@ class xEMUInstance(object):
         debugmsg(2, "xEMUInstance::start()")
         command = self._build_command()
 
-        # Prepare the socket taking care of Qemu monitor mode
-        for res in socket.getaddrinfo('localhost', self.monitor_port, socket.AF_UNSPEC, socket.SOCK_STREAM):
-            af, socktype, proto, cannonname, sa = res
-            try:
-                self.monitor_sock = socket.socket(af, socktype, proto)
-            except socket.error, msg:
-                self.monitor_sock = None
-                continue
-            try:
-                self.monitor_sock.bind(sa)
-                self.monitor_sock.listen(1) # Allow only one connection
-            except socket.error, msg:
-                self.monitor_sock.close()
-                self.monitor_sock = None
-                continue
-            break
-        if self.monitor_sock is None:
-            print >> sys.stderr, 'Unable to open socket for monitor mode on localhost:' + self.monitor_port
-            return False
+##        # Prepare the socket taking care of Qemu monitor mode
+##        for res in socket.getaddrinfo('localhost', self.monitor_port, socket.AF_UNSPEC, socket.SOCK_STREAM):
+##            af, socktype, proto, cannonname, sa = res
+##            try:
+##                self.monitor_sock = socket.socket(af, socktype, proto)
+##            except socket.error, msg:
+##                self.monitor_sock = None
+##                continue
+##            try:
+##                self.monitor_sock.bind(sa)
+##                self.monitor_sock.listen(1) # Allow only one connection
+##            except socket.error, msg:
+##                self.monitor_sock.close()
+##                self.monitor_sock = None
+##                continue
+##            break
+##        if self.monitor_sock is None:
+##            print >> sys.stderr, 'Unable to open socket for monitor mode on localhost:' + self.monitor_port
+##            return False
 
         qemu_cmd = " ".join(command)
         print "Starting Qemu: ", qemu_cmd
@@ -203,17 +203,17 @@ class xEMUInstance(object):
 
         time.sleep(1)
 
-        self.monitor_conn, addr = self.monitor_sock.accept()
-        self.monitor_conn.setblocking(0)
-        # consume the first lines of output of Qemu monitor mode
-        output = ''
-        while True:
-            select.select([self.monitor_conn], [], [], 1)
-            output += self.monitor_conn.recv(4096)
-            if len(output) == 0 or 'monitor -'not in output:
-                continue
-            else:
-                break
+##        self.monitor_conn, addr = self.monitor_sock.accept()
+##        self.monitor_conn.setblocking(0)
+##        # consume the first lines of output of Qemu monitor mode
+##        output = ''
+##        while True:
+##            select.select([self.monitor_conn], [], [], 1)
+##            output += self.monitor_conn.recv(4096)
+##            if len(output) == 0 or 'monitor -'not in output:
+##                continue
+##            else:
+##                break
 
         if platform.system() == 'Windows':
             print "Setting priority class to BELOW_NORMAL"
@@ -253,7 +253,7 @@ class xEMUInstance(object):
         # compute new MAC address based on VM name + vlan number
         mac = hashlib.md5(self.name).hexdigest()
 
-        # Do not check on windows, we ship qemu 1.1 and it works with the default protocol
+        # Do not check on windows, we ship Qemu > 1.1 and it works with the default protocol
         if platform.system() != 'Windows':
 
             # fallback on another syntax if the current one is not supported
@@ -331,6 +331,28 @@ class PEMUInstance(xEMUInstance):
         self.pemu_bin_path = os.path.join(PEMU_DIR, self.bin)
         debugmsg(1, "self.pemu_bin_path = %s" % self.pemu_bin_path)
 
+    def _net_options(self):
+
+        options = []
+
+        # compute new MAC address based on VM name + vlan number
+        for vlan in range(int(self.nics)):
+            options.append('-net')
+            if vlan in self.nic:
+                options.append('nic,vlan=%d,macaddr=%s,model=%s' % (vlan, self.nic[vlan], self.netcard))
+            else:
+                # add a default NIC for Qemu
+                options.append('nic,vlan=%d,macaddr=00:00:ab:%02x:%02x:%02d,model=%s' % (vlan, random.randint(0x00, 0xff), random.randint(0x00, 0xff), vlan, self.netcard))
+            if vlan in self.udp:
+                options.extend(['-net', 'udp,vlan=%s,sport=%s,dport=%s,daddr=%s' %
+                        (vlan, self.udp[vlan].sport,
+                        self.udp[vlan].dport,
+                        self.udp[vlan].daddr)])
+            if vlan in self.capture:
+                options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
+
+        return options
+
     def _build_command(self):
         debugmsg(2, "PEMUInstance::_build_command()")
         "Builds the command as a list of shell arguments."
@@ -351,7 +373,7 @@ class PEMUInstance(xEMUInstance):
         debugmsg(2, "PEMUInstance::start()")
         if not os.path.exists(self.pemu_bin_path):
             debugmsg(1, "ERROR: Cannot find PEMU !")
-            print >> sys.stderr, "ERROR: Cannot find PEMU ! (looking for %s)" % self.pemu_bin_path
+            print >> sys.stderr, "ERROR: Cannot find PEMU! (looking for %s)" % self.pemu_bin_path
             return False
         self._write_config()
         return super(PEMUInstance, self).start()
@@ -381,9 +403,9 @@ class QEMUInstance(xEMUInstance):
         command = [self.bin]
 
         # Qemu monitor mode through socket
-        command.extend(['-monitor', 'stdio'])
-        command.extend(['-chardev', 'socket,id=qemuwrapper-monitor,host=localhost,port=' + str(self.monitor_port)])
-        command.extend(['-mon', 'qemuwrapper-monitor'])
+##        command.extend(['-monitor', 'stdio'])
+##        command.extend(['-chardev', 'socket,id=qemuwrapper-monitor,host=localhost,port=' + str(self.monitor_port)])
+##        command.extend(['-mon', 'qemuwrapper-monitor'])
 
         command.extend(['-name', self.name])
         command.extend(['-m', str(self.ram)])
