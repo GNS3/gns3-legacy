@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sun Dec  2 18:37:36 2012
+# Created: Sun Dec 23 20:12:00 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -112,7 +112,7 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.nodesDock.sizePolicy().hasHeightForWidth())
         self.nodesDock.setSizePolicy(sizePolicy)
-        self.nodesDock.setStatusTip(QtGui.QApplication.translate("MainWindow", "Select Node Type (keep SHIFT key pressed wile drag & dropping the device to add several identical items to the topology)", None, QtGui.QApplication.UnicodeUTF8))
+        self.nodesDock.setStatusTip(QtGui.QApplication.translate("MainWindow", "Select Node Type (press SHIFT while dragging a device to add several identical items to your topology)", None, QtGui.QApplication.UnicodeUTF8))
         self.nodesDock.setIconSize(QtCore.QSize(24, 24))
         self.nodesDock.setRootIsDecorated(False)
         self.nodesDock.setObjectName(_fromUtf8("nodesDock"))

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesDynamips.ui'
 #
-# Created: Sat Dec  1 10:30:21 2012
+# Created: Sun Dec 23 20:12:04 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -96,19 +96,19 @@ class Ui_PreferencesDynamips(object):
         self.dynamips_baseUDP = QtGui.QSpinBox(self.groupBox)
         self.dynamips_baseUDP.setSuffix(_fromUtf8(" UDP"))
         self.dynamips_baseUDP.setMaximum(65535)
-        self.dynamips_baseUDP.setProperty("value", 10000)
+        self.dynamips_baseUDP.setProperty("value", 10001)
         self.dynamips_baseUDP.setObjectName(_fromUtf8("dynamips_baseUDP"))
         self.gridLayout.addWidget(self.dynamips_baseUDP, 6, 1, 1, 1)
         self.dynamips_baseConsole = QtGui.QSpinBox(self.groupBox)
         self.dynamips_baseConsole.setSuffix(_fromUtf8(" TCP"))
         self.dynamips_baseConsole.setMaximum(65535)
-        self.dynamips_baseConsole.setProperty("value", 2000)
+        self.dynamips_baseConsole.setProperty("value", 2001)
         self.dynamips_baseConsole.setObjectName(_fromUtf8("dynamips_baseConsole"))
         self.gridLayout.addWidget(self.dynamips_baseConsole, 6, 2, 1, 1)
         self.dynamips_baseAUX = QtGui.QSpinBox(self.groupBox)
         self.dynamips_baseAUX.setSuffix(_fromUtf8(" TCP"))
         self.dynamips_baseAUX.setMaximum(65535)
-        self.dynamips_baseAUX.setProperty("value", 2500)
+        self.dynamips_baseAUX.setProperty("value", 2501)
         self.dynamips_baseAUX.setObjectName(_fromUtf8("dynamips_baseAUX"))
         self.gridLayout.addWidget(self.dynamips_baseAUX, 6, 3, 1, 1)
         self.checkBoxGhosting = QtGui.QCheckBox(self.groupBox)

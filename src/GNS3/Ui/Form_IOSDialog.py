@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Sat Dec  1 10:30:17 2012
+# Created: Sun Dec 23 20:12:01 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -128,7 +128,8 @@ class Ui_IOSDialog(object):
         self.label_6.setObjectName(_fromUtf8("label_6"))
         self.gridLayout.addWidget(self.label_6, 6, 0, 1, 1)
         self.labelCheckRAM = QtGui.QLabel(self.groupBox)
-        self.labelCheckRAM.setText(QtGui.QApplication.translate("IOSDialog", "<a href=\"http://www.gns3.net/\">Check for minimum RAM requirement</a>", None, QtGui.QApplication.UnicodeUTF8))
+        self.labelCheckRAM.setText(QtGui.QApplication.translate("IOSDialog", "<a href=\"http://tools.cisco.com/ITDIT/CFN/jsp/SearchBySoftware.jsp\">Check for minimum RAM requirement</a>", None, QtGui.QApplication.UnicodeUTF8))
+        self.labelCheckRAM.setOpenExternalLinks(True)
         self.labelCheckRAM.setObjectName(_fromUtf8("labelCheckRAM"))
         self.gridLayout.addWidget(self.labelCheckRAM, 9, 0, 1, 2)
         self.pushButtonCalcIdlePC = QtGui.QPushButton(self.groupBox)
@@ -246,7 +247,7 @@ class Ui_IOSDialog(object):
         self.spinBoxBaseConsole.setSuffix(_fromUtf8(" TCP"))
         self.spinBoxBaseConsole.setMinimum(1)
         self.spinBoxBaseConsole.setMaximum(65535)
-        self.spinBoxBaseConsole.setProperty("value", 2101)
+        self.spinBoxBaseConsole.setProperty("value", 2001)
         self.spinBoxBaseConsole.setObjectName(_fromUtf8("spinBoxBaseConsole"))
         self.gridlayout3.addWidget(self.spinBoxBaseConsole, 3, 3, 1, 2)
         self.label_5 = QtGui.QLabel(self.groupBox_4)
