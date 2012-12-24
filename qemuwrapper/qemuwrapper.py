@@ -83,7 +83,7 @@ __author__ = 'Thomas Pani and Jeremy Grossmann'
 __version__ = '0.8.4'
 
 if platform.system() == 'Windows':
-    QEMU_PATH = "qemu-system-i386w.exe"
+    QEMU_PATH = "qemu.exe" # For now we ship Qemu 0.11.0 in the all-in-one
 else:
     QEMU_PATH = "qemu-system-i386"
 QEMU_IMG_PATH = "qemu-img"

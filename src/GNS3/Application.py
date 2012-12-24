@@ -613,6 +613,7 @@ class Application(QApplication, Singleton):
                     self.mainWindow.load_netfile(file)
                 elif confo.project_startup and os.access(configFile, os.F_OK):
                     dialog = ProjectDialog(parent=self.mainWindow, newProject=True)
+                    dialog.setModal(True)
                     dialog.show()
                     self.mainWindow.centerDialog(dialog)
                     dialog.raise_()

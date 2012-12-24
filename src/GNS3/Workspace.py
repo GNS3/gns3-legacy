@@ -1095,6 +1095,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         projectDialog = ProjectDialog(parent=self, newProject=True)
         self.projectWorkdir = None
         self.projectConfigs = None
+        projectDialog.setModal(True)
         projectDialog.show()
         self.centerDialog(projectDialog)
         projectDialog.exec_()
@@ -1125,6 +1126,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             projectDialog.setWindowTitle("Save Project As...")
         #self.projectWorkdir = None
         #self.projectConfigs = None
+        projectDialog.setModal(True)
         projectDialog.show()
         self.centerDialog(projectDialog)
         projectDialog.exec_()
