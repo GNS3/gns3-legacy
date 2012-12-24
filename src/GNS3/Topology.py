@@ -587,10 +587,11 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_image(conf.filename, node.model)
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
-                node.set_int_option('usermod', conf.usermod)
+                node.set_string_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('flavor', conf.flavor)
                 node.set_string_option('kvm', conf.kvm)
+                node.set_string_option('monitor', conf.monitor)
                 node.set_string_option('options', conf.options)
 
             if isinstance(node, VBoxDevice):
@@ -695,9 +696,10 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_image(conf.filename, node.model)
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
-                node.set_int_option('usermod', conf.usermod)
+                node.set_string_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kvm', conf.kvm)
+                node.set_string_option('monitor', conf.monitor)
                 node.set_string_option('options', conf.options)
 
             if isinstance(node, IDS):
@@ -750,9 +752,10 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('image2', conf.image2)
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
-                node.set_int_option('usermod', conf.usermod)
+                node.set_string_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kvm', conf.kvm)
+                node.set_string_option('monitor', conf.monitor)
                 node.set_string_option('options', conf.options)
 
             if isinstance(node, ASA):
@@ -805,9 +808,10 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_image('None', node.model)
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
-                node.set_int_option('usermod', conf.usermod)
+                node.set_string_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kvm', conf.kvm)
+                node.set_string_option('monitor', conf.monitor)
                 node.set_string_option('initrd', conf.initrd)
                 node.set_string_option('kernel', conf.kernel)
                 node.set_string_option('kernel_cmdline', conf.kernel_cmdline)
@@ -855,7 +859,6 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_image(conf.filename, node.model)
                 node.set_int_option('ram', conf.memory)
                 node.set_int_option('nics', conf.nic_nb)
-                node.set_int_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('key', conf.key)
                 node.set_string_option('serial', conf.serial)

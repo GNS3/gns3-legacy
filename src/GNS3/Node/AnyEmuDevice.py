@@ -74,6 +74,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
             'usermod',
             'netcard',
             'kvm',
+            'monitor',
             'options',
             ]
 

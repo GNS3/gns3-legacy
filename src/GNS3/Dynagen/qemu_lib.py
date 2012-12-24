@@ -323,7 +323,8 @@ class AnyEmuDevice(object):
             'netcard': 'rtl8139',
             'flavor': 'Default',
             'kvm': False,
-            'usermod': 1,
+            'monitor': False,
+            'usermod': False,
             'options': None,
             }
         self._ram = self.defaults['ram']
@@ -332,6 +333,7 @@ class AnyEmuDevice(object):
         self._netcard = self.defaults['netcard']
         self._flavor = self.defaults['flavor']
         self._kvm = self.defaults['kvm']
+        self._monitor = self.defaults['monitor']
         self._options = self.defaults['options']
         self._capture = {}
 
@@ -472,17 +474,21 @@ class AnyEmuDevice(object):
 
     flavor = property(_get_flavor, _set_flavor, doc='Qemu flavor')
 
-    def _set_usermod(self, val):
+    def _set_usermod(self, usermod):
         """ Toogle the user mod backend for Qemu devices
             Allows the last interface to request a DHCP offer
             and be able to send packets out and maintain a TCP
             connection
-            Default: 1
-            val: 0->False / 1->True
+            Default: False
         """
-        debugmsg(2, "AnyEmuDevice::_set_usermod()")
-        self._usermod = val
-        send(self.p, 'qemu setattr %s usermod %s' % (self.name, str(val)))
+
+        debugmsg(2, "AnyEmuDevice::_setusermod(%s)" % str(usermod))
+
+        if type(usermod) != bool:
+            raise DynamipsError, 'invalid usermod option'
+
+        send(self.p, 'qemu setattr %s usermod %s' % (self.name, str(usermod)))
+        self._usermod = usermod
 
     def _get_usermod(self):
         " Get usermod value"
@@ -610,6 +616,27 @@ class AnyEmuDevice(object):
         return self._kvm
 
     kvm = property(_getkvm, _setkvm, doc='The kvm option used by this emulated device')
+    
+    def _setmonitor(self, monitor):
+        """ Set the monitor option to be used by this emulated device
+        monitor: (bool) monitor activation
+        """
+        debugmsg(2, "AnyEmuDevice::_setmonitor(%s)" % str(monitor))
+
+        if type(monitor) != bool:
+            raise DynamipsError, 'invalid monitor option'
+
+        send(self.p, 'qemu setattr %s monitor %s' % (self.name, str(monitor)))
+        self._monitor = monitor
+
+    def _getmonitor(self):
+        """ Returns the kvm option used by this emulated device
+        """
+        debugmsg(2, "AnyEmuDevice::_getmonitor(), returns %s" % str(self._monitor))
+
+        return self._monitor
+
+    monitor = property(_getmonitor, _setmonitor, doc='The monitor option used by this emulated device')
 
     def _setoptions(self, options):
         """ Set the Qemu options for this emulated device
@@ -925,7 +952,7 @@ class JunOS(AnyEmuDevice):
     basehostname = 'JUNOS'
     _ufd_machine = 'Juniper router'
     _ufd_hardware = 'Juniper Olive router'
-    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options', 'usermod']
+    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options', 'usermod', 'monitor']
 
 class IDS(AnyEmuDevice):
     model_string = 'IDS-4215'
@@ -933,7 +960,7 @@ class IDS(AnyEmuDevice):
     basehostname = 'IDS'
     _ufd_machine = 'IDS'
     _ufd_hardware = 'Qemu emulated Cisco IDS'
-    available_options = ['image1', 'image2', 'nics', 'ram', 'netcard', 'kvm', 'options', 'usermod']
+    available_options = ['image1', 'image2', 'nics', 'ram', 'netcard', 'kvm', 'options', 'usermod', 'monitor']
 
     def __init__(self, *args, **kwargs):
         super(IDS, self).__init__(*args, **kwargs)
@@ -996,7 +1023,7 @@ class QemuDevice(AnyEmuDevice):
     basehostname = 'QEMU'
     _ufd_machine = 'Qemu guest'
     _ufd_hardware = 'Qemu Emulated System'
-    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options', 'usermod', 'flavor']
+    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options', 'usermod', 'flavor', 'monitor']
 
 class ASA(AnyEmuDevice):
     model_string = '5520'
@@ -1004,7 +1031,7 @@ class ASA(AnyEmuDevice):
     basehostname = 'ASA'
     _ufd_machine = 'ASA firewall'
     _ufd_hardware = 'qemu-emulated Cisco ASA'
-    available_options = ['ram', 'nics', 'netcard', 'kvm', 'options', 'initrd', 'kernel', 'kernel_cmdline', 'usermod']
+    available_options = ['ram', 'nics', 'netcard', 'kvm', 'options', 'initrd', 'kernel', 'kernel_cmdline', 'usermod', 'monitor']
 
     def __init__(self, *args, **kwargs):
         super(ASA, self).__init__(*args, **kwargs)
@@ -1086,7 +1113,7 @@ class PIX(AnyEmuDevice):
     model_string = '525'
     qemu_dev_type = 'pix'
     basehostname = 'PIX'
-    available_options = ['image', 'ram', 'nics', 'netcard', 'options', 'serial', 'key', 'usermod']
+    available_options = ['image', 'ram', 'nics', 'netcard', 'options', 'serial', 'key']
     _ufd_machine = 'PIX firewall'
     _ufd_hardware = 'qemu-emulated Cisco PIX'
     def __init__(self, *args, **kwargs):

@@ -71,7 +71,8 @@ else:
 # Default paths to Qemu and qemu-img
 if sys.platform.startswith('win'):
     QEMU_IMG_DEFAULT_PATH = unicode('qemu-img.exe')
-    QEMU_DEFAULT_PATH = unicode('qemu-system-i386w.exe')
+    QEMU_DEFAULT_PATH = unicode('qemu.exe') # For now we ship Qemu 0.11.0 in the all-in-one
+    #QEMU_DEFAULT_PATH = unicode('qemu-system-i386w.exe')
 else:
     QEMU_IMG_DEFAULT_PATH = unicode('qemu-img')
     QEMU_DEFAULT_PATH = unicode('qemu-system-i386')
@@ -370,11 +371,12 @@ conf_qemuImage_defaults = {
     'filename': '',
     'memory': 256,
     'nic_nb': 6,
-    'usermod': 1,
+    'usermod': False,
     'nic': 'rtl8139',
     'flavor': 'Default',
     'options': '',
-    'kvm': False
+    'kvm': False,
+    'monitor': False
 }
 
 conf_qemuImage_types = {
@@ -383,11 +385,12 @@ conf_qemuImage_types = {
     'filename': unicode,
     'memory': int,
     'nic_nb': int,
-    'usermod': int,
+    'usermod': bool,
     'nic': str,
     'flavor': str,
     'options': str,
-    'kvm': bool
+    'kvm': bool,
+    'monitor': bool
 }
 
 conf_vboxImage_defaults = {
@@ -424,7 +427,6 @@ conf_pixImage_defaults = {
     'filename': '',
     'memory': 128,
     'nic_nb': 6,
-    'usermod' : 1,
     'nic': 'e1000',
     'options': '',
     'key': '',
@@ -437,7 +439,6 @@ conf_pixImage_types = {
     'filename': unicode,
     'memory': int,
     'nic_nb': int,
-    'usermod' : int,
     'nic': str,
     'options': str,
     'key': str,
@@ -450,10 +451,11 @@ conf_junosImage_defaults = {
     'filename': '',
     'memory': 96,
     'nic_nb': 6,
-    'usermod' : 1,
+    'usermod' : False,
     'nic': 'e1000',
     'options': '',
-    'kvm': False
+    'kvm': False,
+    'monitor': False
 }
 
 conf_junosImage_types = {
@@ -462,10 +464,11 @@ conf_junosImage_types = {
     'filename': unicode,
     'memory': int,
     'nic_nb': int,
-    'usermod' : int,
+    'usermod' : bool,
     'nic': str,
     'options': str,
-    'kvm': bool
+    'kvm': bool,
+    'monitor': bool
 }
 
 conf_asaImage_defaults = {
@@ -473,10 +476,11 @@ conf_asaImage_defaults = {
     'name': '',
     'memory': 256,
     'nic_nb': 6,
-    'usermod' : 1,
+    'usermod' : False,
     'nic': 'e1000',
     'options': '',
     'kvm': False,
+    'monitor': False,
     'kernel': '',
     'initrd': '',
     'kernel_cmdline': ''
@@ -487,10 +491,11 @@ conf_asaImage_types = {
     'name': unicode,
     'memory': int,
     'nic_nb': int,
-    'usermod' : int,
+    'usermod' : bool,
     'nic': str,
     'options': str,
     'kvm': bool,
+    'monitor': bool,
     'kernel': unicode,
     'initrd': unicode,
     'kernel_cmdline': unicode,
@@ -503,10 +508,11 @@ conf_idsImage_defaults = {
     'image2': '',
     'memory': 512,
     'nic_nb': 3,
-    'usermod' : 1,
+    'usermod' : False,
     'nic': 'e1000',
     'options': '',
-    'kvm': False
+    'kvm': False,
+    'monitor': False
 }
 
 conf_idsImage_types = {
@@ -516,10 +522,11 @@ conf_idsImage_types = {
     'image2': unicode,
     'memory': int,
     'nic_nb': int,
-    'usermod' : int,
+    'usermod' : bool,
     'nic': str,
     'options': str,
-    'kvm': bool
+    'kvm': bool,
+    'monitor': bool
 }
 
 conf_systemDynamips_defaults = {

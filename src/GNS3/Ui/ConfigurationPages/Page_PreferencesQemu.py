@@ -399,10 +399,15 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         else:
             conf.kvm  = False
 
-        if self.QemucheckBoxUserMod.checkState() == QtCore.Qt.Checked:
-            conf.usermod = 1
+        if self.QemucheckBoxMonitor.checkState() == QtCore.Qt.Checked:
+            conf.monitor = True
         else:
-            conf.usermod = 0
+            conf.monitor  = False
+
+        if self.QemucheckBoxUserMod.checkState() == QtCore.Qt.Checked:
+            conf.usermod = True
+        else:
+            conf.usermod = False
 
         globals.GApp.qemuimages[name] = conf
         self.treeWidgetQemuImages.resizeColumnToContents(0)
@@ -448,6 +453,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.QemucheckBoxKVM.setCheckState(QtCore.Qt.Checked)
             else:
                 self.QemucheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+
+            if conf.monitor == True:
+                self.QemucheckBoxMonitor.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.QemucheckBoxMonitor.setCheckState(QtCore.Qt.Unchecked)
 
             if conf.usermod == True:
                 self.QemucheckBoxUserMod.setCheckState(QtCore.Qt.Checked)
@@ -521,11 +531,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         conf.nic = str(self.PIXNIC.currentText())
         conf.options = str(self.PIXOptions.text())
 
-        if self.PIXcheckBoxUserMod.checkState() == QtCore.Qt.Checked:
-            conf.usermod = 1
-        else:
-            conf.usermod = 0
-
         serial = str(self.PIXSerial.text().toAscii())
         if serial and not re.search(r"""^0x[0-9a-fA-F]{8}$""", serial):
             QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "Serial"),
@@ -582,11 +587,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.PIXKey.setText(conf.key)
             self.PIXSerial.setText(conf.serial)
 
-            if conf.usermod == True:
-                self.PIXcheckBoxUserMod.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.PIXcheckBoxUserMod.setCheckState(QtCore.Qt.Unchecked)
-
     def slotSelectJunOSImage(self):
         """ Get a JunOS image from the file system
         """
@@ -640,10 +640,15 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         else:
             conf.kvm  = False
 
-        if self.JunOScheckBoxUserMod.checkState() == QtCore.Qt.Checked:
-            conf.usermod = 1
+        if self.JunOScheckBoxMonitor.checkState() == QtCore.Qt.Checked:
+            conf.monitor = True
         else:
-            conf.usermod = 0
+            conf.monitor  = False
+
+        if self.JunOScheckBoxUserMod.checkState() == QtCore.Qt.Checked:
+            conf.usermod = True
+        else:
+            conf.usermod = False
 
         globals.GApp.junosimages[name] = conf
         self.treeWidgetJunOSImages.resizeColumnToContents(0)
@@ -686,6 +691,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
             else:
                 self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+
+            if conf.monitor == True:
+                self.JunOScheckBoxMonitor.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.JunOScheckBoxMonitor.setCheckState(QtCore.Qt.Unchecked)
 
             if conf.usermod == True:
                 self.JunOScheckBoxUserMod.setCheckState(QtCore.Qt.Checked)
@@ -760,10 +770,15 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         else:
             conf.kvm  = False
 
-        if self.ASAcheckBoxUserMod.checkState() == QtCore.Qt.Checked:
-            conf.usermod = 1
+        if self.ASAcheckBoxMonitor.checkState() == QtCore.Qt.Checked:
+            conf.monitor = True
         else:
-            conf.usermod = 0
+            conf.monitor  = False
+
+        if self.ASAcheckBoxUserMod.checkState() == QtCore.Qt.Checked:
+            conf.usermod = True
+        else:
+            conf.usermod = False
 
         globals.GApp.asaimages[name] = conf
         self.treeWidgetASAImages.resizeColumnToContents(0)
@@ -808,6 +823,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Checked)
             else:
                 self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+
+            if conf.monitor == True:
+                self.ASAcheckBoxMonitor.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.ASAcheckBoxMonitor.setCheckState(QtCore.Qt.Unchecked)
 
             if conf.usermod == True:
                 self.ASAcheckBoxUserMod.setCheckState(QtCore.Qt.Checked)
@@ -881,10 +901,15 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         else:
             conf.kvm  = False
 
-        if self.IDScheckBoxUserMod.checkState() == QtCore.Qt.Checked:
-            conf.usermod = 1
+        if self.IDScheckBoxMonitor.checkState() == QtCore.Qt.Checked:
+            conf.kvm = True
         else:
-            conf.usermod = 0
+            conf.kvm  = False
+
+        if self.IDScheckBoxUserMod.checkState() == QtCore.Qt.Checked:
+            conf.usermod = True
+        else:
+            conf.usermod = False
 
         globals.GApp.idsimages[name] = conf
         self.treeWidgetIDSImages.resizeColumnToContents(0)
@@ -928,6 +953,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.IDScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
             else:
                 self.IDScheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+
+            if conf.monitor == True:
+                self.IDScheckBoxMonitor.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.IDScheckBoxMonitor.setCheckState(QtCore.Qt.Unchecked)
 
             if conf.usermod == True:
                 self.IDScheckBoxUserMod.setCheckState(QtCore.Qt.Checked)

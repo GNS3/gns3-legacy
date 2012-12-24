@@ -237,7 +237,6 @@ class Dynagen:
         self.generic_pix_options = [
             'image',
             'ram',
-            'usermod',
             'key',
             'serial',
             ]
@@ -288,6 +287,7 @@ class Dynagen:
                 'usermod',
                 'flavor',
                 'kvm',
+                'monitor',
                 'options',
                 'initrd',
                 'kernel',
@@ -1212,6 +1212,7 @@ class Dynagen:
                                 'netcard',
                                 'flavor',
                                 'kvm',
+                                'monitor',
                                 'options',
                                 'initrd',
                                 'kernel',
@@ -1239,6 +1240,7 @@ class Dynagen:
                                     'netcard',
                                     'flavor',
                                     'kvm',
+                                    'monitor',
                                     'options',
                                     'initrd',
                                     'kernel',

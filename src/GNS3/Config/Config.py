@@ -252,11 +252,12 @@ class GNS_Conf(object):
             conf.filename = c.get(cgroup + "/filename", unicode(''))
             conf.memory = int(c.get(cgroup + "/memory", 256))
             conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
-            conf.usermod = int(c.get(cgroup + "/usermod", 1))
+            conf.usermod = c.value(cgroup + "/usermod", QtCore.QVariant(False)).toBool()
             conf.nic = str(c.get(cgroup + "/nic", 'rtl8139'))
             conf.flavor = str(c.get(cgroup + "/flavor", 'Default'))
             conf.options = str(c.get(cgroup + "/options", ''))
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
+            conf.monitor = c.value(cgroup + "/monitor", QtCore.QVariant(False)).toBool()
             globals.GApp.qemuimages[conf.name] = conf
 
             if conf.id >= globals.GApp.qemuimages_ids:
@@ -315,7 +316,6 @@ class GNS_Conf(object):
             conf.filename = c.get(cgroup + "/filename", unicode(''))
             conf.memory = int(c.get(cgroup + "/memory", 128))
             conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
-            conf.usermod = int(c.get(cgroup + "/usermod", 1))
             conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
             conf.options = str(c.get(cgroup + "/options", ''))
             conf.key = str(c.get(cgroup + "/key", ''))
@@ -346,10 +346,11 @@ class GNS_Conf(object):
             conf.filename = c.get(cgroup + "/filename", unicode(''))
             conf.memory = int(c.get(cgroup + "/memory", 128))
             conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
-            conf.usermod = int(c.get(cgroup + "/usermod", 1))
+            conf.usermod = c.value(cgroup + "/usermod", QtCore.QVariant(False)).toBool()
             conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
             conf.options = str(c.get(cgroup + "/options", ''))
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
+            conf.monitor = c.value(cgroup + "/monitor", QtCore.QVariant(False)).toBool()
             globals.GApp.junosimages[conf.name] = conf
 
             if conf.id >= globals.GApp.junosimages_ids:
@@ -375,10 +376,11 @@ class GNS_Conf(object):
             conf.name = c.get(cgroup + "/name", unicode(''))
             conf.memory = int(c.get(cgroup + "/memory", 256))
             conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
-            conf.usermod = int(c.get(cgroup + "/usermod", 1))
+            conf.usermod = c.value(cgroup + "/usermod", QtCore.QVariant(False)).toBool()
             conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
             conf.options = str(c.get(cgroup + "/options", ''))
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
+            conf.monitor = c.value(cgroup + "/monitor", QtCore.QVariant(False)).toBool()
             conf.initrd = c.get(cgroup + "/initrd", unicode(''))
             conf.kernel = c.get(cgroup + "/kernel", unicode(''))
             conf.kernel_cmdline = c.get(cgroup + "/kernel_cmdline", unicode(''))
@@ -409,10 +411,11 @@ class GNS_Conf(object):
             conf.name = c.get(cgroup + "/name", unicode(''))
             conf.memory = int(c.get(cgroup + "/memory", 512))
             conf.nic_nb = int(c.get(cgroup + "/nic_nb", 3))
-            conf.usermod = int(c.get(cgroup + "/usermod", 1))
+            conf.usermod = c.value(cgroup + "/usermod", QtCore.QVariant(False)).toBool()
             conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
             conf.options = str(c.get(cgroup + "/options", ''))
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
+            conf.monitor = c.value(cgroup + "/monitor", QtCore.QVariant(False)).toBool()
             globals.GApp.idsimages[conf.name] = conf
 
             if conf.id >= globals.GApp.idsimages_ids:

@@ -25,7 +25,7 @@ import GNS3.Config.Defaults as Defaults
 import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Dynagen.portTracker_lib as tracker
 from distutils.version import LooseVersion
-from PyQt4.QtGui import QApplication, QSplashScreen, QPixmap, QMessageBox
+from PyQt4.QtGui import QApplication, QSplashScreen, QPixmap, QMessageBox, QStyleFactory
 from PyQt4.QtCore import Qt, QVariant, QSettings, QEventLoop
 from GNS3.Utils import Singleton, translate
 from GNS3.Workspace import Workspace
@@ -97,6 +97,8 @@ class Application(QApplication, Singleton):
             QSettings.setPath(QSettings.IniFormat,
                               QSettings.UserScope,
                               os.path.expanduser(Defaults.UsrConfigDir))
+
+        #self.setStyle(QStyleFactory.create("cleanlooks"))
 
     def __setMainWindow(self, mw):
         """ register the MainWindow instance
@@ -815,6 +817,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/flavor", o.flavor)
             c.set(basekey + "/options", o.options)
             c.set(basekey + "/kvm", o.kvm)
+            c.set(basekey + "/monitor", o.monitor)
 
         # VBox images
         for (key, o) in self.__vboximages.iteritems():
@@ -837,7 +840,6 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/filename", o.filename)
             c.set(basekey + "/memory", o.memory)
             c.set(basekey + "/nic_nb", o.nic_nb)
-            c.set(basekey + "/usermod", o.usermod)
             c.set(basekey + "/nic", o.nic)
             c.set(basekey + "/options", o.options)
             c.set(basekey + "/key", o.key)
@@ -854,6 +856,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/nic", o.nic)
             c.set(basekey + "/options", o.options)
             c.set(basekey + "/kvm", o.kvm)
+            c.set(basekey + "/monitor", o.monitor)
 
         # ASA images
         for (key, o) in self.__asaimages.iteritems():
@@ -865,6 +868,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/nic", o.nic)
             c.set(basekey + "/options", o.options)
             c.set(basekey + "/kvm", o.kvm)
+            c.set(basekey + "/monitor", o.monitor)
             c.set(basekey + "/initrd", o.initrd)
             c.set(basekey + "/kernel", o.kernel)
             c.set(basekey + "/kernel_cmdline", o.kernel_cmdline)
@@ -881,6 +885,7 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/nic", o.nic)
             c.set(basekey + "/options", o.options)
             c.set(basekey + "/kvm", o.kvm)
+            c.set(basekey + "/monitor", o.monitor)
 
         # Libraries
         id = 0
