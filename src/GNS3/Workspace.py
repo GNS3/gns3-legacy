@@ -29,6 +29,7 @@ from PyQt4 import QtGui, QtCore, QtNetwork
 from PyQt4.QtGui import QMainWindow, QIcon, QWizard
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
 from GNS3.Ui.Form_About import Ui_AboutDialog
+from GNS3.TipsDialog import TipsDialog
 from GNS3.IOSDialog import IOSDialog
 from GNS3.SymbolManager import SymbolManager
 from GNS3.ProjectDialog import ProjectDialog
@@ -128,6 +129,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         for addr in local_addresses:
             self.track.addLocalAddress(addr)
 
+        self.tips_dialog = TipsDialog(self)
+
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
         """
@@ -163,6 +166,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_About, QtCore.SIGNAL('triggered()'), self.__action_About)
         self.connect(self.action_AboutQt, QtCore.SIGNAL('triggered()'), self.__action_AboutQt)
         self.connect(self.action_CheckForUpdate, QtCore.SIGNAL('triggered()'), self.__action_CheckForUpdate)
+        self.connect(self.action_Tips, QtCore.SIGNAL('triggered()'), self.__action_Tips)
         self.connect(self.action_New, QtCore.SIGNAL('triggered()'), self.__action_NewProject)
         self.connect(self.action_SaveProjectAs, QtCore.SIGNAL('triggered()'), self.__action_SaveProjectAs)
         self.connect(self.action_Open, QtCore.SIGNAL('triggered()'), self.__action_OpenFile)
@@ -1012,6 +1016,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         request.setAttribute(QtNetwork.QNetworkRequest.User, QtCore.QVariant(silent))
         reply = self.networkManager.get(request)
         reply.finished[()].connect(self.__processCheckForUpdateReply)
+
+    def __action_Tips(self):
+        """ Show the Tips dialog
+        """
+
+        self.tips_dialog.show()
+        self.tips_dialog.exec_()
 
     def __processCheckForUpdateReply(self):
         """ Process reply for check for update

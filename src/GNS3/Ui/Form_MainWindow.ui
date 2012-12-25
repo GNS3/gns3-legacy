@@ -102,6 +102,7 @@ background-none;
     </property>
     <addaction name="action_OnlineHelp"/>
     <addaction name="action_CheckForUpdate"/>
+    <addaction name="action_Tips"/>
     <addaction name="action_AboutQt"/>
     <addaction name="action_About"/>
    </widget>
@@ -1291,6 +1292,14 @@ background-none;
    </property>
    <property name="toolTip">
     <string>Zoom in/out using the mouse whee</string>
+   </property>
+  </action>
+  <action name="action_Tips">
+   <property name="text">
+    <string>Tips</string>
+   </property>
+   <property name="toolTip">
+    <string>Show Tips</string>
    </property>
   </action>
  </widget>

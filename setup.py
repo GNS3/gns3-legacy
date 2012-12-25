@@ -127,6 +127,7 @@ elif sys.platform.startswith('darwin'):
                             'PyQt4.QtSvg',
                             'PyQt4.QtXml',
                             'PyQt4.QtNetwork',
+                            'PyQt4.QtWebKit',
                             'GNS3.Ui.ConfigurationPages.Page_ATMSW',
                             'GNS3.Ui.ConfigurationPages.Page_ATMBR',
                             'GNS3.Ui.ConfigurationPages.Page_Cloud',

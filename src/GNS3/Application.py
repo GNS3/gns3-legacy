@@ -384,6 +384,15 @@ class Application(QApplication, Singleton):
         self.splash.finish(self.__mainWindow)
         return
 
+    def showTipsDialog(self):
+
+        self.mainWindow.tips_dialog.setModal(True)
+        self.mainWindow.tips_dialog.show()
+        self.mainWindow.tips_dialog.raise_()
+        self.mainWindow.tips_dialog.activateWindow()
+        self.mainWindow.raise_()
+        self.mainWindow.tips_dialog.raise_()
+
     def run(self, file):
 
         # Display splash screen while waiting for the application to open
@@ -569,6 +578,7 @@ class Application(QApplication, Singleton):
         self.mainWindow.restoreState(ConfDB().value("GUIState/State").toByteArray())
         self.mainWindow.action_DisableMouseWheel.setChecked(ConfDB().value("GUIState/DisableMouseWheel", QVariant(False)).toBool())
         self.mainWindow.action_ZoomUsingMouseWheel.setChecked(ConfDB().value("GUIState/ZoomUsingMouseWheel", QVariant(False)).toBool())
+        self.mainWindow.tips_dialog.checkBoxDontShowAgain.setChecked(ConfDB().value("GUIState/DoNotShowTipsDialog", QVariant(False)).toBool())
 
         # By default, don't show the NodeTypes dock
         self.mainWindow.dockWidget_NodeTypes.setVisible(False)
@@ -620,9 +630,13 @@ class Application(QApplication, Singleton):
                     dialog.activateWindow()
                     self.mainWindow.raise_()
                     dialog.raise_()
+#                    if self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked() == False:
+#                        self.showTipsDialog()
                 else:
                     self.mainWindow.createProject((None, None, None, False))
                     self.mainWindow.raise_()
+#                    if self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked() == False:
+#                        self.showTipsDialog()
 
         retcode = QApplication.exec_()
 
@@ -636,6 +650,7 @@ class Application(QApplication, Singleton):
             ConfDB().set("GUIState/State", self.mainWindow.saveState())
             ConfDB().set("GUIState/DisableMouseWheel", self.mainWindow.action_DisableMouseWheel.isChecked())
             ConfDB().set("GUIState/ZoomUsingMouseWheel", self.mainWindow.action_ZoomUsingMouseWheel.isChecked())
+            ConfDB().set("GUIState/DoNotShowTipsDialog", self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked())
             self.syncConf()
 
         sys.exit(retcode)

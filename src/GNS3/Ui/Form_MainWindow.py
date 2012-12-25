@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sun Dec 23 20:12:00 2012
+# Created: Mon Dec 24 11:53:07 2012
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -635,6 +635,10 @@ class Ui_MainWindow(object):
         self.action_ZoomUsingMouseWheel.setText(QtGui.QApplication.translate("MainWindow", "Zoom using Mouse Wheel", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ZoomUsingMouseWheel.setToolTip(QtGui.QApplication.translate("MainWindow", "Zoom in/out using the mouse whee", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ZoomUsingMouseWheel.setObjectName(_fromUtf8("action_ZoomUsingMouseWheel"))
+        self.action_Tips = QtGui.QAction(MainWindow)
+        self.action_Tips.setText(QtGui.QApplication.translate("MainWindow", "Tips", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Tips.setToolTip(QtGui.QApplication.translate("MainWindow", "Show Tips", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Tips.setObjectName(_fromUtf8("action_Tips"))
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -654,6 +658,7 @@ class Ui_MainWindow(object):
         self.menu_File.addAction(self.action_Quit)
         self.menu_About.addAction(self.action_OnlineHelp)
         self.menu_About.addAction(self.action_CheckForUpdate)
+        self.menu_About.addAction(self.action_Tips)
         self.menu_About.addAction(self.action_AboutQt)
         self.menu_About.addAction(self.action_About)
         self.menuWindow_Style.addAction(self.action_DefaultStyle)

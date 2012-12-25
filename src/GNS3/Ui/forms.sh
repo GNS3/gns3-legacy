@@ -17,6 +17,7 @@ FILES=" Form_MainWindow
 	Form_IDLEPCDialog
         Form_DeployementWizard
         Form_ConfigureNetworkObject
+	Form_TipsDialog
         ./ConfigurationPages/Form_IOSRouterPage
         ./ConfigurationPages/Form_CloudPage
         ./ConfigurationPages/Form_ETHSWPage
