@@ -92,6 +92,9 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         # reload saved infos
         self._reloadInfos()
 
+        #FIXME: TEMP DISABLED FOR GNS3 0.8.4 BETA2.
+        self.pushButtonCalcIdlePC.setEnabled(False)
+
     def __del__(self):
 
         # Delete nodes that use deleted IOS
