@@ -1022,6 +1022,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         self.tips_dialog.show()
+        self.tips_dialog.loadWebPage()
         self.tips_dialog.exec_()
 
     def __processCheckForUpdateReply(self):

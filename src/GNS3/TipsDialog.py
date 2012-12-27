@@ -35,6 +35,9 @@ class TipsDialog(QtGui.QDialog, Ui_TipsDialog):
         self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateAllLinks)
         self.connect(self.webView, QtCore.SIGNAL('linkClicked(const QUrl &)'), self.__urlClicked)
         self.connect(self.webView, QtCore.SIGNAL('loadFinished(bool)'), self.__loadFinished)
+
+    def loadWebPage(self):
+
         self.webView.load(self.webpage)
 
     def __urlClicked(self, url):
@@ -46,9 +49,9 @@ class TipsDialog(QtGui.QDialog, Ui_TipsDialog):
 
         self.disconnect(self.webView, QtCore.SIGNAL('loadFinished(bool)'), self.__loadFinished)
         if result == False:
-            QtGui.QMessageBox.information(self, translate("TipsDialog", "Tips page"),  unicode("Couldn't load the online page, trying with your default browser ..."))
+            QtGui.QMessageBox.information(self, translate("TipsDialog", "Tips page"), unicode("Couldn't load the online page, trying with your default browser ..."))
             if QtGui.QDesktopServices.openUrl(self.webpage) == False:
-                print "Failed to open the URL: %s" % self.webpage.baseFrame().url().toString()
+                print "Failed to open the URL: %s\n" % self.webpage.toString()
             #url = QtCore.QUrl.fromLocalFile(QtCore.QDir.current().absoluteFilePath("default_tips.html"))
             #QtGui.QDesktopServices.openUrl(url)
             self.checkBoxDontShowAgain.setChecked(True)

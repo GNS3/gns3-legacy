@@ -388,6 +388,7 @@ class Application(QApplication, Singleton):
 
         self.mainWindow.tips_dialog.setModal(True)
         self.mainWindow.tips_dialog.show()
+        self.mainWindow.tips_dialog.loadWebPage()
         self.mainWindow.tips_dialog.raise_()
         self.mainWindow.tips_dialog.activateWindow()
         self.mainWindow.raise_()
