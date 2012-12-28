@@ -65,7 +65,9 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
                 globals.GApp.topology.addNode(self.router, False)
                 self.router.startNode()
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                time.sleep(2)
+                self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Giving time for the router to boot...") + '</font>')
+                globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
+                time.sleep(15)
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
 
                 if globals.GApp.dynagen.devices[self.router.hostname].idlepc != None:
