@@ -966,7 +966,7 @@ class AnyVBoxEmuDevice(object):
                 else:
                     slot_info = slot_info + ' is connected to unknown device ' + remote_device.name + '\n'
                 # Get network stats and guest IP addresses
-                slot_info = self.slot_info_niostat(slot_info, port)
+                # slot_info = self.slot_info_niostat(slot_info, port) #FIXME: apparently this slow things down, for instance when moving a node. Also, the counters don't seem to get updated.
             else:  #no NIO on this port, so it must be empty
                 slot_info = slot_info + ' is empty\n'
         debugmsg(3, "AnyVBoxEmuDevice::slot_info(), returns %s" % unicode(slot_info))

@@ -1197,15 +1197,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
             if self.projectWorkdir:
 
-                unbase = False
-                instances = map(lambda node: isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS), globals.GApp.topology.nodes.values())
-                if True in instances:
-                    reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)"),
-                                                       QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-
-                    if reply == QtGui.QMessageBox.Yes:
-                        unbase = True
-
                 # stop the node before moving files
                 for node in globals.GApp.topology.nodes.values():
                     if (isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir) or (isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir) or (isinstance(node, AnyVBoxEmuDevice) and self.projectWorkdir != node.vbox.workingdir):
@@ -1236,7 +1227,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         # clean the original working directory
                         #self.clear_workdir(os.path.normpath(node.hypervisor.workingdir))
 
-                    if (isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS)) and unbase:
+                    if (isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS)) and self.unbase:
                         node.get_dynagen_device().unbase()
 
                     if isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir:
@@ -1483,25 +1474,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if self.projectFile is None:
             return self.__action_SaveProjectAs()
 
-        # check if the project is configured to unbase qemu disk images
-        unbase = False
-        if self.unbase == True:
-            instances = map(lambda node: isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS), globals.GApp.topology.nodes.values())
-            if True in instances:
-                reply = QtGui.QMessageBox.question(self, translate("Workspace", "Message"), translate("Workspace", "Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)"),
-                                                   QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-                if reply == QtGui.QMessageBox.Yes:
-                    unbase = True
-
         try:
             net = netfile.NETFile()
             net.export_net_file(self.projectFile, auto)
             self.__addToRecentFiles(self.projectFile)
 
             # unbase the qemu disk
-            if unbase == True:
+            if self.unbase == True:
                 for node in globals.GApp.topology.nodes.values():
-                    if (isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS)) and unbase and not node.unbased:
+                    if (isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS)) and self.unbase and not node.unbased:
                         node.stopNode()
                         node.get_dynagen_device().unbase()
                         node.unbased = True
