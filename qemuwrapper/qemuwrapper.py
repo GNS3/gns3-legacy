@@ -83,10 +83,17 @@ __author__ = 'Thomas Pani and Jeremy Grossmann'
 __version__ = '0.8.4'
 
 if platform.system() == 'Windows':
-    QEMU_PATH = "qemu.exe" # For now we ship Qemu 0.11.0 in the all-in-one
+    if os.path.exists('Qemu\qemu-system-i386w.exe'):
+        QEMU_PATH = "Qemu\qemu-system-i386w.exe"
+        QEMU_IMG_PATH = "Qemu\qemu-img.exe"
+    else:
+        # For now we ship Qemu 0.11.0 in the all-in-one
+        QEMU_PATH = "qemu.exe"
+        QEMU_IMG_PATH = "qemu-img.exe"
 else:
     QEMU_PATH = "qemu-system-i386"
-QEMU_IMG_PATH = "qemu-img"
+    QEMU_IMG_PATH = "qemu-img"
+
 PORT = 10525
 IP = ""
 QEMU_INSTANCES = {}
@@ -257,27 +264,38 @@ class xEMUInstance(object):
         mac = hashlib.md5(self.name).hexdigest()
         local_qemuprotocol = qemuprotocol
 
-        # fallback on another syntax if the current one is not supported
-        if qemuprotocol == 0:
-            try:
-                p = subprocess.Popen([self.bin, '-help'], stdout = subprocess.PIPE)
-                qemustdout = p.communicate()
-            except:
-                print >> sys.stderr, "Unable to execute %s -help" % self.bin
-                return options
-            if not qemustdout[0].__contains__('for dynamips/pemu/GNS3'):
-                print "Falling back to the new qemu syntax"
+        if platform.system() == 'Windows':
+            # On Windows, Qemu binaries don't return anything when using -help. So pick up the protocol based on the filename.
+            binary_name = os.path.basename(self.bin)
+            print "Binary: %s" % binary_name
+            if binary_name == 'qemu-system-i386w.exe':
                 local_qemuprotocol = 1
-        elif qemuprotocol == 1:
-            try:
-                p = subprocess.Popen([self.bin, '-net', 'socket'], stderr = subprocess.PIPE)
-                qemustderr = p.communicate()
-            except:
-                print >> sys.stderr, "Unable to execute %s -net socket" % self.bin
-                return options
-            if not qemustderr[1].__contains__('udp='):
-                print "Falling back to the old qemu syntax"
+                print "Using the new qemu syntax"
+            else:
                 local_qemuprotocol = 0
+                print "Using the old qemu syntax"
+        else:
+            # fallback on another syntax if the current one is not supported
+            if qemuprotocol == 0:
+                try:
+                    p = subprocess.Popen([self.bin, '-help'], stdout = subprocess.PIPE)
+                    qemustdout = p.communicate()
+                except:
+                    print >> sys.stderr, "Unable to execute %s -help" % self.bin
+                    return options
+                if not qemustdout[0].__contains__('for dynamips/pemu/GNS3'):
+                    print "Falling back to the new qemu syntax"
+                    local_qemuprotocol = 1
+            elif qemuprotocol == 1:
+                try:
+                    p = subprocess.Popen([self.bin, '-net', 'socket'], stderr = subprocess.PIPE)
+                    qemustderr = p.communicate()
+                except:
+                    print >> sys.stderr, "Unable to execute %s -net socket" % self.bin
+                    return options
+                if not qemustderr[1].__contains__('udp='):
+                    print "Falling back to the old qemu syntax"
+                    local_qemuprotocol = 0
 
         for vlan in range(int(self.nics)):
             if local_qemuprotocol == 1:

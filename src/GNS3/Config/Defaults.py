@@ -70,9 +70,16 @@ else:
 
 # Default paths to Qemu and qemu-img
 if sys.platform.startswith('win'):
-    QEMU_IMG_DEFAULT_PATH = unicode('qemu-img.exe')
-    QEMU_DEFAULT_PATH = unicode('qemu.exe') # For now we ship Qemu 0.11.0 in the all-in-one
-    #QEMU_DEFAULT_PATH = unicode('qemu-system-i386w.exe')
+    if os.path.exists('Qemu\qemu-system-i386w.exe'):
+        QEMU_DEFAULT_PATH = unicode('Qemu\qemu-system-i386w.exe')
+        QEMU_IMG_DEFAULT_PATH = unicode('Qemu\qemu-img.exe')
+    else:
+        # For now we ship Qemu 0.11.0 in the all-in-one
+        QEMU_DEFAULT_PATH = unicode('qemu.exe') 
+        QEMU_IMG_DEFAULT_PATH = unicode('qemu-img.exe')
+elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
+        QEMU_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/Qemu/bin/qemu'
+        QEMU_IMG_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/Qemu/bin/qemu-img'
 else:
     QEMU_IMG_DEFAULT_PATH = unicode('qemu-img')
     QEMU_DEFAULT_PATH = unicode('qemu-system-i386')
