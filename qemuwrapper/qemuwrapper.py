@@ -82,8 +82,18 @@ debugmsg(2, msg)
 __author__ = 'Thomas Pani and Jeremy Grossmann'
 __version__ = '0.8.4'
 
-QEMU_PATH = "qemu-system-i386"
-QEMU_IMG_PATH = "qemu-img"
+if platform.system() == 'Windows':
+    if os.path.exists('Qemu\qemu-system-i386w.exe'):
+        QEMU_PATH = "Qemu\qemu-system-i386w.exe"
+        QEMU_IMG_PATH = "Qemu\qemu-img.exe"
+    else:
+        # For now we ship Qemu 0.11.0 in the all-in-one
+        QEMU_PATH = "qemu.exe"
+        QEMU_IMG_PATH = "qemu-img.exe"
+else:
+    QEMU_PATH = "qemu-system-i386"
+    QEMU_IMG_PATH = "qemu-img"
+
 PORT = 10525
 IP = ""
 QEMU_INSTANCES = {}
@@ -141,8 +151,9 @@ class xEMUInstance(object):
         self.options = ''
         self.process = None
         self.workdir = WORKDIR + os.sep + name
-        self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options', 'usermod', 'flavor']
+        self.valid_attr_names = ['image', 'ram', 'console', 'nics', 'netcard', 'kvm', 'options', 'usermod', 'flavor', 'monitor']
         # For Qemu monitor mode
+        self.monitor = False
         self.monitor_conn = None
         self.monitor_sock = None
         global MONITOR_BASE_PORT
@@ -164,25 +175,26 @@ class xEMUInstance(object):
         debugmsg(2, "xEMUInstance::start()")
         command = self._build_command()
 
-        # Prepare the socket taking care of Qemu monitor mode
-        for res in socket.getaddrinfo('localhost', self.monitor_port, socket.AF_UNSPEC, socket.SOCK_STREAM):
-            af, socktype, proto, cannonname, sa = res
-            try:
-                self.monitor_sock = socket.socket(af, socktype, proto)
-            except socket.error, msg:
-                self.monitor_sock = None
-                continue
-            try:
-                self.monitor_sock.bind(sa)
-                self.monitor_sock.listen(1) # Allow only one connection
-            except socket.error, msg:
-                self.monitor_sock.close()
-                self.monitor_sock = None
-                continue
-            break
-        if self.monitor_sock is None:
-            print >> sys.stderr, 'Unable to open socket for monitor mode on localhost:' + self.monitor_port
-            return False
+        if bool(self.monitor):
+            # Prepare the socket taking care of Qemu monitor mode
+            for res in socket.getaddrinfo('localhost', self.monitor_port, socket.AF_UNSPEC, socket.SOCK_STREAM):
+                af, socktype, proto, cannonname, sa = res
+                try:
+                    self.monitor_sock = socket.socket(af, socktype, proto)
+                except socket.error, msg:
+                    self.monitor_sock = None
+                    continue
+                try:
+                    self.monitor_sock.bind(sa)
+                    self.monitor_sock.listen(1) # Allow only one connection
+                except socket.error, msg:
+                    self.monitor_sock.close()
+                    self.monitor_sock = None
+                    continue
+                break
+            if self.monitor_sock is None:
+                print >> sys.stderr, 'Unable to open socket for monitor mode on localhost:' + self.monitor_port
+                return False
 
         qemu_cmd = " ".join(command)
         print "Starting Qemu: ", qemu_cmd
@@ -200,17 +212,18 @@ class xEMUInstance(object):
 
         time.sleep(1)
 
-        self.monitor_conn, addr = self.monitor_sock.accept()
-        self.monitor_conn.setblocking(0)
-        # consume the first lines of output of Qemu monitor mode
-        output = ''
-        while True:
-            select.select([self.monitor_conn], [], [], 1)
-            output += self.monitor_conn.recv(4096)
-            if len(output) == 0 or 'monitor -'not in output:
-                continue
-            else:
-                break
+        if bool(self.monitor):
+            self.monitor_conn, addr = self.monitor_sock.accept()
+            self.monitor_conn.setblocking(0)
+            # consume the first lines of output of Qemu monitor mode
+            output = ''
+            while True:
+                select.select([self.monitor_conn], [], [], 1)
+                output += self.monitor_conn.recv(4096)
+                if len(output) == 0 or 'monitor -'not in output:
+                    continue
+                else:
+                    break
 
         if platform.system() == 'Windows':
             print "Setting priority class to BELOW_NORMAL"
@@ -251,9 +264,17 @@ class xEMUInstance(object):
         mac = hashlib.md5(self.name).hexdigest()
         local_qemuprotocol = qemuprotocol
 
-        # Do not check on windows, we ship qemu 1.1 and it works with the default protocol
-        if platform.system() != 'Windows':
-
+        if platform.system() == 'Windows':
+            # On Windows, Qemu binaries don't return anything when using -help. So pick up the protocol based on the filename.
+            binary_name = os.path.basename(self.bin)
+            print "Binary: %s" % binary_name
+            if binary_name == 'qemu-system-i386w.exe':
+                local_qemuprotocol = 1
+                print "Using the new qemu syntax"
+            else:
+                local_qemuprotocol = 0
+                print "Using the old qemu syntax"
+        else:
             # fallback on another syntax if the current one is not supported
             if qemuprotocol == 0:
                 try:
@@ -303,7 +324,7 @@ class xEMUInstance(object):
                 if vlan in self.capture:
                     options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
 
-        if self.usermod is True:
+        if bool(self.usermod):
             options.extend(['-device', '%s,mac=00:00:ab:%02x:%02x:%02x,netdev=gns3-usermod' % (self.netcard, random.randint(0x00, 0xff), random.randint(0x00, 0xff), random.randint(0x00, 0xff))])
             options.extend(['-netdev', 'user,id=gns3-usermod'])
 
@@ -351,7 +372,6 @@ class PEMUInstance(xEMUInstance):
 
         return options
 
-
     def _build_command(self):
         debugmsg(2, "PEMUInstance::_build_command()")
         "Builds the command as a list of shell arguments."
@@ -371,7 +391,7 @@ class PEMUInstance(xEMUInstance):
     def start(self):
         debugmsg(2, "PEMUInstance::start()")
         if not os.path.exists(self.pemu_bin_path):
-            debugmsg(1, "ERROR: Cannot find PEMU!")
+            debugmsg(1, "ERROR: Cannot find PEMU !")
             print >> sys.stderr, "ERROR: Cannot find PEMU! (looking for %s)" % self.pemu_bin_path
             return False
         self._write_config()
@@ -402,9 +422,10 @@ class QEMUInstance(xEMUInstance):
         command = [self.bin]
 
         # Qemu monitor mode through socket
-        command.extend(['-monitor', 'stdio'])
-        command.extend(['-chardev', 'socket,id=qemuwrapper-monitor,host=localhost,port=' + str(self.monitor_port)])
-        command.extend(['-mon', 'qemuwrapper-monitor'])
+        if bool(self.monitor):
+            command.extend(['-monitor', 'stdio'])
+            command.extend(['-chardev', 'socket,id=qemuwrapper-monitor,host=localhost,port=' + str(self.monitor_port)])
+            command.extend(['-mon', 'qemuwrapper-monitor'])
 
         command.extend(['-name', self.name])
         command.extend(['-m', str(self.ram)])
@@ -1114,6 +1135,11 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         if not QEMU_INSTANCES[name].process:
             self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
                             "unable to find Qemu '%s', is it started?" % name)
+            return
+
+        if bool(QEMU_INSTANCES[name].monitor) == False:
+            self.send_reply(self.HSC_ERR_UNK_CMD, 1,
+                            "Monitor mode is not activated for Qemu '%s'" % name)
             return
 
         # send the command to qemu monitor mode

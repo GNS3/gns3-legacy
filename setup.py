@@ -103,9 +103,9 @@ elif sys.platform.startswith('darwin'):
     data_files = [('', glob(r'src/GNS3/Langs/*.qm')),
                   ('src/GNS3/Dynagen/configspec'),
                   ('qemuwrapper/qemuwrapper.py'),
-                  ('vboxwrapper/vboxwrapper.py'),
-                  ('vboxwrapper/vboxcontroller_4_1.py'),
-                  ('vboxwrapper/tcp_pipe_proxy.py'),
+#                  ('vboxwrapper/vboxwrapper.py'),
+#                  ('vboxwrapper/vboxcontroller_4_1.py'),
+#                  ('vboxwrapper/tcp_pipe_proxy.py'),
                   ('baseconfig.txt'),
                   ('baseconfig_sw.txt'),
                   ('LICENSE'),
@@ -145,7 +145,7 @@ elif sys.platform.startswith('darwin'):
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesGeneral',
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesCapture',
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesQemu',
-                            'GNS3.Ui.ConfigurationPages.Page_PreferencesVirtualBox'
+                            'GNS3.Ui.ConfigurationPages.Page_PreferencesVirtualBox',
                             'GNS3.Ui.ConfigurationPages.Page_PreferencesDeployementWizard',
                             ],
 
@@ -194,13 +194,16 @@ elif sys.platform.startswith('darwin'):
     print '*** Installing Dynamips ***'
     os.system('cp ../dynamips-0.2.8-RC3-community-OSX.intel64.bin ./GNS3.app/Contents/Resources')
 
+    print '*** Installing Qemu ***'
+    os.system('mkdir -p ./GNS3.app/Contents/Resources/Qemu')
+    os.system('cp -R ../Qemu/* ./GNS3.app/Contents/Resources/Qemu')
+
     print '*** Applying permissions ***'
     os.chmod('./GNS3.app/Contents/Resources/vboxwrapper.py', 0755)
     os.chmod('./GNS3.app/Contents/Resources/qemuwrapper.py', 0755)
+    os.chmod('./GNS3.app/Contents/Resources/Qemu/bin/qemu', 0755)
+    os.chmod('./GNS3.app/Contents/Resources/Qemu/bin/qemu-img', 0755)
     os.chmod('./GNS3.app/Contents/Resources/dynamips-0.2.8-RC3-community-OSX.intel64.bin', 0755)
-
-#    print '*** Installing Patched Qemu ***'
-#    os.system('cp -R ../qemu-0.15.0/* ./GNS3.app/Contents/Resources/')
 
     print '*** Compiling & installing VBoxWrapper ***'
     setuptools.setup(name='VBoxWrapper', app=['../vboxwrapper/vboxwrapper.py'], options={'py2app': {'semi_standalone': True, 'site_packages': True, 'optimize':  1}}, setup_requires=['py2app'])
