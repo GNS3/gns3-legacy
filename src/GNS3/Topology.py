@@ -591,7 +591,6 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('flavor', conf.flavor)
                 node.set_string_option('kvm', conf.kvm)
-                node.set_string_option('monitor', conf.monitor)
                 node.set_string_option('options', conf.options)
 
             if isinstance(node, VBoxDevice):
@@ -699,7 +698,6 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kvm', conf.kvm)
-                node.set_string_option('monitor', conf.monitor)
                 node.set_string_option('options', conf.options)
 
             if isinstance(node, IDS):
@@ -755,7 +753,6 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kvm', conf.kvm)
-                node.set_string_option('monitor', conf.monitor)
                 node.set_string_option('options', conf.options)
 
             if isinstance(node, ASA):
@@ -811,7 +808,6 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kvm', conf.kvm)
-                node.set_string_option('monitor', conf.monitor)
                 node.set_string_option('initrd', conf.initrd)
                 node.set_string_option('kernel', conf.kernel)
                 node.set_string_option('kernel_cmdline', conf.kernel_cmdline)

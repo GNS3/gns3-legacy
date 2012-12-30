@@ -71,8 +71,7 @@ else:
 # Default paths to Qemu and qemu-img
 if sys.platform.startswith('win'):
     QEMU_IMG_DEFAULT_PATH = unicode('qemu-img.exe')
-    QEMU_DEFAULT_PATH = unicode('qemu.exe') # For now we ship Qemu 0.11.0 in the all-in-one
-    #QEMU_DEFAULT_PATH = unicode('qemu-system-i386w.exe')
+    QEMU_DEFAULT_PATH = unicode('qemu-system-i386w.exe')
 else:
     QEMU_IMG_DEFAULT_PATH = unicode('qemu-img')
     QEMU_DEFAULT_PATH = unicode('qemu-system-i386')
@@ -375,8 +374,7 @@ conf_qemuImage_defaults = {
     'nic': 'rtl8139',
     'flavor': 'Default',
     'options': '',
-    'kvm': False,
-    'monitor': False
+    'kvm': False
 }
 
 conf_qemuImage_types = {
@@ -389,8 +387,7 @@ conf_qemuImage_types = {
     'nic': str,
     'flavor': str,
     'options': str,
-    'kvm': bool,
-    'monitor': bool
+    'kvm': bool
 }
 
 conf_vboxImage_defaults = {
@@ -454,8 +451,7 @@ conf_junosImage_defaults = {
     'usermod' : False,
     'nic': 'e1000',
     'options': '',
-    'kvm': False,
-    'monitor': False
+    'kvm': False
 }
 
 conf_junosImage_types = {
@@ -467,8 +463,7 @@ conf_junosImage_types = {
     'usermod' : bool,
     'nic': str,
     'options': str,
-    'kvm': bool,
-    'monitor': bool
+    'kvm': bool
 }
 
 conf_asaImage_defaults = {
@@ -480,7 +475,6 @@ conf_asaImage_defaults = {
     'nic': 'e1000',
     'options': '',
     'kvm': False,
-    'monitor': False,
     'kernel': '',
     'initrd': '',
     'kernel_cmdline': ''
@@ -495,7 +489,6 @@ conf_asaImage_types = {
     'nic': str,
     'options': str,
     'kvm': bool,
-    'monitor': bool,
     'kernel': unicode,
     'initrd': unicode,
     'kernel_cmdline': unicode,
@@ -511,8 +504,7 @@ conf_idsImage_defaults = {
     'usermod' : False,
     'nic': 'e1000',
     'options': '',
-    'kvm': False,
-    'monitor': False
+    'kvm': False
 }
 
 conf_idsImage_types = {
@@ -525,8 +517,7 @@ conf_idsImage_types = {
     'usermod' : bool,
     'nic': str,
     'options': str,
-    'kvm': bool,
-    'monitor': bool
+    'kvm': bool
 }
 
 conf_systemDynamips_defaults = {

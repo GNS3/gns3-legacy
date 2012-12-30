@@ -257,7 +257,6 @@ class GNS_Conf(object):
             conf.flavor = str(c.get(cgroup + "/flavor", 'Default'))
             conf.options = str(c.get(cgroup + "/options", ''))
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
-            conf.monitor = c.value(cgroup + "/monitor", QtCore.QVariant(False)).toBool()
             globals.GApp.qemuimages[conf.name] = conf
 
             if conf.id >= globals.GApp.qemuimages_ids:
@@ -350,7 +349,6 @@ class GNS_Conf(object):
             conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
             conf.options = str(c.get(cgroup + "/options", ''))
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
-            conf.monitor = c.value(cgroup + "/monitor", QtCore.QVariant(False)).toBool()
             globals.GApp.junosimages[conf.name] = conf
 
             if conf.id >= globals.GApp.junosimages_ids:
@@ -380,7 +378,6 @@ class GNS_Conf(object):
             conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
             conf.options = str(c.get(cgroup + "/options", ''))
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
-            conf.monitor = c.value(cgroup + "/monitor", QtCore.QVariant(False)).toBool()
             conf.initrd = c.get(cgroup + "/initrd", unicode(''))
             conf.kernel = c.get(cgroup + "/kernel", unicode(''))
             conf.kernel_cmdline = c.get(cgroup + "/kernel_cmdline", unicode(''))
@@ -415,7 +412,6 @@ class GNS_Conf(object):
             conf.nic = str(c.get(cgroup + "/nic", 'e1000'))
             conf.options = str(c.get(cgroup + "/options", ''))
             conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
-            conf.monitor = c.value(cgroup + "/monitor", QtCore.QVariant(False)).toBool()
             globals.GApp.idsimages[conf.name] = conf
 
             if conf.id >= globals.GApp.idsimages_ids:
