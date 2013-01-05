@@ -220,7 +220,7 @@ class Topology(QtGui.QGraphicsScene):
             globals.GApp.hypervisors[external_hypervisor_key].used_ram += node.default_ram
             hypervisor_conf = globals.GApp.hypervisors[external_hypervisor_key]
             # use project workdir in priority
-            if globals.GApp.workspace.projectWorkdir:
+            if globals.GApp.workspace.projectWorkdir and self.isLocalhost(host):
                 self.dynagen.defaults_config['workingdir'] = globals.GApp.workspace.projectWorkdir
             elif hypervisor_conf.workdir:
                 self.dynagen.defaults_config['workingdir'] = hypervisor_conf.workdir

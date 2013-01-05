@@ -132,7 +132,10 @@ class portTracker:
         if host in self.local_addresses:
             host = 'localhost'
         if self.tcptrack.has_key(host) and port in self.tcptrack[host]:
-            return False
+            # workaround, let's say the port is free to use
+            debug("freeing port (already allocated) %i" % port)
+            self.tcptrack[host].remove(port)
+            #return False
         # forced to do this as sometimes the port of a (just) closed application is not considered free
         #if not self.getAvailableTcpPort(host, port, 0):
         #    return False
@@ -142,7 +145,7 @@ class portTracker:
 
         if host in self.local_addresses:
             host = 'localhost'
-        if self.tcptrack.has_key(host) and port in self.tcptrack[host] and not self.tcpPortIsFree(host, port):
+        if self.tcptrack.has_key(host) and port in self.tcptrack[host]:# and not self.tcpPortIsFree(host, port):
             debug("freeing port %i" % port)
             self.tcptrack[host].remove(port)
         else:

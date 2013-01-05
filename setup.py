@@ -194,12 +194,12 @@ elif sys.platform.startswith('darwin'):
     print '*** Installing Dynamips ***'
     os.system('cp ../dynamips-0.2.8-RC3-community-OSX.intel64.bin ./GNS3.app/Contents/Resources')
 
-    print '*** Installing Qemu ***'
+    #print '*** Installing Qemu ***'
     os.system('mkdir -p ./GNS3.app/Contents/Resources/Qemu')
     os.system('cp -R ../Qemu/* ./GNS3.app/Contents/Resources/Qemu')
 
     print '*** Applying permissions ***'
-    os.chmod('./GNS3.app/Contents/Resources/vboxwrapper.py', 0755)
+    #os.chmod('./GNS3.app/Contents/Resources/vboxwrapper.py', 0755)
     os.chmod('./GNS3.app/Contents/Resources/qemuwrapper.py', 0755)
     os.chmod('./GNS3.app/Contents/Resources/Qemu/bin/qemu', 0755)
     os.chmod('./GNS3.app/Contents/Resources/Qemu/bin/qemu-img', 0755)

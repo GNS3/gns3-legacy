@@ -90,7 +90,6 @@ background-none;
     <addaction name="action_SaveProjectAs"/>
     <addaction name="separator"/>
     <addaction name="action_config"/>
-    <addaction name="action_Deployement_Wizard"/>
     <addaction name="action_Export"/>
     <addaction name="action_Snapshot"/>
     <addaction name="separator"/>

@@ -107,7 +107,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         # Add a default image for node that don't have one
         for node in globals.GApp.topology.nodes.values():
-            if type(node) == IOSRouter and node.config.image == '':
+            if type(node) == IOSRouter and node.config.image == '' and not globals.GApp.iosimages.has_key(node.config.image):
                 node.setDefaultIOSImage()
         globals.GApp.syncConf()
 
