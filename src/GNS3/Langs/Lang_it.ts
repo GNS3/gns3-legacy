@@ -355,7 +355,7 @@ p, li { white-space: pre-wrap; }
         <translation>Avvia Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="514"/>
+        <location filename="../Link/AbstractEdge.py" line="515"/>
         <source>Capture</source>
         <translation>Cattura traffico</translation>
     </message>
@@ -375,12 +375,12 @@ p, li { white-space: pre-wrap; }
         <translation>Nessun analizzatore disponibile</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="444"/>
+        <location filename="../Link/AbstractEdge.py" line="445"/>
         <source>Dynamips error</source>
         <translation>Errore di Dynamips</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="460"/>
+        <location filename="../Link/AbstractEdge.py" line="461"/>
         <source>Please configure capture options</source>
         <translation>Configura le opzioni di cattura</translation>
     </message>
@@ -395,7 +395,7 @@ p, li { white-space: pre-wrap; }
         <translation>Il dispositivo %s non è in funzione</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="514"/>
+        <location filename="../Link/AbstractEdge.py" line="515"/>
         <source>Cannot start %s : %s</source>
         <translation>Impossibile avviare %s : %s</translation>
     </message>
@@ -410,7 +410,7 @@ p, li { white-space: pre-wrap; }
         <translation>Il dispositivo %s deve essere riavviato per iniziare la cattura del traffico</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="417"/>
+        <location filename="../Link/AbstractEdge.py" line="418"/>
         <source>Device %s must be stopped to stop capturing traffic</source>
         <translation>Il dispositivo %s deve essere fermato per terminare la catturare del traffico</translation>
     </message>
@@ -420,22 +420,22 @@ p, li { white-space: pre-wrap; }
         <translation>Avvia la cattura</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="469"/>
+        <location filename="../Link/AbstractEdge.py" line="470"/>
         <source>%s is empty, no traffic has been captured on the link yet. Please try again later</source>
         <translation>%s è vuoto, non è stato catturato ancora alcun traffico sul collegamento. Riprova più tardi</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="472"/>
+        <location filename="../Link/AbstractEdge.py" line="473"/>
         <source>Cannot find %s : %s</source>
         <translation>Impossibile trovare %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="472"/>
+        <location filename="../Link/AbstractEdge.py" line="473"/>
         <source>NOTE: This feature is only available for local hypervisors.</source>
         <translation>NOTA: questa funzionalità è disponibile solo per hypervisor locali.</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="502"/>
+        <location filename="../Link/AbstractEdge.py" line="503"/>
         <source>Please close Wireshark</source>
         <translation type="unfinished"></translation>
     </message>
@@ -568,7 +568,7 @@ p, li { white-space: pre-wrap; }
         <translation>La porta AUX non è disponibile per questo modello di router o la porta base AUX è impostata a 0 nelle preferenze</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1046"/>
+        <location filename="../Workspace.py" line="1058"/>
         <source>GNS3 is up-to-date!</source>
         <translation>GNS3 è aggiornato!</translation>
     </message>
@@ -637,18 +637,18 @@ p, li { white-space: pre-wrap; }
         <translation>Avvio simulatore grafico di rete in corso...</translation>
     </message>
     <message>
-        <location filename="../Application.py" line="599"/>
+        <location filename="../Application.py" line="610"/>
         <source>GNS3 configuration file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Application.py" line="591"/>
+        <location filename="../Application.py" line="602"/>
         <source>You have installed a new GNS3 version.
 It is recommended to clear your old configuration, do you want to proceed?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Application.py" line="599"/>
+        <location filename="../Application.py" line="610"/>
         <source>Configuration cleared!
 Please restart GNS3</source>
         <translation type="unfinished"></translation>
@@ -672,63 +672,68 @@ Please restart GNS3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CalcIDLEPCDialog.py" line="95"/>
+        <location filename="../CalcIDLEPCDialog.py" line="97"/>
         <source>Message</source>
         <translation type="unfinished">Messaggio</translation>
     </message>
     <message>
-        <location filename="../CalcIDLEPCDialog.py" line="72"/>
+        <location filename="../CalcIDLEPCDialog.py" line="74"/>
         <source>There already is an Idle PC value specified, do you want to test it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CalcIDLEPCDialog.py" line="75"/>
+        <location filename="../CalcIDLEPCDialog.py" line="77"/>
         <source>Checking CPU usage with current Idle PC value...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CalcIDLEPCDialog.py" line="95"/>
+        <location filename="../CalcIDLEPCDialog.py" line="97"/>
         <source>This Idle PC value seems to work, continue anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CalcIDLEPCDialog.py" line="102"/>
+        <location filename="../CalcIDLEPCDialog.py" line="104"/>
         <source>This value doesn&apos;t seem to work. Continuing...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CalcIDLEPCDialog.py" line="108"/>
+        <location filename="../CalcIDLEPCDialog.py" line="110"/>
         <source>Getting Idle PC values from Dynagen...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CalcIDLEPCDialog.py" line="177"/>
+        <location filename="../CalcIDLEPCDialog.py" line="179"/>
         <source>Working Idle PC value found. Applying to other devices using this IOS image...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CalcIDLEPCDialog.py" line="189"/>
+        <location filename="../CalcIDLEPCDialog.py" line="191"/>
         <source>Dynamips error</source>
         <translation type="unfinished">Errore di Dynamips</translation>
     </message>
     <message>
-        <location filename="../CalcIDLEPCDialog.py" line="192"/>
+        <location filename="../CalcIDLEPCDialog.py" line="194"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CalcIDLEPCDialog.py" line="197"/>
+        <location filename="../CalcIDLEPCDialog.py" line="199"/>
         <source>Working Idle PC value found.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CalcIDLEPCDialog.py" line="199"/>
+        <location filename="../CalcIDLEPCDialog.py" line="201"/>
         <source>Failed to find a working Idle PC value.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CalcIDLEPCDialog.py" line="224"/>
+        <location filename="../CalcIDLEPCDialog.py" line="226"/>
         <source>Cleaning up...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../CalcIDLEPCDialog.py" line="68"/>
+        <source>Giving time for the router to boot...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1039,17 +1044,17 @@ Inserire il valore di idlepc da applicare [1-%i] o ENTER per annullare:
 <context>
     <name>Defaults</name>
     <message>
-        <location filename="../Config/Defaults.py" line="103"/>
+        <location filename="../Config/Defaults.py" line="110"/>
         <source>Wireshark Traditional Capture</source>
         <translation>Cattura tradizionale di Wireshark</translation>
     </message>
     <message>
-        <location filename="../Config/Defaults.py" line="104"/>
+        <location filename="../Config/Defaults.py" line="111"/>
         <source>Wireshark Live Traffic Capture</source>
         <translation>Cattura in diretta del traffico con Wireshark</translation>
     </message>
     <message>
-        <location filename="../Config/Defaults.py" line="105"/>
+        <location filename="../Config/Defaults.py" line="112"/>
         <source>Wireshark Live Pipe Traffic Capture (experimental)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1574,17 +1579,17 @@ Best idlepc values are usually obtained when IOS is in idle state, the following
 <context>
     <name>IOSDialog</name>
     <message>
-        <location filename="../IOSDialog.py" line="283"/>
+        <location filename="../IOSDialog.py" line="286"/>
         <source>IDLE PC not valid (format required: 0xhhhhhhhh)</source>
         <translation>IDLE PC non valido (formato richiesto: 0xhhhhhhhh)</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="296"/>
+        <location filename="../IOSDialog.py" line="299"/>
         <source>No hypervisor selected, use the local hypervisor</source>
         <translation>Nessun hypervisor selezionato, verrà usato l&apos;hypervisor locale</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="443"/>
+        <location filename="../IOSDialog.py" line="446"/>
         <source>Select a working directory</source>
         <translation>Seleziona una cartella di lavoro</translation>
     </message>
@@ -1689,7 +1694,7 @@ Best idlepc values are usually obtained when IOS is in idle state, the following
         <translation>Hypervisor esterni</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="175"/>
+        <location filename="../IOSDialog.py" line="178"/>
         <source>Select an IOS image</source>
         <translation>Seleziona un&apos;immagine IOS</translation>
     </message>
@@ -1709,12 +1714,12 @@ Best idlepc values are usually obtained when IOS is in idle state, the following
         <translation>Immagine predefinita per questa piattaforma</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="353"/>
+        <location filename="../IOSDialog.py" line="356"/>
         <source>There is already a default image for this platform</source>
         <translation>È già stata configurata un&apos;immagine predefinita per questa piattaforma</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="260"/>
+        <location filename="../IOSDialog.py" line="263"/>
         <source>Can&apos;t open file: %s</source>
         <translation>Impossibile aprire il file: %s</translation>
     </message>
@@ -1724,12 +1729,12 @@ Best idlepc values are usually obtained when IOS is in idle state, the following
         <translation>RAM predefinita:</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="575"/>
+        <location filename="../IOSDialog.py" line="578"/>
         <source>IOS Configuration</source>
         <translation>Configurazione IOS</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="418"/>
+        <location filename="../IOSDialog.py" line="421"/>
         <source>Image file box is empty</source>
         <translation>Il campo del file immagine è vuoto</translation>
     </message>
@@ -1754,12 +1759,12 @@ Best idlepc values are usually obtained when IOS is in idle state, the following
         <translation>baseconfig.txt</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="452"/>
+        <location filename="../IOSDialog.py" line="455"/>
         <source>The path you have selected should contains only ascii (English) characters. Dynamips (Cygwin DLL) doesn&apos;t support unicode on Windows!</source>
         <translation>Il percorso selezionato dovrebbe contenere solo caratteri ASCII (Inglese). Dynamips (DLL di Cygwin) non supporta l&apos;unicode su Windows!</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="254"/>
+        <location filename="../IOSDialog.py" line="257"/>
         <source>Select a Base configuration file</source>
         <translation>Seleziona un file di configurazione base</translation>
     </message>
@@ -1774,22 +1779,22 @@ Best idlepc values are usually obtained when IOS is in idle state, the following
         <translation> MiB</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="287"/>
+        <location filename="../IOSDialog.py" line="290"/>
         <source>Warning: IDLE PC will have to be configured! &lt;a href=&apos;http://www.gns3.net/gns3-simplest-topology&apos; &gt;Find out why and how&lt;/a&gt;</source>
         <translation>Avviso: IDLE PC deve essere configurato! &lt;a href=&apos;http://www.gns3.net/gns3-simplest-topology&apos; &gt;Scopri perché e come&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="210"/>
+        <location filename="../IOSDialog.py" line="213"/>
         <source>IOS Image</source>
         <translation>Immagine IOS</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="203"/>
+        <location filename="../IOSDialog.py" line="206"/>
         <source>%s already exists, let&apos;s use it</source>
         <translation>%s esiste già, sarà utilizzata</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="210"/>
+        <location filename="../IOSDialog.py" line="213"/>
         <source>Sorry, impossible to extract the IOS image</source>
         <translation>Impossibile estrarre l&apos;immagine di IOS</translation>
     </message>
@@ -1809,23 +1814,23 @@ Best idlepc values are usually obtained when IOS is in idle state, the following
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="198"/>
+        <location filename="../IOSDialog.py" line="201"/>
         <source>The IOS image is compressed. Would you like to uncompress it?
 This will create %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="575"/>
+        <location filename="../IOSDialog.py" line="578"/>
         <source>You will need Dynamips version 2.0.8-RC4 and above to use this utility.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="578"/>
+        <location filename="../IOSDialog.py" line="581"/>
         <source>Message</source>
         <translation type="unfinished">Messaggio</translation>
     </message>
     <message>
-        <location filename="../IOSDialog.py" line="578"/>
+        <location filename="../IOSDialog.py" line="581"/>
         <source>This operation will stop all your devices and last a few minutes. Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1835,12 +1840,12 @@ This will create %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CalcIDLEPCDialog.py" line="132"/>
+        <location filename="../CalcIDLEPCDialog.py" line="134"/>
         <source>Dynagen didn&apos;t find any Idle PC value. It happens sometimes, please try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../CalcIDLEPCDialog.py" line="234"/>
+        <location filename="../CalcIDLEPCDialog.py" line="236"/>
         <source>Operation cancelled</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2893,6 +2898,16 @@ This will create %s</source>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="636"/>
         <source>Zoom in/out using the mouse whee</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="639"/>
+        <source>Tips</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_MainWindow.py" line="640"/>
+        <source>Show Tips</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4990,17 +5005,17 @@ o sul collegamento stesso.</translation>
         <translation>Imposta hypervisor</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1045"/>
+        <location filename="../Scene.py" line="1059"/>
         <source>annotation</source>
         <translation>Annotazione</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1054"/>
+        <location filename="../Scene.py" line="1068"/>
         <source>rectangle</source>
         <translation>rettangolo</translation>
     </message>
     <message>
-        <location filename="../Scene.py" line="1062"/>
+        <location filename="../Scene.py" line="1076"/>
         <source>ellipse</source>
         <translation>ellissi</translation>
     </message>
@@ -5138,6 +5153,16 @@ o sul collegamento stesso.</translation>
         <location filename="../Scene.py" line="651"/>
         <source>Please choose a link</source>
         <translation>Scegli un collegamento</translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="925"/>
+        <source>Topology file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Scene.py" line="925"/>
+        <source>Please select only one file!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -5427,6 +5452,29 @@ editing (notes only) with ALT and &apos;+&apos; (or P) / ALT and &apos;-&apos; (
         <location filename="../SymbolManager.py" line="239"/>
         <source>Can&apos;t remove library: %s</source>
         <translation>Impossibile rimuovere la raccolta: %s</translation>
+    </message>
+</context>
+<context>
+    <name>TipsDialog</name>
+    <message>
+        <location filename="../Ui/Form_TipsDialog.py" line="21"/>
+        <source>GNS3 Tips</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_TipsDialog.ui" line="21"/>
+        <source>about:blank</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Ui/Form_TipsDialog.py" line="31"/>
+        <source>Don&apos;t show this again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../TipsDialog.py" line="52"/>
+        <source>Tips page</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6362,372 +6410,367 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Workspace</name>
     <message>
-        <location filename="../Workspace.py" line="245"/>
+        <location filename="../Workspace.py" line="249"/>
         <source>Docks</source>
         <translation>Aggancia</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1455"/>
+        <location filename="../Workspace.py" line="1460"/>
         <source>Dynamips error</source>
         <translation>Errore di Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="476"/>
+        <location filename="../Workspace.py" line="480"/>
         <source>Connection lost</source>
         <translation>Connessione perduta</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="850"/>
+        <location filename="../Workspace.py" line="854"/>
         <source>Abort</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1081"/>
+        <location filename="../Workspace.py" line="1093"/>
         <source>Starting nodes ...</source>
         <translation>Avvio dei nodi in corso...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="936"/>
+        <location filename="../Workspace.py" line="940"/>
         <source>Stopping nodes ...</source>
         <translation>Arresto dei nodi in corso...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="942"/>
+        <location filename="../Workspace.py" line="946"/>
         <source>Suspending nodes ...</source>
         <translation>Sospensione dei nodi in corso...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1074"/>
+        <location filename="../Workspace.py" line="1086"/>
         <source>Loading</source>
         <translation>In caricamento</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="756"/>
+        <location filename="../Workspace.py" line="760"/>
         <source>Hide hostnames</source>
         <translation>Nascondi i nomi degli host</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="761"/>
+        <location filename="../Workspace.py" line="765"/>
         <source>Show hostnames</source>
         <translation>Mostra il nome host</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1436"/>
+        <location filename="../Workspace.py" line="1441"/>
         <source>Open a file</source>
         <translation>Apri un file</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1432"/>
+        <location filename="../Workspace.py" line="1437"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Il percorso per Dynamips deve essere configurato</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1523"/>
+        <location filename="../Workspace.py" line="1518"/>
         <source>Message</source>
         <translation>Messaggio</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="541"/>
+        <location filename="../Workspace.py" line="545"/>
         <source>Add a link</source>
         <translation>Aggiungi un collegamento</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="559"/>
+        <location filename="../Workspace.py" line="563"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1514"/>
+        <location filename="../Workspace.py" line="1509"/>
         <source>Would you like to save the current topology?</source>
         <translation>Vuoi salvare la topologia in uso?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="421"/>
+        <location filename="../Workspace.py" line="425"/>
         <source>Directory to write startup-configs</source>
         <translation>Cartella in cui scrivere le startup-config</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="778"/>
+        <location filename="../Workspace.py" line="782"/>
         <source>Hide interface names</source>
         <translation>Nascondi i nomi delle interfacce</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="783"/>
+        <location filename="../Workspace.py" line="787"/>
         <source>Show interface names</source>
         <translation>Mostra nomi delle interfacce</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1284"/>
+        <location filename="../Workspace.py" line="1289"/>
         <source>Snapshot</source>
         <translation>Istantanea</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1153"/>
+        <location filename="../Workspace.py" line="1167"/>
         <source>Cannot create directory %s: %s</source>
         <translation>Impossibile creare la cartella %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1289"/>
+        <location filename="../Workspace.py" line="1294"/>
         <source>Please wait while creating a snapshot</source>
         <translation>Creazione istantanea in corso</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="476"/>
+        <location filename="../Workspace.py" line="480"/>
         <source>%s: Dynamips error</source>
         <translation>%s: Errore Dynamips</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="412"/>
+        <location filename="../Workspace.py" line="416"/>
         <source>Extracting to a directory</source>
         <translation>Estrazione in una cartella</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="414"/>
+        <location filename="../Workspace.py" line="418"/>
         <source>Importing from a directory</source>
         <translation>Importazione da una cartella</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="408"/>
+        <location filename="../Workspace.py" line="412"/>
         <source>Configs</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="408"/>
+        <location filename="../Workspace.py" line="412"/>
         <source>Please choose an option</source>
         <translation>Scegli un&apos;opzione</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="445"/>
+        <location filename="../Workspace.py" line="449"/>
         <source>Directory to read startup-configs</source>
         <translation>Cartella da cui leggere le startup-config</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="467"/>
+        <location filename="../Workspace.py" line="471"/>
         <source>IO Error</source>
         <translation>Errore IO</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="457"/>
+        <location filename="../Workspace.py" line="461"/>
         <source>Importing %s from %s</source>
         <translation>Importazione %s da %s in corso</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="470"/>
+        <location filename="../Workspace.py" line="474"/>
         <source>Ignoring unknown device %s</source>
         <translation>Il dispositivo sconosciuto %s è stato ignorato</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="472"/>
+        <location filename="../Workspace.py" line="476"/>
         <source>Dynamips Error: %s</source>
         <translation>Errore di Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="474"/>
+        <location filename="../Workspace.py" line="478"/>
         <source>Dynamips Warning: %s</source>
         <translation>Avviso di Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="357"/>
+        <location filename="../Workspace.py" line="361"/>
         <source>I/O Error</source>
         <translation>Errore I/O</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="357"/>
+        <location filename="../Workspace.py" line="361"/>
         <source>I/O Error: %s</source>
         <translation>Errore I/O: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="95"/>
+        <location filename="../Workspace.py" line="96"/>
         <source>Ctrl+Z</source>
         <translation>Ctrl+Z</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="100"/>
+        <location filename="../Workspace.py" line="101"/>
         <source>Ctrl+Y</source>
         <translation>Ctrl+Y</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="948"/>
+        <location filename="../Workspace.py" line="952"/>
         <source>Reloading nodes ...</source>
         <translation>Riavvio dei nodi in corso...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="522"/>
+        <location filename="../Workspace.py" line="526"/>
         <source>picture</source>
         <translation>immagine</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1328"/>
+        <location filename="../Workspace.py" line="1333"/>
         <source>Dynamips error: %s</source>
         <translation>Errore di Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="772"/>
+        <location filename="../Workspace.py" line="776"/>
         <source>Reset saved interface labels?</source>
         <translation>Azzerare le etichette delle interfacce salvate?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1284"/>
+        <location filename="../Workspace.py" line="1289"/>
         <source>Cannot create directories in %s: %s</source>
         <translation>Impossibile creare cartelle in %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1356"/>
+        <location filename="../Workspace.py" line="1361"/>
         <source>Dynamips error!!: %s</source>
         <translation>Errore di Dynamips!!: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1455"/>
+        <location filename="../Workspace.py" line="1460"/>
         <source>Connection lost with Dynamips hypervisor (crashed?)</source>
         <translation>Connessione interrotta con l&apos;hypervisor di Dynamips (chiusura inattesa?)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1477"/>
-        <source>Would you like to unbase the Qemu disk(s)? (useful if you want to distribute your lab but it will increase the total size)</source>
-        <translation>Vuoi rendere indipendenti i dischi di Qemu? (utile se intendi distribuire il laboratorio, ma incrementerà la dimensione totale)</translation>
-    </message>
-    <message>
-        <location filename="../Workspace.py" line="1112"/>
+        <location filename="../Workspace.py" line="1125"/>
         <source>This action is going to stop all your devices and captures, would you like to continue anyway?</source>
         <translation>Questa azione fermerà tutti i dispositivi e le catture, desideri continuare comunque?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="801"/>
+        <location filename="../Workspace.py" line="805"/>
         <source>Interface labels</source>
         <translation>Etichette delle interfacce</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="792"/>
+        <location filename="../Workspace.py" line="796"/>
         <source>Please hide the interface names before using this option</source>
         <translation>Nascondi i nomi delle interfacce prima di utilizzare questa opzione</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="801"/>
+        <location filename="../Workspace.py" line="805"/>
         <source>Interface labels have been reset</source>
         <translation>Le etichette delle interfacce sono state ripristinate</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1523"/>
+        <location filename="../Workspace.py" line="1518"/>
         <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
         <translation>Ci sono nodi in esecuzione e potresti perdere la loro configurazione, desideri continuare comunque?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1046"/>
+        <location filename="../Workspace.py" line="1058"/>
         <source>Check For Update</source>
         <translation>Controllo aggiornamenti</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1033"/>
+        <location filename="../Workspace.py" line="1045"/>
         <source>Cannot check for update ... Try again later</source>
         <translation>Impossibile verificare la presenza di aggiornamenti. Prova più tardi</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1039"/>
+        <location filename="../Workspace.py" line="1051"/>
         <source>Newer GNS3 version %s is available, do you want to visit our website to download it?</source>
         <translation>La nuova versione %s di GNS3 è disponibile, vuoi visitare il sito web per scaricarla?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1088"/>
+        <location filename="../Workspace.py" line="1100"/>
         <source>This will clear your current topology. Continue?</source>
         <translation>Questa azione cancellerà la topologia corrente. Vuoi continuare?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1426"/>
+        <location filename="../Workspace.py" line="1431"/>
         <source>Clear Menu</source>
         <translation>Pulisci il menu</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="223"/>
+        <location filename="../Workspace.py" line="227"/>
         <source>Recent Files</source>
         <translation>File recenti</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="905"/>
+        <location filename="../Workspace.py" line="909"/>
         <source>VirtualBox Manager</source>
         <translation>Gestore di VirtualBox</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="905"/>
+        <location filename="../Workspace.py" line="909"/>
         <source>VirtualBox is not installed!</source>
         <translation>VirtualBox non è installato!</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1247"/>
+        <location filename="../Workspace.py" line="1252"/>
         <source>Dynamips error %s: %s</source>
         <translation>Errore Dynamips %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1153"/>
+        <location filename="../Workspace.py" line="1167"/>
         <source>createProject</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="865"/>
+        <location filename="../Workspace.py" line="869"/>
         <source>starting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="873"/>
+        <location filename="../Workspace.py" line="877"/>
         <source>stopping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="876"/>
+        <location filename="../Workspace.py" line="880"/>
         <source>suspending</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="879"/>
+        <location filename="../Workspace.py" line="883"/>
         <source>reloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="882"/>
+        <location filename="../Workspace.py" line="886"/>
         <source>%s: error from server %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="885"/>
+        <location filename="../Workspace.py" line="889"/>
         <source>%s: warning from server %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="888"/>
+        <location filename="../Workspace.py" line="892"/>
         <source>%s: lost communication with server %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="896"/>
+        <location filename="../Workspace.py" line="900"/>
         <source>%s nodes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="896"/>
+        <location filename="../Workspace.py" line="900"/>
         <source>Issues have been detected while %s nodes, please check details ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1071"/>
+        <location filename="../Workspace.py" line="1083"/>
         <source>No such file: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1074"/>
+        <location filename="../Workspace.py" line="1086"/>
         <source>Not a regular file: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1157"/>
+        <location filename="../Workspace.py" line="1171"/>
         <source>New Project</source>
         <translation type="unfinished">Nuovo progetto</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1157"/>
+        <location filename="../Workspace.py" line="1171"/>
         <source>Can&apos;t create a project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1377"/>
+        <location filename="../Workspace.py" line="1382"/>
         <source>The file &apos;%s&apos; has not the right extension (.net)</source>
         <translation type="unfinished"></translation>
     </message>

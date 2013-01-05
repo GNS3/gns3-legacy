@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesVirtualBox.ui'
 #
-# Created: Sun Dec 23 20:12:05 2012
+# Created: Fri Jan  4 19:08:04 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!

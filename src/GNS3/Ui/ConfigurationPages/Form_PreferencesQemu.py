@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesQemu.ui'
 #
-# Created: Sun Dec 23 20:12:05 2012
+# Created: Fri Jan  4 19:08:04 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -192,7 +192,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 475, 524))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 475, 525))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.verticalLayout = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
@@ -498,7 +498,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.scrollArea_3.setObjectName(_fromUtf8("scrollArea_3"))
         self.scrollAreaWidgetContents_3 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_3.setGeometry(QtCore.QRect(0, 0, 475, 524))
+        self.scrollAreaWidgetContents_3.setGeometry(QtCore.QRect(0, 0, 475, 525))
         self.scrollAreaWidgetContents_3.setObjectName(_fromUtf8("scrollAreaWidgetContents_3"))
         self.verticalLayout_4 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents_3)
         self.verticalLayout_4.setObjectName(_fromUtf8("verticalLayout_4"))
@@ -797,7 +797,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.scrollArea_5.setObjectName(_fromUtf8("scrollArea_5"))
         self.scrollAreaWidgetContents_5 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_5.setGeometry(QtCore.QRect(0, 0, 475, 524))
+        self.scrollAreaWidgetContents_5.setGeometry(QtCore.QRect(0, 0, 475, 525))
         self.scrollAreaWidgetContents_5.setObjectName(_fromUtf8("scrollAreaWidgetContents_5"))
         self.verticalLayout_3 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents_5)
         self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
@@ -946,7 +946,7 @@ class Ui_PreferencesQemu(object):
 
         self.retranslateUi(PreferencesQemu)
         self.tabWidget.setCurrentIndex(0)
-        self.QemuNIC.setCurrentIndex(0)
+        self.QemuNIC.setCurrentIndex(1)
         self.PIXNIC.setCurrentIndex(5)
         self.JunOSNIC.setCurrentIndex(5)
         self.ASANIC.setCurrentIndex(5)
