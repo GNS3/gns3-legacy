@@ -54,6 +54,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.projectFile = None
         self.projectWorkdir = None
         self.projectConfigs = None
+        self.isTemporaryProject = False
         # Ask to unbase when saving
         self.unbase = False
 
@@ -1155,14 +1156,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         globals.GApp.workspace.setWindowTitle("GNS3")
-        temporary_project = False
         self.projectWorkdir = None
         self.projectConfigs = None
         (self.projectFile, self.projectWorkdir, self.projectConfigs, self.unbase) = settings
 
         # Create a project in a temporary location
         if not self.projectFile and not self.projectWorkdir and not self.projectConfigs:
-            temporary_project = True
+            self.isTemporaryProject = True
             try:
                 projectDir = tempfile.mkdtemp(prefix='GNS3_')
                 #projectDir = os.path.dirname(projectDir) + os.sep + 'GNS3_' + os.path.basename(projectDir)
@@ -1173,6 +1173,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             except (OSError, IOError), e:
                 QtGui.QMessageBox.critical(self, translate('Workspace', 'createProject'),
                                            translate("Workspace", "Cannot create directory %s: %s") % (projectDir, e.strerror))
+        else:
+            self.isTemporaryProject = False
 
         if not self.projectFile:
             QtGui.QMessageBox.critical(self, translate("Workspace", "New Project"),  translate("Workspace", "Can't create a project"))
@@ -1258,7 +1260,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 except lib.DynamipsError, msg:
                     QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error %s: %s") % (self.projectWorkdir, unicode(msg)))
 
-        if temporary_project == False:
+        if self.isTemporaryProject == False:
             self.__action_Save()
         self.setWindowTitle("GNS3 Project - " + os.path.split(os.path.dirname(self.projectFile))[1])
 
@@ -1478,7 +1480,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Save to a file (scenario or dynagen .NET format)
         """
 
-        if self.projectFile is None:
+        if self.projectFile is None or self.isTemporaryProject:
             return self.__action_SaveProjectAs()
 
         try:
