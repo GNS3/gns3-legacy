@@ -111,10 +111,6 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.checkBoxManualConnections.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxManualConnections.setCheckState(QtCore.Qt.Unchecked)
-        if self.conf.auto_close_node_panel == True:
-            self.checkBoxAutoCloseNodePanel.setCheckState(QtCore.Qt.Checked)
-        else:
-            self.checkBoxAutoCloseNodePanel.setCheckState(QtCore.Qt.Unchecked)
         if self.conf.use_shell == True:
             self.checkBoxUseShell.setCheckState(QtCore.Qt.Checked)
         else:
@@ -170,10 +166,12 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
                 for link in globals.GApp.topology.links:
                     link.adjust()
             self.conf.status_points = False
-        if self.checkBoxAutoCloseNodePanel.checkState() == QtCore.Qt.Checked:
-            self.conf.auto_close_node_panel = True
+
+        if self.checkBoxManualConnections.checkState() == QtCore.Qt.Checked:
+            self.conf.manual_connection = True
         else:
-            self.conf.auto_close_node_panel = False
+            self.conf.manual_connection = False
+
         if self.checkBoxUseShell.checkState() == QtCore.Qt.Checked:
             self.conf.use_shell = True
         else:

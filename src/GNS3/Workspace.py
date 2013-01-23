@@ -151,7 +151,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_SecurityDevices, QtCore.SIGNAL('triggered()'), self.__action_SecurityDevices)
         self.connect(self.action_DefaultStyle, QtCore.SIGNAL('triggered()'), self.__action_DefaultStyle)
         self.connect(self.action_EnergySavingStyle, QtCore.SIGNAL('triggered()'), self.__action_EnergySavingStyle)
-        self.connect(self.action_HighContrastStyle, QtCore.SIGNAL('triggered()'), self.__action_HighContrastStyle)
+        #self.connect(self.action_HighContrastStyle, QtCore.SIGNAL('triggered()'), self.__action_HighContrastStyle)
         self.connect(self.action_SelectAll, QtCore.SIGNAL('triggered()'), self.__action_SelectAll)
         self.connect(self.action_SelectNone, QtCore.SIGNAL('triggered()'), self.__action_SelectNone)
         self.connect(self.action_Console, QtCore.SIGNAL('triggered()'), self.__action_Console)
@@ -409,13 +409,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         options = [translate("Workspace", "Extracting to a directory"), translate("Workspace", "Importing from a directory")]
-        (selection,  ok) = QtGui.QInputDialog.getItem(self, translate("Workspace", "Configs"),
-                                              translate("Workspace", "Please choose an option"), options, 0, False)
+        (selection,  ok) = QtGui.QInputDialog.getItem(self, translate("Workspace", "Import/Export IOS Startup Configs"),
+                                              translate("Workspace", "Please choose an option:"), options, 0, False)
         if ok:
             selection = unicode(selection)
-            if selection == translate("Workspace", "Extracting to a directory"):
+            if selection == translate("Workspace", "Extract configs to a directory"):
                 self.extractConfigs()
-            elif selection == translate("Workspace", "Importing from a directory"):
+            elif selection == translate("Workspace", "Import configs from a directory"):
                 self.importConfigs()
 
     def extractConfigs(self):
@@ -535,6 +535,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.action_Add_link.setIcon(QIcon(':/icons/connection-new.svg'))
         globals.addingLinkFlag = False
         globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
+        
+    def startAction_addLink(self):
+        """ Start the add link action (called from the Scene)
+        """
+
+        self.action_AddLink.setChecked(True)
+        self.__action_addLink()
 
     def __action_addLink(self):
         """ Implement the QAction `addLink'

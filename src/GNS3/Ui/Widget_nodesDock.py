@@ -116,9 +116,6 @@ class nodesDock(QtGui.QTreeWidget):
         drag.setHotSpot(QtCore.QPoint(iconeSize.width(), iconeSize.height()))
         drag.setPixmap(icone.pixmap(iconeSize))
         drag.start(QtCore.Qt.MoveAction)
-        if globals.GApp.systconf['general'].auto_close_node_panel:
-            self.parent().parent().setVisible(False)
-            self.parent().parent().setWindowTitle('')
 
     def retranslateItem(self, item):
 

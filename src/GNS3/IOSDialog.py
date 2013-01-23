@@ -109,6 +109,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         for node in globals.GApp.topology.nodes.values():
             if type(node) == IOSRouter and node.config.image == '' and not globals.GApp.iosimages.has_key(node.config.image):
                 node.setDefaultIOSImage()
+
         globals.GApp.syncConf()
 
     def _reloadInfos(self):
