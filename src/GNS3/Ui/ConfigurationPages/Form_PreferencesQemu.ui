@@ -328,8 +328,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>503</width>
-            <height>542</height>
+            <width>475</width>
+            <height>525</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -339,10 +339,10 @@
               <string>Qemu Guest Settings</string>
              </property>
              <layout class="QGridLayout" name="gridLayout">
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_14">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_46">
                 <property name="text">
-                 <string>Identifier name:</string>
+                 <string>Qemu flavor:</string>
                 </property>
                </widget>
               </item>
@@ -375,10 +375,23 @@
                 </item>
                </widget>
               </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_46">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_14">
                 <property name="text">
-                 <string>Qemu flavor:</string>
+                 <string>Identifier name:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1" colspan="2">
+               <widget class="QLineEdit" name="NameQemuImage"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label">
+                <property name="enabled">
+                 <bool>true</bool>
+                </property>
+                <property name="text">
+                 <string>Binary image:</string>
                 </property>
                </widget>
               </item>
@@ -395,30 +408,10 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="1" colspan="2">
-               <widget class="QLineEdit" name="NameQemuImage"/>
-              </item>
               <item row="3" column="0">
                <widget class="QLabel" name="label_20">
                 <property name="text">
                  <string>RAM:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label">
-                <property name="enabled">
-                 <bool>true</bool>
-                </property>
-                <property name="text">
-                 <string>Binary image:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_37">
-                <property name="text">
-                 <string>Number of NICs:</string>
                 </property>
                </widget>
               </item>
@@ -441,10 +434,10 @@
                 </property>
                </widget>
               </item>
-              <item row="5" column="0">
-               <widget class="QLabel" name="label_10">
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_37">
                 <property name="text">
-                 <string>NIC model:</string>
+                 <string>Number of NICs:</string>
                 </property>
                </widget>
               </item>
@@ -464,33 +457,10 @@
                 </property>
                </widget>
               </item>
-              <item row="6" column="0">
-               <widget class="QLabel" name="label_4">
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_10">
                 <property name="text">
-                 <string>Qemu Options:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="1" colspan="2">
-               <widget class="QLineEdit" name="QemuOptions"/>
-              </item>
-              <item row="7" column="0" colspan="2">
-               <widget class="QCheckBox" name="QemucheckBoxKVM">
-                <property name="text">
-                 <string>Use KVM (Linux host only)</string>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="0" colspan="2">
-               <widget class="QCheckBox" name="QemucheckBoxUserMod">
-                <property name="text">
-                 <string>Add user network backend</string>
-                </property>
-                <property name="checked">
-                 <bool>false</bool>
-                </property>
-                <property name="tristate">
-                 <bool>false</bool>
+                 <string>NIC model:</string>
                 </property>
                </widget>
               </item>
@@ -544,6 +514,43 @@
                   <string>lance</string>
                  </property>
                 </item>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_4">
+                <property name="text">
+                 <string>Qemu Options:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1" colspan="2">
+               <widget class="QLineEdit" name="QemuOptions"/>
+              </item>
+              <item row="7" column="0" colspan="2">
+               <widget class="QCheckBox" name="QemucheckBoxKVM">
+                <property name="text">
+                 <string>Use KVM (Linux host only)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0" colspan="2">
+               <widget class="QCheckBox" name="QemucheckBoxUserMod">
+                <property name="text">
+                 <string>Add user network backend</string>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
+                <property name="tristate">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0" colspan="2">
+               <widget class="QCheckBox" name="QemucheckBoxMonitor">
+                <property name="text">
+                 <string>Monitor mode</string>
+                </property>
                </widget>
               </item>
              </layout>
@@ -624,8 +631,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>209</width>
-            <height>427</height>
+            <width>475</width>
+            <height>525</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -925,8 +932,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>221</width>
-            <height>411</height>
+            <width>475</width>
+            <height>525</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1204,8 +1211,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>204</width>
-            <height>496</height>
+            <width>460</width>
+            <height>591</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_9">
@@ -1524,8 +1531,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>232</width>
-            <height>437</height>
+            <width>475</width>
+            <height>525</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">

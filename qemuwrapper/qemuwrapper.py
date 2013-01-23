@@ -33,6 +33,7 @@ qemuprotocol = 1
 import csv
 import cStringIO
 import os
+import re
 import platform
 import select
 import socket
@@ -80,7 +81,7 @@ msg = "WELCOME to qemuwrapper.py"
 debugmsg(2, msg)
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.8.4'
+__version__ = '0.8.4-BETA2'
 
 if platform.system() == 'Windows':
     if os.path.exists('Qemu\qemu-system-i386w.exe'):
@@ -202,7 +203,7 @@ class xEMUInstance(object):
             self.process = subprocess.Popen(command,
                                             stdin = subprocess.PIPE,
                                             stdout = subprocess.PIPE,
-                                            stderr = subprocess.PIPE,
+                                            #stderr = subprocess.PIPE,
                                             cwd=self.workdir,
                                             shell=False) # MUST STAY FALSE
         except OSError, e:
@@ -210,6 +211,7 @@ class xEMUInstance(object):
             print >> sys.stderr, e
             return False
 
+        print "Qemu started with PID %i" % self.process.pid
         time.sleep(1)
 
         if bool(self.monitor):
@@ -436,8 +438,10 @@ class QEMUInstance(xEMUInstance):
             command.extend(['-enable-kvm'])
         command.extend(self._net_options())
         command.extend(self._ser_options())
+        self.options = self.options.strip()
         if self.options:
-            command.extend([self.options])
+            #TODO: do not split inside double quotes => use re.split()
+            command.extend(self.options.split())
         return command
 
     def _disk_options(self):
@@ -494,7 +498,8 @@ class ASAInstance(QEMUInstance):
 
     def _kernel_options(self):
         debugmsg(3, "ASAInstance::_kernel_options()")
-        return  ('-append', '"' + self.kernel_cmdline + '"')
+        
+        return  ('-append', self.kernel_cmdline)
 
 class JunOSInstance(QEMUInstance):
 

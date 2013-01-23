@@ -323,6 +323,7 @@ class AnyEmuDevice(object):
             'netcard': 'rtl8139',
             'flavor': 'Default',
             'kvm': False,
+            'monitor': False,
             'usermod': False,
             'options': None,
             }
@@ -332,6 +333,7 @@ class AnyEmuDevice(object):
         self._netcard = self.defaults['netcard']
         self._flavor = self.defaults['flavor']
         self._kvm = self.defaults['kvm']
+        self._monitor = self.defaults['monitor']
         self._options = self.defaults['options']
         self._capture = {}
 
@@ -614,6 +616,27 @@ class AnyEmuDevice(object):
         return self._kvm
 
     kvm = property(_getkvm, _setkvm, doc='The kvm option used by this emulated device')
+    
+    def _setmonitor(self, monitor):
+        """ Set the monitor option to be used by this emulated device
+        monitor: (bool) monitor activation
+        """
+        debugmsg(2, "AnyEmuDevice::_setmonitor(%s)" % str(monitor))
+
+        if type(monitor) != bool:
+            raise DynamipsError, 'invalid monitor option'
+
+        send(self.p, 'qemu setattr %s monitor %s' % (self.name, str(monitor)))
+        self._monitor = monitor
+
+    def _getmonitor(self):
+        """ Returns the kvm option used by this emulated device
+        """
+        debugmsg(2, "AnyEmuDevice::_getmonitor(), returns %s" % str(self._monitor))
+
+        return self._monitor
+
+    monitor = property(_getmonitor, _setmonitor, doc='The monitor option used by this emulated device')
 
     def _setoptions(self, options):
         """ Set the Qemu options for this emulated device
@@ -929,7 +952,7 @@ class JunOS(AnyEmuDevice):
     basehostname = 'JUNOS'
     _ufd_machine = 'Juniper router'
     _ufd_hardware = 'Juniper Olive router'
-    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options', 'usermod']
+    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options', 'usermod', 'monitor']
 
 class IDS(AnyEmuDevice):
     model_string = 'IDS-4215'
@@ -937,7 +960,7 @@ class IDS(AnyEmuDevice):
     basehostname = 'IDS'
     _ufd_machine = 'IDS'
     _ufd_hardware = 'Qemu emulated Cisco IDS'
-    available_options = ['image1', 'image2', 'nics', 'ram', 'netcard', 'kvm', 'options', 'usermod']
+    available_options = ['image1', 'image2', 'nics', 'ram', 'netcard', 'kvm', 'options', 'usermod', 'monitor']
 
     def __init__(self, *args, **kwargs):
         super(IDS, self).__init__(*args, **kwargs)
@@ -1000,7 +1023,7 @@ class QemuDevice(AnyEmuDevice):
     basehostname = 'QEMU'
     _ufd_machine = 'Qemu guest'
     _ufd_hardware = 'Qemu Emulated System'
-    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options', 'usermod', 'flavor']
+    available_options = ['image', 'ram', 'nics', 'netcard', 'kvm', 'options', 'usermod', 'flavor', 'monitor']
 
 class ASA(AnyEmuDevice):
     model_string = '5520'
@@ -1008,7 +1031,7 @@ class ASA(AnyEmuDevice):
     basehostname = 'ASA'
     _ufd_machine = 'ASA firewall'
     _ufd_hardware = 'qemu-emulated Cisco ASA'
-    available_options = ['ram', 'nics', 'netcard', 'kvm', 'options', 'initrd', 'kernel', 'kernel_cmdline', 'usermod']
+    available_options = ['ram', 'nics', 'netcard', 'kvm', 'options', 'initrd', 'kernel', 'kernel_cmdline', 'usermod', 'monitor']
 
     def __init__(self, *args, **kwargs):
         super(ASA, self).__init__(*args, **kwargs)

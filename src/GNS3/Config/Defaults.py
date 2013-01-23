@@ -333,6 +333,7 @@ conf_iosImage_defaults = {
     'platform': '',
     'chassis': '',
     'idlepc': '',
+    'idlemax': 100,
     'default_ram': 0,
     'hypervisors': [],
     'default': False
@@ -345,6 +346,7 @@ conf_iosImage_types = {
     'platform': str,
     'chassis': str,
     'idlepc': str,
+    'idlemax': int,
     'default_ram': int,
     'hypervisors': list,
     'default': bool
@@ -591,7 +593,6 @@ conf_systemGeneral_defaults = {
     'ios_path': '.',
     'status_points': True,
     'manual_connection': False,
-    'auto_close_node_panel': False,
     'scene_width': 2000,
     'scene_height': 1000,
     'auto_check_for_update': True,
@@ -614,7 +615,6 @@ conf_systemGeneral_types = {
     'ios_path': unicode,
     'status_points': bool,
     'manual_connection': bool,
-    'auto_close_node_panel': bool,
     'scene_width': int,
     'scene_height': int,
     'auto_check_for_update': bool,

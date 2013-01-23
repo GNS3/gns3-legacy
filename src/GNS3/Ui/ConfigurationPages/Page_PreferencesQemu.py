@@ -399,6 +399,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         else:
             conf.kvm  = False
 
+        if self.QemucheckBoxMonitor.checkState() == QtCore.Qt.Checked:
+            conf.monitor = True
+        else:
+            conf.monitor  = False
+
         if self.QemucheckBoxUserMod.checkState() == QtCore.Qt.Checked:
             conf.usermod = True
         else:
@@ -448,6 +453,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.QemucheckBoxKVM.setCheckState(QtCore.Qt.Checked)
             else:
                 self.QemucheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+
+            if conf.monitor == True:
+                self.QemucheckBoxMonitor.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.QemucheckBoxMonitor.setCheckState(QtCore.Qt.Unchecked)
 
             if conf.usermod == True:
                 self.QemucheckBoxUserMod.setCheckState(QtCore.Qt.Checked)
@@ -630,6 +640,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         else:
             conf.kvm  = False
 
+        if self.JunOScheckBoxMonitor.checkState() == QtCore.Qt.Checked:
+            conf.monitor = True
+        else:
+            conf.monitor  = False
+
         if self.JunOScheckBoxUserMod.checkState() == QtCore.Qt.Checked:
             conf.usermod = True
         else:
@@ -676,6 +691,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
             else:
                 self.JunOScheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+
+            if conf.monitor == True:
+                self.JunOScheckBoxMonitor.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.JunOScheckBoxMonitor.setCheckState(QtCore.Qt.Unchecked)
 
             if conf.usermod == True:
                 self.JunOScheckBoxUserMod.setCheckState(QtCore.Qt.Checked)
@@ -750,6 +770,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         else:
             conf.kvm  = False
 
+        if self.ASAcheckBoxMonitor.checkState() == QtCore.Qt.Checked:
+            conf.monitor = True
+        else:
+            conf.monitor  = False
+
         if self.ASAcheckBoxUserMod.checkState() == QtCore.Qt.Checked:
             conf.usermod = True
         else:
@@ -798,6 +823,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Checked)
             else:
                 self.ASAcheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+
+            if conf.monitor == True:
+                self.ASAcheckBoxMonitor.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.ASAcheckBoxMonitor.setCheckState(QtCore.Qt.Unchecked)
 
             if conf.usermod == True:
                 self.ASAcheckBoxUserMod.setCheckState(QtCore.Qt.Checked)
@@ -871,6 +901,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         else:
             conf.kvm  = False
 
+        if self.IDScheckBoxMonitor.checkState() == QtCore.Qt.Checked:
+            conf.kvm = True
+        else:
+            conf.kvm  = False
+
         if self.IDScheckBoxUserMod.checkState() == QtCore.Qt.Checked:
             conf.usermod = True
         else:
@@ -918,6 +953,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.IDScheckBoxKVM.setCheckState(QtCore.Qt.Checked)
             else:
                 self.IDScheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+
+            if conf.monitor == True:
+                self.IDScheckBoxMonitor.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.IDScheckBoxMonitor.setCheckState(QtCore.Qt.Unchecked)
 
             if conf.usermod == True:
                 self.IDScheckBoxUserMod.setCheckState(QtCore.Qt.Checked)

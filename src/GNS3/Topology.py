@@ -220,7 +220,7 @@ class Topology(QtGui.QGraphicsScene):
             globals.GApp.hypervisors[external_hypervisor_key].used_ram += node.default_ram
             hypervisor_conf = globals.GApp.hypervisors[external_hypervisor_key]
             # use project workdir in priority
-            if globals.GApp.workspace.projectWorkdir:
+            if globals.GApp.workspace.projectWorkdir and self.isLocalhost(host):
                 self.dynagen.defaults_config['workingdir'] = globals.GApp.workspace.projectWorkdir
             elif hypervisor_conf.workdir:
                 self.dynagen.defaults_config['workingdir'] = hypervisor_conf.workdir
@@ -591,6 +591,7 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('flavor', conf.flavor)
                 node.set_string_option('kvm', conf.kvm)
+                node.set_string_option('monitor', conf.monitor)
                 node.set_string_option('options', conf.options)
 
             if isinstance(node, VBoxDevice):
@@ -698,6 +699,7 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kvm', conf.kvm)
+                node.set_string_option('monitor', conf.monitor)
                 node.set_string_option('options', conf.options)
 
             if isinstance(node, IDS):
@@ -753,6 +755,7 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kvm', conf.kvm)
+                node.set_string_option('monitor', conf.monitor)
                 node.set_string_option('options', conf.options)
 
             if isinstance(node, ASA):
@@ -808,6 +811,7 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('usermod', conf.usermod)
                 node.set_string_option('netcard', conf.nic)
                 node.set_string_option('kvm', conf.kvm)
+                node.set_string_option('monitor', conf.monitor)
                 node.set_string_option('initrd', conf.initrd)
                 node.set_string_option('kernel', conf.kernel)
                 node.set_string_option('kernel_cmdline', conf.kernel_cmdline)

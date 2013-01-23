@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>944</width>
-    <height>726</height>
+    <width>982</width>
+    <height>717</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -65,7 +65,7 @@ background-none;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>944</width>
+     <width>982</width>
      <height>22</height>
     </rect>
    </property>
@@ -90,7 +90,6 @@ background-none;
     <addaction name="action_SaveProjectAs"/>
     <addaction name="separator"/>
     <addaction name="action_config"/>
-    <addaction name="action_Deployement_Wizard"/>
     <addaction name="action_Export"/>
     <addaction name="action_Snapshot"/>
     <addaction name="separator"/>
@@ -116,7 +115,6 @@ background-none;
      </property>
      <addaction name="action_DefaultStyle"/>
      <addaction name="action_EnergySavingStyle"/>
-     <addaction name="action_HighContrastStyle"/>
     </widget>
     <addaction name="action_ZoomIn"/>
     <addaction name="action_ZoomOut"/>
@@ -190,6 +188,7 @@ background-none;
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="action_New"/>
    <addaction name="action_Open"/>
    <addaction name="action_Save"/>
   </widget>
@@ -676,10 +675,10 @@ background-none;
      <normaloff>:/icons/console.svg</normaloff>:/icons/console.svg</iconset>
    </property>
    <property name="text">
-    <string>Console Telnet to all devices</string>
+    <string>Console connect to all devices</string>
    </property>
    <property name="toolTip">
-    <string>Console Telnet to all devices</string>
+    <string>Console connect to all devices</string>
    </property>
    <property name="statusTip">
     <string>Console to all devices</string>
@@ -907,10 +906,10 @@ background-none;
      <normaloff>:/icons/import_export_configs.svg</normaloff>:/icons/import_export_configs.svg</iconset>
    </property>
    <property name="text">
-    <string>&amp;Import/Export IOS configs</string>
+    <string>&amp;Import/Export IOS Startup Configs</string>
    </property>
    <property name="toolTip">
-    <string>Import/Export Startup Configs</string>
+    <string>Import/Export IOS Startup Configs</string>
    </property>
    <property name="statusTip">
     <string>Import/Export Startup Configs</string>
@@ -1072,10 +1071,10 @@ background-none;
      <normaloff>:/icons/aux-console.svg</normaloff>:/icons/aux-console.svg</iconset>
    </property>
    <property name="text">
-    <string>Console AUX to all devices</string>
+    <string>Console connect via AUX to all devices</string>
    </property>
    <property name="toolTip">
-    <string>Console AUX to all devices</string>
+    <string>Console connect via AUX to all devices</string>
    </property>
    <property name="statusTip">
     <string>Console AUX to all devices</string>

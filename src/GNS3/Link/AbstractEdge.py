@@ -383,11 +383,12 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             encapsulation = self.encapsulationTransform[encapsulation]
             capture_conf = globals.GApp.systconf['capture']
 
-            if capture_conf.workdir and (host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or host == 'localhost' or host == '127.0.0.1' or host == '::1'):
-                workdir = capture_conf.workdir
+            if capture_conf.workdir and (host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or self.isLocalhost(host)):
+                self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
             else:
-                workdir = globals.GApp.dynagen.devices[device].dynamips.workingdir
-            self.capfile = unicode(workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+                # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
+                self.capfile = unicode(self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+
             debug("Start capture to " + self.capfile)
             globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + '"' + self.capfile + '"')
             self.captureInfo = (device, slot, inttype, port, original_encapsulation)

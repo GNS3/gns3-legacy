@@ -33,6 +33,7 @@ class AnyEmuDefaults(AbstractDefaults):
         self.default_nics = 6
         self.default_usermod = False
         self.default_kvm = False
+        self.default_monitor = False
         self.default_options = ''
         self.default_ram = 256
         self.qemu = None

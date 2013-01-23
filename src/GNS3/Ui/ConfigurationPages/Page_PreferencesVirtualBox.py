@@ -382,7 +382,7 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
             # white spaces have to be replaced
             p = re.compile('\s+', re.UNICODE)
             name = p.sub("_", name)
-            if not re.search(r"""^[\w,.-\[\]]*$""", name, re.UNICODE):
+            if not re.search(r"""^[\w,.\-\[\]]*$""", name, re.UNICODE):
                 QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesVirtualBox", "VirtualBox guest"),
                                            translate("Page_PreferencesVirtualBox", "Identifier name must contains only alphanumeric characters!"))
                 return

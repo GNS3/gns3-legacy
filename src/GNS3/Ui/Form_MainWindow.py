@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Mon Dec 24 11:53:07 2012
+# Created: Fri Jan  4 19:08:00 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -651,7 +651,6 @@ class Ui_MainWindow(object):
         self.menu_File.addAction(self.action_SaveProjectAs)
         self.menu_File.addSeparator()
         self.menu_File.addAction(self.action_config)
-        self.menu_File.addAction(self.action_Deployement_Wizard)
         self.menu_File.addAction(self.action_Export)
         self.menu_File.addAction(self.action_Snapshot)
         self.menu_File.addSeparator()

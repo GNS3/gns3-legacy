@@ -73,7 +73,7 @@ class Console(PyCutExt, Dynagen_Console):
         sys.ps1 = '=> '
 
         # Set introduction message
-        self.intro = "GNS3 management console. Running on GNS3 version %s\nCopyright (c) 2006-2012 GNS3 Project" % VERSION
+        self.intro = "GNS3 management console. Running on GNS3 version %s\nCopyright (c) 2006-2013 GNS3 Project" % VERSION
 
         # Parent class initialisation
         try:

@@ -136,9 +136,15 @@ class Scene(QtGui.QGraphicsView):
             showHostnameAct.setIcon(QtGui.QIcon(":/icons/show-hostname.svg"))
             self.connect(showHostnameAct, QtCore.SIGNAL('triggered()'), self.slotShowHostname)
 
+            # Action: AddLink (To add a link)
+            addLinkAct = QtGui.QAction(translate('Scene', 'Add a link'), menu)
+            addLinkAct.setIcon(QtGui.QIcon(":/icons/connection.svg"))
+            self.connect(addLinkAct, QtCore.SIGNAL('triggered()'), self.addLink)
+
             menu.addAction(configAct)
             menu.addAction(showHostnameAct)
             menu.addAction(changeHostnameAct)
+            menu.addAction(addLinkAct)
 
         instances = map(lambda item: isinstance(item, ETHSW) or isinstance(item, ATMSW) or isinstance(item, ATMBR) or isinstance(item, FRSW), items)
         if True in instances:
@@ -271,7 +277,7 @@ class Scene(QtGui.QGraphicsView):
             self.connect(auxPortAct, QtCore.SIGNAL('triggered()'), self.slotChangeAUXPort)
 
             # Action: Console (Connect to the node console)
-            AuxAct = QtGui.QAction(translate('Scene', 'Console to AUX port'), menu)
+            AuxAct = QtGui.QAction(translate('Scene', 'Console via AUX port'), menu)
             AuxAct.setIcon(QtGui.QIcon(':/icons/aux-console.svg'))
             self.connect(AuxAct, QtCore.SIGNAL('triggered()'), self.slotAuxConsole)
 
@@ -359,6 +365,12 @@ class Scene(QtGui.QGraphicsView):
         """
 
         self.__topology.addNodeFromScene(node)
+        
+    def addLink(self):
+        """ Call add a link action
+        """
+        
+        globals.GApp.workspace.startAction_addLink()
 
     def calculateIDLEPC(self, router):
         """ Show a splash screen
