@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Fri Jan  4 19:08:04 2013
+# Created: Wed Jan 23 02:49:33 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -258,12 +258,8 @@ class Ui_PreferencesGeneral(object):
         self.checkBoxShowStatusPoints.setChecked(True)
         self.checkBoxShowStatusPoints.setObjectName(_fromUtf8("checkBoxShowStatusPoints"))
         self.gridLayout_6.addWidget(self.checkBoxShowStatusPoints, 4, 0, 1, 2)
-        self.checkBoxAutoCloseNodePanel = QtGui.QCheckBox(self.tab_2)
-        self.checkBoxAutoCloseNodePanel.setText(QtGui.QApplication.translate("PreferencesGeneral", "Automatically close the node panel when adding a new node", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxAutoCloseNodePanel.setObjectName(_fromUtf8("checkBoxAutoCloseNodePanel"))
-        self.gridLayout_6.addWidget(self.checkBoxAutoCloseNodePanel, 5, 0, 1, 2)
         spacerItem4 = QtGui.QSpacerItem(20, 251, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout_6.addItem(spacerItem4, 6, 1, 1, 1)
+        self.gridLayout_6.addItem(spacerItem4, 5, 1, 1, 1)
         self.tabWidget.addTab(self.tab_2, _fromUtf8(""))
         self.gridLayout_5.addWidget(self.tabWidget, 0, 0, 1, 1)
 

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Fri Jan  4 19:08:00 2013
+# Created: Wed Jan 23 02:49:29 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -18,7 +18,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
         MainWindow.setWindowModality(QtCore.Qt.NonModal)
-        MainWindow.resize(944, 726)
+        MainWindow.resize(982, 717)
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "GNS3", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -55,7 +55,7 @@ class Ui_MainWindow(object):
         self.gridlayout.addWidget(self.graphicsView, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 944, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 982, 22))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menu_Edit = QtGui.QMenu(self.menubar)
         self.menu_Edit.setTitle(QtGui.QApplication.translate("MainWindow", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
@@ -318,8 +318,8 @@ class Ui_MainWindow(object):
         icon10 = QtGui.QIcon()
         icon10.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/console.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_TelnetAll.setIcon(icon10)
-        self.action_TelnetAll.setText(QtGui.QApplication.translate("MainWindow", "Console Telnet to all devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_TelnetAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Console Telnet to all devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_TelnetAll.setText(QtGui.QApplication.translate("MainWindow", "Console connect to all devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_TelnetAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Console connect to all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_TelnetAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Console to all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_TelnetAll.setObjectName(_fromUtf8("action_TelnetAll"))
         self.action_SaveAs = QtGui.QAction(MainWindow)
@@ -436,8 +436,8 @@ class Ui_MainWindow(object):
         icon21 = QtGui.QIcon()
         icon21.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/import_export_configs.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_config.setIcon(icon21)
-        self.action_config.setText(QtGui.QApplication.translate("MainWindow", "&Import/Export IOS configs", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_config.setToolTip(QtGui.QApplication.translate("MainWindow", "Import/Export Startup Configs", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_config.setText(QtGui.QApplication.translate("MainWindow", "&Import/Export IOS Startup Configs", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_config.setToolTip(QtGui.QApplication.translate("MainWindow", "Import/Export IOS Startup Configs", None, QtGui.QApplication.UnicodeUTF8))
         self.action_config.setStatusTip(QtGui.QApplication.translate("MainWindow", "Import/Export Startup Configs", None, QtGui.QApplication.UnicodeUTF8))
         self.action_config.setObjectName(_fromUtf8("action_config"))
         self.action_InsertImage = QtGui.QAction(MainWindow)
@@ -522,8 +522,8 @@ class Ui_MainWindow(object):
         icon30 = QtGui.QIcon()
         icon30.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/aux-console.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_ConsoleAuxAll.setIcon(icon30)
-        self.action_ConsoleAuxAll.setText(QtGui.QApplication.translate("MainWindow", "Console AUX to all devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_ConsoleAuxAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Console AUX to all devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ConsoleAuxAll.setText(QtGui.QApplication.translate("MainWindow", "Console connect via AUX to all devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_ConsoleAuxAll.setToolTip(QtGui.QApplication.translate("MainWindow", "Console connect via AUX to all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ConsoleAuxAll.setStatusTip(QtGui.QApplication.translate("MainWindow", "Console AUX to all devices", None, QtGui.QApplication.UnicodeUTF8))
         self.action_ConsoleAuxAll.setObjectName(_fromUtf8("action_ConsoleAuxAll"))
         self.action_ResetInterfaceLabels = QtGui.QAction(MainWindow)
@@ -662,7 +662,6 @@ class Ui_MainWindow(object):
         self.menu_About.addAction(self.action_About)
         self.menuWindow_Style.addAction(self.action_DefaultStyle)
         self.menuWindow_Style.addAction(self.action_EnergySavingStyle)
-        self.menuWindow_Style.addAction(self.action_HighContrastStyle)
         self.menu_View.addAction(self.action_ZoomIn)
         self.menu_View.addAction(self.action_ZoomOut)
         self.menu_View.addAction(self.action_ZoomReset)
@@ -692,6 +691,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuDevice.menuAction())
         self.menubar.addAction(self.menuAnnotate.menuAction())
         self.menubar.addAction(self.menu_About.menuAction())
+        self.toolBar_General.addAction(self.action_New)
         self.toolBar_General.addAction(self.action_Open)
         self.toolBar_General.addAction(self.action_Save)
         self.toolBar_Devices.addAction(self.action_Router)

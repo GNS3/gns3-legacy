@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Fri Jan  4 19:08:00 2013
+# Created: Wed Jan 23 02:49:30 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -236,7 +236,7 @@ class Ui_IOSDialog(object):
         self.spinBoxBaseUDP.setSuffix(_fromUtf8(" UDP"))
         self.spinBoxBaseUDP.setMinimum(1)
         self.spinBoxBaseUDP.setMaximum(65535)
-        self.spinBoxBaseUDP.setProperty("value", 10000)
+        self.spinBoxBaseUDP.setProperty("value", 10001)
         self.spinBoxBaseUDP.setObjectName(_fromUtf8("spinBoxBaseUDP"))
         self.gridlayout3.addWidget(self.spinBoxBaseUDP, 2, 3, 1, 2)
         self.label_8 = QtGui.QLabel(self.groupBox_4)
@@ -247,7 +247,7 @@ class Ui_IOSDialog(object):
         self.spinBoxBaseConsole.setSuffix(_fromUtf8(" TCP"))
         self.spinBoxBaseConsole.setMinimum(1)
         self.spinBoxBaseConsole.setMaximum(65535)
-        self.spinBoxBaseConsole.setProperty("value", 2001)
+        self.spinBoxBaseConsole.setProperty("value", 2101)
         self.spinBoxBaseConsole.setObjectName(_fromUtf8("spinBoxBaseConsole"))
         self.gridlayout3.addWidget(self.spinBoxBaseConsole, 3, 3, 1, 2)
         self.label_5 = QtGui.QLabel(self.groupBox_4)
@@ -310,7 +310,7 @@ class Ui_IOSDialog(object):
         self.vboxlayout.addWidget(self.tabWidget)
 
         self.retranslateUi(IOSDialog)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("rejected()")), IOSDialog.reject)
         QtCore.QObject.connect(self.buttonBox_2, QtCore.SIGNAL(_fromUtf8("rejected()")), IOSDialog.reject)
         QtCore.QMetaObject.connectSlotsByName(IOSDialog)
