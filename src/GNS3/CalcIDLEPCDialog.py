@@ -71,7 +71,7 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
 
                 if globals.GApp.dynagen.devices[self.router.hostname].idlepc != None:
-                    reply = QtGui.QMessageBox.question(self, translate("CalcIDLEPCDialog", "Message"), translate("CalcIDLEPCDialog", "There already is an Idle PC value specified, do you want to test it?"),
+                    reply = QtGui.QMessageBox.question(self, translate("CalcIDLEPCDialog", "Message"), translate("CalcIDLEPCDialog", "There is already an Idle PC value specified for this IOS, do you want to test it?"),
                                 QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
                     if reply == QtGui.QMessageBox.Yes:
                         self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Checking CPU usage with current Idle PC value...") + '</font>')
@@ -107,7 +107,7 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
                     # reset Idle PC value
                     lib.send(globals.GApp.dynagen.devices[self.router.hostname].dynamips, 'vm set_idle_pc_online %s 0 %s' % (self.router.hostname, '0x00000000'))
 
-                self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Getting Idle PC values from Dynagen...") + '</font>')
+                self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Getting Idle PC values from Dynamips...") + '</font>')
                 self.progressBar.setValue(0)
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
@@ -130,8 +130,8 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
 
                 length = len(idles)
                 if length == 0:
-                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'CalcIDLEPCDialog', "Dynagen didn't find any Idle PC value. It happens sometimes, please try again.")
-                    self.iosDialog.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Dynagen didn't find any Idle PC value. It happens sometimes, please try again."))
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'CalcIDLEPCDialog', "Dynamips didn't find any Idle PC value. It happens sometimes, please try again.")
+                    self.iosDialog.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Dynamips didn't find any Idle PC value. It happens sometimes, please try again."))
                     self.cleanUp()
                     self.reject()
                     return

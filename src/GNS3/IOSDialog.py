@@ -29,6 +29,7 @@ from GNS3.Config.Objects import iosImageConf, hypervisorConf
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Uncompress import isIOScompressed, uncompressIOS
 from GNS3.Globals.Symbols import SYMBOLS
+from distutils.version import LooseVersion
 from GNS3.CalcIDLEPCDialog import CalcIDLEPCDialog
 
 # known platforms and corresponding chassis
@@ -91,9 +92,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
         # reload saved infos
         self._reloadInfos()
-
-        #FIXME: TEMP DISABLED FOR GNS3 0.8.4 BETA2.
-        self.pushButtonCalcIdlePC.setEnabled(False)
 
     def __del__(self):
 
@@ -541,7 +539,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         QtGui.QDialog.reject(self)
 
 
-
 ############################## Idle PC calculation #################################
 
 
@@ -549,39 +546,21 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         """ Calculate optimal IdlePC value
         """
 
-        # Check Dynamips' version
-        if globals.GApp.systconf['dynamips'].path:
-            if os.path.exists(globals.GApp.systconf['dynamips'].path) == False:
-                self.label_IdlePCWarning.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Dynamips path doesn't exist")  + '</font>')
+        dynamips = globals.GApp.systconf['dynamips']
+
+        # Check Dynamips version
+        if dynamips.path:
+            if os.path.exists(dynamips.path) == False or not dynamips.detected_version:
+                QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "Dynamips path doesn't exist or cannot detect its version, please check Dynamips settings"))
                 return
 
-        try:
-            p = sub.Popen([globals.GApp.systconf['dynamips'].path, '--help'], stdout=sub.PIPE)
-            dynamips_stdout = p.communicate()
-        except OSError:
-            self.label_IdlePCWarning.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to start Dynamips")  + '</font>')
-            return
-
-        try:
-            if not dynamips_stdout[0].splitlines()[0].__contains__('version'):
-                self.label_IdlePCWarning.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to determine version of Dynamips.")  + '</font>')
+        if dynamips.detected_version and not LooseVersion(dynamips.detected_version) > '0.2.8-RC4':
+                QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "You will need Dynamips version 0.2.8-RC4 and above to use this utility.\nVersion detected: %s") % dynamips.detected_version)
                 return
-            version_raw = dynamips_stdout[0].splitlines()[0].split('version')[1].lstrip()
-            version_1st = int(version_raw.split('.')[0])
-            version_2nd = int(version_raw.split('.')[1])
-            version_3rd = int(version_raw.split('.')[2].split('-')[0])
-            dynamips_ver = str(version_1st)+'.'+str(version_2nd)+'.'+str(version_3rd)+'-'+version_raw.split('.')[2].split('-')[1]
-        except:
-            self.label_IdlePCWarning.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to determine version of Dynamips.")  + '</font>')
-            return
-
-        if version_2nd < 2 or version_3rd < 8 or int(version_raw.split('.')[2].split('-')[1].lstrip('RC')) < 4:
-            QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "You will need Dynamips version 2.0.8-RC4 and above to use this utility."))
-            return
 
         reply = QtGui.QMessageBox.question(self, translate("IOSDialog", "Message"), translate("IOSDialog", "This operation will stop all your devices and last a few minutes. Do you want to continue?"),
                     QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
         if reply == QtGui.QMessageBox.No:
             return
 
-        calcDiag = CalcIDLEPCDialog(self)
+        CalcIDLEPCDialog(self)

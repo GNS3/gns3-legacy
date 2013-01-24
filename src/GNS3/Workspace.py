@@ -73,7 +73,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # By default show hostnames
         self.flg_showHostname = True
-        self.action_ShowHostnames.setText(translate('Workspace', 'Hide hostnames'))
         self.action_ShowHostnames.setChecked(True)
 
         # By default don't show interface names
@@ -765,12 +764,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if self.flg_showHostname == False:
             self.flg_showHostname = True
-            self.action_ShowHostnames.setText(translate('Workspace', 'Hide hostnames'))
             for node in globals.GApp.topology.nodes.itervalues():
                 node.showHostname()
         else:
             self.flg_showHostname = False
-            self.action_ShowHostnames.setText(translate('Workspace', 'Show hostnames'))
             for node in globals.GApp.topology.nodes.itervalues():
                 node.removeHostname()
 
@@ -787,12 +784,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     self.flg_showOnlySavedInterfaceNames = False
 
             self.flg_showInterfaceNames = True
-            self.action_ShowinterfaceNames.setText(translate('Workspace', 'Hide interface names'))
             for link in globals.GApp.topology.links:
                 link.adjust()
         else:
             self.flg_showInterfaceNames = False
-            self.action_ShowinterfaceNames.setText(translate('Workspace', 'Show interface names'))
             for link in globals.GApp.topology.links:
                 link.adjust()
 

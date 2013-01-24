@@ -889,7 +889,9 @@ class Scene(QtGui.QGraphicsView):
         """ Zoom or scroll with the mouse wheel
         """
 
-        if globals.GApp.workspace.action_DisableMouseWheel.isChecked() == False and globals.GApp.workspace.action_ZoomUsingMouseWheel.isChecked() and event.orientation() == QtCore.Qt.Vertical:
+        if globals.GApp.workspace.action_DisableMouseWheel.isChecked() == False and \
+        (globals.GApp.workspace.action_ZoomUsingMouseWheel.isChecked() or event.modifiers() == QtCore.Qt.ControlModifier) and \
+        event.orientation() == QtCore.Qt.Vertical:
             self.scaleView(pow(2.0, event.delta() / 240.0))
 
         elif globals.GApp.workspace.action_DisableMouseWheel.isChecked() == False:

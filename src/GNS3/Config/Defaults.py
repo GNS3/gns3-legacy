@@ -333,7 +333,7 @@ conf_iosImage_defaults = {
     'platform': '',
     'chassis': '',
     'idlepc': '',
-    'idlemax': 100,
+    'idlemax': 500,
     'default_ram': 0,
     'hypervisors': [],
     'default': False

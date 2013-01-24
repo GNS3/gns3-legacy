@@ -21,7 +21,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_1">
       <attribute name="title">
@@ -220,7 +220,7 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Calculate</string>
+             <string>Experimental: automatically find the best IDLE PC value</string>
             </property>
             <property name="text">
              <string>~</string>

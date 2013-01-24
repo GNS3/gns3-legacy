@@ -37,7 +37,7 @@ class IOSRouterDefaults(AbstractDefaults):
         self.default_confreg = '0x2102'
         self.default_aux = 'None'
         self.default_idlepc = 'None'
-        self.default_idlemax = 100
+        self.default_idlemax = 500
         self.default_exec_area = 'None'
         self.default_mmap = True
         self.default_sparsemem = 'False'

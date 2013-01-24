@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Wed Jan 23 02:49:30 2013
+# Created: Wed Jan 23 22:03:43 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -138,7 +138,7 @@ class Ui_IOSDialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.pushButtonCalcIdlePC.sizePolicy().hasHeightForWidth())
         self.pushButtonCalcIdlePC.setSizePolicy(sizePolicy)
-        self.pushButtonCalcIdlePC.setToolTip(QtGui.QApplication.translate("IOSDialog", "Calculate", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonCalcIdlePC.setToolTip(QtGui.QApplication.translate("IOSDialog", "Experimental: automatically find the best IDLE PC value", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonCalcIdlePC.setText(QtGui.QApplication.translate("IOSDialog", "~", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonCalcIdlePC.setObjectName(_fromUtf8("pushButtonCalcIdlePC"))
         self.gridLayout.addWidget(self.pushButtonCalcIdlePC, 7, 2, 1, 1)
@@ -310,7 +310,7 @@ class Ui_IOSDialog(object):
         self.vboxlayout.addWidget(self.tabWidget)
 
         self.retranslateUi(IOSDialog)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QObject.connect(self.buttonBox, QtCore.SIGNAL(_fromUtf8("rejected()")), IOSDialog.reject)
         QtCore.QObject.connect(self.buttonBox_2, QtCore.SIGNAL(_fromUtf8("rejected()")), IOSDialog.reject)
         QtCore.QMetaObject.connectSlotsByName(IOSDialog)
