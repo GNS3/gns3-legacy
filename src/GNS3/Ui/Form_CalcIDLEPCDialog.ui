@@ -33,7 +33,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Idle Pc Calculation</string>
+   <string>Experimental auto IDLE PC calculation</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../../../gns3-artwork/svg_resources.qrc">

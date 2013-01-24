@@ -26,6 +26,8 @@ from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Utils import translate
 from GNS3.Ui.Form_CalcIDLEPCDialog import Ui_CalcIDLEPCDialog
 from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.AnyEmuDevice import AnyEmuDevice
+from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
 from GNS3.Globals.Symbols import SYMBOLS
 
 class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
@@ -63,7 +65,11 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
             if symbol['name'] == "Router " + str(self.iosDialog.comboBoxPlatform.currentText()):
                 self.router = symbol['object'](QtSvg.QSvgRenderer(symbol['normal_svg_file']), QtSvg.QSvgRenderer(symbol['select_svg_file']))
                 globals.GApp.topology.addNode(self.router, False)
-                self.router.startNode()
+                try:
+                    self.router.startNode()
+                except:
+                    self.iosDialog.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Cannot start the test node...") + '</font>')
+                    break
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
                 self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Giving time for the router to boot...") + '</font>')
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
