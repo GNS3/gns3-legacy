@@ -49,6 +49,11 @@
      <property name="enabled">
       <bool>true</bool>
      </property>
+     <property name="toolTip">
+      <string>Maximum NICs with PIIX3 chipset is 8.
+Maximum NICs with ICH9 chipset is 36.
+Please, see VirtualBox settings to change the chipset.</string>
+     </property>
      <property name="minimum">
       <number>2</number>
      </property>

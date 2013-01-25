@@ -418,7 +418,7 @@ class QEMUInstance(xEMUInstance):
         "Builds the command as a list of shell arguments."
 
         if 'qemu-system-' in self.bin and self.flavor != 'Default':
-            self.bin = 'qemu-system' + self.flavor
+            self.bin = re.sub(r'qemu-system-.*', 'qemu-system' + self.flavor, self.bin)
             if sys.platform.startswith('win'):
                 self.bin += 'w.exe' # We ship qemu-system-XXXw.exe on Windows
         command = [self.bin]

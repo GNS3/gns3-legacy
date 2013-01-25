@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>570</width>
-    <height>233</height>
+    <width>572</width>
+    <height>232</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -71,7 +71,7 @@
       <item row="3" column="0" colspan="3">
        <widget class="QCheckBox" name="checkBox_WorkdirFiles">
         <property name="text">
-         <string>Save nvrams and virtual hard drives (required to save VLAN configuration)</string>
+         <string>Save nvrams and virtual hard drives (required to save EtherSwitch VLAN configs)</string>
         </property>
         <property name="checked">
          <bool>false</bool>
