@@ -8,7 +8,7 @@ from distutils.core import setup, Extension
 from glob import glob
 
 # current version of GNS3
-VERSION = "0.8.4-BETA2"
+VERSION = "0.8.4-RC1"
 
 try:
     # delete previous build
@@ -195,15 +195,22 @@ elif sys.platform.startswith('darwin'):
     os.system('cp ../dynamips-0.2.8-RC3-community-OSX.intel64.bin ./GNS3.app/Contents/Resources')
     os.system('cp ../dynamips-0.2.8-RC5-community-OSX.intel64.bin ./GNS3.app/Contents/Resources')
 
-    #print '*** Installing Qemu ***'
-    os.system('mkdir -p ./GNS3.app/Contents/Resources/Qemu')
-    os.system('cp -R ../Qemu/* ./GNS3.app/Contents/Resources/Qemu')
+    #print '*** Installing Qemu 0.11.0 ***'
+    os.system('mkdir -p ./GNS3.app/Contents/Resources/Qemu-0.11.0')
+    os.system('cp -R ../Qemu-0.11.0/* ./GNS3.app/Contents/Resources/Qemu-0.11.0')
+
+    #print '*** Installing Qemu 0.14.1 ***'
+    os.system('mkdir -p ./GNS3.app/Contents/Resources/Qemu-0.14.1')
+    os.system('cp -R ../Qemu-0.14.1/* ./GNS3.app/Contents/Resources/Qemu-0.14.1')
 
     print '*** Applying permissions ***'
     #os.chmod('./GNS3.app/Contents/Resources/vboxwrapper.py', 0755)
     os.chmod('./GNS3.app/Contents/Resources/qemuwrapper.py', 0755)
-    os.chmod('./GNS3.app/Contents/Resources/Qemu/bin/qemu', 0755)
-    os.chmod('./GNS3.app/Contents/Resources/Qemu/bin/qemu-img', 0755)
+    os.chmod('./GNS3.app/Contents/Resources/Qemu-0.11.0/bin/qemu', 0755)
+    os.chmod('./GNS3.app/Contents/Resources/Qemu-0.11.0/bin/qemu-img', 0755)
+    os.chmod('./GNS3.app/Contents/Resources/Qemu-0.14.1/bin/qemu-system-i386', 0755)
+    os.chmod('./GNS3.app/Contents/Resources/Qemu-0.14.1/bin/qemu-system-x86_64', 0755)
+    os.chmod('./GNS3.app/Contents/Resources/Qemu-0.14.1/bin/qemu-img', 0755)
     os.chmod('./GNS3.app/Contents/Resources/dynamips-0.2.8-RC3-community-OSX.intel64.bin', 0755)
     os.chmod('./GNS3.app/Contents/Resources/dynamips-0.2.8-RC5-community-OSX.intel64.bin', 0755)
 

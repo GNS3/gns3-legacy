@@ -40,7 +40,7 @@ class PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
                         'Capture',
                         'Qemu',
                         'VirtualBox',
-                        #'DeployementWizard' #FIXME: TEMP DISABLED FOR GNS3 0.8.4 BETA2.
+                        #'DeployementWizard' #FIXME: TEMP DISABLED FOR GNS3 0.8.4 RC1.
                         ]
 
         QtGui.QDialog.__init__(self)

@@ -78,8 +78,8 @@ if sys.platform.startswith('win'):
         QEMU_DEFAULT_PATH = unicode('qemu.exe') 
         QEMU_IMG_DEFAULT_PATH = unicode('qemu-img.exe')
 elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
-        QEMU_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/Qemu/bin/qemu'
-        QEMU_IMG_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/Qemu/bin/qemu-img'
+        QEMU_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/Qemu-0.11.0/bin/qemu'
+        QEMU_IMG_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/Qemu-0.11.0/bin/qemu-img'
 else:
     QEMU_IMG_DEFAULT_PATH = unicode('qemu-img')
     QEMU_DEFAULT_PATH = unicode('qemu-system-i386')
