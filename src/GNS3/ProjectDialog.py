@@ -24,12 +24,11 @@ from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_NewProject import Ui_NewProject
 from GNS3.Utils import fileBrowser, translate
 
-
 class ProjectDialog(QtGui.QDialog, Ui_NewProject):
     """ ProjectDialog class
     """
 
-    def __init__(self, parent=None, projectFile=None, projectWorkdir=None, projectConfigs=None, newProject=False):
+    def __init__(self, parent=None, projectFile=None, projectWorkdir=None, projectConfigs=None, unbase=False, saveCaptures=False, newProject=False):
 
         QtGui.QDialog.__init__(self, parent)
         self.newProject = newProject
@@ -47,14 +46,22 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
                 self.ProjectName.setText(projectName)
                 self.ProjectPath.setText(projectPath)
 
-            if projectWorkdir:
+            if projectWorkdir != None:
                 self.checkBox_WorkdirFiles.setCheckState(QtCore.Qt.Checked)
             else:
                 self.checkBox_WorkdirFiles.setCheckState(QtCore.Qt.Unchecked)
-            if projectConfigs:
+            if projectConfigs != None:
                 self.checkBox_ConfigFiles.setCheckState(QtCore.Qt.Checked)
             else:
                 self.checkBox_ConfigFiles.setCheckState(QtCore.Qt.Unchecked)
+            if unbase:
+                self.unbaseImages.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.unbaseImages.setCheckState(QtCore.Qt.Unchecked)
+            if saveCaptures:
+                self.checkBox_SaveCaptures.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.checkBox_SaveCaptures.setCheckState(QtCore.Qt.Unchecked)
 
     def keyPressEvent(self, e):
         """ Reimplementing a basic event handler in order to properly handle escape
@@ -74,7 +81,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         """
 
         if self.newProject == True:
-            globals.GApp.mainWindow.createProject((None, None, None, False))
+            globals.GApp.mainWindow.createProject((None, None, None, False, False))
 
     def __setProjectDir(self):
         """ Open a file dialog for choosing the location of the project directory
@@ -108,7 +115,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         projectDir = os.path.normpath(unicode(self.ProjectPath.text()))
 
         if not projectName or not projectDir:
-            return (None, None, None, None)
+            return (None, None, None, False, False)
 
         if not os.path.exists(projectDir):
             try:
@@ -116,7 +123,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
             except (OSError, IOError), e:
                 QtGui.QMessageBox.critical(self, translate('ProjectDialog', 'Project Directory'),
                                            translate("Workspace", "Cannot create directory %s: %s") % (projectDir, e.strerror))
-                return (None, None, None, None)
+                return (None, None, None, False, False)
 
         projectFile = projectDir + os.sep + 'topology.net'
         projectFile = os.path.expandvars(os.path.expanduser(projectFile))
@@ -129,11 +136,15 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
             projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
         else:
             projectConfigs = None
-        if self.checkBox_ConfigFiles.checkState() == QtCore.Qt.Checked:
+        if self.unbaseImages.checkState() == QtCore.Qt.Checked:
             unbaseImages = True
         else:
             unbaseImages = False
-        return (projectFile, projectWorkdir, projectConfigs, unbaseImages)
+        if self.checkBox_SaveCaptures.checkState() == QtCore.Qt.Checked:
+            saveCaptures = True
+        else:
+            saveCaptures = False
+        return (projectFile, projectWorkdir, projectConfigs, unbaseImages, saveCaptures)
 
     def accept(self):
 

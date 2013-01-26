@@ -322,7 +322,11 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
 
         if capture_conf.workdir and (host == globals.GApp.systconf['qemu'].QemuManager_binding or self.isLocalhost(host)):
             # We only provide capture directory to locally running wrappers.
-            self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+            if globals.GApp.workspace.saveCaptures and globals.GApp.workspace.projectFile:
+                capture_dir = os.path.dirname(globals.GApp.workspace.projectFile) + os.sep + 'captures'
+                self.capfile = unicode(capture_dir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '_' + time.strftime("%d%m%y_%H%M%S") + '.cap')
+            else:
+                self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
         else:
             # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
             self.capfile = unicode(self.source.hostname + '_to_' + self.dest.hostname + '.cap')
@@ -348,7 +352,11 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
 
         if capture_conf.workdir and (host == globals.GApp.systconf['vbox'].VBoxManager_binding or self.isLocalhost(host)):
             # We only provide capture directory to locally running wrappers.
-            self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+            if globals.GApp.workspace.saveCaptures and globals.GApp.workspace.projectFile:
+                capture_dir = os.path.dirname(globals.GApp.workspace.projectFile) + os.sep + 'captures'
+                self.capfile = unicode(capture_dir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '_' + time.strftime("%d%m%y_%H%M%S") + '.cap')
+            else:
+                self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
         else:
             # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
             self.capfile = unicode(self.source.hostname + '_to_' + self.dest.hostname + '.cap')
@@ -384,7 +392,11 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             capture_conf = globals.GApp.systconf['capture']
 
             if capture_conf.workdir and (host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or self.isLocalhost(host)):
-                self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
+                if globals.GApp.workspace.saveCaptures and globals.GApp.workspace.projectFile:
+                    capture_dir = os.path.dirname(globals.GApp.workspace.projectFile) + os.sep + 'captures'
+                    self.capfile = unicode(capture_dir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '_' + time.strftime("%d%m%y_%H%M%S") + '.cap')
+                else:
+                    self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_to_' + self.dest.hostname + '.cap')
             else:
                 # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
                 self.capfile = unicode(self.source.hostname + '_to_' + self.dest.hostname + '.cap')

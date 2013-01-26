@@ -633,7 +633,7 @@ class Application(QApplication, Singleton):
 #                    if self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked() == False:
 #                        self.showTipsDialog()
                 else:
-                    self.mainWindow.createProject((None, None, None, False))
+                    self.mainWindow.createProject((None, None, None, False, False))
                     self.mainWindow.raise_()
 #                    if self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked() == False:
 #                        self.showTipsDialog()

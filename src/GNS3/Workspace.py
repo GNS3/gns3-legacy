@@ -55,6 +55,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.projectWorkdir = None
         self.projectConfigs = None
         self.isTemporaryProject = False
+        self.saveCaptures = False
         # Ask to unbase when saving
         self.unbase = False
 
@@ -397,6 +398,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.projectFile = None
         self.projectWorkdir = None
         self.projectConfigs = None
+        self.saveCaptures = False
+        self.unbase = False
 
         globals.GApp.topology.clear()
 
@@ -1134,7 +1137,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             new_project = True
         else:
             new_project = False
-        projectDialog = ProjectDialog(self, self.projectFile, self.projectWorkdir, self.projectConfigs, new_project)
+        projectDialog = ProjectDialog(self, self.projectFile, self.projectWorkdir, self.projectConfigs, self.unbase, self.saveCaptures, new_project)
         projectDialog.pushButtonOpenProject.setEnabled(False)
         projectDialog.pushButtonRecentFiles.setEnabled(False)
         if self.projectFile:
@@ -1153,7 +1156,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         globals.GApp.workspace.setWindowTitle("GNS3")
         self.projectWorkdir = None
         self.projectConfigs = None
-        (self.projectFile, self.projectWorkdir, self.projectConfigs, self.unbase) = settings
+        self.unbase = False
+        self.saveCaptures = False
+        (self.projectFile, self.projectWorkdir, self.projectConfigs, self.unbase, self.saveCaptures) = settings
 
         # Create a project in a temporary location
         if not self.projectFile and not self.projectWorkdir and not self.projectConfigs:
@@ -1184,6 +1189,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 os.mkdir(self.projectConfigs)
             except (OSError, IOError), e:
                 print "Warning: cannot create directory: " + self.projectConfigs + ": " + e.strerror
+        if self.saveCaptures and not os.access(os.path.dirname(self.projectFile) + os.sep + 'captures', os.F_OK):
+            try:
+                os.mkdir(os.path.dirname(self.projectFile) + os.sep + 'captures')
+            except (OSError, IOError), e:
+                print "Warning: cannot create directory: " + os.path.dirname(self.projectFile) + os.sep + 'captures' + ": " + e.strerror
 
         if len(globals.GApp.dynagen.devices):
             if self.projectConfigs:
