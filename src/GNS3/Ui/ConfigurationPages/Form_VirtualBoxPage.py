@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_VirtualBoxPage.ui'
 #
-# Created: Wed Jan 23 02:49:33 2013
+# Created: Sat Jan 26 08:59:41 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -41,6 +41,9 @@ class Ui_VirtualBoxPage(object):
         self.gridLayout.addWidget(self.label_37, 1, 0, 1, 1)
         self.spinBoxNics = QtGui.QSpinBox(VirtualBoxPage)
         self.spinBoxNics.setEnabled(True)
+        self.spinBoxNics.setToolTip(QtGui.QApplication.translate("VirtualBoxPage", "Maximum NICs with PIIX3 chipset is 8.\n"
+"Maximum NICs with ICH9 chipset is 36.\n"
+"Please, see VirtualBox settings to change the chipset.", None, QtGui.QApplication.UnicodeUTF8))
         self.spinBoxNics.setMinimum(2)
         self.spinBoxNics.setMaximum(36)
         self.spinBoxNics.setSingleStep(1)

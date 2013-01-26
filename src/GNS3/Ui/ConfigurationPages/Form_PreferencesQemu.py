@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ConfigurationPages/Form_PreferencesQemu.ui'
+# Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesQemu.ui'
 #
-# Created: Wed Jan 23 22:35:58 2013
+# Created: Sat Jan 26 08:59:41 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -192,7 +192,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 447, 521))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 475, 544))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.verticalLayout = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
@@ -304,7 +304,7 @@ class Ui_PreferencesQemu(object):
         self.QemucheckBoxUserMod.setObjectName(_fromUtf8("QemucheckBoxUserMod"))
         self.gridLayout.addWidget(self.QemucheckBoxUserMod, 8, 0, 1, 2)
         self.QemucheckBoxMonitor = QtGui.QCheckBox(self.groupBox)
-        self.QemucheckBoxMonitor.setText(QtGui.QApplication.translate("PreferencesQemu", "Monitor mode", None, QtGui.QApplication.UnicodeUTF8))
+        self.QemucheckBoxMonitor.setText(QtGui.QApplication.translate("PreferencesQemu", "Monitor mode (pause and resume)", None, QtGui.QApplication.UnicodeUTF8))
         self.QemucheckBoxMonitor.setObjectName(_fromUtf8("QemucheckBoxMonitor"))
         self.gridLayout.addWidget(self.QemucheckBoxMonitor, 9, 0, 1, 2)
         self.verticalLayout.addWidget(self.groupBox)
@@ -596,7 +596,7 @@ class Ui_PreferencesQemu(object):
         self.gridLayout_2.addWidget(self.JunOScheckBoxUserMod, 7, 0, 1, 2)
         self.JunOScheckBoxMonitor = QtGui.QCheckBox(self.groupBox_5)
         self.JunOScheckBoxMonitor.setEnabled(True)
-        self.JunOScheckBoxMonitor.setText(QtGui.QApplication.translate("PreferencesQemu", "Monitor mode", None, QtGui.QApplication.UnicodeUTF8))
+        self.JunOScheckBoxMonitor.setText(QtGui.QApplication.translate("PreferencesQemu", "Monitor mode (pause and resume)", None, QtGui.QApplication.UnicodeUTF8))
         self.JunOScheckBoxMonitor.setObjectName(_fromUtf8("JunOScheckBoxMonitor"))
         self.gridLayout_2.addWidget(self.JunOScheckBoxMonitor, 8, 0, 1, 2)
         self.verticalLayout_4.addWidget(self.groupBox_5)
@@ -635,7 +635,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea_4.setWidgetResizable(True)
         self.scrollArea_4.setObjectName(_fromUtf8("scrollArea_4"))
         self.scrollAreaWidgetContents_4 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 460, 635))
+        self.scrollAreaWidgetContents_4.setGeometry(QtCore.QRect(0, 0, 460, 633))
         self.scrollAreaWidgetContents_4.setObjectName(_fromUtf8("scrollAreaWidgetContents_4"))
         self.gridLayout_9 = QtGui.QGridLayout(self.scrollAreaWidgetContents_4)
         self.gridLayout_9.setObjectName(_fromUtf8("gridLayout_9"))
@@ -747,9 +747,9 @@ class Ui_PreferencesQemu(object):
         self.gridLayout_3.addWidget(self.ASAcheckBoxUserMod, 7, 0, 1, 2)
         self.ASAcheckBoxMonitor = QtGui.QCheckBox(self.groupBox_3)
         self.ASAcheckBoxMonitor.setEnabled(True)
-        self.ASAcheckBoxMonitor.setText(QtGui.QApplication.translate("PreferencesQemu", "Monitor mode", None, QtGui.QApplication.UnicodeUTF8))
+        self.ASAcheckBoxMonitor.setText(QtGui.QApplication.translate("PreferencesQemu", "Monitor mode (pause and resume)", None, QtGui.QApplication.UnicodeUTF8))
         self.ASAcheckBoxMonitor.setObjectName(_fromUtf8("ASAcheckBoxMonitor"))
-        self.gridLayout_3.addWidget(self.ASAcheckBoxMonitor, 8, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.ASAcheckBoxMonitor, 8, 0, 1, 2)
         self.gridLayout_9.addWidget(self.groupBox_3, 0, 0, 1, 1)
         self.groupBox_4 = QtGui.QGroupBox(self.scrollAreaWidgetContents_4)
         self.groupBox_4.setTitle(QtGui.QApplication.translate("PreferencesQemu", "ASA Specific Settings", None, QtGui.QApplication.UnicodeUTF8))
@@ -938,7 +938,7 @@ class Ui_PreferencesQemu(object):
         self.gridLayout_8.addWidget(self.IDScheckBoxUserMod, 8, 0, 1, 2)
         self.IDScheckBoxMonitor = QtGui.QCheckBox(self.groupBox_9)
         self.IDScheckBoxMonitor.setEnabled(True)
-        self.IDScheckBoxMonitor.setText(QtGui.QApplication.translate("PreferencesQemu", "Monitor mode", None, QtGui.QApplication.UnicodeUTF8))
+        self.IDScheckBoxMonitor.setText(QtGui.QApplication.translate("PreferencesQemu", "Monitor mode (pause and resume)", None, QtGui.QApplication.UnicodeUTF8))
         self.IDScheckBoxMonitor.setObjectName(_fromUtf8("IDScheckBoxMonitor"))
         self.gridLayout_8.addWidget(self.IDScheckBoxMonitor, 9, 0, 1, 2)
         self.verticalLayout_3.addWidget(self.groupBox_9)

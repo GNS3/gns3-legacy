@@ -328,8 +328,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>447</width>
-            <height>521</height>
+            <width>475</width>
+            <height>544</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -549,7 +549,7 @@
               <item row="9" column="0" colspan="2">
                <widget class="QCheckBox" name="QemucheckBoxMonitor">
                 <property name="text">
-                 <string>Monitor mode</string>
+                 <string>Monitor mode (pause and resume)</string>
                 </property>
                </widget>
               </item>
@@ -1129,7 +1129,7 @@
                  <bool>true</bool>
                 </property>
                 <property name="text">
-                 <string>Monitor mode</string>
+                 <string>Monitor mode (pause and resume)</string>
                 </property>
                </widget>
               </item>
@@ -1212,7 +1212,7 @@
             <x>0</x>
             <y>0</y>
             <width>460</width>
-            <height>635</height>
+            <height>633</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout_9">
@@ -1419,13 +1419,13 @@
                 </property>
                </widget>
               </item>
-              <item row="8" column="0">
+              <item row="8" column="0" colspan="2">
                <widget class="QCheckBox" name="ASAcheckBoxMonitor">
                 <property name="enabled">
                  <bool>true</bool>
                 </property>
                 <property name="text">
-                 <string>Monitor mode</string>
+                 <string>Monitor mode (pause and resume)</string>
                 </property>
                </widget>
               </item>
@@ -1802,7 +1802,7 @@
                  <bool>true</bool>
                 </property>
                 <property name="text">
-                 <string>Monitor mode</string>
+                 <string>Monitor mode (pause and resume)</string>
                 </property>
                </widget>
               </item>
