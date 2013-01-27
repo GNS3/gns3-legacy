@@ -1041,6 +1041,14 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                     return
                 if qemustderr[1].__contains__('udp='):
                     qemu_check = qemu_check + 1
+                try:
+                    p = subprocess.Popen([globals.GApp.systconf['qemu'].qemu_path, '-version'], cwd=globals.GApp.systconf['qemu'].qemuwrapper_workdir, stdout = subprocess.PIPE)
+                    qemustdout = p.communicate()
+                except:
+                    self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "Failed to start qemu")  + '</font>')
+                    return
+                if qemustdout[0].__contains__('gns3'):
+                    qemu_check = qemu_check + 1
 
                 if qemu_check == 0:
                     self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "You're running an old AND unpatched version of qemu, which won't work")  + '</font>')
