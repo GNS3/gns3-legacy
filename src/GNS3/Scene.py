@@ -918,6 +918,9 @@ class Scene(QtGui.QGraphicsView):
                     return
             self.slotDeleteNode()
         elif globals.addingLinkFlag and key == QtCore.Qt.Key_Escape:
+            if self.__isFirstClick:
+                # Escape has been pressed while we were not drawing a link
+                globals.GApp.workspace.stopAction_addLink()
             self.resetAddingLink()
         else:
             QtGui.QGraphicsView.keyPressEvent(self, event)

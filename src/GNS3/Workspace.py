@@ -533,12 +533,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Stop the add link action (called from the Scene)
         """
 
-        self.action_Add_link.setChecked(False)
-        self.action_Add_link.setText(translate('Workspace', 'Add a link'))
-        self.action_Add_link.setIcon(QIcon(':/icons/connection-new.svg'))
+        self.action_AddLink.setChecked(False)
+        self.action_AddLink.setText(translate('Workspace', 'Add a link'))
+        self.action_AddLink.setIcon(QIcon(':/icons/connection-new.svg'))
         globals.addingLinkFlag = False
         globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
-        
+
     def startAction_addLink(self):
         """ Start the add link action (called from the Scene)
         """
