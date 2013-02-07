@@ -411,7 +411,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Choose between extracting or importing configs
         """
 
-        options = [translate("Workspace", "Extracting to a directory"), translate("Workspace", "Importing from a directory")]
+        options = [translate("Workspace", "Extract configs to a directory"), translate("Workspace", "Import configs from a directory")]
         (selection,  ok) = QtGui.QInputDialog.getItem(self, translate("Workspace", "Import/Export IOS Startup Configs"),
                                               translate("Workspace", "Please choose an option:"), options, 0, False)
         if ok:
@@ -1167,8 +1167,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 projectDir = tempfile.mkdtemp(prefix='GNS3_')
                 #projectDir = os.path.dirname(projectDir) + os.sep + 'GNS3_' + os.path.basename(projectDir)
                 #os.makedirs(projectDir)
-                self.projectWorkdir = os.path.normpath(projectDir + os.sep + 'workdir')
-                self.projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
+                self.projectWorkdir = os.path.normpath(projectDir + os.sep + 'working')
+                #self.projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
                 self.projectFile = os.path.normpath(projectDir + os.sep + 'topology.net')
             except (OSError, IOError), e:
                 QtGui.QMessageBox.critical(self, translate('Workspace', 'createProject'),

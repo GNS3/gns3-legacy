@@ -477,7 +477,7 @@ class ASAInstance(QEMUInstance):
                 print "Deleting old flash file:", flash
                 os.remove(flash)
             except (OSError, IOError), e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, flash, "cannot be deleted:", e
 
     def _disk_options(self):
         debugmsg(3, "ASAInstance::_disk_options()")
@@ -488,7 +488,7 @@ class ASAInstance(QEMUInstance):
                 retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', flash, self.flash_size])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, self.img_bin, "execution failed:", e
 
         return ('-hda', flash)
 
@@ -519,7 +519,7 @@ class JunOSInstance(QEMUInstance):
                 print "Deleting old flash file:", flash
                 os.remove(flash)
             except (OSError, IOError), e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, flash, "cannot be deleted:", e
 
         swap = os.path.join(self.workdir, self.swap_name)
         if os.path.exists(swap):
@@ -527,7 +527,7 @@ class JunOSInstance(QEMUInstance):
                 print "Deleting old swap file:", swap
                 os.remove(swap)
             except (OSError, IOError), e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, swap, "cannot be deleted:", e
 
     def unbase_disk(self):
         debugmsg(3, "JunOSInstance::unbase_disk()")
@@ -539,7 +539,7 @@ class JunOSInstance(QEMUInstance):
                 retcode = subprocess.call([self.img_bin, 'convert', '-O', 'qcow2', flash, flash])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, self.img_bin, "execution failed:", e
 
     def _disk_options(self):
         debugmsg(3, "JunOSInstance::_disk_options()")
@@ -552,7 +552,7 @@ class JunOSInstance(QEMUInstance):
                                           '-f', 'qcow2', flash])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, self.img_bin, "execution failed:", e
 
         swap = os.path.join(self.workdir, self.swap_name)
         if not os.path.exists(swap):
@@ -560,7 +560,7 @@ class JunOSInstance(QEMUInstance):
                 retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', swap, self.swap_size])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, self.img_bin, "execution failed:", e
 
         return (flash, '-hdb', swap)
 
@@ -586,7 +586,7 @@ class IDSInstance(QEMUInstance):
                 print "Deleting old image file:", img1
                 os.remove(img1)
             except (OSError, IOError), e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, img1, "cannot be deleted:", e
 
         img2 = os.path.join(self.workdir, self.img2_name)
         if os.path.exists(img2):
@@ -594,7 +594,7 @@ class IDSInstance(QEMUInstance):
                 print "Deleting old image file:", img2
                 os.remove(img2)
             except (OSError, IOError), e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, img2, "cannot be deleted:", e
 
     def unbase_disk(self):
         debugmsg(3, "IDSInstance::unbase_disk()")
@@ -606,7 +606,7 @@ class IDSInstance(QEMUInstance):
                 retcode = subprocess.call([self.img_bin, 'convert', '-O', 'qcow2', img1, img1])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, self.img_bin, "execution failed:", e
 
         img2 = os.path.join(self.workdir, self.img2_name)
         if os.path.exists(img2):
@@ -615,7 +615,7 @@ class IDSInstance(QEMUInstance):
                 retcode = subprocess.call([self.img_bin, 'convert', '-O', 'qcow2', img2, img2])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, self.img_bin, "execution failed:", e
 
     def _disk_options(self):
         debugmsg(3, "IDSInstance::_disk_options()")
@@ -628,7 +628,7 @@ class IDSInstance(QEMUInstance):
                                           '-f', 'qcow2', img1])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, self.img_bin, "execution failed:", e
 
         img2 = os.path.join(self.workdir, self.img2_name)
         if not os.path.exists(img2):
@@ -638,7 +638,7 @@ class IDSInstance(QEMUInstance):
                                           '-f', 'qcow2', img2])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, self.img_bin, "execution failed:", e
 
         return ('-hda', img1, '-hdb', img2)
 
@@ -661,7 +661,7 @@ class QemuDeviceInstance(QEMUInstance):
                 print "Deleting old flash file:", flash
                 os.remove(flash)
             except (OSError, IOError), e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, flash, "cannot be deleted:", e
 
         swap = os.path.join(self.workdir, self.swap_name)
         if os.path.exists(swap):
@@ -669,7 +669,7 @@ class QemuDeviceInstance(QEMUInstance):
                 print "Deleting old swap file:", swap
                 os.remove(swap)
             except (OSError, IOError), e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, swap, "cannot be deleted:", e
 
     def unbase_disk(self):
         debugmsg(3, "QemuDeviceInstance::unbase_disk()")
@@ -681,7 +681,7 @@ class QemuDeviceInstance(QEMUInstance):
                 retcode = subprocess.call([self.img_bin, 'convert', '-O', 'qcow2', flash, flash])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, self.img_bin, "execution failed:", e
 
     def _disk_options(self):
         debugmsg(3, "QemuDeviceInstance::_disk_options()")
@@ -693,7 +693,7 @@ class QemuDeviceInstance(QEMUInstance):
                                           '-f', 'qcow2', flash])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, self.img_bin, "execution failed:", e
 
         swap = os.path.join(self.workdir, self.swap_name)
         if not os.path.exists(swap):
@@ -701,7 +701,7 @@ class QemuDeviceInstance(QEMUInstance):
                 retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', swap, self.swap_size])
                 print self.img_bin + ' returned with ' + str(retcode)
             except OSError, e:
-                print >> sys.stderr, "Execution failed:", e
+                print >> sys.stderr, self.img_bin, "execution failed:", e
         debugmsg(3, "flash = %s" % str(flash))
         debugmsg(3, "image = %s" % str(self.image))
         debugmsg(3, "swap = %s" % str(swap))

@@ -164,76 +164,6 @@
           <string>Settings</string>
          </property>
          <layout class="QGridLayout" name="gridLayout">
-          <item row="6" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxChassis">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0">
-           <widget class="QLabel" name="label_10">
-            <property name="text">
-             <string>Base config:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="10" column="0" colspan="2">
-           <widget class="QCheckBox" name="checkBoxDefaultImage">
-            <property name="text">
-             <string>Default image for this platform</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEditIOSImage"/>
-          </item>
-          <item row="6" column="0">
-           <widget class="QLabel" name="label_6">
-            <property name="text">
-             <string>Model:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="0" colspan="2">
-           <widget class="QLabel" name="labelCheckRAM">
-            <property name="text">
-             <string>&lt;a href=&quot;http://tools.cisco.com/ITDIT/CFN/jsp/SearchBySoftware.jsp&quot;&gt;Check for minimum RAM requirement&lt;/a&gt;</string>
-            </property>
-            <property name="openExternalLinks">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="2">
-           <widget class="QPushButton" name="pushButtonCalcIdlePC">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Ignored" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Experimental: automatically find the best IDLE PC value</string>
-            </property>
-            <property name="text">
-             <string>~</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="label_2">
-            <property name="text">
-             <string>Platform:</string>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="label">
             <property name="text">
@@ -241,58 +171,10 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="2">
-           <widget class="QPushButton" name="pushButtonSelectBaseConfig">
-            <property name="maximumSize">
-             <size>
-              <width>31</width>
-              <height>27</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>...</string>
-            </property>
-           </widget>
+          <item row="0" column="1" colspan="2">
+           <widget class="QLineEdit" name="lineEditIOSImage"/>
           </item>
-          <item row="2" column="1">
-           <widget class="QLineEdit" name="lineEditBaseConfig">
-            <property name="text">
-             <string>baseconfig.txt</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="1" colspan="2">
-           <widget class="QComboBox" name="comboBoxPlatform">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="0">
-           <widget class="QLabel" name="label_9">
-            <property name="text">
-             <string>Default RAM:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0">
-           <widget class="QLabel" name="label_12">
-            <property name="text">
-             <string>IDLE PC:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
-           <widget class="QLineEdit" name="lineEditIdlePC">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
+          <item row="0" column="3">
            <widget class="QPushButton" name="pushButtonSelectIOSImage">
             <property name="maximumSize">
              <size>
@@ -305,7 +187,99 @@
             </property>
            </widget>
           </item>
-          <item row="8" column="1" colspan="2">
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>Base config:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="QLineEdit" name="lineEditBaseConfig">
+            <property name="text">
+             <string>baseconfig.txt</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QPushButton" name="pushButtonSelectBaseConfig">
+            <property name="maximumSize">
+             <size>
+              <width>31</width>
+              <height>27</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>...</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Platform:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="3">
+           <widget class="QComboBox" name="comboBoxPlatform">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_6">
+            <property name="text">
+             <string>Model:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1" colspan="3">
+           <widget class="QComboBox" name="comboBoxChassis">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_12">
+            <property name="text">
+             <string>IDLE PC:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="lineEditIdlePC">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2" colspan="2">
+           <widget class="QPushButton" name="pushButtonCalcIdlePC">
+            <property name="toolTip">
+             <string>Experimental: automatically find the best IDLE PC value</string>
+            </property>
+            <property name="text">
+             <string>Autoc calculation</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>Default RAM:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1" colspan="3">
            <widget class="QSpinBox" name="spinBoxDefaultRAM">
             <property name="suffix">
              <string> MiB</string>
@@ -318,6 +292,26 @@
             </property>
             <property name="singleStep">
              <number>16</number>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="3">
+           <widget class="QLabel" name="labelCheckRAM">
+            <property name="text">
+             <string>&lt;a href=&quot;http://tools.cisco.com/ITDIT/CFN/jsp/SearchBySoftware.jsp&quot;&gt;Check for minimum RAM requirement&lt;/a&gt;</string>
+            </property>
+            <property name="openExternalLinks">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="0" colspan="3">
+           <widget class="QCheckBox" name="checkBoxDefaultImage">
+            <property name="text">
+             <string>Default image for this platform</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
