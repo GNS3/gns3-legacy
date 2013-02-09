@@ -341,9 +341,6 @@ class AnyEmuDevice(object):
         for i in range(self._nics):
             self.nios[i] = None
 
-        #self.idlepc = '0'
-        #self.idlemax = 0
-        #self.idlesleep = 0
         self.nvram = 0
         self.disk0 = 16
         #self.disk1 = 0

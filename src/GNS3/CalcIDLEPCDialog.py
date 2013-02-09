@@ -25,7 +25,7 @@ import GNS3.Dynagen.dynamips_lib as lib
 from PyQt4 import QtCore, QtGui, QtSvg
 from GNS3.Utils import translate
 from GNS3.Ui.Form_CalcIDLEPCDialog import Ui_CalcIDLEPCDialog
-from GNS3.Node.IOSRouter import IOSRouter
+from GNS3.Node.IOSRouter import IOSRouter, init_router_id
 from GNS3.Node.AnyEmuDevice import AnyEmuDevice
 from GNS3.Node.AnyVBoxEmuDevice import AnyVBoxEmuDevice
 from GNS3.Globals.Symbols import SYMBOLS
@@ -232,6 +232,7 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
         self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Cleaning up...") + '</font>')
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
         globals.GApp.topology.deleteNode(self.router.id)
+        init_router_id(self.router.id)
         self.router.__del__()
 
     def cancel(self):
@@ -239,7 +240,7 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
         """
 
         if self.pushButton.text() == "Cancel":
-            self.iosDialog.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Operation cancelled"))
+            self.iosDialog.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Operation canceled"))
             self.cleanUp()
             self.reject()
         else:

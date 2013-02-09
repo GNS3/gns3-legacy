@@ -278,6 +278,12 @@ class Topology(QtGui.QGraphicsScene):
         if image_conf.idlepc:
             debug("Set idlepc " + image_conf.idlepc)
             node.set_string_option('idlepc', image_conf.idlepc)
+        if image_conf.idlemax:
+            debug("Set idlemax %i" % image_conf.idlemax)
+            node.set_int_option('idlemax', image_conf.idlemax)
+        if image_conf.idlesleep:
+            debug("Set idlesleep %i" % image_conf.idlesleep)
+            node.set_int_option('idlesleep', image_conf.idlesleep)
         if globals.GApp.systconf['dynamips'].mmap:
             debug("Enable mmap")
             node.set_string_option('mmap', True)

@@ -2492,9 +2492,9 @@ class Router(Dynamips_device):
         #get info about idlepc value
         idlepc_info = ""
         if self.idlepc == None:
-            idlepc_info = ' with no idle-pc value'
+            idlepc_info = ' with no idlepc value'
         else:
-            idlepc_info = ' with idle-pc value of ' + self.idlepc + '\n  Idle-max value is ' + str(self.idlemax) + ', idlesleep is ' + str(self.idlesleep) + ' ms'
+            idlepc_info = ' with idlepc value of ' + self.idlepc + '\n  idlemax value is ' + str(self.idlemax) + ', idlesleep is ' + str(self.idlesleep) + ' ms'
             #TODO idlepcdrift is returning something like this ['101 Timer Drift: 0', '101 Pending Timer IRQ: 0']....wtf?
             #idlepc_info = idlepc_info + + " ms, idlepcdrift "+str(device.idlepcdrift)
 

@@ -18,7 +18,7 @@
 # http://www.gns3.net/contact
 #
 
-import os, sys, re, time, platform
+import os, sys, re, time, platform, shlex
 import subprocess as sub
 import GNS3.Globals as globals
 import subprocess
@@ -35,7 +35,7 @@ class  Singleton(object):
                                 cls, *args, **kwargs)
         return cls._instance
 
-def runTerminal(params=None):
+def runTerminal(params=None, workdir=None, auto_close_term=True):
 
     try:
         if sys.platform.startswith('win'):
@@ -44,19 +44,22 @@ def runTerminal(params=None):
                 return
             cmd = os.environ['ComSpec']
             if params:
-                cmd += ' /C "%s"' % params
+                if auto_close_term:
+                    cmd += ' /C %s' % params
+                else:
+                    cmd += ' /K %s' % params
             subprocess.Popen(cmd)
         elif sys.platform.startswith('darwin'):
             if params:
                 cmd = "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"%s; exit\"'" % params
-                subprocess.Popen(cmd, shell=True)
+                subprocess.Popen(cmd, shell=True, cwd=workdir)
             else:
                 cmd = "/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal"
                 subprocess.Popen(cmd)
         else:
             if params:
                 cmd = "xterm -e '%s' > /dev/null 2>&1 &" % params
-                subprocess.Popen(cmd, shell=True)
+                subprocess.Popen(cmd, shell=True, cwd=workdir)
             else:
                 cmd = "xterm"
                 subprocess.Popen("xterm", shell=True)

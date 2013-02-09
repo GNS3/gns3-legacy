@@ -181,7 +181,8 @@ class GNS_Conf(object):
             conf.platform = str(c.get(cgroup + "/platform", ''))
             conf.chassis = str(c.get(cgroup + "/chassis", ''))
             conf.idlepc = str(c.get(cgroup + "/idlepc", ''))
-            conf.idlemax = int(c.get(cgroup + "/idlemax", 500))
+            conf.idlemax = int(c.get(cgroup + "/idlemax", 1500))
+            conf.idlesleep = int(c.get(cgroup + "/idlesleep", 30))
             conf.default_ram = int(c.get(cgroup + "/default_ram", 0))
             conf.default =  c.value(cgroup + "/default", QtCore.QVariant(False)).toBool()
             conf.hypervisors = img_hypervisors

@@ -92,13 +92,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.dockWidget_UndoView.hide()
 
         # Add Undo & Redo actions to Edit menu
-        action = globals.GApp.topology.undoStack.createUndoAction(self)
+        action = globals.GApp.topology.undoStack.createUndoAction(self, translate('Workspace', '&Undo'))
         action.setIcon(QIcon(':/icons/edit-undo.svg'))
         action.setShortcut(translate("Workspace", "Ctrl+Z"))
         self.menu_Edit.addAction(action)
         self.menu_Edit.insertAction(self.action_SelectAll, action)
 
-        action = globals.GApp.topology.undoStack.createRedoAction(self)
+        action = globals.GApp.topology.undoStack.createRedoAction(self, translate('Workspace', '&Redo'))
         action.setShortcut(translate("Workspace", "Ctrl+Y"))
         action.setIcon(QIcon(':/icons/edit-redo.svg'))
         self.menu_Edit.insertAction(self.action_SelectAll, action)
@@ -147,6 +147,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if sys.platform.startswith('win'):
             vpcs_action.setData(QtCore.QVariant("vpcs-start.cmd"))
         elif sys.platform.startswith('darwin'):
+            #vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + 'vpcs'))
             vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + '../Resources/vpcs'))
         else:
             vpcs_action.setData(QtCore.QVariant('vpcs'))
@@ -155,13 +156,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         # Loopback Manager (Windows only)
         if sys.platform.startswith('win'):
             loopback_manager_action = QtGui.QAction(translate("Workspace", "Loopback Manager"), self.menu_Tools)
-            loopback_manager_action.setData(QtCore.QVariant("Loopback Manager.cmd"))
+            loopback_manager_action.setData(QtCore.QVariant('"Loopback Manager.cmd"'))
             self.menu_Tools.addAction(loopback_manager_action)
 
         # Network device list (Windows only)
         if sys.platform.startswith('win'):
             network_device_list_action = QtGui.QAction(translate("Workspace", "Network device list"), self.menu_Tools)
-            network_device_list_action.setData(QtCore.QVariant("Network device list.cmd"))
+            network_device_list_action.setData(QtCore.QVariant('"Network device list.cmd"'))
             self.menu_Tools.addAction(network_device_list_action)
 
         # Dynamips server (Windows only)
