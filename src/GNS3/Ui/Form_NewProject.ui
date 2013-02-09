@@ -74,7 +74,7 @@
          <string>Save nvrams and virtual hard drives (required to save EtherSwitch VLAN configs)</string>
         </property>
         <property name="checked">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
        </widget>
       </item>

@@ -99,8 +99,11 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
     def __del__(self):
 
-        if self.testedSettings and globals.GApp.systconf['dynamips'].path:
-            killAll(os.path.basename(globals.GApp.systconf['dynamips'].path))
+        if not sys.platform.startswith('win') and self.testedSettings and globals.GApp.systconf['dynamips'].path:
+            if sys.platform.startswith('darwin'):
+                killAll(os.path.basename(globals.GApp.systconf['dynamips'].path))
+            else:
+                killAll(globals.GApp.systconf['dynamips'].path)
 
         # Delete nodes that use deleted IOS
         node_list = globals.GApp.topology.nodes.values()
@@ -448,6 +451,10 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         image_path = unicode(self.lineEditIOSImage.text(), 'utf-8', errors='replace')
 
         if not image_path:
+            return
+        
+        if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Unchecked:
+            QtGui.QMessageBox.critical(self, translate("IOSDialog", "Test Settings"), translate("IOSDialog", "Only local IOS images can be tested"))
             return
         
         if len(globals.GApp.topology.nodes):

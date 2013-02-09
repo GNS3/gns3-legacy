@@ -630,13 +630,13 @@ class Application(QApplication, Singleton):
                     dialog.activateWindow()
                     self.mainWindow.raise_()
                     dialog.raise_()
-#                    if self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked() == False:
-#                        self.showTipsDialog()
+                    if self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked() == False:
+                        self.showTipsDialog()
                 else:
                     self.mainWindow.createProject((None, None, None, False, False))
                     self.mainWindow.raise_()
-#                    if self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked() == False:
-#                        self.showTipsDialog()
+                    if self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked() == False:
+                        self.showTipsDialog()
 
         retcode = QApplication.exec_()
 

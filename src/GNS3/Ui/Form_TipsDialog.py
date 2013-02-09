@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_TipsDialog.ui'
 #
-# Created: Sat Feb  9 06:14:32 2013
+# Created: Sat Feb  9 09:51:20 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,8 @@ except AttributeError:
 class Ui_TipsDialog(object):
     def setupUi(self, TipsDialog):
         TipsDialog.setObjectName(_fromUtf8("TipsDialog"))
-        TipsDialog.resize(609, 466)
+        TipsDialog.resize(440, 492)
+        TipsDialog.setMaximumSize(QtCore.QSize(440, 492))
         TipsDialog.setWindowTitle(QtGui.QApplication.translate("TipsDialog", "GNS3 Tips", None, QtGui.QApplication.UnicodeUTF8))
         self.verticalLayout = QtGui.QVBoxLayout(TipsDialog)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
