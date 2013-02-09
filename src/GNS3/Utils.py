@@ -18,7 +18,7 @@
 # http://www.gns3.net/contact
 #
 
-import os, sys, re, time, platform, shlex
+import os, sys, re, time, platform
 import subprocess as sub
 import GNS3.Globals as globals
 import subprocess

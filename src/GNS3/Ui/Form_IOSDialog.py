@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Fri Feb  8 23:01:38 2013
+# Created: Sat Feb  9 06:14:30 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -196,7 +196,8 @@ class Ui_IOSDialog(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.spinBoxIdlesleep.sizePolicy().hasHeightForWidth())
         self.spinBoxIdlesleep.setSizePolicy(sizePolicy)
-        self.spinBoxIdlesleep.setToolTip(QtGui.QApplication.translate("IOSDialog", "Idlesleep specifies how long the address that the idlepc value references is used to sleep.", None, QtGui.QApplication.UnicodeUTF8))
+        self.spinBoxIdlesleep.setToolTip(QtGui.QApplication.translate("IOSDialog", "Idlesleep specifies how long the address that the idlepc value references is used to sleep.\n"
+"30 ms is the recommended value.", None, QtGui.QApplication.UnicodeUTF8))
         self.spinBoxIdlesleep.setSuffix(QtGui.QApplication.translate("IOSDialog", " ms", None, QtGui.QApplication.UnicodeUTF8))
         self.spinBoxIdlesleep.setMinimum(1)
         self.spinBoxIdlesleep.setMaximum(1000)
