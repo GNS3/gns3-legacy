@@ -1044,10 +1044,12 @@ class Scene(QtGui.QGraphicsView):
             return
 
         if show and event.modifiers() & QtCore.Qt.ShiftModifier and event.button() == QtCore.Qt.LeftButton and item and not globals.addingLinkFlag:
-#            print 'HERE'
 #            if isinstance(item, AbstractShapeItem) or isinstance(item, Annotation) or isinstance(item, Pixmap):
 #                item.setFlag(item.ItemIsSelectable, True)
-            item.setSelected(True)
+            if item.isSelected():
+                item.setSelected(False)
+            else:
+                item.setSelected(True)
         elif show and event.button() == QtCore.Qt.RightButton and not globals.addingLinkFlag:
             if item:
                 #Prevent right clicking on a selected item from de-selecting all other items
@@ -1109,7 +1111,7 @@ class Scene(QtGui.QGraphicsView):
             self.sceneDragging = False
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
         else:
-            if item is not None:
+            if item is not None and not event.modifiers() & QtCore.Qt.ShiftModifier:
                 item.setSelected(False)
                 for other_item in self.__topology.selectedItems():
                     other_item.setSelected(False)

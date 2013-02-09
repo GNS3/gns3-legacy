@@ -268,7 +268,7 @@
              <string>Experimental: automatically find the best IDLE PC value</string>
             </property>
             <property name="text">
-             <string>Autoc calculation</string>
+             <string>Auto calculation</string>
             </property>
            </widget>
           </item>

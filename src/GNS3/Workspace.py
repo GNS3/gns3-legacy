@@ -34,7 +34,7 @@ from GNS3.IOSDialog import IOSDialog
 from GNS3.SymbolManager import SymbolManager
 from GNS3.ProjectDialog import ProjectDialog
 from GNS3.SnapshotDialog import SnapshotDialog
-from GNS3.Utils import debug, translate, fileBrowser, showDetailedMsgBox
+from GNS3.Utils import debug, translate, fileBrowser, showDetailedMsgBox, runTerminal
 from GNS3.Config.Preferences import PreferencesDialog
 from GNS3.Config.Objects import recentFilesConf
 from GNS3.Node.IOSRouter import IOSRouter
@@ -131,6 +131,67 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.track.addLocalAddress(addr)
 
         self.tips_dialog = TipsDialog(self)
+        self.createToolsMenu()
+
+    def createToolsMenu(self):
+        """ Populate Tools menu
+        """
+        
+        # Terminal
+        terminal_action = QtGui.QAction(translate("Workspace", "Terminal"), self.menu_Tools)
+        terminal_action.setShortcut(translate("Workspace", "Ctrl+T"))
+        self.menu_Tools.addAction(terminal_action)
+
+        # VPCS
+        vpcs_action = QtGui.QAction(translate("Workspace", "VPCS"), self.menu_Tools)
+        if sys.platform.startswith('win'):
+            vpcs_action.setData(QtCore.QVariant("vpcs-start.cmd"))
+        elif sys.platform.startswith('darwin'):
+            vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + '../Resources/vpcs'))
+        else:
+            vpcs_action.setData(QtCore.QVariant('vpcs'))
+        self.menu_Tools.addAction(vpcs_action)
+
+        # Loopback Manager (Windows only)
+        if sys.platform.startswith('win'):
+            loopback_manager_action = QtGui.QAction(translate("Workspace", "Loopback Manager"), self.menu_Tools)
+            loopback_manager_action.setData(QtCore.QVariant("Loopback Manager.cmd"))
+            self.menu_Tools.addAction(loopback_manager_action)
+
+        # Network device list (Windows only)
+        if sys.platform.startswith('win'):
+            network_device_list_action = QtGui.QAction(translate("Workspace", "Network device list"), self.menu_Tools)
+            network_device_list_action.setData(QtCore.QVariant("Network device list.cmd"))
+            self.menu_Tools.addAction(network_device_list_action)
+
+        # Dynamips server (Windows only)
+        if sys.platform.startswith('win'):
+            dynamips_server_action = QtGui.QAction(translate("Workspace", "Dynamips server"), self.menu_Tools)
+            dynamips_server_action.setData(QtCore.QVariant("dynamips-start.cmd"))
+            self.menu_Tools.addAction(dynamips_server_action)
+
+        # Qemuwrapper (Windows only)
+        if sys.platform.startswith('win'):
+            qemuwrapper_action = QtGui.QAction(translate("Workspace", "Qemuwrapper"), self.menu_Tools)
+            qemuwrapper_action.setData(QtCore.QVariant("qemuwrapper-start.cmd"))
+            self.menu_Tools.addAction(qemuwrapper_action)
+
+        # Vboxwrapper (Windows only)
+        if sys.platform.startswith('win'):
+            vboxwrapper_action = QtGui.QAction(translate("Workspace", "Vboxwrapper"), self.menu_Tools)
+            vboxwrapper_action.setData(QtCore.QVariant("vboxwrapper-start.cmd"))
+            self.menu_Tools.addAction(vboxwrapper_action)
+
+        self.connect(self.menu_Tools, QtCore.SIGNAL("triggered(QAction *)"), self.slotRunTool)
+
+    def slotRunTool(self, action):
+        """ Run a tool from Tools menu
+        """
+        
+        if action.text() == translate("Workspace", 'Terminal'):
+            runTerminal()
+        else:
+            runTerminal(action.data().toString())
 
     def __connectActions(self):
         """ Connect all needed pair (action, SIGNAL)
@@ -385,6 +446,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 except (OSError, IOError), e:
                     #print translate("Workspace", "Warning: Can't delete %s => %s") % (file, e.strerror)
                     continue
+
+            # delete temporary projects left behind
+            project_dirs = glob.glob(tempfile.gettempdir() + os.sep + 'GNS3_*')
+            for project_dir in project_dirs:
+                shutil.rmtree(project_dir, ignore_errors=True)
 
     def clear(self):
         """ Clear all the workspace
@@ -1111,6 +1177,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         self.clear()
         projectDialog = ProjectDialog(parent=self, newProject=True)
+        projectDialog.pushButtonOpenProject.setEnabled(False)
+        projectDialog.pushButtonRecentFiles.setEnabled(False)
         self.projectWorkdir = None
         self.projectConfigs = None
         projectDialog.setModal(True)
@@ -1165,10 +1233,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.isTemporaryProject = True
             try:
                 projectDir = tempfile.mkdtemp(prefix='GNS3_')
-                #projectDir = os.path.dirname(projectDir) + os.sep + 'GNS3_' + os.path.basename(projectDir)
-                #os.makedirs(projectDir)
                 self.projectWorkdir = os.path.normpath(projectDir + os.sep + 'working')
-                #self.projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
+                self.projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
                 self.projectFile = os.path.normpath(projectDir + os.sep + 'topology.net')
             except (OSError, IOError), e:
                 QtGui.QMessageBox.critical(self, translate('Workspace', 'createProject'),
@@ -1465,6 +1531,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.projectWorkdir = None
             self.projectConfigs = None
             self.projectFile = None
+            self.isTemporaryProject = False
             self.load_netfile(path)
             self.__addToRecentFiles(path)
             globals.GApp.topology.changed = False

@@ -1085,7 +1085,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 return
 
             if platform.system() == 'Darwin':
-                self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "All components have successfully started")  + '</font><br><font color="red">' + translate("UiConfig_PreferencesQemu", " (except pemu that is not supported on Mac OS X)")  + '</font></a>')
+                self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "All components have successfully started")  + '</font><br><font color="red">' + translate("UiConfig_PreferencesQemu", "Except Pemu (PIX emulation), not supported on OSX")  + '</font></a>')
             elif bPEMUfound:
                 self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "All components have successfully started")  + '</font>')
             else:

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sat Jan 26 08:59:37 2013
+# Created: Fri Feb  8 09:41:08 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -81,6 +81,9 @@ class Ui_MainWindow(object):
         self.menuDevice = QtGui.QMenu(self.menubar)
         self.menuDevice.setTitle(QtGui.QApplication.translate("MainWindow", "Device", None, QtGui.QApplication.UnicodeUTF8))
         self.menuDevice.setObjectName(_fromUtf8("menuDevice"))
+        self.menu_Tools = QtGui.QMenu(self.menubar)
+        self.menu_Tools.setTitle(QtGui.QApplication.translate("MainWindow", "&Tools", None, QtGui.QApplication.UnicodeUTF8))
+        self.menu_Tools.setObjectName(_fromUtf8("menu_Tools"))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtGui.QStatusBar(MainWindow)
         self.statusbar.setObjectName(_fromUtf8("statusbar"))
@@ -690,6 +693,7 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuControl.menuAction())
         self.menubar.addAction(self.menuDevice.menuAction())
         self.menubar.addAction(self.menuAnnotate.menuAction())
+        self.menubar.addAction(self.menu_Tools.menuAction())
         self.menubar.addAction(self.menu_About.menuAction())
         self.toolBar_General.addAction(self.action_New)
         self.toolBar_General.addAction(self.action_Open)

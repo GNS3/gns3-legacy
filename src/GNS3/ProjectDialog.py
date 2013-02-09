@@ -44,7 +44,11 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
                 projectPath = os.path.dirname(projectFile)
                 projectName = os.path.basename(projectPath)
                 self.ProjectName.setText(projectName)
-                self.ProjectPath.setText(projectPath)
+                general_project_dir = os.path.normpath(globals.GApp.systconf['general'].project_path)
+                if os.path.exists(general_project_dir):
+                    self.ProjectPath.setText(general_project_dir + os.sep + projectName)
+                else:
+                    self.ProjectPath.setText(projectPath)
 
             if projectWorkdir != None:
                 self.checkBox_WorkdirFiles.setCheckState(QtCore.Qt.Checked)
@@ -117,7 +121,15 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
         if not projectName or not projectDir:
             return (None, None, None, False, False)
 
-        if not os.path.exists(projectDir):
+        if os.path.exists(projectDir):
+            
+            reply = QtGui.QMessageBox.question(self, translate('ProjectDialog', 'Project Directory'), translate('ProjectDialog', "Project directory already exists, overwrite?"),
+                                            QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
+
+            if reply == QtGui.QMessageBox.No:
+                return (None, None, None, False, False)
+
+        else: 
             try:
                 os.makedirs(projectDir)
             except (OSError, IOError), e:

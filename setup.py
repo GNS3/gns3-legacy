@@ -195,13 +195,16 @@ elif sys.platform.startswith('darwin'):
     os.system('cp ../dynamips-0.2.8-RC3-community-OSX.intel64.bin ./GNS3.app/Contents/Resources')
     os.system('cp ../dynamips-0.2.8-RC5-community-OSX.intel64.bin ./GNS3.app/Contents/Resources')
 
-    #print '*** Installing Qemu 0.11.0 ***'
+    print '*** Installing Qemu 0.11.0 ***'
     os.system('mkdir -p ./GNS3.app/Contents/Resources/Qemu-0.11.0')
     os.system('cp -R ../Qemu-0.11.0/* ./GNS3.app/Contents/Resources/Qemu-0.11.0')
 
-    #print '*** Installing Qemu 0.14.1 ***'
+    print '*** Installing Qemu 0.14.1 ***'
     os.system('mkdir -p ./GNS3.app/Contents/Resources/Qemu-0.14.1')
     os.system('cp -R ../Qemu-0.14.1/* ./GNS3.app/Contents/Resources/Qemu-0.14.1')
+
+    print '*** Installing VPCS ***'
+    os.system('cp ../vpcs ./GNS3.app/Contents/Resources')
 
     print '*** Applying permissions ***'
     #os.chmod('./GNS3.app/Contents/Resources/vboxwrapper.py', 0755)
@@ -213,6 +216,7 @@ elif sys.platform.startswith('darwin'):
     os.chmod('./GNS3.app/Contents/Resources/Qemu-0.14.1/bin/qemu-img', 0755)
     os.chmod('./GNS3.app/Contents/Resources/dynamips-0.2.8-RC3-community-OSX.intel64.bin', 0755)
     os.chmod('./GNS3.app/Contents/Resources/dynamips-0.2.8-RC5-community-OSX.intel64.bin', 0755)
+    os.chmod('./GNS3.app/Contents/Resources/vpcs', 0755)
 
     print '*** Compiling & installing VBoxWrapper ***'
     setuptools.setup(name='VBoxWrapper', app=['../vboxwrapper/vboxwrapper.py'], options={'py2app': {'semi_standalone': True, 'site_packages': True, 'optimize':  1}}, setup_requires=['py2app'])

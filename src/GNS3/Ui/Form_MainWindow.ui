@@ -154,12 +154,18 @@ background-none;
      <string>Device</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menu_Tools">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
    <addaction name="menu_View"/>
    <addaction name="menuControl"/>
    <addaction name="menuDevice"/>
    <addaction name="menuAnnotate"/>
+   <addaction name="menu_Tools"/>
    <addaction name="menu_About"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

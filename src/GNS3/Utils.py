@@ -35,6 +35,33 @@ class  Singleton(object):
                                 cls, *args, **kwargs)
         return cls._instance
 
+def runTerminal(params=None):
+
+    try:
+        if sys.platform.startswith('win'):
+            if not os.environ.has_key("ComSpec"):
+                QtGui.QMessageBox.critical(self, translate('Utils', 'Open Terminal'), translate("Utils", "ComSpec environment variable is not set"))
+                return
+            cmd = os.environ['ComSpec']
+            if params:
+                cmd += ' /C "%s"' % params
+            subprocess.Popen(cmd)
+        elif sys.platform.startswith('darwin'):
+            if params:
+                cmd = "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"%s; exit\"'" % params
+                subprocess.Popen(cmd, shell=True)
+            else:
+                cmd = "/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal"
+                subprocess.Popen(cmd)
+        else:
+            if params:
+                cmd = "xterm -e '%s' > /dev/null 2>&1 &" % params
+                subprocess.Popen(cmd, shell=True)
+            else:
+                cmd = "xterm"
+                subprocess.Popen("xterm", shell=True)
+    except OSError, e:
+        print translate("Utils", "Cannot start command %s: %s") % (cmd, e.strerror)
 
 def translate(context, text):
     """ returns the translated text
