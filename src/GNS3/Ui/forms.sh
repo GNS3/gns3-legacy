@@ -21,6 +21,7 @@ FILES=" Form_MainWindow
         ./ConfigurationPages/Form_IOSRouterPage
         ./ConfigurationPages/Form_CloudPage
         ./ConfigurationPages/Form_ETHSWPage
+        ./ConfigurationPages/Form_HubPage
         ./ConfigurationPages/Form_FRSWPage
         ./ConfigurationPages/Form_ATMSWPage
         ./ConfigurationPages/Form_ATMBRPage

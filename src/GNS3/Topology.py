@@ -33,6 +33,7 @@ from GNS3.Node.IOSRouter import IOSRouter, init_router_id
 from GNS3.Node.ATMSW import ATMSW, init_atmsw_id
 from GNS3.Node.ATMBR import ATMBR, init_atmbr_id
 from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
+from GNS3.Node.Hub import Hub, init_hub_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
 from GNS3.Node.AnyEmuDevice import QemuDevice, PIX, ASA, AnyEmuDevice, JunOS, IDS, init_emu_id
@@ -145,6 +146,7 @@ class Topology(QtGui.QGraphicsScene):
         init_atmsw_id()
         init_atmbr_id()
         init_ethsw_id()
+        init_hub_id()
         init_frsw_id()
         init_emu_id()
         init_vbox_emu_id()
@@ -1106,10 +1108,10 @@ class Topology(QtGui.QGraphicsScene):
                 QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "Can't connect these devices"))
                 return False
 
-            if (isinstance(dst_node, Cloud) or isinstance(dst_node, AnyEmuDevice) or isinstance(dst_node, AnyVBoxEmuDevice) or type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR)) and type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR):
+            if (isinstance(dst_node, Cloud) or isinstance(dst_node, AnyEmuDevice) or isinstance(dst_node, AnyVBoxEmuDevice) or type(dst_node) in (ETHSW, Hub, ATMSW, FRSW, ATMBR)) and type(src_node) in (ETHSW, Hub, ATMSW, FRSW, ATMBR):
 
                 if not src_node.hypervisor:
-                    if type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR) and dst_node.hypervisor:
+                    if type(dst_node) in (ETHSW, Hub, ATMSW, FRSW, ATMBR) and dst_node.hypervisor:
                         debug('Set hypervisor ' + dst_node.hypervisor.host + ':' + str(dst_node.hypervisor.port) + ' to ' + src_node.hostname)
                         src_node.set_hypervisor(dst_node.hypervisor)
                     else:
@@ -1118,10 +1120,10 @@ class Topology(QtGui.QGraphicsScene):
                             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "Connection"),  translate("Topology", "You have to connect at least one router to the switch"))
                             return False
 
-            if (isinstance(src_node, Cloud) or isinstance(src_node, AnyEmuDevice) or isinstance(src_node, AnyVBoxEmuDevice) or type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR)) and type(dst_node) in (ETHSW, ATMSW, FRSW, ATMBR):
+            if (isinstance(src_node, Cloud) or isinstance(src_node, AnyEmuDevice) or isinstance(src_node, AnyVBoxEmuDevice) or type(src_node) in (ETHSW, Hub, ATMSW, FRSW, ATMBR)) and type(dst_node) in (ETHSW, Hub, ATMSW, FRSW, ATMBR):
 
                 if not dst_node.hypervisor:
-                    if type(src_node) in (ETHSW, ATMSW, FRSW, ATMBR) and src_node.hypervisor:
+                    if type(src_node) in (ETHSW, Hub, ATMSW, FRSW, ATMBR) and src_node.hypervisor:
                         debug('Set hypervisor ' + src_node.hypervisor.host + ':' + str(src_node.hypervisor.port) + ' to ' + dst_node.hostname)
                         dst_node.set_hypervisor(src_node.hypervisor)
                     else:
@@ -1139,20 +1141,20 @@ class Topology(QtGui.QGraphicsScene):
                 dst_node.set_hypervisor(src_node.hypervisor)
 
         try:
-            if isinstance(src_node, IOSRouter) or isinstance(src_node, AnyEmuDevice) or isinstance(src_node, AnyVBoxEmuDevice) or type(src_node) in (ETHSW, ATMSW, ATMBR, FRSW):
+            if isinstance(src_node, IOSRouter) or isinstance(src_node, AnyEmuDevice) or isinstance(src_node, AnyVBoxEmuDevice) or type(src_node) in (ETHSW, Hub, ATMSW, ATMBR, FRSW):
                 srcdev = src_node.get_dynagen_device()
                 if type(dst_node) == Cloud:
-                    if not type(src_node) in (ETHSW, ATMSW, ATMBR, FRSW):
+                    if not type(src_node) in (ETHSW, Hub, ATMSW, ATMBR, FRSW):
                         debug('Connect link from ' + srcdev.name + ' ' + srcif + ' to ' + dstif)
                         self.dynagen.connect(srcdev, srcif, dstif)
                 else:
                     dstdev = dst_node.get_dynagen_device()
                     debug('Connect link from ' + srcdev.name + ' ' + srcif + ' to ' + dstdev.name + ' ' + dstif)
                     self.dynagen.connect(srcdev, srcif, dstdev.name + ' ' + dstif)
-            elif isinstance(dst_node, IOSRouter) or isinstance(dst_node, AnyEmuDevice) or isinstance(dst_node, AnyVBoxEmuDevice) or type(dst_node) in (ETHSW, ATMSW, ATMBR, FRSW):
+            elif isinstance(dst_node, IOSRouter) or isinstance(dst_node, AnyEmuDevice) or isinstance(dst_node, AnyVBoxEmuDevice) or type(dst_node) in (ETHSW, Hub, ATMSW, ATMBR, FRSW):
                 dstdev = dst_node.get_dynagen_device()
                 if type(src_node) == Cloud:
-                    if not type(dst_node) in (ETHSW, ATMSW, ATMBR, FRSW):
+                    if not type(dst_node) in (ETHSW, Hub, ATMSW, ATMBR, FRSW):
                         debug('Connect link from ' + dstdev.name + ' ' + srcif + ' to ' + dstif)
                         self.dynagen.connect(dstdev, dstif, srcif)
                 else:
@@ -1228,8 +1230,8 @@ class Topology(QtGui.QGraphicsScene):
                         self.dynagen.disconnect(dstdev, link.destIf, srcdev.name + ' ' + link.srcIf, automatically_remove_unused_slot=False)
                     link.dest.set_config(link.dest.get_config())
 
-                elif type(link.source) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) and type(link.dest) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) or \
-                    type(link.dest) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR) and type(link.source) in (Cloud, ETHSW, ATMSW, FRSW, ATMBR):
+                elif type(link.source) in (Cloud, ETHSW, Hub, ATMSW, FRSW, ATMBR) and type(link.dest) in (Cloud, ETHSW, Hub, ATMSW, FRSW, ATMBR) or \
+                    type(link.dest) in (Cloud, ETHSW, Hub, ATMSW, FRSW, ATMBR) and type(link.source) in (Cloud, ETHSW, Hub, ATMSW, FRSW, ATMBR):
 
                     if type(link.dest) == Cloud:
                         srcdev = link.source.get_dynagen_device()

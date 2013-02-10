@@ -60,7 +60,7 @@ else:
     DEBUGGER = True
 
 
-EMULATED_SWITCHES = ['ETHSW', 'ATMSW', 'FRSW', 'Bridge', 'ATMBR']
+EMULATED_SWITCHES = ['ETHSW', 'ATMSW', 'FRSW', 'Bridge', 'ATMBR', 'Hub']
 
 ROUTERMODELS = (
     'c1700',
@@ -649,6 +649,8 @@ class NIO_udp(NIO):
             return ' is connected to ATM switch ' + remote_device.name + ' port ' + str(remote_port) + " " + stats
         elif isinstance(remote_device, ETHSW):
             return ' is connected to ethernet switch ' + remote_device.name + ' port ' + str(remote_port) + " " + stats
+        elif isinstance(remote_device, Hub):
+            return ' is connected to ethernet hub ' + remote_device.name + ' port ' + str(remote_port) + " " + stats
         elif isinstance(remote_device, ATMBR):
             return ' is connected to ATM bridge ' + remote_device.name + ' port ' + str(remote_port) + " " + stats
         elif isinstance(remote_device, AnyEmuDevice):
@@ -4790,6 +4792,117 @@ class ETHSW(Emulated_switch):
         for port1 in keys:
             (porttype, vlan, nio, unused)= self.mapping[port1]
             subconfig[e][str(port1)] = porttype + ' ' + str(vlan) + ' ' + nio.config_info()
+
+###############################################################################
+
+class Hub(Emulated_switch):
+
+    """ Creates a new hub instance
+        dynamips: a Dynamips object
+        name: An optional name
+    """
+
+    _instance_count = 0
+
+    def __init__(self, dynamips, name=None, create=True):
+
+        self._d = dynamips
+        self._instance = Hub._instance_count
+        Hub._instance_count += 1
+        if name == None:
+            self._name = 'h' + str(self._instance)
+        else:
+            self._name = name
+
+        self.nios = {}  # A dict of NETIO objects indexed by hub port
+        self.slot = {}
+        self.slot[0] = self
+        if create:
+            send(self._d, 'nio_bridge create ' + self._name)
+
+    def delete(self):
+        """ Delete this hub instance from the back end
+        """
+
+        send(self._d, 'nio_bridge delete ' + self._name)
+
+    def info(self):
+        """return the string with info about this device"""
+
+        info = "Hub " + self._name + " is always-on\n  Hardware is dynamips emulated simple ethernet hub\n  Hub's hypervisor runs on " + self._d.host + ':' + str(self._d.port) + '\n'
+
+        keys = self.nios.keys()
+        keys.sort()
+        map_info = ''
+        for port1 in keys:
+            nio = self.nios[port1]
+            map_info += '   Port '+ str(port1) + ' ' + nio.info() + '\n'
+        return info + map_info
+
+    def disconnect(self, localint, localport):
+        """ Disconnect this port from port on another device
+            port: A port on this adapter
+        """
+        try:
+            nio = self.nio(localport).name
+        except DynamipsWarning, e:
+            raise DynamipsError, e
+
+        send(self._d, 'nio_bridge remove_nio %s %s' % (self._name, nio))
+
+    def delete_nio(self, localint, localport):
+        """ Deletes this nio from the device """
+
+        #delete the nio and remove it from the dictionary
+        self.nios[localport].delete()
+        del self.nios[localport]
+
+
+    def nio(
+        self,
+        port,
+        nio=None,
+        ):
+        """ Returns the NETIO object for this port
+            or if nio is set, sets the NETIO for this port
+            port: a port on this adapter
+            nio: optional NETIO object to assign
+        """
+
+        if nio == None:
+            # Return the NETIO string
+            try:
+                return self.nios[port]
+            except KeyError:
+                return None
+
+        if isinstance(nio, NIO):
+            send(self._d, 'nio_bridge add_nio %s %s' % (self._name, nio.name))
+        else:
+            raise DynamipsError, 'invalid NIO type'
+
+        # Set the NETIO for this port
+        self.nios[port] = nio
+
+    def __getadapter(self):
+        """ Returns the adapter property
+        """
+
+        return 'Hub'
+
+    adapter = property(__getadapter, doc='The port adapter')
+
+    def config(self, subconfig):
+        """parse the all data structures associated with this ethsw and update the running_config properly"""
+
+        h = 'Hub ' + self.name
+        subconfig[h] = {}
+
+        keys = self.nios.keys()
+        keys.sort()
+        for port1 in keys:
+            nio= self.nios[port1]
+            subconfig[h][str(port1)] = nio.config_info()
 
 
 ###############################################################################

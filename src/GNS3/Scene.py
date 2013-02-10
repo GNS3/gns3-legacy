@@ -54,6 +54,7 @@ from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMBR import ATMBR
+from GNS3.Node.Hub import Hub
 from GNS3.Link.Ethernet import Ethernet
 from GNS3.Link.Serial import Serial
 from GNS3.DragDropMultipleDevicesDialog import DragDropMultipleDevicesDialog
@@ -146,7 +147,7 @@ class Scene(QtGui.QGraphicsView):
             menu.addAction(changeHostnameAct)
             menu.addAction(addLinkAct)
 
-        instances = map(lambda item: isinstance(item, ETHSW) or isinstance(item, ATMSW) or isinstance(item, ATMBR) or isinstance(item, FRSW), items)
+        instances = map(lambda item: isinstance(item, ETHSW) or isinstance(item, Hub) or isinstance(item, ATMSW) or isinstance(item, ATMBR) or isinstance(item, FRSW), items)
         if True in instances:
 
             # Action: ChangeHypervisor (Change the hypervisor)
@@ -557,7 +558,7 @@ class Scene(QtGui.QGraphicsView):
 
         for item in self.__topology.selectedItems():
             if isinstance(item, ETHSW) or isinstance(item, ATMSW) or \
-                isinstance(item, ATMBR) or isinstance(item, FRSW):
+                isinstance(item, ATMBR) or isinstance(item, FRSW) or isinstance(item, Hub):
                 item.changeHypervisor()
 
     def slotShowHostname(self):
@@ -817,13 +818,15 @@ class Scene(QtGui.QGraphicsView):
         node = self.__topology.getNode(id)
 
         if globals.currentLinkType == globals.Enum.LinkType.Serial or globals.currentLinkType == globals.Enum.LinkType.ATM or globals.currentLinkType == globals.Enum.LinkType.POS:
-            if isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice) or isinstance(node, ETHSW):
+            if isinstance(node, AnyEmuDevice) or isinstance(node, AnyVBoxEmuDevice) or isinstance(node, ETHSW) or isinstance(node, Hub):
                 if isinstance(node, AnyEmuDevice):
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "AddLink"),  translate("Scene", "Qemu machines support only Ethernet links."))
                 if isinstance(node, AnyVBoxEmuDevice):
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "AddLink"),  translate("Scene", "VirtualBox machines support only Ethernet links."))
                 if isinstance(node, ETHSW):
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "AddLink"),  translate("Scene", "Ethernet switch supports only Ethernet links."))
+                if isinstance(node, Hub):
+                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Scene", "AddLink"),  translate("Scene", "Ethernet hub supports only Ethernet links."))
                 self.__isFirstClick = True
                 return
 

@@ -39,7 +39,7 @@ import time
 from console import Console
 from dynamips_lib import Dynamips, PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T, \
      PA_4E, PA_8E, PA_POS_OC3, Router, C7200, C3600, Leopard_2FE, NM_1FE_TX, NM_1E, NM_4E, \
-     NM_16ESW, NM_4T, DynamipsError, DynamipsWarning, Bridge, FRSW, ATMSW, ETHSW, ATMBR, \
+     NM_16ESW, NM_4T, DynamipsError, DynamipsWarning, Bridge, FRSW, ATMSW, ETHSW, Hub, ATMBR, \
      NIO_udp, NIO_linux_eth, NIO_gen_eth, NIO_tap, NIO_unix, NIO_vde, NIO_null, nosend, setdebug, \
      C2691, C3725, C3745, GT96100_FE, C2600, \
      CISCO2600_MB_1E, CISCO2600_MB_2E, CISCO2600_MB_1FE, CISCO2600_MB_2FE, PA_2FE_TX, \
@@ -61,7 +61,7 @@ def debugmsg(level, message):
         print message
 
 # Constants
-VERSION = '0.13.1.20121128'
+VERSION = '0.13.1.20131002'
 CONFIGSPECPATH = ['/usr/share/dynagen', '/usr/local/share', '/usr/local/share/dynagen']
 CONFIGSPEC = 'configspec'
 INIPATH = ['/etc', '/usr/local/etc']
@@ -382,9 +382,9 @@ class Dynagen:
         if conn_type == 'Manual':
             #manual mapping aplies only to Dynamips based devices
             if isinstance(local_device, AnyEmuDevice):
-                raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW to bridge the connection to the NIO instead.'
+                raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW or hub to bridge the connection to the NIO instead.'
             if isinstance(local_device, AnyVBoxEmuDevice):
-                raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW to bridge the connection to the NIO instead.'
+                raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW or hub to bridge the connection to the NIO instead.'
             niotype = x1
             niostring = x2
             # Process the netio
@@ -475,6 +475,8 @@ class Dynagen:
 
                     if device.adapter == 'ETHSW':
                         pa2 = 'f'  # Ethernet switches are FastEthernets (for our purposes anyway)
+                    elif device.adapter == 'Hub':
+                        pa2 = 'f'  # Ethernet hubs are FastEthernets (for our purposes anyway)
                     elif device.adapter == 'FRSW':
                         pa2 = 's'  # Frame Relays switches are Serials
                     elif device.adapter == 'ATMSW':
@@ -591,7 +593,7 @@ class Dynagen:
                 try:
                     realPort = local_device.slot[slot1].interfaces[pa1][port1]
                 except AttributeError:
-                    raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW to bridge the connection to the NIO instead.'
+                    raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW or hub to bridge the connection to the NIO instead.'
 
         #parse the right side of connection
         (x1,x2,x3,x4,conn_type) = self._parse_right_side_of_connection(dest)
@@ -600,7 +602,7 @@ class Dynagen:
         if conn_type == 'Manual':
             #manual mapping aplies only to Dynamips based devices
             if isinstance(local_device, AnyEmuDevice) or isinstance(local_device, AnyVBoxEmuDevice):
-                raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW to bridge the connection to the NIO instead.'
+                raise DynamipsError, 'Device does not support this type of NIO. Use an ETHSW or hub to bridge the connection to the NIO instead.'
             niotype = x1
             niostring = x2
             # Process the netio
@@ -1090,6 +1092,7 @@ class Dynagen:
         connectionlist = []  # A list of router connections
         maplist = []  # A list of Frame Relay and ATM switch mappings
         ethswintlist = []  # A list of Ethernet Switch vlan mappings
+        hubintlist = [] # A list of Ethernet Hub NIO connections
         self.import_error = False
         config = self.open_config(FILENAME)
 
@@ -1567,6 +1570,8 @@ class Dynagen:
                             dev = ATMSW(self.dynamips[server.name], name=name)
                         elif devtype.lower() == 'ethsw':
                             dev = ETHSW(self.dynamips[server.name], name=name)
+                        elif devtype.lower() == 'hub':
+                            dev = Hub(self.dynamips[server.name], name=name)
                         elif devtype.lower() == 'atmbr':
                             dev = ATMBR(self.dynamips[server.name], name=name)
                         else:
@@ -1609,6 +1614,8 @@ class Dynagen:
                                                     connectionlist.append((dev, subitem, dest_device + ' ' + dest_int ))
                                                 except ValueError:
                                                     self.dowarning('incorrect syntax: %s = %s' % (str(subitem), str(device[subitem])))
+                                            elif isinstance(dev, Hub):
+                                                hubintlist.append((dev, subitem, device[subitem]))
                                             else:
                                                 connectionlist.append((dev, subitem, device[subitem]))
                                         else:
@@ -1628,6 +1635,20 @@ class Dynagen:
                         self.dowarning('received dynamips server error:\n\t%s' % err)
                         self.import_error = True
                         continue
+
+        # Apply the switch configuration we collected earlier
+        for ethswint in ethswintlist:
+            self.debug('ethernet switchport configuring: ' + str(ethswint))
+            (switch, source, dest) = ethswint
+            self.ethsw_map(switch, source, dest)
+
+        for hubint in hubintlist:
+            self.debug('ethernet hubport configuring: ' + str(hubint))
+            (hub, source, dest) = hubint
+            if dest.lower()[:3] == 'nio':
+                self.hub_to_nio(hub, source, dest)
+            else:
+                connectionlist.append(hubint)
 
         # Establish the connections we collected earlier
         for connection in connectionlist:
@@ -1649,12 +1670,6 @@ class Dynagen:
                 self.import_error = True
                 continue
 
-        # Apply the switch configuration we collected earlier
-        for ethswint in ethswintlist:
-            self.debug('ethernet switchport configuring: ' + str(ethswint))
-            (switch, source, dest) = ethswint
-            self.ethsw_map(switch, source, dest)
-
         for mapping in maplist:
             self.debug('mapping: ' + str(mapping))
             (switch, source, dest) = mapping
@@ -1669,7 +1684,6 @@ class Dynagen:
         if self.import_error:
             self.doerror('errors during loading of the topology file, please correct them')
         return (connectionlist, maplist, ethswintlist)
-
 
     def ethsw_map(self, switch, source, dest):
         """ handle the connecton on ethsw switch with .net file syntax source = dest"""
@@ -1759,6 +1773,54 @@ class Dynagen:
         else:
             e = 'invalid Ethernet switchport config'
             self.dowarning('Connecting %s port %s to %s resulted in:\n\t%s' % (switch.name, source, dest, e))
+            self.import_error = True
+            return
+
+    def hub_to_nio(self, hub, source, dest):
+        """ handle the connecton on hub to NIOs"""
+
+        try:
+            (niotype, niostring) = dest.split(':', 1)
+        except ValueError:
+            e = 'Malformed NETIO'
+            self.dowarning('Connecting %s port %s to %s resulted in:\n\t%s' % (hub.name, source, dest, e))
+            self.import_error = True
+            return
+        self.debug('A NETIO: ' + str(dest))
+        try:
+            #Process the netio
+            if niotype.lower() == 'nio_linux_eth':
+                self.debug('NIO_linux_eth ' + str(dest))
+                hub.nio(int(source), nio=NIO_linux_eth(hub.dynamips, interface=niostring))
+            elif niotype.lower() == 'nio_gen_eth':
+                self.debug('gen_eth ' + str(dest))
+                hub.nio(int(source), nio=NIO_gen_eth(hub.dynamips, interface=niostring))
+            elif niotype.lower() == 'nio_udp':
+                self.debug('udp ' + str(dest))
+                (udplocal, remotehost, udpremote) = niostring.split(':', 2)
+                hub.nio(int(source), nio=NIO_udp(hub.dynamips, int(udplocal), str(remotehost), int(udpremote)))
+            elif niotype.lower() == 'nio_null':
+                self.debug('nio null')
+                hub.nio(int(source), nio=NIO_null(hub.dynamips, name=niostring))
+            elif niotype.lower() == 'nio_tap':
+                self.debug('nio tap ' + str(dest))
+                hub.nio(int(source), nio=NIO_tap(hub.dynamips, niostring))
+            elif niotype.lower() == 'nio_unix':
+                self.debug('unix ' + str(dest))
+                (unixlocal, unixremote) = niostring.split(':', 1)
+                hub.nio(int(source), nio=NIO_unix(hub.dynamips, unixlocal, unixremote))
+            elif niotype.lower() == 'nio_vde':
+                self.debug('vde ' + str(dest))
+                (controlsock, localsock) = niostring.split(':', 1)
+                hub.nio(int(source), nio=NIO_vde(hub.dynamips, controlsock, localsock))
+            else:
+                # Bad NIO
+                e = 'invalid NIO in Ethernet switchport config'
+                self.dowarning('Connecting %s %s to %s resulted in:\n\t%s' % (hub.name, source, dest, e))
+                self.import_error = True
+                return
+        except DynamipsError, e:
+            self.dowarning('Connecting %s port %s to %s resulted in:\n\t%s' % (hub.name, source, dest, e))
             self.import_error = True
             return
 
@@ -2305,7 +2367,7 @@ class Dynagen:
                     self.running_config[h][f][con] = remote_router.name + ' ' + remote_adapter + str(remote_port)
                 elif isinstance(remote_router, Router):
                     self.running_config[h][f][con] = self._translate_interface_connection(remote_adapter, remote_router, remote_port)
-                elif isinstance(remote_router, FRSW) or isinstance(remote_router, ATMSW) or isinstance(remote_router, ATMBR) or isinstance(remote_router, ETHSW):
+                elif isinstance(remote_router, FRSW) or isinstance(remote_router, ATMSW) or isinstance(remote_router, ATMBR) or isinstance(remote_router, ETHSW) or isinstance(remote_router, Hub):
                     self.running_config[h][f][con] = remote_router.name + " " + str(remote_port)
 
     def _translate_interface_connection(self, remote_adapter, remote_router, remote_port):
@@ -2443,6 +2505,9 @@ class Dynagen:
                 elif isinstance(device, ETHSW):
                     device_section = self.running_config[hypervisor_name]['ETHSW ' + device.name]
                     print '\t' + '[[ETHSW ' + device.name + ']]'
+                elif isinstance(device, Hub):
+                    device_section = self.running_config[hypervisor_name]['Hub ' + device.name]
+                    print '\t' + '[[Hub ' + device.name + ']]'
                 elif isinstance(device, ATMSW):
                     device_section = self.running_config[hypervisor_name]['ATMSW ' + device.name]
                     print '\t' + '[[ATMSW ' + device.name + ']]'

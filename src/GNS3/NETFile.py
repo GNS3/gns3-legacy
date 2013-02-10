@@ -49,6 +49,7 @@ from GNS3.Node.IOSRouter import IOSRouter, init_router_id
 from GNS3.Node.ATMSW import init_atmsw_id
 from GNS3.Node.ATMBR import init_atmbr_id
 from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
+from GNS3.Node.Hub import Hub, init_hub_id
 from GNS3.Node.FRSW import init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
 from GNS3.Node.AnyEmuDevice import init_emu_id, AnyEmuDevice
@@ -57,6 +58,7 @@ from __main__ import GNS3_RUN_PATH, VERSION
 
 router_hostname_re = re.compile(r"""^R([0-9]+)""")
 ethsw_hostname_re = re.compile(r"""^SW([0-9]+)""")
+hub_hostname_re = re.compile(r"""^HUB([0-9]+)""")
 frsw_hostname_re = re.compile(r"""^FR([0-9]+)""")
 atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
 atmbr_hostname_re = re.compile(r"""^BR([0-9]+)""")
@@ -120,7 +122,7 @@ class NETFile(object):
                                     else:
                                         self.add_in_connection_list((device.name, source_interface, remote_device.name, rem_int_name + str(remote_adapter.slot) + "/" + str(rem_dynagen_port)),
                                                                                                                                                                             connection_list)
-                                elif isinstance(remote_device, lib.FRSW) or isinstance(remote_device, lib.ATMSW) or isinstance(remote_device, lib.ETHSW) or isinstance(remote_device, lib.ATMBR):
+                                elif isinstance(remote_device, lib.FRSW) or isinstance(remote_device, lib.ATMSW) or isinstance(remote_device, lib.ETHSW) or isinstance(remote_device, lib.Hub) or isinstance(remote_device, lib.ATMBR):
                                     connection_list.append((device.name, source_interface, remote_device.name, str(remote_port)))
                                 elif isinstance(remote_device, qlib.AnyEmuDevice) or isinstance(remote_device, vboxlib.AnyVBoxEmuDevice):
                                     connection_list.append((device.name, source_interface, remote_device.name, remote_adapter + str(remote_port)))
@@ -138,6 +140,8 @@ class NETFile(object):
                 elif isinstance(remote_device, vboxlib.AnyVBoxEmuDevice):
                     self.add_in_connection_list((device.name, 'e' + str(port), remote_device.name, remote_adapter + str(remote_port)), connection_list)
                 elif isinstance(remote_device, lib.ETHSW):
+                    connection_list.append((device.name, 'e' + str(port), remote_device.name, str(remote_port)))
+                elif isinstance(remote_device, lib.Hub):
                     connection_list.append((device.name, 'e' + str(port), remote_device.name, str(remote_port)))
 
     def populate_connection_list_for_emulated_switch(self, device, connection_list):
@@ -181,6 +185,17 @@ class NETFile(object):
                 if nio_port:
                     (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(nio_port)
                     if isinstance(remote_device, lib.ATMSW) or isinstance(remote_device, lib.ATMBR):
+                        self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)
+                        
+        if isinstance(device, lib.Hub):
+            
+            keys = device.nios.keys()
+            for port in keys:
+                nio_port = device.nio(port)
+                # Only NIO_udp
+                if nio_port and isinstance(nio_port, lib.NIO_udp):
+                    (remote_device, remote_adapter, remote_port) = lib.get_reverse_udp_nio(nio_port)
+                    if isinstance(remote_device, lib.Hub) or isinstance(remote_device, lib.ETHSW):
                         self.add_in_connection_list((device.name, str(port), remote_device.name, str(remote_port)), connection_list)
 
     def create_node(self, device, default_symbol_name, running_config_name):
@@ -677,6 +692,7 @@ class NETFile(object):
         config_dir = None
         max_router_id = -1
         max_ethsw_id = -1
+        max_hub_id = -1
         max_frsw_id = -1
         max_atmsw_id = -1
         max_atmbr_id = -1
@@ -743,6 +759,29 @@ class NETFile(object):
                     id = int(match_obj.group(1))
                     if id > max_ethsw_id:
                         max_ethsw_id = id
+                        
+            elif isinstance(device, lib.Hub):
+
+                node = self.create_node(device, 'Ethernet hub', 'Hub ' + device.name)
+                self.configure_node(node, device)
+                config = {}
+                keys = device.nios.keys()
+                keys.sort()
+                config['ports'] = range(1, len(keys) + 1)
+                for port in keys:
+                    nio = device.nios[port]
+                    if nio.config_info().lower()[:3] == 'nio':
+                        cloud = self.create_cloud(nio.config_info(), device.name, str(port))
+                        globals.GApp.topology.recordLink(node.id, str(port), cloud.id, nio.config_info(), node, cloud)
+                        cloud.startNode()
+                node.set_config(config)
+                node.set_hypervisor(device.dynamips)
+                self.populate_connection_list_for_emulated_switch(device, connection_list)
+                match_obj = hub_hostname_re.match(node.hostname)
+                if match_obj:
+                    id = int(match_obj.group(1))
+                    if id > max_hub_id:
+                        max_hub_id = id
 
             elif isinstance(device, lib.FRSW):
 
@@ -856,6 +895,8 @@ class NETFile(object):
             init_router_id(max_router_id + 1)
         if max_ethsw_id != -1:
             init_ethsw_id(max_ethsw_id + 1)
+        if max_hub_id != -1:
+            init_hub_id(max_hub_id + 1)
         if max_frsw_id != -1:
             init_frsw_id(max_frsw_id + 1)
         if max_atmsw_id != -1:
@@ -957,13 +998,14 @@ class NETFile(object):
     def export_net_file(self, path, auto=False):
         """ Export a .net file
         """
+
         # remove unused hypervisors
         hypervisors = self.dynagen.dynamips.copy()
         for (name, hypervisor) in hypervisors.iteritems():
             if isinstance(hypervisor, lib.Dynamips) and len(hypervisor.devices) == 0:
                 has_ethsw = False
                 for item in globals.GApp.topology.items():
-                    if isinstance(item, ETHSW) and item.hypervisor and item.hypervisor == hypervisor:
+                    if (isinstance(item, ETHSW) or isinstance(item, Hub)) and item.hypervisor and item.hypervisor == hypervisor:
                         has_ethsw = True
                         break
                 if not has_ethsw:

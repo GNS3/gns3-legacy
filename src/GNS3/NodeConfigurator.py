@@ -36,6 +36,7 @@ from GNS3.Node.FRSW import FRSW
 from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
+from GNS3.Node.Hub import Hub
 from GNS3.Node.Cloud import Cloud
 
 class ConfigurationPageItem(QtGui.QTreeWidgetItem):
@@ -146,6 +147,9 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
             "ETHSW":
                 [translate("NodeConfigurator", "Ethernet switches"), ":/symbols/ethernet_switch.normal.svg",
                  "Page_ETHSW", None, None],
+            "Hub":
+                [translate("NodeConfigurator", "Ethernet hubs"), ":/symbols/ethernet_switch.normal.svg",
+                 "Page_Hub", None, None],
             "ATMSW":
                 [translate("NodeConfigurator", "ATM switches"), ":/symbols/atm_switch.normal.svg",
                  "Page_ATMSW", None, None],
@@ -175,6 +179,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                                      ETHSW: "ETHSW",
                                      ATMSW: "ATMSW",
                                      ATMBR: "ATMBR",
+                                     Hub: "Hub",
                                      Cloud: "Clouds",
                                     }
         self.__loadNodeItems()

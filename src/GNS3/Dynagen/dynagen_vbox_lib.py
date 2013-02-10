@@ -58,7 +58,7 @@ def debugmsg(level, message):
 msg = "WELCOME to dynagen_vbox_lib.py"
 debugmsg(2, msg)
 
-from dynamips_lib import NIO_udp, send, dowarning, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW, DynamipsWarning
+from dynamips_lib import NIO_udp, send, dowarning, debug, DynamipsError, validate_connect, Bridge, DynamipsVerError, get_reverse_udp_nio, Router, FRSW, ATMSW, ETHSW, Hub, DynamipsWarning
 import random
 import socket
 
@@ -105,7 +105,9 @@ class UDPConnection:
         elif isinstance(remote_device, ATMSW):
             return ' is connected to ATM switch ' + remote_device.name + ' port ' + str(remote_port) + '\n'
         elif isinstance(remote_device, ETHSW):
-            return ' is connected to ethernet switch ' + remote_device.name + ' port ' + str(remote_port) + '\n'
+            return ' is connected to Ethernet switch ' + remote_device.name + ' port ' + str(remote_port) + '\n'
+        elif isinstance(remote_device, Hub):
+            return ' is connected to Ethernet hub ' + remote_device.name + ' port ' + str(remote_port) + '\n'
         elif remote_device == 'nothing':  #if this is only UDP NIO without the other side...used in dynamips <-> UDP for example
             return ' is connected to UDP NIO, with source port ' + str(self.sport) + ' and remote port ' + str(self.dport) + ' on ' + self.daddr + '\n'
         else:
@@ -752,7 +754,7 @@ class AnyVBoxEmuDevice(object):
         debugmsg(2, "AnyVBoxEmuDevice::connect_to_dynamips(%s, dynamips, dynamips, %s, %s)" % (str(local_port), str(remote_int), str(remote_port)))
         #debugmsg(2, "AnyVBoxEmuDevice::connect_to_dynamips()")
         debugmsg(3, "remote_slot.adapter = %s" % str(remote_slot.adapter))
-        if remote_slot.adapter in ['ETHSW', 'ATMSW', 'ATMBR', 'FRSW', 'Bridge']:
+        if remote_slot.adapter in ['ETHSW', 'ATMSW', 'ATMBR', 'FRSW', 'Bridge', 'Hub']:
             # This is a virtual switch that doesn't provide interface descriptors
             dst_port = remote_port
         else:
@@ -960,7 +962,9 @@ class AnyVBoxEmuDevice(object):
                 elif isinstance(remote_device, ATMSW):
                     slot_info = slot_info + ' is connected to ATM switch ' + remote_device.name + ' port ' + str(remote_port) + '\n'
                 elif isinstance(remote_device, ETHSW):
-                    slot_info = slot_info + ' is connected to ethernet switch ' + remote_device.name + ' port ' + str(remote_port) + '\n'
+                    slot_info = slot_info + ' is connected to Ethernet switch ' + remote_device.name + ' port ' + str(remote_port) + '\n'
+                elif isinstance(remote_device, Hub):
+                    slot_info = slot_info + ' is connected to Ethernet hub ' + remote_device.name + ' port ' + str(remote_port) + '\n'
                 elif remote_device == 'nothing':  #if this is only UDP NIO without the other side...used in dynamips <-> UDP for example
                     slot_info = slot_info + ' is connected to UDP NIO, with source port ' + str(self.nios[port].sport) + ' and remote port  ' + str(self.nios[port].dport) + ' on ' + self.nios[port].daddr + '\n'
                 else:
