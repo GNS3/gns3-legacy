@@ -148,7 +148,7 @@ class NodeConfigurator(QtGui.QDialog, Ui_NodeConfigurator):
                 [translate("NodeConfigurator", "Ethernet switches"), ":/symbols/ethernet_switch.normal.svg",
                  "Page_ETHSW", None, None],
             "Hub":
-                [translate("NodeConfigurator", "Ethernet hubs"), ":/symbols/ethernet_switch.normal.svg",
+                [translate("NodeConfigurator", "Ethernet hubs"), ":/symbols/hub.normal.svg",
                  "Page_Hub", None, None],
             "ATMSW":
                 [translate("NodeConfigurator", "ATM switches"), ":/symbols/atm_switch.normal.svg",

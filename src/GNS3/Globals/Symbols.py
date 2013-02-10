@@ -140,8 +140,8 @@ SYMBOLS = [
     },
            
     {'name': "Ethernet hub", 'object': Hub,
-    'normal_svg_file': ":/symbols/ethernet_switch.normal.svg",
-    'select_svg_file': ":/symbols/ethernet_switch.selected.svg",
+    'normal_svg_file': ":/symbols/hub.normal.svg",
+    'select_svg_file': ":/symbols/hub.selected.svg",
     'translated': True,
     'checkForImage': False,
     'type': 'Switches'
