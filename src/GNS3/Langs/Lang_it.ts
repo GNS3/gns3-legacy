@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="it_IT" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.0" language="it_IT">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -301,7 +302,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.gns3.net/contact&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Contattaci&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_About.py" line="80"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -638,7 +639,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="398"/>
         <source>Console port</source>
-        <translation type="unfinished">Porta console</translation>
+        <translation>Porta console</translation>
     </message>
 </context>
 <context>
@@ -1904,85 +1905,88 @@ Versione rilevata: %s</translation>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="115"/>
         <source>Auto calculation</source>
-        <translation type="unfinished"></translation>
+        <translation>Calcolo automatico</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="167"/>
         <source>Advanced IDLE PC settings (experts only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazioni avanzate di IDLE PC (solo per esperti)</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="172"/>
         <source>IDLE MAX:</source>
-        <translation type="unfinished"></translation>
+        <translation>IDLE MAX:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="181"/>
         <source>Idlemax specifies how many times the address that the idlepc value references is used before going to sleep.
 Lowering the value will help to drastically reduce your CPU usage. Lowering it too much will make your IOS unresponsive.</source>
-        <translation type="unfinished"></translation>
+        <translation>Idlemax indica il numero di volte che l&apos;indirizzo al quale di riferisce il valore di idlepc è utilizzato prima della sospensione.
+La riduzione del valore aiuta a ridurre drasticamente l&apos;utilizzo della CPU. Una riduzione eccessiva renderà inutilizzabile IOS.</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="190"/>
         <source>IDLE SLEEP:</source>
-        <translation type="unfinished"></translation>
+        <translation>IDLE SLEEP:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="199"/>
         <source>Idlesleep specifies how long the address that the idlepc value references is used to sleep.
 30 ms is the recommended value.</source>
-        <translation type="unfinished"></translation>
+        <translation>Idlesleep indica per quanto tempo l&apos;indirizzo al quale si riferisce il valore di idlepc è utilizzato per la sospensione.
+30 ms è il valore consigliato.</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="201"/>
         <source> ms</source>
-        <translation type="unfinished"></translation>
+        <translation> ms</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="212"/>
         <source>Test Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Prova impostazioni</translation>
     </message>
     <message>
         <location filename="../CalcIDLEPCDialog.py" line="243"/>
         <source>Operation canceled</source>
-        <translation type="unfinished"></translation>
+        <translation>Operazione annullata</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="351"/>
         <source>Cisco 3745</source>
-        <translation type="unfinished"></translation>
+        <translation>Cisco 3745</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="351"/>
         <source>There is a known bug when saving startup-configs with Cisco c3745 IOS images.
 It is recommended to use c3725 instead.</source>
-        <translation type="unfinished"></translation>
+        <translation>Esiste un bug noto quando si salvano le configurazioni di avvio delle immagini di IOS del Cisco c3745.
+Si consiglia di utilizzare il c3725.</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="454"/>
         <source>This action is going to delete your current topology, would you like to continue?</source>
-        <translation type="unfinished">Questa azione eliminerà la topologia corrente, desideri continuare?</translation>
+        <translation>Questa azione eliminerà la topologia corrente, desideri continuare?</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="464"/>
         <source>Dynamips path</source>
-        <translation type="unfinished">Percorso di Dynamips</translation>
+        <translation>Percorso di Dynamips</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="464"/>
         <source>Dynamips path must be set</source>
-        <translation type="unfinished"></translation>
+        <translation>Il percorso di Dynamips deve essere impostato</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="467"/>
         <source>Dynamips working directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartella di lavoro di Dynamips</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="467"/>
         <source>Dynamips working directory must be set</source>
-        <translation type="unfinished"></translation>
+        <translation>La cartella di lavoro di Dynamips deve essere impostata</translation>
     </message>
 </context>
 <context>
@@ -2685,7 +2689,7 @@ It is recommended to use c3725 instead.</source>
         <source>Console to all devices</source>
         <translation>Console per tutti i dispositivi</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="332"/>
         <source>Save topology &amp;as…</source>
         <translation>Salva topologi&amp;a come...</translation>
@@ -2725,7 +2729,7 @@ It is recommended to use c3725 instead.</source>
         <source>Show interface labels</source>
         <translation>Mostra le etichette delle interfacce</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="511"/>
         <source>&amp;Save project as…</source>
         <translation>&amp;Salva progetto come…</translation>
@@ -3058,7 +3062,7 @@ It is recommended to use c3725 instead.</source>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="85"/>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;trumenti</translation>
     </message>
 </context>
 <context>
@@ -4953,7 +4957,7 @@ Vedi le impostazioni di VirtualBox per cambiare il chipset.</translation>
     <message>
         <location filename="../ProjectDialog.py" line="126"/>
         <source>Project directory already exists, overwrite?</source>
-        <translation type="unfinished"></translation>
+        <translation>La cartella del progetto esiste già, vuoi sovrascriverla?</translation>
     </message>
 </context>
 <context>
@@ -5486,7 +5490,7 @@ es: #copy start run</translation>
         <source>Rotation:</source>
         <translation>Rotazione:</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_StyleDialog.py" line="66"/>
         <source>°</source>
         <translation></translation>
@@ -6176,12 +6180,12 @@ durante la modifica (solo le note) con ALT e &apos;+&apos; (o P) / ALT e &apos;-
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="1092"/>
         <source>All components have successfully started</source>
-        <translation type="unfinished"></translation>
+        <translation>Tutti i componenti sono stati avviati correttamente</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="1088"/>
         <source>Except Pemu (PIX emulation), not supported on OSX</source>
-        <translation type="unfinished"></translation>
+        <translation>Eccetto Pemu (emulazione PIX), non supportato su OSX</translation>
     </message>
 </context>
 <context>
@@ -6335,17 +6339,17 @@ durante la modifica (solo le note) con ALT e &apos;+&apos; (o P) / ALT e &apos;-
     <message>
         <location filename="../Utils.py" line="43"/>
         <source>Open Terminal</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri terminale</translation>
     </message>
     <message>
         <location filename="../Utils.py" line="43"/>
         <source>ComSpec environment variable is not set</source>
-        <translation type="unfinished"></translation>
+        <translation>La variabile d&apos;ambiente ComSpec non è impostata</translation>
     </message>
     <message>
         <location filename="../Utils.py" line="67"/>
         <source>Cannot start command %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile avviare il comando %s: %s</translation>
     </message>
 </context>
 <context>
@@ -6973,52 +6977,52 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="95"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished">Ann&amp;ulla</translation>
+        <translation>Ann&amp;ulla</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="101"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished">&amp;Rifai</translation>
+        <translation>&amp;Rifai</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="192"/>
         <source>Terminal</source>
-        <translation type="unfinished"></translation>
+        <translation>Terminale</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="142"/>
         <source>Ctrl+T</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+T</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="146"/>
         <source>VPCS</source>
-        <translation type="unfinished"></translation>
+        <translation>VPCS</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="158"/>
         <source>Loopback Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestore Loopback</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="164"/>
         <source>Network device list</source>
-        <translation type="unfinished"></translation>
+        <translation>Elenco dei dispositivi di rete</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="170"/>
         <source>Dynamips server</source>
-        <translation type="unfinished"></translation>
+        <translation>Server Dynamips</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="176"/>
         <source>Qemuwrapper</source>
-        <translation type="unfinished">Qemuwrapper</translation>
+        <translation>Qemuwrapper</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="182"/>
         <source>Vboxwrapper</source>
-        <translation type="unfinished"></translation>
+        <translation>Vboxwrapper</translation>
     </message>
 </context>
 <context>

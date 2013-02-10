@@ -474,6 +474,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             QtGui.QMessageBox.critical(self, translate("IOSDialog", "Dynamips working directory"), translate("IOSDialog", "Dynamips working directory must be set"))
             return
 
+        if not sys.platform.startswith('win') and self.testedSettings:
+            if sys.platform.startswith('darwin'):
+                killAll(os.path.basename(globals.GApp.systconf['dynamips'].path))
+            else:
+                killAll(globals.GApp.systconf['dynamips'].path)
+
         platform = str(self.comboBoxPlatform.currentText())[1:]
         if platform == '3700':
             platform = str(self.comboBoxChassis.currentText())
