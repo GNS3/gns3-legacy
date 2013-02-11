@@ -8,7 +8,7 @@ from distutils.core import setup, Extension
 from glob import glob
 
 # current version of GNS3
-VERSION = "0.8.4-RC1"
+VERSION = "0.8.4-RC2"
 
 try:
     # delete previous build
@@ -240,7 +240,7 @@ else:
             license = 'GNU General Public License (GPL), see the LICENSE file for detailed info',
             author = 'Jeremy Grossmann',
             author_email = 'http://www.gns3.net/contact',
-            platforms = 'Windows, Unix and Mac OS X',
+            platforms = [ 'Windows', 'Linux', 'BSD', 'Mac OS X' ],
             url = 'http://www.gns3.net/',
             scripts = [ 'gns3' ],
             package_dir = { '': 'src' },

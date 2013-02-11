@@ -3,6 +3,11 @@ CHANGELOG
 GNS3 0.8.4
 
 	* GUI improvements.
+	* New hub device.
+	* VPCS is included in DMG package on Mac OS X.
+	* New Idlemax and Idlesleep settings (advanced manipulation of idlepc).
+	* IOS image and settings test button.
+	* New tips dialog to promote GNS3 products/videos/tutorials (totally optional and can be deactivated).
 	* Drag & drop of multiple devices when pressing SHIFT.
 	* Temporary projects are created by default.
 	* Winpcap compatibility mode set in all-in-one, allowing it to be installed on Windows 8

@@ -24,8 +24,9 @@ Recommendation: Dynamips has better performances on other platforms such as Linu
 
 On Linux you just need to install a package called python-qt4 (or similar). Instead, you can compile all the dependencies manually.
 
-A debian package is now available, until officially released with Debian/Ubuntu follow instructions
-on http://gpl.code.de/oswiki/GplcodedeApt and install "gns3" package (it might not be up-to-date).
+You can run GNS3 from the source directory or install it using the following command:
+
+python setup.py install
 
 * MacOS X users:
 
