@@ -626,7 +626,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 return
 
         if dynamips.detected_version and not LooseVersion(dynamips.detected_version) > '0.2.8-RC4':
-                QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "You will need Dynamips version 0.2.8-RC4 and above to use this utility.\nVersion detected: %s") % dynamips.detected_version)
+                QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "You will need Dynamips version 0.2.8-RC4 and above to use this utility.\nVersion detected: %s\nYou have to test the settings in Dynamips preferences to update the detected version.") % dynamips.detected_version)
                 return
         
         if len(globals.GApp.topology.nodes):

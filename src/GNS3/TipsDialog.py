@@ -35,6 +35,7 @@ class TipsDialog(QtGui.QDialog, Ui_TipsDialog):
         self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateAllLinks)
         self.connect(self.webView, QtCore.SIGNAL('linkClicked(const QUrl &)'), self.__urlClicked)
         self.connect(self.webView, QtCore.SIGNAL('loadFinished(bool)'), self.__loadFinished)
+        self.adjustSize()
 
     def loadWebPage(self):
 

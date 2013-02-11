@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_TipsDialog.ui'
 #
-# Created: Sat Feb  9 09:51:20 2013
+# Created: Mon Feb 11 01:19:13 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,12 +17,18 @@ except AttributeError:
 class Ui_TipsDialog(object):
     def setupUi(self, TipsDialog):
         TipsDialog.setObjectName(_fromUtf8("TipsDialog"))
-        TipsDialog.resize(440, 492)
-        TipsDialog.setMaximumSize(QtCore.QSize(440, 492))
+        TipsDialog.resize(424, 466)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(TipsDialog.sizePolicy().hasHeightForWidth())
+        TipsDialog.setSizePolicy(sizePolicy)
         TipsDialog.setWindowTitle(QtGui.QApplication.translate("TipsDialog", "GNS3 Tips", None, QtGui.QApplication.UnicodeUTF8))
         self.verticalLayout = QtGui.QVBoxLayout(TipsDialog)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.webView = QtWebKit.QWebView(TipsDialog)
+        self.webView.setMinimumSize(QtCore.QSize(400, 400))
+        self.webView.setMaximumSize(QtCore.QSize(400, 400))
         self.webView.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
         self.webView.setObjectName(_fromUtf8("webView"))
         self.verticalLayout.addWidget(self.webView)

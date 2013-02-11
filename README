@@ -1,6 +1,6 @@
 INSTALLATION
 
-* GNS3 VirtualBox Edition dependencies:
+* GNS3 dependencies:
 
 - Qt 4.5.1 (or higher)
 - Python 2.6 (or higher)
@@ -15,7 +15,7 @@ INSTALLATION
 
 * WINDOWS users:
 
-Download the GNS3 all-in-one for Windows on http://www.gns3.net (~12 MB)
+Download the GNS3 all-in-one for Windows on http://www.gns3.net
 This program will install a binary version of GNS3 as well as Dynamips, Qemu and WinPCAP.
 
 Recommendation: Dynamips has better performances on other platforms such as Linux or Mac OS X.

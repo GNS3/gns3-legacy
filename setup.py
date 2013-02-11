@@ -240,7 +240,7 @@ else:
             license = 'GNU General Public License (GPL), see the LICENSE file for detailed info',
             author = 'Jeremy Grossmann',
             author_email = 'http://www.gns3.net/contact',
-            platforms = 'Windows, Unix and MacOSX',
+            platforms = 'Windows, Unix and Mac OS X',
             url = 'http://www.gns3.net/',
             scripts = [ 'gns3' ],
             package_dir = { '': 'src' },
