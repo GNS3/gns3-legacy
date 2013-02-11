@@ -192,6 +192,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if action.text() == translate("Workspace", 'Terminal'):
             runTerminal()
         else:
+            tool_path = action.data().toString()
+            if not os.path.exists(tool_path):
+                QtGui.QMessageBox.critical(self, translate("Workspace", "Tool"), translate("Workspace", "Cannot locate: %s") % tool_path)
+                return
             runTerminal(action.data().toString())
 
     def __connectActions(self):
