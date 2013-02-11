@@ -89,6 +89,16 @@ class Page_IDS(QtGui.QWidget, Ui_IDSPage):
             self.checkBoxKVM.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+
+        if ids_config['monitor'] == True:
+            self.checkBoxMonitor.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxMonitor.setCheckState(QtCore.Qt.Unchecked)
+            
+        if ids_config['usermod'] == True:
+            self.checkBoxUserMod.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxUserMod.setCheckState(QtCore.Qt.Unchecked)
         
     def saveConfig(self, id, config = None):
         """ Save the config
@@ -126,6 +136,16 @@ class Page_IDS(QtGui.QWidget, Ui_IDSPage):
             ids_config['kvm'] = True
         else:
             ids_config['kvm']  = False
+
+        if self.checkBoxMonitor.checkState() == QtCore.Qt.Checked:
+            ids_config['monitor'] = True
+        else:
+            ids_config['monitor']  = False
+
+        if self.checkBoxUserMod.checkState() == QtCore.Qt.Checked:
+            ids_config['usermod'] = True
+        else:
+            ids_config['usermod'] = False
 
         return ids_config
 

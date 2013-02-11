@@ -38,6 +38,7 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
 
         # connect slot
         self.connect(self.pushButtonImageBrowser, QtCore.SIGNAL('clicked()'), self.slotSelectImage)
+        self.connect(self.comboBoxFlavor, QtCore.SIGNAL('currentIndexChanged(int)'), self.slotQemuFlavorSelectionChanged)
 
     def slotSelectImage(self):
         """ Get a Qemu image from the file system
@@ -47,6 +48,25 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
         if path != None and path[0] != '':
             self.lineEditImage.clear()
             self.lineEditImage.setText(os.path.normpath(path[0]))
+            
+    def slotQemuFlavorSelectionChanged(self, index):
+        """ Change the NIC list to match the flavor
+        """
+
+        NicByFlavor = {
+            'Default':  ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82559er', 'ne2k_pci', 'pcnet', 'virtio', 'lance', 'smc91c111'], # Show all known NIC
+            '-i386':    ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82559er', 'ne2k_pci', 'pcnet', 'virtio'],
+            '-x86_64':  ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82559er', 'ne2k_pci', 'pcnet', 'virtio'],
+            '-sparc':   ['lance'],
+            '-arm':     ['smc91c111'],
+        }
+
+        self.comboBoxNIC.clear()
+        flavor = str(self.comboBoxFlavor.currentText())
+        if flavor not in NicByFlavor:
+            flavor = 'Default'
+        for nic in NicByFlavor[flavor]:
+            self.comboBoxNIC.addItem(nic)
 
     def loadConfig(self,  id,  config = None):
         """ Load the config
@@ -64,11 +84,15 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
 
         self.spinBoxRamSize.setValue(qemu_config['ram'])
         self.spinBoxNics.setValue(qemu_config['nics'])
-        
+
+        index = self.comboBoxFlavor.findText(qemu_config['flavor'])
+        if index != -1:
+            self.comboBoxFlavor.setCurrentIndex(index)
+
         index = self.comboBoxNIC.findText(qemu_config['netcard'])
         if index != -1:
             self.comboBoxNIC.setCurrentIndex(index)
-            
+
         if qemu_config['options']:
             self.lineEditOptions.setText(qemu_config['options'])
             
@@ -76,6 +100,16 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
             self.checkBoxKVM.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+            
+        if qemu_config['monitor'] == True:
+            self.checkBoxMonitor.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxMonitor.setCheckState(QtCore.Qt.Unchecked)
+            
+        if qemu_config['usermod'] == True:
+            self.checkBoxUserMod.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxUserMod.setCheckState(QtCore.Qt.Unchecked)
         
     def saveConfig(self, id, config = None):
         """ Save the config
@@ -100,6 +134,7 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
             qemu_config['nics'] = self.spinBoxNics.value()
 
         qemu_config['netcard'] = str(self.comboBoxNIC.currentText())
+        qemu_config['flavor'] = str(self.comboBoxFlavor.currentText())
 
         options = str(self.lineEditOptions.text())
         if options:
@@ -109,6 +144,16 @@ class Page_Qemu(QtGui.QWidget, Ui_QemuPage):
             qemu_config['kvm'] = True
         else:
             qemu_config['kvm']  = False
+
+        if self.checkBoxMonitor.checkState() == QtCore.Qt.Checked:
+            qemu_config['monitor'] = True
+        else:
+            qemu_config['monitor']  = False
+
+        if self.checkBoxUserMod.checkState() == QtCore.Qt.Checked:
+            qemu_config['usermod'] = True
+        else:
+            qemu_config['usermod'] = False
 
         return qemu_config
 

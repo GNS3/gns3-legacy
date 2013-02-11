@@ -90,7 +90,17 @@ class Page_ASA(QtGui.QWidget, Ui_ASAPage):
             self.checkBoxKVM.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxKVM.setCheckState(QtCore.Qt.Unchecked)
-        
+
+        if asa_config['monitor'] == True:
+            self.checkBoxMonitor.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxMonitor.setCheckState(QtCore.Qt.Unchecked)
+            
+        if asa_config['usermod'] == True:
+            self.checkBoxUserMod.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxUserMod.setCheckState(QtCore.Qt.Unchecked)
+
     def saveConfig(self, id, config = None):
         """ Save the config
         """
@@ -131,6 +141,16 @@ class Page_ASA(QtGui.QWidget, Ui_ASAPage):
             asa_config['kvm'] = True
         else:
             asa_config['kvm']  = False
+
+        if self.checkBoxMonitor.checkState() == QtCore.Qt.Checked:
+            asa_config['monitor'] = True
+        else:
+            asa_config['monitor']  = False
+
+        if self.checkBoxUserMod.checkState() == QtCore.Qt.Checked:
+            asa_config['usermod'] = True
+        else:
+            asa_config['usermod'] = False
 
         return asa_config
 

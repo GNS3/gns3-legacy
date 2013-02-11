@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ConfigurationPages/Form_ASAPage.ui'
+# Form implementation generated from reading ui file 'ConfigurationPages/Form_ASAPage.ui'
 #
-# Created: Sat Feb  9 06:14:33 2013
+# Created: Sun Feb 10 08:34:47 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_ASAPage(object):
     def setupUi(self, ASAPage):
         ASAPage.setObjectName(_fromUtf8("ASAPage"))
-        ASAPage.resize(362, 365)
+        ASAPage.resize(383, 414)
         ASAPage.setWindowTitle(QtGui.QApplication.translate("ASAPage", "Firewall configuration", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout = QtGui.QGridLayout(ASAPage)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
@@ -85,10 +85,20 @@ class Ui_ASAPage(object):
         self.checkBoxKVM.setText(QtGui.QApplication.translate("ASAPage", "Use KVM (Linux hosts only)", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxKVM.setObjectName(_fromUtf8("checkBoxKVM"))
         self.gridLayout.addWidget(self.checkBoxKVM, 4, 0, 1, 2)
+        self.checkBoxUserMod = QtGui.QCheckBox(ASAPage)
+        self.checkBoxUserMod.setText(QtGui.QApplication.translate("ASAPage", "Add user network backend", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxUserMod.setChecked(False)
+        self.checkBoxUserMod.setObjectName(_fromUtf8("checkBoxUserMod"))
+        self.gridLayout.addWidget(self.checkBoxUserMod, 5, 0, 1, 3)
+        self.checkBoxMonitor = QtGui.QCheckBox(ASAPage)
+        self.checkBoxMonitor.setEnabled(True)
+        self.checkBoxMonitor.setText(QtGui.QApplication.translate("ASAPage", "Monitor mode (pause and resume)", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxMonitor.setObjectName(_fromUtf8("checkBoxMonitor"))
+        self.gridLayout.addWidget(self.checkBoxMonitor, 6, 0, 1, 3)
         self.label_20 = QtGui.QLabel(ASAPage)
         self.label_20.setText(QtGui.QApplication.translate("ASAPage", "Initrd:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_20.setObjectName(_fromUtf8("label_20"))
-        self.gridLayout.addWidget(self.label_20, 5, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_20, 7, 0, 1, 1)
         self.lineEditInitrd = QtGui.QLineEdit(ASAPage)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -96,7 +106,7 @@ class Ui_ASAPage(object):
         sizePolicy.setHeightForWidth(self.lineEditInitrd.sizePolicy().hasHeightForWidth())
         self.lineEditInitrd.setSizePolicy(sizePolicy)
         self.lineEditInitrd.setObjectName(_fromUtf8("lineEditInitrd"))
-        self.gridLayout.addWidget(self.lineEditInitrd, 5, 1, 1, 1)
+        self.gridLayout.addWidget(self.lineEditInitrd, 7, 1, 1, 1)
         self.pushButtonInitrdBrowser = QtGui.QPushButton(ASAPage)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -106,11 +116,11 @@ class Ui_ASAPage(object):
         self.pushButtonInitrdBrowser.setMaximumSize(QtCore.QSize(31, 27))
         self.pushButtonInitrdBrowser.setText(QtGui.QApplication.translate("ASAPage", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonInitrdBrowser.setObjectName(_fromUtf8("pushButtonInitrdBrowser"))
-        self.gridLayout.addWidget(self.pushButtonInitrdBrowser, 5, 2, 1, 1)
+        self.gridLayout.addWidget(self.pushButtonInitrdBrowser, 7, 2, 1, 1)
         self.label_21 = QtGui.QLabel(ASAPage)
         self.label_21.setText(QtGui.QApplication.translate("ASAPage", "Kernel:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_21.setObjectName(_fromUtf8("label_21"))
-        self.gridLayout.addWidget(self.label_21, 6, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_21, 8, 0, 1, 1)
         self.lineEditKernel = QtGui.QLineEdit(ASAPage)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -118,7 +128,7 @@ class Ui_ASAPage(object):
         sizePolicy.setHeightForWidth(self.lineEditKernel.sizePolicy().hasHeightForWidth())
         self.lineEditKernel.setSizePolicy(sizePolicy)
         self.lineEditKernel.setObjectName(_fromUtf8("lineEditKernel"))
-        self.gridLayout.addWidget(self.lineEditKernel, 6, 1, 1, 1)
+        self.gridLayout.addWidget(self.lineEditKernel, 8, 1, 1, 1)
         self.pushButtonKernelBrowser = QtGui.QPushButton(ASAPage)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -128,16 +138,16 @@ class Ui_ASAPage(object):
         self.pushButtonKernelBrowser.setMaximumSize(QtCore.QSize(31, 27))
         self.pushButtonKernelBrowser.setText(QtGui.QApplication.translate("ASAPage", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonKernelBrowser.setObjectName(_fromUtf8("pushButtonKernelBrowser"))
-        self.gridLayout.addWidget(self.pushButtonKernelBrowser, 6, 2, 1, 1)
+        self.gridLayout.addWidget(self.pushButtonKernelBrowser, 8, 2, 1, 1)
         self.label_13 = QtGui.QLabel(ASAPage)
         self.label_13.setText(QtGui.QApplication.translate("ASAPage", "Kernel cmd line:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_13.setObjectName(_fromUtf8("label_13"))
-        self.gridLayout.addWidget(self.label_13, 7, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_13, 9, 0, 1, 1)
         self.lineEditKernelCmdLine = QtGui.QLineEdit(ASAPage)
         self.lineEditKernelCmdLine.setObjectName(_fromUtf8("lineEditKernelCmdLine"))
-        self.gridLayout.addWidget(self.lineEditKernelCmdLine, 7, 1, 1, 2)
+        self.gridLayout.addWidget(self.lineEditKernelCmdLine, 9, 1, 1, 2)
         spacerItem = QtGui.QSpacerItem(20, 281, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout.addItem(spacerItem, 8, 0, 1, 3)
+        self.gridLayout.addItem(spacerItem, 10, 0, 1, 3)
 
         self.retranslateUi(ASAPage)
         self.comboBoxNIC.setCurrentIndex(5)

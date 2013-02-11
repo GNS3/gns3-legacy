@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_NewProject.ui'
 #
-# Created: Sat Feb  9 10:06:46 2013
+# Created: Sun Feb 10 22:53:58 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -56,7 +56,7 @@ class Ui_NewProject(object):
         self.gridLayout.addWidget(self.checkBox_ConfigFiles, 2, 0, 1, 2)
         self.checkBox_WorkdirFiles = QtGui.QCheckBox(self.groupBox)
         self.checkBox_WorkdirFiles.setText(QtGui.QApplication.translate("NewProject", "Save nvrams and virtual hard drives (required to save EtherSwitch VLAN configs)", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBox_WorkdirFiles.setChecked(True)
+        self.checkBox_WorkdirFiles.setChecked(False)
         self.checkBox_WorkdirFiles.setObjectName(_fromUtf8("checkBox_WorkdirFiles"))
         self.gridLayout.addWidget(self.checkBox_WorkdirFiles, 3, 0, 1, 3)
         self.unbaseImages = QtGui.QCheckBox(self.groupBox)

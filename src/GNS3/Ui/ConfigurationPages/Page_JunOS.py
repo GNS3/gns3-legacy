@@ -76,6 +76,16 @@ class Page_JunOS(QtGui.QWidget, Ui_JunOSPage):
             self.checkBoxKVM.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+            
+        if junos_config['monitor'] == True:
+            self.checkBoxMonitor.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxMonitor.setCheckState(QtCore.Qt.Unchecked)
+            
+        if junos_config['usermod'] == True:
+            self.checkBoxUserMod.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxUserMod.setCheckState(QtCore.Qt.Unchecked)
         
     def saveConfig(self, id, config = None):
         """ Save the config
@@ -109,6 +119,16 @@ class Page_JunOS(QtGui.QWidget, Ui_JunOSPage):
             junos_config['kvm'] = True
         else:
             junos_config['kvm']  = False
+
+        if self.checkBoxMonitor.checkState() == QtCore.Qt.Checked:
+            junos_config['monitor'] = True
+        else:
+            junos_config['monitor']  = False
+
+        if self.checkBoxUserMod.checkState() == QtCore.Qt.Checked:
+            junos_config['usermod'] = True
+        else:
+            junos_config['usermod'] = False
 
         return junos_config
 

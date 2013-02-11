@@ -230,7 +230,7 @@ elif sys.platform.startswith('darwin'):
 else:
 
     if platform.system() == 'Linux':
-      wrapper_dir = '/usr/lib/gns3/'
+      wrapper_dir = '/usr/share/gns3/'
     else:
       wrapper_dir = '/usr/local/libexec/gns3/'
     setup( # Distribution meta-data
@@ -238,7 +238,7 @@ else:
             version = VERSION,
             description = 'GNS3 is a graphical network simulator based on Dynamips, an IOS emulator which allows users to run IOS binary images from Cisco Systems and Qemu/VirtualBox for emulating PIX & ASA firewalls as well as Juniper routers and Cisco IDS/IPS (binary images are not part of this package).',
             license = 'GNU General Public License (GPL), see the LICENSE file for detailed info',
-            author = 'Jeremy Grossmann, David Ruiz, Romain Lamaison, Aurelien Levesque, Xavier Alt and Alexey Eromenko "Technologov"',
+            author = 'Jeremy Grossmann',
             author_email = 'http://www.gns3.net/contact',
             platforms = 'Windows, Unix and MacOSX',
             url = 'http://www.gns3.net/',

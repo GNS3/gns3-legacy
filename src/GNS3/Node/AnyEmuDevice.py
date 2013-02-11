@@ -73,6 +73,7 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
             'nics',
             'usermod',
             'netcard',
+            'flavor',
             'kvm',
             'monitor',
             'options',

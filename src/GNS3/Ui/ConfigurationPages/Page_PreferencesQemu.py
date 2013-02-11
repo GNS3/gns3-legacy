@@ -469,9 +469,9 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         """ Change the NIC list to match the flavor
         """
         NicByFlavor = {
-            'Default':  ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82259er', 'ne2k_pci', 'pcnet', 'virtio', 'lance', 'smc91c111'], # Show all known NIC
-            '-i386':    ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82259er', 'ne2k_pci', 'pcnet', 'virtio'],
-            '-x86_64':  ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82259er', 'ne2k_pci', 'pcnet', 'virtio'],
+            'Default':  ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82559er', 'ne2k_pci', 'pcnet', 'virtio', 'lance', 'smc91c111'], # Show all known NIC
+            '-i386':    ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82559er', 'ne2k_pci', 'pcnet', 'virtio'],
+            '-x86_64':  ['rtl8139', 'e1000', 'i82551', 'i82557b', 'i82559er', 'ne2k_pci', 'pcnet', 'virtio'],
             '-sparc':   ['lance'],
             '-arm':     ['smc91c111'],
         }
@@ -479,7 +479,6 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.QemuNIC.clear()
         flavor = str(self.QemuFlavor.currentText())
         if flavor not in NicByFlavor:
-            print flavor
             flavor = 'Default'
         for nic in NicByFlavor[flavor]:
             self.QemuNIC.addItem(nic)

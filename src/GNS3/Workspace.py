@@ -660,6 +660,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog.setModal(True)
         dialog.show()
         dialog.exec_()
+        self.dockWidget_NodeTypes.setVisible(False)
 
     def __action_Symbol_Manager(self):
         """ Implement the QAction `Symbol_Manager'
@@ -1206,7 +1207,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
             new_project = True
         else:
             new_project = False
-        projectDialog = ProjectDialog(self, self.projectFile, self.projectWorkdir, self.projectConfigs, self.unbase, self.saveCaptures, new_project)
+        if not self.isTemporaryProject:
+            projectDialog = ProjectDialog(self, self.projectFile, self.projectWorkdir, self.projectConfigs, self.unbase, self.saveCaptures, new_project)
+        else:
+            projectDialog = ProjectDialog(self, self.projectFile, None, self.projectConfigs, None, None, new_project)
         projectDialog.pushButtonOpenProject.setEnabled(False)
         projectDialog.pushButtonRecentFiles.setEnabled(False)
         if self.projectFile:
