@@ -900,7 +900,7 @@ class Topology(QtGui.QGraphicsScene):
                 # white spaces have to be replaced
                 p = re.compile('\s+', re.UNICODE)
                 vmname = p.sub("_", vmname)
-                if re.search(r"""^[\w,.-\[\]]*$""", vmname, re.UNICODE):
+                if re.search(r"""^[\w,.\-\[\]]*$""", vmname, re.UNICODE):
                     node.reconfigNode(vmname)
                     if node.hostnameDiplayed():
                         # force to redisplay the hostname

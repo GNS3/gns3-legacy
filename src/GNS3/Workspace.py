@@ -156,13 +156,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         # Loopback Manager (Windows only)
         if sys.platform.startswith('win'):
             loopback_manager_action = QtGui.QAction(translate("Workspace", "Loopback Manager"), self.menu_Tools)
-            loopback_manager_action.setData(QtCore.QVariant('"Loopback Manager.cmd"'))
+            loopback_manager_action.setData(QtCore.QVariant("loopback-manager.cmd"))
             self.menu_Tools.addAction(loopback_manager_action)
 
         # Network device list (Windows only)
         if sys.platform.startswith('win'):
             network_device_list_action = QtGui.QAction(translate("Workspace", "Network device list"), self.menu_Tools)
-            network_device_list_action.setData(QtCore.QVariant('"Network device list.cmd"'))
+            network_device_list_action.setData(QtCore.QVariant("network-device-list.cmd"))
             self.menu_Tools.addAction(network_device_list_action)
 
         # Dynamips server (Windows only)
@@ -435,12 +435,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
             # delete dynamips files
             dynamips_files = glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*")
             dynamips_files += glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "*ghost*")
+            dynamips_files += glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "ilt_*")
             dynamips_files += glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "*_lock")
             dynamips_files += glob.glob(os.path.normpath(globals.GApp.systconf['dynamips'].workdir) + os.sep + "*_log.txt")
 
             if projectWorkdir:
                 # delete useless project files
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*ghost*")
+                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "ilt_*")
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_log.txt")
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_rommon_vars")
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_ssa")
