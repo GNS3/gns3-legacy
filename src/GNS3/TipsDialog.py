@@ -18,9 +18,15 @@
 # http://www.gns3.net/contact
 #
 
-from PyQt4 import QtCore, QtGui, QtWebKit
+from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_TipsDialog import Ui_TipsDialog
 from GNS3.Utils import translate
+
+# On FreeBSD, QtWebKit is not installed by default.
+try:
+    from PyQt4 import QtWebKit
+except:
+    print "Warning: QtWebKit is not installed."
 
 class TipsDialog(QtGui.QDialog, Ui_TipsDialog):
     """ TipsDialog class

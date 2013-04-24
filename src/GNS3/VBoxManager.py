@@ -145,13 +145,16 @@ class VBoxManager(object):
         """
         #print "Entered VBoxManager::stopVBox()"
 
-        for hypervisor in globals.GApp.dynagen.dynamips.values():
-            if isinstance(hypervisor, vboxlib.VBox):
-                try:
-                    hypervisor.reset()
-                    hypervisor.close()
-                except:
-                    continue
+        try:
+            for hypervisor in globals.GApp.dynagen.dynamips.values():
+                if isinstance(hypervisor, vboxlib.VBox):
+                    try:
+                        hypervisor.reset()
+                        hypervisor.close()
+                    except:
+                        continue
+        except:
+            pass
         if self.proc and self.proc.state():
             debug('VBoxManager: stop VBox with pid ' + str(self.proc.pid()))
             self.proc.terminate()

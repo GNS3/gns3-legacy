@@ -11,7 +11,7 @@ GNS3 0.8.4
 	* New Tool menu to start external scripts/tools.
 	* Drag & drop of multiple devices when pressing SHIFT.
 	* Temporary projects are created by default.
-	* Winpcap compatibility mode set in all-in-one, allowing it to be installed on Windows 8
+	* Winpcap 4.1.3 included in Windows all-on-one package (compatible with Windows 8).
 	* Dynamips 0.2.8-RC5-community is now default on Windows.
 	* Qemu 0.11.0 integrated to the DMG for Mac OS X (used by default).
 	* Qemu 0.14.1 integrated to the DMG for Mac OS X.

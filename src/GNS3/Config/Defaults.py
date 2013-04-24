@@ -285,25 +285,25 @@ else:
 
 # Default reportlab directory
 if sys.platform.startswith('win'):
-    REPORTLAB_DEFAULT_DIR = unicode(sys.prefix + os.sep + 'Lib' + os.sep + 'site-packages' + os.sep + 'reportlab')
+    REPORTLAB_DEFAULT_DIR = unicode(sys.prefix + os.sep + 'Lib' + os.sep + 'site-packages' + os.sep + 'reportlab', 'utf-8', errors='replace')
 else:
-    REPORTLAB_DEFAULT_DIR = unicode(sys.prefix + os.sep + 'lib' + os.sep + 'python' + sys.version[0] + sys.version[1] + sys.version[2] + os.sep + 'site-packages' + os.sep + 'reportlab')
+    REPORTLAB_DEFAULT_DIR = unicode(sys.prefix + os.sep + 'lib' + os.sep + 'python' + sys.version[0] + sys.version[1] + sys.version[2] + os.sep + 'site-packages' + os.sep + 'reportlab', 'utf-8', errors='replace')
 
 # Default PIL directory
 if sys.platform.startswith('win'):
-    PIL_DEFAULT_DIR = unicode(sys.prefix + os.sep + 'Lib' + os.sep + 'site-packages' + os.sep + 'PIL')
+    PIL_DEFAULT_DIR = unicode(sys.prefix + os.sep + 'Lib' + os.sep + 'site-packages' + os.sep + 'PIL', 'utf-8', errors='replace')
 else:
-    PIL_DEFAULT_DIR = unicode(sys.prefix + os.sep + 'lib' + os.sep + 'python' + sys.version[0] + sys.version[1] + sys.version[2] + os.sep + 'site-packages' + os.sep + 'PIL')
+    PIL_DEFAULT_DIR = unicode(sys.prefix + os.sep + 'lib' + os.sep + 'python' + sys.version[0] + sys.version[1] + sys.version[2] + os.sep + 'site-packages' + os.sep + 'PIL', 'utf-8', errors='replace')
 
 # Default deployement wizard directory
 if sys.platform.startswith('win') and os.environ.has_key("HOMEDRIVE") and os.environ.has_key("HOMEPATH"):
-    DEPLOYEMENTWIZARD_DEFAULT_PATH = unicode(os.environ["HOMEDRIVE"] + os.environ["HOMEPATH"] + os.sep + 'GNS3' + os.sep + 'Projects')
+    DEPLOYEMENTWIZARD_DEFAULT_PATH = unicode(os.environ["HOMEDRIVE"] + os.environ["HOMEPATH"] + os.sep + 'GNS3' + os.sep + 'Projects', 'utf-8', errors='replace')
 elif os.environ.has_key("HOME"):
-    DEPLOYEMENTWIZARD_DEFAULT_PATH = unicode(os.environ["HOME"] + os.sep + 'GNS3' + os.sep + 'Projects')
+    DEPLOYEMENTWIZARD_DEFAULT_PATH = unicode(os.environ["HOME"] + os.sep + 'GNS3' + os.sep + 'Projects', 'utf-8', errors='replace')
 elif os.environ.has_key("TEMP"):
-    DEPLOYEMENTWIZARD_DEFAULT_PATH = unicode(os.environ["TEMP"])
+    DEPLOYEMENTWIZARD_DEFAULT_PATH = unicode(os.environ["TEMP"], 'utf-8', errors='replace')
 elif os.environ.has_key("TMP"):
-    DEPLOYEMENTWIZARD_DEFAULT_PATH = unicode(os.environ["TMP"])
+    DEPLOYEMENTWIZARD_DEFAULT_PATH = unicode(os.environ["TMP"], 'utf-8', errors='replace')
 else:
     DEPLOYEMENTWIZARD_DEFAULT_PATH = unicode('/tmp')
 

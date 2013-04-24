@@ -41,9 +41,12 @@ class portTracker:
 
     def addLocalAddress(self, addr):
 
-        debug("registering additional local address %s" % addr)
-        if addr not in self.local_addresses:
-            self.local_addresses.append(addr)
+        try:
+            debug("registering additional local address %s" % addr)
+            if addr not in self.local_addresses:
+                self.local_addresses.append(addr)
+        except:
+            pass
 
     def getNotAvailableTcpPortRange(self, host, start_port, max_port=10):
 
