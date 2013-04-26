@@ -55,9 +55,9 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         #self.comboBoxBinding.addItems(['localhost', QtNetwork.QHostInfo.localHostName()] + map(lambda addr: addr.toString(), QtNetwork.QNetworkInterface.allAddresses()))
         mylist = map(lambda addr: addr.toString(), QtNetwork.QNetworkInterface.allAddresses())
         if mylist.__contains__('0:0:0:0:0:0:0:1'):
-            self.comboBoxBinding.addItems(['localhost', '::1', QtNetwork.QHostInfo.localHostName()] + mylist)
+            self.comboBoxBinding.addItems(['localhost', '::1', '0.0.0.0', '::', QtNetwork.QHostInfo.localHostName()] + mylist)
         else:
-            self.comboBoxBinding.addItems(['localhost', QtNetwork.QHostInfo.localHostName()] + mylist)
+            self.comboBoxBinding.addItems(['localhost', '0.0.0.0', QtNetwork.QHostInfo.localHostName()] + mylist)
         #self.connect(self.checkBoxEnableVBoxManager,  QtCore.SIGNAL('clicked()'), self.slotCheckBoxEnableVBoxManager)
         self.connect(self.VBoxcheckBoxEnableGuestControl,  QtCore.SIGNAL('clicked()'), self.slotCheckBoxEnableGuestControl)
         self.connect(self.checkBoxVBoxShowAdvancedOptions,  QtCore.SIGNAL('clicked()'), self.slotCheckBoxVBoxShowAdvancedOptions)

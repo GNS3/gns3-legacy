@@ -45,7 +45,7 @@ class DynagenSub(Dynagen):
         self.gns3_data = None
         self.rpcap_mapping = {}
         self.local_addresses = map(lambda addr: unicode(addr.toString()), QtNetwork.QNetworkInterface.allAddresses())
-        self.local_addresses += ['0.0.0.0', '127.0.0.1', 'localhost', '::1', '0:0:0:0:0:0:0:1', QtNetwork.QHostInfo.localHostName()]
+        self.local_addresses += ['0.0.0.0', '::', '127.0.0.1', 'localhost', '::1', '0:0:0:0:0:0:0:1', QtNetwork.QHostInfo.localHostName()]
 
     def check_replace_GUID_NIO(self, filename):
         """ Check and replace non-existing GUID (network interface ID) on Windows
