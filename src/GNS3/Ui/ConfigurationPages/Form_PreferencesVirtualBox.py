@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesVirtualBox.ui'
 #
-# Created: Sat Feb  9 06:14:34 2013
+# Created: Sun Apr 28 17:24:48 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -246,8 +246,8 @@ class Ui_PreferencesVirtualBox(object):
         self.VBoxGuestControl_Password.setObjectName(_fromUtf8("VBoxGuestControl_Password"))
         self.gridLayout.addWidget(self.VBoxGuestControl_Password, 11, 2, 1, 1)
         self.checkBoxVBoxFirstInterfaceManaged = QtGui.QCheckBox(self.groupBox)
-        self.checkBoxVBoxFirstInterfaceManaged.setText(QtGui.QApplication.translate("PreferencesVirtualBox", "Do not use first NIC for connections with the host OS", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxVBoxFirstInterfaceManaged.setChecked(False)
+        self.checkBoxVBoxFirstInterfaceManaged.setText(QtGui.QApplication.translate("PreferencesVirtualBox", "Reserve first NIC for VirtualBox NAT to host OS", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxVBoxFirstInterfaceManaged.setChecked(True)
         self.checkBoxVBoxFirstInterfaceManaged.setObjectName(_fromUtf8("checkBoxVBoxFirstInterfaceManaged"))
         self.gridLayout.addWidget(self.checkBoxVBoxFirstInterfaceManaged, 5, 0, 1, 3)
         self.checkBoxVBoxHeadlessMode = QtGui.QCheckBox(self.groupBox)

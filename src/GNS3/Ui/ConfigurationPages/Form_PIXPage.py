@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PIXPage.ui'
 #
-# Created: Sat Feb  9 06:14:33 2013
+# Created: Sun Apr 28 17:24:46 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -93,6 +93,8 @@ class Ui_PIXPage(object):
         self.comboBoxNIC.setItemText(6, QtGui.QApplication.translate("PIXPage", "pcnet", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxNIC.addItem(_fromUtf8(""))
         self.comboBoxNIC.setItemText(7, QtGui.QApplication.translate("PIXPage", "virtio", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBoxNIC.addItem(_fromUtf8(""))
+        self.comboBoxNIC.setItemText(8, QtGui.QApplication.translate("PIXPage", "virtio-net-pci", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout.addWidget(self.comboBoxNIC, 3, 1, 1, 2)
         self.label_8 = QtGui.QLabel(PIXPage)
         self.label_8.setText(QtGui.QApplication.translate("PIXPage", "Qemu Options:", None, QtGui.QApplication.UnicodeUTF8))
@@ -130,7 +132,7 @@ class Ui_PIXPage(object):
         self.gridLayout.addItem(spacerItem, 7, 1, 1, 1)
 
         self.retranslateUi(PIXPage)
-        self.comboBoxNIC.setCurrentIndex(5)
+        self.comboBoxNIC.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(PIXPage)
 
     def retranslateUi(self, PIXPage):

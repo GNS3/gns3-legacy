@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_VirtualBoxPage.ui'
 #
-# Created: Sat Feb  9 06:14:33 2013
+# Created: Sun Apr 28 17:24:47 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -70,8 +70,8 @@ class Ui_VirtualBoxPage(object):
         self.comboBoxNIC.setItemText(4, QtGui.QApplication.translate("VirtualBoxPage", "virtio", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout.addWidget(self.comboBoxNIC, 2, 1, 1, 1)
         self.checkBoxVBoxFirstInterfaceManaged = QtGui.QCheckBox(VirtualBoxPage)
-        self.checkBoxVBoxFirstInterfaceManaged.setText(QtGui.QApplication.translate("VirtualBoxPage", "Do not use first NIC for connections with the host OS", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxVBoxFirstInterfaceManaged.setChecked(False)
+        self.checkBoxVBoxFirstInterfaceManaged.setText(QtGui.QApplication.translate("VirtualBoxPage", "Reserve first NIC for VirtualBox NAT to host OS", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxVBoxFirstInterfaceManaged.setChecked(True)
         self.checkBoxVBoxFirstInterfaceManaged.setObjectName(_fromUtf8("checkBoxVBoxFirstInterfaceManaged"))
         self.gridLayout.addWidget(self.checkBoxVBoxFirstInterfaceManaged, 3, 0, 1, 2)
         self.checkBoxVboxConsoleSupport = QtGui.QCheckBox(VirtualBoxPage)

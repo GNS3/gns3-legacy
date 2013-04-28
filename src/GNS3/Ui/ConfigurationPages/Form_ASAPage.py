@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ConfigurationPages/Form_ASAPage.ui'
+# Form implementation generated from reading ui file './ConfigurationPages/Form_ASAPage.ui'
 #
-# Created: Sun Feb 10 08:34:47 2013
+# Created: Sun Apr 28 17:24:47 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -71,6 +71,8 @@ class Ui_ASAPage(object):
         self.comboBoxNIC.setItemText(6, QtGui.QApplication.translate("ASAPage", "pcnet", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxNIC.addItem(_fromUtf8(""))
         self.comboBoxNIC.setItemText(7, QtGui.QApplication.translate("ASAPage", "virtio", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBoxNIC.addItem(_fromUtf8(""))
+        self.comboBoxNIC.setItemText(8, QtGui.QApplication.translate("ASAPage", "virtio-net-pci", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout.addWidget(self.comboBoxNIC, 2, 1, 1, 2)
         self.label_8 = QtGui.QLabel(ASAPage)
         self.label_8.setText(QtGui.QApplication.translate("ASAPage", "Qemu Options:", None, QtGui.QApplication.UnicodeUTF8))
@@ -150,7 +152,7 @@ class Ui_ASAPage(object):
         self.gridLayout.addItem(spacerItem, 10, 0, 1, 3)
 
         self.retranslateUi(ASAPage)
-        self.comboBoxNIC.setCurrentIndex(5)
+        self.comboBoxNIC.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(ASAPage)
 
     def retranslateUi(self, ASAPage):

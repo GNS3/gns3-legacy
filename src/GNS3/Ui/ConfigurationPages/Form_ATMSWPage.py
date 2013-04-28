@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_ATMSWPage.ui'
 #
-# Created: Sat Feb  9 06:14:32 2013
+# Created: Sun Apr 28 17:24:46 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!

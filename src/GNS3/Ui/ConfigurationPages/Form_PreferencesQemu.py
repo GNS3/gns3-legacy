@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesQemu.ui'
 #
-# Created: Sat Feb  9 06:14:34 2013
+# Created: Sun Apr 28 17:24:48 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -284,7 +284,9 @@ class Ui_PreferencesQemu(object):
         self.QemuNIC.addItem(_fromUtf8(""))
         self.QemuNIC.setItemText(7, QtGui.QApplication.translate("PreferencesQemu", "virtio", None, QtGui.QApplication.UnicodeUTF8))
         self.QemuNIC.addItem(_fromUtf8(""))
-        self.QemuNIC.setItemText(8, QtGui.QApplication.translate("PreferencesQemu", "lance", None, QtGui.QApplication.UnicodeUTF8))
+        self.QemuNIC.setItemText(8, QtGui.QApplication.translate("PreferencesQemu", "virtio-net-pci", None, QtGui.QApplication.UnicodeUTF8))
+        self.QemuNIC.addItem(_fromUtf8(""))
+        self.QemuNIC.setItemText(9, QtGui.QApplication.translate("PreferencesQemu", "lance", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout.addWidget(self.QemuNIC, 5, 1, 1, 2)
         self.label_4 = QtGui.QLabel(self.groupBox)
         self.label_4.setText(QtGui.QApplication.translate("PreferencesQemu", "Qemu Options:", None, QtGui.QApplication.UnicodeUTF8))
@@ -375,6 +377,8 @@ class Ui_PreferencesQemu(object):
         self.PIXNIC.setItemText(6, QtGui.QApplication.translate("PreferencesQemu", "pcnet", None, QtGui.QApplication.UnicodeUTF8))
         self.PIXNIC.addItem(_fromUtf8(""))
         self.PIXNIC.setItemText(7, QtGui.QApplication.translate("PreferencesQemu", "virtio", None, QtGui.QApplication.UnicodeUTF8))
+        self.PIXNIC.addItem(_fromUtf8(""))
+        self.PIXNIC.setItemText(8, QtGui.QApplication.translate("PreferencesQemu", "virtio-net-pci", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout_6.addWidget(self.PIXNIC, 4, 1, 1, 2)
         self.label_8 = QtGui.QLabel(self.groupBox_6)
         self.label_8.setText(QtGui.QApplication.translate("PreferencesQemu", "Qemu Options:", None, QtGui.QApplication.UnicodeUTF8))
@@ -575,6 +579,8 @@ class Ui_PreferencesQemu(object):
         self.JunOSNIC.setItemText(6, QtGui.QApplication.translate("PreferencesQemu", "pcnet", None, QtGui.QApplication.UnicodeUTF8))
         self.JunOSNIC.addItem(_fromUtf8(""))
         self.JunOSNIC.setItemText(7, QtGui.QApplication.translate("PreferencesQemu", "virtio", None, QtGui.QApplication.UnicodeUTF8))
+        self.JunOSNIC.addItem(_fromUtf8(""))
+        self.JunOSNIC.setItemText(8, QtGui.QApplication.translate("PreferencesQemu", "virtio-net-pci", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout_2.addWidget(self.JunOSNIC, 4, 1, 1, 2)
         self.label_9 = QtGui.QLabel(self.groupBox_5)
         self.label_9.setText(QtGui.QApplication.translate("PreferencesQemu", "Qemu Options:", None, QtGui.QApplication.UnicodeUTF8))
@@ -726,6 +732,8 @@ class Ui_PreferencesQemu(object):
         self.ASANIC.setItemText(6, QtGui.QApplication.translate("PreferencesQemu", "pcnet", None, QtGui.QApplication.UnicodeUTF8))
         self.ASANIC.addItem(_fromUtf8(""))
         self.ASANIC.setItemText(7, QtGui.QApplication.translate("PreferencesQemu", "virtio", None, QtGui.QApplication.UnicodeUTF8))
+        self.ASANIC.addItem(_fromUtf8(""))
+        self.ASANIC.setItemText(8, QtGui.QApplication.translate("PreferencesQemu", "virtio-net-pci", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout_3.addWidget(self.ASANIC, 4, 1, 1, 1)
         self.label_12 = QtGui.QLabel(self.groupBox_3)
         self.label_12.setText(QtGui.QApplication.translate("PreferencesQemu", "Qemu Options:", None, QtGui.QApplication.UnicodeUTF8))
@@ -916,6 +924,8 @@ class Ui_PreferencesQemu(object):
         self.IDSNIC.setItemText(6, QtGui.QApplication.translate("PreferencesQemu", "pcnet", None, QtGui.QApplication.UnicodeUTF8))
         self.IDSNIC.addItem(_fromUtf8(""))
         self.IDSNIC.setItemText(7, QtGui.QApplication.translate("PreferencesQemu", "virtio", None, QtGui.QApplication.UnicodeUTF8))
+        self.IDSNIC.addItem(_fromUtf8(""))
+        self.IDSNIC.setItemText(8, QtGui.QApplication.translate("PreferencesQemu", "virtio-net-pci", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout_8.addWidget(self.IDSNIC, 5, 1, 1, 2)
         self.label_33 = QtGui.QLabel(self.groupBox_9)
         self.label_33.setText(QtGui.QApplication.translate("PreferencesQemu", "Qemu Options:", None, QtGui.QApplication.UnicodeUTF8))
@@ -974,11 +984,11 @@ class Ui_PreferencesQemu(object):
 
         self.retranslateUi(PreferencesQemu)
         self.tabWidget.setCurrentIndex(0)
-        self.QemuNIC.setCurrentIndex(1)
-        self.PIXNIC.setCurrentIndex(5)
-        self.JunOSNIC.setCurrentIndex(5)
-        self.ASANIC.setCurrentIndex(5)
-        self.IDSNIC.setCurrentIndex(5)
+        self.QemuNIC.setCurrentIndex(0)
+        self.PIXNIC.setCurrentIndex(0)
+        self.JunOSNIC.setCurrentIndex(0)
+        self.ASANIC.setCurrentIndex(0)
+        self.IDSNIC.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(PreferencesQemu)
 
     def retranslateUi(self, PreferencesQemu):

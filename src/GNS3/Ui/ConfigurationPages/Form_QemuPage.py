@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ConfigurationPages/Form_QemuPage.ui'
+# Form implementation generated from reading ui file './ConfigurationPages/Form_QemuPage.ui'
 #
-# Created: Sun Feb 10 08:42:03 2013
+# Created: Sun Apr 28 17:24:47 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -113,7 +113,9 @@ class Ui_QemuPage(object):
         self.comboBoxNIC.addItem(_fromUtf8(""))
         self.comboBoxNIC.setItemText(8, QtGui.QApplication.translate("QemuPage", "lance", None, QtGui.QApplication.UnicodeUTF8))
         self.comboBoxNIC.addItem(_fromUtf8(""))
-        self.comboBoxNIC.setItemText(9, QtGui.QApplication.translate("QemuPage", "smc91c111", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBoxNIC.setItemText(9, QtGui.QApplication.translate("QemuPage", "virtio-net-pci", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBoxNIC.addItem(_fromUtf8(""))
+        self.comboBoxNIC.setItemText(10, QtGui.QApplication.translate("QemuPage", "smc91c111", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout.addWidget(self.comboBoxNIC, 4, 1, 1, 2)
         self.label_8 = QtGui.QLabel(QemuPage)
         self.label_8.setText(QtGui.QApplication.translate("QemuPage", "Qemu Options:", None, QtGui.QApplication.UnicodeUTF8))
