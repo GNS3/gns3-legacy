@@ -200,6 +200,11 @@
      </item>
      <item>
       <property name="text">
+       <string>virtio-net-pci</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>smc91c111</string>
       </property>
      </item>

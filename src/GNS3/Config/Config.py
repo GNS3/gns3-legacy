@@ -285,7 +285,7 @@ class GNS_Conf(object):
             conf.filename = c.get(cgroup + "/filename", unicode(''))
             conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
             conf.nic = str(c.get(cgroup + "/nic", 'automatic'))
-            conf.first_nic_managed = c.value(cgroup + "/first_nic_managed", QtCore.QVariant(False)).toBool()
+            conf.first_nic_managed = c.value(cgroup + "/first_nic_managed", QtCore.QVariant(True)).toBool()
             conf.headless_mode = c.value(cgroup + "/headless_mode", QtCore.QVariant(False)).toBool()
             conf.console_support = c.value(cgroup + "/console_support", QtCore.QVariant(False)).toBool()
             conf.console_telnet_server = c.value(cgroup + "/console_telnet_server", QtCore.QVariant(False)).toBool()

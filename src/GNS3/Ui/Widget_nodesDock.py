@@ -71,6 +71,10 @@ class nodesDock(QtGui.QTreeWidget):
                 return
             # Check availability of each Cisco platform's image individually
             for (image, conf) in globals.GApp.iosimages.iteritems():
+                # Special check for EtherSwitch router
+                if conf.platform in 'c3700' and symbol['name'] == 'EtherSwitch router':
+                    item.setDisabled(False)
+                    return
                 if conf.platform in symbol['name']:
                     item.setDisabled(False)
                     return

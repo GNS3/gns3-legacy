@@ -175,7 +175,7 @@ SYMBOLS = [
     'normal_svg_file': ":/symbols/multilayer_switch.normal.svg",
     'select_svg_file': ":/symbols/multilayer_switch.selected.svg",
     'translated': True,
-    'checkForImage': False,
+    'checkForImage': True,
     'type': 'Switches'
     },
 

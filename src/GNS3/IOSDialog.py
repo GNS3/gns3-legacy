@@ -257,6 +257,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                             if DEFAULT_RAM.has_key(platformname):
                                 self.spinBoxDefaultRAM.setValue(DEFAULT_RAM[platformname])
                             break
+            self.lineEditIdlePC.clear()
 
     def slotBaseConfig(self):
         """ Get an base config file from the file system
@@ -635,4 +636,5 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             if reply == QtGui.QMessageBox.No:
                 return
 
+        globals.GApp.syncConf()
         CalcIDLEPCDialog(self)

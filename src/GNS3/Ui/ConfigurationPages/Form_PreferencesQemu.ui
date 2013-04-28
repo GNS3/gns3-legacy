@@ -467,7 +467,7 @@
               <item row="5" column="1" colspan="2">
                <widget class="QComboBox" name="QemuNIC">
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>0</number>
                 </property>
                 <item>
                  <property name="text">
@@ -507,6 +507,11 @@
                 <item>
                  <property name="text">
                   <string>virtio</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>virtio-net-pci</string>
                  </property>
                 </item>
                 <item>
@@ -655,7 +660,7 @@
                  <bool>true</bool>
                 </property>
                 <property name="currentIndex">
-                 <number>5</number>
+                 <number>0</number>
                 </property>
                 <item>
                  <property name="text">
@@ -695,6 +700,11 @@
                 <item>
                  <property name="text">
                   <string>virtio</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>virtio-net-pci</string>
                  </property>
                 </item>
                </widget>
@@ -1045,7 +1055,7 @@
                  <bool>true</bool>
                 </property>
                 <property name="currentIndex">
-                 <number>5</number>
+                 <number>0</number>
                 </property>
                 <item>
                  <property name="text">
@@ -1085,6 +1095,11 @@
                 <item>
                  <property name="text">
                   <string>virtio</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>virtio-net-pci</string>
                  </property>
                 </item>
                </widget>
@@ -1341,7 +1356,7 @@
                  <bool>true</bool>
                 </property>
                 <property name="currentIndex">
-                 <number>5</number>
+                 <number>0</number>
                 </property>
                 <item>
                  <property name="text">
@@ -1381,6 +1396,11 @@
                 <item>
                  <property name="text">
                   <string>virtio</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>virtio-net-pci</string>
                  </property>
                 </item>
                </widget>
@@ -1715,7 +1735,7 @@
                  <bool>true</bool>
                 </property>
                 <property name="currentIndex">
-                 <number>5</number>
+                 <number>0</number>
                 </property>
                 <item>
                  <property name="text">
@@ -1755,6 +1775,11 @@
                 <item>
                  <property name="text">
                   <string>virtio</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>virtio-net-pci</string>
                  </property>
                 </item>
                </widget>

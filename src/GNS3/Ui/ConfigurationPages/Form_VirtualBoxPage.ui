@@ -116,10 +116,10 @@ Please, see VirtualBox settings to change the chipset.</string>
    <item row="3" column="0" colspan="2">
     <widget class="QCheckBox" name="checkBoxVBoxFirstInterfaceManaged">
      <property name="text">
-      <string>Do not use first NIC for connections with the host OS</string>
+      <string>Reserve first NIC for VirtualBox NAT to host OS</string>
      </property>
      <property name="checked">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
    </item>

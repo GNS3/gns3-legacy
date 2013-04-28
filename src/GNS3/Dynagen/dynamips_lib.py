@@ -527,6 +527,26 @@ class Dynamips(object):
 class NIO(object):
     """abstract NIO class"""
 
+    def convert_bytes(self, my_bytes):
+        # To give human readable bytes
+        
+        my_bytes = float(my_bytes)
+        if my_bytes >= 1099511627776:
+            terabytes = my_bytes / 1099511627776
+            size = '%.2fTiB' % terabytes
+        elif my_bytes >= 1073741824:
+            gigabytes = my_bytes / 1073741824
+            size = '%.2fGiB' % gigabytes
+        elif my_bytes >= 1048576:
+            megabytes = my_bytes / 1048576
+            size = '%.2fMiB' % megabytes
+        elif my_bytes >= 1024:
+            kilobytes = my_bytes / 1024
+            size = '%.2fKiB' % kilobytes
+        else:
+            size = '%.0f bytes' % my_bytes
+        return size
+
     def get_stats(self, dynamips, nio_name):
         #print "ADEBUG: dynamips_lib.py: NIO::get_stats(dynamips = %s, nio_name = %s)" % (str(dynamips), str(nio_name))
         # dynamips < 0.2.8 RC3 doesn't support NIO stats
@@ -536,7 +556,7 @@ class NIO(object):
         #print "ADEBUG: dynamips_lib.py: NIO::get_stats(), result1 = %s" % str(result)
         if result.startswith("100"):
             stats = result[4:].split()
-            return ("\n        " + stats[0] + ' packets in / ' + stats[1] + ' packets out (' + stats[2] + ' bytes in / ' + stats[3] + ' bytes out)')
+            return ("\n        " + stats[0] + ' packets in / ' + stats[1] + ' packets out (' + self.convert_bytes(stats[2]) + ' in / ' + self.convert_bytes(stats[3]) + ' out)')
         return ""
 
     def reset_stats(self, dynamips, nio_name):

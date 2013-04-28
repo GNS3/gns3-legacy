@@ -42,12 +42,6 @@ class Wizard(QtGui.QDialog, Ui_Wizard):
     def slotStep1(self):
 
         globals.preferencesWindow = PreferencesDialog()
-
-        # show Dynamips pane when Preferences dialog opens.
-        dynamips_pane = globals.preferencesWindow.listWidget.findItems("Dynamips", QtCore.Qt.MatchFixedString)[0]
-        if dynamips_pane:
-            globals.preferencesWindow.listWidget.setCurrentItem(dynamips_pane)
-
         globals.preferencesWindow.show()
         globals.preferencesWindow.exec_()
         globals.preferencesWindow = None
@@ -55,6 +49,12 @@ class Wizard(QtGui.QDialog, Ui_Wizard):
     def slotStep2(self):
 
         globals.preferencesWindow = PreferencesDialog()
+
+        # show Dynamips pane when Preferences dialog opens.
+        dynamips_pane = globals.preferencesWindow.listWidget.findItems("Dynamips", QtCore.Qt.MatchFixedString)[0]
+        if dynamips_pane:
+            globals.preferencesWindow.listWidget.setCurrentItem(dynamips_pane)
+
         globals.preferencesWindow.show()
         globals.preferencesWindow.exec_()
         globals.preferencesWindow = None

@@ -133,10 +133,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.tips_dialog = TipsDialog(self)
         self.createToolsMenu()
 
+
     def createToolsMenu(self):
         """ Populate Tools menu
         """
         
+        # First Clear the menu
+        self.menu_Tools.clear()
+
         # Terminal
         terminal_action = QtGui.QAction(translate("Workspace", "Terminal"), self.menu_Tools)
         terminal_action.setShortcut(translate("Workspace", "Ctrl+T"))
@@ -145,12 +149,22 @@ class Workspace(QMainWindow, Ui_MainWindow):
         # VPCS
         vpcs_action = QtGui.QAction(translate("Workspace", "VPCS"), self.menu_Tools)
         if sys.platform.startswith('win'):
-            vpcs_action.setData(QtCore.QVariant("vpcs-start.cmd"))
+            if self.projectWorkdir:
+                vpcs_action.setData(QtCore.QVariant('vpcs-start.cmd "' + self.projectWorkdir + '"'))
+            else:
+                vpcs_action.setData(QtCore.QVariant("vpcs-start.cmd"))
         elif sys.platform.startswith('darwin'):
-            #vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + 'vpcs'))
-            vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + '../Resources/vpcs'))
+            if self.projectWorkdir:
+                #vpcs_action.setData(QtCore.QVariant("cd " + self.projectWorkdir + " && " + os.getcwdu() + os.sep + 'vpcs'))
+                vpcs_action.setData(QtCore.QVariant("cd " + self.projectWorkdir + " && " + os.getcwdu() + os.sep + '../Resources/vpcs'))
+            else:
+                #vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + 'vpcs'))
+                vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + '../Resources/vpcs'))
         else:
-            vpcs_action.setData(QtCore.QVariant('vpcs'))
+            if self.projectWorkdir:
+                vpcs_action.setData(QtCore.QVariant("cd " + self.projectWorkdir + " && vpcs"))
+            else:
+                vpcs_action.setData(QtCore.QVariant('vpcs'))
         self.menu_Tools.addAction(vpcs_action)
 
         # Loopback Manager (Windows only)
@@ -183,8 +197,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
             vboxwrapper_action.setData(QtCore.QVariant("vboxwrapper-start.cmd"))
             self.menu_Tools.addAction(vboxwrapper_action)
 
-        self.connect(self.menu_Tools, QtCore.SIGNAL("triggered(QAction *)"), self.slotRunTool)
-
     def slotRunTool(self, action):
         """ Run a tool from Tools menu
         """
@@ -192,10 +204,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         if action.text() == translate("Workspace", 'Terminal'):
             runTerminal()
         else:
-            tool_path = action.data().toString()
-            if not os.path.exists(tool_path):
-                QtGui.QMessageBox.critical(self, translate("Workspace", "Tool"), translate("Workspace", "Cannot locate: %s") % tool_path)
-                return
+#            tool_path = action.data().toString()
+            debug("Running tool: %s" % action.data().toString())
+#             if not os.path.exists(tool_path):
+#                 QtGui.QMessageBox.critical(self, translate("Workspace", "Tool"), translate("Workspace", "Cannot locate: %s") % tool_path)
+#                 return
             runTerminal(action.data().toString())
 
     def __connectActions(self):
@@ -253,6 +266,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # Device menu is contextual and is build on-the-fly
         self.connect(self.menuDevice, QtCore.SIGNAL('aboutToShow()'), self.__action_ShowDeviceMenu)
+
+        # Connect tool menu to run tools
+        self.connect(self.menu_Tools, QtCore.SIGNAL("triggered(QAction *)"), self.slotRunTool)
 
     def __action_DisplayWizard(self):
         self.wizard = DeployementWizard()
@@ -1170,6 +1186,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         net = netfile.NETFile()
         globals.GApp.scene.resetMatrix()
         net.import_net_file(path)
+        # refresh tool menu to reflect the current working directory
+        self.createToolsMenu()
         self.__launchProgressDialog('starting', translate("Workspace", "Starting nodes ..."), autostart=True)
 
     def __action_NewProject(self):
@@ -1252,10 +1270,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                            translate("Workspace", "Cannot create directory %s: %s") % (projectDir, e.strerror))
         else:
             self.isTemporaryProject = False
+            self.projectWorkdir = os.path.normpath(os.path.dirname(self.projectFile) + os.sep + 'working')
 
-        if not self.projectFile:
-            QtGui.QMessageBox.critical(self, translate("Workspace", "New Project"),  translate("Workspace", "Can't create a project"))
-            return
         if self.projectWorkdir and not os.access(self.projectWorkdir, os.F_OK):
             try:
                 os.mkdir(self.projectWorkdir)
@@ -1318,8 +1334,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         # clean the original working directory
                         #self.clear_workdir(os.path.normpath(node.hypervisor.workingdir))
 
-                    if (isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS)) and self.unbase:
-                        node.get_dynagen_device().unbase()
+#                     if (isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS)) and self.unbase:
+#                         node.get_dynagen_device().unbase()
 
                     if isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir:
 
@@ -1340,11 +1356,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     for hypervisor in globals.GApp.dynagen.dynamips.values():
                         hypervisor.workingdir = self.projectWorkdir
                 except lib.DynamipsError, msg:
-                    QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error %s: %s") % (self.projectWorkdir, unicode(msg)))
+                    QtGui.QMessageBox.critical(self, translate('Workspace', 'Setting new working dir'), translate("Workspace", "Dynamips error %s: %s") % (self.projectWorkdir, unicode(msg)))
 
         if self.isTemporaryProject == False:
             self.__action_Save()
         self.setWindowTitle("GNS3 Project - " + os.path.split(os.path.dirname(self.projectFile))[1])
+        # refresh tool menu to reflect the current working directory
+        self.createToolsMenu()
 
     def __action_Snapshot(self):
         """ Open snapshot dialog

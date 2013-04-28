@@ -151,7 +151,7 @@
       <bool>true</bool>
      </property>
      <property name="currentIndex">
-      <number>5</number>
+      <number>0</number>
      </property>
      <item>
       <property name="text">
@@ -191,6 +191,11 @@
      <item>
       <property name="text">
        <string>virtio</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>virtio-net-pci</string>
       </property>
      </item>
     </widget>

@@ -100,9 +100,9 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
                         self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "CPU usage: " + str(int(cpuUsage)) + "%") + '</font>')
                         if cpuUsage < 85.0:
                             globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                            reply = QtGui.QMessageBox.question(self, translate("CalcIDLEPCDialog", "Message"), translate("CalcIDLEPCDialog", "This Idle PC value seems to work, continue anyway?"),
+                            reply = QtGui.QMessageBox.question(self, translate("CalcIDLEPCDialog", "Message"), translate("CalcIDLEPCDialog", "This Idle PC value seems to work, do you want to keep it?"),
                                         QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-                            if reply == QtGui.QMessageBox.No:
+                            if reply == QtGui.QMessageBox.Yes:
                                 self.cleanUp()
                                 self.reject()
                                 return
