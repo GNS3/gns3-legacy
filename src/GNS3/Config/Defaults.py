@@ -40,7 +40,12 @@ elif os.environ.has_key("TMP"):
 else:
     DYNAMIPS_DEFAULT_WORKDIR = unicode('/tmp')
 
-if sys.platform.startswith('win') or sys.platform.startswith('darwin'):
+if sys.platform.startswith('darwin'):
+    if hasattr(sys, "frozen"):
+        BASECONFIG_DIR = os.getcwdu() + os.sep + '../Resources/'
+    else:
+        BASECONFIG_DIR = '' 
+elif sys.platform.startswith('win'):
     BASECONFIG_DIR = ''
 else:
     BASECONFIG_DIR = '/usr/local/share/examples/gns3/'

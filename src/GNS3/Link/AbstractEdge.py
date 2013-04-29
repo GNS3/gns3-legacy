@@ -162,7 +162,6 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
 
         self.setToolTip(translate("AbstractEdge", "Link: %s (%s) -> %s (%s)") % (self.source.hostname, self.srcIf, self.dest.hostname, self.destIf))
 
-
     def keyReleaseEvent(self, event):
         """ Key release handler
         """
@@ -324,12 +323,12 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             # We only provide capture directory to locally running wrappers.
             if globals.GApp.workspace.saveCaptures and globals.GApp.workspace.projectFile:
                 capture_dir = os.path.dirname(globals.GApp.workspace.projectFile) + os.sep + 'captures'
-                self.capfile = unicode(capture_dir + os.sep + self.source.hostname + '_' + self.srcIf + '_to_' + self.dest.hostname + '_' + self.destIf + '_' + time.strftime("%d%m%y_%H%M%S") + '.cap')
+                self.capfile = unicode(capture_dir + os.sep + self.source.hostname + '_' + self.srcIf.replace('/', '') + '_to_' + self.dest.hostname + '_' + self.destIf.replace('/', '') + '_' + time.strftime("%d%m%y_%H%M%S") + '.cap')
             else:
-                self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_' + self.srcIf + '_to_' + self.dest.hostname + '_' + self.destIf + '.cap')
+                self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_' + self.srcIf.replace('/', '') + '_to_' + self.dest.hostname + '_' + self.destIf.replace('/', '') + '.cap')
         else:
             # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
-            self.capfile = unicode(self.source.hostname + '_' + self.srcIf + '_to_' + self.dest.hostname + '_' + self.destIf + '.cap')
+            self.capfile = unicode(self.source.hostname + '_' + self.srcIf.replace('/', '') + '_to_' + self.dest.hostname + '_' + self.destIf.replace('/', '') + '.cap')
 
         debug("Start capture to " + self.capfile)
         globals.GApp.dynagen.devices[device].capture(int(port), self.capfile)
@@ -354,12 +353,12 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             # We only provide capture directory to locally running wrappers.
             if globals.GApp.workspace.saveCaptures and globals.GApp.workspace.projectFile:
                 capture_dir = os.path.dirname(globals.GApp.workspace.projectFile) + os.sep + 'captures'
-                self.capfile = unicode(capture_dir + os.sep + self.source.hostname + '_' + self.srcIf + '_to_' + self.dest.hostname + '_' + self.destIf + '_' + time.strftime("%d%m%y_%H%M%S") + '.cap')
+                self.capfile = unicode(capture_dir + os.sep + self.source.hostname + '_' + self.srcIf.replace('/', '') + '_to_' + self.dest.hostname + '_' + self.destIf.replace('/', '') + '_' + time.strftime("%d%m%y_%H%M%S") + '.cap')
             else:
-                self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_' + self.srcIf + '_to_' + self.dest.hostname + '_' + self.destIf + '.cap')
+                self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_' + self.srcIf.replace('/', '') + '_to_' + self.dest.hostname + '_' + self.destIf.replace('/', '') + '.cap')
         else:
             # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
-            self.capfile = unicode(self.source.hostname + '_' + self.srcIf + '_to_' + self.dest.hostname + '_' + self.destIf + '.cap')
+            self.capfile = unicode(self.source.hostname + '_' + self.srcIf.replace('/', '') + '_to_' + self.dest.hostname + '_' + self.destIf.replace('/', '') + '.cap')
         #"""
         debug("Start capture to " + self.capfile)
 
@@ -394,12 +393,12 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
             if capture_conf.workdir and (host == globals.GApp.systconf['dynamips'].HypervisorManager_binding or self.isLocalhost(host)):
                 if globals.GApp.workspace.saveCaptures and globals.GApp.workspace.projectFile:
                     capture_dir = os.path.dirname(globals.GApp.workspace.projectFile) + os.sep + 'captures'
-                    self.capfile = unicode(capture_dir + os.sep + self.source.hostname + '_' + self.srcIf + '_to_' + self.dest.hostname + '_' + self.destIf + '_' + time.strftime("%d%m%y_%H%M%S") + '.cap')
+                    self.capfile = unicode(capture_dir + os.sep + self.source.hostname + '_' + self.srcIf.replace('/', '') + '_to_' + self.dest.hostname + '_' + self.destIf.replace('/', '') + '_' + time.strftime("%d%m%y_%H%M%S") + '.cap')
                 else:
-                    self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_' + self.srcIf + '_to_' + self.dest.hostname + '_' + self.destIf + '.cap')
+                    self.capfile = unicode(capture_conf.workdir + os.sep + self.source.hostname + '_' + self.srcIf.replace('/', '') + '_to_' + self.dest.hostname + '_' + self.destIf.replace('/', '') + '.cap')
             else:
                 # Remote hypervisor should setup it's own work dir, when user is starting wrapper.
-                self.capfile = unicode(self.source.hostname + '_' + self.srcIf + '_to_' + self.dest.hostname + '_' + self.destIf + '.cap')
+                self.capfile = unicode(self.source.hostname + '_' + self.srcIf.replace('/', '') + '_to_' + self.dest.hostname + '_' + self.destIf.replace('/', '') + '.cap')
 
             debug("Start capture to " + self.capfile)
             globals.GApp.dynagen.devices[device].slot[slot].filter(inttype, port,'capture','both', encapsulation + " " + '"' + self.capfile + '"')
@@ -515,7 +514,7 @@ class AbstractEdge(QtGui.QGraphicsPathItem, QtCore.QObject):
                         print QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("AbstractEdge", "Capture"), translate("AbstractEdge", "Please close Wireshark"))
                         return
                     self.capturePipeThread = None
-                    pipe = r"\\.\pipe\GNS3\%s_to_%s" % (self.source.hostname, self.dest.hostname)
+                    pipe = r"\\.\pipe\GNS3\%s_%s_to_%s_%s" % (self.source.hostname, self.srcIf.replace('/', ''), self.dest.hostname, self.destIf.replace('/', ''))
                     path = path.replace("%p", "%s") % pipe
                     self.capturePipeThread = PipeCapture(self.capfile, path, pipe)
                     self.capturePipeThread.start()

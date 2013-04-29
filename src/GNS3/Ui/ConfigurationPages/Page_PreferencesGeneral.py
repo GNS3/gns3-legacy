@@ -215,29 +215,40 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         self.conf.console_delay = self.doubleSpinBoxConsoleDelay.value()
 
         # Create project and image directories if they don't exist
-        if self.conf.project_path and not os.path.exists(self.conf.project_path) and self.conf.ios_path and not os.path.exists(self.conf.ios_path):
+        if self.conf.project_path and not os.path.exists(self.conf.project_path) or self.conf.ios_path and not os.path.exists(self.conf.ios_path):
 
             reply = QtGui.QMessageBox.question(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Project & Image directories"), translate("UiConfig_PreferencesGeneral", "Would you like to create the project & image directories?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
             if reply == QtGui.QMessageBox.Yes:
-                try:
-                    os.makedirs(self.conf.project_path)
-                except (OSError, IOError), e:
-                    QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Project directory"),
-                                               translate("UiConfig_PreferencesGeneral", "Cannot create project directory: %s") % e.strerror)
+                
+                if self.conf.project_path and not os.path.exists(self.conf.project_path):
+                    try:
+                        os.makedirs(self.conf.project_path)
+                    except (OSError, IOError), e:
+                        QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Project directory"),
+                                                   translate("UiConfig_PreferencesGeneral", "Cannot create project directory: %s") % e.strerror)
 
-                try:
-                    os.makedirs(self.conf.ios_path)
-                except (OSError, IOError), e:
-                    QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Image directory"),
-                                                translate("UiConfig_PreferencesGeneral", "Cannot create image directory: %s") % e.strerror)
+                if self.conf.ios_path and not os.path.exists(self.conf.ios_path):
+                    try:
+                        os.makedirs(self.conf.ios_path)
+                    except (OSError, IOError), e:
+                        QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Image directory"),
+                                                    translate("UiConfig_PreferencesGeneral", "Cannot create image directory: %s") % e.strerror)
 
         try:
-            shutil.copyfile(BASECONFIG_DIR + 'baseconfig.txt', self.conf.ios_path + os.sep + 'baseconfig.txt')
-            shutil.copyfile(BASECONFIG_DIR + 'baseconfig_sw.txt', self.conf.ios_path + os.sep + 'baseconfig_sw.txt')
+            if not os.path.exists(self.conf.ios_path + os.sep + 'baseconfig.txt'):
+                shutil.copyfile(BASECONFIG_DIR + 'baseconfig.txt', self.conf.ios_path + os.sep + 'baseconfig.txt')
+                debug("Copying %s to %s" % (BASECONFIG_DIR + 'baseconfig.txt', self.conf.ios_path + os.sep + 'baseconfig.txt'))
         except (OSError, IOError), e:
-            debug("Warning: cannot copy baseconfig.txt and/or baseconfig_sw.txt to " + self.conf.ios_path + ": " + e.strerror)
+            debug("Warning: cannot copy baseconfig.txt to " + self.conf.ios_path + ": " + e.strerror)
+  
+        try:
+            if not os.path.exists(self.conf.ios_path + os.sep + 'baseconfig_sw.txt'):
+                shutil.copyfile(BASECONFIG_DIR + 'baseconfig_sw.txt', self.conf.ios_path + os.sep + 'baseconfig_sw.txt')
+                debug("Copying %s to %s" % (BASECONFIG_DIR + 'baseconfig_sw.txt', self.conf.ios_path + os.sep + 'baseconfig_sw.txt'))
+        except (OSError, IOError), e:
+            debug("Warning: cannot copy baseconfig_sw.txt to " + self.conf.ios_path + ": " + e.strerror)
 
         # Apply scene size
         globals.GApp.topology.setSceneRect(-(self.conf.scene_width / 2), -(self.conf.scene_height / 2), self.conf.scene_width, self.conf.scene_height)
