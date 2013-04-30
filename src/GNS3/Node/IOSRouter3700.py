@@ -41,8 +41,10 @@ class IOSRouter3700(IOSRouter, IOSRouter3700Defaults):
     def create_router(self):
 
         IOSRouter.create_router(self)
-        # Automatically assign NM-16ESW in slot 1
+        # EtherSwitch router special case: automatically assign NM-16ESW in slot 1
         if not self.default_symbol:
             config = self.create_config()
             config['slots'][1] = 'NM-16ESW'
             self.set_config(config)
+
+            

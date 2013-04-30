@@ -1018,10 +1018,10 @@ background-none;
      <normaloff>:/icons/snapshot.svg</normaloff>:/icons/snapshot.svg</iconset>
    </property>
    <property name="text">
-    <string>Snapshot</string>
+    <string>Manage snapshots</string>
    </property>
    <property name="toolTip">
-    <string>Snapshot</string>
+    <string>Manage snapshots</string>
    </property>
    <property name="statusTip">
     <string>Snapshot</string>

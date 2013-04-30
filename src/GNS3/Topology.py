@@ -30,6 +30,7 @@ from GNS3.Link.Ethernet import Ethernet
 from GNS3.Link.Serial import Serial
 from GNS3.Node.DecorativeNode import DecorativeNode,  init_decoration_id
 from GNS3.Node.IOSRouter import IOSRouter, init_router_id
+from GNS3.Node.IOSRouter3700 import IOSRouter3700
 from GNS3.Node.ATMSW import ATMSW, init_atmsw_id
 from GNS3.Node.ATMBR import ATMBR, init_atmbr_id
 from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
@@ -475,7 +476,7 @@ class Topology(QtGui.QGraphicsScene):
         command = undo.AddNode(self, node)
         self.undoStack.push(command)
 
-    def addNode(self, node, fromScene=False):
+    def addNode(self, node, fromScene=False, image_to_use=None):
         """ Add node in the topology
             node: object
         """
@@ -488,43 +489,49 @@ class Topology(QtGui.QGraphicsScene):
                     QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"), translate("Topology", "Please register at least one IOS image"))
                     return False
 
-                image_to_use = None
-                selected_images = []
-                for (image, conf) in globals.GApp.iosimages.iteritems():
-                    if conf.platform == node.platform:
-                        selected_images.append(image)
-
-                if len(selected_images) == 0:
-                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"),
-                                              translate("Topology", "No image for platform %s") % node.platform)
-                    init_router_id(node.id)
-                    return False
-
-                if node.image_reference:
-                    image_to_use = node.image_reference
-                elif len(selected_images) > 1:
-                    for image in selected_images:
-                        conf = globals.GApp.iosimages[image]
-                        if conf.default:
-                            image_to_use = image
-                            break
-                    if not image_to_use:
-                        selected_images.sort()
-                        (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "IOS image"),
-                                                                      translate("Topology", "Please choose an image:"), selected_images, 0, False)
-                        if ok:
-                            image_to_use = unicode(selection)
-                        else:
-                            init_router_id(node.id)
-                            return False
-                else:
-                    image_to_use = selected_images[0]
+                if image_to_use == None:
+                    selected_images = []
+                    for (image, conf) in globals.GApp.iosimages.iteritems():
+                        if conf.platform == node.platform:
+                            selected_images.append(image)
+    
+                    if len(selected_images) == 0:
+                        QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "IOS image"),
+                                                  translate("Topology", "No image for platform %s") % node.platform)
+                        init_router_id(node.id)
+                        return False
+    
+                    if node.image_reference:
+                        image_to_use = node.image_reference
+                    elif len(selected_images) > 1:
+                        for image in selected_images:
+                            conf = globals.GApp.iosimages[image]
+                            if conf.default:
+                                image_to_use = image
+                                break
+                        if not image_to_use:
+                            selected_images.sort()
+                            (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "IOS image"),
+                                                                          translate("Topology", "Please choose an image:"), selected_images, 0, False)
+                            if ok:
+                                image_to_use = unicode(selection)
+                            else:
+                                init_router_id(node.id)
+                                return False
+                    else:
+                        image_to_use = selected_images[0]
 
                 node.image_reference = image_to_use
                 image_conf = globals.GApp.iosimages[image_to_use]
                 debug("Use image: " + image_to_use)
                 if image_conf.baseconfig:
-                    iosConfig = image_conf.baseconfig
+                    # Little ugly hack for Etherswitch router configs
+                    if isinstance(node, IOSRouter3700) and not node.default_symbol:
+                        swconfig = os.path.dirname(image_conf.baseconfig) + os.sep + 'baseconfig_sw.txt'
+                        if os.path.exists(swconfig):
+                            iosConfig = swconfig
+                    else:
+                        iosConfig = image_conf.baseconfig
                 if image_conf.default_ram:
                     debug("Set default RAM: " + str(image_conf.default_ram))
                     node.default_ram = image_conf.default_ram

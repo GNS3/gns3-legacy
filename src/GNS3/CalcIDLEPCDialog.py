@@ -64,16 +64,26 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
         for symbol in SYMBOLS:
             if symbol['name'] == "Router " + str(self.iosDialog.comboBoxPlatform.currentText()):
                 self.router = symbol['object'](QtSvg.QSvgRenderer(symbol['normal_svg_file']), QtSvg.QSvgRenderer(symbol['select_svg_file']))
-                globals.GApp.topology.addNode(self.router, False)
+                selected_image_name = unicode(self.iosDialog.lineEditIOSImage.text()).strip()
+                self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Starting calculation to find an Idle PC value for IOS image: %s" % selected_image_name) + '</font>')
+                image_to_use = None
+                for (image, conf) in globals.GApp.iosimages.iteritems():
+                        if conf.filename == selected_image_name:
+                            image_to_use = image
+                if image_to_use == None:
+                    self.textEdit.append('<font color="red">' + translate("CalcIDLEPCDialog", "IOS image %s is not registered! Please save the settings first" % selected_image_name) + '</font>')
+                    break
+                print image_to_use
+                globals.GApp.topology.addNode(self.router, False, image_to_use)
                 try:
                     self.router.startNode()
                 except:
                     self.iosDialog.label_IdlePCWarning.setText('<font color="red">' + translate("IOSDialog", "Cannot start the test node...") + '</font>')
                     break
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Giving time for the router to boot...") + '</font>')
+                self.textEdit.append('<font color="gray">' + translate("CalcIDLEPCDialog", "Giving some time for the router to boot...") + '</font>')
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
-                time.sleep(15)
+                time.sleep(20)
                 globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
 
                 if globals.GApp.dynagen.devices[self.router.hostname].idlepc != None:

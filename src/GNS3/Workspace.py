@@ -351,8 +351,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         dialog.setGeometry(r)
         dialog.setMinimumSize(layoutSizeHint)
 
-    def __export(self, name, format):
-        """ Export the view to an image
+    def __export(self, path, format):
+        """ Take a screenshot
         """
 
         if format == 'PDF':
@@ -360,7 +360,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             printer = QtGui.QPrinter(QtGui.QPrinter.HighResolution)
             printer.setOutputFormat(QtGui.QPrinter.PdfFormat)
             printer.setOrientation(QtGui.QPrinter.Landscape)
-            printer.setOutputFileName(name)
+            printer.setOutputFileName(path)
             painter = QtGui.QPainter(printer)
             painter.setRenderHint(QtGui.QPainter.Antialiasing)
             self.graphicsView.render(painter)
@@ -391,9 +391,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
 #            else:
 
             rect = self.graphicsView.viewport().rect()
-            width = rect.width() + 10
-            height = rect.height() + 10
-
+            width = rect.width()
+            height = rect.height()
+ 
             pixmap = QtGui.QPixmap(width, height)
             pixmap.fill(QtCore.Qt.white)
             painter = QtGui.QPainter(pixmap)
@@ -403,7 +403,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
 #            else:
             self.graphicsView.render(painter)
             painter.end()
-            pixmap.save(name, format)
+            pixmap.save(path, format)
+
+            #pixmap = QtGui.QPixmap.grabWidget(self.graphicsView)
+            #pixmap.save(path, format)
 
     def __action_Export(self):
         """ Export the scene to an image file
@@ -1603,6 +1606,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 self.timer.start(autosave * 1000)
             else:
                 self.timer.stop()
+
+            if len(globals.GApp.topology.nodes.values()):
+                self.__export(os.path.dirname(self.projectFile) + os.sep + 'screenshot.png', 'PNG')
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
 
