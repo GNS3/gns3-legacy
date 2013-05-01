@@ -459,7 +459,7 @@ class Topology(QtGui.QGraphicsScene):
                     realpath = os.path.realpath(self.dynagen.global_filename)
                     workdir = os.path.dirname(realpath)
                 try:
-                    pass#self.dynagen.dynamips[vbox_name].workingdir = workdir
+                    self.dynagen.dynamips[vbox_name].workingdir = workdir
                 except lib.DynamipsError, msg:
                     QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("Topology", "VBoxwrapper error"), unicode("%s: %s") % (workdir, msg))
                     del self.dynagen.dynamips[vbox_name]

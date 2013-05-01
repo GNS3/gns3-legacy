@@ -615,9 +615,9 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
 
         working_dir, = data
         try:
-            #os.chdir(working_dir)
-            #global WORKDIR
-            #WORKDIR = working_dir
+            os.chdir(working_dir)
+            global WORKDIR
+            WORKDIR = working_dir
             # VBOX doesn't need a working directory ... for now
             #for vbox_name in VBOX_INSTANCES.keys():
             #    VBOX_INSTANCES[vbox_name].workdir = os.path.join(working_dir, VBOX_INSTANCES[vbox_name].name)
