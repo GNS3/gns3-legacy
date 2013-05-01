@@ -304,7 +304,7 @@ class AnyVBoxEmuDevice(object):
             'netcard': 'automatic',
             'guestcontrol_user' : None,
             'guestcontrol_password': None,
-            'first_nic_managed': False,
+            'first_nic_managed': True,
             'headless_mode': False,
             'console_support': False,
             'console_telnet_server': False,
@@ -942,7 +942,7 @@ class AnyVBoxEmuDevice(object):
         # hide vbox internal interface (self._nics - 1)
         slot_info = '   Slot 0 hardware is ' + self._netcard + ' with ' + str(self._nics) + ' Ethernet interfaces\n'
         ignore_ports = []
-        if not self._first_nic_managed:
+        if self._first_nic_managed:
             slot_info = slot_info + "      Ethernet0 is the VirtualBox management interface\n"
             ignore_ports.append(0) # port 0 is the VirtualBox management interface
         for port in self.nios:

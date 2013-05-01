@@ -144,7 +144,7 @@ class xVBOXInstance(object):
         self.netcard = 'automatic'
         self.guestcontrol_user = ''
         self.guestcontrol_password = ''
-        self.first_nic_managed = False
+        self.first_nic_managed = True
         self.headless_mode = False
         self.console_support = False
         self.console_telnet_server = False
@@ -615,10 +615,9 @@ class VBoxWrapperRequestHandler(SocketServer.StreamRequestHandler):
 
         working_dir, = data
         try:
-            os.chdir(working_dir)
-            global WORKDIR
-            WORKDIR = working_dir
-            print "Working directory is now %s" % WORKDIR
+            #os.chdir(working_dir)
+            #global WORKDIR
+            #WORKDIR = working_dir
             # VBOX doesn't need a working directory ... for now
             #for vbox_name in VBOX_INSTANCES.keys():
             #    VBOX_INSTANCES[vbox_name].workdir = os.path.join(working_dir, VBOX_INSTANCES[vbox_name].name)

@@ -93,7 +93,7 @@ class VBoxController_4_1():
         self.guestIP = ""
         self.VBoxBug9239Workaround = True # VBoxSVC crash on Windows hosts.
 
-    def start(self, vmname, nics, udp, capture, netcard, first_nic_managed='False', headless_mode='False', pipe_name=None):
+    def start(self, vmname, nics, udp, capture, netcard, first_nic_managed='True', headless_mode='False', pipe_name=None):
         debugmsg(2, "VBoxController_4_1::start()")
         # note: If you want to improve 'vboxwrapper' code, take a look at
         #   'vboxshell', the official VirtualBox frontend writen in python.
@@ -105,7 +105,7 @@ class VBoxController_4_1():
         self.first_nic_managed = first_nic_managed
         self.headless_mode = headless_mode
         self.pipe_name = pipe_name
-        debugmsg(3, "vmname = %s, nics = %s, capture = %s, netcard = %s" % (vmname, nics, capture, netcard))
+        debugmsg(3, "vmname = %s, nics = %s, capture = %s, netcard = %s, 1st NIC managed = %s" % (vmname, nics, capture, netcard, first_nic_managed))
 
         debugmsg(2, "findMachine() is starting vmname = %s" % unicode(self.vmname))
         try:
@@ -162,7 +162,7 @@ class VBoxController_4_1():
                 #Wait for VM to actually go down:
                 self.progress.waitForCompletion(-1)
                 debugmsg(3, "self.progress.percent = %s" % str(self.progress.percent))
-                self._safeUnlockMachine()
+                #self._safeUnlockMachine()
             except:
                 #Do not crash "vboxwrapper", if stopping VM fails.
                 #But return True anyway, so VM state in GNS3 can become "stopped"
@@ -178,19 +178,20 @@ class VBoxController_4_1():
             debugmsg(3, "mach2=self.session.machine FAILED ! Skipping shutdown of interfaces...")
             return True
 
-#        if self.first_nic_managed == 'True':
-#            # first nic is managed by GNS3
-#            start_nic = 0
-#        else:
-#            # We leave vNIC #1 (vnic = 0) for VirtualBox management purposes
-#            start_nic = 1
-#
-#        for vnic in range(start_nic, int(self.nics)):
-#            debugmsg(3, "Disabling managed netadp %s" % str(vnic))
-#            if not self._safeDisableNetAdpFromMachine(mach2, vnic):
-#                debugmsg(3, "Disabling managed netadp %s FAILED, skipped." % str(vnic))
-#                #Return True anyway, so VM state in GNS3 can become "stopped"
-#                return True
+        #time.sleep(1)
+        if self.first_nic_managed == 'False':
+            # first nic is managed by GNS3
+            start_nic = 0
+        else:
+            # We leave vNIC #1 (vnic = 0) for VirtualBox management purposes
+            start_nic = 1
+
+        for vnic in range(start_nic, int(self.nics)):
+            debugmsg(3, "Disabling managed netadp %s" % str(vnic))
+            if not self._safeDisableNetAdpFromMachine(mach2, vnic, disableAdapter=True):
+                debugmsg(3, "Disabling managed netadp %s FAILED, skipped." % str(vnic))
+                #Return True anyway, so VM state in GNS3 can become "stopped"
+                return True
         self._safeSaveSettings(mach2)  #Doesn't matter if command returns True or False...
         self._safeUnlockMachine()  #Doesn't matter if command returns True or False...
         return True
@@ -391,7 +392,7 @@ class VBoxController_4_1():
             debugmsg(1, "_net_options() -> getNetworkAdapter() FAILED !")
             return False
 
-        if self.first_nic_managed == 'True':
+        if self.first_nic_managed == 'False':
             # first nic is managed by GNS3
             start_nic = 0
         else:
@@ -719,7 +720,7 @@ class VBoxController_4_1():
             return False
         return True
 
-    def _safeDisableNetAdpFromMachine(self, i_mach, i_vnic):
+    def _safeDisableNetAdpFromMachine(self, i_mach, i_vnic, disableAdapter=True):
         #_safe*() functions exist as a protection against COM failure on loaded hosts.
         debugmsg(3, "VBoxController_4_1::_safeDisableNetAdpFromMachine()")
         #This command is retried several times, because it fails more often...
@@ -734,7 +735,8 @@ class VBoxController_4_1():
                 netadp.traceEnabled=False
                 debugmsg(3, "_safeDisableNetAdpFromMachine() trace disabled.")
                 netadp.attachmentType=self.constants.NetworkAttachmentType_Null
-                netadp.enabled=False
+                if disableAdapter:
+                    netadp.enabled=False
                 break
             except Exception, e:
                 #Usually due to COM Error: "The object is not ready"

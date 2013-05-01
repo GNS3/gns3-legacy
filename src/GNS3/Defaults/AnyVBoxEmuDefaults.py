@@ -31,7 +31,7 @@ class AnyVBoxEmuDefaults(AbstractDefaults):
         self.default_netcard = 'automatic'
         self.default_nics = 6
         self.default_guestcontrol_user = ''
-        self.default_first_nic_managed = False
+        self.default_first_nic_managed = True
         self.default_headless_mode = False
         self.default_console_support = False
         self.default_console_telnet_server = False

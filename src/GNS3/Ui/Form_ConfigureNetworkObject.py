@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_ConfigureNetworkObject.ui'
 #
-# Created: Sun Apr 28 17:24:45 2013
+# Created: Wed May  1 15:05:34 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!

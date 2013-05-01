@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sun Apr 28 17:24:43 2013
+# Created: Wed May  1 15:05:32 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -495,8 +495,8 @@ class Ui_MainWindow(object):
         icon27 = QtGui.QIcon()
         icon27.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/snapshot.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.action_Snapshot.setIcon(icon27)
-        self.action_Snapshot.setText(QtGui.QApplication.translate("MainWindow", "Snapshot", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Snapshot.setToolTip(QtGui.QApplication.translate("MainWindow", "Snapshot", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Snapshot.setText(QtGui.QApplication.translate("MainWindow", "Manage snapshots", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Snapshot.setToolTip(QtGui.QApplication.translate("MainWindow", "Manage snapshots", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Snapshot.setStatusTip(QtGui.QApplication.translate("MainWindow", "Snapshot", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Snapshot.setObjectName(_fromUtf8("action_Snapshot"))
         self.action_ShowLayers = QtGui.QAction(MainWindow)

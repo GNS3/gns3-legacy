@@ -208,7 +208,7 @@ class AnyVBoxEmuDevice(AbstractNode, AnyVBoxEmuDefaults):
         """ Call AbstractNode method with unavailable_interfaces argument to allow us to "gray out" interface e1 which is managed by VirtualBox GUI (NAT, Bridge, etc.)
         """
 
-        if self.local_config['first_nic_managed']:
+        if not self.local_config['first_nic_managed']:
             AbstractNode.showMenuInterface(self)
         else:
             AbstractNode.showMenuInterface(self, ['e0'])
