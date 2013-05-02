@@ -32,8 +32,21 @@ GNS3 0.8.4
 	* Wrappers improvements all over the place.
 	* New baseconfig.txt
 	* New option to save traffic capture in project directories.
-	* Experimental auto IDLE PC calculation feature (requires Dynamips 0.2.8-RC5, included in Windows all-in-one and OSX DMG).
+	* Experimental auto IDLE PC calculation feature (requires Dynamips > 0.2.8-RC5, included in Windows all-in-one and OSX DMG).
 	* ASA pre-configuration.
+	* Introduced human readable byte sizes for stats in tooltips (what you see when hovering a device).
+	* Fixed the 'unbase' feature (but the whole idea behind is flawed).
+	* Reversed steps 1 & 2 of the Setup Wizard.
+	* The EtherSwitch router is grayed out in the node dock if no c3700 IOS image is configured.
+	* Set the 'Reserve first NIC for VirtualBox NAT to host OS' by default in VirtualBox preferences.
+    * Added 'virtio-net-pci' to the list of available NICs for Qemu based devices.
+    * Changed capture filenames to include the source and destination interfaces.
+    * The 'layouts' directory is now created in GNS3 install directory (used by SuperPutty).
+    * Fix: Allow '-' character to be used in VirtualBox hostnames.
+    * Added entries to have Dynamips/Qemu/VirtualBox hypervisors bind/listen to all available IP/host addresses (optional).
+    * File securecrt.vbs has been modified to include tranzitwww changes -> post18869.html#p18869
+    * QinQ fixed in Dynamips 0.2.8 RC6.
+    * Clean VirtualBox VMs from UDP tunnels when stopping them. 
 
 GNS3 0.8.3.1 - 20.10.2012
 

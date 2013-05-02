@@ -81,7 +81,7 @@ msg = "WELCOME to qemuwrapper.py"
 debugmsg(2, msg)
 
 __author__ = 'Thomas Pani and Jeremy Grossmann'
-__version__ = '0.8.4-RC2'
+__version__ = '0.8.4-RC3'
 
 if platform.system() == 'Windows':
     if os.path.exists('Qemu\qemu-system-i386w.exe'):
