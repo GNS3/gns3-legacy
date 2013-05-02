@@ -1034,8 +1034,8 @@ class Dynagen:
         pathname = os.path.dirname(realpath)
         self.debug('pathname -> ' + pathname)
         CONFIGSPECPATH.append(pathname)
-        for dir in CONFIGSPECPATH:
-            configspec = dir + os.sep + CONFIGSPEC
+        for confdir in CONFIGSPECPATH:
+            configspec = confdir + os.sep + CONFIGSPEC
             self.debug('configspec -> ' + configspec)
 
             # Check to see if configuration file exists

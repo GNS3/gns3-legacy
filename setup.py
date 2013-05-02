@@ -43,7 +43,7 @@ if sys.platform.startswith('win'):
 
     data_files = [("Langs", glob(r'src\GNS3\Langs\*.qm')),
                   ('src\GNS3\Dynagen\configspec'),
-                  ('LICENSE'),
+                  ('COPYING'),
                   ('baseconfig.txt'),
                   ('baseconfig_sw.txt'),
                   (PYQT4_DIR + r'\QtXml4.dll'),
@@ -109,7 +109,7 @@ elif sys.platform.startswith('darwin'):
 #                  ('vboxwrapper/tcp_pipe_proxy.py'),
                   ('baseconfig.txt'),
                   ('baseconfig_sw.txt'),
-                  ('LICENSE'),
+                  ('COPYING'),
                   ("../PlugIns/iconengines", [QTDIR + r'/plugins/iconengines/libqsvgicon.dylib']),
                   ("../PlugIns/imageformats", [QTDIR + r'/plugins/imageformats/libqgif.dylib',
                                                QTDIR + r'/plugins/imageformats/libqjpeg.dylib',
@@ -217,7 +217,7 @@ elif sys.platform.startswith('darwin'):
     os.chmod('./GNS3.app/Contents/Resources/Qemu-0.14.1/bin/qemu-system-x86_64', 0755)
     os.chmod('./GNS3.app/Contents/Resources/Qemu-0.14.1/bin/qemu-img', 0755)
     os.chmod('./GNS3.app/Contents/Resources/dynamips-0.2.8-RC3-community-OSX.intel64.bin', 0755)
-    os.chmod('./GNS3.app/Contents/Resources/dynamips-0.2.8-RC5-community-OSX.intel64.bin', 0755)
+    os.chmod('./GNS3.app/Contents/Resources/dynamips-0.2.8-RC6-community-OSX.intel64.bin', 0755)
     os.chmod('./GNS3.app/Contents/Resources/vpcs', 0755)
 
     print '*** Compiling & installing VBoxWrapper ***'
@@ -233,15 +233,32 @@ else:
       wrapper_dir = '/usr/share/gns3/'
     else:
       wrapper_dir = '/usr/local/libexec/gns3/'
+
     setup( # Distribution meta-data
             name = 'GNS3',
             version = VERSION,
-            description = 'GNS3 is a graphical network simulator based on Dynamips, an IOS emulator which allows users to run IOS binary images from Cisco Systems and Qemu/VirtualBox for emulating PIX & ASA firewalls as well as Juniper routers and Cisco IDS/IPS (binary images are not part of this package).',
-            license = 'GNU General Public License (GPL), see the LICENSE file for detailed info',
+            description = 'Network simulator that allows simulation of advanced networks',
+            long_description = """Graphical network simulator based on Dynamips, \
+an IOS emulator which allows users to run IOS binary images from \
+Cisco Systems and Qemu/VirtualBox for emulating PIX & ASA firewalls \
+as well as Juniper routers and Cisco IDS/IPS (binary images are not part of this package).""",
+            license = 'GNU General Public License (GPLv2)',
             author = 'Jeremy Grossmann',
-            author_email = 'http://www.gns3.net/contact',
+            author_email = 'package-maintainer@gns3.net',
+            maintainer = 'Jeremy Grossmann',
+            maintainer_email = 'package-maintainer@gns3.net',
+            keywords = ['network', 'simulator', 'cisco', 'junos', 'ios'],
             platforms = [ 'Windows', 'Linux', 'BSD', 'Mac OS X' ],
             url = 'http://www.gns3.net/',
+            classifiers = [
+                'Development Status :: 4 - Beta',
+                'Environment :: X11 Applications :: Qt',
+                'Intended Audience :: Information Technology',
+                'Intended Audience :: System Administrators',
+                'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
+                'Natural Language :: English',
+                'Programming Language :: Python',
+                'Topic :: System :: Networking'],
             scripts = [ 'gns3' ],
             package_dir = { '': 'src' },
             packages = [
@@ -259,5 +276,7 @@ else:
                 'GNS3.Langs'],
           package_data = { 'GNS3': ['Langs/*.qm', 'Dynagen/configspec'] },
           data_files = [ (wrapper_dir, ['qemuwrapper/qemuwrapper.py', 'vboxwrapper/vboxcontroller_4_1.py', 'vboxwrapper/vboxwrapper.py', 'vboxwrapper/tcp_pipe_proxy.py']),
-                        ('/usr/local/share/examples/gns3/', ['baseconfig.txt', 'baseconfig_sw.txt'])]
+                        ('share/examples/gns3/', ['baseconfig.txt', 'baseconfig_sw.txt']),
+                        ('share/doc/gns3/'), ['README', 'COPYING', 'CHANGES'],
+                        ('share/man/gns3/', ['docs/man/gns3.1'])]
     )

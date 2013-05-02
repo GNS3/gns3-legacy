@@ -1,6 +1,8 @@
-CHANGELOG
+####################
+# GNS3 - CHANGELOG #
+####################
 
-GNS3 0.8.4
+=== v0.8.4 To be released ===
 
 	* GUI improvements.
 	* New hub device.
@@ -48,13 +50,13 @@ GNS3 0.8.4
     * QinQ fixed in Dynamips 0.2.8 RC6.
     * Clean VirtualBox VMs from UDP tunnels when stopping them. 
 
-GNS3 0.8.3.1 - 20.10.2012
+=== v0.8.3.1 20.10.2012 ===
 
 	* Vboxwrapper recompilation to run with VirtualBox 4.2
 	* Support for access to the GNS3 VirtualBox VM name from inside a VM: VBoxControl guestproperty get NameInGNS3
 	* Minor fixes
-
-GNS3 0.8.3 - 12.12.2012
+ 
+=== v0.8.3 12.12.2012 ===
 
   New features:
 
@@ -123,7 +125,7 @@ GNS3 0.8.3 - 12.12.2012
  * Qemuwrapper base console has been changed from 3000 to 3001.
  * VBoxwrapper base console has been changed from 3900 to 3501.
 
-GNS3 0.8.2 - 13.03.2012
+=== v0.8.2 13.03.2012 ===
 
  * The issue with Qemu VMs that were stuck on “Booting from Hard Disk” message when using Qemu Manager on Linux has been fixed.
  * Vboxwrapper can be started on a remote host and VirtualBox VMs locally controlled in GNS3.
@@ -142,7 +144,7 @@ GNS3 0.8.2 - 13.03.2012
  * Windows interface names with non-ascii characters are now supported.
  * Unicode support improvements.
 
-GNS3 0.8.2 BETA2 - 31.01.2012
+=== v0.8.2 BETA2 31.01.2012 ===
 
  * IOS images can be directly uncompressed by GNS3.
  * Open recent files menu.
@@ -168,7 +170,7 @@ GNS3 0.8.2 BETA2 - 31.01.2012
  * Splash screen at startup.
  * Small improvements and bug fixes all over the place.
 
-GNS3 0.8.2 BETA - 12.12.2011.
+=== v0.8.2 BETA 12.12.2011 ===
 
  * Official integration of VirtualBox Edition features.
  * Auto-update checker / notifier (by default disabled on Linux, BSD, enabled on Mac and Windows).
@@ -190,7 +192,7 @@ GNS3 0.8.2 BETA - 12.12.2011.
  * Reverted GUI limit to hide Linux options (VDE, NIO_Linux, KVM) due to use case: Windows GUI + Linux server.
  * Experimental:  layers < 0 are now considered background layers. Only annotations, pictures and shaped items can be on a background layer. Once on a background layer, an item cannot be selected and moved anymore. However they still can be individually selected why right-click.
 
-GNS3 0.8.0 VirtualBox Edition
+=== v0.8.0 VirtualBox Edition ===
 
   Major Improvements:
 
@@ -237,7 +239,7 @@ GNS3 0.8.0 VirtualBox Edition
  * Double-click on VBOX VM brings it's display window to front.
  * Modular design
 
-GNS3 0.7.4 - 11.04.2011.
+=== v0.7.4 11.04.2011 ===
 
  * AUX ports integrated in the GUI
  * Greek translation
@@ -246,7 +248,7 @@ GNS3 0.7.4 - 11.04.2011.
  * Adaptations to support Dynamips 0.2.8 RC3 community
  * Integration of a loopback manager for Windows
 
-GNS3 0.7.3 - 12.12.2010.
+=== v0.7.3 12.12.2010 ===
 
  * Easily change the symbol of one or several nodes (Select a node, then right click -> Change symbol).
  * A docked window to see on what device interface captures are running (View -> Docks -> Captures). You can stop capturing or start Wireshark using this view.
@@ -277,7 +279,7 @@ GNS3 0.7.3 - 12.12.2010.
  * Reload all devices option.
  * French and Italian translation updates.
 
-GNS3 0.7.2 - 16.06.2010
+=== v0.7.2 16.06.2010 ===
 
  * Lot of small fixes (relative paths, link removal, .net loading, Ethernet switch connection to a Cloud etc.)
  * Qemuwrapper: random MAC address for devices
@@ -296,14 +298,14 @@ GNS3 0.7.2 - 16.06.2010
  * QinQ support for simulated Ethernet switches.
  * Interfaces statistics (Packets in, Packets out, Bytes in, Bytes out). Displayed in node tooltips.
 
-GNS3 0.7.1 - 29.04.2010
+=== v0.7.1 29.04.2010 ===
 
  * Qemuwrapper (option to listen on a IP/host and port).
  * Basic support for external hypervisors.
  * Some improvement for projects under GNS3 (still work to do).
  * Many small bugs fixes (graphical, cloud connection etc.)
 
-GNS3 0.7 - 27.02.2010
+=== v0.7 27.02.2010 ===
 
  * Support & debugging on Windows 7.
  * Qemuwrapper improvements & Windows compatibility.
@@ -327,7 +329,7 @@ GNS3 0.7 - 27.02.2010
  * New translation in Czech (thanks to Ondrej Filip).
  * Lot of various small bug fixes and improvements.
 
-GNS3 0.7RC1 - 23.12.2009
+=== v0.7RC1 23.12.2009 ===
 
  * Qemu integration.
  * JunOS & ASA integration using Qemu.
@@ -335,7 +337,7 @@ GNS3 0.7RC1 - 23.12.2009
  * Translations in Italian and Farsi.
  * Various bugs fixes and improvements.
 
-GNS3 0.6.1 - 13.05.2009
+=== v0.6.1 13.05.2009 ===
 
 Improvements:
 
@@ -359,7 +361,7 @@ Fixes:
  * AttributeError: value of `chassis' must be of type string.
  * Merge correct config paths when loading a .net create on a different platform.
 
-GNS3 0.6 - 15.12.2008
+=== v0.6 15.12.2008 ===
 
  * Users can change the workspace size.
  * Possibility to draw rectangles and ellipses.
@@ -372,7 +374,7 @@ GNS3 0.6 - 15.12.2008
  * Annotations, rectangles and ellipses can be rotated.
  * On Windows, users can load an alternative gns3.ini by setting a path on command line, example: gns3.exe --configdir <path_to_dir_containing_gns3.ini>
 
-GNS3 0.5: - 29.04.2008
+=== v0.5 29.04.2008 ===
 
  * Possibility to load .net files of other users (provided that there is a registered IOS image with the same model as the one used in the NET file).
  * New detailed tooltips for nodes.
@@ -385,7 +387,7 @@ GNS3 0.5: - 29.04.2008
  * Automatic load-balancing on external hypervisors (choose multiple external hypervisors when recording an IOS image).
  * New option to bind the hypervisor manager with an address/name other than 'localhost': useful for labs which use local and remote hypervisors.
 
-GNS3 0.4: - 21.03.2008
+=== v0.4 21.03.2008 ===
 
  * Dynamic mode (no design/emulation modes).
  * New .net import/export.
@@ -400,7 +402,7 @@ GNS3 0.4: - 21.03.2008
  * IDLE PC calculation from the GUI.
  * New languages.
 
-GNS3 0.3 beta:
+=== v0.3 BETA ===
 
  * Support of Ethernet, ATM and Frame-Relay switches
  * Included hub (Bridge of Dynamips) and cloud (external connections) devices
@@ -411,7 +413,7 @@ GNS3 0.3 beta:
  * Multi-language support (howto for translators soon)
 
 
-GNS3 0.2 alpha:
+=== v0.2 ALPHA ===
 
  * Hypervisor load-balancing to address the per process limit problem (http://dynagen.org/tutorial.htm#_Toc165530762)
  * Configuration of multiple node.
