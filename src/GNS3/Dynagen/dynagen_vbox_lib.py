@@ -750,6 +750,11 @@ class AnyVBoxEmuDevice(object):
         return (src_udp, dst_udp)
 
     def connect_to_dynamips(self, local_port, dynamips, remote_slot, remote_int, remote_port):
+
+        if self.nios.has_key(local_port) and self.nios[local_port] != None:
+            debug("%s: port %i has already a UDP connection" % (self.name, local_port))
+            return
+
         #figure out the destionation port according to interface descritors
         debugmsg(2, "AnyVBoxEmuDevice::connect_to_dynamips(%s, dynamips, dynamips, %s, %s)" % (str(local_port), str(remote_int), str(remote_port)))
         #debugmsg(2, "AnyVBoxEmuDevice::connect_to_dynamips()")
@@ -834,8 +839,14 @@ class AnyVBoxEmuDevice(object):
             return False
 
     def connect_to_emulated_device(self, local_port, remote_emulated_device, remote_port):
+
         debugmsg(2, "AnyVBoxEmuDevice::connect_to_emulated_device(%s, %s, %s)" % (str(local_port), unicode(remote_emulated_device), str(remote_port)))
         from qemu_lib import Qemu, QemuDevice, AnyEmuDevice
+
+        if self.nios.has_key(local_port) and self.nios[local_port] != None:
+            debug("%s: port %i has already a UDP connection" % (self.name, local_port))
+            return
+
         (src_udp, dst_udp) = self.__allocate_udp_port(remote_emulated_device.p)
 
         """ # WARNING: This code crashes on multi-host setups: (when connecting to Dynamips switch)

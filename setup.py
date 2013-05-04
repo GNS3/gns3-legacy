@@ -229,6 +229,9 @@ elif sys.platform.startswith('darwin'):
 
 else:
 
+    def normalizeWhitespace(s):
+        return ' '.join(s.split())
+
     if platform.system() == 'Linux':
       wrapper_dir = '/usr/share/gns3/'
     else:
@@ -238,10 +241,11 @@ else:
             name = 'GNS3',
             version = VERSION,
             description = 'Network simulator that allows simulation of advanced networks',
-            long_description = """Graphical network simulator based on Dynamips, \
-an IOS emulator which allows users to run IOS binary images from \
-Cisco Systems and Qemu/VirtualBox for emulating PIX & ASA firewalls \
-as well as Juniper routers and Cisco IDS/IPS (binary images are not part of this package).""",
+            long_description = normalizeWhitespace("""
+            Based on Dynamips, an IOS emulator which allows users to run IOS binary images
+            from Cisco Systems and Qemu/VirtualBox for emulating PIX & ASA
+            firewalls as well as Juniper routers and Cisco IDS/IPS.
+            Important: binary images are not part of this package."""),
             license = 'GNU General Public License (GPLv2)',
             author = 'Jeremy Grossmann',
             author_email = 'package-maintainer@gns3.net',
@@ -277,6 +281,6 @@ as well as Juniper routers and Cisco IDS/IPS (binary images are not part of this
           package_data = { 'GNS3': ['Langs/*.qm', 'Dynagen/configspec'] },
           data_files = [ (wrapper_dir, ['qemuwrapper/qemuwrapper.py', 'vboxwrapper/vboxcontroller_4_1.py', 'vboxwrapper/vboxwrapper.py', 'vboxwrapper/tcp_pipe_proxy.py']),
                         ('share/examples/gns3/', ['baseconfig.txt', 'baseconfig_sw.txt']),
-                        ('share/doc/gns3/'), ['README', 'COPYING', 'CHANGES'],
-                        ('share/man/gns3/', ['docs/man/gns3.1'])]
+                        ('share/doc/gns3/', ['README', 'COPYING', 'CHANGELOG']),
+                        ('share/man/man1/', ['docs/man/gns3.1'])]
     )
