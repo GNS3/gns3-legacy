@@ -14,7 +14,7 @@
 	* Drag & drop of multiple devices when pressing SHIFT.
 	* Temporary projects are created by default.
 	* Winpcap 4.1.3 included in Windows all-on-one package (compatible with Windows 8).
-	* Dynamips 0.2.8-RC5-community is now default on Windows.
+	* Dynamips 0.2.8-RC6-community is now default on Windows.
 	* Qemu 0.11.0 integrated to the DMG for Mac OS X (used by default).
 	* Qemu 0.14.1 integrated to the DMG for Mac OS X.
 	* Qemu monitor (to pause/resume) and user backend options (experimental).
@@ -48,8 +48,10 @@
     * Added entries to have Dynamips/Qemu/VirtualBox hypervisors bind/listen to all available IP/host addresses (optional).
     * File securecrt.vbs has been modified to include tranzitwww changes -> post18869.html#p18869
     * QinQ fixed in Dynamips 0.2.8 RC6.
-    * Clean VirtualBox VMs from UDP tunnels when stopping them. 
-
+    * Clean VirtualBox VMs from UDP tunnels when stopping them.
+    * Instructions entry for tools menu.
+    * Fixed bug with VirtualBox/Qemu devices while importing a topology: duplicated UDP tunnels.
+  
 === v0.8.3.1 20.10.2012 ===
 
 	* Vboxwrapper recompilation to run with VirtualBox 4.2

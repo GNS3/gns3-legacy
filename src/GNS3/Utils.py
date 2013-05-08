@@ -49,7 +49,7 @@ def runTerminal(params=None, workdir=None, auto_close_term=True):
                 else:
                     cmd += ' /K %s' % params
             elif os.path.exists(globals.GApp.systconf['general'].project_path):
-                cmd += '/K "cd %s"' % globals.GApp.systconf['general'].project_path
+                cmd += ' /K "cd %s"' % globals.GApp.systconf['general'].project_path
             subprocess.Popen(cmd)
         elif sys.platform.startswith('darwin'):
             if params:
