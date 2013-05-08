@@ -155,14 +155,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 vpcs_action.setData(QtCore.QVariant("vpcs-start.cmd"))
         elif sys.platform.startswith('darwin'):
             if self.projectWorkdir:
-                #vpcs_action.setData(QtCore.QVariant("cd " + self.projectWorkdir + " && " + os.getcwdu() + os.sep + 'vpcs'))
-                vpcs_action.setData(QtCore.QVariant("cd " + self.projectWorkdir + " && " + os.getcwdu() + os.sep + '../Resources/vpcs'))
+                #vpcs_action.setData(QtCore.QVariant("cd " + self.projectWorkdir + " ; " + os.getcwdu() + os.sep + 'vpcs'))
+                vpcs_action.setData(QtCore.QVariant("cd " + self.projectWorkdir + " ; " + os.getcwdu() + os.sep + '../Resources/vpcs'))
             else:
                 #vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + 'vpcs'))
                 vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + '../Resources/vpcs'))
         else:
             if self.projectWorkdir:
-                vpcs_action.setData(QtCore.QVariant("cd " + self.projectWorkdir + " && vpcs"))
+                vpcs_action.setData(QtCore.QVariant("cd " + self.projectWorkdir + " ; vpcs"))
             else:
                 vpcs_action.setData(QtCore.QVariant('vpcs'))
         self.menu_Tools.addAction(vpcs_action)
@@ -214,7 +214,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
     def slotRunTool(self, action):
         """ Run a tool from Tools menu
         """
-        
+
         if action.text() == translate("Workspace", 'Terminal'):
             runTerminal()
         elif action.text() == translate("Workspace", "Instructions"):

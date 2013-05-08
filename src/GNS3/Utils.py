@@ -48,11 +48,16 @@ def runTerminal(params=None, workdir=None, auto_close_term=True):
                     cmd += ' /C %s' % params
                 else:
                     cmd += ' /K %s' % params
+            elif os.path.exists(globals.GApp.systconf['general'].project_path):
+                cmd += '/K "cd %s"' % globals.GApp.systconf['general'].project_path
             subprocess.Popen(cmd)
         elif sys.platform.startswith('darwin'):
             if params:
                 cmd = "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"%s; exit\"'" % params
                 subprocess.Popen(cmd, shell=True, cwd=workdir)
+            elif os.path.exists(globals.GApp.systconf['general'].project_path):
+                cmd = '/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal "%s"' % globals.GApp.systconf['general'].project_path
+                subprocess.Popen(cmd, shell=True)
             else:
                 cmd = "/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal"
                 subprocess.Popen(cmd)
@@ -60,8 +65,10 @@ def runTerminal(params=None, workdir=None, auto_close_term=True):
             if params:
                 cmd = "xterm -e '%s' > /dev/null 2>&1 &" % params
                 subprocess.Popen(cmd, shell=True, cwd=workdir)
+            elif os.path.exists(globals.GApp.systconf['general'].project_path):
+                cmd = "xterm -e 'cd %s && /bin/bash'" % globals.GApp.systconf['general'].project_path
+                subprocess.Popen(cmd, shell=True)
             else:
-                cmd = "xterm"
                 subprocess.Popen("xterm", shell=True)
     except OSError, e:
         print translate("Utils", "Cannot start command %s: %s") % (cmd, e.strerror)

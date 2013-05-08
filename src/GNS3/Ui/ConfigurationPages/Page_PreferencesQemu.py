@@ -1050,7 +1050,7 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                     qemu_check = qemu_check + 1
 
                 if qemu_check == 0:
-                    self.labelQemuStatus.setText('<font color="red">' + translate("UiConfig_PreferencesQemu", "You're running an old AND unpatched version of qemu, which won't work")  + '</font>')
+                    self.labelQemuStatus.setText('<font color="yellow">' + translate("UiConfig_PreferencesQemu", "You're probably running an old AND unpatched version of qemu\nconnections to other devices may not work")  + '</font>')
                     return
 
             # PEMU must be located in the same folder as Qemuwrapper
