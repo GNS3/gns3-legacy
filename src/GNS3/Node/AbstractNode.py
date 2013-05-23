@@ -309,7 +309,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         try:
             self.setCustomToolTip()
         except:
-            print translate("AbstractNode", "Cannot communicate with %s, the server running this node may have crashed!", self.hostname)
+            print translate("AbstractNode", "Cannot communicate with %s, the server running this node may have crashed!" % self.hostname)
         if not self.isSelected() and self.__render_select:
             self.setSharedRenderer(self.__render_select)
 #            if not globals.addingLinkFlag:

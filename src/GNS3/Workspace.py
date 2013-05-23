@@ -162,7 +162,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + '../Resources/vpcs'))
         else:
             if self.projectWorkdir:
-                vpcs_action.setData(QtCore.QVariant("cd " + self.projectWorkdir + " ; vpcs"))
+                vpcs_action.setData(QtCore.QVariant("cd " + self.projectWorkdir + " ; vpcs # /vpcs"))
             else:
                 vpcs_action.setData(QtCore.QVariant('vpcs'))
         self.menu_Tools.addAction(vpcs_action)
