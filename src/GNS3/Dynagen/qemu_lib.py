@@ -414,6 +414,14 @@ class AnyEmuDevice(object):
         r = send(self.p, 'qemu unbase %s' % self.name)
         r = [r]
         return r
+    
+    def rename(self, newname):
+        """rename this Qemu instance"""
+        debugmsg(2, "AnyEmuDevice::rename()")
+        
+        r = send(self.p, 'qemu rename %s %s' % (self.name, newname))
+        self.name = newname
+        return r
 
     def suspend(self):
         """suspends the emulated device instance in Qemu"""

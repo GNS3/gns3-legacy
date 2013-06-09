@@ -45,6 +45,7 @@ import time
 import random
 import ctypes
 import hashlib
+import shutil
 
 try:
     reload(sys)
@@ -739,6 +740,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             'clean': (1, 1),
             'unbase': (1, 1),
             'monitor': (2, 2),
+            'rename' : (2, 2),
             }
         }
 
@@ -1169,6 +1171,26 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
             output = 'OK'
         self.send_reply(self.HSC_INFO_OK, 1, output)
 
+    def do_qemu_rename(self, data):
+        #FIXME: non-working code
+        debugmsg(2, "QemuWrapperRequestHandler::do_qemu_rename(%s)" % str(data))
+        oldname, newname = data
+        if not oldname in QEMU_INSTANCES.keys():
+            self.send_reply(self.HSC_ERR_UNK_OBJ, 1,
+                            "unable to find Qemu '%s'" % oldname)
+            return
+
+        QEMU_INSTANCES[newname] = QEMU_INSTANCES[oldname]
+        QEMU_INSTANCES[newname].name = newname
+        global WORKDIR
+        new_workdir = os.path.join(WORKDIR, newname)
+        try:
+            shutil.move(QEMU_INSTANCES[oldname].workdir, new_workdir)
+        except OSError, e:
+            self.send_reply(self.HSC_ERR_INV_PARAM, 1, "rename: %s" % e.strerror)
+        self.workdir = new_workdir
+        del QEMU_INSTANCES[oldname]
+        self.send_reply(self.HSC_INFO_OK, 1, "Qemu '%s' renamed to '%s'" % (oldname, newname))
 
 class DaemonThreadingMixIn(SocketServer.ThreadingMixIn):
     daemon_threads = True

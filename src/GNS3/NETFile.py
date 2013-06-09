@@ -739,7 +739,8 @@ class NETFile(object):
                 keys = device.mapping.keys()
                 keys.sort()
                 for port in keys:
-                    (porttype, vlan, nio, twosided) = device.mapping[port]
+                    (porttype, tmpvlan, nio, twosided) = device.mapping[port]
+                    vlan = int(tmpvlan)
                     if not config['vlans'].has_key(vlan):
                         config['vlans'][vlan] = []
                     if twosided:

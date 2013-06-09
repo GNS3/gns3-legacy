@@ -37,7 +37,7 @@ from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.Hub import Hub, init_hub_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
-from GNS3.Node.AnyEmuDevice import QemuDevice, PIX, ASA, AnyEmuDevice, JunOS, IDS, init_emu_id
+from GNS3.Node.AnyEmuDevice import QemuDevice, PIX, ASA, AnyEmuDevice, JunOS, IDS, init_emu_id, emu_id
 from GNS3.Node.AnyVBoxEmuDevice import VBoxDevice, AnyVBoxEmuDevice, init_vbox_emu_id
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Annotation import Annotation
@@ -915,6 +915,31 @@ class Topology(QtGui.QGraphicsScene):
                         node.showHostname()
                 else:
                     print translate("Topology", "Couldn't set the same hostname as in VirtualBox for %s because non alphanumeric characters have been detected") % node.hostname
+
+            #FIXME: ugly temporary workaround to have Qemu VMs with same hostname as in Qemu names (this is not a clean solution as params are sent twice to qemuwrapper)
+            if isinstance(node, QemuDevice):# and globals.GApp.systconf['vbox'].use_VBoxVmnames:
+                image = node.config['image'].strip()
+                vmname = image
+                for (name, conf) in globals.GApp.qemuimages.iteritems():
+                    if conf.filename == image:
+                        vmname = name
+                # white spaces have to be replaced
+                p = re.compile('\s+', re.UNICODE)
+                vmname = p.sub("_", vmname)
+                if re.search(r"""^[\w,.\-\[\]]*$""", vmname, re.UNICODE):
+                    # check if hostname has already been assigned and prevent conflicts...
+                    for node_item in globals.GApp.topology.nodes.itervalues():
+                        if vmname == node_item.hostname:
+                            from GNS3.Node.AnyEmuDevice import emu_id
+                            vmname += '_' + str(emu_id-1)
+                            break
+                    node.reconfigNode(vmname)
+                    if node.hostnameDiplayed():
+                        # force to redisplay the hostname
+                        node.removeHostname()
+                        node.showHostname()
+                else:
+                    print translate("Topology", "Couldn't set the same hostname as in Qemu for %s because non alphanumeric characters have been detected") % node.hostname
 
         except (lib.DynamipsVerError, lib.DynamipsError), msg:
             if isinstance(node, IOSRouter):

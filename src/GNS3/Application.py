@@ -589,12 +589,13 @@ class Application(QApplication, Singleton):
         try:
             # trick to test old version format (integer), before 0.8.2.1 release
             int(version)
-        except:
+        except ValueError:
             force_clear_configuration = False
-            pass
-            # for future releases
-            #if LooseVersion(VERSION) > version:
-            #    pass
+
+        #for future releases
+        if LooseVersion(VERSION) > str(version):
+            # reset the tips dialog
+            self.mainWindow.tips_dialog.checkBoxDontShowAgain.setChecked(False)
 
         if force_clear_configuration:
             self.mainWindow.raise_()

@@ -226,6 +226,10 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AnyEmuDevice", "New hostname"),
                                        translate("AnyEmuDevice", "Cannot rename a connected emulated device"))
             return
+#         if self.hostname != new_hostname:
+#             self.emudev.rename(new_hostname)
+#             self.set_hostname(new_hostname)
+
         self.delete_emudev()
         if self.hostname != new_hostname:
             try:
