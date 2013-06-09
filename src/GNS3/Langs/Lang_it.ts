@@ -116,17 +116,17 @@
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="126"/>
         <source>virtio-net-pci</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio-net-pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="158"/>
         <source>Add user network backend</source>
-        <translation type="unfinished">Aggiungi motore di rete dell&apos;utente</translation>
+        <translation>Aggiungi motore di rete dell&apos;utente</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_ASAPage.ui" line="171"/>
         <source>Monitor mode (pause and resume)</source>
-        <translation type="unfinished">Modalità monitor (pausa e riprendi)</translation>
+        <translation>Modalità monitor (pausa e riprendi)</translation>
     </message>
 </context>
 <context>
@@ -395,97 +395,97 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="207"/>
+        <location filename="../Link/AbstractEdge.py" line="208"/>
         <source>Delete</source>
         <translation>Elimina</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="213"/>
+        <location filename="../Link/AbstractEdge.py" line="214"/>
         <source>Start Wireshark</source>
         <translation>Avvia Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="526"/>
+        <location filename="../Link/AbstractEdge.py" line="541"/>
         <source>Capture</source>
         <translation>Cattura traffico</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="228"/>
+        <location filename="../Link/AbstractEdge.py" line="229"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>La cattura del traffico non è supportata su questo tipo di collegamento</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="260"/>
+        <location filename="../Link/AbstractEdge.py" line="261"/>
         <source>Please choose a source</source>
         <translation>Scegli una sorgente</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="263"/>
+        <location filename="../Link/AbstractEdge.py" line="264"/>
         <source>No device available for traffic capture</source>
         <translation>Nessun analizzatore disponibile</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="456"/>
+        <location filename="../Link/AbstractEdge.py" line="471"/>
         <source>Dynamips error</source>
         <translation>Errore di Dynamips</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="472"/>
+        <location filename="../Link/AbstractEdge.py" line="487"/>
         <source>Please configure capture options</source>
         <translation>Configura le opzioni di cattura</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="163"/>
+        <location filename="../Link/AbstractEdge.py" line="164"/>
         <source>Link: %s (%s) -&gt; %s (%s)</source>
         <translation>Collegamento: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="304"/>
+        <location filename="../Link/AbstractEdge.py" line="305"/>
         <source>Device %s is not running</source>
         <translation>Il dispositivo %s non è in funzione</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="526"/>
+        <location filename="../Link/AbstractEdge.py" line="541"/>
         <source>Cannot start %s : %s</source>
         <translation>Impossibile avviare %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="211"/>
+        <location filename="../Link/AbstractEdge.py" line="212"/>
         <source>Stop capturing</source>
         <translation>Ferma la cattura</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="300"/>
+        <location filename="../Link/AbstractEdge.py" line="301"/>
         <source>Device %s must be restarted to start capturing traffic</source>
         <translation>Il dispositivo %s deve essere riavviato per iniziare la cattura del traffico</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="429"/>
+        <location filename="../Link/AbstractEdge.py" line="444"/>
         <source>Device %s must be stopped to stop capturing traffic</source>
         <translation>Il dispositivo %s deve essere fermato per terminare la catturare del traffico</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="209"/>
+        <location filename="../Link/AbstractEdge.py" line="210"/>
         <source>Start capturing</source>
         <translation>Avvia la cattura</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="481"/>
+        <location filename="../Link/AbstractEdge.py" line="496"/>
         <source>%s is empty, no traffic has been captured on the link yet. Please try again later</source>
         <translation>%s è vuoto, non è stato catturato ancora alcun traffico sul collegamento. Riprova più tardi</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="484"/>
+        <location filename="../Link/AbstractEdge.py" line="499"/>
         <source>Cannot find %s : %s</source>
         <translation>Impossibile trovare %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="484"/>
+        <location filename="../Link/AbstractEdge.py" line="499"/>
         <source>NOTE: This feature is only available for local hypervisors.</source>
         <translation>NOTA: questa funzionalità è disponibile solo per hypervisor locali.</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="514"/>
+        <location filename="../Link/AbstractEdge.py" line="529"/>
         <source>Please close Wireshark</source>
         <translation>Chiudi Wireshark</translation>
     </message>
@@ -626,7 +626,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AnyEmuDevice</name>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="242"/>
+        <location filename="../Node/AnyEmuDevice.py" line="246"/>
         <source>Dynamips error</source>
         <translation>Errore di Dynamips</translation>
     </message>
@@ -646,12 +646,12 @@ p, li { white-space: pre-wrap; }
         <translation>Impossibile cambiare il nome host di un dispositivo in esecuzione</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="399"/>
+        <location filename="../Node/AnyEmuDevice.py" line="403"/>
         <source>Cannot change the console port while the node is running</source>
         <translation>Impossibile cambiare la porta console mentre il nodo è in esecuzione</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="399"/>
+        <location filename="../Node/AnyEmuDevice.py" line="403"/>
         <source>Console port</source>
         <translation>Porta console</translation>
     </message>
@@ -692,19 +692,19 @@ p, li { white-space: pre-wrap; }
         <translation>Avvio simulatore grafico di rete in corso...</translation>
     </message>
     <message>
-        <location filename="../Application.py" line="609"/>
+        <location filename="../Application.py" line="610"/>
         <source>GNS3 configuration file</source>
         <translation>File di configurazione di GNS3</translation>
     </message>
     <message>
-        <location filename="../Application.py" line="601"/>
+        <location filename="../Application.py" line="602"/>
         <source>You have installed a new GNS3 version.
 It is recommended to clear your old configuration, do you want to proceed?</source>
         <translation>Hai installato una nuova versione di GNS3.
 Ti consigliamo di cancellare la vecchia configurazione, vuoi procedere?</translation>
     </message>
     <message>
-        <location filename="../Application.py" line="609"/>
+        <location filename="../Application.py" line="610"/>
         <source>Configuration cleared!
 Please restart GNS3</source>
         <translation>Configurazione cancellata!
@@ -791,12 +791,12 @@ Riavvia GNS3</translation>
     <message>
         <location filename="../CalcIDLEPCDialog.py" line="113"/>
         <source>This Idle PC value seems to work, do you want to keep it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Questo valore di Idle PC sembra funzionare, vuoi mantenerlo?</translation>
     </message>
     <message>
         <location filename="../CalcIDLEPCDialog.py" line="84"/>
         <source>Giving some time for the router to boot...</source>
-        <translation type="unfinished"></translation>
+        <translation>Attesa mentre il router si avvia...</translation>
     </message>
 </context>
 <context>
@@ -1446,12 +1446,12 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Node/Hub.py" line="236"/>
         <source>Connection</source>
-        <translation type="unfinished">Connessione</translation>
+        <translation>Connessione</translation>
     </message>
     <message>
         <location filename="../Node/Hub.py" line="236"/>
         <source>No port available</source>
-        <translation type="unfinished">Nessuna porta disponibile</translation>
+        <translation>Nessuna porta disponibile</translation>
     </message>
 </context>
 <context>
@@ -1459,17 +1459,17 @@ Scegli un&apos;interfaccia di rete alternativa:</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="14"/>
         <source>Ethernet hub</source>
-        <translation type="unfinished"></translation>
+        <translation>Hub Ethernet</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="26"/>
         <source>Settings</source>
-        <translation type="unfinished">Impostazioni</translation>
+        <translation>Impostazioni</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="32"/>
         <source>Number of ports:</source>
-        <translation type="unfinished"></translation>
+        <translation>Numero di porte:</translation>
     </message>
 </context>
 <context>
@@ -1673,17 +1673,17 @@ I valori migliori di idlepc sono ottentuti quando IOS è in stato di attesa: il 
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="198"/>
         <source>virtio-net-pci</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio-net-pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="230"/>
         <source>Add user network backend</source>
-        <translation type="unfinished">Aggiungi motore di rete dell&apos;utente</translation>
+        <translation>Aggiungi motore di rete dell&apos;utente</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_IDSPage.ui" line="243"/>
         <source>Monitor mode (pause and resume)</source>
-        <translation type="unfinished">Modalità monitor (pausa e riprendi)</translation>
+        <translation>Modalità monitor (pausa e riprendi)</translation>
     </message>
 </context>
 <context>
@@ -2044,14 +2044,16 @@ Si consiglia di utilizzare il c3725.</translation>
     <message>
         <location filename="../IOSDialog.py" line="458"/>
         <source>Only local IOS images can be tested</source>
-        <translation type="unfinished"></translation>
+        <translation>Possono essere provate solo immagini di IOS locali</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="630"/>
         <source>You will need Dynamips version 0.2.8-RC4 and above to use this utility.
 Version detected: %s
 You have to test the settings in Dynamips preferences to update the detected version.</source>
-        <translation type="unfinished"></translation>
+        <translation>Per utilizzare questo strumento, avrai bisogno di Dynamips versione 0.2.8-RC4 e successive.
+Versione rilevata: %s
+Devi provare le impostazioni nelle preferenze di Dynamips per aggiornare la versione rilevata.</translation>
     </message>
 </context>
 <context>
@@ -2423,17 +2425,17 @@ You have to test the settings in Dynamips preferences to update the detected ver
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="162"/>
         <source>virtio-net-pci</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio-net-pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="194"/>
         <source>Add user network backend</source>
-        <translation type="unfinished">Aggiungi motore di rete dell&apos;utente</translation>
+        <translation>Aggiungi motore di rete dell&apos;utente</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_JunOSPage.ui" line="207"/>
         <source>Monitor mode (pause and resume)</source>
-        <translation type="unfinished">Modalità monitor (pausa e riprendi)</translation>
+        <translation>Modalità monitor (pausa e riprendi)</translation>
     </message>
 </context>
 <context>
@@ -3147,7 +3149,7 @@ You have to test the settings in Dynamips preferences to update the detected ver
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="499"/>
         <source>Manage snapshots</source>
-        <translation type="unfinished"></translation>
+        <translation>Gestisci le istantanee</translation>
     </message>
 </context>
 <context>
@@ -3173,7 +3175,7 @@ You have to test the settings in Dynamips preferences to update the detected ver
         <translation>Avviso di Dynamips</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1261"/>
+        <location filename="../NETFile.py" line="1262"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: Errore IO: %s</translation>
     </message>
@@ -3208,37 +3210,37 @@ You have to test the settings in Dynamips preferences to update the detected ver
         <translation>%s: impossibile trovare il simbolo %s, verifica che si trovi nella lista nodi, e riavvia il file .net</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1261"/>
+        <location filename="../NETFile.py" line="1262"/>
         <source>%s: IOError</source>
         <translation>%s: errore IO</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1166"/>
+        <location filename="../NETFile.py" line="1167"/>
         <source>%s must be connected or have a hypervisor set in order to be registered</source>
         <translation>%s deve essere connesso o avere un hypervisor configurato per essere registrato</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="965"/>
+        <location filename="../NETFile.py" line="966"/>
         <source>%s: Exporting %s configuration to %s</source>
         <translation>%s: esportazione della configurazione di %s su %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="968"/>
+        <location filename="../NETFile.py" line="969"/>
         <source>%s: %s: Dynamips error: %s</source>
         <translation>%s: %s: Errore di Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="972"/>
+        <location filename="../NETFile.py" line="973"/>
         <source>%s: %s: Dynamips warning: %s</source>
         <translation>%s: %s: avviso di Dynamips: %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="981"/>
+        <location filename="../NETFile.py" line="982"/>
         <source>%s: Exporting %s configuration to %s using recovery method</source>
         <translation>%s: esportazione della configurazione di %s su %s utilizzando il metodo di ripristino</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="984"/>
+        <location filename="../NETFile.py" line="985"/>
         <source>%s: %s: Could not export configuration to %s</source>
         <translation>%s: %s: impossibile esportare la configurazione su %s</translation>
     </message>
@@ -3248,7 +3250,7 @@ You have to test the settings in Dynamips preferences to update the detected ver
         <translation>L&apos;importazione della topologia non è riuscita! Rilevata un&apos;eccezione, i dettagli sono stati salvati in %s</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="975"/>
+        <location filename="../NETFile.py" line="976"/>
         <source>%s: Dynamips process %s:%i has crashed</source>
         <translation>%s: processo Dynamips %s:%i è terminato in modo inatteso</translation>
     </message>
@@ -3456,7 +3458,7 @@ per visualizzare la pagina di configurazione.</translation>
     <message>
         <location filename="../NodeConfigurator.py" line="151"/>
         <source>Ethernet hubs</source>
-        <translation type="unfinished"></translation>
+        <translation>Hub Ethernet</translation>
     </message>
 </context>
 <context>
@@ -3562,7 +3564,7 @@ per visualizzare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="162"/>
         <source>virtio-net-pci</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio-net-pci</translation>
     </message>
 </context>
 <context>
@@ -3673,7 +3675,7 @@ per visualizzare la pagina di configurazione.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_Hub.py" line="65"/>
         <source>A link is connected in port %i</source>
-        <translation type="unfinished">Un collegamento è attivo sulla porta %i</translation>
+        <translation>Un collegamento è attivo sulla porta %i</translation>
     </message>
 </context>
 <context>
@@ -4254,7 +4256,7 @@ o sul collegamento stesso.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="53"/>
         <source>Launch the project dialog at startup</source>
-        <translation>Lancia la finestra di dialogo all&apos;apertura</translation>
+        <translation>Apri la finestra di progetto all&apos;avvio</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesGeneral.ui" line="24"/>
@@ -4810,7 +4812,7 @@ o sul collegamento stesso.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesQemu.ui" line="1782"/>
         <source>virtio-net-pci</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio-net-pci</translation>
     </message>
 </context>
 <context>
@@ -5047,7 +5049,7 @@ Vedi le impostazioni di VirtualBox per cambiare il chipset.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PreferencesVirtualBox.ui" line="441"/>
         <source>Reserve first NIC for VirtualBox NAT to host OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Riserva la prima NIC per il NAT di VirtualBox al sistema host</translation>
     </message>
 </context>
 <context>
@@ -5204,57 +5206,57 @@ Vedi le impostazioni di VirtualBox per cambiare il chipset.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="20"/>
         <source>Qemu Flavor:</source>
-        <translation type="unfinished"></translation>
+        <translation>Flavor di Qemu:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="28"/>
         <source>Default</source>
-        <translation type="unfinished">Predefinito</translation>
+        <translation>Predefinito</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="33"/>
         <source>-i386</source>
-        <translation type="unfinished">-i386</translation>
+        <translation>-i386</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="38"/>
         <source>-x86_64</source>
-        <translation type="unfinished">-x86_64</translation>
+        <translation>-x86_64</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="43"/>
         <source>-sparc</source>
-        <translation type="unfinished">-sparc</translation>
+        <translation>-sparc</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="48"/>
         <source>-arm</source>
-        <translation type="unfinished">-arm</translation>
+        <translation>-arm</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="198"/>
         <source>lance</source>
-        <translation type="unfinished">lance</translation>
+        <translation>lance</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="203"/>
         <source>virtio-net-pci</source>
-        <translation type="unfinished"></translation>
+        <translation>virtio-net-pci</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="208"/>
         <source>smc91c111</source>
-        <translation type="unfinished"></translation>
+        <translation>smc91c111</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="240"/>
         <source>Add user network backend</source>
-        <translation type="unfinished">Aggiungi motore di rete dell&apos;utente</translation>
+        <translation>Aggiungi motore di rete dell&apos;utente</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_QemuPage.ui" line="253"/>
         <source>Monitor mode (pause and resume)</source>
-        <translation type="unfinished">Modalità monitor (pausa e riprendi)</translation>
+        <translation>Modalità monitor (pausa e riprendi)</translation>
     </message>
 </context>
 <context>
@@ -5522,7 +5524,7 @@ Vedi le impostazioni di VirtualBox per cambiare il chipset.</translation>
     <message>
         <location filename="../Scene.py" line="829"/>
         <source>Ethernet hub supports only Ethernet links.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;hub Ethernet supporta solo collegamenti Ethernet.</translation>
     </message>
 </context>
 <context>
@@ -5856,17 +5858,17 @@ durante la modifica (solo le note) con ALT e &apos;+&apos; (o P) / ALT e &apos;-
         <translation>Configurare il percorso di Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1258"/>
+        <location filename="../Topology.py" line="1283"/>
         <source>Dynamips error</source>
         <translation>Errore di Dynamips</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1258"/>
+        <location filename="../Topology.py" line="1283"/>
         <source>Connection lost</source>
         <translation>Connessione perduta</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1139"/>
+        <location filename="../Topology.py" line="1164"/>
         <source>Connection</source>
         <translation>Connessione</translation>
     </message>
@@ -5881,7 +5883,7 @@ durante la modifica (solo le note) con ALT e &apos;+&apos; (o P) / ALT e &apos;-
         <translation>Nessuna immagine per la piattaforma %s</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1139"/>
+        <location filename="../Topology.py" line="1164"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>Devi connettere almeno un router allo switch</translation>
     </message>
@@ -5951,7 +5953,7 @@ durante la modifica (solo le note) con ALT e &apos;+&apos; (o P) / ALT e &apos;-
         <translation>Scegli il Qemuwrapper esterno</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1115"/>
+        <location filename="../Topology.py" line="1140"/>
         <source>Can&apos;t connect these devices</source>
         <translation>Impossibile collegare gli apparati</translation>
     </message>
@@ -6114,6 +6116,11 @@ durante la modifica (solo le note) con ALT e &apos;+&apos; (o P) / ALT e &apos;-
         <location filename="../Topology.py" line="917"/>
         <source>Couldn&apos;t set the same hostname as in VirtualBox for %s because non alphanumeric characters have been detected</source>
         <translation>Impossibile impostare lo stesso nome host di VirtualBox per %s poiché sono stati rilevati caratteri non alfanumerici</translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="942"/>
+        <source>Couldn&apos;t set the same hostname as in Qemu for %s because non alphanumeric characters have been detected</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6349,7 +6356,8 @@ durante la modifica (solo le note) con ALT e &apos;+&apos; (o P) / ALT e &apos;-
         <location filename="../Ui/ConfigurationPages/Page_PreferencesQemu.py" line="1053"/>
         <source>You&apos;re probably running an old AND unpatched version of qemu
 connections to other devices may not work</source>
-        <translation type="unfinished"></translation>
+        <translation>Probabilmente stai eseguendo una versione vecchia E senza patch di qemu
+le connessioni agli altri dispositivi potrebbero non funzionare</translation>
     </message>
 </context>
 <context>
@@ -6623,7 +6631,7 @@ Vedi le impostazioni di VirtualBox per cambiare il chipset.</translation>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_VirtualBoxPage.ui" line="119"/>
         <source>Reserve first NIC for VirtualBox NAT to host OS</source>
-        <translation type="unfinished"></translation>
+        <translation>Riserva la prima NIC per il NAT di VirtualBox al sistema host</translation>
     </message>
 </context>
 <context>
@@ -6768,7 +6776,12 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;Configure the path to your OS image (IOS, Qemu, PIX etc.) directory&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;This is where you should store all your images.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;Configura il percorso alla cartella contenente l&apos;immagine di sistema (IOS, Qemu, PIX ecc.)&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;Qui dovresti archiviare tutte le tue immagini.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../Ui/Form_Wizard.py" line="95"/>
@@ -6778,7 +6791,12 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;Check that the path to Dynamips and the working directory &lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;are valid. Test using the provided button.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Lucida Grande&apos;; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;Controlla che i percorsi di Dynamips e della cartella di lavoro &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14pt; font-weight:600;&quot;&gt;siano validi. Prova utilizzando il pulsante fornito.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -7171,12 +7189,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="1379"/>
         <source>Setting new working dir</source>
-        <translation type="unfinished"></translation>
+        <translation>Impostazione di una nuova cartella di lavoro</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="222"/>
         <source>Instructions</source>
-        <translation type="unfinished"></translation>
+        <translation>Istruzioni</translation>
     </message>
 </context>
 <context>

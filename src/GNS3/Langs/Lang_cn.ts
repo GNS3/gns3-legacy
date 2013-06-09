@@ -338,97 +338,97 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AbstractEdge</name>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="207"/>
+        <location filename="../Link/AbstractEdge.py" line="208"/>
         <source>Delete</source>
         <translation>删除</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="213"/>
+        <location filename="../Link/AbstractEdge.py" line="214"/>
         <source>Start Wireshark</source>
         <translation>启动Wireshark</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="526"/>
+        <location filename="../Link/AbstractEdge.py" line="541"/>
         <source>Capture</source>
         <translation>抓取</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="228"/>
+        <location filename="../Link/AbstractEdge.py" line="229"/>
         <source>Packet capture is not supported on this link type</source>
         <translation>此链路不支持包抓取</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="260"/>
+        <location filename="../Link/AbstractEdge.py" line="261"/>
         <source>Please choose a source</source>
         <translation>请选择一个源</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="263"/>
+        <location filename="../Link/AbstractEdge.py" line="264"/>
         <source>No device available for traffic capture</source>
         <translation>没有可用的设备以供流量抓取</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="456"/>
+        <location filename="../Link/AbstractEdge.py" line="471"/>
         <source>Dynamips error</source>
         <translation>Dynamips错误</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="472"/>
+        <location filename="../Link/AbstractEdge.py" line="487"/>
         <source>Please configure capture options</source>
         <translation>请配置抓包选项</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="163"/>
+        <location filename="../Link/AbstractEdge.py" line="164"/>
         <source>Link: %s (%s) -&gt; %s (%s)</source>
         <translation>链路： %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="304"/>
+        <location filename="../Link/AbstractEdge.py" line="305"/>
         <source>Device %s is not running</source>
         <translation>设备 %s 没有运行</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="526"/>
+        <location filename="../Link/AbstractEdge.py" line="541"/>
         <source>Cannot start %s : %s</source>
         <translation>无法启动 %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="211"/>
+        <location filename="../Link/AbstractEdge.py" line="212"/>
         <source>Stop capturing</source>
         <translation>停止抓包</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="300"/>
+        <location filename="../Link/AbstractEdge.py" line="301"/>
         <source>Device %s must be restarted to start capturing traffic</source>
         <translation>必须重启 %s 以开始抓包</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="429"/>
+        <location filename="../Link/AbstractEdge.py" line="444"/>
         <source>Device %s must be stopped to stop capturing traffic</source>
         <translation>必须停止设备 %s 以停止抓包</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="209"/>
+        <location filename="../Link/AbstractEdge.py" line="210"/>
         <source>Start capturing</source>
         <translation>开始抓包</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="481"/>
+        <location filename="../Link/AbstractEdge.py" line="496"/>
         <source>%s is empty, no traffic has been captured on the link yet. Please try again later</source>
         <translation>%s 是空的，链路上没有流量被抓到。请过会再试。</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="484"/>
+        <location filename="../Link/AbstractEdge.py" line="499"/>
         <source>Cannot find %s : %s</source>
         <translation>无法找到 %s : %s</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="484"/>
+        <location filename="../Link/AbstractEdge.py" line="499"/>
         <source>NOTE: This feature is only available for local hypervisors.</source>
         <translation>注意：此功能只对本地管理系统可用</translation>
     </message>
     <message>
-        <location filename="../Link/AbstractEdge.py" line="514"/>
+        <location filename="../Link/AbstractEdge.py" line="529"/>
         <source>Please close Wireshark</source>
         <translation type="unfinished"></translation>
     </message>
@@ -569,7 +569,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AnyEmuDevice</name>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="242"/>
+        <location filename="../Node/AnyEmuDevice.py" line="246"/>
         <source>Dynamips error</source>
         <translation>Dynamips错误</translation>
     </message>
@@ -589,12 +589,12 @@ p, li { white-space: pre-wrap; }
         <translation>无法更改正在运行的设备主机名</translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="399"/>
+        <location filename="../Node/AnyEmuDevice.py" line="403"/>
         <source>Cannot change the console port while the node is running</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/AnyEmuDevice.py" line="399"/>
+        <location filename="../Node/AnyEmuDevice.py" line="403"/>
         <source>Console port</source>
         <translation type="unfinished">控制台端口</translation>
     </message>
@@ -635,18 +635,18 @@ p, li { white-space: pre-wrap; }
         <translation>正在启动图形网络模拟器...</translation>
     </message>
     <message>
-        <location filename="../Application.py" line="609"/>
+        <location filename="../Application.py" line="610"/>
         <source>GNS3 configuration file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Application.py" line="601"/>
+        <location filename="../Application.py" line="602"/>
         <source>You have installed a new GNS3 version.
 It is recommended to clear your old configuration, do you want to proceed?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Application.py" line="609"/>
+        <location filename="../Application.py" line="610"/>
         <source>Configuration cleared!
 Please restart GNS3</source>
         <translation type="unfinished"></translation>
@@ -3105,7 +3105,7 @@ You have to test the settings in Dynamips preferences to update the detected ver
         <translation>Dynamips警告</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1261"/>
+        <location filename="../NETFile.py" line="1262"/>
         <source>%s: IO Error: %s</source>
         <translation>%s: IO 错误: %s</translation>
     </message>
@@ -3140,37 +3140,37 @@ You have to test the settings in Dynamips preferences to update the detected ver
         <translation>%s: 无法找到 %s 符号，请在你的节点列表中核对该符号并且重新载入.net文件</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1261"/>
+        <location filename="../NETFile.py" line="1262"/>
         <source>%s: IOError</source>
         <translation>%s: IO错误</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="1166"/>
+        <location filename="../NETFile.py" line="1167"/>
         <source>%s must be connected or have a hypervisor set in order to be registered</source>
         <translation>为了注册 %s 必须被连接或有一个管理程序集</translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="965"/>
+        <location filename="../NETFile.py" line="966"/>
         <source>%s: Exporting %s configuration to %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="968"/>
+        <location filename="../NETFile.py" line="969"/>
         <source>%s: %s: Dynamips error: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="972"/>
+        <location filename="../NETFile.py" line="973"/>
         <source>%s: %s: Dynamips warning: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="981"/>
+        <location filename="../NETFile.py" line="982"/>
         <source>%s: Exporting %s configuration to %s using recovery method</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="984"/>
+        <location filename="../NETFile.py" line="985"/>
         <source>%s: %s: Could not export configuration to %s</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3180,7 +3180,7 @@ You have to test the settings in Dynamips preferences to update the detected ver
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../NETFile.py" line="975"/>
+        <location filename="../NETFile.py" line="976"/>
         <source>%s: Dynamips process %s:%i has crashed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5780,17 +5780,17 @@ editing (notes only) with ALT and &apos;+&apos; (or P) / ALT and &apos;-&apos; (
         <translation>请配置Dynamips路径</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1258"/>
+        <location filename="../Topology.py" line="1283"/>
         <source>Dynamips error</source>
         <translation>Dynamips错误</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1258"/>
+        <location filename="../Topology.py" line="1283"/>
         <source>Connection lost</source>
         <translation>连接丢失</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1139"/>
+        <location filename="../Topology.py" line="1164"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
@@ -5805,7 +5805,7 @@ editing (notes only) with ALT and &apos;+&apos; (or P) / ALT and &apos;-&apos; (
         <translation>没有平台 %s 镜像</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1139"/>
+        <location filename="../Topology.py" line="1164"/>
         <source>You have to connect at least one router to the switch</source>
         <translation>你必须连接至少一个路由器到交换机</translation>
     </message>
@@ -5875,7 +5875,7 @@ editing (notes only) with ALT and &apos;+&apos; (or P) / ALT and &apos;-&apos; (
         <translation>请选择外部Qemuwrapper</translation>
     </message>
     <message>
-        <location filename="../Topology.py" line="1115"/>
+        <location filename="../Topology.py" line="1140"/>
         <source>Can&apos;t connect these devices</source>
         <translation>无法连接这些设备</translation>
     </message>
@@ -6037,6 +6037,11 @@ editing (notes only) with ALT and &apos;+&apos; (or P) / ALT and &apos;-&apos; (
     <message>
         <location filename="../Topology.py" line="917"/>
         <source>Couldn&apos;t set the same hostname as in VirtualBox for %s because non alphanumeric characters have been detected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Topology.py" line="942"/>
+        <source>Couldn&apos;t set the same hostname as in Qemu for %s because non alphanumeric characters have been detected</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
