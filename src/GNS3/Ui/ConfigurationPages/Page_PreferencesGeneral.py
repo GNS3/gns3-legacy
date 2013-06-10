@@ -19,7 +19,7 @@
 # http://www.gns3.net/contact
 #
 
-import os, platform, shutil
+import sys, os, platform, shutil
 import GNS3.Globals as globals
 from PyQt4 import QtGui, QtCore
 from GNS3.Config.Objects import systemGeneralConf
@@ -136,7 +136,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.checkBoxRelativePaths.setCheckState(QtCore.Qt.Checked)
         else:
             self.checkBoxRelativePaths.setCheckState(QtCore.Qt.Unchecked)
-
+        if self.conf.auto_screenshot == True:
+            self.checkBoxAutoScreenshot.setCheckState(QtCore.Qt.Checked)
+        else:
+            self.checkBoxAutoScreenshot.setCheckState(QtCore.Qt.Unchecked)
         if self.conf.auto_check_for_update == True:
             self.checkBoxCheckForUpdate.setCheckState(QtCore.Qt.Checked)
         else:
@@ -197,7 +200,10 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
             self.conf.relative_paths = True
         else:
             self.conf.relative_paths = False
-
+        if self.checkBoxAutoScreenshot.checkState() == QtCore.Qt.Checked:
+            self.conf.auto_screenshot = True
+        else:
+            self.conf.auto_screenshot = False
         if self.checkBoxCheckForUpdate.checkState() == QtCore.Qt.Checked:
             self.conf.auto_check_for_update = True
         else:
@@ -226,15 +232,15 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
                     try:
                         os.makedirs(self.conf.project_path)
                     except (OSError, IOError), e:
-                        QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Project directory"),
-                                                   translate("UiConfig_PreferencesGeneral", "Cannot create project directory: %s") % e.strerror)
+                        QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Projects directory"),
+                                                   translate("UiConfig_PreferencesGeneral", "Cannot create projects directory: %s") % e.strerror)
 
                 if self.conf.ios_path and not os.path.exists(self.conf.ios_path):
                     try:
                         os.makedirs(self.conf.ios_path)
                     except (OSError, IOError), e:
-                        QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Image directory"),
-                                                    translate("UiConfig_PreferencesGeneral", "Cannot create image directory: %s") % e.strerror)
+                        QtGui.QMessageBox.critical(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Images directory"),
+                                                    translate("UiConfig_PreferencesGeneral", "Cannot create images directory: %s") % e.strerror)
 
         try:
             if not os.path.exists(self.conf.ios_path + os.sep + 'baseconfig.txt'):
@@ -258,7 +264,15 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
     def __setProjectPath(self):
 
-        fb = fileBrowser(translate('UiConfig_PreferencesGeneral', 'Project Directory'), parent=globals.preferencesWindow)
+        project_default_directory = '.'
+        if os.path.exists(globals.GApp.systconf['general'].project_path):
+            project_default_directory = globals.GApp.systconf['general'].project_path
+        elif sys.platform.startswith('win') and os.environ.has_key("HOMEDRIVE") and os.environ.has_key("HOMEPATH"):
+            project_default_directory = os.environ["HOMEDRIVE"] + os.environ["HOMEPATH"]
+        elif os.environ.has_key("HOME"):
+            project_default_directory = os.environ["HOME"]
+
+        fb = fileBrowser(translate('UiConfig_PreferencesGeneral', 'Projects Directory'), directory=project_default_directory, parent=globals.preferencesWindow)
         path = fb.getDir()
 
         if path:
@@ -266,7 +280,15 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
     def __setIOSPath(self):
 
-        fb = fileBrowser(translate('UiConfig_PreferencesGeneral', 'Image Directory'), parent=globals.preferencesWindow)
+        ios_default_directory = '.'
+        if os.path.exists(globals.GApp.systconf['general'].ios_path):
+            ios_default_directory = globals.GApp.systconf['general'].ios_path
+        elif sys.platform.startswith('win') and os.environ.has_key("HOMEDRIVE") and os.environ.has_key("HOMEPATH"):
+            ios_default_directory = os.environ["HOMEDRIVE"] + os.environ["HOMEPATH"]
+        elif os.environ.has_key("HOME"):
+            ios_default_directory = os.environ["HOME"]
+
+        fb = fileBrowser(translate('UiConfig_PreferencesGeneral', 'Images Directory'), directory=ios_default_directory, parent=globals.preferencesWindow)
         path = fb.getDir()
 
         if path:

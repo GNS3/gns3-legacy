@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Tue May  7 18:19:29 2013
+# Created: Sun Jun  9 18:18:40 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -562,8 +562,9 @@ class Ui_MainWindow(object):
         icon32.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/router-hover.png")), QtGui.QIcon.Active, QtGui.QIcon.Off)
         self.action_Router.setIcon(icon32)
         self.action_Router.setText(QtGui.QApplication.translate("MainWindow", "Routers", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Router.setToolTip(QtGui.QApplication.translate("MainWindow", "Routers", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Router.setStatusTip(QtGui.QApplication.translate("MainWindow", "Select Router", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Router.setIconText(QtGui.QApplication.translate("MainWindow", "Routers", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Router.setToolTip(QtGui.QApplication.translate("MainWindow", "Show all routers.", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Router.setStatusTip(_fromUtf8(""))
         self.action_Router.setObjectName(_fromUtf8("action_Router"))
         self.action_Switch = QtGui.QAction(MainWindow)
         icon33 = QtGui.QIcon()
@@ -571,8 +572,9 @@ class Ui_MainWindow(object):
         icon33.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/switch-hover.png")), QtGui.QIcon.Active, QtGui.QIcon.Off)
         self.action_Switch.setIcon(icon33)
         self.action_Switch.setText(QtGui.QApplication.translate("MainWindow", "Switches", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Switch.setToolTip(QtGui.QApplication.translate("MainWindow", "Switches", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_Switch.setStatusTip(QtGui.QApplication.translate("MainWindow", "Select Switch", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Switch.setIconText(QtGui.QApplication.translate("MainWindow", "Switches", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Switch.setToolTip(QtGui.QApplication.translate("MainWindow", "Show all switches.", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Switch.setStatusTip(_fromUtf8(""))
         self.action_Switch.setObjectName(_fromUtf8("action_Switch"))
         self.action_EndDevices = QtGui.QAction(MainWindow)
         icon34 = QtGui.QIcon()
@@ -580,8 +582,9 @@ class Ui_MainWindow(object):
         icon34.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/PC-hover.png")), QtGui.QIcon.Active, QtGui.QIcon.Off)
         self.action_EndDevices.setIcon(icon34)
         self.action_EndDevices.setText(QtGui.QApplication.translate("MainWindow", "End devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_EndDevices.setToolTip(QtGui.QApplication.translate("MainWindow", "End devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_EndDevices.setStatusTip(QtGui.QApplication.translate("MainWindow", "Select End device", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_EndDevices.setIconText(QtGui.QApplication.translate("MainWindow", "End devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_EndDevices.setToolTip(QtGui.QApplication.translate("MainWindow", "Show all end devices.", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_EndDevices.setStatusTip(_fromUtf8(""))
         self.action_EndDevices.setObjectName(_fromUtf8("action_EndDevices"))
         self.action_SecurityDevices = QtGui.QAction(MainWindow)
         icon35 = QtGui.QIcon()
@@ -589,8 +592,9 @@ class Ui_MainWindow(object):
         icon35.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/firewall-hover.png")), QtGui.QIcon.Active, QtGui.QIcon.Off)
         self.action_SecurityDevices.setIcon(icon35)
         self.action_SecurityDevices.setText(QtGui.QApplication.translate("MainWindow", "Security devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_SecurityDevices.setToolTip(QtGui.QApplication.translate("MainWindow", "Security devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_SecurityDevices.setStatusTip(QtGui.QApplication.translate("MainWindow", "Select Security device", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SecurityDevices.setIconText(QtGui.QApplication.translate("MainWindow", "Security devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SecurityDevices.setToolTip(QtGui.QApplication.translate("MainWindow", "Show all security devices.", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_SecurityDevices.setStatusTip(_fromUtf8(""))
         self.action_SecurityDevices.setObjectName(_fromUtf8("action_SecurityDevices"))
         self.action_HighContrastStyle = QtGui.QAction(MainWindow)
         self.action_HighContrastStyle.setCheckable(True)
@@ -602,9 +606,9 @@ class Ui_MainWindow(object):
         icon36.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/browse-all-icons.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         icon36.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/browse-all-icons-hover.png")), QtGui.QIcon.Active, QtGui.QIcon.Off)
         self.action_BrowseAllDevices.setIcon(icon36)
-        self.action_BrowseAllDevices.setText(QtGui.QApplication.translate("MainWindow", "Browse all devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_BrowseAllDevices.setToolTip(QtGui.QApplication.translate("MainWindow", "Browse all devices", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_BrowseAllDevices.setStatusTip(QtGui.QApplication.translate("MainWindow", "Browse all devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_BrowseAllDevices.setText(QtGui.QApplication.translate("MainWindow", "All devices", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_BrowseAllDevices.setToolTip(QtGui.QApplication.translate("MainWindow", "Show all devices.", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_BrowseAllDevices.setStatusTip(_fromUtf8(""))
         self.action_BrowseAllDevices.setObjectName(_fromUtf8("action_BrowseAllDevices"))
         self.action_AddLink = QtGui.QAction(MainWindow)
         self.action_AddLink.setCheckable(True)
@@ -612,9 +616,10 @@ class Ui_MainWindow(object):
         icon37.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/connection-new.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         icon37.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/connection-new-hover.svg")), QtGui.QIcon.Active, QtGui.QIcon.Off)
         self.action_AddLink.setIcon(icon37)
-        self.action_AddLink.setText(QtGui.QApplication.translate("MainWindow", "Add link", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_AddLink.setToolTip(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
-        self.action_AddLink.setStatusTip(QtGui.QApplication.translate("MainWindow", "Add a link", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_AddLink.setText(QtGui.QApplication.translate("MainWindow", "Add links", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_AddLink.setToolTip(QtGui.QApplication.translate("MainWindow", "To add links between devices.\n"
+"Use SHIFT to choose a link type.", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_AddLink.setStatusTip(_fromUtf8(""))
         self.action_AddLink.setObjectName(_fromUtf8("action_AddLink"))
         self.action_Console = QtGui.QAction(MainWindow)
         self.action_Console.setIcon(icon10)

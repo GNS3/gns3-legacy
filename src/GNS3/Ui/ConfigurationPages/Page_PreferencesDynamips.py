@@ -168,7 +168,12 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
     def __setDynamipsPath(self):
         """ Open a file dialog for choosing the location of dynamips executable
         """
-        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'Dynamips binary'), parent=globals.preferencesWindow)
+
+        dynamips_default_directory = '.'
+        if sys.platform.startswith('darwin') and hasattr(sys, "frozen") and os.path.exists('/Applications/GNS3/Contents/Resources/'):
+            dynamips_default_directory = '/Applications/GNS3/Contents/Resources/'
+
+        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'Dynamips binary'), directory=dynamips_default_directory, parent=globals.preferencesWindow)
         (path, selected) = fb.getFile()
 
         if path is not None and path != '':
@@ -190,7 +195,16 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         """ Open a file dialog for choosing the location of local hypervisor
         working directory
         """
-        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'Local hypervisor working directory'), parent=globals.preferencesWindow)
+
+        dynamips_default_working_directory = '.'
+        if os.environ.has_key("TEMP"):
+            dynamips_default_working_directory = os.environ["TEMP"]
+        elif os.environ.has_key("TMP"):
+            dynamips_default_working_directory = os.environ["TMP"]
+        elif os.path.exists('/tmp'):
+            dynamips_default_working_directory = unicode('/tmp')
+
+        fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'Local hypervisor working directory'), directory=dynamips_default_working_directory, parent=globals.preferencesWindow)
         path = fb.getDir()
 
         if path:

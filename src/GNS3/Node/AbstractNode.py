@@ -156,6 +156,12 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
                                            translate("AbstractNode", "Please use only alphanumeric characters"))
                 self.changeHostname()
                 return
+            
+            if text.lower() == 'lan':
+                QtGui.QMessageBox.critical(globals.GApp.mainWindow, translate("AbstractNode", "Hostname"),
+                                           translate("AbstractNode", "Please choose another hostname.\n%s is used by Dynagen to specify bridged networks.") % text)
+                self.changeHostname()
+                return
 
             for node in globals.GApp.topology.nodes.itervalues():
                 if text == node.hostname:
@@ -370,7 +376,7 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
 
         if globals.workaround_ManualLink == True:
             # We're not the right recipient of this event,
-            # so acknownledge the workaround and return
+            # so acknowledge the workaround and return
             globals.workaround_ManualLink = False
             return
 

@@ -82,7 +82,7 @@ debugmsg(2, 'Starting vboxwrapper')
 debugmsg(1, "debuglevel =  %s" % debuglevel + os.linesep)
 
 __author__ = 'Thomas Pani, Jeremy Grossmann and Alexey Eromenko "Technologov"'
-__version__ = '0.8.4-RC3'
+__version__ = '0.8.4-RC4'
 
 PORT = 11525
 IP = ""

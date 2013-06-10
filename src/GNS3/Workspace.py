@@ -670,7 +670,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
             globals.GApp.scene.resetAddingLink()
             globals.GApp.scene.setCursor(QtCore.Qt.ArrowCursor)
         else:
-            if not globals.GApp.systconf['general'].manual_connection:
+            modifiers = QtGui.QApplication.keyboardModifiers()
+            if not globals.GApp.systconf['general'].manual_connection or modifiers == QtCore.Qt.ShiftModifier:
                 menu = QtGui.QMenu()
                 for linktype in globals.linkTypes.keys():
                     menu.addAction(linktype)
@@ -1567,11 +1568,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_Preferences()
             return
 
-        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter='NET file (*.net);;All files (*.*)',
+        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter='NET file (*.net);;PNG file (*.png);;All files (*.*)',
                                        directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getFile()
 
-        if path and (selected == 'NET file (*.net)' or selected == ''):
-            self.loadNetfile(os.path.normpath(path))
+        if path:
+            if selected == 'NET file (*.net)' or selected == '':
+                self.loadNetfile(os.path.normpath(path))
+            elif selected == 'PNG file (*.png)':
+                project_filename = os.path.splitext(os.path.basename(path))[0] + '.net'
+                project_path = os.path.dirname(path) + os.sep + project_filename 
+                if not os.path.exists(project_path):
+                    QtGui.QMessageBox.critical(self, translate("Workspace", "Project file"), translate("Workspace", "No such file %s") % project_filename)
+                    return
+                self.loadNetfile(os.path.normpath(project_path))
 
     def loadNetfile(self, path):
 
@@ -1624,8 +1633,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
             else:
                 self.timer.stop()
 
-            if len(globals.GApp.topology.nodes.values()):
-                self.__export(os.path.dirname(self.projectFile) + os.sep + 'screenshot.png', 'PNG')
+            if len(globals.GApp.topology.nodes.values()) and globals.GApp.systconf['general'].auto_screenshot:
+                project_filename = os.path.splitext(os.path.basename(self.projectFile))[0]
+                self.__export(os.path.dirname(self.projectFile) + os.sep + project_filename + '.png', 'PNG')
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>539</width>
-    <height>588</height>
+    <height>599</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -67,7 +67,7 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="5" column="0">
         <widget class="QCheckBox" name="checkBoxCheckForUpdate">
          <property name="text">
           <string>Automatically check for update</string>
@@ -77,14 +77,14 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0">
+       <item row="6" column="0">
         <widget class="QLabel" name="label_7">
          <property name="text">
           <string>Delay between each device start when starting all devices:</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="0">
+       <item row="7" column="0">
         <widget class="QSpinBox" name="slowStartAll">
          <property name="suffix">
           <string> seconds</string>
@@ -94,14 +94,14 @@
          </property>
         </widget>
        </item>
-       <item row="7" column="0">
+       <item row="8" column="0">
         <widget class="QLabel" name="label_10">
          <property name="text">
           <string>Autosave:</string>
          </property>
         </widget>
        </item>
-       <item row="8" column="0">
+       <item row="9" column="0">
         <widget class="QSpinBox" name="autoSave">
          <property name="suffix">
           <string> seconds</string>
@@ -114,7 +114,7 @@
          </property>
         </widget>
        </item>
-       <item row="9" column="0">
+       <item row="10" column="0">
         <widget class="QGroupBox" name="groupBox_2">
          <property name="title">
           <string>Paths</string>
@@ -123,7 +123,7 @@
           <item row="0" column="0">
            <widget class="QLabel" name="label_2">
             <property name="text">
-             <string>Project directory:</string>
+             <string>Projects directory:</string>
             </property>
            </widget>
           </item>
@@ -143,7 +143,7 @@
           <item row="2" column="0">
            <widget class="QLabel" name="label_3">
             <property name="text">
-             <string>OS image (IOS, Qemu, PIX etc.) directory:</string>
+             <string>OS images (IOS, Qemu, PIX etc.) directory:</string>
             </property>
            </widget>
           </item>
@@ -163,7 +163,7 @@
          </layout>
         </widget>
        </item>
-       <item row="10" column="0">
+       <item row="11" column="0">
         <widget class="QGroupBox" name="groupBox_3">
          <property name="title">
           <string>Configuration file</string>
@@ -226,7 +226,7 @@
          </layout>
         </widget>
        </item>
-       <item row="11" column="0">
+       <item row="12" column="0">
         <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -238,6 +238,16 @@
           </size>
          </property>
         </spacer>
+       </item>
+       <item row="4" column="0">
+        <widget class="QCheckBox" name="checkBoxAutoScreenshot">
+         <property name="text">
+          <string>Include a screenshot when saving a project</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>

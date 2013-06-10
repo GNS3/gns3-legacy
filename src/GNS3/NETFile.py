@@ -700,9 +700,12 @@ class NETFile(object):
         max_vbox_emu_id = -1
         for (devicename, device) in self.dynagen.devices.iteritems():
 
-            if isinstance(device,  lib.Bridge):
+            if isinstance(device, lib.Bridge):
                 translate("NETFile", "Warning: GNS3 doesn't yet support lan statements, ignore it")
                 continue
+
+            if devicename.lower() == 'lan':
+                print translate("NETFile", "Warning: connections to device %s might not work properly and have to be removed manually by editing the topology file in a text editor") % devicename
 
             if isinstance(device, lib.Router):
                 platform = device.model

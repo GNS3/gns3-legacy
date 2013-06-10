@@ -559,10 +559,10 @@ background-none;
     <string>&amp;Save project</string>
    </property>
    <property name="toolTip">
-    <string>Save project or topology file</string>
+    <string>Save project</string>
    </property>
    <property name="statusTip">
-    <string>Save project or topology file</string>
+    <string>Save project</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -1151,11 +1151,14 @@ background-none;
    <property name="text">
     <string>Routers</string>
    </property>
-   <property name="toolTip">
+   <property name="iconText">
     <string>Routers</string>
    </property>
+   <property name="toolTip">
+    <string>Show all routers.</string>
+   </property>
    <property name="statusTip">
-    <string>Select Router</string>
+    <string/>
    </property>
   </action>
   <action name="action_Switch">
@@ -1167,11 +1170,14 @@ background-none;
    <property name="text">
     <string>Switches</string>
    </property>
-   <property name="toolTip">
+   <property name="iconText">
     <string>Switches</string>
    </property>
+   <property name="toolTip">
+    <string>Show all switches.</string>
+   </property>
    <property name="statusTip">
-    <string>Select Switch</string>
+    <string/>
    </property>
   </action>
   <action name="action_EndDevices">
@@ -1183,11 +1189,14 @@ background-none;
    <property name="text">
     <string>End devices</string>
    </property>
-   <property name="toolTip">
+   <property name="iconText">
     <string>End devices</string>
    </property>
+   <property name="toolTip">
+    <string>Show all end devices.</string>
+   </property>
    <property name="statusTip">
-    <string>Select End device</string>
+    <string/>
    </property>
   </action>
   <action name="action_SecurityDevices">
@@ -1199,11 +1208,14 @@ background-none;
    <property name="text">
     <string>Security devices</string>
    </property>
-   <property name="toolTip">
+   <property name="iconText">
     <string>Security devices</string>
    </property>
+   <property name="toolTip">
+    <string>Show all security devices.</string>
+   </property>
    <property name="statusTip">
-    <string>Select Security device</string>
+    <string/>
    </property>
   </action>
   <action name="action_HighContrastStyle">
@@ -1224,13 +1236,13 @@ background-none;
      <activeoff>:/icons/browse-all-icons-hover.png</activeoff>:/icons/browse-all-icons.png</iconset>
    </property>
    <property name="text">
-    <string>Browse all devices</string>
+    <string>All devices</string>
    </property>
    <property name="toolTip">
-    <string>Browse all devices</string>
+    <string>Show all devices.</string>
    </property>
    <property name="statusTip">
-    <string>Browse all devices</string>
+    <string/>
    </property>
   </action>
   <action name="action_AddLink">
@@ -1243,13 +1255,14 @@ background-none;
      <activeoff>:/icons/connection-new-hover.svg</activeoff>:/icons/connection-new.svg</iconset>
    </property>
    <property name="text">
-    <string>Add link</string>
+    <string>Add links</string>
    </property>
    <property name="toolTip">
-    <string>Add a link</string>
+    <string>To add links between devices.
+Use SHIFT to choose a link type.</string>
    </property>
    <property name="statusTip">
-    <string>Add a link</string>
+    <string/>
    </property>
   </action>
   <action name="action_Console">

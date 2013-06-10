@@ -88,10 +88,10 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
             globals.GApp.mainWindow.createProject((None, None, None, False, False))
 
     def __setProjectDir(self):
-        """ Open a file dialog for choosing the location of the project directory
+        """ Open a file dialog for choosing the location of the projects directory
         """
 
-        fb = fileBrowser(translate('ProjectDialog', 'Project Directory'), globals.GApp.systconf['general'].project_path, parent=globals.preferencesWindow)
+        fb = fileBrowser(translate('ProjectDialog', 'Projects Directory'), globals.GApp.systconf['general'].project_path, parent=globals.preferencesWindow)
         path = fb.getDir()
 
         if path:
@@ -102,7 +102,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
                 self.ProjectPath.setText(path)
 
     def __projectNameEdited(self, text):
-        """ Propose a project directory when changing the project name
+        """ Propose a projects directory when changing the project name
         """
 
         self.ProjectPath.clear()
@@ -123,7 +123,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
 
         if os.path.exists(projectDir):
             
-            reply = QtGui.QMessageBox.question(self, translate('ProjectDialog', 'Project Directory'), translate('ProjectDialog', "Project directory already exists, overwrite?"),
+            reply = QtGui.QMessageBox.question(self, translate('ProjectDialog', 'Projects Directory'), translate('ProjectDialog', "Project directory already exists, overwrite?"),
                                             QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
             if reply == QtGui.QMessageBox.No:
@@ -133,7 +133,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
             try:
                 os.makedirs(projectDir)
             except (OSError, IOError), e:
-                QtGui.QMessageBox.critical(self, translate('ProjectDialog', 'Project Directory'),
+                QtGui.QMessageBox.critical(self, translate('ProjectDialog', 'Projects Directory'),
                                            translate("Workspace", "Cannot create directory %s: %s") % (projectDir, e.strerror))
                 return (None, None, None, False, False)
 

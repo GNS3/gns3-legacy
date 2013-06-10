@@ -311,16 +311,28 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
     def slotSelectQemuWrapperPath(self):
         """ Get a path to Qemuwrapper from the file system
         """
+    
+        qemuwrapper_default_directory = '.'
+        if sys.platform.startswith('darwin') and hasattr(sys, "frozen") and os.path.exists('/Applications/GNS3/Contents/Resources/'):
+            qemuwrapper_default_directory = '/Applications/GNS3/Contents/Resources/'
 
-        path = fileBrowser('Qemuwrapper', directory='.', parent=globals.preferencesWindow).getFile()
+        path = fileBrowser('Qemuwrapper', directory=qemuwrapper_default_directory, parent=globals.preferencesWindow).getFile()
         if path != None and path[0] != '':
             self.lineEditQemuwrapperPath.setText(os.path.normpath(path[0]))
 
     def slotSelectQemuWrapperWorkdir(self):
         """ Get a working directory for Qemuwrapper from the file system
         """
+        
+        qemuwrapper_default_working_directory = '.'
+        if os.environ.has_key("TEMP"):
+            qemuwrapper_default_working_directory = os.environ["TEMP"]
+        elif os.environ.has_key("TMP"):
+            qemuwrapper_default_working_directory = os.environ["TMP"]
+        elif os.path.exists('/tmp'):
+            qemuwrapper_default_working_directory = unicode('/tmp')
 
-        fb = fileBrowser(translate('Page_PreferencesQemu', 'Local Qemu working directory'), parent=globals.preferencesWindow)
+        fb = fileBrowser(translate('Page_PreferencesQemu', 'Local Qemu working directory'), directory=qemuwrapper_default_working_directory, parent=globals.preferencesWindow)
         path = fb.getDir()
 
         if path:
@@ -334,7 +346,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         """ Get a path to Qemu from the file system
         """
 
-        path = fileBrowser('Qemu', directory='.', parent=globals.preferencesWindow).getFile()
+        qemu_default_directory = '.'
+        if sys.platform.startswith('darwin') and hasattr(sys, "frozen") and os.path.exists('/Applications/GNS3/Contents/Resources/'):
+            qemu_default_directory = '/Applications/GNS3/Contents/Resources/'
+
+        path = fileBrowser('Qemu', directory=qemu_default_directory, parent=globals.preferencesWindow).getFile()
         if path != None and path[0] != '':
             self.lineEditQemuPath.setText(os.path.normpath(path[0]))
 
@@ -342,7 +358,11 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         """ Get a path to Qemu-img from the file system
         """
 
-        path = fileBrowser('Qemu-img', directory='.', parent=globals.preferencesWindow).getFile()
+        qemuimg_default_directory = '.'
+        if sys.platform.startswith('darwin') and hasattr(sys, "frozen") and os.path.exists('/Applications/GNS3/Contents/Resources/'):
+            qemuimg_default_directory = '/Applications/GNS3/Contents/Resources/'
+
+        path = fileBrowser('Qemu-img', directory=qemuimg_default_directory, parent=globals.preferencesWindow).getFile()
         if path != None and path[0] != '':
             self.lineEditQemuImgPath.setText(os.path.normpath(path[0]))
 

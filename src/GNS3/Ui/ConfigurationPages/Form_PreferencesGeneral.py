@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
+# Form implementation generated from reading ui file 'ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Tue May  7 18:19:33 2013
+# Created: Sun Jun  9 18:19:41 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -55,26 +55,26 @@ class Ui_PreferencesGeneral(object):
         self.checkBoxCheckForUpdate.setText(QtGui.QApplication.translate("PreferencesGeneral", "Automatically check for update", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxCheckForUpdate.setChecked(True)
         self.checkBoxCheckForUpdate.setObjectName(_fromUtf8("checkBoxCheckForUpdate"))
-        self.gridLayout_3.addWidget(self.checkBoxCheckForUpdate, 4, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.checkBoxCheckForUpdate, 5, 0, 1, 1)
         self.label_7 = QtGui.QLabel(self.tab)
         self.label_7.setText(QtGui.QApplication.translate("PreferencesGeneral", "Delay between each device start when starting all devices:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_7.setObjectName(_fromUtf8("label_7"))
-        self.gridLayout_3.addWidget(self.label_7, 5, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.label_7, 6, 0, 1, 1)
         self.slowStartAll = QtGui.QSpinBox(self.tab)
         self.slowStartAll.setSuffix(QtGui.QApplication.translate("PreferencesGeneral", " seconds", None, QtGui.QApplication.UnicodeUTF8))
         self.slowStartAll.setMaximum(10000)
         self.slowStartAll.setObjectName(_fromUtf8("slowStartAll"))
-        self.gridLayout_3.addWidget(self.slowStartAll, 6, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.slowStartAll, 7, 0, 1, 1)
         self.label_10 = QtGui.QLabel(self.tab)
         self.label_10.setText(QtGui.QApplication.translate("PreferencesGeneral", "Autosave:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_10.setObjectName(_fromUtf8("label_10"))
-        self.gridLayout_3.addWidget(self.label_10, 7, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.label_10, 8, 0, 1, 1)
         self.autoSave = QtGui.QSpinBox(self.tab)
         self.autoSave.setSuffix(QtGui.QApplication.translate("PreferencesGeneral", " seconds", None, QtGui.QApplication.UnicodeUTF8))
         self.autoSave.setMaximum(10000)
         self.autoSave.setProperty("value", 60)
         self.autoSave.setObjectName(_fromUtf8("autoSave"))
-        self.gridLayout_3.addWidget(self.autoSave, 8, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.autoSave, 9, 0, 1, 1)
         self.groupBox_2 = QtGui.QGroupBox(self.tab)
         self.groupBox_2.setTitle(QtGui.QApplication.translate("PreferencesGeneral", "Paths", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
@@ -104,7 +104,7 @@ class Ui_PreferencesGeneral(object):
         self.IOSPath_browser.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
         self.IOSPath_browser.setObjectName(_fromUtf8("IOSPath_browser"))
         self.gridLayout_4.addWidget(self.IOSPath_browser, 3, 1, 1, 1)
-        self.gridLayout_3.addWidget(self.groupBox_2, 9, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.groupBox_2, 10, 0, 1, 1)
         self.groupBox_3 = QtGui.QGroupBox(self.tab)
         self.groupBox_3.setTitle(QtGui.QApplication.translate("PreferencesGeneral", "Configuration file", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox_3.setObjectName(_fromUtf8("groupBox_3"))
@@ -130,9 +130,14 @@ class Ui_PreferencesGeneral(object):
         self.gridLayout_2.addWidget(self.pushButton_ClearConfiguration, 1, 3, 1, 1)
         spacerItem1 = QtGui.QSpacerItem(186, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.gridLayout_2.addItem(spacerItem1, 1, 4, 1, 1)
-        self.gridLayout_3.addWidget(self.groupBox_3, 10, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.groupBox_3, 11, 0, 1, 1)
         spacerItem2 = QtGui.QSpacerItem(471, 21, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout_3.addItem(spacerItem2, 11, 0, 1, 1)
+        self.gridLayout_3.addItem(spacerItem2, 12, 0, 1, 1)
+        self.checkBoxAutoScreenshot = QtGui.QCheckBox(self.tab)
+        self.checkBoxAutoScreenshot.setText(QtGui.QApplication.translate("PreferencesGeneral", "Include a screenshot when saving a project", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxAutoScreenshot.setChecked(True)
+        self.checkBoxAutoScreenshot.setObjectName(_fromUtf8("checkBoxAutoScreenshot"))
+        self.gridLayout_3.addWidget(self.checkBoxAutoScreenshot, 4, 0, 1, 1)
         self.tabWidget.addTab(self.tab, _fromUtf8(""))
         self.tab_3 = QtGui.QWidget()
         self.tab_3.setObjectName(_fromUtf8("tab_3"))

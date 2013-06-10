@@ -255,7 +255,7 @@ elif sys.platform.startswith('darwin'):
 else:
     TERMINAL_SERIAL_DEFAULT_CMD = unicode('xterm -T %d -e \'socat UNIX-CONNECT:"%s" stdio,raw,echo=0\' > /dev/null 2>&1 &')
 
-# Default project directory
+# Default projects directory
 if sys.platform.startswith('win') and os.environ.has_key("HOMEDRIVE") and os.environ.has_key("HOMEPATH"):
     PROJECT_DEFAULT_DIR = unicode(os.environ["HOMEDRIVE"] + os.environ["HOMEPATH"] + os.sep + 'GNS3' + os.sep + 'Projects', 'utf-8', errors='replace')
 elif os.environ.has_key("HOME"):
@@ -267,7 +267,7 @@ elif os.environ.has_key("TMP"):
 else:
     PROJECT_DEFAULT_DIR = unicode('/tmp')
 
-# Default IOS image directory
+# Default IOS images directory
 if sys.platform.startswith('win') and os.environ.has_key("HOMEDRIVE") and os.environ.has_key("HOMEPATH"):
     IOS_DEFAULT_DIR = unicode(os.environ["HOMEDRIVE"] + os.environ["HOMEPATH"] + os.sep + 'GNS3' + os.sep + 'Images', 'utf-8', errors='replace')
 elif os.environ.has_key("HOME"):
@@ -591,6 +591,7 @@ conf_systemGeneral_defaults = {
     'lang': 'en',
     'project_startup': True,
     'relative_paths': True,
+    'auto_screenshot': True,
     'slow_start': 1,
     'autosave': 60,
     'term_cmd': '',
@@ -613,6 +614,7 @@ conf_systemGeneral_types = {
     'lang': unicode,
     'project_startup': bool,
     'relative_paths': bool,
+    'auto_screenshot': bool,
     'slow_start': int,
     'autosave': int,
     'use_shell': bool,

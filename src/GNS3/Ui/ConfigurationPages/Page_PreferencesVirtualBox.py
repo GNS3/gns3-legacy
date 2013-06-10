@@ -339,7 +339,11 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         """ Get a path to VBoxwrapper from the file system
         """
 
-        path = fileBrowser('VBoxwrapper', directory='.', parent=globals.preferencesWindow).getFile()
+        vboxwrapper_default_directory = '.'
+        if sys.platform.startswith('darwin') and hasattr(sys, "frozen") and os.path.exists('/Applications/GNS3/Contents/Resources/'):
+            vboxwrapper_default_directory = '/Applications/GNS3/Contents/Resources/'
+
+        path = fileBrowser('VBoxwrapper', directory=vboxwrapper_default_directory, parent=globals.preferencesWindow).getFile()
         if path != None and path[0] != '':
             self.lineEditVBoxwrapperPath.setText(os.path.normpath(path[0]))
 
@@ -347,7 +351,15 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         """ Get a working directory for VBoxwrapper from the file system
         """
 
-        fb = fileBrowser(translate('UiConfig_PreferencesVirtualBox', 'Local VirtualBox working directory'), parent=globals.preferencesWindow)
+        vboxwrapper_default_working_directory = '.'
+        if os.environ.has_key("TEMP"):
+            vboxwrapper_default_working_directory = os.environ["TEMP"]
+        elif os.environ.has_key("TMP"):
+            vboxwrapper_default_working_directory = os.environ["TMP"]
+        elif os.path.exists('/tmp'):
+            vboxwrapper_default_working_directory = unicode('/tmp')
+
+        fb = fileBrowser(translate('UiConfig_PreferencesVirtualBox', 'Local VirtualBox working directory'), directory=vboxwrapper_default_working_directory, parent=globals.preferencesWindow)
         path = fb.getDir()
 
         if path:
