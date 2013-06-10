@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ConfigurationPages/Form_PreferencesGeneral.ui'
+# Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesGeneral.ui'
 #
-# Created: Sun Jun  9 18:19:41 2013
+# Created: Mon Jun 10 16:49:46 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_PreferencesGeneral(object):
     def setupUi(self, PreferencesGeneral):
         PreferencesGeneral.setObjectName(_fromUtf8("PreferencesGeneral"))
-        PreferencesGeneral.resize(539, 588)
+        PreferencesGeneral.resize(539, 599)
         PreferencesGeneral.setWindowTitle(QtGui.QApplication.translate("PreferencesGeneral", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.gridLayout_5 = QtGui.QGridLayout(PreferencesGeneral)
         self.gridLayout_5.setObjectName(_fromUtf8("gridLayout_5"))
@@ -81,7 +81,7 @@ class Ui_PreferencesGeneral(object):
         self.gridLayout_4 = QtGui.QGridLayout(self.groupBox_2)
         self.gridLayout_4.setObjectName(_fromUtf8("gridLayout_4"))
         self.label_2 = QtGui.QLabel(self.groupBox_2)
-        self.label_2.setText(QtGui.QApplication.translate("PreferencesGeneral", "Project directory:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("PreferencesGeneral", "Projects directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setObjectName(_fromUtf8("label_2"))
         self.gridLayout_4.addWidget(self.label_2, 0, 0, 1, 1)
         self.ProjectPath = QtGui.QLineEdit(self.groupBox_2)
@@ -93,7 +93,7 @@ class Ui_PreferencesGeneral(object):
         self.ProjectPath_browser.setObjectName(_fromUtf8("ProjectPath_browser"))
         self.gridLayout_4.addWidget(self.ProjectPath_browser, 1, 1, 1, 1)
         self.label_3 = QtGui.QLabel(self.groupBox_2)
-        self.label_3.setText(QtGui.QApplication.translate("PreferencesGeneral", "OS image (IOS, Qemu, PIX etc.) directory:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("PreferencesGeneral", "OS images (IOS, Qemu, PIX etc.) directory:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setObjectName(_fromUtf8("label_3"))
         self.gridLayout_4.addWidget(self.label_3, 2, 0, 1, 1)
         self.IOSPath = QtGui.QLineEdit(self.groupBox_2)

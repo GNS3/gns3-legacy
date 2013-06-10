@@ -44,6 +44,7 @@ def pipe_connect(hostname, pipe_name):
 
     cmd = cmd.replace('%s', pipe_name)
     cmd = cmd.replace('%d', hostname)
+    debug('Start serial console program %s' % cmd)
     try:
         proc = sub.Popen(cmd, shell=shell)
     except (OSError, IOError), e:

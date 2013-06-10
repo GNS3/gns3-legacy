@@ -54,7 +54,7 @@ background-none;
        </sizepolicy>
       </property>
       <property name="statusTip">
-       <string>Topology Graphic View</string>
+       <string>Topology Graphic View (Workspace).</string>
       </property>
      </widget>
     </item>
@@ -233,8 +233,11 @@ background-none;
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="toolTip">
+        <string>Drag Node to Workspace (press SHIFT while dragging for multiple nodes).</string>
+       </property>
        <property name="statusTip">
-        <string>Select Node Type (press SHIFT while dragging a device to add several identical items to your topology)</string>
+        <string>Available Node types are colored and can be dragged to the Workspace. Press SHIFT while dragging a device to add multiple identical nodes.</string>
        </property>
        <property name="iconSize">
         <size>
@@ -350,7 +353,7 @@ background-none;
         </sizepolicy>
        </property>
        <property name="statusTip">
-        <string>Console</string>
+        <string>GNS3 Management Console. Right-click for edit options. Type help for command line help.</string>
        </property>
       </widget>
      </item>
@@ -400,8 +403,11 @@ background-none;
      </property>
      <item>
       <widget class="UndoView" name="UndoViewDock">
+       <property name="toolTip">
+        <string>Click on timepoint to restore device/link history to that timepoint.</string>
+       </property>
        <property name="statusTip">
-        <string>Undo Stack</string>
+        <string>Undo stack holds device and link creation/deletion history. Click on timepoint to restore device/link history to that timepoint.</string>
        </property>
       </widget>
      </item>
@@ -428,8 +434,11 @@ background-none;
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="toolTip">
+        <string>Select capture and right-click for menu.</string>
+       </property>
        <property name="statusTip">
-        <string>Captures</string>
+        <string>Captures lists all Wireshark captures for this session. Select capture and right-click for menu.</string>
        </property>
        <property name="iconSize">
         <size>
@@ -493,8 +502,11 @@ background-none;
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="toolTip">
+        <string>Expand device to view connections. Select link and Right-click for menu.</string>
+       </property>
        <property name="statusTip">
-        <string>Topology Summary</string>
+        <string>Topology Summary shows device and connection status. Expand device to view connections. Select link and Right-click for menu.</string>
        </property>
        <column>
         <property name="text">
@@ -918,7 +930,7 @@ background-none;
     <string>Import/Export IOS Startup Configs</string>
    </property>
    <property name="statusTip">
-    <string>Import/Export Startup Configs</string>
+    <string>Import/Export IOS Startup Configs</string>
    </property>
   </action>
   <action name="action_InsertImage">
@@ -1003,13 +1015,13 @@ background-none;
      <normaloff>:/icons/show-interface-names.svg</normaloff>:/icons/show-interface-names.svg</iconset>
    </property>
    <property name="text">
-    <string>Show interface labels</string>
+    <string>Show/Hide interface labels</string>
    </property>
    <property name="toolTip">
-    <string>Show interface labels</string>
+    <string>Show/Hide interface labels</string>
    </property>
    <property name="statusTip">
-    <string>Show interface labels</string>
+    <string>Show/Hide interface labels</string>
    </property>
   </action>
   <action name="action_Snapshot">
@@ -1024,7 +1036,7 @@ background-none;
     <string>Manage snapshots</string>
    </property>
    <property name="statusTip">
-    <string>Snapshot</string>
+    <string>Manage snapshots</string>
    </property>
   </action>
   <action name="action_ShowLayers">
@@ -1149,16 +1161,16 @@ background-none;
      <activeoff>:/icons/router-hover.png</activeoff>:/icons/router.png</iconset>
    </property>
    <property name="text">
-    <string>Routers</string>
+    <string>Browse Routers</string>
    </property>
    <property name="iconText">
-    <string>Routers</string>
+    <string>Browse Routers</string>
    </property>
    <property name="toolTip">
-    <string>Show all routers.</string>
+    <string>Browse Routers</string>
    </property>
    <property name="statusTip">
-    <string/>
+    <string>Browse Routers</string>
    </property>
   </action>
   <action name="action_Switch">
@@ -1168,16 +1180,16 @@ background-none;
      <activeoff>:/icons/switch-hover.png</activeoff>:/icons/switch.png</iconset>
    </property>
    <property name="text">
-    <string>Switches</string>
+    <string>Browse Switches</string>
    </property>
    <property name="iconText">
-    <string>Switches</string>
+    <string>Browse Switches</string>
    </property>
    <property name="toolTip">
-    <string>Show all switches.</string>
+    <string>Browse Switches</string>
    </property>
    <property name="statusTip">
-    <string/>
+    <string>Browse Switches</string>
    </property>
   </action>
   <action name="action_EndDevices">
@@ -1187,16 +1199,16 @@ background-none;
      <activeoff>:/icons/PC-hover.png</activeoff>:/icons/PC.png</iconset>
    </property>
    <property name="text">
-    <string>End devices</string>
+    <string>Browse End Devices</string>
    </property>
    <property name="iconText">
-    <string>End devices</string>
+    <string>Browse End Devices</string>
    </property>
    <property name="toolTip">
-    <string>Show all end devices.</string>
+    <string>Browse End Devices</string>
    </property>
    <property name="statusTip">
-    <string/>
+    <string>Browse End Devices</string>
    </property>
   </action>
   <action name="action_SecurityDevices">
@@ -1206,16 +1218,16 @@ background-none;
      <activeoff>:/icons/firewall-hover.png</activeoff>:/icons/firewall.png</iconset>
    </property>
    <property name="text">
-    <string>Security devices</string>
+    <string>Browse Security Devices</string>
    </property>
    <property name="iconText">
-    <string>Security devices</string>
+    <string>Browse Security Devices</string>
    </property>
    <property name="toolTip">
-    <string>Show all security devices.</string>
+    <string>Browse Security Devices</string>
    </property>
    <property name="statusTip">
-    <string/>
+    <string>Browse Security Devices</string>
    </property>
   </action>
   <action name="action_HighContrastStyle">
@@ -1236,13 +1248,13 @@ background-none;
      <activeoff>:/icons/browse-all-icons-hover.png</activeoff>:/icons/browse-all-icons.png</iconset>
    </property>
    <property name="text">
-    <string>All devices</string>
+    <string>Browse all devices</string>
    </property>
    <property name="toolTip">
-    <string>Show all devices.</string>
+    <string>Browse all devices</string>
    </property>
    <property name="statusTip">
-    <string/>
+    <string>Browse all devices</string>
    </property>
   </action>
   <action name="action_AddLink">
@@ -1255,14 +1267,13 @@ background-none;
      <activeoff>:/icons/connection-new-hover.svg</activeoff>:/icons/connection-new.svg</iconset>
    </property>
    <property name="text">
-    <string>Add links</string>
+    <string>Add a link</string>
    </property>
    <property name="toolTip">
-    <string>To add links between devices.
-Use SHIFT to choose a link type.</string>
+    <string>Add a link</string>
    </property>
    <property name="statusTip">
-    <string/>
+    <string>Add a link</string>
    </property>
   </action>
   <action name="action_Console">

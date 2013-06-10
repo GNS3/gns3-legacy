@@ -261,6 +261,8 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
 
         globals.GApp.systconf['general'] = self.conf
         ConfDB().sync()
+        
+        globals.GApp.mainWindow.updateAction_addLink()
 
     def __setProjectPath(self):
 

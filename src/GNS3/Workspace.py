@@ -132,7 +132,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         self.tips_dialog = TipsDialog(self)
         self.createToolsMenu()
-
+        
+        self.updateAction_addLink()
 
     def createToolsMenu(self):
         """ Populate Tools menu
@@ -654,6 +655,17 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         self.action_AddLink.setChecked(True)
         self.__action_addLink()
+
+    def updateAction_addLink(self):
+        """ Update the tooltip and status bar message for add a link action
+        """
+
+        if globals.GApp.systconf['general'].manual_connection:
+            msg = translate("Workspace", "Add a link (press SHIFT to select link type and enable auto module insertion)")
+        else:
+            msg = translate("Workspace", "Add a link (auto module insertion enabled)")
+        self.action_AddLink.setToolTip(msg)
+        self.action_AddLink.setStatusTip(msg)
 
     def __action_addLink(self):
         """ Implement the QAction `addLink'
