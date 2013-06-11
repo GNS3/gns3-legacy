@@ -533,16 +533,16 @@ class NIO(object):
         my_bytes = float(my_bytes)
         if my_bytes >= 1099511627776:
             terabytes = my_bytes / 1099511627776
-            size = '%.2fTiB' % terabytes
+            size = '%.2fTB' % terabytes
         elif my_bytes >= 1073741824:
             gigabytes = my_bytes / 1073741824
-            size = '%.2fGiB' % gigabytes
+            size = '%.2fGB' % gigabytes
         elif my_bytes >= 1048576:
             megabytes = my_bytes / 1048576
-            size = '%.2fMiB' % megabytes
+            size = '%.2fMB' % megabytes
         elif my_bytes >= 1024:
             kilobytes = my_bytes / 1024
-            size = '%.2fKiB' % kilobytes
+            size = '%.2fKB' % kilobytes
         else:
             size = '%.0f bytes' % my_bytes
         return size

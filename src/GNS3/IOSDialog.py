@@ -201,6 +201,10 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
             self.lineEditIOSImage.clear()
 
+            if os.path.basename(path).startswith("c7200p"):
+                reply = QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Image"),
+                                                   translate("IOSDialog", "This IOS image is for the c7200 platform with NPE-G2 and using it is not recommended.\nPlease use an IOS image that do not start with c7200p."))
+
             try:
                 if isIOScompressed(path):
                     if path.endswith('.bin'):
@@ -493,8 +497,13 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             cmd = 'set PATH=%%~dp0;%%PATH%% && cd "%s" && ' % dynamips_workdir
             dynamips_path = os.path.realpath(dynamips_path)
             cmd += '"%s" -P %s -r %i --idle-pc %s "%s"' % (dynamips_path, platform, ram, idlepc, image_path)
+        elif sys.platform.startswith('darwin'):
+            cmd += '%s -P %s -r %i --idle-pc %s \\"%s\\"' % (dynamips_path, platform, ram, idlepc, image_path)
         else:
-            cmd += '%s -P %s -r %i --idle-pc %s %s' % (dynamips_path, platform, ram, idlepc, image_path)
+            cmd += '%s -P %s -r %i --idle-pc %s "%s"' % (dynamips_path, platform, ram, idlepc, image_path)
+        if os.path.basename(image_path).startswith("c7200p"):
+            # set NPE-G2 for 7200p platform (PPC32 processor)
+            cmd += " -t npe-g2"
         runTerminal(cmd, dynamips_workdir, False)
         self.testedSettings = True
 

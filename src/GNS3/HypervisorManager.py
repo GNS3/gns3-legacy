@@ -179,7 +179,7 @@ class HypervisorManager(object):
             if not last_exception:
                 last_exception = 'Unknown problem'
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
-                                       translate("HypervisorManager", "Can't connect to the hypervisor on %s port %i: %s") % (binding, hypervisor['port'], unicode(last_exception)))
+                                       translate("HypervisorManager", "Can't connect to the hypervisor on %s port %i: %s") % (binding, hypervisor['port'], unicode(last_exception, 'utf-8', errors='replace')))
             hypervisor['proc_instance'].close()
             self.hypervisors.remove(hypervisor)
             return False

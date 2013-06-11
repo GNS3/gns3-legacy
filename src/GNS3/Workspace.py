@@ -179,6 +179,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
             network_device_list_action = QtGui.QAction(translate("Workspace", "Network device list"), self.menu_Tools)
             network_device_list_action.setData(QtCore.QVariant("network-device-list.cmd"))
             self.menu_Tools.addAction(network_device_list_action)
+            
+        # Config extractor (Windows only)
+        if sys.platform.startswith('win'):
+            config_extractor_action = QtGui.QAction(translate("Workspace", "Configuration extractor"), self.menu_Tools)
+            config_extractor_action.setData(QtCore.QVariant("config-extractor.cmd"))
+            self.menu_Tools.addAction(config_extractor_action)
 
         # Dynamips server (Windows only)
         if sys.platform.startswith('win'):
@@ -480,6 +486,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 # delete useless project files
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*ghost*")
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "ilt_*")
+                dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "*_lock")
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_log.txt")
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_rommon_vars")
                 dynamips_files += glob.glob(os.path.normpath(projectWorkdir) + os.sep + "c[0-9][0-9][0-9][0-9]_*_ssa")
@@ -1303,7 +1310,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                            translate("Workspace", "Cannot create directory %s: %s") % (projectDir, e.strerror))
         else:
             self.isTemporaryProject = False
-            self.projectWorkdir = os.path.normpath(os.path.dirname(self.projectFile) + os.sep + 'working')
+            # no need of this!!!
+            #self.projectWorkdir = os.path.normpath(os.path.dirname(self.projectFile) + os.sep + 'working')
 
         if self.projectWorkdir and not os.access(self.projectWorkdir, os.F_OK):
             try:

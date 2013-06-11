@@ -60,10 +60,12 @@ def runTerminal(params=None, workdir=None, auto_close_term=True):
                 subprocess.Popen(cmd, shell=True)
             else:
                 cmd = "/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal"
+                debug(cmd)
                 subprocess.Popen(cmd)
         else:
             if params:
                 cmd = "xterm -e '%s' > /dev/null 2>&1 &" % params
+                debug(cmd)
                 subprocess.Popen(cmd, shell=True, cwd=workdir)
             elif os.path.exists(globals.GApp.systconf['general'].project_path):
                 cmd = "xterm -e 'cd %s && /bin/bash'" % globals.GApp.systconf['general'].project_path

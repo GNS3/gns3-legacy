@@ -73,7 +73,6 @@ class CalcIDLEPCDialog(QtGui.QDialog, Ui_CalcIDLEPCDialog):
                 if image_to_use == None:
                     self.textEdit.append('<font color="red">' + translate("CalcIDLEPCDialog", "IOS image %s is not registered! Please save the settings first" % selected_image_name) + '</font>')
                     break
-                print image_to_use
                 globals.GApp.topology.addNode(self.router, False, image_to_use)
                 try:
                     self.router.startNode()
