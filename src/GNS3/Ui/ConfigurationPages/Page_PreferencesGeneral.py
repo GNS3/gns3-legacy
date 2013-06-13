@@ -263,6 +263,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         ConfDB().sync()
         
         globals.GApp.mainWindow.updateAction_addLink()
+        return True
 
     def __setProjectPath(self):
 

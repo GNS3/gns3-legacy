@@ -85,6 +85,8 @@ class UiConfig_PreferencesCapture(QtGui.QWidget, Ui_PreferencesCapture):
         globals.GApp.systconf['capture'] = self.conf
         ConfDB().sync()
 
+        return True
+
     def __setCaptureWorkdir(self):
         """ Open a file dialog for choosing the location of local hypervisor
         working directory

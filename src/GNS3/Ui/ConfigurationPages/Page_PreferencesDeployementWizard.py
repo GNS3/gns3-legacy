@@ -52,6 +52,7 @@ class UiConfig_PreferencesDeployementWizard(QtGui.QWidget, Ui_PreferencesDeploye
     def saveConf(self):
         self.conf.deployementwizard_path = unicode(self.ProjectPath.text())
         self.conf.deployementwizard_filename = unicode(self.ProjectName.text())
+        return True
 
     def __changePath(self):
         fb = fileBrowser(translate('UiConfig_PreferencesDeployementWizard', 'Deployement Wizard directory'), parent=globals.preferencesWindow)

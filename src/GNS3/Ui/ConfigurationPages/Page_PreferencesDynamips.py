@@ -165,6 +165,8 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         globals.GApp.systconf['dynamips'] = self.conf
         ConfDB().sync()
 
+        return True
+
     def __setDynamipsPath(self):
         """ Open a file dialog for choosing the location of dynamips executable
         """

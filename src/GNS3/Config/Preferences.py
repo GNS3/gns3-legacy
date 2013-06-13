@@ -48,7 +48,7 @@ class PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
 
         self.connect(self.listWidget, QtCore.SIGNAL('currentItemChanged(QListWidgetItem *, QListWidgetItem *)'), self.configItemChanged)
         self.connect(self.buttonBox.button(QtGui.QDialogButtonBox.Apply), QtCore.SIGNAL('clicked()'), self.__applyChanges)
-        self.connect(self.buttonBox.button(QtGui.QDialogButtonBox.Ok), QtCore.SIGNAL('clicked()'), self.__applyChanges)
+#         self.connect(self.buttonBox.button(QtGui.QDialogButtonBox.Ok), QtCore.SIGNAL('clicked()'), self.__applyChanges)
 
         # Init dialog
         self.__initDialog()
@@ -80,11 +80,14 @@ class PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
         """ Save change for all item present into the Dialog
         All widget need to implement a method `saveConf' for this to work.
         """
+
         lnum = 0
         for itemName in self.__prefsList:
             widget = self.stackedWidget.widget(lnum)
-            widget.saveConf()
+            if widget.saveConf() == False:
+                return False
             lnum += 1
+        return True
 
     def __loadWidget(self, widgetPrefix, widgetName):
         """ Load a config widget from GNS3.Ui.ConfigurationPages
@@ -138,13 +141,14 @@ class PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
     def reject(self):
         """ Refresh devices list when closing the window
         """
-
+   
         globals.GApp.mainWindow.nodesDock.populateNodeDock(globals.GApp.workspace.dockWidget_NodeTypes.windowTitle())
         QtGui.QDialog.reject(self)
-
+   
     def accept(self):
         """ Refresh devices list when closing the window
         """
-
+   
         globals.GApp.mainWindow.nodesDock.populateNodeDock(globals.GApp.workspace.dockWidget_NodeTypes.windowTitle())
-        QtGui.QDialog.accept(self)
+        if self.__applyChanges():
+            QtGui.QDialog.accept(self)

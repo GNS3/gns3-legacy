@@ -284,6 +284,58 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
         globals.GApp.systconf['qemu'] = self.conf
         ConfDB().sync()
+        
+        # Check if Qemu Guest settings have been saved
+        name = unicode(self.NameQemuImage.text(), 'utf-8', errors='replace')
+        if len(name) and (not globals.GApp.qemuimages.has_key(name) or self.checkForUnsavedQemuImage(name) == False):
+            qemu_pane = globals.preferencesWindow.listWidget.findItems("Qemu", QtCore.Qt.MatchFixedString)[0]
+            if qemu_pane:
+                globals.preferencesWindow.listWidget.setCurrentItem(qemu_pane)
+            self.tabWidget.setCurrentWidget(self.tabQemuGuest)
+            QtGui.QMessageBox.warning(globals.preferencesWindow, translate("Page_PreferencesQemu", "Qemu Guest Settings"), translate("UiConfig_PreferencesDynamips", "Unsaved Qemu Guest settings detected. Please save."))
+            return False
+
+        # Check if PIX settings have been saved
+        name = unicode(self.NamePIXImage.text(), 'utf-8', errors='replace')
+        if len(name) and (not globals.GApp.piximages.has_key(name) or self.checkForUnsavedPIXImage(name) == False):
+            qemu_pane = globals.preferencesWindow.listWidget.findItems("Qemu", QtCore.Qt.MatchFixedString)[0]
+            if qemu_pane:
+                globals.preferencesWindow.listWidget.setCurrentItem(qemu_pane)
+            self.tabWidget.setCurrentWidget(self.tabPIX)
+            QtGui.QMessageBox.warning(globals.preferencesWindow, translate("Page_PreferencesQemu", "PIX Settings"), translate("UiConfig_PreferencesDynamips", "Unsaved PIX settings detected. Please save."))
+            return False
+
+        # Check if JunOS settings have been saved
+        name = unicode(self.NameJunOSImage.text(), 'utf-8', errors='replace')
+        if len(name) and (not globals.GApp.junosimages.has_key(name) or self.checkForUnsavedJunOSImage(name) == False):
+            qemu_pane = globals.preferencesWindow.listWidget.findItems("Qemu", QtCore.Qt.MatchFixedString)[0]
+            if qemu_pane:
+                globals.preferencesWindow.listWidget.setCurrentItem(qemu_pane)
+            self.tabWidget.setCurrentWidget(self.tabJunOS)
+            QtGui.QMessageBox.warning(globals.preferencesWindow, translate("Page_PreferencesQemu", "JunOS Settings"), translate("UiConfig_PreferencesDynamips", "Unsaved JunOS settings detected. Please save."))
+            return False
+
+        # Check if ASA settings have been saved
+        name = unicode(self.NameASAImage.text(), 'utf-8', errors='replace')
+        if len(name) and (not globals.GApp.asaimages.has_key(name) or self.checkForUnsavedASAImage(name) == False):
+            qemu_pane = globals.preferencesWindow.listWidget.findItems("Qemu", QtCore.Qt.MatchFixedString)[0]
+            if qemu_pane:
+                globals.preferencesWindow.listWidget.setCurrentItem(qemu_pane)
+            self.tabWidget.setCurrentWidget(self.tabASA)
+            QtGui.QMessageBox.warning(globals.preferencesWindow, translate("Page_PreferencesQemu", "ASA Settings"), translate("UiConfig_PreferencesDynamips", "Unsaved ASA settings detected. Please save."))
+            return False
+        
+        # Check if IDS settings have been saved
+        name = unicode(self.NameIDSImage.text(), 'utf-8', errors='replace')
+        if len(name) and (not globals.GApp.idsimages.has_key(name) or self.checkForUnsavedIDSImage(name) == False):
+            qemu_pane = globals.preferencesWindow.listWidget.findItems("Qemu", QtCore.Qt.MatchFixedString)[0]
+            if qemu_pane:
+                globals.preferencesWindow.listWidget.setCurrentItem(qemu_pane)
+            self.tabWidget.setCurrentWidget(self.tabIDS)
+            QtGui.QMessageBox.warning(globals.preferencesWindow, translate("Page_PreferencesQemu", "IDS Settings"), translate("UiConfig_PreferencesDynamips", "Unsaved IDS settings detected. Please save."))
+            return False
+
+        return True
 
     def slotExternalQemuwrapperChanged(self, text):
 
@@ -432,6 +484,27 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
         globals.GApp.qemuimages[name] = conf
         self.treeWidgetQemuImages.resizeColumnToContents(0)
+        QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "Qemu Guest settings have been saved"))
+
+    def checkForUnsavedQemuImage(self, image):
+        """ Check if current Qemu Guest settings have been saved
+        """
+
+        conf = globals.GApp.qemuimages[image]
+        if conf.filename != unicode(self.QemuImage.text(), 'utf-8', errors='replace') \
+            or conf.memory != self.QemuMemory.value() \
+            or conf.nic_nb != self.QemuNICNb.value() \
+            or conf.nic != str(self.QemuNIC.currentText()) \
+            or conf.flavor != str(self.QemuFlavor.currentText()) \
+            or conf.options != str(self.QemuOptions.text()) \
+            or conf.kvm == True and self.QemucheckBoxKVM.checkState() != QtCore.Qt.Checked \
+            or conf.kvm == False and self.QemucheckBoxKVM.checkState() == QtCore.Qt.Checked \
+            or conf.monitor == True and self.QemucheckBoxMonitor.checkState() != QtCore.Qt.Checked \
+            or conf.monitor == False and self.QemucheckBoxMonitor.checkState() == QtCore.Qt.Checked \
+            or conf.usermod == True and self.QemucheckBoxUserMod.checkState() != QtCore.Qt.Checked \
+            or conf.usermod == False and self.QemucheckBoxUserMod.checkState() == QtCore.Qt.Checked:
+            return False
+        return True
 
     def slotDeleteQemuImage(self):
         """ Delete Qemu Image from the list of Qemu images
@@ -571,6 +644,21 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.treeWidgetPIXImages.resizeColumnToContents(0)
         QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "PIX settings have been saved"))
 
+    def checkForUnsavedPIXImage(self, image):
+        """ Check if current PIX settings have been saved
+        """
+
+        conf = globals.GApp.piximages[image]
+        if conf.filename != unicode(self.PIXImage.text(), 'utf-8', errors='replace') \
+            or conf.memory != self.PIXMemory.value() \
+            or conf.nic_nb != self.PIXNICNb.value() \
+            or conf.nic != str(self.PIXNIC.currentText()) \
+            or conf.options != str(self.PIXOptions.text()) \
+            or conf.serial != str(self.PIXSerial.text().toAscii()) \
+            or conf.key != str(self.PIXKey.text().toAscii()):
+            return False
+        return True
+
     def slotDeletePIXImage(self):
         """ Delete PIX Image from the list of PIX images
         """
@@ -673,6 +761,25 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         globals.GApp.junosimages[name] = conf
         self.treeWidgetJunOSImages.resizeColumnToContents(0)
         QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "JunOS settings have been saved"))
+
+    def checkForUnsavedJunOSImage(self, image):
+        """ Check if current JunOS settings have been saved
+        """
+
+        conf = globals.GApp.junosimages[image]
+        if conf.filename != unicode(self.JunOSImage.text(), 'utf-8', errors='replace') \
+            or conf.memory != self.JunOSMemory.value() \
+            or conf.nic_nb != self.JunOSNICNb.value() \
+            or conf.nic != str(self.JunOSNIC.currentText()) \
+            or conf.options != str(self.JunOSOptions.text()) \
+            or conf.kvm == True and self.JunOScheckBoxKVM.checkState() != QtCore.Qt.Checked \
+            or conf.kvm == False and self.JunOScheckBoxKVM.checkState() == QtCore.Qt.Checked \
+            or conf.monitor == True and self.JunOScheckBoxMonitor.checkState() != QtCore.Qt.Checked \
+            or conf.monitor == False and self.JunOScheckBoxMonitor.checkState() == QtCore.Qt.Checked \
+            or conf.usermod == True and self.JunOScheckBoxUserMod.checkState() != QtCore.Qt.Checked \
+            or conf.usermod == False and self.JunOScheckBoxUserMod.checkState() == QtCore.Qt.Checked:
+            return False
+        return True
 
     def slotDeleteJunOSImage(self):
         """ Delete JunOS Image from the list of JunOS images
@@ -803,6 +910,27 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         globals.GApp.asaimages[name] = conf
         self.treeWidgetASAImages.resizeColumnToContents(0)
         QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "ASA settings have been saved"))
+
+    def checkForUnsavedASAImage(self, image):
+        """ Check if current ASA settings have been saved
+        """
+
+        conf = globals.GApp.asaimages[image]
+        if conf.initrd != unicode(self.ASAInitrd.text(), 'utf-8', errors='replace') \
+            or conf.kernel != unicode(self.ASAKernel.text(), 'utf-8', errors='replace') \
+            or conf.kernel_cmdline != unicode(self.ASAKernelCmdLine.text(), 'utf-8', errors='replace') \
+            or conf.memory != self.ASAMemory.value() \
+            or conf.nic_nb != self.ASANICNb.value() \
+            or conf.nic != str(self.ASANIC.currentText()) \
+            or conf.options != str(self.ASAOptions.text()) \
+            or conf.kvm == True and self.ASAcheckBoxKVM.checkState() != QtCore.Qt.Checked \
+            or conf.kvm == False and self.ASAcheckBoxKVM.checkState() == QtCore.Qt.Checked \
+            or conf.monitor == True and self.ASAcheckBoxMonitor.checkState() != QtCore.Qt.Checked \
+            or conf.monitor == False and self.ASAcheckBoxMonitor.checkState() == QtCore.Qt.Checked \
+            or conf.usermod == True and self.ASAcheckBoxUserMod.checkState() != QtCore.Qt.Checked \
+            or conf.usermod == False and self.ASAcheckBoxUserMod.checkState() == QtCore.Qt.Checked:
+            return False
+        return True
 
     def slotDeleteASAImage(self):
         """ Delete ASA Image from the list of ASA images
@@ -954,6 +1082,26 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         globals.GApp.idsimages[name] = conf
         self.treeWidgetIDSImages.resizeColumnToContents(0)
         QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "IDS settings have been saved"))
+
+    def checkForUnsavedIDSImage(self, image):
+        """ Check if current IDS settings have been saved
+        """
+
+        conf = globals.GApp.idsimages[image]
+        if conf.image1 != unicode(self.IDSImage1.text(), 'utf-8', errors='replace') \
+            or conf.image2 != unicode(self.IDSImage2.text(), 'utf-8', errors='replace') \
+            or conf.memory != self.IDSMemory.value() \
+            or conf.nic_nb != self.IDSNICNb.value() \
+            or conf.nic != str(self.IDSNIC.currentText()) \
+            or conf.options != str(self.IDSOptions.text()) \
+            or conf.kvm == True and self.IDScheckBoxKVM.checkState() != QtCore.Qt.Checked \
+            or conf.kvm == False and self.IDScheckBoxKVM.checkState() == QtCore.Qt.Checked \
+            or conf.monitor == True and self.IDScheckBoxMonitor.checkState() != QtCore.Qt.Checked \
+            or conf.monitor == False and self.IDScheckBoxMonitor.checkState() == QtCore.Qt.Checked \
+            or conf.usermod == True and self.IDScheckBoxUserMod.checkState() != QtCore.Qt.Checked \
+            or conf.usermod == False and self.IDScheckBoxUserMod.checkState() == QtCore.Qt.Checked:
+            return False
+        return True
 
     def slotDeleteIDSImage(self):
         """ Delete IDS Image from the list of IDS images

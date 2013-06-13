@@ -312,6 +312,8 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         globals.GApp.systconf['vbox'] = self.conf
         ConfDB().sync()
 
+        return True
+
     def slotExternalVBoxwrapperChanged(self, text):
 
         self.lineEditHostExternalVBox.setText(text)

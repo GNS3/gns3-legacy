@@ -19,7 +19,7 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="tab">
+     <widget class="QWidget" name="tabGeneralSettings">
       <attribute name="title">
        <string>General Settings</string>
       </attribute>
@@ -313,7 +313,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_4">
+     <widget class="QWidget" name="tabQemuGuest">
       <attribute name="title">
        <string>Qemu Guest</string>
       </attribute>
@@ -621,7 +621,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_5">
+     <widget class="QWidget" name="tabPIX">
       <attribute name="title">
        <string>PIX</string>
       </attribute>
@@ -927,7 +927,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_3">
+     <widget class="QWidget" name="tabJunOS">
       <attribute name="title">
        <string>JunOS</string>
       </attribute>
@@ -1211,7 +1211,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_2">
+     <widget class="QWidget" name="tabASA">
       <attribute name="title">
        <string>ASA</string>
       </attribute>
@@ -1580,7 +1580,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_6">
+     <widget class="QWidget" name="tabIDS">
       <attribute name="title">
        <string>IDS</string>
       </attribute>
