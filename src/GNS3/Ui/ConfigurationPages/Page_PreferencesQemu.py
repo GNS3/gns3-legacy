@@ -354,6 +354,16 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.tabWidget.setCurrentWidget(self.tabIDS)
             QtGui.QMessageBox.warning(globals.preferencesWindow, translate("Page_PreferencesQemu", "IDS Settings"), translate("UiConfig_PreferencesDynamips", "Unsaved IDS settings detected. Please save."))
             return False
+        
+        # Check if AW+ settings have been saved
+        name = unicode(self.NameAWPImage.text(), 'utf-8', errors='replace')
+        if len(name) and (not globals.GApp.awprouterimages.has_key(name) or self.checkForUnsavedAWPImage(name) == False):
+            qemu_pane = globals.preferencesWindow.listWidget.findItems("Qemu", QtCore.Qt.MatchFixedString)[0]
+            if qemu_pane:
+                globals.preferencesWindow.listWidget.setCurrentItem(qemu_pane)
+            self.tabWidget.setCurrentWidget(self.tabAWP)
+            QtGui.QMessageBox.warning(globals.preferencesWindow, translate("Page_PreferencesQemu", "AW+ Settings"), translate("UiConfig_PreferencesDynamips", "Unsaved AW+ settings detected. Please save."))
+            return False
 
         return True
 
@@ -1373,7 +1383,23 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
         globals.GApp.awprouterimages[name] = conf
         self.treeWidgetAWPImages.resizeColumnToContents(0)
-        QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "AWP settings have been saved"))
+        QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "AW+ settings have been saved"))
+
+    def checkForUnsavedAWPImage(self, image):
+        """ Check if current AW+ settings have been saved
+        """
+
+        conf = globals.GApp.awprouterimages[image]
+        if conf.rel != unicode(self.AWPRel.text(), 'utf-8', errors='replace') \
+            or conf.kernel_cmdline != unicode(self.AWPKernelCmdLine.text(), 'utf-8', errors='replace') \
+            or conf.memory != self.AWPMemory.value() \
+            or conf.nic_nb != self.AWPNICNb.value() \
+            or conf.nic != str(self.AWPNIC.currentText()) \
+            or conf.options != str(self.AWPOptions.text()) \
+            or conf.kvm == True and self.AWPcheckBoxKVM.checkState() != QtCore.Qt.Checked \
+            or conf.kvm == False and self.AWPcheckBoxKVM.checkState() == QtCore.Qt.Checked:
+            return False
+        return True
 
     def slotDeleteAWPImage(self):
         """ Delete AWP Image from the list of AWP images
