@@ -87,7 +87,7 @@ elif sys.platform.startswith('darwin') and hasattr(sys, "frozen"):
         QEMU_IMG_DEFAULT_PATH = os.getcwdu() + os.sep + '../Resources/Qemu-0.11.0/bin/qemu-img'
 else:
     QEMU_IMG_DEFAULT_PATH = unicode('qemu-img')
-    QEMU_DEFAULT_PATH = unicode('qemu-system-i386')
+    QEMU_DEFAULT_PATH = unicode('qemu')
 
 # Default path to vboxwrapper
 if sys.platform.startswith('win'):
@@ -520,6 +520,36 @@ conf_asaImage_types = {
     'kernel_cmdline': unicode,
 }
 
+conf_awprouterImage_defaults = {
+    'id': -1,
+    'name': '',
+    'memory': 256,
+    'nic_nb': 6,
+    'usermod' : False,
+    'nic': 'virtio',
+    'options': '',
+    'kvm': False,
+    'kernel': '',
+    'initrd': '',
+    'rel': '',
+    'kernel_cmdline': 'root=/dev/ram0 releasefile=0.0.0-test.rel console=ttyS0,0 no_autorestart loglevel=1'
+}
+
+conf_awprouterImage_types = {
+    'id': int,
+    'name': unicode,
+    'memory': int,
+    'nic_nb': int,
+    'usermod' : bool,
+    'nic': str,
+    'options': str,
+    'kvm': bool,
+    'kernel': unicode,
+    'initrd': unicode,
+    'rel': unicode,
+    'kernel_cmdline': unicode,
+}
+
 conf_idsImage_defaults = {
     'id': -1,
     'name': '',
@@ -649,7 +679,7 @@ conf_systemCapture_types = {
 conf_systemQemu_defaults = {
     'qemuwrapper_path':'',
     'qemuwrapper_workdir':'',
-    'qemu_path':'qemu-system-i386',
+    'qemu_path':'qemu',
     'qemu_img_path':'qemu-img',
     'external_hosts':[],
     'enable_QemuWrapperAdvOptions' : False,

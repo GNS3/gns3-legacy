@@ -93,7 +93,7 @@ if platform.system() == 'Windows':
         QEMU_PATH = "qemu.exe"
         QEMU_IMG_PATH = "qemu-img.exe"
 else:
-    QEMU_PATH = "qemu-system-i386"
+    QEMU_PATH = "qemu"
     QEMU_IMG_PATH = "qemu-img"
 
 PORT = 10525
@@ -210,6 +210,7 @@ class xEMUInstance(object):
         except OSError, e:
             print >> sys.stderr, "Unable to start instance", self.name, "of", self.__class__
             print >> sys.stderr, e
+            print self.process.communicate()
             return False
 
         print "Qemu started with PID %i" % self.process.pid
@@ -502,6 +503,49 @@ class ASAInstance(QEMUInstance):
         
         return  ('-append', self.kernel_cmdline)
 
+class AWPInstance(QEMUInstance):
+
+    def __init__(self, *args, **kwargs):
+        debugmsg(3, "AWPInstance::__init__()")
+        super(AWPInstance, self).__init__(*args, **kwargs)
+        self.netcard = 'virtio'
+        self.initrd = ''
+        self.kernel = ''
+        self.kernel_cmdline = 'root=/dev/ram0 releasefile=0.0.0-test.rel console=ttyS0,0 no_autorestart loglevel=1'
+        self.valid_attr_names += ['initrd', 'kernel', 'kernel_cmdline']
+
+    def clean(self):
+        debugmsg(3, "AWPInstance::clean()")
+
+        flash = os.path.join(self.workdir, self.flash_name)
+        if os.path.exists(flash):
+            try:
+                print "Deleting old flash file:", flash
+                os.remove(flash)
+            except (OSError, IOError), e:
+                print >> sys.stderr, flash, "cannot be deleted:", e
+
+    def _disk_options(self):
+        debugmsg(3, "AWPInstance::_disk_options()")
+
+        flash = os.path.join(self.workdir, self.flash_name)
+        if not os.path.exists(flash):
+            try:
+                retcode = subprocess.call([self.img_bin, 'create', '-f', 'qcow2', flash, self.flash_size])
+                print self.img_bin + ' returned with ' + str(retcode)
+            except OSError, e:
+                print >> sys.stderr, self.img_bin, "execution failed:", e
+
+        return ('-hda', flash)
+
+    def _image_options(self):
+        debugmsg(3, "AWPInstance::_image_options()")
+        return ('-kernel', self.kernel, '-initrd', self.initrd)
+
+    def _kernel_options(self):
+        debugmsg(3, "AWPInstance::_kernel_options()")
+        return  ('-append', self.kernel_cmdline)
+
 class JunOSInstance(QEMUInstance):
 
 
@@ -748,6 +792,7 @@ class QemuWrapperRequestHandler(SocketServer.StreamRequestHandler):
         'qemu': QemuDeviceInstance,
         'pix': PIXInstance,
         'asa': ASAInstance,
+        'awprouter' : AWPInstance,
         'junos': JunOSInstance,
         'ids': IDSInstance,
         }

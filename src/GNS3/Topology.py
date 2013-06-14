@@ -37,7 +37,7 @@ from GNS3.Node.ETHSW import ETHSW, init_ethsw_id
 from GNS3.Node.Hub import Hub, init_hub_id
 from GNS3.Node.FRSW import FRSW, init_frsw_id
 from GNS3.Node.Cloud import Cloud, init_cloud_id
-from GNS3.Node.AnyEmuDevice import QemuDevice, PIX, ASA, AnyEmuDevice, JunOS, IDS, init_emu_id, emu_id
+from GNS3.Node.AnyEmuDevice import QemuDevice, PIX, ASA, AWP, AnyEmuDevice, JunOS, IDS, init_emu_id, emu_id
 from GNS3.Node.AnyVBoxEmuDevice import VBoxDevice, AnyVBoxEmuDevice, init_vbox_emu_id
 from GNS3.Node.AbstractNode import AbstractNode
 from GNS3.Annotation import Annotation
@@ -829,6 +829,65 @@ class Topology(QtGui.QGraphicsScene):
                 node.set_string_option('monitor', conf.monitor)
                 node.set_string_option('initrd', conf.initrd)
                 node.set_string_option('kernel', conf.kernel)
+                node.set_string_option('kernel_cmdline', conf.kernel_cmdline)
+                node.set_string_option('options', conf.options)
+
+            if isinstance(node, AWP):
+
+                if len(globals.GApp.awprouterimages) == 0:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "AWP"), translate("Topology", "Please configure an AWP"))
+                    init_emu_id(node.id)
+                    return False
+
+                devices = []
+                for name in globals.GApp.awprouterimages.keys():
+                    devices.append(name)
+
+                if node.image_reference:
+                    conf = globals.GApp.awprouterimages[node.image_reference]
+                elif len(globals.GApp.awprouterimages) > 1:
+
+                    devices.sort()
+                    (selection,  ok) = QtGui.QInputDialog.getItem(globals.GApp.mainWindow, translate("Topology", "AWP"),
+                                                                      translate("Topology", "Please choose an AWP"), devices, 0, False)
+                    if ok:
+                        device_to_use = unicode(selection)
+                    else:
+                        init_emu_id(node.id)
+                        print "error!"
+                        return False
+                    conf = globals.GApp.awprouterimages[device_to_use]
+                    node.image_reference = device_to_use
+                else:
+                    conf = globals.GApp.awprouterimages[devices[0]]
+                    node.image_reference = devices[0]
+
+                # give a warning if the AWP initrd path is not accessible
+                if not os.access(conf.initrd, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "AWP initrd"),
+                                              translate("Topology", "%s seems to not exist, please re-set the rel file") % conf.initrd)
+
+                # give a warning if the AWP kernel path is not accessible
+                if not os.access(conf.kernel, os.F_OK) and globals.GApp.systconf['qemu'].enable_QemuManager:
+                    QtGui.QMessageBox.warning(globals.GApp.mainWindow, translate("Topology", "AWP kernel"),
+                                              translate("Topology", "%s seems to not exist, please re-set the rel file") % conf.kernel)
+
+                if self.emuDeviceSetup(node) == False:
+                    init_emu_id(node.id)
+                    return False
+
+                debug("Set default initrd " + conf.initrd + " for node type %s, model %r" % (type(node), node.model))
+                debug("Set default kernel " + conf.kernel + " for node type %s, model %r" % (type(node), node.model))
+
+                # No image for AWP
+                node.set_image('None', node.model)
+                node.set_int_option('ram', conf.memory)
+                node.set_int_option('nics', conf.nic_nb)
+                node.set_string_option('netcard', conf.nic)
+                node.set_string_option('kvm', conf.kvm)
+                node.set_string_option('initrd', conf.initrd)
+                node.set_string_option('kernel', conf.kernel)
+                node.set_string_option('rel', conf.rel)
                 node.set_string_option('kernel_cmdline', conf.kernel_cmdline)
                 node.set_string_option('options', conf.options)
 

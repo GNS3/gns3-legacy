@@ -20,7 +20,7 @@
 
 import os
 import GNS3.Globals as globals
-from GNS3.Config.Objects import iosImageConf, hypervisorConf, libraryConf, recentFilesConf, qemuImageConf, pixImageConf, junosImageConf, asaImageConf, idsImageConf, vboxImageConf
+from GNS3.Config.Objects import iosImageConf, hypervisorConf, libraryConf, recentFilesConf, qemuImageConf, pixImageConf, junosImageConf, asaImageConf, awprouterImageConf, idsImageConf, vboxImageConf
 from GNS3.Globals.Symbols import SYMBOLS, SYMBOL_TYPES
 from GNS3.Node.DecorativeNode import DecorativeNode
 from PyQt4 import QtCore
@@ -389,6 +389,37 @@ class GNS_Conf(object):
 
             if conf.id >= globals.GApp.asaimages_ids:
                 globals.GApp.asaimages_ids = conf.id + 1
+
+    def AWP_images(self):
+        """ Load AWP images settings from config file
+        """
+
+        # Loading AWP image conf
+        basegroup = "AWP.images"
+        c = ConfDB()
+        c.beginGroup(basegroup)
+        childGroups = c.childGroups()
+        c.endGroup()
+        for id in childGroups:
+            cgroup = basegroup + '/' + id
+
+            conf = awprouterImageConf()
+            conf.id = int(id)
+            conf.name = c.get(cgroup + "/name", unicode(''))
+            conf.memory = int(c.get(cgroup + "/memory", 256))
+            conf.nic_nb = int(c.get(cgroup + "/nic_nb", 6))
+            conf.usermod = c.value(cgroup + "/usermod", QtCore.QVariant(False)).toBool()
+            conf.nic = str(c.get(cgroup + "/nic", 'virtio'))
+            conf.options = str(c.get(cgroup + "/options", ''))
+            conf.kvm = c.value(cgroup + "/kvm", QtCore.QVariant(False)).toBool()
+            conf.initrd = c.get(cgroup + "/initrd", unicode(''))
+            conf.kernel = c.get(cgroup + "/kernel", unicode(''))
+            conf.rel = c.get(cgroup + "/rel", unicode(''))
+            conf.kernel_cmdline = c.get(cgroup + "/kernel_cmdline", unicode(''))
+            globals.GApp.awprouterimages[conf.name] = conf
+
+            if conf.id >= globals.GApp.awprouterimages_ids:
+                globals.GApp.awprouterimages_ids = conf.id + 1
 
     def IDS_images(self):
         """ Load IDS images settings from config file

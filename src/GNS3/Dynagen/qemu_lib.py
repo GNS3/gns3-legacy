@@ -1188,6 +1188,93 @@ class PIX(AnyEmuDevice):
     def extended_info(self):
         return '  Serial number %s\n  Activation key %s' % (self._serial, self._key)
 
+class AWP(AnyEmuDevice):
+    model_string = 'Soft32'
+    qemu_dev_type = 'awprouter'
+    basehostname = 'AWP'
+    _ufd_machine = 'AW+ router'
+    _ufd_hardware = 'qemu-emulated AW+ router'
+    available_options = ['ram', 'nics', 'netcard', 'kvm', 'options', 'initrd', 'kernel', 'kernel_cmdline', 'rel']
+
+    def __init__(self, *args, **kwargs):
+        super(AWP, self).__init__(*args, **kwargs)
+        self.defaults.update({
+            'initrd': None,
+            'kernel': None,
+            'rel': None,
+            'kernel_cmdline': None,
+        })
+        self._initrd = self.defaults['initrd']
+        self._kernel = self.defaults['kernel']
+        self._rel = self.defaults['rel']
+        self._kernel_cmdline = self.defaults['kernel_cmdline']
+
+    def _setinitrd(self, initrd):
+        """ Set the initrd for this emulated device
+        initrd: path to initrd file
+        """
+
+        if type(initrd) not in [str, unicode]:
+            raise DynamipsError, 'invalid initrd'
+
+        # Can't verify existance of image because path is relative to backend
+        #send the initrd filename enclosed in quotes to protect it
+        send(self.p, 'qemu setattr %s initrd %s' % (self.name, '"' + initrd.replace('\\', '/') + '"'))
+        self._initrd = initrd
+
+    def _getinitrd(self):
+        """ Returns path of the initrd being used by this emulated device
+        """
+
+        return self._initrd
+
+    initrd = property(_getinitrd, _setinitrd, doc='The initrd file for this device')
+
+    def _setkernel(self, kernel):
+        """ Set the kernel for this emulated device
+        kernel: path to kernel file
+        """
+
+        if type(kernel) not in [str, unicode]:
+            raise DynamipsError, 'invalid kernel'
+
+        # Can't verify existance of image because path is relative to backend
+        #send the kernel filename enclosed in quotes to protect it
+        send(self.p, 'qemu setattr %s kernel %s' % (self.name, '"' + kernel.replace('\\', '/') + '"'))
+        self._kernel = kernel
+
+    def _getkernel(self):
+        """ Returns path of the kernel being used by this emulated device
+        """
+
+        return self._kernel
+
+    kernel = property(_getkernel, _setkernel, doc='The kernel file for this device')
+
+    def _setkernel_cmdline(self, kernel_cmdline):
+        """ Set the kernel command line for this emulated device
+        kernel_cmdline: kernel command line
+        """
+
+        if type(kernel_cmdline) not in [str, unicode]:
+            raise DynamipsError, 'invalid kernel command line'
+
+        #send the kernel command line enclosed in quotes to protect it
+        send(self.p, 'qemu setattr %s kernel_cmdline %s' % (self.name, '"' + kernel_cmdline.replace('"', '\\"') + '"'))
+        self._kernel_cmdline = kernel_cmdline
+
+    def _getkernel_cmdline(self):
+        """ Returns the kernel command line being used by this emulated device
+        """
+
+        return self._kernel_cmdline
+
+    kernel_cmdline = property(_getkernel_cmdline, _setkernel_cmdline, doc='The kernel command line for this device')
+
+    def extended_info(self):
+        return '  Initrd path %s\n  Kernel path %s\n  Kernel cmd line %s' % (self._initrd, self._kernel, self._kernel_cmdline)
+
+
 def nosend_qemu(flag):
     """ If true, don't actually send any commands to the back end.
     """

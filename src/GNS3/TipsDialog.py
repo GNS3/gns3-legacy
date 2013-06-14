@@ -19,14 +19,14 @@
 #
 
 from PyQt4 import QtCore, QtGui
-from GNS3.Ui.Form_TipsDialog import Ui_TipsDialog
 from GNS3.Utils import translate
 
-# On FreeBSD, QtWebKit is not installed by default.
+# QtWebKit is not installed by default on FreeBSD, Solaris and possibly other systems.
 try:
+    from GNS3.Ui.Form_TipsDialog import Ui_TipsDialog
     from PyQt4 import QtWebKit
-except:
-    print "Warning: QtWebKit is not installed."
+except ImportError:
+    print "Warning: QtWebKit is not installed. Skipping Tips Dialog..."
 
 class TipsDialog(QtGui.QDialog, Ui_TipsDialog):
     """ TipsDialog class

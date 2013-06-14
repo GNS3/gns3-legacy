@@ -26,10 +26,11 @@ import GNS3.Dynagen.portTracker_lib as tracker
 from PyQt4 import QtGui, QtCore, QtNetwork
 from GNS3.QemuManager import QemuManager
 from GNS3.Ui.ConfigurationPages.Form_PreferencesQemu import Ui_PreferencesQemu
-from GNS3.Config.Objects import systemQemuConf, qemuImageConf, pixImageConf, junosImageConf, asaImageConf, idsImageConf
+from GNS3.Config.Objects import systemQemuConf, qemuImageConf, pixImageConf, junosImageConf, asaImageConf, awprouterImageConf, idsImageConf
 from GNS3.Utils import fileBrowser, translate, testIfWritableDir
 from GNS3.Config.Defaults import QEMUWRAPPER_DEFAULT_PATH, QEMUWRAPPER_DEFAULT_WORKDIR
 from GNS3.Config.Config import ConfDB
+from GNS3.Awp.AwpImage import awp_image_parse
 
 class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
@@ -83,6 +84,13 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         self.connect(self.DeleteASAImage, QtCore.SIGNAL('clicked()'), self.slotDeleteASAImage)
         self.connect(self.treeWidgetASAImages,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotASAImageSelectionChanged)
         self.connect(self.pushButtonASAPreconfiguration, QtCore.SIGNAL('clicked()'),self.slotASAPreconfiguration)
+
+        # AWP Router settings
+        self.connect(self.AWPRel_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectAWPRel)
+        self.connect(self.SaveAWPImage, QtCore.SIGNAL('clicked()'), self.slotSaveAWPImage)
+        self.connect(self.DeleteAWPImage, QtCore.SIGNAL('clicked()'), self.slotDeleteAWPImage)
+        self.connect(self.treeWidgetAWPImages,  QtCore.SIGNAL('itemSelectionChanged()'),  self.slotAWPImageSelectionChanged)
+        self.connect(self.pushButtonAWPPreconfiguration, QtCore.SIGNAL('clicked()'),self.slotAWPPreconfiguration)
 
         # IDS settings
         self.connect(self.IDSImage1_Browser, QtCore.SIGNAL('clicked()'), self.slotSelectIDSImage1)
@@ -238,6 +246,18 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
 
         self.treeWidgetASAImages.resizeColumnToContents(0)
         self.treeWidgetASAImages.sortItems(0, QtCore.Qt.AscendingOrder)
+
+        # AW+ router settings
+        for (name, conf) in globals.GApp.awprouterimages.iteritems():
+
+            item = QtGui.QTreeWidgetItem(self.treeWidgetAWPImages)
+            # name column
+            item.setText(0, name)
+            # rel path column
+            item.setText(1, conf.rel)
+
+        self.treeWidgetAWPImages.resizeColumnToContents(0)
+        self.treeWidgetAWPImages.sortItems(0, QtCore.Qt.AscendingOrder)
 
         # IDS settings
         for (name, conf) in globals.GApp.idsimages.iteritems():
@@ -1257,3 +1277,153 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
                 self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "All components have successfully started")  + '</font>')
             else:
                 self.labelQemuStatus.setText('<font color="green">' + translate("UiConfig_PreferencesQemu", "All components have successfully started")  + '</font><br>'+'<a href="http://www.gns3.net/gns3-pix-firewall-emulation/"><font color="red">' + translate("UiConfig_PreferencesQemu", " (except pemu)")  + '</font></a>')
+
+    ###########################
+    # AWP SOFT32 GUI HANDLERS
+    ###########################
+
+    def slotSelectAWPRel(self):
+        """ Get an AWP release file from the file system
+        """
+
+        path = fileBrowser('AWP Release File', directory=globals.GApp.systconf['general'].ios_path, parent=globals.preferencesWindow).getFile()
+        if path != None and path[0] != '':
+            # check file extension
+            if not path[0].endswith('.rel'):
+                QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "AW+ router"),
+                translate("Page_PreferencesQemu", "Invalid AWP release file!"))
+                return
+            
+            rel_file = os.path.normpath(path[0])
+            self.AWPRel.clear()
+            self.AWPRel.setText(rel_file)
+
+    def slotSaveAWPImage(self):
+        """ Add/Save AWP Image in the list of AWP images
+        """
+
+        name = unicode(self.NameAWPImage.text(), 'utf-8', errors='replace')
+        rel = unicode(self.AWPRel.text(), 'utf-8', errors='replace')
+
+        if not name or not rel:
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "AW+ router"),
+                                       translate("Page_PreferencesQemu", "Profile name and release file must be set!"))
+            return
+
+        # check release file extension
+        if not rel.endswith('.rel'):
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "AW+ router"),
+            translate("Page_PreferencesQemu", "Invalid AWP release file"))
+            return
+
+        # check release file existence
+        if not os.path.exists(rel):
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "AW+ router"),
+            translate("Page_PreferencesQemu", "Release file does not exist"))
+            return
+
+        # make sure image directory exists
+        ios_path = globals.GApp.systconf['general'].ios_path
+        if ios_path and not os.path.exists(ios_path):
+            QtGui.QMessageBox.critical(globals.preferencesWindow, translate("Page_PreferencesQemu", "AW+ router"),
+                                       translate("Page_PreferencesQemu", "Image directory does not exist"))
+            return
+
+        # parse the release file to get initrd and kernel image
+        img_path_dict = {}
+        awp_image_parse(rel, ios_path, img_path_dict)
+
+        initrd = img_path_dict['initrd']
+        kernel = img_path_dict['kernel']
+
+        if globals.GApp.awprouterimages.has_key(name):
+            # update an already existing AWP initrd + kernel
+            item_to_update = self.treeWidgetAWPImages.findItems(name, QtCore.Qt.MatchFixedString)[0]
+            item_to_update.setText(1, rel)
+        else:
+            # else create a new entry
+            item = QtGui.QTreeWidgetItem(self.treeWidgetAWPImages)
+            # image name column
+            item.setText(0, name)
+            # rel path column
+            item.setText(1, rel)
+
+        # save settings
+        if globals.GApp.awprouterimages.has_key(name):
+            conf = globals.GApp.awprouterimages[name]
+        else:
+            conf = awprouterImageConf()
+
+        conf.id = globals.GApp.awprouterimages_ids
+        globals.GApp.awprouterimages_ids += 1
+        conf.name = name
+        conf.initrd = initrd
+        conf.kernel = kernel
+        conf.rel = rel
+        conf.kernel_cmdline = unicode(self.AWPKernelCmdLine.text(), 'utf-8', errors='replace')
+        conf.memory = self.AWPMemory.value()
+        conf.nic_nb = self.AWPNICNb.value()
+        conf.nic = str(self.AWPNIC.currentText())
+        conf.options = str(self.AWPOptions.text())
+
+        if self.AWPcheckBoxKVM.checkState() == QtCore.Qt.Checked:
+            conf.kvm = True
+        else:
+            conf.kvm  = False
+
+        globals.GApp.awprouterimages[name] = conf
+        self.treeWidgetAWPImages.resizeColumnToContents(0)
+        QtGui.QMessageBox.information(globals.preferencesWindow, translate("Page_PreferencesQemu", "Save"),  translate("Page_PreferencesQemu", "AWP settings have been saved"))
+
+    def slotDeleteAWPImage(self):
+        """ Delete AWP Image from the list of AWP images
+        """
+
+        item = self.treeWidgetAWPImages.currentItem()
+        if (item != None):
+            self.treeWidgetAWPImages.takeTopLevelItem(self.treeWidgetAWPImages.indexOfTopLevelItem(item))
+            name = unicode(item.text(0), 'utf-8', errors='replace')
+            del globals.GApp.awprouterimages[name]
+            globals.GApp.syncConf()
+
+    def slotAWPImageSelectionChanged(self):
+        """ Load AWP settings into the GUI when selecting an entry in the list of AWP images
+        """
+
+        # Only one selection is possible
+        items = self.treeWidgetAWPImages.selectedItems()
+        if len(items):
+            item = items[0]
+            name = unicode(item.text(0), 'utf-8', errors='replace')
+
+            conf = globals.GApp.awprouterimages[name]
+
+            self.NameAWPImage.setText(name)
+            self.AWPRel.setText(conf.rel)
+            self.AWPKernelCmdLine.setText(conf.kernel_cmdline)
+            self.AWPMemory.setValue(conf.memory)
+            self.AWPOptions.setText(conf.options)
+            self.AWPNICNb.setValue(conf.nic_nb)
+
+            index = self.AWPNIC.findText(conf.nic)
+            if index != -1:
+                self.AWPNIC.setCurrentIndex(index)
+
+            if conf.kvm == True:
+                self.AWPcheckBoxKVM.setCheckState(QtCore.Qt.Checked)
+            else:
+                self.AWPcheckBoxKVM.setCheckState(QtCore.Qt.Unchecked)
+
+    def slotAWPPreconfiguration(self):
+        """ Apply preconfigured settings
+        """
+
+        awp_preconfiguration = self.comboBoxAWPPreconfiguration.currentText()
+        if awp_preconfiguration == 'Educational Release':
+            self.NameAWPImage.setText("Educational")
+            self.AWPMemory.setValue(256)
+            self.AWPNICNb.setValue(6)
+            self.AWPNIC.setCurrentIndex(self.AWPNIC.findText("virtio"))
+            self.AWPOptions.setText("-nodefaults -vnc none -vga none")
+            self.AWPKernelCmdLine.setText("root=/dev/ram0 releasefile=0.0.0-test.rel console=ttyS0,0 no_autorestart loglevel=1")
+

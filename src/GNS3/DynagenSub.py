@@ -221,6 +221,33 @@ class DynagenSub(Dynagen):
                                 device['kernel'] = kernel_name
                             continue
 
+                        # AWP has no default image
+                        if device.name == 'Soft32' and device['initrd'] and device['kernel']:
+                            debugmsg(2, "DynagenSub::open_config(), entered QemuManager, AWP Soft32")
+                            if not os.access(device['initrd'], os.F_OK):
+
+                                if len(globals.GApp.awprouterimages.keys()):
+                                    initrd_name = globals.GApp.awprouterimages.values()[0].initrd
+                                else:
+                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
+                                                               translate("AWP initrd", "AWP initrd %s cannot be found and cannot find an alternative initrd") % device['initrd'])
+                                    continue
+                                print translate("DynagenSub", "Local AWP initrd %s cannot be found, use initrd %s instead") \
+                                                % (unicode(device['initrd']), initrd_name)
+                                device['initrd'] = initrd_name
+
+                            if not os.access(device['kernel'], os.F_OK):
+                                if len(globals.GApp.awprouterimages.keys()):
+                                    kernel_name = globals.GApp.awprouterimages.values()[0].kernel
+                                else:
+                                    QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'DynagenSub',
+                                                               translate("AWP kernel", "AWP kernel %s cannot be found and cannot find an alternative kernel") % device['kernel'])
+                                    continue
+                                print translate("DynagenSub", "Local AWP kernel %s cannot be found, use kernel %s instead") \
+                                                % (unicode(device['kernel']), kernel_name)
+                                device['kernel'] = kernel_name
+                            continue
+
                         # IDS has no default image
                         if device.name == 'IDS-4215' and device['image1'] and device['image2']:
                             debugmsg(2, "DynagenSub::open_config(), entered QemuManager, IDS")

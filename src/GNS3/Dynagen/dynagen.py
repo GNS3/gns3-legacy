@@ -45,7 +45,7 @@ from dynamips_lib import Dynamips, PA_C7200_IO_FE, PA_A1, PA_FE_TX, PA_4T, PA_8T
      CISCO2600_MB_1E, CISCO2600_MB_2E, CISCO2600_MB_1FE, CISCO2600_MB_2FE, PA_2FE_TX, \
      PA_GE, PA_C7200_IO_2FE, PA_C7200_IO_GE_E, PA_C7200_JC_PA, C1700, CISCO1710_MB_1FE_1E, C1700_MB_1ETH, \
      DynamipsVerError, DynamipsErrorHandled, NM_CIDS, NM_NAM, get_reverse_udp_nio, Dynamips_device, Emulated_switch
-from qemu_lib import Qemu, QemuDevice, AnyEmuDevice, PIX, ASA, JunOS, IDS, nosend_qemu
+from qemu_lib import Qemu, QemuDevice, AnyEmuDevice, PIX, ASA, AWP, JunOS, IDS, nosend_qemu
 from dynagen_vbox_lib import VBox, VBoxDevice, AnyVBoxEmuDevice, nosend_vbox
 from validate import Validator
 from configobj import ConfigObj, flatten_errors
@@ -75,6 +75,7 @@ MODELTUPLE = (  # A tuple of known model objects
     C3600,
     C7200,
     ASA,
+    AWP,
     PIX,
     JunOS,
     IDS,
@@ -84,6 +85,7 @@ MODELTUPLE = (  # A tuple of known model objects
 DEVICETUPLE = (  # A tuple of known device names
     '525',
     '5520',
+    'Soft32',
     'O-series',
     'IDS-4215',
     'QemuDevice',
@@ -291,6 +293,7 @@ class Dynagen:
                 'options',
                 'initrd',
                 'kernel',
+                'rel',
                 'kernel_cmdline',
                 'image1',
                 'image2',
@@ -1174,7 +1177,7 @@ class Dynagen:
                     for subsection in server.sections:
                         device = server[subsection]
 
-                        if device.name in ['525', '5520', 'O-series', 'IDS-4215', 'QemuDevice']:
+                        if device.name in ['525', '5520', 'Soft32', 'O-series', 'IDS-4215', 'QemuDevice']:
                             # Populate the appropriate dictionary
                             for scalar in device.scalars:
                                 if device[scalar] != None:
@@ -1193,6 +1196,8 @@ class Dynagen:
                             dev = PIX(self.dynamips[qemu_name], name=name)
                         elif devtype.lower() == 'asa':
                             dev = ASA(self.dynamips[qemu_name], name=name)
+                        elif devtype.lower() == 'awp':
+                            dev = AWP(self.dynamips[qemu_name], name=name)
                         elif devtype.lower() == 'junos':
                             dev = JunOS(self.dynamips[qemu_name], name=name)
                         elif devtype.lower() == 'ids':
@@ -1219,6 +1224,7 @@ class Dynagen:
                                 'options',
                                 'initrd',
                                 'kernel',
+                                'rel',
                                 'kernel_cmdline',
                                 'ram',
                                 'image',
@@ -1247,6 +1253,7 @@ class Dynagen:
                                     'options',
                                     'initrd',
                                     'kernel',
+                                    'rel',
                                     'kernel_cmdline',
                                     'ram',
                                     'image',
@@ -2154,7 +2161,7 @@ class Dynagen:
             if isinstance(hypervisor, Qemu):
                 h = 'qemu ' + hypervisor.host + ":" + str(hypervisor.port)
             elif isinstance(hypervisor, VBox):
-	        h = 'vbox ' + hypervisor.host + ":" + str(hypervisor.port)
+                h = 'vbox ' + hypervisor.host + ":" + str(hypervisor.port)
             else:
                 h = hypervisor.host + ":" + str(hypervisor.port)
 
@@ -2169,8 +2176,8 @@ class Dynagen:
                     if isinstance(device, AnyEmuDevice):
                         model = device.model_string
                         self.defaults_config[h][model] = {}
-                        # ASA and IDS have different image settings
-                        if model != '5520' and model != 'IDS-4215':
+                        # ASA, AWP and IDS have different image settings
+                        if model != '5520' and model != 'IDS-4215' and model != 'Soft32':
                             if device.image == None:
                                 self.error('specify at least image file for device ' + device.name)
                                 device.image = '"None"'
@@ -2180,12 +2187,10 @@ class Dynagen:
                             if getattr(device, option) != device.defaults[option]:
                                 self.defaults_config[h][model][option] = getattr(device, option)
                     elif isinstance(device, AnyVBoxEmuDevice):
-		        #continue
-
                         model = device.model_string
                         self.defaults_config[h][model] = {}
-                        # ASA and IDS have different image settings
-                        if model != '5520' and model != 'IDS-4215':
+                        # ASA, AWS and IDS have different image settings
+                        if model != '5520' and model != 'IDS-4215' and model != 'Soft32':
                             if device.image == None:
                                 self.error('specify at least image file for device ' + device.name)
                                 device.image = '"None"'

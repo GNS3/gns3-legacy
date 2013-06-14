@@ -139,6 +139,12 @@ class asaImageConf(ConfigObject):
         self.conf = Defaults.conf_asaImage_defaults.copy()
         self.types = Defaults.conf_asaImage_types
 
+class awprouterImageConf(ConfigObject):
+    def __init__(self):
+        ConfigObject.__init__(self)
+        self.conf = Defaults.conf_awprouterImage_defaults.copy()
+        self.types = Defaults.conf_awprouterImage_types
+
 class idsImageConf(ConfigObject):
     def __init__(self):
         ConfigObject.__init__(self)

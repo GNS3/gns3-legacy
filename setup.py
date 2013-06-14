@@ -71,6 +71,7 @@ if sys.platform.startswith('win'):
                                                   "GNS3.Ui.ConfigurationPages.Page_IOSRouter",
                                                   "GNS3.Ui.ConfigurationPages.Page_PIX",
                                                   "GNS3.Ui.ConfigurationPages.Page_ASA",
+                                                  "GNS3.Ui.ConfigurationPages.Page_AWP",
                                                   "GNS3.Ui.ConfigurationPages.Page_JunOS",
                                                   "GNS3.Ui.ConfigurationPages.Page_IDS",
                                                   "GNS3.Ui.ConfigurationPages.Page_Qemu",
@@ -138,6 +139,7 @@ elif sys.platform.startswith('darwin'):
                             'GNS3.Ui.ConfigurationPages.Page_IOSRouter',
                             'GNS3.Ui.ConfigurationPages.Page_PIX',
                             'GNS3.Ui.ConfigurationPages.Page_ASA',
+                            'GNS3.Ui.ConfigurationPages.Page_AWP',
                             'GNS3.Ui.ConfigurationPages.Page_JunOS',
                             'GNS3.Ui.ConfigurationPages.Page_IDS',
                             'GNS3.Ui.ConfigurationPages.Page_Qemu',
@@ -267,6 +269,7 @@ else:
             package_dir = { '': 'src' },
             packages = [
                 'GNS3',
+                'GNS3.Awp',
                 'GNS3.Config',
                 'GNS3.Globals',
                 'GNS3.Dynagen',
@@ -280,7 +283,7 @@ else:
                 'GNS3.Langs'],
           package_data = { 'GNS3': ['Langs/*.qm', 'Dynagen/configspec'] },
           data_files = [ (wrapper_dir, ['qemuwrapper/qemuwrapper.py', 'vboxwrapper/vboxcontroller_4_1.py', 'vboxwrapper/vboxwrapper.py', 'vboxwrapper/tcp_pipe_proxy.py']),
-                        ('share/examples/gns3/', ['baseconfig.txt', 'baseconfig_sw.txt']),
-                        ('share/doc/gns3/', ['README', 'COPYING', 'CHANGELOG']),
-                        ('share/man/man1/', ['docs/man/gns3.1'])]
+                        ('/usr/local/share/examples/gns3/', ['baseconfig.txt', 'baseconfig_sw.txt']),
+                        ('/usr/local/share/doc/gns3/', ['README', 'COPYING', 'CHANGELOG']),
+                        ('/usr/local/share/man/man1/', ['docs/man/gns3.1'])]
     )

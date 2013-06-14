@@ -88,6 +88,14 @@ class JunOSDefaults(AnyEmuDefaults):
     def __init__(self):
         AnyEmuDefaults.__init__(self)
 
+class AWPDefaults(AnyEmuDefaults):
+    def __init__(self):
+        AnyEmuDefaults.__init__(self)
+        self.default_initrd = 'None'
+        self.default_kernel = 'None'
+        self.default_rel = 'None'
+        self.default_kernel_cmdline = 'None'
+
 class IDSDefaults(AnyEmuDefaults):
     def __init__(self):
         AnyEmuDefaults.__init__(self)

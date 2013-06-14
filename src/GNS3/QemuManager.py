@@ -203,6 +203,9 @@ class QemuManager(object):
                 ver = QtCore.QByteArray(")" + os.linesep)
                 endVerOffset = output.indexOf(ver, verOffset) - verOffset
                 wrapperVer = output.mid(verOffset, endVerOffset)
+                # AWP implementation case
+                if wrapperVer[-4:] == '-atl': 
+                    wrapperVer = wrapperVer[:-4] # In case of ATL-specific wrapper
                 if wrapperVer != VERSION:
                     proc.close()
                     raise Exception(translate('QemuManager', 'Bad qemuwrapper.py version, expected (%s) got (%s)') % (VERSION, wrapperVer))

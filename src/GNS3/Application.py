@@ -75,6 +75,7 @@ class Application(QApplication, Singleton):
         self.__piximages = {}
         self.__junosimages = {}
         self.__asaimages = {}
+        self.__awprouterimages = {}
         self.__idsimages = {}
         self.__recentfiles = []
         self.iosimages_ids = 0
@@ -84,6 +85,7 @@ class Application(QApplication, Singleton):
         self.piximages_ids = 0
         self.junosimages_ids = 0
         self.asaimages_ids = 0
+        self.awprouterimages_ids = 0
         self.idsimages_ids = 0
 
         # set global app to ourself
@@ -252,6 +254,20 @@ class Application(QApplication, Singleton):
         return self.__asaimages
 
     asaimages = property(__getASAImages, __setASAImages, doc='ASA images dictionnary')
+
+    def __setAWPImages(self, awprouterimages):
+        """ register the sysconf instance
+        """
+
+        self.__awprouterimages = awprouterimages
+
+    def __getAWPImages(self):
+        """ return the sysconf instance
+        """
+
+        return self.__awprouterimages
+
+    awprouterimages = property(__getAWPImages, __setAWPImages, doc='AWP images dictionary')
 
     def __setIDSImages(self, idsimages):
         """ register the sysconf instance
@@ -556,6 +572,7 @@ class Application(QApplication, Singleton):
         GNS_Conf().PIX_images()
         GNS_Conf().JUNOS_images()
         GNS_Conf().ASA_images()
+        GNS_Conf().AWP_images()
         GNS_Conf().IDS_images()
         GNS_Conf().Libraries()
         GNS_Conf().Symbols()
@@ -778,6 +795,10 @@ class Application(QApplication, Singleton):
         c.remove("")
         c.endGroup()
 
+        c.beginGroup("AWP.images")
+        c.remove("")
+        c.endGroup()
+
         c.beginGroup("IDS.images")
         c.remove("")
         c.endGroup()
@@ -890,6 +911,20 @@ class Application(QApplication, Singleton):
             c.set(basekey + "/monitor", o.monitor)
             c.set(basekey + "/initrd", o.initrd)
             c.set(basekey + "/kernel", o.kernel)
+            c.set(basekey + "/kernel_cmdline", o.kernel_cmdline)
+
+        # AWP images
+        for (key, o) in self.__awprouterimages.iteritems():
+            basekey = "AWP.images/" + str(o.id)
+            c.set(basekey + "/name", o.name)
+            c.set(basekey + "/memory", o.memory)
+            c.set(basekey + "/nic_nb", o.nic_nb)
+            c.set(basekey + "/nic", o.nic)
+            c.set(basekey + "/options", o.options)
+            c.set(basekey + "/kvm", o.kvm)
+            c.set(basekey + "/initrd", o.initrd)
+            c.set(basekey + "/kernel", o.kernel)
+            c.set(basekey + "/rel", o.rel)
             c.set(basekey + "/kernel_cmdline", o.kernel_cmdline)
 
         # IDS images

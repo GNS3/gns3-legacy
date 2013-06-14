@@ -63,7 +63,7 @@ frsw_hostname_re = re.compile(r"""^FR([0-9]+)""")
 atmsw_hostname_re = re.compile(r"""^ATM([0-9]+)""")
 atmbr_hostname_re = re.compile(r"""^BR([0-9]+)""")
 cloud_hostname_re = re.compile(r"""^C([0-9]+)""")
-emu_hostname_re = re.compile(r"""^[PIX|JUNOS|ASA|IDS|QEMU]([0-9]+)""")
+emu_hostname_re = re.compile(r"""^[PIX|JUNOS|ASA|AWP|IDS|QEMU]([0-9]+)""")
 vbox_emu_hostname_re = re.compile(r"""^[VBOX]([0-9]+)""")
 decorative_hostname_re = re.compile(r"""^N([0-9]+)""")
 
@@ -1241,8 +1241,8 @@ class NETFile(object):
 
                 for model in dynagen_namespace.DEVICETUPLE:
                     if config.has_key(model):
-                        # ASA has no image
-                        if model == '5520':
+                        # ASA and AWP has no image
+                        if model == '5520' or model == 'Soft32':
                             config[model]['initrd'] = self.convert_to_relpath(config[model]['initrd'], path)
                             config[model]['kernel'] = self.convert_to_relpath(config[model]['kernel'], path)
                         # IDS-4215 has no default image

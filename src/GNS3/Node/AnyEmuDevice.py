@@ -25,7 +25,7 @@ import GNS3.Dynagen.dynamips_lib as lib
 import GNS3.Telnet as console
 from PyQt4 import QtGui
 from GNS3.Node.AbstractNode import AbstractNode
-from GNS3.Defaults.AnyEmuDefaults import AnyEmuDefaults, PIXDefaults, ASADefaults, JunOSDefaults, QemuDefaults, IDSDefaults
+from GNS3.Defaults.AnyEmuDefaults import AnyEmuDefaults, PIXDefaults, ASADefaults, AWPDefaults, JunOSDefaults, QemuDefaults, IDSDefaults
 from GNS3.Utils import translate, debug, error
 
 emu_id = 1
@@ -284,8 +284,8 @@ class AnyEmuDevice(AbstractNode, AnyEmuDefaults):
             if devdefaults[model] == {} and not devdefaults[model].has_key('image'):
                 error('Create a defaults section for ' + model + ' first! Minimum setting is image name')
                 return False
-            # check if an image has been configured first (not for ASA and IDS)
-            elif not devdefaults[model].has_key('image') and model != '5520' and model != 'IDS-4215':
+            # check if an image has been configured first (not for ASA, AWP and IDS)
+            elif not devdefaults[model].has_key('image') and model != '5520' and model != 'Soft32' and model != 'IDS-4215':
                 error('Specify image name for ' + model + ' device first!')
                 return False
         else:
@@ -441,6 +441,47 @@ class ASA(AnyEmuDevice, ASADefaults):
     def _make_devinstance(self, qemu_name):
         from GNS3.Dynagen import qemu_lib
         return qemu_lib.ASA(self.dynagen.dynamips[qemu_name], self.hostname)
+
+    def startNode(self, progress=False):
+        """ Start the node
+        """
+
+        if not self.emudev.initrd or not self.emudev.kernel:
+            print translate(self.basehostname, "%s: no device initrd or kernel") % self.hostname
+            return
+        try:
+            if self.emudev.state == 'stopped':
+                self.emudev.start()
+        except:
+            if progress:
+                raise
+            else:
+                return
+
+        self.startupInterfaces()
+        self.state = 'running'
+        globals.GApp.mainWindow.treeWidget_TopologySummary.changeNodeStatus(self.hostname, 'running')
+
+class AWP(AnyEmuDevice, AWPDefaults):
+    instance_counter = 0
+    model = 'Soft32'
+    basehostname = 'AWP'
+    friendly_name ='AWP Router'
+
+    def __init__(self, *args, **kwargs):
+        AnyEmuDevice.__init__(self, *args, **kwargs)
+        AWPDefaults.__init__(self)
+        self.emudev_options.extend([
+            'initrd',
+            'kernel',
+            'rel',
+            'kernel_cmdline',
+            ])
+        debug('Hello, I have initialized and my model is %s' % self.model)
+
+    def _make_devinstance(self, qemu_name):
+        from GNS3.Dynagen import qemu_lib
+        return qemu_lib.AWP(self.dynagen.dynamips[qemu_name], self.hostname)
 
     def startNode(self, progress=False):
         """ Start the node

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Mon Jun 10 16:49:43 2013
+# Created: Fri Jun 14 16:47:57 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -282,7 +282,8 @@ class Ui_MainWindow(object):
         self.action_OnlineHelp.setObjectName(_fromUtf8("action_OnlineHelp"))
         self.action_Export = QtGui.QAction(MainWindow)
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/export.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/camera-photo.svg")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap(_fromUtf8(":/icons/camera-photo-hover.svg")), QtGui.QIcon.Active, QtGui.QIcon.Off)
         self.action_Export.setIcon(icon6)
         self.action_Export.setText(QtGui.QApplication.translate("MainWindow", "&Screenshot", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Export.setToolTip(QtGui.QApplication.translate("MainWindow", "Screenshot", None, QtGui.QApplication.UnicodeUTF8))
@@ -734,6 +735,7 @@ class Ui_MainWindow(object):
         self.toolBar_drawing.addAction(self.action_DrawEllipse)
         self.toolBar_drawing.addAction(self.action_ZoomIn)
         self.toolBar_drawing.addAction(self.action_ZoomOut)
+        self.toolBar_drawing.addAction(self.action_Export)
 
         self.retranslateUi(MainWindow)
         QtCore.QObject.connect(self.action_Quit, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)

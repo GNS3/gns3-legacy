@@ -32,7 +32,7 @@ from GNS3.Node.ETHSW import ETHSW
 from GNS3.Node.ATMSW import ATMSW
 from GNS3.Node.ATMBR import ATMBR
 from GNS3.Node.Hub import Hub
-from GNS3.Node.AnyEmuDevice import PIX, ASA, JunOS, IDS, QemuDevice
+from GNS3.Node.AnyEmuDevice import PIX, ASA, AWP, JunOS, IDS, QemuDevice
 from GNS3.Node.AnyVBoxEmuDevice import VBoxDevice
 
 SYMBOL_TYPES = {
@@ -44,6 +44,7 @@ SYMBOL_TYPES = {
                 IOSRouter7200: 'Router c7200',
                 PIX: 'PIX firewall',
                 ASA: 'ASA firewall',
+                AWP: 'AW+ router',
                 JunOS: 'Juniper router',
                 IDS: 'IDS',
                 ETHSW: 'Ethernet switch',
@@ -121,6 +122,14 @@ SYMBOLS = [
     'translated': True,
     'checkForImage': True,
     'type': 'Security devices'
+    },
+           
+    {'name': "AW+ router", 'object': AWP,
+    'normal_svg_file': ":/symbols/router.normal.awp.svg", 
+    'select_svg_file': ":/symbols/router.selected.awp.svg",
+    'translated': True,
+    'checkForImage': True,
+    'type': 'Routers'
     },
 
     {'name': "Juniper router", 'object': JunOS,

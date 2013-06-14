@@ -28,6 +28,7 @@ FILES=" Form_MainWindow
         ./ConfigurationPages/Form_PIXPage
         ./ConfigurationPages/Form_ASAPage
         ./ConfigurationPages/Form_JunOSPage
+	./ConfigurationPages/Form_AWPPage
         ./ConfigurationPages/Form_IDSPage
         ./ConfigurationPages/Form_QemuPage
         ./ConfigurationPages/Form_VirtualBoxPage

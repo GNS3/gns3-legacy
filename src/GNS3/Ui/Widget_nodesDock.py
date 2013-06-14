@@ -24,7 +24,7 @@ import GNS3.Globals as globals
 from GNS3.Utils import translate
 from GNS3.Globals.Symbols import SYMBOLS
 from GNS3.Node.IOSRouter import IOSRouter
-from GNS3.Node.AnyEmuDevice import QemuDevice, PIX, ASA, JunOS, IDS
+from GNS3.Node.AnyEmuDevice import QemuDevice, PIX, ASA, AWP, JunOS, IDS
 from GNS3.Node.AnyVBoxEmuDevice import VBoxDevice
 
 class nodesDock(QtGui.QTreeWidget):
@@ -83,6 +83,8 @@ class nodesDock(QtGui.QTreeWidget):
             item.setDisabled(False)
         # Check availability for firewall and IDS images
         elif issubclass(node, ASA) and len(globals.GApp.asaimages) != 0:
+            item.setDisabled(False)
+        elif issubclass(node, AWP) and len(globals.GApp.awprouterimages) != 0:
             item.setDisabled(False)
         elif issubclass(node, PIX) and len(globals.GApp.piximages) != 0:
             item.setDisabled(False)

@@ -61,7 +61,10 @@ class HypervisorManager(object):
         """
 
         if binding == None:
-            binding = self.dynamips.HypervisorManager_binding
+            if self.dynamips.HypervisorManager_binding and self.dynamips.HypervisorManager_binding != '0.0.0.0':
+                binding = self.dynamips.HypervisorManager_binding
+            else:
+                binding = '127.0.0.1'
 
         proc = QtCore.QProcess(globals.GApp.mainWindow)
 
@@ -107,7 +110,7 @@ class HypervisorManager(object):
         try:
             # start dynamips in hypervisor mode (-H)
             # Dynamips version 0.2.8-RC3 and before cannot accept a specific port when binding on a chosen address with param -H <IP address:port> (bug is inside Dynamips).
-            if self.dynamips.detected_version and LooseVersion(self.dynamips.detected_version) > '0.2.8-RC3':
+            if self.dynamips.detected_version and LooseVersion(self.dynamips.detected_version) > '0.2.8-RC3' and binding != '0.0.0.0':
                 debug("Starting Dynamips with -H %s:%i" % (binding, port))
                 proc.start(self.hypervisor_path,  ['-H', binding + ':' + str(port)])
             else:
@@ -135,7 +138,7 @@ class HypervisorManager(object):
         """
         
         if binding == None:
-            if self.dynamips.HypervisorManager_binding:
+            if self.dynamips.HypervisorManager_binding and self.dynamips.HypervisorManager_binding != '0.0.0.0':
                 binding = self.dynamips.HypervisorManager_binding
             else:
                 debug("Hypervisor manager: warning: no default binding, defaulting to 127.0.0.1")
@@ -179,7 +182,7 @@ class HypervisorManager(object):
             if not last_exception:
                 last_exception = 'Unknown problem'
             QtGui.QMessageBox.critical(globals.GApp.mainWindow, 'Hypervisor Manager',
-                                       translate("HypervisorManager", "Can't connect to the hypervisor on %s port %i: %s") % (binding, hypervisor['port'], unicode(last_exception, 'utf-8', errors='replace')))
+                                       translate("HypervisorManager", "Can't connect to the hypervisor on %s port %i: %s") % (binding, hypervisor['port'], last_exception))
             hypervisor['proc_instance'].close()
             self.hypervisors.remove(hypervisor)
             return False
@@ -331,7 +334,7 @@ class HypervisorManager(object):
         try:
             # start dynamips in hypervisor mode (-H)
             # Dynamips version 0.2.8-RC3 and before cannot accept a specific port when binding on a chosen address with param -H <IP address:port> (bug is inside Dynamips).
-            if self.dynamips.detected_version and LooseVersion(self.dynamips.detected_version) > '0.2.8-RC3':
+            if self.dynamips.detected_version and LooseVersion(self.dynamips.detected_version) > '0.2.8-RC3' and self.dynamips.HypervisorManager_binding != '0.0.0.0':
                 proc.start(self.hypervisor_path,  ['-H', self.dynamips.HypervisorManager_binding + ':' + str(port)])
             else:
                 proc.start(self.hypervisor_path,  ['-H', str(port)])
@@ -341,6 +344,11 @@ class HypervisorManager(object):
 
         if proc.waitForStarted() == False:
             return False
+        
+        if self.dynamips.HypervisorManager_binding != '0.0.0.0':
+            binding = self.dynamips.HypervisorManager_binding
+        else:
+            binding = '127.0.0.1'
 
         # give 5 seconds to the hypervisor to accept connections
         count = 5
@@ -348,7 +356,7 @@ class HypervisorManager(object):
         timeout = 60.0
         for nb in range(count + 1):
             try:
-                s = socket.create_connection((self.dynamips.HypervisorManager_binding, port), timeout)
+                s = socket.create_connection((binding, port), timeout)
             except:
                 time.sleep(1)
                 continue
