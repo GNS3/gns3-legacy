@@ -132,6 +132,9 @@ Please, see VirtualBox settings to change the chipset.</string>
    </item>
    <item row="5" column="0" colspan="2">
     <widget class="QCheckBox" name="checkBoxVboxConsoleServer">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="text">
       <string>Enable console server (for remote access)</string>
      </property>

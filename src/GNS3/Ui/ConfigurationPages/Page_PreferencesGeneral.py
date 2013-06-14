@@ -223,7 +223,7 @@ class UiConfig_PreferencesGeneral(QtGui.QWidget, Ui_PreferencesGeneral):
         # Create project and image directories if they don't exist
         if self.conf.project_path and not os.path.exists(self.conf.project_path) or self.conf.ios_path and not os.path.exists(self.conf.ios_path):
 
-            reply = QtGui.QMessageBox.question(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Project & Image directories"), translate("UiConfig_PreferencesGeneral", "Would you like to create the project & image directories?"),
+            reply = QtGui.QMessageBox.question(globals.preferencesWindow, translate("UiConfig_PreferencesGeneral", "Projects & Images directories"), translate("UiConfig_PreferencesGeneral", "Would you like to create the projects & images directories?"),
                                                QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
 
             if reply == QtGui.QMessageBox.Yes:

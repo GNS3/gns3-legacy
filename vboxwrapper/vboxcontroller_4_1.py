@@ -330,9 +330,6 @@ class VBoxController_4_1():
         #To reproduce: Try to configure several VMs, and restart them all in
         #  loop on heavily loaded hosts.
 
-        if not self.pipe_name:
-            return True
-
         if not self._safeLockMachine():
             return False
         try:
@@ -349,10 +346,13 @@ class VBoxController_4_1():
             return False
 
         try:
-            serial_port.enabled = True
-            serial_port.path = self.pipe_name
-            serial_port.hostMode = 1
-            serial_port.server = True
+            if self.pipe_name:
+                serial_port.enabled = True
+                serial_port.path = self.pipe_name
+                serial_port.hostMode = 1
+                serial_port.server = True
+            else:
+                serial_port.enabled = False
         except:
             #Usually due to COM Error: "The object is not ready"
             debugmsg(1, "_console_options() -> serial port settings FAILED !")

@@ -74,6 +74,8 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         # Refresh VM list
         self.connect(self.pushButtonRefresh, QtCore.SIGNAL('clicked()'), self.slotRefreshVMlist)
 
+        self.connect(self.checkBoxVboxConsoleSupport, QtCore.SIGNAL('stateChanged(int)'), self.slotCheckBoxVboxConsoleSupportChanged)
+
         self.loadConf()
         self.comboBoxNameVBoxImage.addItem("")
 
@@ -445,6 +447,16 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         globals.GApp.vboximages[name] = conf
         self.treeWidgetVBoxImages.resizeColumnToContents(0)
 
+    def slotCheckBoxVboxConsoleSupportChanged(self, state):
+        """ Grey out or not console server option
+        """
+        
+        if state == QtCore.Qt.Checked:
+            self.checkBoxVboxConsoleServer.setEnabled(True)
+        else:
+            self.checkBoxVboxConsoleServer.setCheckState(QtCore.Qt.Unchecked)
+            self.checkBoxVboxConsoleServer.setEnabled(False)
+
     def slotDeleteVBoxImage(self):
         """ Delete VBox Image from the list of VBox images
         """
@@ -491,8 +503,10 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
 
             if conf.console_support:
                 self.checkBoxVboxConsoleSupport.setCheckState(QtCore.Qt.Checked)
+                self.checkBoxVboxConsoleServer.setEnabled(True)
             else:
                 self.checkBoxVboxConsoleSupport.setCheckState(QtCore.Qt.Unchecked)
+                self.checkBoxVboxConsoleServer.setEnabled(False)
 
             if conf.console_telnet_server:
                 self.checkBoxVboxConsoleServer.setCheckState(QtCore.Qt.Checked)

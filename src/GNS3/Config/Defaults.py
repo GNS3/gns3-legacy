@@ -251,7 +251,8 @@ if sys.platform.startswith('win'):
     else:
         TERMINAL_SERIAL_DEFAULT_CMD = unicode('putty.exe -serial %s -wt "%d [Local Console]" -gns3 5')
 elif sys.platform.startswith('darwin'):
-    TERMINAL_SERIAL_DEFAULT_CMD = unicode("/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"socat UNIX-CONNECT:%s stdio,raw,echo=0 ; exit\"'")
+    #/usr/bin/osascript -e 'tell application "terminal" to do script with command "socat UNIX-CONNECT:\"%s\" stdio,raw,echo=0 ; exit"'
+    TERMINAL_SERIAL_DEFAULT_CMD = unicode("/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"socat UNIX-CONNECT:\\\"%s\\\" stdio,raw,echo=0 ; exit\"'")
 else:
     TERMINAL_SERIAL_DEFAULT_CMD = unicode('xterm -T %d -e \'socat UNIX-CONNECT:"%s" stdio,raw,echo=0\' > /dev/null 2>&1 &')
 

@@ -34,6 +34,18 @@ class Page_VirtualBox(QtGui.QWidget, Ui_VirtualBoxPage):
         self.setupUi(self)
         self.setObjectName("VBox device")
         self.currentNodeID = None
+        
+        self.connect(self.checkBoxVboxConsoleSupport, QtCore.SIGNAL('stateChanged(int)'), self.slotCheckBoxVboxConsoleSupportChanged)
+
+    def slotCheckBoxVboxConsoleSupportChanged(self, state):
+        """ Grey out or not console server option
+        """
+
+        if state == QtCore.Qt.Checked:
+            self.checkBoxVboxConsoleServer.setEnabled(True)
+        else:
+            self.checkBoxVboxConsoleServer.setCheckState(QtCore.Qt.Unchecked)
+            self.checkBoxVboxConsoleServer.setEnabled(False)
 
     def loadConfig(self, id, config = None):
         # Load the config
@@ -67,8 +79,10 @@ class Page_VirtualBox(QtGui.QWidget, Ui_VirtualBoxPage):
 
         if vbox_config['console_support']:
             self.checkBoxVboxConsoleSupport.setCheckState(QtCore.Qt.Checked)
+            self.checkBoxVboxConsoleServer.setEnabled(True)
         else:
             self.checkBoxVboxConsoleSupport.setCheckState(QtCore.Qt.Unchecked)
+            self.checkBoxVboxConsoleServer.setEnabled(False)
 
         if vbox_config['console_telnet_server']:
             self.checkBoxVboxConsoleServer.setCheckState(QtCore.Qt.Checked)
