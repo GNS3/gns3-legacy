@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_VirtualBoxPage.ui'
 #
-# Created: Mon Jun 10 16:49:46 2013
+# Created: Fri Jun 14 21:09:36 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -79,6 +79,7 @@ class Ui_VirtualBoxPage(object):
         self.checkBoxVboxConsoleSupport.setObjectName(_fromUtf8("checkBoxVboxConsoleSupport"))
         self.gridLayout.addWidget(self.checkBoxVboxConsoleSupport, 4, 0, 1, 2)
         self.checkBoxVboxConsoleServer = QtGui.QCheckBox(VirtualBoxPage)
+        self.checkBoxVboxConsoleServer.setEnabled(False)
         self.checkBoxVboxConsoleServer.setText(QtGui.QApplication.translate("VirtualBoxPage", "Enable console server (for remote access)", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBoxVboxConsoleServer.setObjectName(_fromUtf8("checkBoxVboxConsoleServer"))
         self.gridLayout.addWidget(self.checkBoxVboxConsoleServer, 5, 0, 1, 2)

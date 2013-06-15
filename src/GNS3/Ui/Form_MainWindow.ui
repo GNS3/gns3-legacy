@@ -105,6 +105,29 @@ background-none;
     <addaction name="action_AboutQt"/>
     <addaction name="action_About"/>
    </widget>
+   <widget class="QMenu" name="menu_View">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <widget class="QMenu" name="menuWindow_Style">
+     <property name="title">
+      <string>Window Style</string>
+     </property>
+     <addaction name="action_DefaultStyle"/>
+     <addaction name="action_EnergySavingStyle"/>
+    </widget>
+    <addaction name="action_ZoomIn"/>
+    <addaction name="action_ZoomOut"/>
+    <addaction name="action_ZoomReset"/>
+    <addaction name="action_ZoomUsingMouseWheel"/>
+    <addaction name="action_DisableMouseWheel"/>
+    <addaction name="separator"/>
+    <addaction name="action_ShowLayers"/>
+    <addaction name="action_ResetInterfaceLabels"/>
+    <addaction name="action_ShowHostnames"/>
+    <addaction name="action_ShowinterfaceNames"/>
+    <addaction name="menuWindow_Style"/>
+   </widget>
    <widget class="QMenu" name="menuControl">
     <property name="title">
      <string>Control</string>
@@ -138,6 +161,7 @@ background-none;
    </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Edit"/>
+   <addaction name="menu_View"/>
    <addaction name="menuControl"/>
    <addaction name="menuDevice"/>
    <addaction name="menuAnnotate"/>

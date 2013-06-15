@@ -182,6 +182,10 @@ class DynagenSub(Dynagen):
                     globals.GApp.QemuManager.startQemu(int(controlPort), host)
                     debugmsg(2, "DynagenSub::open_config(), entered QemuManager")
 
+                    # Override qemu & qemu-img paths
+                    server['qemupath'] = globals.GApp.systconf['qemu'].qemu_path
+                    server['qemuimgpath'] = globals.GApp.systconf['qemu'].qemu_img_path
+
                     # Check if this is a relative working directory path and convert to an absolute path if necessary
                     if server['workingdir']:
                         abspath = os.path.join(os.path.dirname(FILENAME), unicode(server['workingdir']))
