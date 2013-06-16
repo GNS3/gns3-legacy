@@ -196,6 +196,16 @@ class DynagenSub(Dynagen):
                     if server['workingdir'] == '.':
                         server['workingdir'] = os.path.dirname(FILENAME)
 
+                    # check if the working directory is accessible, if not find an alternative working directory
+                    if not server.has_key('workingdir') or not server['workingdir'] or not os.access(server['workingdir'], os.F_OK):
+                        if globals.GApp.workspace.projectWorkdir and os.access(globals.GApp.workspace.projectWorkdir, os.F_OK):
+                            workdir = globals.GApp.workspace.projectWorkdir
+                        else:
+                            workdir = globals.GApp.systconf['qemu'].qemuwrapper_workdir
+                        debug(translate("DynagenSub", "Local working directory %s cannot be found for hypervisor %s:%s, use working directory %s instead") \
+                        % (server['workingdir'], host, controlPort, workdir))
+                        server['workingdir'] = workdir
+
                     for subsection in server.sections:
                         device = server[subsection]
                         # ASA has no image
@@ -343,6 +353,16 @@ class DynagenSub(Dynagen):
                     if server['workingdir'] == '.':
                         server['workingdir'] = os.path.dirname(FILENAME)
 
+                    # check if the working directory is accessible, if not find an alternative working directory
+                    if not server.has_key('workingdir') or not server['workingdir'] or not os.access(server['workingdir'], os.F_OK):
+                        if globals.GApp.workspace.projectWorkdir and os.access(globals.GApp.workspace.projectWorkdir, os.F_OK):
+                            workdir = globals.GApp.workspace.projectWorkdir
+                        else:
+                            workdir = globals.GApp.systconf['vbox'].vboxwrapper_workdir
+                        debug(translate("DynagenSub", "Local working directory %s cannot be found for hypervisor %s:%s, use working directory %s instead") \
+                        % (server['workingdir'], host, controlPort, workdir))
+                        server['workingdir'] = workdir
+
                     for subsection in server.sections:
                         device = server[subsection]
                         debugmsg(3, "DynagenSub::open_config(), 'vbox', device...")
@@ -392,14 +412,15 @@ class DynagenSub(Dynagen):
 
                     if server['workingdir'] == '.':
                         server['workingdir'] = os.path.dirname(FILENAME)
+
                     # check if the working directory is accessible, if not find an alternative working directory
                     if not server.has_key('workingdir') or not server['workingdir'] or not os.access(server['workingdir'], os.F_OK):
                         if globals.GApp.workspace.projectWorkdir and os.access(globals.GApp.workspace.projectWorkdir, os.F_OK):
                             workdir = globals.GApp.workspace.projectWorkdir
                         else:
                             workdir = globals.GApp.systconf['dynamips'].workdir
-                        print translate("DynagenSub", "Local working directory %s cannot be found for hypervisor %s:%s, use working directory %s instead") \
-                        % (server['workingdir'], server.host, controlPort, workdir)
+                        debug(translate("DynagenSub", "Local working directory %s cannot be found for hypervisor %s:%s, use working directory %s instead") \
+                        % (server['workingdir'], server.host, controlPort, workdir))
                         server['workingdir'] = workdir
 
                     debugmsg(3, ("DynagenSub::open_config(), server.sections = ", server.sections))

@@ -624,7 +624,7 @@ background-none;
     <string>Take a screenshot</string>
    </property>
    <property name="statusTip">
-    <string>Screenshot</string>
+    <string>Take a creenshot</string>
    </property>
   </action>
   <action name="action_StartAll">

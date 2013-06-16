@@ -1310,7 +1310,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                            translate("Workspace", "Cannot create directory %s: %s") % (projectDir, e.strerror))
         else:
             self.isTemporaryProject = False
-            # no need of this!!!
+            #no need of this!!!
             #self.projectWorkdir = os.path.normpath(os.path.dirname(self.projectFile) + os.sep + 'working')
 
         if self.projectWorkdir and not os.access(self.projectWorkdir, os.F_OK):
