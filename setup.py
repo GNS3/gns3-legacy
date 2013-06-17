@@ -219,7 +219,7 @@ elif sys.platform.startswith('darwin'):
     os.chmod('./GNS3.app/Contents/Resources/Qemu-0.14.1/bin/qemu-system-x86_64', 0755)
     os.chmod('./GNS3.app/Contents/Resources/Qemu-0.14.1/bin/qemu-img', 0755)
     os.chmod('./GNS3.app/Contents/Resources/dynamips-0.2.8-RC3-community-OSX.intel64.bin', 0755)
-    os.chmod('./GNS3.app/Contents/Resources/dynamips-0.2.8-RC6-community-OSX.intel64.bin', 0755)
+    os.chmod('./GNS3.app/Contents/Resources/dynamips-0.2.8-RC7-community-OSX.intel64.bin', 0755)
     os.chmod('./GNS3.app/Contents/Resources/vpcs', 0755)
 
     print '*** Compiling & installing VBoxWrapper ***'

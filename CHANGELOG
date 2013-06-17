@@ -51,7 +51,17 @@
     * Clean VirtualBox VMs from UDP tunnels when stopping them.
     * Instructions entry for tools menu.
     * Fixed bug with VirtualBox/Qemu devices while importing a topology: duplicated UDP tunnels.
-  
+    * Use Qemu guest identifier names to set Qemu guest device hostnames.
+    * Fixed bug when modifying an Ethernet switch configuration after loading a topology.
+    * Possibility to press shift to force the display of link types when adding a link with option 'always use manual mode when adding links' activated.
+    * Better default directory when using file browsers (ellipse buttons in preferences).
+    * Fixed bug when a device was named 'LAN'.
+    * Option to activate/deactivate the inclusion of a screenshot when saving a project. The screenshot is named the same as the project file (e.g. topology.net = topology.png).
+	* Possibility to open a project by opening its corresponding screenshot.
+	* Added a warning message when an c7200p image is added in the IOS images and hypervisors window.
+	* Check for unsaved image settings in Qemu Preferences.
+	* AW+ router support by Allied Telesis from New Zealand.
+    
 === v0.8.3.1 20.10.2012 ===
 
 	* Vboxwrapper recompilation to run with VirtualBox 4.2
