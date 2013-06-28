@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_NewProject.ui'
 #
-# Created: Sun Jun 16 11:11:26 2013
+# Created: Fri Jun 28 14:27:20 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_NewProject(object):
     def setupUi(self, NewProject):
         NewProject.setObjectName(_fromUtf8("NewProject"))
-        NewProject.resize(572, 255)
+        NewProject.resize(572, 232)
         NewProject.setWindowTitle(QtGui.QApplication.translate("NewProject", "New Project", None, QtGui.QApplication.UnicodeUTF8))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(_fromUtf8(":/images/logo_icon.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -49,24 +49,19 @@ class Ui_NewProject(object):
         self.NewProject_browser.setToolButtonStyle(QtCore.Qt.ToolButtonTextOnly)
         self.NewProject_browser.setObjectName(_fromUtf8("NewProject_browser"))
         self.gridLayout.addWidget(self.NewProject_browser, 1, 2, 1, 1)
-        self.checkBox_ConfigFiles = QtGui.QCheckBox(self.groupBox)
-        self.checkBox_ConfigFiles.setText(QtGui.QApplication.translate("NewProject", "Save IOS startup configurations", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBox_ConfigFiles.setChecked(True)
-        self.checkBox_ConfigFiles.setObjectName(_fromUtf8("checkBox_ConfigFiles"))
-        self.gridLayout.addWidget(self.checkBox_ConfigFiles, 2, 0, 1, 2)
         self.checkBox_WorkdirFiles = QtGui.QCheckBox(self.groupBox)
         self.checkBox_WorkdirFiles.setText(QtGui.QApplication.translate("NewProject", "Save nvrams and virtual hard drives (required to save EtherSwitch VLAN configs)", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBox_WorkdirFiles.setChecked(False)
         self.checkBox_WorkdirFiles.setObjectName(_fromUtf8("checkBox_WorkdirFiles"))
-        self.gridLayout.addWidget(self.checkBox_WorkdirFiles, 3, 0, 1, 3)
+        self.gridLayout.addWidget(self.checkBox_WorkdirFiles, 2, 0, 1, 3)
         self.unbaseImages = QtGui.QCheckBox(self.groupBox)
         self.unbaseImages.setText(QtGui.QApplication.translate("NewProject", "Unbase images when saving (required to share a project that uses Qemu)", None, QtGui.QApplication.UnicodeUTF8))
         self.unbaseImages.setObjectName(_fromUtf8("unbaseImages"))
-        self.gridLayout.addWidget(self.unbaseImages, 4, 0, 1, 2)
+        self.gridLayout.addWidget(self.unbaseImages, 3, 0, 1, 2)
         self.checkBox_SaveCaptures = QtGui.QCheckBox(self.groupBox)
         self.checkBox_SaveCaptures.setText(QtGui.QApplication.translate("NewProject", "Save traffic captures", None, QtGui.QApplication.UnicodeUTF8))
         self.checkBox_SaveCaptures.setObjectName(_fromUtf8("checkBox_SaveCaptures"))
-        self.gridLayout.addWidget(self.checkBox_SaveCaptures, 5, 0, 1, 2)
+        self.gridLayout.addWidget(self.checkBox_SaveCaptures, 4, 0, 1, 2)
         self.verticalLayout.addWidget(self.groupBox)
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
