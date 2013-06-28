@@ -160,6 +160,8 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
                 image_conf = globals.GApp.iosimages[name]
                 if len(image_conf.hypervisors) == 0:
                     del globals.GApp.iosimages[name]
+                    #if binding == '0.0.0.0':
+                    #    binding = '127.0.0.1'
                     globals.GApp.iosimages[binding + ':' + image_conf.filename] = image_conf
 
         globals.GApp.systconf['dynamips'] = self.conf
@@ -172,8 +174,8 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
         """
 
         dynamips_default_directory = '.'
-        if sys.platform.startswith('darwin') and hasattr(sys, "frozen") and os.path.exists('/Applications/GNS3/Contents/Resources/'):
-            dynamips_default_directory = '/Applications/GNS3/Contents/Resources/'
+        if sys.platform.startswith('darwin') and os.path.exists('../Resources/') and hasattr(sys, "frozen"):
+            dynamips_default_directory = '../Resources/'
 
         fb = fileBrowser(translate('UiConfig_PreferencesDynamips', 'Dynamips binary'), directory=dynamips_default_directory, parent=globals.preferencesWindow)
         (path, selected) = fb.getFile()

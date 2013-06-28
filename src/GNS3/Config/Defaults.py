@@ -468,7 +468,7 @@ conf_junosImage_defaults = {
     'id': -1,
     'name': '',
     'filename': '',
-    'memory': 96,
+    'memory': 512,
     'nic_nb': 6,
     'usermod' : False,
     'nic': 'e1000',

@@ -54,10 +54,12 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
                 self.checkBox_WorkdirFiles.setCheckState(QtCore.Qt.Checked)
             else:
                 self.checkBox_WorkdirFiles.setCheckState(QtCore.Qt.Unchecked)
-            if projectConfigs != None:
-                self.checkBox_ConfigFiles.setCheckState(QtCore.Qt.Checked)
-            else:
-                self.checkBox_ConfigFiles.setCheckState(QtCore.Qt.Unchecked)
+
+#             if projectConfigs != None:
+#                 self.checkBox_ConfigFiles.setCheckState(QtCore.Qt.Checked)
+#             else:
+#                 self.checkBox_ConfigFiles.setCheckState(QtCore.Qt.Unchecked)
+
             if unbase:
                 self.unbaseImages.setCheckState(QtCore.Qt.Checked)
             else:
@@ -144,10 +146,10 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
             projectWorkdir = os.path.normpath(projectDir + os.sep + 'working')
         else:
             projectWorkdir = None
-        if self.checkBox_ConfigFiles.checkState() == QtCore.Qt.Checked:
-            projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
-        else:
-            projectConfigs = None
+        #if self.checkBox_ConfigFiles.checkState() == QtCore.Qt.Checked:
+        projectConfigs = os.path.normpath(projectDir + os.sep + 'configs')
+        #else:
+        #    projectConfigs = None
         if self.unbaseImages.checkState() == QtCore.Qt.Checked:
             unbaseImages = True
         else:

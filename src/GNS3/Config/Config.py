@@ -166,6 +166,9 @@ class GNS_Conf(object):
                 continue
 
             if len(img_hypervisors) == 0:
+                #if globals.GApp.systconf['dynamips'].HypervisorManager_binding == '0.0.0.0':
+                #    img_ref = "127.0.0.1:" + img_filename
+                #else:
                 img_ref = globals.GApp.systconf['dynamips'].HypervisorManager_binding + ":" + img_filename
             else:
                 if len(img_hypervisors) > 1:

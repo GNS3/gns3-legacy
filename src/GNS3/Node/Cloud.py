@@ -165,6 +165,17 @@ class Cloud(AbstractNode):
                     nio = 'nio_gen_eth:' + str(interface)
                     if not nio in self.config['nios']:
                         self.config['nios'].append(nio)
+            
+            # adding NIO UDPs for VPCS
+            self.config['nios'].extend(['nio_udp:30000:127.0.0.1:20000',
+                                        'nio_udp:30001:127.0.0.1:20001',
+                                        'nio_udp:30002:127.0.0.1:20002',
+                                        'nio_udp:30003:127.0.0.1:20003',
+                                        'nio_udp:30004:127.0.0.1:20004',
+                                        'nio_udp:30005:127.0.0.1:20005',
+                                        'nio_udp:30006:127.0.0.1:20006',
+                                        'nio_udp:30007:127.0.0.1:20007',
+                                        'nio_udp:30008:127.0.0.1:20008'])
         return True
 
     def startNode(self):

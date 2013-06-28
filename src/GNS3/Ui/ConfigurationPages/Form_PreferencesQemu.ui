@@ -328,8 +328,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>322</width>
-            <height>521</height>
+            <width>475</width>
+            <height>544</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -471,12 +471,12 @@
                 </property>
                 <item>
                  <property name="text">
-                  <string>rtl8139</string>
+                  <string>e1000</string>
                  </property>
                 </item>
                 <item>
                  <property name="text">
-                  <string>e1000</string>
+                  <string>rtl8139</string>
                  </property>
                 </item>
                 <item>
@@ -636,8 +636,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>301</width>
-            <height>525</height>
+            <width>475</width>
+            <height>544</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -664,6 +664,11 @@
                 </property>
                 <item>
                  <property name="text">
+                  <string>e1000</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
                   <string>ne2k_pci</string>
                  </property>
                 </item>
@@ -685,11 +690,6 @@
                 <item>
                  <property name="text">
                   <string>rtl8139</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>e1000</string>
                  </property>
                 </item>
                 <item>
@@ -942,8 +942,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>322</width>
-            <height>491</height>
+            <width>475</width>
+            <height>544</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -1015,7 +1015,7 @@
                  <number>16</number>
                 </property>
                 <property name="value">
-                 <number>96</number>
+                 <number>512</number>
                 </property>
                </widget>
               </item>
@@ -1059,6 +1059,11 @@
                 </property>
                 <item>
                  <property name="text">
+                  <string>e1000</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
                   <string>ne2k_pci</string>
                  </property>
                 </item>
@@ -1080,11 +1085,6 @@
                 <item>
                  <property name="text">
                   <string>rtl8139</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>e1000</string>
                  </property>
                 </item>
                 <item>
@@ -1226,7 +1226,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>370</width>
+            <width>460</width>
             <height>633</height>
            </rect>
           </property>
@@ -1360,6 +1360,11 @@
                 </property>
                 <item>
                  <property name="text">
+                  <string>e1000</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
                   <string>ne2k_pci</string>
                  </property>
                 </item>
@@ -1381,11 +1386,6 @@
                 <item>
                  <property name="text">
                   <string>rtl8139</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>e1000</string>
                  </property>
                 </item>
                 <item>
@@ -1595,8 +1595,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>331</width>
-            <height>524</height>
+            <width>475</width>
+            <height>544</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -1739,6 +1739,11 @@
                 </property>
                 <item>
                  <property name="text">
+                  <string>e1000</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
                   <string>ne2k_pci</string>
                  </property>
                 </item>
@@ -1760,11 +1765,6 @@
                 <item>
                  <property name="text">
                   <string>rtl8139</string>
-                 </property>
-                </item>
-                <item>
-                 <property name="text">
-                  <string>e1000</string>
                  </property>
                 </item>
                 <item>
@@ -2049,6 +2049,41 @@
                 <item>
                  <property name="text">
                   <string>virtio-net-pci</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>e1000</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>ne2k_pci</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>i82551</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>i82557b</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>i82559er</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>rtl8139</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>pcnet</string>
                  </property>
                 </item>
                </widget>

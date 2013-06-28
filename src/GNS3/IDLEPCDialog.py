@@ -48,8 +48,12 @@ class IDLEPCDialog(QtGui.QDialog, Ui_IDLEPCDialog):
             for node in globals.GApp.topology.nodes.values():
                 if isinstance(node, IOSRouter) and node.hostname == self.router.hostname:
                     dyn_router = node.get_dynagen_device()
-                    if globals.GApp.iosimages.has_key(dyn_router.dynamips.host + ':' + dyn_router.image):
-                        image = globals.GApp.iosimages[dyn_router.dynamips.host + ':' + dyn_router.image]
+                    if globals.GApp.systconf['dynamips'].HypervisorManager_binding == '0.0.0.0':
+                        host = '0.0.0.0'
+                    else:
+                        host = dyn_router.dynamips.host
+                    if globals.GApp.iosimages.has_key(host + ':' + dyn_router.image):
+                        image = globals.GApp.iosimages[host + ':' + dyn_router.image]
                         debug("Register IDLE PC " + self.idles[index] + " for image " + image.filename)
                         image.idlepc = self.idles[index]
                         # Apply idle pc to devices with the same IOS image

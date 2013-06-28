@@ -206,14 +206,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # Lab instructions
         if self.projectFile and os.path.exists(os.path.dirname(self.projectFile)):
-            instructions_files = glob.glob(os.path.dirname(self.projectFile) + os.sep + "instructions*")
+            instructions_files = glob.glob(os.path.dirname(self.projectFile) + os.sep + "instructions" + os.sep + "instructions*")
             if len(instructions_files):
-                if os.path.dirname(self.projectFile) + os.sep + 'instructions.html' in instructions_files:
-                    path = os.path.dirname(self.projectFile) + os.sep + 'instructions.html'
-                elif os.path.dirname(self.projectFile) + os.sep +'instructions.txt' in instructions_files:
-                    path = os.path.dirname(self.projectFile) + os.sep +'instructions.txt'
-                else:
-                    path = instructions_files[0]
+                path = instructions_files[0]
                 instructions_action = QtGui.QAction(translate("Workspace", "Instructions"), self.menu_Tools)
                 instructions_action.setData(QtCore.QVariant(path))
                 self.menu_Tools.addAction(instructions_action)
@@ -1310,8 +1305,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                                            translate("Workspace", "Cannot create directory %s: %s") % (projectDir, e.strerror))
         else:
             self.isTemporaryProject = False
-            #no need of this!!!
-            #self.projectWorkdir = os.path.normpath(os.path.dirname(self.projectFile) + os.sep + 'working')
+            # Always create a working directory for a project...
+            self.projectWorkdir = os.path.normpath(os.path.dirname(self.projectFile) + os.sep + 'working')
 
         if self.projectWorkdir and not os.access(self.projectWorkdir, os.F_OK):
             try:

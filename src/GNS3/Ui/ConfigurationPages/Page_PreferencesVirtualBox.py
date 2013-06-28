@@ -344,8 +344,8 @@ class UiConfig_PreferencesVirtualBox(QtGui.QWidget, Ui_PreferencesVirtualBox):
         """
 
         vboxwrapper_default_directory = '.'
-        if sys.platform.startswith('darwin') and hasattr(sys, "frozen") and os.path.exists('/Applications/GNS3/Contents/Resources/'):
-            vboxwrapper_default_directory = '/Applications/GNS3/Contents/Resources/'
+        if sys.platform.startswith('darwin') and hasattr(sys, "frozen") and os.path.exists('../Resources/'):
+            vboxwrapper_default_directory = '../Resources/'
 
         path = fileBrowser('VBoxwrapper', directory=vboxwrapper_default_directory, parent=globals.preferencesWindow).getFile()
         if path != None and path[0] != '':

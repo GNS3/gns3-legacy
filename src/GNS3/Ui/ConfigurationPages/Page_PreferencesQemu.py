@@ -395,8 +395,8 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         """
     
         qemuwrapper_default_directory = '.'
-        if sys.platform.startswith('darwin') and hasattr(sys, "frozen") and os.path.exists('/Applications/GNS3/Contents/Resources/'):
-            qemuwrapper_default_directory = '/Applications/GNS3/Contents/Resources/'
+        if sys.platform.startswith('darwin') and hasattr(sys, "frozen") and os.path.exists('../Resources/'):
+            qemuwrapper_default_directory = '../Resources/'
 
         path = fileBrowser('Qemuwrapper', directory=qemuwrapper_default_directory, parent=globals.preferencesWindow).getFile()
         if path != None and path[0] != '':
@@ -429,8 +429,8 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         """
 
         qemu_default_directory = '.'
-        if sys.platform.startswith('darwin') and hasattr(sys, "frozen") and os.path.exists('/Applications/GNS3/Contents/Resources/'):
-            qemu_default_directory = '/Applications/GNS3/Contents/Resources/'
+        if sys.platform.startswith('darwin') and hasattr(sys, "frozen") and os.path.exists('../Resources/'):
+            qemu_default_directory = '../Resources/'
 
         path = fileBrowser('Qemu', directory=qemu_default_directory, parent=globals.preferencesWindow).getFile()
         if path != None and path[0] != '':
@@ -441,8 +441,8 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
         """
 
         qemuimg_default_directory = '.'
-        if sys.platform.startswith('darwin') and hasattr(sys, "frozen") and os.path.exists('/Applications/GNS3/Contents/Resources/'):
-            qemuimg_default_directory = '/Applications/GNS3/Contents/Resources/'
+        if sys.platform.startswith('darwin') and hasattr(sys, "frozen") and os.path.exists('../Resources/'):
+            qemuimg_default_directory = '../Resources/'
 
         path = fileBrowser('Qemu-img', directory=qemuimg_default_directory, parent=globals.preferencesWindow).getFile()
         if path != None and path[0] != '':

@@ -452,7 +452,7 @@ class Application(QApplication, Singleton):
         confo.qemuwrapper_workdir = ConfDB().get('Qemu/qemuwrapper_working_directory', Defaults.QEMUWRAPPER_DEFAULT_WORKDIR)
         confo.qemu_path = ConfDB().get('Qemu/qemu_path', Defaults.QEMU_DEFAULT_PATH)
         confo.qemu_img_path = ConfDB().get('Qemu/qemu_img_path', Defaults.QEMU_IMG_DEFAULT_PATH)
-        confo.external_hosts = ConfDB().get('Qemu/external_hosts', unicode('localhost:10525')).split(',')
+        confo.external_hosts = ConfDB().get('Qemu/external_hosts', unicode('127.0.0.1:10525')).split(',')
         confo.enable_QemuWrapperAdvOptions = ConfDB().value("Qemu/enable_QemuWrapperAdvOptions", QVariant(False)).toBool()
         confo.enable_QemuManager = ConfDB().value("Qemu/enable_QemuManager", QVariant(True)).toBool()
         confo.import_use_QemuManager = ConfDB().value("Qemu/qemu_manager_import", QVariant(True)).toBool()
@@ -471,7 +471,7 @@ class Application(QApplication, Singleton):
         confo = self.systconf['vbox']
         confo.vboxwrapper_path = ConfDB().get('VBox/vboxwrapper_path', Defaults.VBOXWRAPPER_DEFAULT_PATH)
         confo.vboxwrapper_workdir = ConfDB().get('VBox/vboxwrapper_working_directory', Defaults.VBOXWRAPPER_DEFAULT_WORKDIR)
-        confo.external_hosts = ConfDB().get('VBox/external_hosts', unicode('localhost:11525')).split(',')
+        confo.external_hosts = ConfDB().get('VBox/external_hosts', unicode('127.0.0.1:11525')).split(',')
         confo.use_VBoxVmnames = ConfDB().value("VBox/use_VBoxVmnames", QVariant(True)).toBool()
         confo.enable_VBoxWrapperAdvOptions = ConfDB().value("VBox/enable_VBoxWrapperAdvOptions", QVariant(False)).toBool()
         confo.enable_VBoxAdvOptions = ConfDB().value("VBox/enable_VBoxAdvOptions", QVariant(False)).toBool()
