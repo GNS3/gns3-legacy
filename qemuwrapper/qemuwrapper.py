@@ -1316,7 +1316,7 @@ def main():
                 print >> sys.stderr, "Path to Qemu seems invalid, please check. Current path is", QEMU_IMG_PATH
             sys.exit(1)
 
-    if options.host:
+    if options.host and options.host != '0.0.0.0':
         host = options.host
         IP = host
     else:

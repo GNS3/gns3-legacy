@@ -596,7 +596,8 @@ class Application(QApplication, Singleton):
         self.mainWindow.restoreState(ConfDB().value("GUIState/State").toByteArray())
         self.mainWindow.action_DisableMouseWheel.setChecked(ConfDB().value("GUIState/DisableMouseWheel", QVariant(False)).toBool())
         self.mainWindow.action_ZoomUsingMouseWheel.setChecked(ConfDB().value("GUIState/ZoomUsingMouseWheel", QVariant(False)).toBool())
-        self.mainWindow.tips_dialog.checkBoxDontShowAgain.setChecked(ConfDB().value("GUIState/DoNotShowTipsDialog", QVariant(False)).toBool())
+        if self.mainWindow.tips_dialog:
+            self.mainWindow.tips_dialog.checkBoxDontShowAgain.setChecked(ConfDB().value("GUIState/DoNotShowTipsDialog", QVariant(False)).toBool())
 
         # By default, don't show the NodeTypes dock
         self.mainWindow.dockWidget_NodeTypes.setVisible(False)
@@ -613,7 +614,8 @@ class Application(QApplication, Singleton):
         #for future releases
         if LooseVersion(VERSION) > str(version):
             # reset the tips dialog
-            self.mainWindow.tips_dialog.checkBoxDontShowAgain.setChecked(False)
+            if self.mainWindow.tips_dialog:
+                self.mainWindow.tips_dialog.checkBoxDontShowAgain.setChecked(False)
 
         if force_clear_configuration:
             self.mainWindow.raise_()
@@ -649,12 +651,12 @@ class Application(QApplication, Singleton):
                     dialog.activateWindow()
                     self.mainWindow.raise_()
                     dialog.raise_()
-                    if self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked() == False:
+                    if self.mainWindow.tips_dialog and self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked() == False:
                         self.showTipsDialog()
                 else:
                     self.mainWindow.createProject((None, None, None, False, False))
                     self.mainWindow.raise_()
-                    if self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked() == False:
+                    if self.mainWindow.tips_dialog and self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked() == False:
                         self.showTipsDialog()
 
         retcode = QApplication.exec_()
@@ -669,7 +671,8 @@ class Application(QApplication, Singleton):
             ConfDB().set("GUIState/State", self.mainWindow.saveState())
             ConfDB().set("GUIState/DisableMouseWheel", self.mainWindow.action_DisableMouseWheel.isChecked())
             ConfDB().set("GUIState/ZoomUsingMouseWheel", self.mainWindow.action_ZoomUsingMouseWheel.isChecked())
-            ConfDB().set("GUIState/DoNotShowTipsDialog", self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked())
+            if self.mainWindow.tips_dialog:
+                ConfDB().set("GUIState/DoNotShowTipsDialog", self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked())
             self.syncConf()
 
         sys.exit(retcode)

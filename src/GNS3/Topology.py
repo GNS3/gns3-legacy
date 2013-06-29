@@ -330,6 +330,8 @@ class Topology(QtGui.QGraphicsScene):
 
         if globals.GApp.systconf['qemu'].enable_QemuManager:
             host = globals.GApp.systconf['qemu'].QemuManager_binding
+            if host == '0.0.0.0':
+                host = '127.0.0.1'
             port = globals.GApp.systconf['qemu'].qemuwrapper_port
             if globals.GApp.QemuManager.startQemu(port) == False:
                 return False
@@ -402,6 +404,8 @@ class Topology(QtGui.QGraphicsScene):
 
         if globals.GApp.systconf['vbox'].enable_VBoxManager:
             host = globals.GApp.systconf['vbox'].VBoxManager_binding
+            if host == '0.0.0.0':
+                host = '127.0.0.1'
             port = globals.GApp.systconf['vbox'].vboxwrapper_port
             if globals.GApp.VBoxManager.startVBox(port) == False:
                 return False

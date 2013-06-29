@@ -978,7 +978,7 @@ def main():
             debugmsg(3, "VBoxWrapperServer::VBoxInit(), CoMarshal..()")
             VBOX_STREAM = pythoncom.CoMarshalInterThreadInterfaceInStream(pythoncom.IID_IDispatch, g_vboxManager.vbox)
 
-    if options.host:
+    if options.host and options.host != '0.0.0.0':
         host = options.host
         global IP
         IP = host

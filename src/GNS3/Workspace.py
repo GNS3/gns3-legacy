@@ -29,7 +29,6 @@ from PyQt4 import QtGui, QtCore, QtNetwork
 from PyQt4.QtGui import QMainWindow, QIcon, QWizard
 from GNS3.Ui.Form_MainWindow import Ui_MainWindow
 from GNS3.Ui.Form_About import Ui_AboutDialog
-from GNS3.TipsDialog import TipsDialog
 from GNS3.IOSDialog import IOSDialog
 from GNS3.SymbolManager import SymbolManager
 from GNS3.ProjectDialog import ProjectDialog
@@ -130,7 +129,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
         for addr in local_addresses:
             self.track.addLocalAddress(addr)
 
-        self.tips_dialog = TipsDialog(self)
+        try:
+            from GNS3.TipsDialog import TipsDialog
+            self.tips_dialog = TipsDialog(self)
+        except:
+            self.tips_dialog = None
+
         self.createToolsMenu()
         
         self.updateAction_addLink()
@@ -206,7 +210,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # Lab instructions
         if self.projectFile and os.path.exists(os.path.dirname(self.projectFile)):
-            instructions_files = glob.glob(os.path.dirname(self.projectFile) + os.sep + "instructions" + os.sep + "instructions*")
+            instructions_files = glob.glob(os.path.dirname(self.projectFile) + os.sep + "instructions.*")
+            instructions_files += glob.glob(os.path.dirname(self.projectFile) + os.sep + "instructions" + os.sep + "instructions*")
             if len(instructions_files):
                 path = instructions_files[0]
                 instructions_action = QtGui.QAction(translate("Workspace", "Instructions"), self.menu_Tools)
@@ -488,6 +493,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
             for file in dynamips_files:
                 try:
+                    debug("DELETING %s" % file)
                     os.remove(file)
                 except (OSError, IOError), e:
                     #print translate("Workspace", "Warning: Can't delete %s => %s") % (file, e.strerror)
@@ -1152,9 +1158,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Show the Tips dialog
         """
 
-        self.tips_dialog.show()
-        self.tips_dialog.loadWebPage()
-        self.tips_dialog.exec_()
+        if self.tips_dialog:
+            self.tips_dialog.show()
+            self.tips_dialog.loadWebPage()
+            self.tips_dialog.exec_()
 
     def __processCheckForUpdateReply(self):
         """ Process reply for check for update
@@ -1306,7 +1313,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         else:
             self.isTemporaryProject = False
             # Always create a working directory for a project...
-            self.projectWorkdir = os.path.normpath(os.path.dirname(self.projectFile) + os.sep + 'working')
+            # self.projectWorkdir = os.path.normpath(os.path.dirname(self.projectFile) + os.sep + 'working')
 
         if self.projectWorkdir and not os.access(self.projectWorkdir, os.F_OK):
             try:
@@ -1351,15 +1358,16 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 for node in globals.GApp.topology.nodes.values():
                     if isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir:
 
-                        dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_nvram*')
-                        dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_disk*')
-                        dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_slot*')
-                        dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_rom')
-                        dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_*flash*')
+                        dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + "_" + node.hostname + "_nvram*")
+                        dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + "_" + node.hostname + "_disk*")
+                        dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + "_" + node.hostname + "_slot*")
+                        dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + "_" + node.hostname + "_rom")
+                        dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + "_" + node.hostname + "_*flash*")
                         #dynamips_files += [os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_dynagen_device().formatted_ghost_file()]
 
                         for file in dynamips_files:
                             try:
+                                debug("MOVING %s to %s" % (file, self.projectWorkdir))
                                 shutil.copy(file, self.projectWorkdir)
                             except (OSError, IOError), e:
                                 debug("Warning: cannot copy " + file + " to " + self.projectWorkdir)
@@ -1380,7 +1388,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)
                         for file in qemu_files:
                             try:
-                                shutil.copytree(file, self.projectWorkdir + os.sep + node.hostname)
+                                dest = self.projectWorkdir + os.sep + node.hostname
+                                debug("MOVING %s to %s" % (file, dest))
+                                shutil.copytree(file, dest)
                             except (OSError, IOError), e:
                                 debug("Warning: cannot copy " + file + " to " + self.projectWorkdir)
                                 continue
@@ -1583,13 +1593,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_Preferences()
             return
 
-        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter='NET file (*.net);;PNG file (*.png);;All files (*.*)',
+        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter='NET/PNG file (*.net;*.png);;NET file (*.net);;PNG file (*.png);;All files (*.*)',
                                        directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getFile()
 
         if path:
-            if selected == 'NET file (*.net)' or selected == '':
+            if selected == 'NET file (*.net)' or selected == '' or path.endswith(".net"):
                 self.loadNetfile(os.path.normpath(path))
-            elif selected == 'PNG file (*.png)':
+            elif selected == 'PNG file (*.png)' or path.endswith(".png"):
                 project_filename = os.path.splitext(os.path.basename(path))[0] + '.net'
                 project_path = os.path.dirname(path) + os.sep + project_filename 
                 if not os.path.exists(project_path):

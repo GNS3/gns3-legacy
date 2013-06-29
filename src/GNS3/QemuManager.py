@@ -97,6 +97,7 @@ class QemuManager(object):
         self.port = port
         if binding == None:
             binding = globals.GApp.systconf['qemu'].QemuManager_binding
+        
         if self.proc and self.proc.state():
             debug('QemuManager: Qemu is already started with pid ' + str(self.proc.pid()))
             return True
@@ -121,7 +122,7 @@ class QemuManager(object):
             pass
 
         # start Qemuwrapper, use python on all platform but Windows (in release mode)
-        binding = globals.GApp.systconf['qemu'].QemuManager_binding
+        #binding = globals.GApp.systconf['qemu'].QemuManager_binding
         if sys.platform.startswith('win') and (globals.GApp.systconf['qemu'].qemuwrapper_path.split('.')[-1] == 'exe'):
             self.proc.start('"' + globals.GApp.systconf['qemu'].qemuwrapper_path + '"', ['--listen', binding, '--port', str(self.port), '--no-path-check'])
         elif hasattr(sys, "frozen"):

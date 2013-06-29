@@ -26,7 +26,7 @@ try:
     from GNS3.Ui.Form_TipsDialog import Ui_TipsDialog
     from PyQt4 import QtWebKit
 except ImportError:
-    print "Warning: QtWebKit is not installed. Skipping Tips Dialog..."
+    pass
 
 class TipsDialog(QtGui.QDialog, Ui_TipsDialog):
     """ TipsDialog class
