@@ -59,7 +59,12 @@ class AbstractNode(QtSvg.QGraphicsSvgItem):
         flags = self.ItemIsMovable | self.ItemIsSelectable | self.ItemIsFocusable
         # necessary to receive itemChange() notifications with Qt >= 4.6
         if QtCore.QT_VERSION >= 0x040600:
-            flags = flags | self.ItemSendsGeometryChanges
+            try:
+                flags = flags | self.ItemSendsGeometryChanges
+            except AttributeError:
+                # Forced to do this on CentOS, for an unknown reason, Qt doesn't support ItemSendsGeometryChanges even if version >= 4.6
+                # This is very likely that the topology will break apart if not supported!
+                pass
         self.setFlags(flags)
         self.setAcceptsHoverEvents(True)
         self.setSharedRenderer(self.__render_normal)

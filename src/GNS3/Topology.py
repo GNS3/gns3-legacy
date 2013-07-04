@@ -380,8 +380,9 @@ class Topology(QtGui.QGraphicsScene):
 
             if (globals.GApp.systconf['qemu'].enable_QemuManager and self.isLocalhost(host)) or \
                 (not globals.GApp.systconf['qemu'].enable_QemuManager and globals.GApp.systconf['qemu'].send_path_external_QemuWrapper):
-                if globals.GApp.workspace.projectWorkdir:
-                    workdir = globals.GApp.workspace.projectWorkdir
+                qemu_flash_drives_directory = os.path.dirname(globals.GApp.workspace.projectFile) + os.sep + 'qemu-flash-drives'
+                if os.access(qemu_flash_drives_directory, os.F_OK):
+                    workdir = qemu_flash_drives_directory
                 elif globals.GApp.systconf['qemu'].qemuwrapper_workdir:
                     workdir = globals.GApp.systconf['qemu'].qemuwrapper_workdir
                 else:

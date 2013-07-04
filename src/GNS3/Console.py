@@ -341,12 +341,14 @@ show project_info
         elif command == 'project_info':
             print
             print "Project File:\t\t\t" + globals.GApp.mainWindow.projectFile
-            print "Project Working directory:\t\t" + globals.GApp.workspace.projectWorkdir
+            if globals.GApp.workspace.projectWorkdir:
+                print "Project Working directory:\t\t" + globals.GApp.workspace.projectWorkdir
             print "Project Config directory:\t\t" + globals.GApp.workspace.projectConfigs
             print
 
-            if globals.GApp.workspace.projectWorkdir:
-                workdir = globals.GApp.workspace.projectWorkdir
+            qemu_flash_drives_directory = os.path.dirname(globals.GApp.workspace.projectFile) + os.sep + 'qemu-flash-drives'
+            if os.access(qemu_flash_drives_directory, os.F_OK):
+                workdir = qemu_flash_drives_directory
             elif globals.GApp.systconf['qemu'].qemuwrapper_workdir:
                 workdir = globals.GApp.systconf['qemu'].qemuwrapper_workdir
             else:
@@ -364,7 +366,7 @@ show project_info
                     workdir = os.path.dirname(realpath)
                 print "Vboxwrapper working directory:\t" + workdir
             else:
-               print "VBoxManager is disabled"
+                print "VBoxManager is disabled"
 
             print "Dynamips working directory:\t\t" + globals.GApp.systconf['dynamips'].workdir
         else:

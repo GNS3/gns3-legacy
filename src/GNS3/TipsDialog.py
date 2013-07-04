@@ -37,7 +37,7 @@ class TipsDialog(QtGui.QDialog, Ui_TipsDialog):
         QtGui.QDialog.__init__(self, parent)
         self.setupUi(self)
 
-        self.webpage = QtCore.QUrl('http://www.gns3.net/tips.html')
+        self.webpage = QtCore.QUrl('http://ads.gns3.net/ads.php')
         self.webView.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateAllLinks)
         self.connect(self.webView, QtCore.SIGNAL('linkClicked(const QUrl &)'), self.__urlClicked)
         self.connect(self.webView, QtCore.SIGNAL('loadFinished(bool)'), self.__loadFinished)

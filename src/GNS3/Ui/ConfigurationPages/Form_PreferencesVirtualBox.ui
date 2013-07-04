@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>555</width>
-    <height>595</height>
+    <height>653</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -123,21 +123,14 @@
             </property>
            </widget>
           </item>
-          <item row="7" column="0" colspan="4">
-           <widget class="QCheckBox" name="checkBoxVBoxShowAdvancedOptions">
-            <property name="text">
-             <string>Show VirtualBox Advanced Options</string>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="0">
+          <item row="7" column="0">
            <widget class="QLabel" name="label_6">
             <property name="text">
              <string>IP/host binding:</string>
             </property>
            </widget>
           </item>
-          <item row="10" column="0" colspan="2">
+          <item row="9" column="0" colspan="2">
            <widget class="QCheckBox" name="checkBoxEnableVBoxManager">
             <property name="text">
              <string>Enable VBox Manager</string>
@@ -147,7 +140,7 @@
             </property>
            </widget>
           </item>
-          <item row="11" column="0" colspan="4">
+          <item row="10" column="0" colspan="4">
            <widget class="QCheckBox" name="checkBoxVBoxManagerImport">
             <property name="text">
              <string>Use VBox Manager when importing</string>
@@ -157,7 +150,7 @@
             </property>
            </widget>
           </item>
-          <item row="12" column="0">
+          <item row="11" column="0">
            <widget class="QLabel" name="label_5">
             <property name="enabled">
              <bool>true</bool>
@@ -167,35 +160,35 @@
             </property>
            </widget>
           </item>
-          <item row="12" column="1" colspan="3">
+          <item row="11" column="1" colspan="3">
            <widget class="QLineEdit" name="lineEditHostExternalVBox">
             <property name="toolTip">
              <string>Add several wrappers, to make your GNS3 distributed across several hosts.</string>
             </property>
            </widget>
           </item>
-          <item row="12" column="4">
+          <item row="11" column="4">
            <widget class="QPushButton" name="pushButtonAddExternalVBoxwrapper">
             <property name="text">
              <string>Add</string>
             </property>
            </widget>
           </item>
-          <item row="12" column="5" colspan="2">
+          <item row="11" column="5" colspan="2">
            <widget class="QPushButton" name="pushButtonDeleteExternalVBoxwrapper">
             <property name="text">
              <string>Delete</string>
             </property>
            </widget>
           </item>
-          <item row="13" column="0" colspan="2">
+          <item row="12" column="0" colspan="2">
            <widget class="QLabel" name="label_36">
             <property name="text">
              <string>Registered external VBoxwrappers:</string>
             </property>
            </widget>
           </item>
-          <item row="13" column="2" colspan="5">
+          <item row="12" column="2" colspan="5">
            <widget class="QComboBox" name="comboBoxExternalVBoxwrappers"/>
           </item>
           <item row="2" column="1" colspan="6">
@@ -214,7 +207,7 @@
             </property>
            </widget>
           </item>
-          <item row="8" column="1" colspan="6">
+          <item row="7" column="1" colspan="6">
            <widget class="QComboBox" name="comboBoxBinding">
             <property name="sizeAdjustPolicy">
              <enum>QComboBox::AdjustToMinimumContentsLength</enum>
@@ -308,7 +301,7 @@
             <x>0</x>
             <y>0</y>
             <width>483</width>
-            <height>514</height>
+            <height>572</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -318,7 +311,7 @@
               <string>VirtualBox Guest Settings</string>
              </property>
              <layout class="QGridLayout" name="gridLayout">
-              <item row="1" column="0">
+              <item row="0" column="0">
                <widget class="QLabel" name="label">
                 <property name="enabled">
                  <bool>true</bool>
@@ -328,21 +321,35 @@
                 </property>
                </widget>
               </item>
-              <item row="1" column="1" colspan="2">
+              <item row="0" column="1" colspan="2">
                <widget class="QLineEdit" name="VBoxID">
                 <property name="readOnly">
                  <bool>false</bool>
                 </property>
                </widget>
               </item>
-              <item row="3" column="0">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>VM List:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1" colspan="2">
+               <widget class="QComboBox" name="comboBoxNameVBoxImage">
+                <property name="editable">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
                <widget class="QLabel" name="label_37">
                 <property name="text">
                  <string>Number of NICs:</string>
                 </property>
                </widget>
               </item>
-              <item row="3" column="1" colspan="2">
+              <item row="2" column="1" colspan="2">
                <widget class="QSpinBox" name="VBoxNICNb">
                 <property name="enabled">
                  <bool>true</bool>
@@ -366,14 +373,14 @@ Please, see VirtualBox settings to change the chipset.</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="0">
+              <item row="3" column="0">
                <widget class="QLabel" name="label_10">
                 <property name="text">
                  <string>NIC model:</string>
                 </property>
                </widget>
               </item>
-              <item row="4" column="1" colspan="2">
+              <item row="3" column="1" colspan="2">
                <widget class="QComboBox" name="VBoxNIC">
                 <property name="enabled">
                  <bool>true</bool>
@@ -408,6 +415,47 @@ Please, see VirtualBox settings to change the chipset.</string>
                 </item>
                </widget>
               </item>
+              <item row="4" column="0" colspan="3">
+               <widget class="QCheckBox" name="checkBoxVBoxFirstInterfaceManaged">
+                <property name="text">
+                 <string>Reserve first NIC for VirtualBox NAT to host OS</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0" colspan="3">
+               <widget class="QCheckBox" name="checkBoxVboxConsoleSupport">
+                <property name="text">
+                 <string>Enable console support</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0" colspan="3">
+               <widget class="QCheckBox" name="checkBoxVboxConsoleServer">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="text">
+                 <string>Enable console server (for remote access)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0" colspan="3">
+               <widget class="QCheckBox" name="checkBoxVBoxHeadlessMode">
+                <property name="text">
+                 <string>Start in headless mode (without GUI)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0" colspan="3">
+               <widget class="QCheckBox" name="checkBoxVBoxShowAdvancedOptions">
+                <property name="text">
+                 <string>Show Advanced Options</string>
+                </property>
+               </widget>
+              </item>
               <item row="9" column="0" colspan="3">
                <widget class="QCheckBox" name="VBoxcheckBoxEnableGuestControl">
                 <property name="text">
@@ -434,54 +482,6 @@ Please, see VirtualBox settings to change the chipset.</string>
               </item>
               <item row="11" column="2">
                <widget class="QLineEdit" name="VBoxGuestControl_Password"/>
-              </item>
-              <item row="5" column="0" colspan="3">
-               <widget class="QCheckBox" name="checkBoxVBoxFirstInterfaceManaged">
-                <property name="text">
-                 <string>Reserve first NIC for VirtualBox NAT to host OS</string>
-                </property>
-                <property name="checked">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="0" colspan="3">
-               <widget class="QCheckBox" name="checkBoxVBoxHeadlessMode">
-                <property name="text">
-                 <string>Start in headless mode (without GUI)</string>
-                </property>
-               </widget>
-              </item>
-              <item row="6" column="0" colspan="3">
-               <widget class="QCheckBox" name="checkBoxVboxConsoleSupport">
-                <property name="text">
-                 <string>Enable console support</string>
-                </property>
-               </widget>
-              </item>
-              <item row="7" column="0" colspan="3">
-               <widget class="QCheckBox" name="checkBoxVboxConsoleServer">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="text">
-                 <string>Enable console server (for remote access)</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_14">
-                <property name="text">
-                 <string>VM List:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1" colspan="2">
-               <widget class="QComboBox" name="comboBoxNameVBoxImage">
-                <property name="editable">
-                 <bool>false</bool>
-                </property>
-               </widget>
               </item>
              </layout>
             </widget>

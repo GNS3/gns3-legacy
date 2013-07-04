@@ -311,7 +311,8 @@ class xEMUInstance(object):
                     options.append('-netdev')
                     options.append('socket,id=gns3-%s,udp=%s:%s,localaddr=%s:%s' % (vlan, self.udp[vlan].daddr, self.udp[vlan].dport, self.udp[vlan].saddr, self.udp[vlan].sport))
                 # FIXME: dump relies on vlans, incompatible with the new syntax: patch Qemu
-                #if vlan in self.capture:
+                if vlan in self.capture:
+                    print 'Dump option is not available with the netdev syntax'
                     #options.extend(['-net', 'dump,vlan=%s,file=%s' % (vlan, self.capture[vlan])])
             else:
                 options.append('-net')

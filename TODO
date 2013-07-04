@@ -46,6 +46,7 @@ Misc. (by Technologov)
 
  * Investigate possibility of GuestIP address retrieval from Dynamips Routers by means of SNMP 
      (+pre-configured SNMP startup-config + management interface)
+ * libguestfs
 
 GNS3 related feature requests in 3rd party products: (by Technologov)
 

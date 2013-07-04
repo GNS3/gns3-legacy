@@ -110,11 +110,11 @@ class HypervisorManager(object):
         try:
             # start dynamips in hypervisor mode (-H)
             # Dynamips version 0.2.8-RC3 and before cannot accept a specific port when binding on a chosen address with param -H <IP address:port> (bug is inside Dynamips).
-            if self.dynamips.detected_version and LooseVersion(self.dynamips.detected_version) > '0.2.8-RC3' and binding != '0.0.0.0':
+            if self.dynamips.detected_version and LooseVersion(self.dynamips.detected_version) > '0.2.8-RC3' and self.dynamips.HypervisorManager_binding != '0.0.0.0':
                 debug("Starting Dynamips with -H %s:%i" % (binding, port))
                 proc.start(self.hypervisor_path,  ['-H', binding + ':' + str(port)])
             else:
-                debug("Starting Dynamips with -H %i (old way with Dynamips version 0.2.8-RC3 and before)" % port)
+                debug("Starting Dynamips with -H %i" % port)
                 proc.start(self.hypervisor_path,  ['-H', str(port)])
         except:
             debug('Exception with LooseVersion()')

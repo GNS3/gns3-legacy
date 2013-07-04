@@ -21,6 +21,7 @@
 import os, sys, socket, glob, shutil, time, base64, subprocess, tempfile
 import GNS3.NETFile as netfile
 import GNS3.Dynagen.dynamips_lib as lib
+import GNS3.Dynagen.qemu_lib as qemu_lib
 import GNS3.Globals as globals
 import GNS3.UndoFramework as undo
 import GNS3.WindowManipulator as winm
@@ -1331,6 +1332,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
             except (OSError, IOError), e:
                 print "Warning: cannot create directory: " + os.path.dirname(self.projectFile) + os.sep + 'captures' + ": " + e.strerror
 
+        qemu_flash_drives_directory = os.path.dirname(self.projectFile) + os.sep + 'qemu-flash-drives'
+        if not os.access(qemu_flash_drives_directory, os.F_OK):
+            try:
+                os.mkdir(qemu_flash_drives_directory)
+            except (OSError, IOError), e:
+                print "Warning: cannot create directory: " + qemu_flash_drives_directory + ": " + e.strerror
+
         if len(globals.GApp.dynagen.devices):
             if self.projectConfigs:
                 for node in globals.GApp.topology.nodes.values():
@@ -1344,12 +1352,29 @@ class Workspace(QMainWindow, Ui_MainWindow):
                             continue
                         config = os.path.basename(node.router.cnfg)
                         node.router.cnfg = self.projectConfigs + os.sep + config
+                        
+                for node in globals.GApp.topology.nodes.values():
+                    if isinstance(node, AnyEmuDevice) and qemu_flash_drives_directory != node.qemu.workingdir:
+
+                        # Stop this node
+                        node.stopNode()
+                        qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)
+                        for qemu_file in qemu_files:
+                            try:
+                                dest = qemu_flash_drives_directory + os.sep + node.hostname
+                                debug("MOVING %s to %s" % (qemu_file, dest))
+                                shutil.copytree(qemu_file, dest)
+                            except (OSError, IOError), e:
+                                debug("Warning: cannot copy " + qemu_file + " to " + qemu_flash_drives_directory)
+                                continue
+                            except:
+                                continue
 
             if self.projectWorkdir:
 
                 # stop the node before moving files
                 for node in globals.GApp.topology.nodes.values():
-                    if (isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir) or (isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir) or (isinstance(node, AnyVBoxEmuDevice) and self.projectWorkdir != node.vbox.workingdir):
+                    if (isinstance(node, IOSRouter) and self.projectWorkdir != node.hypervisor.workingdir):
                         node.stopNode()
 
                 globals.GApp.mainWindow.capturesDock.stopAllCaptures()
@@ -1365,12 +1390,12 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + "_" + node.hostname + "_*flash*")
                         #dynamips_files += [os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_dynagen_device().formatted_ghost_file()]
 
-                        for file in dynamips_files:
+                        for dynamips_file in dynamips_files:
                             try:
-                                debug("MOVING %s to %s" % (file, self.projectWorkdir))
-                                shutil.copy(file, self.projectWorkdir)
+                                debug("MOVING %s to %s" % (dynamips_file, self.projectWorkdir))
+                                shutil.copy(dynamips_file, self.projectWorkdir)
                             except (OSError, IOError), e:
-                                debug("Warning: cannot copy " + file + " to " + self.projectWorkdir)
+                                debug("Warning: cannot copy " + dynamips_file + " to " + self.projectWorkdir)
                                 continue
                             except:
                                 continue
@@ -1381,28 +1406,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
 #                     if (isinstance(node, QemuDevice) or isinstance(node, JunOS) or isinstance(node, IDS)) and self.unbase:
 #                         node.get_dynagen_device().unbase()
 
-                    if isinstance(node, AnyEmuDevice) and self.projectWorkdir != node.qemu.workingdir:
-
-                        # Stop this node
-                        node.stopNode()
-                        qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)
-                        for file in qemu_files:
-                            try:
-                                dest = self.projectWorkdir + os.sep + node.hostname
-                                debug("MOVING %s to %s" % (file, dest))
-                                shutil.copytree(file, dest)
-                            except (OSError, IOError), e:
-                                debug("Warning: cannot copy " + file + " to " + self.projectWorkdir)
-                                continue
-                            except:
-                                continue
-
-                # set the new working directory
-                try:
-                    for hypervisor in globals.GApp.dynagen.dynamips.values():
+            # set the new working directory
+            try:
+                for hypervisor in globals.GApp.dynagen.dynamips.values():
+                    if isinstance(hypervisor, qemu_lib.Qemu):
+                        hypervisor.workingdir = qemu_flash_drives_directory
+                    else:
                         hypervisor.workingdir = self.projectWorkdir
-                except lib.DynamipsError, msg:
-                    QtGui.QMessageBox.critical(self, translate('Workspace', 'Setting new working dir'), translate("Workspace", "Dynamips error %s: %s") % (self.projectWorkdir, unicode(msg)))
+            except lib.DynamipsError, msg:
+                QtGui.QMessageBox.critical(self, translate('Workspace', 'Setting new working dir'), translate("Workspace", "Dynamips error %s: %s") % (self.projectWorkdir, unicode(msg)))
 
         if self.isTemporaryProject == False:
             self.__action_Save()
@@ -1435,11 +1447,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
         snapshot_dir = projectDir + os.sep + projectName.replace('.net', '') + '_' + name + '_snapshot_' + time.strftime("%d%m%y_%H%M%S")
         snapshot_workdir = snapshot_dir + os.sep + 'working'
         snapshot_configs = snapshot_dir + os.sep + 'configs'
+        snapshot_qemu_flash_drives = snapshot_dir + os.sep + 'qemu-flash-drives'
 
         try:
             os.mkdir(snapshot_dir)
             os.mkdir(snapshot_workdir)
             os.mkdir(snapshot_configs)
+            os.mkdir(snapshot_qemu_flash_drives)
         except (OSError, IOError), e:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Snapshot"), translate("Workspace", "Cannot create directories in %s: %s") % (snapshot_dir, e.strerror))
             return
@@ -1476,14 +1490,17 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)
                 for file in qemu_files:
                     try:
-                        shutil.copytree(file, snapshot_workdir + os.sep + node.hostname)
+                        shutil.copytree(file, snapshot_qemu_flash_drives + os.sep + node.hostname)
                     except (OSError, IOError), e:
-                        debug("Warning: cannot copy " + file + " to " + snapshot_workdir + ": " + e.strerror)
+                        debug("Warning: cannot copy " + file + " to " + snapshot_qemu_flash_drives + ": " + e.strerror)
                         continue
 
         try:
             for hypervisor in globals.GApp.dynagen.dynamips.values():
-                hypervisor.workingdir = snapshot_workdir
+                if isinstance(hypervisor, qemu_lib.Qemu):
+                    hypervisor.workingdir = snapshot_qemu_flash_drives
+                else:
+                    hypervisor.workingdir = snapshot_workdir
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Dynamips error: %s") % msg)
 
@@ -1501,12 +1518,15 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.projectWorkdir = save_wd
 
         try:
-            if self.projectWorkdir:
-                for hypervisor in globals.GApp.dynagen.dynamips.values():
+            qemu_flash_drives_directory = os.path.dirname(self.projectFile) + os.sep + 'qemu-flash-drives'
+            for hypervisor in globals.GApp.dynagen.dynamips.values():
+                if isinstance(hypervisor, qemu_lib.Qemu):
+                    hypervisor.workingdir = qemu_flash_drives_directory
+                elif self.projectWorkdir:
                     hypervisor.workingdir = self.projectWorkdir
-            else:
-                for hypervisor in globals.GApp.dynagen.dynamips.values():
+                else:
                     hypervisor.workingdir = globals.GApp.systconf['dynamips'].workdir
+
             if self.projectConfigs:
                 for node in globals.GApp.topology.nodes.values():
                     if isinstance(node, IOSRouter) and node.router.cnfg:
@@ -1593,7 +1613,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.__action_Preferences()
             return
 
-        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter='NET/PNG file (*.net;*.png);;NET file (*.net);;PNG file (*.png);;All files (*.*)',
+        (path, selected) = fileBrowser(translate("Workspace", "Open a file"),  filter='NET file (*.net);;PNG file (*.png);;All files (*.*)',
                                        directory=os.path.normpath(globals.GApp.systconf['general'].project_path), parent=self).getFile()
 
         if path:
