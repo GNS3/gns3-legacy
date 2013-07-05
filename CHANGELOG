@@ -2,14 +2,14 @@
 # GNS3 - CHANGELOG #
 ####################
 
-=== v0.8.4 To be released ===
+=== v0.8.4 05.07.2013 ===
 
 	* GUI improvements.
 	* New hub device.
 	* VPCS is included in DMG package on Mac OS X.
-	* New Idlemax and Idlesleep settings (advanced manipulation of idlepc).
+	* New Idlemax and Idlesleep settings (advanced manipulation of IDLE PC).
 	* IOS image and settings test button.
-	* New tips dialog to promote GNS3 products/videos/tutorials (totally optional and can be deactivated).
+	* New tips/ads dialog to promote GNS3 products/videos/tutorials (totally optional and can be deactivated).
 	* New Tool menu to start external scripts/tools.
 	* Drag & drop of multiple devices when pressing SHIFT.
 	* Temporary projects are created by default.
@@ -17,7 +17,7 @@
 	* Dynamips 0.2.8-RC6-community is now default on Windows.
 	* Qemu 0.11.0 integrated to the DMG for Mac OS X (used by default).
 	* Qemu 0.14.1 integrated to the DMG for Mac OS X.
-	* Qemu monitor (to pause/resume) and user backend options (experimental).
+	* Qemu monitor (to pause/resume) and user backend options (experimental and only with recent versions of Qemu).
 	* Support for multiple flavors of Qemu: sparc, arm, i386, x86_64
 	* SuperPutty command line support.
 	* SuperPutty in all-in-one on Windows (optional).
@@ -61,6 +61,12 @@
 	* Added a warning message when an c7200p image is added in the IOS images and hypervisors window.
 	* Check for unsaved image settings in Qemu Preferences.
 	* AW+ router support by Allied Telesis from New Zealand.
+	* 512 MB is the default RAM for JunOS
+    * Removed the "Save IOS configs option". Always save IOS configs.
+    * Added default VPCS NIO UDPs for "Host" device.
+    * Fixed major bug with UDP port allocations.
+    * Qemu FLASH files are automatically saved in a directory named 'qemu-flash-drives' (in the project directory).
+    * Binding to 0.0.0.0 for Dynamips and Qemu (listen to all addresses).
     
 === v0.8.3.1 20.10.2012 ===
 

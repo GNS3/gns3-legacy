@@ -1340,6 +1340,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 print "Warning: cannot create directory: " + qemu_flash_drives_directory + ": " + e.strerror
 
         if len(globals.GApp.dynagen.devices):
+            
             if self.projectConfigs:
                 for node in globals.GApp.topology.nodes.values():
                     if isinstance(node, IOSRouter) and node.router.cnfg:
@@ -1411,7 +1412,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 for hypervisor in globals.GApp.dynagen.dynamips.values():
                     if isinstance(hypervisor, qemu_lib.Qemu):
                         hypervisor.workingdir = qemu_flash_drives_directory
-                    else:
+                    elif self.projectWorkdir:
                         hypervisor.workingdir = self.projectWorkdir
             except lib.DynamipsError, msg:
                 QtGui.QMessageBox.critical(self, translate('Workspace', 'Setting new working dir'), translate("Workspace", "Dynamips error %s: %s") % (self.projectWorkdir, unicode(msg)))
