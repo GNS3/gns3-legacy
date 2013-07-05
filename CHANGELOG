@@ -4,38 +4,45 @@
 
 === v0.8.4 05.07.2013 ===
 
-	* GUI improvements.
-	* New hub device.
-	* VPCS is included in DMG package on Mac OS X.
-	* New Idlemax and Idlesleep settings (advanced manipulation of IDLE PC).
+
+
+	* Many GUI improvements.
+	* New hub device.	
+	* New Idlemax and Idlesleep settings (advanced manipulation of IDLE PC).	
 	* IOS image and settings test button.
-	* New tips/ads dialog to promote GNS3 products/videos/tutorials (totally optional and can be deactivated).
 	* New Tool menu to start external scripts/tools.
 	* Drag & drop of multiple devices when pressing SHIFT.
 	* Temporary projects are created by default.
+	* VirtualBox interface numbering starts at 0 (e.g. e0 = VirtualBox interface 1 = eth0 on Linux).
+	* Support for 36 network cards in VirtualBox (using ICH9 chipset)
+	* New option to save traffic capture in project directories.
+	* Experimental auto IDLE PC calculation feature (requires Dynamips > 0.2.8-RC5, included in Windows all-in-one and OSX DMG).
+    * Added entries to have Dynamips/Qemu/VirtualBox hypervisors bind/listen to all available IP/host addresses (optional).
+    * AW+ router support by Allied Telesis from New Zealand (educational version of their OS to be released).
+    * QinQ fixed in Dynamips 0.2.8 RC6.
+    * Removed the "Save IOS configs option". Always save IOS configs.
+    * Qemu FLASH files are automatically saved in a directory named 'qemu-flash-drives' (in the project directory).
+	* VPCS is included in DMG package on Mac OS X.
+	* New tips/ads dialog to promote GNS3 products/videos/tutorials (totally optional and can be deactivated).
 	* Winpcap 4.1.3 included in Windows all-on-one package (compatible with Windows 8).
-	* Dynamips 0.2.8-RC6-community is now default on Windows.
+	* Dynamips 0.2.8-community is now default on Windows.
 	* Qemu 0.11.0 integrated to the DMG for Mac OS X (used by default).
 	* Qemu 0.14.1 integrated to the DMG for Mac OS X.
 	* Qemu monitor (to pause/resume) and user backend options (experimental and only with recent versions of Qemu).
 	* Support for multiple flavors of Qemu: sparc, arm, i386, x86_64
 	* SuperPutty command line support.
 	* SuperPutty in all-in-one on Windows (optional).
-	* VirtualBox interface numbering starts at 0 (e.g. e0 = VirtualBox interface 1 = eth0 on Linux).
-	* Dash is now accepted for hostnames.
+	* Dash is now accepted for hostnames.	
 	* Fixed issues with ports reported as already in use.
 	* Gray out VLAN box when selecting dot1q port type in Ethernet Switch.
 	* Default delay for console adjusted from 0.5 to 1 second.
 	* Default base console is now 2101 instead of 2001
 	* Changed Dynamips default base UDP from 10000 to 10001
 	* Mouse wheel scrolls the scene by default + options to deactivate the wheel or use it for zooming
-	* Support for 36 network cards in VirtualBox (using ICH9 chipset)
 	* Patching for Dynagen (see http://forum.gns3.net/topic5659.html for details)
 	* Wrappers improvements all over the place.
 	* New baseconfig.txt
-	* New option to save traffic capture in project directories.
-	* Experimental auto IDLE PC calculation feature (requires Dynamips > 0.2.8-RC5, included in Windows all-in-one and OSX DMG).
-	* ASA pre-configuration.
+	* ASA pre-configurations.
 	* Introduced human readable byte sizes for stats in tooltips (what you see when hovering a device).
 	* Fixed the 'unbase' feature (but the whole idea behind is flawed).
 	* Reversed steps 1 & 2 of the Setup Wizard.
@@ -45,9 +52,7 @@
     * Changed capture filenames to include the source and destination interfaces.
     * The 'layouts' directory is now created in GNS3 install directory (used by SuperPutty).
     * Fix: Allow '-' character to be used in VirtualBox hostnames.
-    * Added entries to have Dynamips/Qemu/VirtualBox hypervisors bind/listen to all available IP/host addresses (optional).
     * File securecrt.vbs has been modified to include tranzitwww changes -> post18869.html#p18869
-    * QinQ fixed in Dynamips 0.2.8 RC6.
     * Clean VirtualBox VMs from UDP tunnels when stopping them.
     * Instructions entry for tools menu.
     * Fixed bug with VirtualBox/Qemu devices while importing a topology: duplicated UDP tunnels.
@@ -60,14 +65,10 @@
 	* Possibility to open a project by opening its corresponding screenshot.
 	* Added a warning message when an c7200p image is added in the IOS images and hypervisors window.
 	* Check for unsaved image settings in Qemu Preferences.
-	* AW+ router support by Allied Telesis from New Zealand.
 	* 512 MB is the default RAM for JunOS
-    * Removed the "Save IOS configs option". Always save IOS configs.
     * Added default VPCS NIO UDPs for "Host" device.
     * Fixed major bug with UDP port allocations.
-    * Qemu FLASH files are automatically saved in a directory named 'qemu-flash-drives' (in the project directory).
-    * Binding to 0.0.0.0 for Dynamips and Qemu (listen to all addresses).
-    
+
 === v0.8.3.1 20.10.2012 ===
 
 	* Vboxwrapper recompilation to run with VirtualBox 4.2

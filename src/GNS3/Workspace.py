@@ -1371,6 +1371,10 @@ class Workspace(QMainWindow, Ui_MainWindow):
                             except:
                                 continue
 
+#                         if self.unbase:
+#                             debug("Unbasing %s" % node.hostname)
+#                             node.get_dynagen_device().unbase()
+
             if self.projectWorkdir:
 
                 # stop the node before moving files
