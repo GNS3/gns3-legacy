@@ -92,7 +92,10 @@ class FRSW(AbstractNode):
         """
 
         if self.frsw:
-            self.setToolTip(self.frsw.info())
+            try:
+                self.setToolTip(self.frsw.info())
+            except:
+                AbstractNode.setCustomToolTip(self)
         else:
             AbstractNode.setCustomToolTip(self)
 

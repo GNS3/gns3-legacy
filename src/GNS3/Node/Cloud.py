@@ -107,7 +107,10 @@ class Cloud(AbstractNode):
                     info += " is connected to " + neighbor.hostname + " " + ifname
                 else:
                     info += " is not connected"
-            self.setToolTip(info)
+            try:
+                self.setToolTip(info)
+            except:
+                AbstractNode.setCustomToolTip(self)
         else:
             AbstractNode.setCustomToolTip(self)
 

@@ -93,7 +93,10 @@ class ATMBR(AbstractNode):
         """
 
         if self.atmbr:
-            self.setToolTip(self.atmbr.info())
+            try:
+                self.setToolTip(self.atmbr.info())
+            except:
+                AbstractNode.setCustomToolTip(self)
         else:
             AbstractNode.setCustomToolTip(self)
 

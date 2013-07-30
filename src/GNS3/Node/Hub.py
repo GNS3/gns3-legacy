@@ -93,7 +93,10 @@ class Hub(AbstractNode):
         """
 
         if self.hub:
-            self.setToolTip(self.hub.info())
+            try:
+                self.setToolTip(self.hub.info())
+            except:
+                AbstractNode.setCustomToolTip(self)
         else:
             AbstractNode.setCustomToolTip(self)
 

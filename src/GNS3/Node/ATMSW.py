@@ -93,7 +93,10 @@ class ATMSW(AbstractNode):
         """
 
         if self.atmsw:
-            self.setToolTip(self.atmsw.info())
+            try:
+                self.setToolTip(self.atmsw.info())
+            except:
+                AbstractNode.setCustomToolTip(self)
         else:
             AbstractNode.setCustomToolTip(self)
 

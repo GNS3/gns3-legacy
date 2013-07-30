@@ -93,7 +93,10 @@ class ETHSW(AbstractNode):
         """
 
         if self.ethsw:
-            self.setToolTip(self.ethsw.info())
+            try:
+                self.setToolTip(self.ethsw.info())
+            except:
+                AbstractNode.setCustomToolTip(self)
         else:
             AbstractNode.setCustomToolTip(self)
 
