@@ -199,6 +199,7 @@ elif platform.system() == 'Windows' and os.path.exists("C:\Program Files (x86)\\
                             'TeraTerm (Windows 64-bit)': '"C:\Program Files (x86)\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p',
                             'TeraTerm (Windows 32-bit)': '"C:\Program Files\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p',
                             'Telnet (Windows)': 'telnet %h %p',
+                            'Xshell 4 (Windows)': 'C:\Program Files (x86)\\NetSarang\\Xshell 4\\xshell.exe -url telnet://%h:%p'
                             }
 elif platform.system() == 'Windows':
     TERMINAL_PRESET_CMDS = {
@@ -206,7 +207,8 @@ elif platform.system() == 'Windows':
                             'SuperPutty (Windows)': 'SuperPutty.exe -telnet "%h -P %p -wt \"%d\" -gns3 5 -skin 4"',
                             'SecureCRT (Windows)': '"C:\Program Files\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
                             'TeraTerm (Windows)': '"C:\Program Files\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p',
-                            'Telnet (Windows)': 'telnet %h %p'
+                            'Telnet (Windows)': 'telnet %h %p',
+                            'Xshell 4 (Windows)': 'C:\Program Files\\NetSarang\\Xshell 4\\xshell.exe -url telnet://%h:%p'
                             }
 elif platform.system() == 'Darwin':
     TERMINAL_PRESET_CMDS = {
@@ -222,6 +224,8 @@ else:  # For unknown platforms, or if detection failed, we list all options.
                             'TeraTerm (Windows 32-bit)': '"C:\Program Files\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p',
                             'TeraTerm (Windows 64-bit)': '"C:\Program Files (x86)\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p',
                             'Telnet (Windows)': 'telnet %h %p',
+                            'Xshell 4 (Windows 32-bit)': 'C:\Program Files\\NetSarang\\Xshell 4\\xshell.exe -url telnet://%h:%p',
+                            'Xshell 4 (Windows 64-bit)': 'C:\Program Files (x86)\\NetSarang\\Xshell 4\\xshell.exe -url telnet://%h:%p',
                             'xterm (Linux/BSD)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
                             'Putty (Linux/BSD)': 'putty -telnet %h %p -title %d -sl 2500 -fg SALMON1 -bg BLACK',
                             'Gnome Terminal (Linux/BSD)': 'gnome-terminal -t %d -e \'telnet %h %p\' >/dev/null 2>&1 &',

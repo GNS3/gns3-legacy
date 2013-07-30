@@ -418,11 +418,13 @@ class Workspace(QMainWindow, Ui_MainWindow):
             rect = self.graphicsView.viewport().rect()
             width = rect.width()
             height = rect.height()
- 
+
             pixmap = QtGui.QPixmap(width, height)
             pixmap.fill(QtCore.Qt.white)
             painter = QtGui.QPainter(pixmap)
-            painter.setRenderHint(QtGui.QPainter.Antialiasing)
+            painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
+            painter.setRenderHint(QtGui.QPainter.TextAntialiasing, True)
+            painter.setRenderHint(QtGui.QPainter.SmoothPixmapTransform, True)
 #            if reply == QtGui.QMessageBox.Yes:
 #                self.graphicsView.scene().render(painter, QtCore.QRectF(0,0,pixmap.width(),pixmap.height()), QtCore.QRectF(x, y, width, height))
 #            else:
@@ -1160,6 +1162,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """
 
         if self.tips_dialog:
+            self.tips_dialog.timer.start()
             self.tips_dialog.show()
             self.tips_dialog.loadWebPage()
             self.tips_dialog.exec_()

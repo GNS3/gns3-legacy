@@ -29,7 +29,7 @@ from GNS3.Config.Objects import iosImageConf, hypervisorConf
 from GNS3.Node.IOSRouter import IOSRouter
 from GNS3.Uncompress import isIOScompressed, uncompressIOS
 from GNS3.Globals.Symbols import SYMBOLS
-from distutils.version import LooseVersion
+from distutils.version import StrictVersion
 from GNS3.CalcIDLEPCDialog import CalcIDLEPCDialog
 
 # known platforms and corresponding chassis
@@ -635,7 +635,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "Dynamips path doesn't exist or cannot detect its version, please check Dynamips settings"))
                 return
 
-        if dynamips.detected_version and not LooseVersion(dynamips.detected_version) > '0.2.8-RC4':
+        if dynamips.detected_version and not StrictVersion(dynamips.detected_version.replace("-RC", "b")) >= '0.2.8b4':
                 QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "You will need Dynamips version 0.2.8-RC4 and above to use this utility.\nVersion detected: %s\nYou have to test the settings in Dynamips preferences to update the detected version.") % dynamips.detected_version)
                 return
         

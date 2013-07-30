@@ -884,7 +884,7 @@ class Scene(QtGui.QGraphicsView):
         """
 
         factor = self.matrix().scale(scale_factor, scale_factor).mapRect(QtCore.QRectF(0, 0, 1, 1)).width()
-        if (factor < 0.20 or factor > 5):
+        if (factor < 0.10 or factor > 10):
             return
         self.scale(scale_factor, scale_factor)
 

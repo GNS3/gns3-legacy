@@ -25,7 +25,7 @@ import GNS3.Dynagen.dynamips_lib as lib
 from PyQt4 import QtCore, QtGui
 from GNS3.Utils import translate, debug, killAll
 from GNS3.Node.IOSRouter import IOSRouter
-from distutils.version import LooseVersion
+from distutils.version import StrictVersion
 
 class HypervisorManager(object):
     """ HypervisorManager class
@@ -110,14 +110,14 @@ class HypervisorManager(object):
         try:
             # start dynamips in hypervisor mode (-H)
             # Dynamips version 0.2.8-RC3 and before cannot accept a specific port when binding on a chosen address with param -H <IP address:port> (bug is inside Dynamips).
-            if self.dynamips.detected_version and LooseVersion(self.dynamips.detected_version) > '0.2.8-RC3' and self.dynamips.HypervisorManager_binding != '0.0.0.0':
+            if self.dynamips.detected_version and StrictVersion(self.dynamips.detected_version.replace("-RC", "b")) > '0.2.8b3' and self.dynamips.HypervisorManager_binding != '0.0.0.0':
                 debug("Starting Dynamips with -H %s:%i" % (binding, port))
                 proc.start(self.hypervisor_path,  ['-H', binding + ':' + str(port)])
             else:
                 debug("Starting Dynamips with -H %i" % port)
                 proc.start(self.hypervisor_path,  ['-H', str(port)])
         except:
-            debug('Exception with LooseVersion()')
+            debug('Exception with StrictVersion()')
             proc.start(self.hypervisor_path,  ['-H', str(port)])
 
         if proc.waitForStarted() == False:
@@ -334,12 +334,12 @@ class HypervisorManager(object):
         try:
             # start dynamips in hypervisor mode (-H)
             # Dynamips version 0.2.8-RC3 and before cannot accept a specific port when binding on a chosen address with param -H <IP address:port> (bug is inside Dynamips).
-            if self.dynamips.detected_version and LooseVersion(self.dynamips.detected_version) > '0.2.8-RC3' and self.dynamips.HypervisorManager_binding != '0.0.0.0':
+            if self.dynamips.detected_version and StrictVersion(self.dynamips.detected_version.replace("-RC", "b")) > '0.2.8b3' and self.dynamips.HypervisorManager_binding != '0.0.0.0':
                 proc.start(self.hypervisor_path,  ['-H', self.dynamips.HypervisorManager_binding + ':' + str(port)])
             else:
                 proc.start(self.hypervisor_path,  ['-H', str(port)])
         except:
-            debug('Exception with LooseVersion')
+            debug('Exception with StrictVersion')
             proc.start(self.hypervisor_path,  ['-H', str(port)])
 
         if proc.waitForStarted() == False:

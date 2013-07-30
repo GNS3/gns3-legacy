@@ -42,6 +42,7 @@ class Annotation(QtGui.QGraphicsTextItem):
 
     def keyPressEvent(self, event):
 
+
         key = event.key()
         modifiers = event.modifiers()
         if (key in (QtCore.Qt.Key_P, QtCore.Qt.Key_Plus, QtCore.Qt.Key_Equal) and modifiers & QtCore.Qt.AltModifier) \

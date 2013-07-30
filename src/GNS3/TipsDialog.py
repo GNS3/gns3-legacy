@@ -42,6 +42,21 @@ class TipsDialog(QtGui.QDialog, Ui_TipsDialog):
         self.connect(self.webView, QtCore.SIGNAL('linkClicked(const QUrl &)'), self.__urlClicked)
         self.connect(self.webView, QtCore.SIGNAL('loadFinished(bool)'), self.__loadFinished)
         self.adjustSize()
+        
+        self.timer = QtCore.QTimer()
+        self.connect(self.timer, QtCore.SIGNAL('timeout()'), self.__refresh)        
+        self.timer.start(10000)
+
+        #self.setAttribute(QtCore.Qt.WA_DeleteOnClose, True)
+
+    def done(self, result):
+
+        self.timer.stop()
+        QtGui.QDialog.done(self, result)
+
+    def __refresh(self):
+
+        self.webView.reload()
 
     def loadWebPage(self):
 

@@ -253,7 +253,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             version_2nd = int(version_raw.split('.')[1])
             version_3rd = int(version_raw.split('.')[2].split('-')[0])
             dynamips_ver = str(version_1st)+'.'+str(version_2nd)+'.'+str(version_3rd)+'-'+version_raw.split('.')[2].split('-')[1]
-            globals.GApp.systconf['dynamips'].detected_version = unicode(dynamips_ver)
+            globals.GApp.systconf['dynamips'].detected_version = unicode(dynamips_ver).replace('-community', '')
             ConfDB().sync()
         except:
             self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to determine version of Dynamips.")  + '</font>')
