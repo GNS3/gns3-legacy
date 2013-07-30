@@ -635,7 +635,7 @@ p, li { white-space: pre-wrap; }
         <translation>このルータモデルにAUXポート使用不可かベースAUXポートを０に設定されております</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1197"/>
+        <location filename="../Workspace.py" line="1200"/>
         <source>GNS3 is up-to-date!</source>
         <translation>ご使用のGNS3は最新版です！</translation>
     </message>
@@ -828,7 +828,7 @@ Please restart GNS3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Node/Cloud.py" line="160"/>
+        <location filename="../Node/Cloud.py" line="163"/>
         <source>Unknown name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1329,22 +1329,22 @@ Please choose an alternate network interface:</source>
 <context>
     <name>ETHSW</name>
     <message>
-        <location filename="../Node/ETHSW.py" line="264"/>
+        <location filename="../Node/ETHSW.py" line="267"/>
         <source>Connection</source>
         <translation>接続</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="264"/>
+        <location filename="../Node/ETHSW.py" line="267"/>
         <source>No port available</source>
         <translation>使用できるポートはありません</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="225"/>
+        <location filename="../Node/ETHSW.py" line="228"/>
         <source>Port type</source>
         <translation>ポートタイプ</translation>
     </message>
     <message>
-        <location filename="../Node/ETHSW.py" line="225"/>
+        <location filename="../Node/ETHSW.py" line="228"/>
         <source>QinQ is only supported with Dynamips &gt; 0.2.8 RC2</source>
         <translation>QinQ は Dynamips バージョン 0.2.8 RC2 以上が必要です</translation>
     </message>
@@ -1473,12 +1473,12 @@ Please choose an alternate network interface:</source>
 <context>
     <name>Hub</name>
     <message>
-        <location filename="../Node/Hub.py" line="236"/>
+        <location filename="../Node/Hub.py" line="239"/>
         <source>Connection</source>
         <translation type="unfinished">接続</translation>
     </message>
     <message>
-        <location filename="../Node/Hub.py" line="236"/>
+        <location filename="../Node/Hub.py" line="239"/>
         <source>No port available</source>
         <translation type="unfinished">使用できるポートはありません</translation>
     </message>
@@ -6007,7 +6007,7 @@ editing (notes only) with ALT and &apos;+&apos; (or P) / ALT and &apos;-&apos; (
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../TipsDialog.py" line="59"/>
+        <location filename="../TipsDialog.py" line="74"/>
         <source>Tips page</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6393,22 +6393,22 @@ p, li { white-space: pre-wrap; }
         <translation>この動作は現在ロード中のトポロジーをクリアすることになります、このまま続けますか？</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="295"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="296"/>
         <source>Failed to start Dynamips</source>
         <translation>Dynamips 起動に失敗しました</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="259"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="260"/>
         <source>Failed to determine version of Dynamips.</source>
         <translation>Dynamips バージョンを取得できませんでした。</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="263"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="264"/>
         <source>Found Dynamips %s, which is not supported. Use 0.2.8+ instead.</source>
         <translation>Dynamips %s 見つかりましたが、対応外のため、0.2.8 以降をお使いください。</translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="293"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="294"/>
         <source>Dynamips %s successfully started</source>
         <translation>Dynamips %s 正常に開始できました</translation>
     </message>
@@ -6423,7 +6423,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="267"/>
+        <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="268"/>
         <source>Dynamips working directory does not exist or is not writable</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7023,132 +7023,132 @@ p, li { white-space: pre-wrap; }
         <translation>ドッキング</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1649"/>
+        <location filename="../Workspace.py" line="1652"/>
         <source>Dynamips error</source>
         <translation>Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="602"/>
+        <location filename="../Workspace.py" line="604"/>
         <source>Connection lost</source>
         <translation>接続に失敗しました</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="992"/>
+        <location filename="../Workspace.py" line="994"/>
         <source>Abort</source>
         <translation>中止</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1234"/>
+        <location filename="../Workspace.py" line="1237"/>
         <source>Starting nodes ...</source>
         <translation>ノードを開始中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1078"/>
+        <location filename="../Workspace.py" line="1080"/>
         <source>Stopping nodes ...</source>
         <translation>ノードを停止中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1084"/>
+        <location filename="../Workspace.py" line="1086"/>
         <source>Suspending nodes ...</source>
         <translation>ノードを一時停止中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1225"/>
+        <location filename="../Workspace.py" line="1228"/>
         <source>Loading</source>
         <translation>読み込み中</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1621"/>
+        <location filename="../Workspace.py" line="1624"/>
         <source>Open a file</source>
         <translation>ファイルを開く</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1617"/>
+        <location filename="../Workspace.py" line="1620"/>
         <source>The path to Dynamips must be configured</source>
         <translation>Dynamips のプログラムパスを設定しておく必要があります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1711"/>
+        <location filename="../Workspace.py" line="1714"/>
         <source>Message</source>
         <translation>メッセージ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="685"/>
+        <location filename="../Workspace.py" line="687"/>
         <source>Add a link</source>
         <translation>リンクを追加する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="704"/>
+        <location filename="../Workspace.py" line="706"/>
         <source>Cancel</source>
         <translation>キャンセル</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1702"/>
+        <location filename="../Workspace.py" line="1705"/>
         <source>Would you like to save the current topology?</source>
         <translation>現在のトポロジーを保存しますか?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="547"/>
+        <location filename="../Workspace.py" line="549"/>
         <source>Directory to write startup-configs</source>
         <translation>スタートコンフィグを書き込みするディレクトリ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1463"/>
+        <location filename="../Workspace.py" line="1466"/>
         <source>Snapshot</source>
         <translation>スナップショット</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1312"/>
+        <location filename="../Workspace.py" line="1315"/>
         <source>Cannot create directory %s: %s</source>
         <translation>ディレクトリを作成できません %s: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1468"/>
+        <location filename="../Workspace.py" line="1471"/>
         <source>Please wait while creating a snapshot</source>
         <translation>スナップショットを作成する間、しばらくお待ちください</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="602"/>
+        <location filename="../Workspace.py" line="604"/>
         <source>%s: Dynamips error</source>
         <translation>%s: Dynamips エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="571"/>
+        <location filename="../Workspace.py" line="573"/>
         <source>Directory to read startup-configs</source>
         <translation>スタートアップコンフィグを読み込むフォルダ</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="593"/>
+        <location filename="../Workspace.py" line="595"/>
         <source>IO Error</source>
         <translation>IO エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="583"/>
+        <location filename="../Workspace.py" line="585"/>
         <source>Importing %s from %s</source>
         <translation>%s を %s からインポートする</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="596"/>
+        <location filename="../Workspace.py" line="598"/>
         <source>Ignoring unknown device %s</source>
         <translation>不明なデバイス %s を無視する</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="598"/>
+        <location filename="../Workspace.py" line="600"/>
         <source>Dynamips Error: %s</source>
         <translation>Dynamips エラー: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="600"/>
+        <location filename="../Workspace.py" line="602"/>
         <source>Dynamips Warning: %s</source>
         <translation>Dynamips 警告: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="472"/>
+        <location filename="../Workspace.py" line="474"/>
         <source>I/O Error</source>
         <translation>I/O エラー</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="472"/>
+        <location filename="../Workspace.py" line="474"/>
         <source>I/O Error: %s</source>
         <translation>I/O エラー: %s</translation>
     </message>
@@ -7163,87 +7163,87 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1090"/>
+        <location filename="../Workspace.py" line="1092"/>
         <source>Reloading nodes ...</source>
         <translation>ノードを再起動中 ...</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="648"/>
+        <location filename="../Workspace.py" line="650"/>
         <source>picture</source>
         <translation>画像</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1510"/>
+        <location filename="../Workspace.py" line="1513"/>
         <source>Dynamips error: %s</source>
         <translation>Dynamips エラー: %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="916"/>
+        <location filename="../Workspace.py" line="918"/>
         <source>Reset saved interface labels?</source>
         <translation>保存したインターフェイスラベルをリセットしますか?</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1463"/>
+        <location filename="../Workspace.py" line="1466"/>
         <source>Cannot create directories in %s: %s</source>
         <translation>%s %s にディレクトリを作成できません</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1541"/>
+        <location filename="../Workspace.py" line="1544"/>
         <source>Dynamips error!!: %s</source>
         <translation>Dynamips エラー!! %s</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1649"/>
+        <location filename="../Workspace.py" line="1652"/>
         <source>Connection lost with Dynamips hypervisor (crashed?)</source>
         <translation>Dynamips ハイパーバイザとの接続に失敗しました (クラッシュ?)</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1268"/>
+        <location filename="../Workspace.py" line="1271"/>
         <source>This action is going to stop all your devices and captures, would you like to continue anyway?</source>
         <translation>この動作は現在実行中のデバイスとキャプチャを中止することになります、このまま続けますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="943"/>
+        <location filename="../Workspace.py" line="945"/>
         <source>Interface labels</source>
         <translation>インターフェイスのラベル</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="934"/>
+        <location filename="../Workspace.py" line="936"/>
         <source>Please hide the interface names before using this option</source>
         <translation>この機能を使うためにはインターフェースの名前を非表示にする必要があります</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="943"/>
+        <location filename="../Workspace.py" line="945"/>
         <source>Interface labels have been reset</source>
         <translation>インターフェースのラベルをリセットしました</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1711"/>
+        <location filename="../Workspace.py" line="1714"/>
         <source>You have running nodes and you may lose your configurations inside them, would you like to continue anyway?</source>
         <translation>この動作は現在実行中のノードのコンフィグが廃棄される可能性があります、このまま続けますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1197"/>
+        <location filename="../Workspace.py" line="1200"/>
         <source>Check For Update</source>
         <translation>アップデートを確認</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1184"/>
+        <location filename="../Workspace.py" line="1187"/>
         <source>Cannot check for update ... Try again later</source>
         <translation>アップデートの確認できませんでした ... また試してください</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1190"/>
+        <location filename="../Workspace.py" line="1193"/>
         <source>Newer GNS3 version %s is available, do you want to visit our website to download it?</source>
         <translation>新しいバージョンの GNS3 %s が入手できます、ダウンロードページを開きますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1241"/>
+        <location filename="../Workspace.py" line="1244"/>
         <source>This will clear your current topology. Continue?</source>
         <translation>現在のトポロジーをクリアします、続けますか？</translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1611"/>
+        <location filename="../Workspace.py" line="1614"/>
         <source>Clear Menu</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7253,102 +7253,102 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1047"/>
+        <location filename="../Workspace.py" line="1049"/>
         <source>VirtualBox Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1047"/>
+        <location filename="../Workspace.py" line="1049"/>
         <source>VirtualBox is not installed!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1422"/>
+        <location filename="../Workspace.py" line="1425"/>
         <source>Dynamips error %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1312"/>
+        <location filename="../Workspace.py" line="1315"/>
         <source>createProject</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1007"/>
+        <location filename="../Workspace.py" line="1009"/>
         <source>starting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1015"/>
+        <location filename="../Workspace.py" line="1017"/>
         <source>stopping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1018"/>
+        <location filename="../Workspace.py" line="1020"/>
         <source>suspending</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1021"/>
+        <location filename="../Workspace.py" line="1023"/>
         <source>reloading</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1024"/>
+        <location filename="../Workspace.py" line="1026"/>
         <source>%s: error from server %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1027"/>
+        <location filename="../Workspace.py" line="1029"/>
         <source>%s: warning from server %s: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1030"/>
+        <location filename="../Workspace.py" line="1032"/>
         <source>%s: lost communication with server %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1038"/>
+        <location filename="../Workspace.py" line="1040"/>
         <source>%s nodes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1038"/>
+        <location filename="../Workspace.py" line="1040"/>
         <source>Issues have been detected while %s nodes, please check details ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1222"/>
+        <location filename="../Workspace.py" line="1225"/>
         <source>No such file: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1225"/>
+        <location filename="../Workspace.py" line="1228"/>
         <source>Not a regular file: %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1562"/>
+        <location filename="../Workspace.py" line="1565"/>
         <source>The file &apos;%s&apos; has not the right extension (.net)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="534"/>
+        <location filename="../Workspace.py" line="536"/>
         <source>Import/Export IOS Startup Configs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="534"/>
+        <location filename="../Workspace.py" line="536"/>
         <source>Please choose an option:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="538"/>
+        <location filename="../Workspace.py" line="540"/>
         <source>Extract configs to a directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="540"/>
+        <location filename="../Workspace.py" line="542"/>
         <source>Import configs from a directory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7403,7 +7403,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1422"/>
+        <location filename="../Workspace.py" line="1425"/>
         <source>Setting new working dir</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7418,22 +7418,22 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="673"/>
+        <location filename="../Workspace.py" line="675"/>
         <source>Add a link (press SHIFT to select link type and enable auto module insertion)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="675"/>
+        <location filename="../Workspace.py" line="677"/>
         <source>Add a link (auto module insertion enabled)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1631"/>
+        <location filename="../Workspace.py" line="1634"/>
         <source>Project file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Workspace.py" line="1631"/>
+        <location filename="../Workspace.py" line="1634"/>
         <source>No such file %s</source>
         <translation type="unfinished"></translation>
     </message>
