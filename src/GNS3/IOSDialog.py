@@ -355,9 +355,6 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         conf.platform = str(self.comboBoxPlatform.currentText())
         conf.chassis = str(self.comboBoxChassis.currentText())
 
-        if conf.chassis == '3745':
-            QtGui.QMessageBox.warning(self, translate("IOSDialog", "Cisco 3745"), translate("IOSDialog", "There is a known bug when saving startup-configs with Cisco c3745 IOS images.\nIt is recommended to use c3725 instead."))
-        
         conf.idlepc = idlepc
         conf.idlemax = self.spinBoxIdlemax.value()
         conf.idlesleep = self.spinBoxIdlesleep.value()
