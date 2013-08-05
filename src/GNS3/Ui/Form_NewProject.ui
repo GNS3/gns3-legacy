@@ -61,7 +61,7 @@
       <item row="2" column="0" colspan="3">
        <widget class="QCheckBox" name="checkBox_WorkdirFiles">
         <property name="text">
-         <string>Save nvrams and virtual hard drives (required to save EtherSwitch VLAN configs)</string>
+         <string>Save nvrams including EtherSwitch VLANs and crypto keys</string>
         </property>
         <property name="checked">
          <bool>false</bool>

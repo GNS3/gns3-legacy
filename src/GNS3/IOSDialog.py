@@ -306,12 +306,12 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             self.label_IdlePCWarning.setText('')
 
         hypervisors = []
-        if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Unchecked:
+        if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
             # external hypervisor, don't use the hypervisor manager
             items = self.listWidgetHypervisors.selectedItems()
             if len(items) == 0:
                 QtGui.QMessageBox.warning(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "No hypervisor selected, use the local hypervisor"))
-                self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
+                self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)
                 imagekey = globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + imagename
             else:
                 # get the selected hypervisor
@@ -421,13 +421,13 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
 
                 self.listWidgetHypervisors.clearSelection()
                 if len(conf.hypervisors):
-                    self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)
+                    self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
                     for hypervisor in conf.hypervisors:
                         items = self.listWidgetHypervisors.findItems(hypervisor, QtCore.Qt.MatchFixedString)
                         if items:
                             items[0].setSelected(True)
                 else:
-                    self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Checked)
+                    self.checkBoxIntegratedHypervisor.setCheckState(QtCore.Qt.Unchecked)
         else:
             self.pushButtonDeleteIOS.setEnabled(False)
 
@@ -455,7 +455,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         if not image_path:
             return
         
-        if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Unchecked:
+        if self.checkBoxIntegratedHypervisor.checkState() == QtCore.Qt.Checked:
             QtGui.QMessageBox.critical(self, translate("IOSDialog", "Test Settings"), translate("IOSDialog", "Only local IOS images can be tested"))
             return
         
@@ -511,7 +511,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
             state: integer
         """
 
-        if state == QtCore.Qt.Checked:
+        if state == QtCore.Qt.Unchecked:
             self.listWidgetHypervisors.setEnabled(False)
         else:
             self.listWidgetHypervisors.setEnabled(True)
@@ -632,7 +632,7 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                 QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "Dynamips path doesn't exist or cannot detect its version, please check Dynamips settings"))
                 return
 
-        if dynamips.detected_version and not StrictVersion(dynamips.detected_version.replace("-RC", "b")) >= '0.2.8b4':
+        if dynamips.detected_version and not StrictVersion(dynamips.detected_version.replace("-RC", "b").split('-', 1)[0]) >= '0.2.8b4':
                 QtGui.QMessageBox.critical(self, translate("IOSDialog", "IOS Configuration"), translate("IOSDialog", "You will need Dynamips version 0.2.8-RC4 and above to use this utility.\nVersion detected: %s\nYou have to test the settings in Dynamips preferences to update the detected version.") % dynamips.detected_version)
                 return
         

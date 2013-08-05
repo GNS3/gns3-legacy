@@ -161,14 +161,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 vpcs_action.setData(QtCore.QVariant("vpcs-start.cmd"))
         elif sys.platform.startswith('darwin'):
             if self.projectConfigs:
-                #vpcs_action.setData(QtCore.QVariant("cd " + self.projectConfigs + " ; " + os.getcwdu() + os.sep + 'vpcs'))
-                vpcs_action.setData(QtCore.QVariant("cd " + self.projectConfigs + " ; " + os.getcwdu() + os.sep + '../Resources/vpcs'))
+                #vpcs_action.setData(QtCore.QVariant("cd \\\"" + self.projectConfigs + "\\\" ; " + os.getcwdu() + os.sep + 'vpcs'))
+                vpcs_action.setData(QtCore.QVariant("cd \\\"" + self.projectConfigs + "\\\" ; " + os.getcwdu() + os.sep + '../Resources/vpcs'))
             else:
                 #vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + 'vpcs'))
                 vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + '../Resources/vpcs'))
         else:
             if self.projectConfigs:
-                vpcs_action.setData(QtCore.QVariant("cd " + self.projectConfigs + " ; vpcs # /vpcs"))
+                vpcs_action.setData(QtCore.QVariant("cd \"" + self.projectConfigs + "\" ; vpcs # /vpcs"))
             else:
                 vpcs_action.setData(QtCore.QVariant('vpcs'))
         self.menu_Tools.addAction(vpcs_action)

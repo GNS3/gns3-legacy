@@ -238,10 +238,10 @@
           <item row="0" column="0">
            <widget class="QCheckBox" name="checkBoxIntegratedHypervisor">
             <property name="text">
-             <string>Use the hypervisor manager</string>
+             <string>Bind to external hypervisor(s)</string>
             </property>
             <property name="checked">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
            </widget>
           </item>

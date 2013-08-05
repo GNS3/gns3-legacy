@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_IOSDialog.ui'
 #
-# Created: Tue Jul 30 14:24:41 2013
+# Created: Sun Aug  4 22:36:29 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -148,8 +148,8 @@ class Ui_IOSDialog(object):
         self.gridlayout = QtGui.QGridLayout(self.groupBox_2)
         self.gridlayout.setObjectName(_fromUtf8("gridlayout"))
         self.checkBoxIntegratedHypervisor = QtGui.QCheckBox(self.groupBox_2)
-        self.checkBoxIntegratedHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "Use the hypervisor manager", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBoxIntegratedHypervisor.setChecked(True)
+        self.checkBoxIntegratedHypervisor.setText(QtGui.QApplication.translate("IOSDialog", "Bind to external hypervisor(s)", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBoxIntegratedHypervisor.setChecked(False)
         self.checkBoxIntegratedHypervisor.setObjectName(_fromUtf8("checkBoxIntegratedHypervisor"))
         self.gridlayout.addWidget(self.checkBoxIntegratedHypervisor, 0, 0, 1, 1)
         self.listWidgetHypervisors = QtGui.QListWidget(self.groupBox_2)
