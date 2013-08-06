@@ -161,8 +161,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 vpcs_action.setData(QtCore.QVariant("vpcs-start.cmd"))
         elif sys.platform.startswith('darwin'):
             if self.projectConfigs:
-                #vpcs_action.setData(QtCore.QVariant("cd \\\"" + self.projectConfigs + "\\\" ; " + os.getcwdu() + os.sep + 'vpcs'))
-                vpcs_action.setData(QtCore.QVariant("cd \\\"" + self.projectConfigs + "\\\" ; " + os.getcwdu() + os.sep + '../Resources/vpcs'))
+                vpcs_action.setData(QtCore.QVariant("cd \\\"" + self.projectConfigs + "\\\" ; " + os.getcwdu() + os.sep + 'vpcs'))
+                #vpcs_action.setData(QtCore.QVariant("cd \\\"" + self.projectConfigs + "\\\" ; " + os.getcwdu() + os.sep + '../Resources/vpcs'))
             else:
                 #vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + 'vpcs'))
                 vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + '../Resources/vpcs'))
@@ -1452,16 +1452,27 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         projectName = os.path.basename(self.projectFile)
         projectDir = os.path.dirname(self.projectFile)
+        
+        snapshot_workdir = None
+        snapshot_qemu_flash_drives = None
+        snapshot_captures = None
         snapshot_dir = projectDir + os.sep + projectName.replace('.net', '') + '_' + name + '_snapshot_' + time.strftime("%d%m%y_%H%M%S")
-        snapshot_workdir = snapshot_dir + os.sep + 'working'
         snapshot_configs = snapshot_dir + os.sep + 'configs'
-        snapshot_qemu_flash_drives = snapshot_dir + os.sep + 'qemu-flash-drives'
+
+        if os.path.exists(projectDir + os.sep + 'working'):
+            snapshot_workdir = snapshot_dir + os.sep + 'working'
+        if os.path.exists(projectDir + os.sep + 'qemu-flash-drives'):
+            snapshot_qemu_flash_drives = snapshot_dir + os.sep + 'qemu-flash-drives'
+        if os.path.exists(projectDir + os.sep + 'captures'):
+            snapshot_captures = snapshot_dir + os.sep + 'captures'
 
         try:
             os.mkdir(snapshot_dir)
-            os.mkdir(snapshot_workdir)
-            os.mkdir(snapshot_configs)
-            os.mkdir(snapshot_qemu_flash_drives)
+            #os.mkdir(snapshot_configs)
+            if snapshot_workdir:
+                os.mkdir(snapshot_workdir)
+            if snapshot_qemu_flash_drives:
+                os.mkdir(snapshot_qemu_flash_drives)
         except (OSError, IOError), e:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Snapshot"), translate("Workspace", "Cannot create directories in %s: %s") % (snapshot_dir, e.strerror))
             return
@@ -1471,20 +1482,35 @@ class Workspace(QMainWindow, Ui_MainWindow):
         splash.showMessage(translate("Workspace", "Please wait while creating a snapshot"))
         globals.GApp.processEvents(QtCore.QEventLoop.AllEvents | QtCore.QEventLoop.WaitForMoreEvents, 1000)
 
-        # copy dynamips & Qemu files + IOS configs
+        # save configs directory content
+        try:
+            shutil.copytree(projectDir + os.sep + 'configs', snapshot_configs)
+        except (OSError, IOError), e:
+            debug("Warning: cannot copy config files to " + snapshot_configs)
+           
+        # save captures directory content
+        if snapshot_captures:
+            try:
+                shutil.copytree(projectDir + os.sep + 'captures', snapshot_captures)
+            except (OSError, IOError), e:
+                debug("Warning: cannot copy capture files to " + snapshot_captures)
+
+        # copy dynamips working directory (only useful files)
         for node in globals.GApp.topology.nodes.values():
             if isinstance(node, IOSRouter):
-                dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_nvram*')
-                dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_disk*')
-                dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_slot*')
-                dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_rom')
-                dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_*flash*')
-                for file in dynamips_files:
-                    try:
-                        shutil.copy(file, snapshot_workdir)
-                    except (OSError, IOError), e:
-                        debug("Warning: cannot copy " + file + " to " + snapshot_workdir + ": " + e.strerror)
-                        continue
+                if snapshot_workdir:
+                    dynamips_files = glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_nvram*')
+                    dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_disk*')
+                    dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_slot*')
+                    dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_rom')
+                    dynamips_files += glob.glob(os.path.normpath(node.hypervisor.workingdir) + os.sep + node.get_platform() + '_' + node.hostname + '_*flash*')
+                    for file in dynamips_files:
+                        try:
+                            shutil.copy(file, snapshot_workdir)
+                        except (OSError, IOError), e:
+                            debug("Warning: cannot copy " + file + " to " + snapshot_workdir + ": " + e.strerror)
+                            continue
+
                 if node.router.cnfg:
                     try:
                         shutil.copy(node.router.cnfg, snapshot_configs)
@@ -1494,7 +1520,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     config = os.path.basename(node.router.cnfg)
                     node.router.cnfg = snapshot_configs + os.sep + config
 
-            if isinstance(node, AnyEmuDevice):
+            if snapshot_qemu_flash_drives and isinstance(node, AnyEmuDevice):
                 qemu_files = glob.glob(os.path.normpath(node.qemu.workingdir) + os.sep + node.hostname)
                 for file in qemu_files:
                     try:
@@ -1505,9 +1531,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         try:
             for hypervisor in globals.GApp.dynagen.dynamips.values():
-                if isinstance(hypervisor, qemu_lib.Qemu):
+                if snapshot_qemu_flash_drives and isinstance(hypervisor, qemu_lib.Qemu):
                     hypervisor.workingdir = snapshot_qemu_flash_drives
-                else:
+                elif snapshot_workdir:
                     hypervisor.workingdir = snapshot_workdir
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Dynamips error: %s") % msg)
@@ -1542,6 +1568,80 @@ class Workspace(QMainWindow, Ui_MainWindow):
                         node.router.cnfg = self.projectConfigs + os.sep + config
         except lib.DynamipsError, msg:
             QtGui.QMessageBox.critical(self, translate("Workspace", "Dynamips error"), translate("Workspace", "Dynamips error!!: %s") % msg)
+
+    def restoreSnapshot(self, path):
+        """ Restore a previously created snapshot
+        """
+
+        # stop all captures
+        globals.GApp.mainWindow.capturesDock.stopAllCaptures()
+
+        # stop all the devices
+        for node in globals.GApp.topology.nodes.values():
+            node.stopNode()
+
+        working_dir = os.path.dirname(path) + os.sep + 'working'
+        config_dir = os.path.dirname(path) + os.sep + 'configs'
+        capture_dir = os.path.dirname(path) + os.sep + 'captures'
+        qemu_flash_drives = os.path.dirname(path) + os.sep + 'qemu-flash-drives'
+
+        parent_project_dir = os.path.normpath(os.path.dirname(path) + os.sep + '..' + os.sep)
+        parent_working_dir = parent_project_dir + os.sep + 'working'
+        parent_qemu_flash_drives = parent_project_dir + os.sep + 'qemu-flash-drives'
+        parent_config_dir = parent_project_dir + os.sep + 'configs'
+        parent_capture_dir = parent_project_dir + os.sep + 'captures'
+
+        try:
+            shutil.copyfile(path, parent_project_dir + os.sep + 'topology.net')
+        except (OSError, IOError), e:
+            debug("Warning: cannot copy topology.net to " + parent_project_dir)
+
+        shutil.rmtree(parent_config_dir, ignore_errors=True)
+        try:
+            shutil.copytree(config_dir, parent_config_dir)
+        except (OSError, IOError), e:
+            debug("Warning: cannot copy config files to " + parent_config_dir)   
+        
+        if os.path.exists(working_dir):
+            # delete useless working dir files
+            workdir_files = glob.glob(working_dir + os.sep + "*ghost*")
+            workdir_files += glob.glob(working_dir + os.sep + "ilt_*")
+            workdir_files += glob.glob(working_dir + os.sep + "*_lock")
+            workdir_files += glob.glob(working_dir + os.sep + "c[0-9][0-9][0-9][0-9]_*_log.txt")
+            workdir_files += glob.glob(working_dir + os.sep + "c[0-9][0-9][0-9][0-9]_*_rommon_vars")
+            workdir_files += glob.glob(working_dir + os.sep + "c[0-9][0-9][0-9][0-9]_*_ssa")
+            for file in workdir_files:
+                try:
+                    debug("DELETING %s" % file)
+                    os.remove(file)
+                except (OSError, IOError), e:
+                    continue
+            
+            shutil.rmtree(parent_working_dir, ignore_errors=True)
+            try:
+                shutil.copytree(working_dir, parent_working_dir)
+            except (OSError, IOError), e:
+                debug("Warning: cannot copy working files to " + parent_working_dir)            
+
+        if os.path.exists(qemu_flash_drives):
+            shutil.rmtree(parent_qemu_flash_drives, ignore_errors=True)
+            try:
+                shutil.copytree(qemu_flash_drives, parent_qemu_flash_drives)
+            except (OSError, IOError), e:
+                debug("Warning: cannot copy Qemu files to " + parent_qemu_flash_drives)
+                
+        if os.path.exists(capture_dir):       
+            shutil.rmtree(parent_capture_dir, ignore_errors=True)
+            try:
+                shutil.copytree(capture_dir, parent_capture_dir)
+            except (OSError, IOError), e:
+                debug("Warning: cannot copy capture files to " + parent_capture_dir)
+
+        self.projectConfigs = parent_project_dir + os.sep + 'configs'
+        self.projectWorkdir = parent_project_dir + os.sep + 'working'
+        self.projectFile = parent_project_dir + os.sep + 'topology.net'
+        self.load_netfile(parent_project_dir + os.sep + 'topology.net')
+        debug("SNAPSHOT RESTORED")
 
     def __action_OpenFile(self):
         """ Open a file

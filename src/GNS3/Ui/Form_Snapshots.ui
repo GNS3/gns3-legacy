@@ -29,9 +29,9 @@
     </widget>
    </item>
    <item row="1" column="2">
-    <widget class="QPushButton" name="pushButtonLoad">
+    <widget class="QPushButton" name="pushButtonRestore">
      <property name="text">
-      <string>Load</string>
+      <string>Restore</string>
      </property>
     </widget>
    </item>

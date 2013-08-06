@@ -36,7 +36,7 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
 
         self.connect(self.pushButtonCreate, QtCore.SIGNAL('clicked()'), self.slotCreateSnapshot)
         self.connect(self.pushButtonDelete, QtCore.SIGNAL('clicked()'), self.slotDeleteSnapshot)
-        self.connect(self.pushButtonLoad, QtCore.SIGNAL('clicked()'), self.slotLoadSnapshot)
+        self.connect(self.pushButtonRestore, QtCore.SIGNAL('clicked()'), self.slotRestoreSnapshot)
         self.listSnaphosts()
 
     def listSnaphosts(self):
@@ -66,7 +66,7 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
         if ok and text:
             snapshot_name = unicode(text)
         else:
-            snapshot_name = "Unnamed"
+            return
 
         if not globals.GApp.workspace.projectFile:  # or not globals.GApp.workspace.projectWorkdir:
             QtGui.QMessageBox.critical(self, translate("SnapshotDialog", "Project"), translate("SnapshotDialog", "Create a project first!"))
@@ -83,13 +83,24 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
             shutil.rmtree(snapshot_path, ignore_errors=True)
             self.listSnaphosts()
 
-    def slotLoadSnapshot(self):
+    def slotRestoreSnapshot(self):
 
         items = self.SnapshotList.selectedItems()
         if len(items):
             item = items[0]
             path = unicode(item.data(QtCore.Qt.UserRole).toString())
-            globals.GApp.workspace.load_netfile(path)
-            globals.GApp.workspace.projectConfigs = os.path.dirname(path) + os.sep + 'configs'
-            globals.GApp.workspace.projectWorkdir = os.path.dirname(path) + os.sep + 'working'
-            globals.GApp.workspace.projectFile = path
+            dirname = os.path.basename(os.path.dirname(path))
+            snapregexp = re.compile(r"""^(.*)_(.*)_snapshot_([0-9]+)_([0-9]+)""")
+            match_obj = snapregexp.match(dirname)
+            if match_obj:
+                name = os.path.basename(match_obj.group(2))
+            else:
+                name = translate("SnapshotDialog", "Unknown")
+            reply = QtGui.QMessageBox.question(self, translate("SnapshotDialog", "Message"), translate("SnapshotDialog", "This will discard any changes made to your Project since the snapshot %s was taken?") % name,
+                                               QtGui.QMessageBox.Ok, QtGui.QMessageBox.Cancel)
+            if reply == QtGui.QMessageBox.Cancel:
+                return
+            self.hide()
+            globals.GApp.workspace.restoreSnapshot(path)
+            self.accept()
+    
