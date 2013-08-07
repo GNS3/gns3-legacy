@@ -1515,7 +1515,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                     try:
                         shutil.copy(node.router.cnfg, snapshot_configs)
                     except (OSError, IOError), e:
-                        debug("Warning: cannot copy " + file + " to " + snapshot_configs)
+                        debug("Warning: cannot copy " + node.router.cnfg + " to " + snapshot_configs)
                         continue
                     config = os.path.basename(node.router.cnfg)
                     node.router.cnfg = snapshot_configs + os.sep + config
@@ -1546,7 +1546,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.projectConfigs = snapshot_configs
         self.projectWorkdir = snapshot_workdir
         self.projectFile = unicode(snapshot_dir + os.sep + projectName)
-        self.__action_Save(auto=True)
+        self.__action_Save(auto=True, add_too_recent_files=False)
         self.projectFile = save_projectFile
         self.projectConfigs = save_cfg
         self.projectWorkdir = save_wd
@@ -1578,7 +1578,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # stop all the devices
         for node in globals.GApp.topology.nodes.values():
-            node.stopNode()
+            if isinstance(node, IOSRouter) or isinstance(node, AnyEmuDevice):
+                node.stopNode()
 
         working_dir = os.path.dirname(path) + os.sep + 'working'
         config_dir = os.path.dirname(path) + os.sep + 'configs'
@@ -1595,6 +1596,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
             shutil.copyfile(path, parent_project_dir + os.sep + 'topology.net')
         except (OSError, IOError), e:
             debug("Warning: cannot copy topology.net to " + parent_project_dir)
+            
+        try:
+            shutil.copyfile(os.path.dirname(path) + os.sep + 'topology.png', parent_project_dir + os.sep + 'topology.png')
+        except (OSError, IOError), e:
+            debug("Warning: cannot copy topology.png to " + parent_project_dir)
 
         shutil.rmtree(parent_config_dir, ignore_errors=True)
         try:
@@ -1637,11 +1643,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
             except (OSError, IOError), e:
                 debug("Warning: cannot copy capture files to " + parent_capture_dir)
 
+        self.load_netfile(parent_project_dir + os.sep + 'topology.net')
         self.projectConfigs = parent_project_dir + os.sep + 'configs'
         self.projectWorkdir = parent_project_dir + os.sep + 'working'
         self.projectFile = parent_project_dir + os.sep + 'topology.net'
-        self.load_netfile(parent_project_dir + os.sep + 'topology.net')
-        debug("SNAPSHOT RESTORED")
+        #debug("SNAPSHOT RESTORED")
 
     def __action_OpenFile(self):
         """ Open a file
@@ -1759,7 +1765,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         print translate("Workspace", "%s: Auto-saving ... Next one in %s seconds" % (curtime, str(globals.GApp.systconf['general'].autosave)))
         self.__action_Save(auto=True)
 
-    def __action_Save(self, auto=False):
+    def __action_Save(self, auto=False, add_too_recent_files=True):
         """ Save to a file (scenario or dynagen .NET format)
         """
 
@@ -1769,7 +1775,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         try:
             net = netfile.NETFile()
             net.export_net_file(self.projectFile, auto)
-            self.__addToRecentFiles(self.projectFile)
+            if add_too_recent_files:
+                self.__addToRecentFiles(self.projectFile)
 
             # unbase the qemu disk
             if self.unbase == True:
