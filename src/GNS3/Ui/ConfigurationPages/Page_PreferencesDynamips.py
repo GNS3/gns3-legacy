@@ -236,6 +236,10 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             if os.path.exists(globals.GApp.systconf['dynamips'].path) == False:
                 self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Dynamips path doesn't exist")  + '</font>')
                 return
+            
+        if not sys.platform.startswith('win') and not os.access(globals.GApp.systconf['dynamips'].path, os.X_OK):
+            self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Dynamips path isn't marked as executable.<br>Please fix using the following command:<br>chmod +x path_to_dynamips")  + '</font>')
+            return
 
         try:
             p = sub.Popen([globals.GApp.systconf['dynamips'].path, '--help'], stdout=sub.PIPE)
@@ -253,8 +257,7 @@ class UiConfig_PreferencesDynamips(QtGui.QWidget, Ui_PreferencesDynamips):
             version_2nd = int(version_raw.split('.')[1])
             version_3rd = int(version_raw.split('.')[2].split('-')[0])
             dynamips_ver = str(version_1st)+'.'+str(version_2nd)+'.'+str(version_3rd)+'-'+version_raw.split('.')[2].split('-')[1]
-            #FIXME: temporary ugly solution
-            globals.GApp.systconf['dynamips'].detected_version = unicode(dynamips_ver).replace('-community', '').replace('-dev', '')
+            globals.GApp.systconf['dynamips'].detected_version = unicode(dynamips_ver)
             ConfDB().sync()
         except:
             self.labelDynamipsStatus.setText('<font color="red">' + translate("UiConfig_PreferencesDynamips", "Failed to determine version of Dynamips.")  + '</font>')

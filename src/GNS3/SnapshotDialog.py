@@ -100,7 +100,7 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
                                                QtGui.QMessageBox.Ok, QtGui.QMessageBox.Cancel)
             if reply == QtGui.QMessageBox.Cancel:
                 return
-            self.hide()
+            #self.hide()
             globals.GApp.workspace.restoreSnapshot(path)
             self.accept()
     

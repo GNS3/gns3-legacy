@@ -167,7 +167,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 #vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + 'vpcs'))
                 vpcs_action.setData(QtCore.QVariant(os.getcwdu() + os.sep + '../Resources/vpcs'))
         else:
-            if self.projectConfigs:
+            result = []
+            for path_dir in os.environ.get('PATH', '').split(os.pathsep):
+                p = os.path.join(path_dir, 'vpcs')
+                if os.access(p, os.X_OK):
+                    result.append(p)
+            if not len(result):
+                vpcs_action = QtGui.QAction(translate("Workspace", "VPCS not installed"), self.menu_Tools)
+            elif self.projectConfigs:
                 vpcs_action.setData(QtCore.QVariant("cd \"" + self.projectConfigs + "\" ; vpcs # /vpcs"))
             else:
                 vpcs_action.setData(QtCore.QVariant('vpcs'))
@@ -228,6 +235,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         elif action.text() == translate("Workspace", "Instructions"):
             if QtGui.QDesktopServices.openUrl(QtCore.QUrl('file:///' + action.data().toString(), QtCore.QUrl.TolerantMode)) == False:
                 QtGui.QMessageBox.critical(self, translate("Workspace", "Instructions"), translate("Workspace", "Couldn't open " + action.data().toString()))
+        elif action.text() == translate("Workspace", "VPCS not installed"):
+            QtGui.QMessageBox.information(self, translate("Workspace", "VPCS"), translate("Workspace", "vpcs must be found in PATH and marked as executable"))
         else:
 #            tool_path = action.data().toString()
             debug("Running tool: %s" % action.data().toString())
