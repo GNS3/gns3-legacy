@@ -281,6 +281,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.action_AboutQt, QtCore.SIGNAL('triggered()'), self.__action_AboutQt)
         self.connect(self.action_CheckForUpdate, QtCore.SIGNAL('triggered()'), self.__action_CheckForUpdate)
         self.connect(self.action_Tips, QtCore.SIGNAL('triggered()'), self.__action_Tips)
+        self.connect(self.action_Instructions, QtCore.SIGNAL('triggered()'), self.__action_Instructions)
         self.connect(self.action_New, QtCore.SIGNAL('triggered()'), self.__action_NewProject)
         self.connect(self.action_SaveProjectAs, QtCore.SIGNAL('triggered()'), self.__action_SaveProjectAs)
         self.connect(self.action_Open, QtCore.SIGNAL('triggered()'), self.__action_OpenFile)
@@ -346,6 +347,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
         separator = self.menu_File.insertSeparator(self.action_Save)
         self.menu_File.insertMenu(separator, self.submenu_RecentFiles)
         self.connect(self.submenu_RecentFiles, QtCore.SIGNAL("triggered(QAction *)"), self.slotLoadRecentFile)
+
+    def __action_Instructions(self):
+        
+        # Lab instructions
+        if self.projectFile and os.path.exists(os.path.dirname(self.projectFile)):
+            instructions_files = glob.glob(os.path.dirname(self.projectFile) + os.sep + "instructions.*")
+            instructions_files += glob.glob(os.path.dirname(self.projectFile) + os.sep + "instructions" + os.sep + "instructions*")
+            if len(instructions_files):
+                path = instructions_files[0]
+                if QtGui.QDesktopServices.openUrl(QtCore.QUrl('file:///' + path, QtCore.QUrl.TolerantMode)) == False:
+                    QtGui.QMessageBox.critical(self, translate("Workspace", "Instructions"), translate("Workspace", "Couldn't open " + path))
+            else:
+                QtGui.QMessageBox.critical(self, translate("Workspace", "Instructions"), translate("Workspace", "No instructions found"))
 
     def slotLoadRecentFile(self, action):
         """ Called when a file is selected from the Recent Files submenu

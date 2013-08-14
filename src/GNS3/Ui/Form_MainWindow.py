@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Form_MainWindow.ui'
 #
-# Created: Sun Aug  4 22:36:29 2013
+# Created: Wed Aug 14 15:33:09 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -651,6 +651,9 @@ class Ui_MainWindow(object):
         self.action_Tips.setText(QtGui.QApplication.translate("MainWindow", "Tips", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Tips.setToolTip(QtGui.QApplication.translate("MainWindow", "Show Tips", None, QtGui.QApplication.UnicodeUTF8))
         self.action_Tips.setObjectName(_fromUtf8("action_Tips"))
+        self.action_Instructions = QtGui.QAction(MainWindow)
+        self.action_Instructions.setText(QtGui.QApplication.translate("MainWindow", "Instructions", None, QtGui.QApplication.UnicodeUTF8))
+        self.action_Instructions.setObjectName(_fromUtf8("action_Instructions"))
         self.menu_Edit.addAction(self.action_SelectAll)
         self.menu_Edit.addAction(self.action_SelectNone)
         self.menu_Edit.addSeparator()
@@ -669,6 +672,7 @@ class Ui_MainWindow(object):
         self.menu_File.addAction(self.action_Quit)
         self.menu_About.addAction(self.action_OnlineHelp)
         self.menu_About.addAction(self.action_CheckForUpdate)
+        self.menu_About.addAction(self.action_Instructions)
         self.menu_About.addAction(self.action_Tips)
         self.menu_About.addAction(self.action_AboutQt)
         self.menu_About.addAction(self.action_About)

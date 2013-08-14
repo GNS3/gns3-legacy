@@ -101,6 +101,7 @@ background-none;
     </property>
     <addaction name="action_OnlineHelp"/>
     <addaction name="action_CheckForUpdate"/>
+    <addaction name="action_Instructions"/>
     <addaction name="action_Tips"/>
     <addaction name="action_AboutQt"/>
     <addaction name="action_About"/>
@@ -1331,6 +1332,11 @@ background-none;
    </property>
    <property name="toolTip">
     <string>Show Tips</string>
+   </property>
+  </action>
+  <action name="action_Instructions">
+   <property name="text">
+    <string>Instructions</string>
    </property>
   </action>
  </widget>
