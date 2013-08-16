@@ -217,14 +217,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.menu_Tools.addAction(vboxwrapper_action)
 
         # Lab instructions
-        if self.projectFile and os.path.exists(os.path.dirname(self.projectFile)):
-            instructions_files = glob.glob(os.path.dirname(self.projectFile) + os.sep + "instructions.*")
-            instructions_files += glob.glob(os.path.dirname(self.projectFile) + os.sep + "instructions" + os.sep + "instructions*")
-            if len(instructions_files):
-                path = instructions_files[0]
-                instructions_action = QtGui.QAction(translate("Workspace", "Instructions"), self.menu_Tools)
-                instructions_action.setData(QtCore.QVariant(path))
-                self.menu_Tools.addAction(instructions_action)
+#         if self.projectFile and os.path.exists(os.path.dirname(self.projectFile)):
+#             instructions_files = glob.glob(os.path.dirname(self.projectFile) + os.sep + "instructions.*")
+#             instructions_files += glob.glob(os.path.dirname(self.projectFile) + os.sep + "instructions" + os.sep + "instructions*")
+#             if len(instructions_files):
+#                 path = instructions_files[0]
+#                 instructions_action = QtGui.QAction(translate("Workspace", "Instructions"), self.menu_Tools)
+#                 instructions_action.setData(QtCore.QVariant(path))
+#                 self.menu_Tools.addAction(instructions_action)
 
     def slotRunTool(self, action):
         """ Run a tool from Tools menu
@@ -232,9 +232,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         if action.text() == translate("Workspace", 'Terminal'):
             runTerminal()
-        elif action.text() == translate("Workspace", "Instructions"):
-            if QtGui.QDesktopServices.openUrl(QtCore.QUrl('file:///' + action.data().toString(), QtCore.QUrl.TolerantMode)) == False:
-                QtGui.QMessageBox.critical(self, translate("Workspace", "Instructions"), translate("Workspace", "Couldn't open " + action.data().toString()))
+#         elif action.text() == translate("Workspace", "Instructions"):
+#             if QtGui.QDesktopServices.openUrl(QtCore.QUrl('file:///' + action.data().toString(), QtCore.QUrl.TolerantMode)) == False:
+#                 QtGui.QMessageBox.critical(self, translate("Workspace", "Instructions"), translate("Workspace", "Couldn't open " + action.data().toString()))
         elif action.text() == translate("Workspace", "VPCS not installed"):
             QtGui.QMessageBox.information(self, translate("Workspace", "VPCS"), translate("Workspace", "vpcs must be found in PATH and marked as executable"))
         else:
@@ -359,7 +359,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 if QtGui.QDesktopServices.openUrl(QtCore.QUrl('file:///' + path, QtCore.QUrl.TolerantMode)) == False:
                     QtGui.QMessageBox.critical(self, translate("Workspace", "Instructions"), translate("Workspace", "Couldn't open " + path))
             else:
-                QtGui.QMessageBox.critical(self, translate("Workspace", "Instructions"), translate("Workspace", "No instructions found"))
+                QtGui.QMessageBox.critical(self, translate("Workspace", "Instructions"), translate("Workspace", "No instructions found. Click <a href='http://www.gns3.net/documentation/instructions/'>here</a> to to see how to add instructions to your project"))
 
     def slotLoadRecentFile(self, action):
         """ Called when a file is selected from the Recent Files submenu

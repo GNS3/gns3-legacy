@@ -67,7 +67,7 @@ import socket
 #version = "0.11.0.091411"
 (MAJOR, MINOR, SUB, RCVER) = (0, 2, 1, .1)
 INTVER = MAJOR * 10000 + MINOR * 100 + SUB + RCVER
-STRVER = '0.8.4'
+STRVER = '0.8.5'
 NOSEND = False  # Disable sending any commands to the back end for debugging
 
 class UDPConnection:

@@ -2,6 +2,19 @@
 # GNS3 - CHANGELOG #
 ####################
 
+=== v0.8.5 xx.08.2013 ===
+
+    * Dynamips 0.2.10 is included in our Windows all-in-one package and OSX DMG, this version allows Crypto keys to be saved and fixes with configs in c3745 IOS images. Hooray!
+	* Fixed a major issue to evaluate Dynamips version for the auto idle-pc calculation feature.
+    * Implemented Restore snapshot feature following Rednectar's suggestions (http://forum.gns3.net/post20664.html#p20664) 
+	* Increased lowest and max zoom values.
+	* Updated Italian translation.
+	* Added Xshell 4 command lines in terminal settings. 
+	* Fixed issue with contextual device menu.
+    * Fixed bug when launching VPCS and there was a space in the project path.
+    * Option 'Use hypervisor manager' changed to 'Bind to external hypervisor(s)' (logic is inverted) in IOS images and hypervisors dialog.
+    * Checks: if VPCS is installed and if Dynamips is marked as executable.
+
 === v0.8.4 05.07.2013 ===
 
 
