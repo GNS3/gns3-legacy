@@ -614,7 +614,7 @@ Examples:
         Dynagen_Console.do_import(self, args)
 
     def do_debug(self, args):
-        """debug [level]\nActivate/Desactivate debugs\nLevel 0: no debugs\nLevel 1: dynamips lib debugs only\nLevel 2: GNS3 debugs only\nLevel 3: GNS3 debugs and dynamips lib debugs"""
+        """debug [level]\nActivate/Deactivate debugs\nLevel 0: no debugs\nLevel 1: dynamips lib debugs only\nLevel 2: GNS3 debugs only\nLevel 3: GNS3 debugs and dynamips lib debugs"""
 
         if len(args) == 1:
             try:

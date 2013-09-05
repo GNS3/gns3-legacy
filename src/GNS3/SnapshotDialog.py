@@ -20,7 +20,7 @@
 
 import os, glob, re, shutil
 import GNS3.Globals as globals
-from GNS3.Utils import translate
+from GNS3.Utils import translate, debug
 from PyQt4 import QtCore, QtGui
 from GNS3.Ui.Form_Snapshots import Ui_Snapshots
 
@@ -44,10 +44,23 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
         self.SnapshotList.clear()
         if not globals.GApp.workspace.projectFile:
             return
+        snapregexp = re.compile(r"""^(.*)_(.*)_snapshot_([0-9]+)_([0-9]+)""")
         projectDir = os.path.dirname(globals.GApp.workspace.projectFile)
+        snapshotDir = os.path.join(os.path.dirname(globals.GApp.workspace.projectFile), 'snapshots')
         snapshots = glob.glob(os.path.normpath(projectDir) + os.sep + "*_snapshot_*")
+
+        # Backward compatibility: move snapshots to the snapshot directory (new location in GNS3 0.8.5)
+        try:
+            if snapshots and not os.path.exists(snapshotDir):
+                os.mkdir(snapshotDir)
+            for entry in snapshots:
+                shutil.move(entry, snapshotDir)
+                debug("Moving %s to the snapshot directory" % entry)
+        except (OSError, IOError), e:
+            debug("Cound't move snapshots to the snapshot directory")
+
+        snapshots = glob.glob(os.path.normpath(snapshotDir) + os.sep + "*_snapshot_*")
         for entry in snapshots:
-            snapregexp = re.compile(r"""^(.*)_(.*)_snapshot_([0-9]+)_([0-9]+)""")
             match_obj = snapregexp.match(entry)
             if match_obj:
                 name = match_obj.group(2)
@@ -96,7 +109,7 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
                 name = os.path.basename(match_obj.group(2))
             else:
                 name = translate("SnapshotDialog", "Unknown")
-            reply = QtGui.QMessageBox.question(self, translate("SnapshotDialog", "Message"), translate("SnapshotDialog", "This will discard any changes made to your Project since the snapshot %s was taken?") % name,
+            reply = QtGui.QMessageBox.question(self, translate("SnapshotDialog", "Message"), translate("SnapshotDialog", "This will discard any changes made to your project since the snapshot \"%s\" was taken?") % name,
                                                QtGui.QMessageBox.Ok, QtGui.QMessageBox.Cancel)
             if reply == QtGui.QMessageBox.Cancel:
                 return

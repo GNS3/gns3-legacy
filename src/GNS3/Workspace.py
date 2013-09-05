@@ -348,7 +348,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.menu_File.insertMenu(separator, self.submenu_RecentFiles)
         self.connect(self.submenu_RecentFiles, QtCore.SIGNAL("triggered(QAction *)"), self.slotLoadRecentFile)
 
-    def __action_Instructions(self):
+    def __action_Instructions(self, silent=False):
         
         # Lab instructions
         if self.projectFile and os.path.exists(os.path.dirname(self.projectFile)):
@@ -356,9 +356,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
             instructions_files += glob.glob(os.path.dirname(self.projectFile) + os.sep + "instructions" + os.sep + "instructions*")
             if len(instructions_files):
                 path = instructions_files[0]
-                if QtGui.QDesktopServices.openUrl(QtCore.QUrl('file:///' + path, QtCore.QUrl.TolerantMode)) == False:
+                if QtGui.QDesktopServices.openUrl(QtCore.QUrl('file:///' + path, QtCore.QUrl.TolerantMode)) == False and silent == False:
                     QtGui.QMessageBox.critical(self, translate("Workspace", "Instructions"), translate("Workspace", "Couldn't open " + path))
-            else:
+            elif silent == False:
                 QtGui.QMessageBox.critical(self, translate("Workspace", "Instructions"), translate("Workspace", "No instructions found. Click <a href='http://www.gns3.net/documentation/instructions/'>here</a> to to see how to add instructions to your project"))
 
     def slotLoadRecentFile(self, action):
@@ -1457,11 +1457,11 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Open snapshot dialog
         """
 
-        snapDialog = SnapshotDialog()
-        snapDialog.setModal(True)
-        snapDialog.show()
-        self.centerDialog(snapDialog)
-        snapDialog.exec_()
+        self.snapDialog = SnapshotDialog()
+        self.snapDialog.setModal(True)
+        self.snapDialog.show()
+        self.centerDialog(self.snapDialog)
+        self.snapDialog.exec_()
 
     def createSnapshot(self, name):
         """ Create a new snapshot of the current topology
@@ -1475,18 +1475,19 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         projectName = os.path.basename(self.projectFile)
         projectDir = os.path.dirname(self.projectFile)
+        snapshotDir = os.path.join(projectDir, 'snapshots')
         
         snapshot_workdir = None
         snapshot_qemu_flash_drives = None
         snapshot_captures = None
-        snapshot_dir = projectDir + os.sep + projectName.replace('.net', '') + '_' + name + '_snapshot_' + time.strftime("%d%m%y_%H%M%S")
+        snapshot_dir = snapshotDir + os.sep + projectName.replace('.net', '') + '_' + name + '_snapshot_' + time.strftime("%d%m%y_%H%M%S")
         snapshot_configs = snapshot_dir + os.sep + 'configs'
 
-        if os.path.exists(projectDir + os.sep + 'working'):
+        if os.path.exists(snapshotDir + os.sep + 'working'):
             snapshot_workdir = snapshot_dir + os.sep + 'working'
-        if os.path.exists(projectDir + os.sep + 'qemu-flash-drives'):
+        if os.path.exists(snapshotDir + os.sep + 'qemu-flash-drives'):
             snapshot_qemu_flash_drives = snapshot_dir + os.sep + 'qemu-flash-drives'
-        if os.path.exists(projectDir + os.sep + 'captures'):
+        if os.path.exists(snapshotDir + os.sep + 'captures'):
             snapshot_captures = snapshot_dir + os.sep + 'captures'
 
         try:
@@ -1507,14 +1508,14 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         # save configs directory content
         try:
-            shutil.copytree(projectDir + os.sep + 'configs', snapshot_configs)
+            shutil.copytree(snapshotDir + os.sep + 'configs', snapshot_configs)
         except (OSError, IOError), e:
             debug("Warning: cannot copy config files to " + snapshot_configs)
            
         # save captures directory content
         if snapshot_captures:
             try:
-                shutil.copytree(projectDir + os.sep + 'captures', snapshot_captures)
+                shutil.copytree(snapshotDir + os.sep + 'captures', snapshot_captures)
             except (OSError, IOError), e:
                 debug("Warning: cannot copy capture files to " + snapshot_captures)
 
@@ -1596,6 +1597,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Restore a previously created snapshot
         """
 
+        # close snapshot dialog
+        self.snapDialog.close()
+
         # stop all captures
         globals.GApp.mainWindow.capturesDock.stopAllCaptures()
 
@@ -1609,7 +1613,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         capture_dir = os.path.dirname(path) + os.sep + 'captures'
         qemu_flash_drives = os.path.dirname(path) + os.sep + 'qemu-flash-drives'
 
-        parent_project_dir = os.path.normpath(os.path.dirname(path) + os.sep + '..' + os.sep)
+        parent_project_dir = os.path.normpath(os.path.dirname(path) + os.sep + '..' + os.sep + '..' + os.sep)
         parent_working_dir = parent_project_dir + os.sep + 'working'
         parent_qemu_flash_drives = parent_project_dir + os.sep + 'qemu-flash-drives'
         parent_config_dir = parent_project_dir + os.sep + 'configs'
@@ -1775,6 +1779,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.load_netfile(path)
             self.__addToRecentFiles(path)
             globals.GApp.topology.changed = False
+            self.__action_Instructions(silent=True)
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         except (lib.DynamipsErrorHandled, socket.error):
