@@ -117,8 +117,8 @@ SYMBOLS = [
     },
 
     {'name': "ASA firewall", 'object': ASA,
-    'normal_svg_file': ":/symbols/PIX_firewall.normal.svg",
-    'select_svg_file': ":/symbols/PIX_firewall.selected.svg",
+    'normal_svg_file': ":/symbols/asa.normal.svg",
+    'select_svg_file': ":/symbols/asa.selected.svg",
     'translated': True,
     'checkForImage': True,
     'type': 'Security devices'
@@ -197,16 +197,16 @@ SYMBOLS = [
     },
 
     {'name': "Qemu guest", 'object': QemuDevice,
-    'normal_svg_file': ":/symbols/computer.normal.svg",
-    'select_svg_file': ":/symbols/computer.selected.svg",
+    'normal_svg_file': ":/symbols/qemu_guest.normal.svg",
+    'select_svg_file': ":/symbols/qemu_guest.selected.svg",
     'translated': True,
     'checkForImage': True,
     'type': 'End devices'
     },
 
     {'name': "VirtualBox guest", 'object': VBoxDevice,
-    'normal_svg_file': ":/symbols/computer.normal.svg",
-    'select_svg_file': ":/symbols/computer.selected.svg",
+    'normal_svg_file': ":/symbols/vbox_guest.normal.svg",
+    'select_svg_file': ":/symbols/vbox_guest.selected.svg",
     'translated': True,
     'checkForImage': True,
     'type': 'End devices'
