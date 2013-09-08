@@ -1,8 +1,6 @@
 #$Language = "VBScript"
 #$Interface = "1.0"
 
-'"C:\[...]\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p
-
 crt.Screen.Synchronous = False           'To be used only if those functions are called: "WaitForString, WaitForStrings, ReadString, or WaitForCursor" (Performance issue if "True")
 
 Sub main

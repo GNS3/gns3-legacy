@@ -1022,14 +1022,14 @@ class UiConfig_PreferencesQemu(QtGui.QWidget, Ui_PreferencesQemu):
             self.ASAMemory.setValue(512)
             self.ASANICNb.setValue(6)
             self.ASANIC.setCurrentIndex(self.ASANIC.findText("e1000"))
-            self.ASAOptions.setText("-hdachs 980,16,32")
+            self.ASAOptions.setText("-vga none -hdachs 980,16,32")
             self.ASAKernelCmdLine.setText("auto nousb ide1=noprobe bigphysarea=16384 console=ttyS0,9600n8 hda=980,16,32")
         elif asa_preconfiguration == 'ASA 8.4(2)':
             self.NameASAImage.setText("ASA 8.4(2)")
             self.ASAMemory.setValue(1024)
             self.ASANICNb.setValue(6)
             self.ASANIC.setCurrentIndex(self.ASANIC.findText("e1000"))
-            self.ASAOptions.setText("-icount auto -hdachs 980,16,32")
+            self.ASAOptions.setText("-vga none -icount auto -hdachs 980,16,32")
             self.ASAKernelCmdLine.setText("ide_generic.probe_mask=0x01 ide_core.chs=0.0:980,16,32 auto nousb console=ttyS0,9600 bigphysarea=65536")
 
     def slotSelectIDSImage1(self):

@@ -833,7 +833,7 @@ class AnyVBoxEmuDevice(object):
             del self.nios[local_port]
 
     def isLocalhost(self, i_host):
-        if i_host == 'localhost' or i_host == '127.0.0.1' or i_host == '::1' or i_host == "0:0:0:0:0:0:0:1":
+        if i_host in tracker.portTracker().local_addresses:
             return True
         else:
             return False

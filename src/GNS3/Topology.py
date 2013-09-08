@@ -24,6 +24,7 @@ import GNS3.Dynagen.qemu_lib as qlib
 import GNS3.Dynagen.dynagen_vbox_lib as vboxlib
 import GNS3.Globals as globals
 import GNS3.UndoFramework as undo
+import GNS3.Dynagen.portTracker_lib as tracker
 from PyQt4 import QtGui, QtCore
 from GNS3.Utils import translate, debug
 from GNS3.Link.Ethernet import Ethernet
@@ -319,7 +320,8 @@ class Topology(QtGui.QGraphicsScene):
         return hostname
 
     def isLocalhost(self, i_host):
-        if i_host == 'localhost' or i_host == '127.0.0.1' or i_host == '::1' or i_host == "0:0:0:0:0:0:0:1":
+        
+        if i_host in tracker.portTracker().local_addresses:
             return True
         else:
             return False

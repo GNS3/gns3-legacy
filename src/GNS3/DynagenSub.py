@@ -537,4 +537,4 @@ class DynagenSub(Dynagen):
             self.doreset()
         except:
             print "Reset error, lost communication with hypervisor?"
-        raise
+        #raise
