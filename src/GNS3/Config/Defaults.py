@@ -187,8 +187,8 @@ if platform.system() == 'Linux' or platform.system().__contains__("BSD"):
                             'xterm (Linux/BSD)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
                             'Putty (Linux/BSD)': 'putty -telnet %h %p -title %d -sl 2500 -fg SALMON1 -bg BLACK',
                             'Gnome Terminal (Linux/BSD)': 'gnome-terminal -t %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
-                            'KDE Konsole (Linux/BSD)': '/usr/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &',
-                            'SecureCRT (Linux)': '/usr/local/bin/SecureCRT /T /N "%d"  /TELNET %h %p',
+                            'KDE Konsole (Linux/BSD)': 'konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &',
+                            'SecureCRT (Linux)': 'SecureCRT /T /N "%d"  /TELNET %h %p',
                             'Mate Terminal (Linux Mint)': 'mate-terminal --tab -e \'telnet %h %p\'  -t %d >/dev/null 2>&1 & ',
                             }
 elif platform.system() == 'Windows' and os.path.exists("C:\Program Files (x86)\\"):
@@ -196,8 +196,8 @@ elif platform.system() == 'Windows' and os.path.exists("C:\Program Files (x86)\\
                             'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt "%d" -gns3 5 -skin 4',
                             'SuperPutty (Windows)': 'SuperPutty.exe -telnet "%h -P %p -wt \"%d\" -gns3 5 -skin 4"',
                             'SecureCRT (Windows)': '"C:\Program Files\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
-                            'TeraTerm (Windows 64-bit)': '"C:\Program Files (x86)\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p',
-                            'TeraTerm (Windows 32-bit)': '"C:\Program Files\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p',
+                            'TeraTerm (Windows 64-bit)': r'"C:\Program Files (x86)\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p',
+                            'TeraTerm (Windows 32-bit)': r'"C:\Program Files\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p"',
                             'Telnet (Windows)': 'telnet %h %p',
                             'Xshell 4 (Windows)': 'C:\Program Files (x86)\\NetSarang\\Xshell 4\\xshell.exe -url telnet://%h:%p'
                             }
@@ -206,7 +206,7 @@ elif platform.system() == 'Windows':
                             'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt "%d" -gns3 5 -skin 4',
                             'SuperPutty (Windows)': 'SuperPutty.exe -telnet "%h -P %p -wt \"%d\" -gns3 5 -skin 4"',
                             'SecureCRT (Windows)': '"C:\Program Files\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
-                            'TeraTerm (Windows)': '"C:\Program Files\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p',
+                            'TeraTerm (Windows)': r'"C:\Program Files\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p"',
                             'Telnet (Windows)': 'telnet %h %p',
                             'Xshell 4 (Windows)': 'C:\Program Files\\NetSarang\\Xshell 4\\xshell.exe -url telnet://%h:%p'
                             }
@@ -221,16 +221,16 @@ else:  # For unknown platforms, or if detection failed, we list all options.
                             'Putty (Windows, included with GNS3)': 'putty.exe -telnet %h %p -wt "%d" -gns3 5 -skin 4',
                             'SuperPutty (Windows)': 'SuperPutty.exe -telnet "%h -P %p -wt \"%d\" -gns3 5 -skin 4"',
                             'SecureCRT (Windows)': '"C:\Program Files\\VanDyke Software\\SecureCRT\\SecureCRT.EXE" /SCRIPT securecrt.vbs /ARG %d /T /TELNET %h %p',
-                            'TeraTerm (Windows 32-bit)': '"C:\Program Files\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p',
-                            'TeraTerm (Windows 64-bit)': '"C:\Program Files (x86)\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p',
+                            'TeraTerm (Windows 64-bit)': r'"C:\Program Files (x86)\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p',
+                            'TeraTerm (Windows 32-bit)': r'"C:\Program Files\teraterm\ttermpro.exe" /W="%d" /M="C:\Program Files\GNS3\ttstart.macro" /T=1 %h %p"',
                             'Telnet (Windows)': 'telnet %h %p',
                             'Xshell 4 (Windows 32-bit)': 'C:\Program Files\\NetSarang\\Xshell 4\\xshell.exe -url telnet://%h:%p',
                             'Xshell 4 (Windows 64-bit)': 'C:\Program Files (x86)\\NetSarang\\Xshell 4\\xshell.exe -url telnet://%h:%p',
                             'xterm (Linux/BSD)': 'xterm -T %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
                             'Putty (Linux/BSD)': 'putty -telnet %h %p -title %d -sl 2500 -fg SALMON1 -bg BLACK',
                             'Gnome Terminal (Linux/BSD)': 'gnome-terminal -t %d -e \'telnet %h %p\' >/dev/null 2>&1 &',
-                            'KDE Konsole (Linux/BSD)': '/usr/bin/konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &',
-                            'SecureCRT (Linux)': '/usr/local/bin/SecureCRT /T /N "%d"  /TELNET %h %p',
+                            'KDE Konsole (Linux/BSD)': 'konsole --new-tab -p tabtitle=%d -e telnet %h %p >/dev/null 2>&1 &',
+                            'SecureCRT (Linux)': 'SecureCRT /T /N "%d"  /TELNET %h %p',
                             'Mate Terminal (Linux Mint)': 'mate-terminal --tab -e \'telnet %h %p\'  -t %d >/dev/null 2>&1 & ',
                             'Terminal (Mac OS X)': "/usr/bin/osascript -e 'tell application \"terminal\" to do script with command \"telnet %h %p ; exit\"'",
                             'iTerm (Mac OS X)': "/usr/bin/osascript -e 'tell app \"iTerm\"' -e 'activate' -e 'set myterm to the first terminal' -e 'tell myterm' -e 'set mysession to (make new session at the end of sessions)' -e 'tell mysession' -e 'exec command \"telnet %h %p\"' -e 'set name to \"%d\"' -e 'end tell' -e 'end tell' -e 'end tell'",

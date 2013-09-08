@@ -4,7 +4,7 @@
 
 === v0.8.5 xx.08.2013 ===
 
-    * Dynamips 0.2.10 is included in our Windows all-in-one package and OSX DMG, this version allows Crypto keys to be saved and fixes with configs in c3745 IOS images. Hooray!
+    * Dynamips 0.2.10 is included in our Windows all-in-one package and OSX DMG, this version allows Crypto keys to be saved and fixes a bug that prevented startup-configs to be loaded for the c3745 platform. Hooray!
 	* Fixed a major issue to evaluate Dynamips version for the auto idle-pc calculation feature.
     * Implemented Restore snapshot feature following Rednectar's suggestions (http://forum.gns3.net/post20664.html#p20664) 
 	* Increased lowest and max zoom values.
