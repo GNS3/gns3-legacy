@@ -321,13 +321,20 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
                         hypervisor = globals.GApp.hypervisors[selected_hypervisor]
                         hypervisors.append(hypervisor.host + ':' + str(hypervisor.port))
                     imagekey = 'load-balanced-on-external-hypervisors:' + imagename
+                    if globals.GApp.iosimages.has_key(globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + imagename):
+                        del globals.GApp.iosimages[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + imagename]
                 else:
                     selected_hypervisor = unicode(items[0].text(), 'utf-8', errors='replace')
                     hypervisor = globals.GApp.hypervisors[selected_hypervisor]
                     hypervisors.append(hypervisor.host + ':' + str(hypervisor.port))
                     imagekey = hypervisor.host + ':' + imagename
+                    
+                    if globals.GApp.iosimages.has_key('load-balanced-on-external-hypervisors:' + imagename):
+                        del globals.GApp.iosimages['load-balanced-on-external-hypervisors:' + imagename]
         else:
             imagekey = globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + imagename
+            if globals.GApp.iosimages.has_key('load-balanced-on-external-hypervisors:' + imagename):
+                del globals.GApp.iosimages['load-balanced-on-external-hypervisors:' + imagename]
 
         if globals.GApp.iosimages.has_key(imagekey):
             # update an already existing IOS image
@@ -382,6 +389,16 @@ class IOSDialog(QtGui.QDialog, Ui_IOSDialog):
         globals.GApp.iosimages[imagekey] = conf
         self.treeWidgetIOSimages.update()
         self.treeWidgetIOSimages.resizeColumnToContents(0)
+
+        self.treeWidgetIOSimages.clear()
+        # reload IOS
+        for name in globals.GApp.iosimages.keys():
+            image = globals.GApp.iosimages[name]
+            item = QtGui.QTreeWidgetItem(self.treeWidgetIOSimages)
+            # image name column
+            item.setText(0, name)
+            # chassis column
+            item.setText(1, image.chassis)
 
     def slotDeleteIOS(self):
         """ Delete the selected line from the list of IOS images
