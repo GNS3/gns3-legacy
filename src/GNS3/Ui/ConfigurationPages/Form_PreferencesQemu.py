@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file './ConfigurationPages/Form_PreferencesQemu.ui'
 #
-# Created: Sun Aug  4 22:36:33 2013
+# Created: Mon Sep  9 21:29:24 2013
 #      by: PyQt4 UI code generator 4.8.6
 #
 # WARNING! All changes made in this file will be lost!
@@ -192,7 +192,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName(_fromUtf8("scrollArea"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 475, 544))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 322, 521))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.verticalLayout = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
@@ -345,7 +345,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName(_fromUtf8("scrollArea_2"))
         self.scrollAreaWidgetContents_2 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 475, 544))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 301, 525))
         self.scrollAreaWidgetContents_2.setObjectName(_fromUtf8("scrollAreaWidgetContents_2"))
         self.verticalLayout_9 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_9.setObjectName(_fromUtf8("verticalLayout_9"))
@@ -502,7 +502,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea_3.setWidgetResizable(True)
         self.scrollArea_3.setObjectName(_fromUtf8("scrollArea_3"))
         self.scrollAreaWidgetContents_3 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_3.setGeometry(QtCore.QRect(0, 0, 475, 544))
+        self.scrollAreaWidgetContents_3.setGeometry(QtCore.QRect(0, 0, 322, 491))
         self.scrollAreaWidgetContents_3.setObjectName(_fromUtf8("scrollAreaWidgetContents_3"))
         self.verticalLayout_4 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents_3)
         self.verticalLayout_4.setObjectName(_fromUtf8("verticalLayout_4"))
@@ -833,7 +833,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea_5.setWidgetResizable(True)
         self.scrollArea_5.setObjectName(_fromUtf8("scrollArea_5"))
         self.scrollAreaWidgetContents_5 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_5.setGeometry(QtCore.QRect(0, 0, 475, 544))
+        self.scrollAreaWidgetContents_5.setGeometry(QtCore.QRect(0, 0, 331, 524))
         self.scrollAreaWidgetContents_5.setObjectName(_fromUtf8("scrollAreaWidgetContents_5"))
         self.verticalLayout_3 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents_5)
         self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
@@ -988,7 +988,7 @@ class Ui_PreferencesQemu(object):
         self.scrollArea_41.setWidgetResizable(True)
         self.scrollArea_41.setObjectName(_fromUtf8("scrollArea_41"))
         self.scrollAreaWidgetContents_41 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_41.setGeometry(QtCore.QRect(0, 0, 460, 558))
+        self.scrollAreaWidgetContents_41.setGeometry(QtCore.QRect(0, 0, 428, 558))
         self.scrollAreaWidgetContents_41.setObjectName(_fromUtf8("scrollAreaWidgetContents_41"))
         self.gridLayout_91 = QtGui.QGridLayout(self.scrollAreaWidgetContents_41)
         self.gridLayout_91.setObjectName(_fromUtf8("gridLayout_91"))

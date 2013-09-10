@@ -2,11 +2,13 @@
 # GNS3 - CHANGELOG #
 ####################
 
-=== v0.8.5 xx.08.2013 ===
+=== v0.8.5 09.09.2013 ===
 
-    * Dynamips 0.2.10 is included in our Windows all-in-one package and OSX DMG, this version allows Crypto keys to be saved and fixes a bug that prevented startup-configs to be loaded for the c3745 platform. Hooray!
-	* Fixed a major issue to evaluate Dynamips version for the auto idle-pc calculation feature.
-    * Implemented Restore snapshot feature following Rednectar's suggestions (http://forum.gns3.net/post20664.html#p20664) 
+    * Dynamips 0.2.10 is included in our Windows all-in-one package and OSX DMG, this version allows Crypto keys to be saved and it fixes a bug that prevented startup-configs to be loaded by c3745 IOS. Hooray!
+    * New symbols for ASA, Qemu guest and Vbox guest.
+	* Fixed a major issue that prevented to use the auto idle-pc calculation feature.
+    * Implemented the Restore snapshot feature following Rednectar's suggestions (http://forum.gns3.net/post20664.html#p20664)
+    * Snapshots are now stored in a separate directory inside project directory.
 	* Increased lowest and max zoom values.
 	* Updated Italian translation.
 	* Added Xshell 4 command lines in terminal settings. 
@@ -14,10 +16,16 @@
     * Fixed bug when launching VPCS and there was a space in the project path.
     * Option 'Use hypervisor manager' changed to 'Bind to external hypervisor(s)' (logic is inverted) in IOS images and hypervisors dialog.
     * Checks: if VPCS is installed and if Dynamips is marked as executable.
+    * Added instructions entry to Help menu.
+    * Automatic opening of instructions file when loading a project.
+    * Fixed Teraterm, SecureCRT and Konsole terminal command lines.
+	* Added "-vga none" option to ASA Pre-configuration
+	* Updated the SecureCRT script to automatically reconnect if disconnected.
+	* Fixed a bug with load-balancing on multiple external hypervisors.
+	* Fixed issue when binding Qemuwrapper to a PC's real IP address.
+    * Various other small bug fixes.
 
 === v0.8.4 05.07.2013 ===
-
-
 
 	* Many GUI improvements.
 	* New hub device.	

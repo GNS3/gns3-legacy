@@ -1066,7 +1066,6 @@ class Topology(QtGui.QGraphicsScene):
                 if globals.GApp.systconf['dynamips'].HypervisorManager_binding == router.dynamips.host and \
                     globals.GApp.iosimages.has_key(globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + router.image):
                     # internal hypervisor
-                    print globals.GApp.iosimages
                     image_conf = globals.GApp.iosimages[globals.GApp.systconf['dynamips'].HypervisorManager_binding + ':' + router.image]
                     if globals.GApp.HypervisorManager and len(image_conf.hypervisors) == 0:
                         globals.GApp.HypervisorManager.unallocateHypervisor(node, router.dynamips.host ,router.dynamips.port) 
