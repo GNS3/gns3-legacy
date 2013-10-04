@@ -4,8 +4,7 @@ GUI
 
  * Add a Clear startup configuration button and/or add a Clear All Startup configurations option to the control menu.
  * Style options for node labels.
- * Option to draw lines and arrows on the scene.
- * Drag'n'drop a topology (.net file) inside GNS3
+ * Option to draw dummy lines and arrows on the scene (http://forum.gns3.net/topic6622.html)
  * Create more 'Show advanced options' where there are too many options in Preferences.
  * New logo for GNS3?
  * Snap to grid would be a great option to align all routers in fixed and neat location
@@ -14,6 +13,10 @@ GUI
  * Ability to slightly change the colour or shades of the routers to add more customisable options (blue-ish colour would be nice).
  * Ability to display the link bandwidth (right click then display bandwidth) which is read from the startup-config/running-config. I don't know how easy this can be, but studying routing and knowing what bandwidth each link, makes understanding routing protocols more interesting.
  * Activity lights (http://forum.gns3.net/topic5026.html)
+ * Different color for link to match the Ethernet speed.
+ * Animation to represent traffic activity? (http://forum.gns3.net/topic5257.html)
+ * Hide/Show specific Map Layers (http://forum.gns3.net/topic5077.html)
+ * IOS Images and hypervisors need rewriting (http://forum.gns3.net/topic5158.html)
 
 OSX
 
@@ -22,11 +25,10 @@ OSX
 
 Dynamips
 
- * NIO Multicast support, is this useful? (supported only in dynamips-community version) 
+ * NIO Multicast support, is this useful? 
  * Set system ID (can be useful for pageant IOS)
- * Test implemented QinQ
- * Automatic console login for IOS (idlepc is not effective until hitting returns in the IOS console), use expect scripts?
- * Auto UDP (supported in dynamips-community): to simplify the UDP port mapping stuff and the binding problems that can occur
+ * Automatic console login for IOS (idlepc is not effective until hitting returns in the IOS console), use expect scripts? (Putty/SecureCRT/TeraTerm have custom scripts that do this now).
+ * Auto UDP: to simplify the UDP port mapping stuff and the binding problems that can occur
  	-> The first command to use is: "nio create_udp_auto <nio_name> <local_addr> <local_port_start> <local_port_end>"
  	-> It will return the allocated port number. local_addr is an IPv4/IPv6 address (0.0.0.0 on IPv4 and :: on IPv6 to listen on all addresses). local_port_start and local_port_end define a port range (it can be useful if you are behind a firewall).
 	-> On the remote side: nio connect_udp_auto <nio_name> <remote_host> <remote_port>
@@ -35,22 +37,28 @@ Dynamips
 Client/Server
 
  * Dynamips Management Server intended for teaching environments (not need to share an IOS image).
- * Client/Server protocol should become asynchronous, so users won't wait until all VMs actually start.
+ * Client/Server protocol should become asynchronous, so for instance users won't wait until all VMs actually start.
 
 Misc.
 
  * Ostinato integration? (http://ostinato.org)
  * Load custom flash files (e.g. with cme etc.)
+ * Device startup order with delay (http://forum.gns3.net/topic7000.html)
+ * The add-a-link tool to recognise special EtherSwitch Routers (http://forum.gns3.net/topic6760.html)
+ * Notes to support hyperlinks (http://forum.gns3.net/topic6621.html).
+ 
+Bugs.
+
+ * c1700 not recognised (http://forum.gns3.net/topic6953.html)
 
 Misc. (by Technologov)
 
  * Investigate possibility of GuestIP address retrieval from Dynamips Routers by means of SNMP 
      (+pre-configured SNMP startup-config + management interface)
- * libguestfs
+ * libguestfs to read filesystem within Qemu/KVM guests.
 
 GNS3 related feature requests in 3rd party products: (by Technologov)
 
- * IPv6 support for our engines: VirtualBox / Qemu / Dynamips
  * Qt4: [feature-request] Please add new GUI container element, that shows/hides others, "QIArrowButtonSwitch" (QTBUG-19984)
  * VirtualBox: serial port TCP / Telnet listener (Wish #1851)
  * VirtualBox: Direct Linux Boot (required for ASA guests; Wish #8401)
@@ -68,4 +76,3 @@ GNS3 related bugs in 3rd party products: (by Technologov)
     (happens on VM stop and on netadp disable.) (VBox bug #9239)
     This leads to GNS3 lock-ups and crashes.
  * VirtualBox: GuestControl execution from python fails on Windows hosts. (Bug #9295)
- * Cloud not working for NIO_GenEth on window 64-bit, most likely because Dynamips is not 64-bit compiled (this would require cygwin 64-bit which doesn't exists).
