@@ -61,7 +61,8 @@ if sys.platform.startswith('win'):
                                      "dll_excludes": ["MSVCP90.dll", "POWRPROF.dll", "MSWSOCK.dll"],
                                      "optimize": 1,
                                      # CLSID for VirtualBox COM (http://www.py2exe.org/index.cgi/IncludingTypelibs)
-                                     "typelibs": [('{46137EEC-703B-4FE5-AFD4-7C9BBBBA0259}',0,1,3)],
+                                     # Do not need this anymore because the typelib wrapper is dynamically generated.
+                                     #"typelibs": [('{46137EEC-703B-4FE5-AFD4-7C9BBBBA0259}',0,1,3)], #
                                      "packages": ["GNS3.Ui.ConfigurationPages.Page_ATMSW",
                                                   "GNS3.Ui.ConfigurationPages.Page_ATMBR",
                                                   "GNS3.Ui.ConfigurationPages.Page_Cloud",
@@ -94,7 +95,7 @@ if sys.platform.startswith('win'):
 
     # Compile vboxwrapper
     sys.path.append('./vboxwrapper')
-    setup(console=['vboxwrapper/vboxwrapper.py'], options = {"py2exe": {"dll_excludes": ["POWRPROF.dll", "MSWSOCK.dll"], "typelibs": [('{46137EEC-703B-4FE5-AFD4-7C9BBBBA0259}',0,1,3)]}}, zipfile=None)
+    setup(console=['vboxwrapper/vboxwrapper.py'], options = {"py2exe": {"dll_excludes": ["POWRPROF.dll", "MSWSOCK.dll"]}}, zipfile=None)
 
 elif sys.platform.startswith('darwin'):
 

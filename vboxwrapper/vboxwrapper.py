@@ -42,6 +42,11 @@ import re
 from tcp_pipe_proxy import PipeProxy
 
 if sys.platform.startswith("win"):
+    # automatically generate the typelib wrapper
+    import win32com.client
+    win32com.client.gencache.is_readonly = False
+    win32com.client.gencache.GetGeneratePath()
+
     import win32file
     import msvcrt
 
