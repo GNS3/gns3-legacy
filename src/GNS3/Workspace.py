@@ -1238,7 +1238,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         globals.preferencesWindow.exec_()
         globals.preferencesWindow = None
 
-    def load_netfile(self, file):
+    def load_netfile(self, file, load_instructions=False):
         """ Load a .net file"""
 
         if file == None:
@@ -1258,6 +1258,8 @@ class Workspace(QMainWindow, Ui_MainWindow):
         # refresh tool menu to reflect the current working directory
         self.createToolsMenu()
         self.__launchProgressDialog('starting', translate("Workspace", "Starting nodes ..."), autostart=True)
+        if load_instructions:
+            self.__action_Instructions(silent=True)
 
     def __action_NewProject(self):
         """ Create a new project
@@ -1778,7 +1780,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
             self.load_netfile(path)
             self.__addToRecentFiles(path)
             globals.GApp.topology.changed = False
-            self.__action_Instructions(silent=True)
+            #self.__action_Instructions(silent=True)
         except IOError, (errno, strerror):
             QtGui.QMessageBox.critical(self, 'Open',  u'Open: ' + strerror)
         except (lib.DynamipsErrorHandled, socket.error):

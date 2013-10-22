@@ -641,7 +641,7 @@ class Application(QApplication, Singleton):
                 dialog.raise_()
             else:
                 if file:
-                    self.mainWindow.load_netfile(file)
+                    self.mainWindow.load_netfile(file, load_instructions=True)
                 elif confo.project_startup and os.access(configFile, os.F_OK):
                     dialog = ProjectDialog(parent=self.mainWindow, newProject=True)
                     dialog.setModal(True)
