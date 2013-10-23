@@ -12,6 +12,7 @@
     * Fixed small bugs with "idlepc get" command and Ethernet switch auto port allocation.
     * Added wpcap.dll to the Windows standalone versions.
     * Dynamips 0.2.10 is now the default on OSX.
+    * New Dutch translation & Italian translation updated.
 
 === v0.8.5 09.09.2013 ===
 
