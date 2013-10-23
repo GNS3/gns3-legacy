@@ -2,6 +2,17 @@
 # GNS3 - CHANGELOG #
 ####################
 
+=== v0.8.6 22.10.2013 ===
+
+    * Windows version now supports VirtualBox 4.3 and still works with 4.2.x
+    * Fixed the broken snapshot feature.
+    * Host devices don't automatically add tap interfaces in the generic Ethernet NIO list anymore.
+    * Auto open for instructions files when opening the topology via the command line, a file explorer or a drag & drop on the workspace.
+    * Modified the default Etherswitch configuration (renamed some macros + added vtp file nvram:vlan.dat)
+    * Fixed small bugs with "idlepc get" command and Ethernet switch auto port allocation.
+    * Added wpcap.dll to the Windows standalone versions.
+    * Dynamips 0.2.10 is now the default on OSX.
+
 === v0.8.5 09.09.2013 ===
 
     * Dynamips 0.2.10 is included in our Windows all-in-one package and OSX DMG, this version allows Crypto keys to be saved and it fixes a bug that prevented startup-configs to be loaded by c3745 IOS. Hooray!

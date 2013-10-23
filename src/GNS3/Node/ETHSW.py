@@ -163,6 +163,8 @@ class ETHSW(AbstractNode):
                 self.config['vlans'][1] = []
             else:
                 port = max(self.config['ports']) + 1
+                if not self.config['vlans'].has_key(1):
+                    self.config['vlans'][1] = []
             self.config['ports'][port] = 'access'
             self.config['vlans'][1].append(port)
 

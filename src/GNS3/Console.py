@@ -453,7 +453,7 @@ Examples:
                 device = params[0]
                 if command == 'get':
                     current_idlepc = self.dynagen.devices[device].idlepc
-                    if len(params) < 2 or params[1] != 'force' and current_idlepc != None:
+                    if (len(params) < 2 or params[1] != 'force') and current_idlepc:
                         print translate("Console", "%s already has an idlepc value applied (%s).") % (device, current_idlepc)
                         return
 
