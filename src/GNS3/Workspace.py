@@ -1708,6 +1708,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
                 return
 
         self.loadNetfile(path)
+        self.__action_Instructions(silent=True)
 
     def __addToRecentFiles(self, path):
         """ Add path to recent files menu

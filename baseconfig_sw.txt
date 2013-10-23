@@ -7,6 +7,7 @@ no ip routing
 no ip domain lookup
 no ip icmp rate-limit unreachable
 ip tcp synwait 5
+vtp file nvram:vlan.dat
 !
 !
 interface FastEthernet0/0
@@ -160,15 +161,15 @@ After creating all desired vlans use "exit" to apply the config
 
 To view existing vlans use the command "show vlan-switch brief"
 
-Alias(exec)     : vl       - "show vlan-switch brief" command
-Alias(configure): vlan X   - macro to create vlan X
-Alias(configure): novlan X - macro to delete vlan X
+Alias(exec)     : vl   - "show vlan-switch brief" command
+Alias(configure): va X - macro to add vlan X
+Alias(configure): vd X - macro to delete vlan X
 ***************************************************************
 
 
 !
-alias configure vlan macro global trace add_vlan $v
-alias configure novlan macro global trace del_vlan $v
+alias configure va macro global trace add_vlan $v
+alias configure vd macro global trace del_vlan $v
 alias exec vl show vlan-switch brief
 !
 !
