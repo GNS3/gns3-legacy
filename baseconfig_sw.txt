@@ -8,7 +8,6 @@ no ip domain lookup
 no ip icmp rate-limit unreachable
 ip tcp synwait 5
 !
-vtp file nvram:vlan.dat
 !
 interface FastEthernet0/0
  description *** Unused for Layer2 SW ***
@@ -117,7 +116,7 @@ line aux 0
  no login
 !
 !
-banner exec
+banner exec 
 
 ***************************************************************
 This is a normal Router with a SW module inside (NM-16ESW)
@@ -132,6 +131,7 @@ Warning: You are using an old IOS image for this router.
 Please update the IOS to enable the "macro" command!
 ***************************************************************
 
+
 !
 !Warning: If the IOS is old and doesn't support macro, it will stop the configuration loading from this point!
 !
@@ -149,7 +149,7 @@ exit
 @
 !
 !
-banner exec
+banner exec 
 
 ***************************************************************
 This is a normal Router with a Switch module inside (NM-16ESW)
@@ -160,14 +160,15 @@ After creating all desired vlans use "exit" to apply the config
 
 To view existing vlans use the command "show vlan-switch brief"
 
-Alias(exec)     : vl   - "show vlan-switch brief" command
-Alias(configure): va X - macro to add vlan X
-Alias(configure): vd X - macro to delete vlan X
+Alias(exec)     : vl       - "show vlan-switch brief" command
+Alias(configure): vlan X   - macro to create vlan X
+Alias(configure): novlan X - macro to delete vlan X
 ***************************************************************
 
+
 !
-alias configure va macro global trace add_vlan $v
-alias configure vd macro global trace del_vlan $v
+alias configure vlan macro global trace add_vlan $v
+alias configure novlan macro global trace del_vlan $v
 alias exec vl show vlan-switch brief
 !
 !
