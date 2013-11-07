@@ -675,6 +675,7 @@ class Application(QApplication, Singleton):
                 ConfDB().set("GUIState/DoNotShowTipsDialog", self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked())
             self.syncConf()
 
+        self.deleteLater()
         sys.exit(retcode)
 
     def syncConf(self):
