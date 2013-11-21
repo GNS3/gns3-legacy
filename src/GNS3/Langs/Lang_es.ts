@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="es" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.0" language="es">
 <context>
     <name>ASA initrd</name>
     <message>
@@ -250,7 +251,7 @@
     <message>
         <location filename="../DynagenSub.py" line="246"/>
         <source>AWP initrd %s cannot be found and cannot find an alternative initrd</source>
-        <translation type="unfinished"></translation>
+        <translation>AWP initrd %s no se puede hallar y tampoco se puede hallar un initrd alternativo</translation>
     </message>
 </context>
 <context>
@@ -258,7 +259,7 @@
     <message>
         <location filename="../DynagenSub.py" line="257"/>
         <source>AWP kernel %s cannot be found and cannot find an alternative kernel</source>
-        <translation type="unfinished"></translation>
+        <translation>AWP kernel %s no se puede hallar y tampoco se puede hallar un kernel alternativo</translation>
     </message>
 </context>
 <context>
@@ -368,7 +369,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_About.py" line="80"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -2773,7 +2774,7 @@ Please use an IOS image that do not start with c7200p.</source>
         <source>Console to all devices</source>
         <translation>Abrir consola en todos los dispositivos</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="337"/>
         <source>Save topology &amp;as…</source>
         <translation>Guardar topologia &amp;como ...</translation>
@@ -2803,7 +2804,7 @@ Please use an IOS image that do not start with c7200p.</source>
         <source>New blank project</source>
         <translation>Nuevo proyecto en blanco</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="516"/>
         <source>&amp;Save project as…</source>
         <translation>&amp;Guardar proyecto como...</translation>
@@ -5837,7 +5838,7 @@ p.e. #copy start run</translation>
         <source>Rotation:</source>
         <translation>Rotacion:</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_StyleDialog.py" line="66"/>
         <source>°</source>
         <translation>°</translation>
@@ -6702,7 +6703,7 @@ connections to other devices may not work</source>
     <message>
         <location filename="../UndoFramework.py" line="165"/>
         <source>Delete link: %s (%s) -&gt; %s (%s)</source>
-        <translation>Eliminar vinculo: %s (%s) -&gt; (%s)</translation>
+        <translation>Eliminar vinculo: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
         <location filename="../UndoFramework.py" line="202"/>
