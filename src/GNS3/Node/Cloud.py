@@ -165,11 +165,13 @@ class Cloud(AbstractNode):
             else:
                 interfaces = map(lambda interface: interface.name(), QtNetwork.QNetworkInterface.allInterfaces())
                 for interface in interfaces:
-                    if not str(interface).startswith("tap"):
+                    if str(interface).startswith("tap"):
+                        nio = 'nio_tap:' + str(interface)
+                    else:
                         nio = 'nio_gen_eth:' + str(interface)
-                        if not nio in self.config['nios']:
-                            self.config['nios'].append(nio)
-            
+                    if not nio in self.config['nios']:
+                        self.config['nios'].append(nio)
+
             # adding NIO UDPs for VPCS
             self.config['nios'].extend(['nio_udp:30000:127.0.0.1:20000',
                                         'nio_udp:30001:127.0.0.1:20001',

@@ -3361,7 +3361,7 @@ class C3725(Router):
         )
         self.model_string = '3725'
         #fill 3725 defaults
-        self._defaults['ram'] = 2128
+        self._defaults['ram'] = 128
         self._defaults['nvram'] = 55
         self._defaults['disk0'] = 16
         self._defaults['disk1'] = 0
@@ -3391,7 +3391,7 @@ class C3745(Router):
             disk1=0,
         )
         self.model_string = '3745'
-        #fill 3746 defaults
+        #fill 3745 defaults
         self._defaults['ram'] = 128
         self._defaults['nvram'] = 151
         self._defaults['disk0'] = 16
