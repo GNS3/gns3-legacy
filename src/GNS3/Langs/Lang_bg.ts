@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="2.0" language="bg" sourcelanguage="">
+<!DOCTYPE TS>
+<TS version="2.0" language="bg">
 <context>
     <name>ASA initrd</name>
     <message>
         <location filename="../DynagenSub.py" line="219"/>
         <source>ASA initrd %s cannot be found and cannot find an alternative initrd</source>
-        <translation>ASA initrd %и не са открит, както и негова алтернатива initrd</translation>
+        <translation>ASA initrd %s не са открит, както и негова алтернатива initrd</translation>
     </message>
 </context>
 <context>
@@ -13,7 +14,7 @@
     <message>
         <location filename="../DynagenSub.py" line="230"/>
         <source>ASA kernel %s cannot be found and cannot find an alternative kernel</source>
-        <translation>ASA ядрото % не е открито, както и негова алтернатива kernel</translation>
+        <translation>ASA ядрото %s не е открито, както и негова алтернатива kernel</translation>
     </message>
 </context>
 <context>
@@ -368,7 +369,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; text-decoration: underline; color:#0000ff;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_About.py" line="80"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -454,17 +455,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Link/AbstractEdge.py" line="165"/>
         <source>Link: %s (%s) -&gt; %s (%s)</source>
-        <translation>Връзка: %и (%и) -&gt; %и (%и)</translation>
+        <translation>Връзка: %s (%s) -&gt; %s (%s)</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="306"/>
         <source>Device %s is not running</source>
-        <translation>Устройството %и не е включено</translation>
+        <translation>Устройството %s не е включено</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="542"/>
         <source>Cannot start %s : %s</source>
-        <translation>Не може да стартира %и :%и</translation>
+        <translation>Не може да стартира %s :%s</translation>
     </message>
     <message>
         <location filename="../Link/AbstractEdge.py" line="213"/>
@@ -537,7 +538,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="365"/>
         <source>Hostname: %s</source>
-        <translation>Хостнейм: %и</translation>
+        <translation>Хостнейм: %s</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="446"/>
@@ -547,7 +548,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="240"/>
         <source>Console port for %s:</source>
-        <translation>Конзолен порт за %и:</translation>
+        <translation>Конзолен порт за %s:</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="247"/>
@@ -597,7 +598,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AbstractNode.py" line="232"/>
         <source>New hypervisor %s has been set on device %s</source>
-        <translation>Нов хипервайзър %и беше зададен на устройство %и</translation>
+        <translation>Нов хипервайзър %s беше зададен на устройство %s</translation>
     </message>
     <message>
         <location filename="../Node/AbstractNode.py" line="240"/>
@@ -676,7 +677,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Node/AnyEmuDevice.py" line="403"/>
         <source>Console port</source>
-        <translation type="unfinished">Конзолен порт</translation>
+        <translation>Конзолен порт</translation>
     </message>
 </context>
 <context>
@@ -742,7 +743,7 @@ Please restart GNS3</source>
     <message>
         <location filename="../Ui/Form_CalcIDLEPCDialog.py" line="53"/>
         <source>Cancel</source>
-        <translation type="unfinished">Отмяна</translation>
+        <translation>Отмяна</translation>
     </message>
     <message>
         <location filename="../CalcIDLEPCDialog.py" line="56"/>
@@ -752,7 +753,7 @@ Please restart GNS3</source>
     <message>
         <location filename="../CalcIDLEPCDialog.py" line="112"/>
         <source>Message</source>
-        <translation type="unfinished">Съобщение</translation>
+        <translation>Съобщение</translation>
     </message>
     <message>
         <location filename="../CalcIDLEPCDialog.py" line="92"/>
@@ -933,7 +934,7 @@ Please restart GNS3</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="194"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished">127.0.0.1</translation>
+        <translation>127.0.0.1</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_CloudPage.ui" line="30"/>
@@ -951,7 +952,7 @@ Please restart GNS3</source>
     <message>
         <location filename="../Config/Config.py" line="496"/>
         <source>Can&apos;t open library: %s</source>
-        <translation>Не може да отвори библиотека: %и</translation>
+        <translation>Не може да отвори библиотека: %s</translation>
     </message>
 </context>
 <context>
@@ -1013,28 +1014,27 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
         <location filename="../Console.py" line="502"/>
         <source>Applied idlepc value %s to %s
 </source>
-        <translation>Приложена idlepc стойност %и за %и
-</translation>
+        <translation>Приложена idlepc стойност %s за %s</translation>
     </message>
     <message>
         <location filename="../Console.py" line="518"/>
         <source>Unknown device: %s</source>
-        <translation>Не разпознато устройство: %и</translation>
+        <translation>Не разпознато устройство: %s</translation>
     </message>
     <message>
         <location filename="../Console.py" line="584"/>
         <source>Cannot create %s: %s</source>
-        <translation>Не може да създаде %и: %и</translation>
+        <translation>Не може да създаде %s: %s</translation>
     </message>
     <message>
         <location filename="../Console.py" line="457"/>
         <source>%s already has an idlepc value applied (%s).</source>
-        <translation>%и вече има приложена стойност за idlepc (%и).</translation>
+        <translation>%s вече има приложена стойност за idlepc (%s).</translation>
     </message>
     <message>
         <location filename="../Telnet.py" line="88"/>
         <source>Console</source>
-        <translation type="unfinished">Конзола</translation>
+        <translation>Конзола</translation>
     </message>
     <message>
         <location filename="../Telnet.py" line="88"/>
@@ -1044,32 +1044,32 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../Console.py" line="289"/>
         <source>%s: Dynamips error</source>
-        <translation type="unfinished">%s: Dynamips грешка</translation>
+        <translation>%s: Dynamips грешка</translation>
     </message>
     <message>
         <location filename="../Console.py" line="287"/>
         <source>%s: Dynamips warning</source>
-        <translation type="unfinished">%s: Dynamips предупреждение</translation>
+        <translation>%s: Dynamips предупреждение</translation>
     </message>
     <message>
         <location filename="../Console.py" line="235"/>
         <source>%s Dynamips warning</source>
-        <translation type="unfinished"></translation>
+        <translation>%s Dynamips предупреждение</translation>
     </message>
     <message>
         <location filename="../Console.py" line="237"/>
         <source>%s Dynamips error</source>
-        <translation type="unfinished"></translation>
+        <translation>%s Dynamips грешка</translation>
     </message>
     <message>
         <location filename="../Console.py" line="305"/>
         <source>Dynamips error</source>
-        <translation type="unfinished"></translation>
+        <translation>Dynamips грешка</translation>
     </message>
     <message>
         <location filename="../Console.py" line="303"/>
         <source>Dynamips warning</source>
-        <translation type="unfinished">Dynamips предупреждение</translation>
+        <translation>Dynamips предупреждение</translation>
     </message>
     <message>
         <location filename="../Telnet.py" line="37"/>
@@ -1237,32 +1237,32 @@ Enter the number of the idlepc value to apply [1-%i] or ENTER for no change:
     <message>
         <location filename="../DynagenSub.py" line="338"/>
         <source>Local PIX image %s cannot be found, use image %s instead</source>
-        <translation>Локалното PIX изображение %и не може да бъде намерено, вместо това използваите изображението %и</translation>
+        <translation>Локалното PIX изображение %s не може да бъде намерено, вместо това използваите изображението %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="507"/>
         <source>Local configuration %s cannot be found for router %s, use configuration %s instead</source>
-        <translation>Локалната конфигурация за рутера %и не може да бъде намерена, вместо това използваите %и</translation>
+        <translation>Локалната конфигурация за рутера %s не може да бъде намерена, вместо това използваите %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="223"/>
         <source>Local ASA initrd %s cannot be found, use initrd %s instead</source>
-        <translation>Локалната ASA initrd %и не може да бъде намерено, вместо това използваите initrd %и</translation>
+        <translation>Локалната ASA initrd %s не може да бъде намерено, вместо това използваите initrd %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="234"/>
         <source>Local ASA kernel %s cannot be found, use kernel %s instead</source>
-        <translation>Локалното ASA ядро %и не може да бъде намерено, вместо това моля използваите ядрото %и</translation>
+        <translation>Локалното ASA ядро %s не може да бъде намерено, вместо това моля използваите ядрото %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="288"/>
         <source>Local IDS image %s cannot be found, use image %s instead</source>
-        <translation>Локалното IDS изображение не може да бъде намерено, вместо това използваите %и</translation>
+        <translation>Локалното IDS изображение не може да бъде намерено, вместо това използваите %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="311"/>
         <source>Local JunOS image %s cannot be found, use image %s instead</source>
-        <translation>Локалното JunOS изображение не може да бъде намерено, вместо това използваите %и</translation>
+        <translation>Локалното JunOS изображение не може да бъде намерено, вместо това използваите %s</translation>
     </message>
     <message>
         <location filename="../DynagenSub.py" line="455"/>
@@ -1475,12 +1475,12 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Node/Hub.py" line="239"/>
         <source>Connection</source>
-        <translation type="unfinished">Връзка</translation>
+        <translation>Връзка</translation>
     </message>
     <message>
         <location filename="../Node/Hub.py" line="239"/>
         <source>No port available</source>
-        <translation type="unfinished">Няма достъпен порт</translation>
+        <translation>Няма достъпен порт</translation>
     </message>
 </context>
 <context>
@@ -1493,7 +1493,7 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="26"/>
         <source>Settings</source>
-        <translation type="unfinished">Настройки</translation>
+        <translation>Настройки</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_HubPage.ui" line="32"/>
@@ -1511,12 +1511,12 @@ Please choose an alternate network interface:</source>
     <message>
         <location filename="../HypervisorManager.py" line="231"/>
         <source>Working directory %s seems to not exist or be writable, please check</source>
-        <translation>Работната директория или не съществува или не може да се записва в нея, моля проверете</translation>
+        <translation type="unfinished">Работната директория или не съществува или не може да се записва в нея, моля проверете</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="102"/>
         <source>Hypervisor Manager</source>
-        <translation type="unfinished">Мениджър за хипервайзъра</translation>
+        <translation>Мениджър за хипервайзъра</translation>
     </message>
     <message>
         <location filename="../HypervisorManager.py" line="83"/>
@@ -1853,7 +1853,7 @@ Best idlepc values are usually obtained when IOS is in idle state, the following
     <message>
         <location filename="../IOSDialog.py" line="277"/>
         <source>Can&apos;t open file: %s</source>
-        <translation>Не може да отвори файл: %и</translation>
+        <translation>Не може да отвори файл: %s</translation>
     </message>
     <message>
         <location filename="../Ui/Form_IOSDialog.py" line="119"/>
@@ -1944,7 +1944,7 @@ This will create %s</source>
     <message>
         <location filename="../IOSDialog.py" line="657"/>
         <source>Message</source>
-        <translation type="unfinished">Съобщение</translation>
+        <translation>Съобщение</translation>
     </message>
     <message>
         <location filename="../IOSDialog.py" line="657"/>
@@ -2092,12 +2092,12 @@ Please use an IOS image that do not start with c7200p.</source>
     <message>
         <location filename="../Node/IOSRouter.py" line="333"/>
         <source>Startup-Config for %s</source>
-        <translation>Стартова конфигурация за %и</translation>
+        <translation>Стартова конфигурация за %s</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="269"/>
         <source>Slots</source>
-        <translation type="unfinished">Slots</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="269"/>
@@ -2137,7 +2137,7 @@ Please use an IOS image that do not start with c7200p.</source>
     <message>
         <location filename="../Node/IOSRouter.py" line="697"/>
         <source>Console</source>
-        <translation type="unfinished">Конзола</translation>
+        <translation>Конзола</translation>
     </message>
     <message>
         <location filename="../Node/IOSRouter.py" line="697"/>
@@ -2348,7 +2348,7 @@ Please use an IOS image that do not start with c7200p.</source>
     <message>
         <location filename="../DynagenSub.py" line="307"/>
         <source>JunOS image %s cannot be found and cannot find an alternative image</source>
-        <translation>JunOS изображението не може да бъде открито, както и негова алтернатива</translation>
+        <translation>JunOS изображението %s не може да бъде открито, както и негова алтернатива</translation>
     </message>
 </context>
 <context>
@@ -2745,7 +2745,7 @@ Please use an IOS image that do not start with c7200p.</source>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="202"/>
         <source>Hostname</source>
-        <translation type="unfinished">Хостнейм</translation>
+        <translation>Хостнейм</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="203"/>
@@ -2772,7 +2772,7 @@ Please use an IOS image that do not start with c7200p.</source>
         <source>Console to all devices</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="337"/>
         <source>Save topology &amp;as…</source>
         <translation type="unfinished"></translation>
@@ -2802,7 +2802,7 @@ Please use an IOS image that do not start with c7200p.</source>
         <source>New blank project</source>
         <translation type="unfinished"></translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_MainWindow.py" line="516"/>
         <source>&amp;Save project as…</source>
         <translation type="unfinished"></translation>
@@ -2845,7 +2845,7 @@ Please use an IOS image that do not start with c7200p.</source>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="238"/>
         <source>About</source>
-        <translation type="unfinished">Относно</translation>
+        <translation>Относно</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="246"/>
@@ -2910,7 +2910,7 @@ Please use an IOS image that do not start with c7200p.</source>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="387"/>
         <source>Preferences</source>
-        <translation type="unfinished">Предпочитания</translation>
+        <translation>Предпочитания</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="429"/>
@@ -2935,7 +2935,7 @@ Please use an IOS image that do not start with c7200p.</source>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="465"/>
         <source>Symbol Manager</source>
-        <translation type="unfinished">Мениджър за символите</translation>
+        <translation>Мениджър за символите</translation>
     </message>
     <message>
         <location filename="../Ui/Form_MainWindow.py" line="475"/>
@@ -3203,7 +3203,7 @@ Please use an IOS image that do not start with c7200p.</source>
     <message>
         <location filename="../NETFile.py" line="1265"/>
         <source>%s: IO Error: %s</source>
-        <translation>%и Входно-изходна грешка: %и</translation>
+        <translation>%s Входно-изходна грешка: %s</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="679"/>
@@ -3223,17 +3223,17 @@ Please use an IOS image that do not start with c7200p.</source>
     <message>
         <location filename="../NETFile.py" line="562"/>
         <source>Cannot load image: %s</source>
-        <translation>Не може да зареди изобранието: %и</translation>
+        <translation>Не може да зареди изобранието: %s</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="504"/>
         <source>Cannot load font: %s</source>
-        <translation>Не може да зареди шрифт: %и</translation>
+        <translation>Не може да зареди шрифт: %s</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="577"/>
         <source>%s: cannot find %s symbol, please check this symbol is in your node list and reload the .net file</source>
-        <translation>%и: не може да намери %и символа, моля проверете този символ във възела и презаредете .net файлът</translation>
+        <translation>%s: не може да намери %s символа, моля проверете този символ във възела и презаредете .net файлът</translation>
     </message>
     <message>
         <location filename="../NETFile.py" line="1265"/>
@@ -3319,7 +3319,7 @@ Please use an IOS image that do not start with c7200p.</source>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="41"/>
         <source>Project directory:</source>
-        <translation type="unfinished">Директория за проекти:</translation>
+        <translation>Директория за проекти:</translation>
     </message>
     <message>
         <location filename="../Ui/Form_NewProject.py" line="28"/>
@@ -3497,7 +3497,7 @@ to display the configuration page.</source>
     <message>
         <location filename="../DynagenSub.py" line="334"/>
         <source>PIX image %s cannot be found and cannot find an alternative image</source>
-        <translation>PIX изображението не може да бъде открито, както и негова алтернатива</translation>
+        <translation>PIX изображението %s не може да бъде открито, както и негова алтернатива</translation>
     </message>
 </context>
 <context>
@@ -3505,17 +3505,17 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="14"/>
         <source>Firewall configuration</source>
-        <translation type="unfinished">Настройка на защитната стена</translation>
+        <translation>Настройка на защитната стена</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="20"/>
         <source>PIX Image:</source>
-        <translation type="unfinished">PIX изображение:</translation>
+        <translation>PIX изображение:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="49"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="56"/>
@@ -3585,12 +3585,12 @@ to display the configuration page.</source>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="184"/>
         <source>Key:</source>
-        <translation type="unfinished">Ключ:</translation>
+        <translation>Ключ:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="201"/>
         <source>Serial:</source>
-        <translation type="unfinished">Сериен:</translation>
+        <translation>Сериен:</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Form_PIXPage.ui" line="162"/>
@@ -5836,7 +5836,7 @@ i.e. #copy start run</source>
         <source>Rotation:</source>
         <translation>Ротаця:</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="../Ui/Form_StyleDialog.py" line="66"/>
         <source>°</source>
         <translation></translation>
@@ -6368,7 +6368,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="186"/>
         <source>Can&apos;t open file: %s</source>
-        <translation type="unfinished">Не може да отвори файл: %и</translation>
+        <translation>Не може да отвори файл: %s</translation>
     </message>
     <message>
         <location filename="../Ui/ConfigurationPages/Page_PreferencesDynamips.py" line="196"/>
@@ -7188,7 +7188,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="1563"/>
         <source>Dynamips error: %s</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dynamips грешка: %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="941"/>
@@ -7203,7 +7203,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="1594"/>
         <source>Dynamips error!!: %s</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dynamips грешка!!: %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="1786"/>
@@ -7278,7 +7278,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Workspace.py" line="1448"/>
         <source>Dynamips error %s: %s</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dynamips грешка %s: %s</translation>
     </message>
     <message>
         <location filename="../Workspace.py" line="1338"/>
@@ -7574,7 +7574,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../Ui/Widget_topologySummaryDock.py" line="104"/>
         <source>%s is connected to %s %s</source>
-        <translation>%и е свързан с %и %и</translation>
+        <translation>%s е свързан с %s %s</translation>
     </message>
     <message>
         <location filename="../Ui/Widget_topologySummaryDock.py" line="134"/>
