@@ -29,9 +29,9 @@ class SnapshotDialog(QtGui.QDialog, Ui_Snapshots):
     """ SnapshotDialog class
     """
 
-    def __init__(self):
+    def __init__(self, parent=None):
 
-        QtGui.QDialog.__init__(self)
+        QtGui.QDialog.__init__(self, parent)
         self.setupUi(self)
 
         self.connect(self.pushButtonCreate, QtCore.SIGNAL('clicked()'), self.slotCreateSnapshot)

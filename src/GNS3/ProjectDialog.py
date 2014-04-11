@@ -28,7 +28,7 @@ class ProjectDialog(QtGui.QDialog, Ui_NewProject):
     """ ProjectDialog class
     """
 
-    def __init__(self, parent=None, projectFile=None, projectWorkdir=None, projectConfigs=None, unbase=False, saveCaptures=False, newProject=False):
+    def __init__(self, parent, projectFile=None, projectWorkdir=None, projectConfigs=None, unbase=False, saveCaptures=False, newProject=False):
 
         QtGui.QDialog.__init__(self, parent)
         self.newProject = newProject

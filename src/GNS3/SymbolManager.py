@@ -32,9 +32,9 @@ class SymbolManager(QtGui.QDialog, Ui_SymbolManager):
     """ SymbolManager class
     """
 
-    def __init__(self):
+    def __init__(self, parent=None):
 
-        QtGui.QDialog.__init__(self)
+        QtGui.QDialog.__init__(self, parent)
         self.setupUi(self)
 
         # connections to slots

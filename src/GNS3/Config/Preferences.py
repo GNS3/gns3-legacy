@@ -27,7 +27,7 @@ import GNS3.Globals as globals
 
 class PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
 
-    def __init__(self):
+    def __init__(self, parent=None):
         """ Initilize a preferences dialog
         """
 
@@ -43,7 +43,7 @@ class PreferencesDialog(QtGui.QDialog, Ui_PreferencesDialog):
                         #'DeployementWizard' #FIXME: TEMP DISABLED FOR GNS3 0.8.4 RC1.
                         ]
 
-        QtGui.QDialog.__init__(self)
+        QtGui.QDialog.__init__(self, parent)
         self.setupUi(self)
 
         self.connect(self.listWidget, QtCore.SIGNAL('currentItemChanged(QListWidgetItem *, QListWidgetItem *)'), self.configItemChanged)

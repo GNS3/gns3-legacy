@@ -306,6 +306,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.connect(self.menu_Tools, QtCore.SIGNAL("triggered(QAction *)"), self.slotRunTool)
 
     def __action_DisplayWizard(self):
+
         self.wizard = DeployementWizard()
         self.wizard.show()
         self.wizard.exec_()
@@ -745,7 +746,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
           - Add / Edit / Delete hypervisors
         """
 
-        dialog = IOSDialog()
+        dialog = IOSDialog(self)
         dialog.setModal(True)
         dialog.show()
         dialog.exec_()
@@ -756,7 +757,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         - Show a dialog to configure the symbols
         """
 
-        dialog = SymbolManager()
+        dialog = SymbolManager(self)
         dialog.setModal(True)
         dialog.show()
         dialog.exec_()
@@ -1146,7 +1147,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Show GNS3 about dialog
         """
 
-        dialog = QtGui.QDialog()
+        dialog = QtGui.QDialog(self)
         ui = Ui_AboutDialog()
         ui.setupUi(dialog)
 
@@ -1158,7 +1159,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
 
         dialog.setModal(True)
         dialog.show()
-        self.centerDialog(dialog)
         dialog.exec_()
 
     def __action_AboutQt(self):
@@ -1233,7 +1233,7 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Show the preferences dialog
         """
 
-        globals.preferencesWindow = PreferencesDialog()
+        globals.preferencesWindow = PreferencesDialog(self)
         globals.preferencesWindow.show()
         globals.preferencesWindow.exec_()
         globals.preferencesWindow = None
@@ -1280,7 +1280,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         self.projectConfigs = None
         projectDialog.setModal(True)
         projectDialog.show()
-        self.centerDialog(projectDialog)
         projectDialog.exec_()
 
     def __action_SaveProjectAs(self):
@@ -1314,7 +1313,6 @@ class Workspace(QMainWindow, Ui_MainWindow):
         #self.projectConfigs = None
         projectDialog.setModal(True)
         projectDialog.show()
-        self.centerDialog(projectDialog)
         projectDialog.exec_()
 
     def createProject(self, settings):
@@ -1459,10 +1457,9 @@ class Workspace(QMainWindow, Ui_MainWindow):
         """ Open snapshot dialog
         """
 
-        self.snapDialog = SnapshotDialog()
+        self.snapDialog = SnapshotDialog(self)
         self.snapDialog.setModal(True)
         self.snapDialog.show()
-        self.centerDialog(self.snapDialog)
         self.snapDialog.exec_()
 
     def createSnapshot(self, name):
