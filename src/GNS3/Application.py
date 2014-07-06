@@ -27,6 +27,7 @@ import GNS3.Dynagen.portTracker_lib as tracker
 from distutils.version import LooseVersion
 from PyQt4.QtGui import QApplication, QSplashScreen, QPixmap, QMessageBox, QStyleFactory
 from PyQt4.QtCore import Qt, QVariant, QSettings, QEventLoop
+from PyQt4 import QtCore
 from GNS3.Utils import Singleton, translate
 from GNS3.Workspace import Workspace
 from GNS3.Config.Objects import systemDynamipsConf, systemGeneralConf, systemCaptureConf, systemQemuConf, systemVBoxConf, systemDeployementWizardConf
@@ -412,6 +413,8 @@ class Application(QApplication, Singleton):
 
     def run(self, file):
 
+
+        self._file = file
         # Display splash screen while waiting for the application to open
         self.processSplashScreen()
 
@@ -599,10 +602,35 @@ class Application(QApplication, Singleton):
         if self.mainWindow.tips_dialog:
             self.mainWindow.tips_dialog.checkBoxDontShowAgain.setChecked(ConfDB().value("GUIState/DoNotShowTipsDialog", QVariant(False)).toBool())
 
+        # load initial stuff once the event loop isn't busy
+        QtCore.QTimer.singleShot(0, self._startupLoading)
+
         # By default, don't show the NodeTypes dock
         self.mainWindow.dockWidget_NodeTypes.setVisible(False)
         self.mainWindow.show()
 
+        retcode = QApplication.exec_()
+
+        self.__HypervisorManager = None
+        self.__QemuManager = None
+        self.__VBoxManager = None
+
+        if globals.recordConfiguration:
+            # Save the geometry & state of the GUI
+            ConfDB().set("GUIState/Geometry", self.mainWindow.saveGeometry())
+            ConfDB().set("GUIState/State", self.mainWindow.saveState())
+            ConfDB().set("GUIState/DisableMouseWheel", self.mainWindow.action_DisableMouseWheel.isChecked())
+            ConfDB().set("GUIState/ZoomUsingMouseWheel", self.mainWindow.action_ZoomUsingMouseWheel.isChecked())
+            if self.mainWindow.tips_dialog:
+                ConfDB().set("GUIState/DoNotShowTipsDialog", self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked())
+            self.syncConf()
+
+        self.deleteLater()
+        sys.exit(retcode)
+
+    def _startupLoading(self):
+
+        confo = self.systconf['general']
         force_clear_configuration = True
         version = ConfDB().get('GNS3/version', '0.0.1')
         try:
@@ -633,24 +661,15 @@ class Application(QApplication, Singleton):
             configFile = unicode(ConfDB().fileName(), 'utf-8', errors='replace')
             if not os.access(configFile, os.F_OK):
                 dialog = Wizard(parent=self.mainWindow)
+                dialog.setModal(True)
                 dialog.show()
-                self.mainWindow.centerDialog(dialog)
-                dialog.raise_()
-                dialog.activateWindow()
-                self.mainWindow.raise_()
-                dialog.raise_()
             else:
-                if file:
-                    self.mainWindow.load_netfile(file, load_instructions=True)
+                if self._file:
+                    self.mainWindow.load_netfile(self._file, load_instructions=True)
                 elif confo.project_startup and os.access(configFile, os.F_OK):
                     dialog = ProjectDialog(parent=self.mainWindow, newProject=True)
                     dialog.setModal(True)
                     dialog.show()
-                    self.mainWindow.centerDialog(dialog)
-                    dialog.raise_()
-                    dialog.activateWindow()
-                    self.mainWindow.raise_()
-                    dialog.raise_()
                     if self.mainWindow.tips_dialog and self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked() == False:
                         self.showTipsDialog()
                 else:
@@ -658,25 +677,6 @@ class Application(QApplication, Singleton):
                     self.mainWindow.raise_()
                     if self.mainWindow.tips_dialog and self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked() == False:
                         self.showTipsDialog()
-
-        retcode = QApplication.exec_()
-
-        self.__HypervisorManager = None
-        self.__QemuManager = None
-        self.__VBoxManager = None
-
-        if globals.recordConfiguration:
-            # Save the geometry & state of the GUI
-            ConfDB().set("GUIState/Geometry", self.mainWindow.saveGeometry())
-            ConfDB().set("GUIState/State", self.mainWindow.saveState())
-            ConfDB().set("GUIState/DisableMouseWheel", self.mainWindow.action_DisableMouseWheel.isChecked())
-            ConfDB().set("GUIState/ZoomUsingMouseWheel", self.mainWindow.action_ZoomUsingMouseWheel.isChecked())
-            if self.mainWindow.tips_dialog:
-                ConfDB().set("GUIState/DoNotShowTipsDialog", self.mainWindow.tips_dialog.checkBoxDontShowAgain.isChecked())
-            self.syncConf()
-
-        self.deleteLater()
-        sys.exit(retcode)
 
     def syncConf(self):
         """ Sync current application config with config file (gns3.{ini,conf})
